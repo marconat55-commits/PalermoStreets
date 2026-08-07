@@ -103,6 +103,7 @@ export interface VisualFrame {
   bounds: [number, number, number, number];
   width: number;
   height: number;
+  renderScaleX?: number;
 }
 
 export interface AnimationClip {

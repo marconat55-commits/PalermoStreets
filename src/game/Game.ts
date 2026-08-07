@@ -1,4 +1,4 @@
-import { Application, Container } from 'pixi.js';
+import { Application } from 'pixi.js';
 import { LOGICAL_HEIGHT, LOGICAL_WIDTH } from './config';
 import { Input } from './input/Input';
 import { loadCharacterIndex, loadCharacterProfile, loadFrameMeta, loadStage1 } from './data/loadData';
@@ -17,6 +17,7 @@ export class Game {
   private stageData!: StageData;
   private defaultPlayerId = 'marco';
   private defaultEnemyId = 'barbetta';
+  private startingStage = false;
 
   async init(host: HTMLElement): Promise<void> {
     await this.app.init({
@@ -68,6 +69,7 @@ export class Game {
   }
 
   private showTitle(): void {
+    this.startingStage = false;
     this.scene?.destroy();
     this.app.stage.removeChildren();
     this.titleScene = new TitleScene();
@@ -76,21 +78,28 @@ export class Game {
   }
 
   private async startStage(): Promise<void> {
-    if (!this.titleScene) return;
-    const old = this.scene;
-    this.titleScene = null;
-    const loading = new Container();
-    this.app.stage.addChild(loading);
-    old?.destroy();
-    this.app.stage.removeChildren();
-    const stage = await StageScene.create(
-      this.catalog,
-      this.stageData,
-      this.defaultPlayerId,
-      this.defaultEnemyId,
-    );
-    this.scene = stage;
-    this.app.stage.addChild(stage.root);
+    if (!this.titleScene || this.startingStage) return;
+    this.startingStage = true;
+    const title = this.titleScene;
+    title.setLoading(true);
+    try {
+      const stage = await StageScene.create(
+        this.catalog,
+        this.stageData,
+        this.defaultPlayerId,
+        this.defaultEnemyId,
+      );
+      title.destroy();
+      this.app.stage.removeChildren();
+      this.titleScene = null;
+      this.scene = stage;
+      this.app.stage.addChild(stage.root);
+    } catch (error) {
+      console.error('Avvio stage fallito', error);
+      this.startingStage = false;
+      title.startRequested = false;
+      title.setLoading(false);
+    }
   }
 
   private resizeCanvas(): void {

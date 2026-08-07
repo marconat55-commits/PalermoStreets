@@ -33,3 +33,11 @@ python scripts/build-character-atlases.py .
 ```
 
 The generator verifies every cropped atlas cell pixel-for-pixel against its approved source PNG before writing the manifest.
+
+## Arcade presentation and loading pass
+
+- Rebuilt the title screen with an original Palermo Streets arcade composition, modern display typography, high-contrast cyan/orange accents and an in-scene loading panel.
+- The title remains visible after Enter until the first module, Marco and the first-wave characters are ready; the empty black loading gap is removed.
+- Remaining module backgrounds and characters preload sequentially after gameplay becomes visible. A module transition waits safely if its assets are not ready yet.
+- Added a timed `STAGE 1 — THE ZEN` presentation card before player control and wave progression begin.
+- Added a conservative runtime-only width correction to the final `getup` frame so its transition to `idle` does not visibly change body scale. Approved PNG files remain untouched; Barbetta remains excluded.

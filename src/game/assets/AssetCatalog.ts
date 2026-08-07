@@ -1,6 +1,7 @@
 import { Assets, Rectangle, Texture } from 'pixi.js';
 import type { AnimationBank, AnimationClip, CharacterProfile, FrameMeta, VisualFrame } from '../types';
 import { publicUrl } from '../data/paths';
+import { finalGetupScale } from '../animation/visualNormalization';
 
 interface AtlasPage {
   file: string;
@@ -43,6 +44,7 @@ function relativeRoot(path: string): string {
 
 export class AssetCatalog {
   private readonly banks = new Map<string, AnimationBank>();
+  private readonly pendingBanks = new Map<string, Promise<AnimationBank>>();
   private readonly profiles = new Map<string, CharacterProfile>();
   private readonly frameMeta: Record<string, FrameMeta>;
 
@@ -67,7 +69,17 @@ export class AssetCatalog {
   }
 
   async ensureCharacter(id: string): Promise<AnimationBank> {
-    return this.loadCharacter(this.getProfile(id));
+    const cached = this.banks.get(id);
+    if (cached) return cached;
+    const pending = this.pendingBanks.get(id);
+    if (pending) return pending;
+    const loading = this.loadCharacter(this.getProfile(id));
+    this.pendingBanks.set(id, loading);
+    try {
+      return await loading;
+    } finally {
+      this.pendingBanks.delete(id);
+    }
   }
 
   async loadBackground(path: string): Promise<Texture> {
@@ -140,6 +152,18 @@ export class AssetCatalog {
       });
     }
     if (!clips.has('idle')) throw new Error(`${profile.id}: clip idle mancante`);
+    const idle = clips.get('idle')!;
+    const getup = clips.get('getup');
+    if (getup) {
+      const finalFrame = getup.frames[getup.frames.length - 1];
+      if (finalFrame && finalFrame.bounds[2] > 0) {
+        finalFrame.renderScaleX = finalGetupScale(
+          profile.id,
+          idle.frames.map((frame) => frame.bounds[2]),
+          finalFrame.bounds[2],
+        );
+      }
+    }
     const bank = { clips } satisfies AnimationBank;
     this.banks.set(profile.id, bank);
     return bank;

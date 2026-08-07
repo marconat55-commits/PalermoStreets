@@ -44,11 +44,29 @@ export class StageScene implements Scene {
   });
   private readonly fade = new Graphics();
   private readonly debug = new Graphics();
+  private readonly stageCard = new Container();
+  private readonly stageCardPanel = new Graphics();
+  private readonly stageCardNumber = new Text({
+    text: 'STAGE 1',
+    style: new TextStyle({ fontFamily: 'Arial Black, Arial, sans-serif', fontSize: 24, fontWeight: '900', fill: 0x38dce8, letterSpacing: 6 }),
+  });
+  private readonly stageCardName = new Text({
+    text: 'THE ZEN',
+    style: new TextStyle({
+      fontFamily: 'Impact, Haettenschweiler, Arial Black, sans-serif', fontSize: 76, fontWeight: '900', fontStyle: 'italic',
+      fill: 0xffb728, stroke: { color: 0x64162a, width: 7 }, letterSpacing: 4,
+    }),
+  });
+  private readonly stageCardSubtitle = new Text({
+    text: 'PALERMO — NO WAY BACK',
+    style: new TextStyle({ fontFamily: 'Arial Black, Arial, sans-serif', fontSize: 16, fontWeight: '900', fill: 0xf5f7ff, letterSpacing: 4 }),
+  });
 
   private readonly modules: ModuleData[];
-  private readonly backgroundTextures: Texture[];
+  private readonly backgroundTextures: Array<Texture | null>;
   private readonly catalog: AssetCatalog;
   private readonly defaultEnemyId: string;
+  private readonly moduleLoads = new Map<number, Promise<void>>();
   readonly player: Player;
   private enemies: Enemy[] = [];
 
@@ -75,6 +93,10 @@ export class StageScene implements Scene {
   private transitionPhase: 'in' | 'out' | null = 'in';
   private transitionAlpha = 255;
   private transitionTarget = 0;
+  private transitionLoading = false;
+  private stageIntroTimer = 0;
+  private stageIntroShown = false;
+  private preloadTriggeredForModule = -1;
 
   static async create(
     catalog: AssetCatalog,
@@ -82,21 +104,23 @@ export class StageScene implements Scene {
     playerId: string,
     defaultEnemyId: string,
   ): Promise<StageScene> {
-    const characterIds = new Set<string>([playerId, defaultEnemyId]);
-    for (const module of stageData.modules) {
-      for (const wave of module.waves ?? []) characterIds.add(wave.character ?? defaultEnemyId);
-    }
-    const [textures] = await Promise.all([
-      Promise.all(stageData.modules.map((module) => catalog.loadBackground(module.background))),
-      Promise.all([...characterIds].map((id) => catalog.ensureCharacter(id))),
+    const firstModule = stageData.modules[0];
+    if (!firstModule) throw new Error('Stage senza moduli');
+    const firstCharacters = new Set<string>([playerId]);
+    for (const wave of firstModule.waves ?? []) firstCharacters.add(wave.character ?? defaultEnemyId);
+    const [firstBackground] = await Promise.all([
+      catalog.loadBackground(firstModule.background),
+      Promise.all([...firstCharacters].map((id) => catalog.ensureCharacter(id))),
     ]);
-    return new StageScene(catalog, stageData, textures, playerId, defaultEnemyId);
+    const backgrounds = Array<Texture | null>(stageData.modules.length).fill(null);
+    backgrounds[0] = firstBackground;
+    return new StageScene(catalog, stageData, backgrounds, playerId, defaultEnemyId);
   }
 
   private constructor(
     catalog: AssetCatalog,
     stageData: StageData,
-    backgrounds: Texture[],
+    backgrounds: Array<Texture | null>,
     playerId: string,
     defaultEnemyId: string,
   ) {
@@ -127,7 +151,26 @@ export class StageScene implements Scene {
     this.world.addChild(this.background, this.grade, this.ground, this.actors, this.warningGraphics, this.effects.root, this.enemyHud.root);
     this.root.addChild(this.world, this.screen);
 
-    this.screen.addChild(this.hud.root, this.exitGraphics, this.messagePanel, this.messageText, this.clearText, this.debug, this.overlay, this.overlayTitle, this.overlaySubtitle, this.fade);
+    this.stageCardPanel
+      .rect(0, 0, LOGICAL_WIDTH, 198).fill({ color: 0x050915, alpha: 0.92 })
+      .rect(0, 0, LOGICAL_WIDTH, 7).fill(0x2adce9)
+      .rect(0, 191, LOGICAL_WIDTH, 7).fill(0xffa923)
+      .moveTo(0, 198).lineTo(250, 198).lineTo(358, 232).lineTo(0, 232).fill({ color: 0xe94935, alpha: 0.92 })
+      .moveTo(LOGICAL_WIDTH, 198).lineTo(1030, 198).lineTo(922, 232).lineTo(LOGICAL_WIDTH, 232).fill({ color: 0x23cedd, alpha: 0.92 });
+    this.stageCardNumber.anchor.set(0.5);
+    this.stageCardNumber.position.set(640, 45);
+    this.stageCardName.anchor.set(0.5);
+    this.stageCardName.position.set(640, 113);
+    this.stageCardSubtitle.anchor.set(0.5);
+    this.stageCardSubtitle.position.set(640, 169);
+    this.stageCard.addChild(this.stageCardPanel, this.stageCardNumber, this.stageCardName, this.stageCardSubtitle);
+    this.stageCard.position.y = 246;
+    this.stageCard.visible = false;
+
+    this.screen.addChild(
+      this.hud.root, this.exitGraphics, this.messagePanel, this.messageText, this.clearText, this.debug,
+      this.overlay, this.overlayTitle, this.overlaySubtitle, this.fade, this.stageCard,
+    );
     this.messageText.anchor.set(0.5);
     this.messageText.position.set(640, 122);
     this.clearText.anchor.set(0.5);
@@ -150,6 +193,36 @@ export class StageScene implements Scene {
     this.enterModule(0, false);
   }
 
+  private ensureModuleLoaded(index: number): Promise<void> {
+    if (this.backgroundTextures[index]) return Promise.resolve();
+    const pending = this.moduleLoads.get(index);
+    if (pending) return pending;
+    const module = this.modules[index];
+    if (!module) return Promise.reject(new Error(`Modulo non valido: ${index}`));
+    const characterIds = new Set<string>();
+    for (const wave of module.waves ?? []) characterIds.add(wave.character ?? this.defaultEnemyId);
+    const loading = Promise.all([
+      this.catalog.loadBackground(module.background),
+      Promise.all([...characterIds].map((id) => this.catalog.ensureCharacter(id))),
+    ]).then(([background]) => {
+      this.backgroundTextures[index] = background;
+    }).finally(() => {
+      this.moduleLoads.delete(index);
+    });
+    this.moduleLoads.set(index, loading);
+    return loading;
+  }
+
+  private preloadNextModule(): void {
+    if (this.preloadTriggeredForModule === this.moduleIndex) return;
+    this.preloadTriggeredForModule = this.moduleIndex;
+    const nextIndex = this.moduleIndex + 1;
+    if (nextIndex >= this.modules.length) return;
+    void this.ensureModuleLoaded(nextIndex).catch((error) => {
+      console.warn(`Precaricamento modulo ${nextIndex + 1} fallito`, error);
+    });
+  }
+
   get wantsMenu(): boolean {
     return false;
   }
@@ -158,7 +231,9 @@ export class StageScene implements Scene {
     this.moduleIndex = index;
     this.checkpointModule = index;
     this.currentModule = this.modules[index]!;
-    this.background.texture = this.backgroundTextures[index]!;
+    const background = this.backgroundTextures[index];
+    if (!background) throw new Error(`Background non caricato per il modulo ${index + 1}`);
+    this.background.texture = background;
     this.waveData = this.currentModule.waves ?? [];
     this.waveIndex = -1;
     this.nextWaveTimer = 0.70;
@@ -199,6 +274,11 @@ export class StageScene implements Scene {
       this.player.fury = 0;
     }
     this.player.syncVisual(true);
+
+    if (index === 0 && !preservePlayer && !this.stageIntroShown) {
+      this.stageIntroTimer = 3.2;
+      this.stageIntroShown = true;
+    }
 
     this.message = `${this.currentModule.id} — ${this.currentModule.name.toUpperCase()}`;
     this.messageTimer = 2;
@@ -278,6 +358,23 @@ export class StageScene implements Scene {
     this.player.velocity = { x: 0, y: 0 };
   }
 
+  private finishTransitionWhenLoaded(index: number): void {
+    if (this.transitionLoading) return;
+    this.transitionLoading = true;
+    void this.ensureModuleLoaded(index).then(() => {
+      if (this.transitionPhase !== 'out' || this.transitionTarget !== index) return;
+      this.enterModule(index, true);
+      this.transitionPhase = 'in';
+      this.transitionAlpha = 255;
+      this.transitionLoading = false;
+    }).catch((error) => {
+      console.error(`Caricamento modulo ${index + 1} fallito`, error);
+      this.message = 'ERRORE DI CARICAMENTO — RIPROVA';
+      this.messageTimer = 2;
+      this.transitionLoading = false;
+    });
+  }
+
   private updateTransition(dt: number): void {
     const rate = 255 / Math.max(0.05, MODULE_FADE_SECONDS);
     if (this.transitionPhase === 'out') {
@@ -289,9 +386,7 @@ export class StageScene implements Scene {
           this.transitionAlpha = 0;
           return;
         }
-        this.enterModule(this.transitionTarget, true);
-        this.transitionPhase = 'in';
-        this.transitionAlpha = 255;
+        this.finishTransitionWhenLoaded(this.transitionTarget);
       }
     } else if (this.transitionPhase === 'in') {
       this.transitionAlpha = Math.max(0, this.transitionAlpha - rate * dt);
@@ -303,7 +398,7 @@ export class StageScene implements Scene {
     if (input.wasPressed('KeyP')) this.paused = !this.paused;
     if (input.wasPressed('F3')) this.debugDraw = !this.debugDraw;
     if (input.wasPressed('KeyR') && this.player.dead) this.restart();
-    if (!this.paused && !this.stageComplete && this.transitionPhase === null) {
+    if (!this.paused && !this.stageComplete && this.transitionPhase === null && this.stageIntroTimer <= 0) {
       if (input.wasPressed('KeyJ')) this.player.requestPunch();
       if (input.wasPressed('KeyI')) this.player.requestKick();
       if (input.wasPressed('KeyL')) this.player.requestSuper();
@@ -320,6 +415,13 @@ export class StageScene implements Scene {
       this.updateVisualLayers();
       return;
     }
+    if (this.stageIntroTimer > 0) {
+      this.stageIntroTimer = Math.max(0, this.stageIntroTimer - dt);
+      this.player.update(dt, input, false);
+      this.updateVisualLayers();
+      return;
+    }
+    this.preloadNextModule();
     if (this.stageComplete) {
       this.updateVisualLayers();
       return;
@@ -419,6 +521,15 @@ export class StageScene implements Scene {
   }
 
   private updateVisualLayers(): void {
+    const introProgress = 3.2 - this.stageIntroTimer;
+    const showingStageIntro = this.stageIntroTimer > 0;
+    this.stageCard.visible = showingStageIntro && !this.paused;
+    this.hud.root.visible = !showingStageIntro;
+    if (this.stageCard.visible) {
+      this.stageCard.alpha = Math.min(1, introProgress / 0.22, this.stageIntroTimer / 0.42);
+      const pulse = 1 + Math.sin(introProgress * 6) * 0.012;
+      this.stageCardName.scale.set(pulse, pulse);
+    }
     this.ground.clear();
     for (const actor of [this.player, ...this.enemies]) {
       const fallen = actor.state === 'knockdown' || actor.state === 'dead';
@@ -460,7 +571,7 @@ export class StageScene implements Scene {
     }
 
     this.messagePanel.clear();
-    this.messageText.visible = this.messageTimer > 0;
+    this.messageText.visible = this.messageTimer > 0 && !showingStageIntro;
     if (this.messageText.visible) {
       this.messageText.text = this.message;
       const width = Math.max(260, this.messageText.width + 34);

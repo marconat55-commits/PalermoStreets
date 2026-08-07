@@ -1,6 +1,30 @@
-import { Assets, Texture } from 'pixi.js';
+import { Assets, Rectangle, Texture } from 'pixi.js';
 import type { AnimationBank, AnimationClip, CharacterProfile, FrameMeta, VisualFrame } from '../types';
 import { publicUrl } from '../data/paths';
+
+interface AtlasPage {
+  file: string;
+  width: number;
+  height: number;
+}
+
+interface AtlasFrame {
+  page: number;
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+  source_width: number;
+  source_height: number;
+  source_x: number;
+  source_y: number;
+}
+
+interface AtlasManifest {
+  schema: number;
+  pages: AtlasPage[];
+  frames: Record<string, AtlasFrame>;
+}
 
 function expandedDurations(frames: number, values: number[]): number[] {
   if (values.length === 1) return Array.from({ length: frames }, () => values[0] ?? 0.1);
@@ -10,6 +34,11 @@ function expandedDurations(frames: number, values: number[]): number[] {
 
 function frameName(index: number): string {
   return `${index.toString().padStart(2, '0')}.png`;
+}
+
+function relativeRoot(path: string): string {
+  const separator = path.lastIndexOf('/');
+  return separator >= 0 ? path.slice(0, separator + 1) : '';
 }
 
 export class AssetCatalog {
@@ -37,8 +66,38 @@ export class AssetCatalog {
     return bank;
   }
 
+  async ensureCharacter(id: string): Promise<AnimationBank> {
+    return this.loadCharacter(this.getProfile(id));
+  }
+
   async loadBackground(path: string): Promise<Texture> {
     return Assets.load<Texture>(publicUrl(path));
+  }
+
+  private async loadAtlas(profile: CharacterProfile): Promise<Map<string, Texture> | null> {
+    const atlasPath = profile.assets.texture_atlas;
+    if (!atlasPath) return null;
+    const response = await fetch(publicUrl(atlasPath));
+    if (!response.ok) throw new Error(`${profile.id}: atlas non caricabile (${response.status})`);
+    const manifest = await response.json() as AtlasManifest;
+    if (manifest.schema !== 1) throw new Error(`${profile.id}: schema atlas non supportato`);
+    const root = relativeRoot(atlasPath);
+    const pages = await Promise.all(
+      manifest.pages.map((page) => Assets.load<Texture>(publicUrl(`${root}${page.file}`))),
+    );
+    const textures = new Map<string, Texture>();
+    for (const [name, item] of Object.entries(manifest.frames)) {
+      const page = pages[item.page];
+      if (!page) throw new Error(`${profile.id}: pagina atlas mancante per ${name}`);
+      textures.set(name, new Texture({
+        source: page.source,
+        label: `${profile.id}/${name}`,
+        frame: new Rectangle(item.x, item.y, item.width, item.height),
+        orig: new Rectangle(0, 0, item.source_width, item.source_height),
+        trim: new Rectangle(item.source_x, item.source_y, item.width, item.height),
+      }));
+    }
+    return textures;
   }
 
   async loadCharacter(profile: CharacterProfile): Promise<AnimationBank> {
@@ -46,14 +105,15 @@ export class AssetCatalog {
     const cached = this.banks.get(profile.id);
     if (cached) return cached;
 
+    const atlas = await this.loadAtlas(profile);
     const clips = new Map<string, AnimationClip>();
     for (const [name, spec] of Object.entries(profile.animations)) {
       const durations = expandedDurations(spec.frames, spec.durations);
       const frames: VisualFrame[] = [];
       for (let i = 1; i <= spec.frames; i += 1) {
-        const rel = `${profile.assets.animation_root}/${spec.folder}/${frameName(i)}`;
-        const url = publicUrl(rel);
-        const texture = await Assets.load<Texture>(url);
+        const filename = `${spec.folder}/${frameName(i)}`;
+        const rel = `${profile.assets.animation_root}/${filename}`;
+        const texture = atlas?.get(filename) ?? await Assets.load<Texture>(publicUrl(rel));
         const key = `/${rel}`;
         const meta = this.frameMeta[key] ?? {
           width: texture.width,
@@ -75,6 +135,8 @@ export class AssetCatalog {
         frames,
         loop: spec.loop ?? false,
         sourceFacing: spec.source_facing ?? 1,
+        referenceSpeed: spec.reference_speed,
+        contactFrame: spec.contact_frame,
       });
     }
     if (!clips.has('idle')) throw new Error(`${profile.id}: clip idle mancante`);

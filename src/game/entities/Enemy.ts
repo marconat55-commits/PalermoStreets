@@ -2,6 +2,7 @@ import { Actor } from './Actor';
 import type { AnimationBank, AttackData, Rect, Vec2 } from '../types';
 import { ENEMY_ATTACK, ENEMY_HEAVY, attackTotal } from '../combat/attacks';
 import { clamp, lengthSq, normalize, randomRange, sub } from '../../utils/math';
+import { locomotionPlaybackRate, selectLocomotionClip } from '../animation/locomotion';
 
 function scaledAttack(base: AttackData, damageScale: number, speedScale: number): AttackData {
   const speed = clamp(speedScale, 0.55, 1.8);
@@ -21,7 +22,6 @@ export interface EnemyOptions {
   displayName?: string;
   variantIndex?: number;
   characterId?: string;
-  visualHeight?: number;
   moveSpeedScale?: number;
   damageScale?: number;
   attackSpeedScale?: number;
@@ -52,7 +52,7 @@ export class Enemy extends Actor {
   spawnElapsed = 0;
 
   constructor(bank: AnimationBank, position: Vec2, options: EnemyOptions = {}) {
-    super(bank, position, options.health ?? 82, options.visualHeight ?? 275);
+    super(bank, position, options.health ?? 82);
     this.characterId = options.characterId ?? 'barbetta';
     this.aggression = options.aggression ?? 1;
     this.isBoss = options.boss ?? false;
@@ -91,6 +91,7 @@ export class Enemy extends Actor {
     this.facing = this.attackFacing;
     this.velocity = { x: 0, y: 0 };
     this.beginState('attack', attack.name);
+    this.animator.fitDuration(attackTotal(attack));
   }
 
   update(dt: number, player: Actor, allies: Enemy[], mayAttack: boolean, supportRank = 0): void {
@@ -196,9 +197,15 @@ export class Enemy extends Actor {
       this.position.x += step.x;
       this.position.y += step.y;
       moved = lengthSq(step) > 0.01;
-      if (moved && Math.abs(step.y) > Math.abs(step.x) * 0.75) {
-        const directionalAnimation = step.y < 0 ? 'walk_up' : 'walk_down';
-        if (this.animator.bank.clips.has(directionalAnimation)) movementAnimation = directionalAnimation;
+      if (moved) {
+        movementAnimation = selectLocomotionClip(
+          step,
+          this.animator.name,
+          (name) => this.animator.bank.clips.has(name),
+        );
+        const actualSpeed = Math.hypot(direction.x * speedX, direction.y * speedY);
+        const clip = this.animator.bank.clips.get(movementAnimation);
+        this.animator.setPlaybackRate(locomotionPlaybackRate(actualSpeed, clip?.referenceSpeed));
       }
     }
 
@@ -212,7 +219,9 @@ export class Enemy extends Actor {
       }
     }
 
-    this.animator.play(moved ? movementAnimation : 'idle');
+    const preservesStride = ['walk', 'walk_up', 'walk_down'].includes(this.animator.name);
+    this.animator.play(moved ? movementAnimation : 'idle', false, moved && preservesStride);
+    if (!moved) this.animator.setPlaybackRate(1);
     this.state = moved ? 'walk' : 'idle';
     this.clampToPlayfield();
     this.syncVisual();

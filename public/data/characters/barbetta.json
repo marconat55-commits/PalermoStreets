@@ -8,7 +8,8 @@
   "visual_height": 275,
   "assets": {
     "master_root": "assets/characters/barbetta",
-    "animation_root": "assets/characters/barbetta_anim"
+    "animation_root": "assets/characters/barbetta_anim",
+    "texture_atlas": "assets/characters/barbetta_anim/atlas/atlas.json"
   },
   "identity": {
     "outfit": "tuta nera lucida, canotta bianca",
@@ -34,6 +35,8 @@
     "recipe": "enemy_standard",
     "animation_canvas": [640, 420],
     "baseline_y": 414,
+    "content_bottom_y": 413,
+    "scale_mode": "baked_legacy",
     "master_canvas": [1280, 1760],
     "master_pack_required": [
       "01_fronte.png",
@@ -49,9 +52,9 @@
   },
   "animations": {
     "idle": {"folder": "idle", "frames": 4, "durations": [0.16], "loop": true, "source_facing": 1},
-    "walk": {"folder": "walk", "frames": 4, "durations": [0.115], "loop": true, "source_facing": 1},
-    "attack": {"folder": "attack", "frames": 3, "durations": [0.18, 0.16, 0.58], "source_facing": 1},
-    "heavy": {"folder": "heavy", "frames": 4, "durations": [0.20, 0.18, 0.18, 0.72], "source_facing": 1},
+    "walk": {"folder": "walk", "frames": 4, "durations": [0.115], "loop": true, "source_facing": 1, "reference_speed": 132},
+    "attack": {"folder": "attack", "frames": 3, "durations": [0.18, 0.16, 0.58], "source_facing": 1, "contact_frame": 3},
+    "heavy": {"folder": "heavy", "frames": 4, "durations": [0.20, 0.18, 0.18, 0.72], "source_facing": 1, "contact_frame": 4},
     "hit": {"folder": "hit", "frames": 3, "durations": [0.09, 0.12, 0.12], "source_facing": 1},
     "knockdown": {"folder": "fall", "frames": 4, "durations": [0.12, 0.16, 0.22, 0.48], "source_facing": 1},
     "getup": {"folder": "getup", "frames": 4, "durations": [0.16, 0.16, 0.18, 0.22], "source_facing": 1},

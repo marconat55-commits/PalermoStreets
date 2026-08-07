@@ -4,6 +4,7 @@ import { FURY_MAX } from '../config';
 import { KICK_RIGHT, LIGHT_COMBO, PUNCH_LEFT, PUNCH_RIGHT, SUPER, attackTotal } from '../combat/attacks';
 import { lengthSq, normalize } from '../../utils/math';
 import type { Input } from '../input/Input';
+import { locomotionPlaybackRate, selectLocomotionClip } from '../animation/locomotion';
 
 export class Player extends Actor {
   readonly moveSpeed: number;
@@ -21,8 +22,8 @@ export class Player extends Actor {
   autoTargetX: number | null = null;
   lastMove: Vec2 = { x: 1, y: 0 };
 
-  constructor(bank: AnimationBank, position: Vec2, maxHealth = 120, visualHeight = 290, moveSpeed = 285, depthSpeed = 205) {
-    super(bank, position, maxHealth, visualHeight);
+  constructor(bank: AnimationBank, position: Vec2, maxHealth = 120, moveSpeed = 285, depthSpeed = 205) {
+    super(bank, position, maxHealth);
     this.moveSpeed = moveSpeed;
     this.depthSpeed = depthSpeed;
   }
@@ -92,6 +93,7 @@ export class Player extends Actor {
     this.attackElapsed = 0;
     this.attackHits.clear();
     this.beginState('attack', attack.name);
+    this.animator.fitDuration(attackTotal(attack));
   }
 
   update(dt: number, input: Input, movementEnabled = true): void {
@@ -147,12 +149,19 @@ export class Player extends Actor {
     if (x !== 0) this.facing = x > 0 ? 1 : -1;
     else this.faceAutoTarget();
     const moving = lengthSq(move) > 0.01;
-    let movementAnimation = 'walk';
-    if (moving && Math.abs(move.y) > Math.abs(move.x) * 0.75) {
-      const directionalAnimation = move.y < 0 ? 'walk_up' : 'walk_down';
-      if (this.animator.bank.clips.has(directionalAnimation)) movementAnimation = directionalAnimation;
+    const movementAnimation = selectLocomotionClip(
+      move,
+      this.animator.name,
+      (name) => this.animator.bank.clips.has(name),
+    );
+    const preservesStride = ['walk', 'walk_up', 'walk_down'].includes(this.animator.name);
+    this.animator.play(moving ? movementAnimation : 'idle', false, moving && preservesStride);
+    if (moving) {
+      const actualSpeed = Math.hypot(move.x * this.moveSpeed, move.y * this.depthSpeed);
+      this.animator.setPlaybackRate(locomotionPlaybackRate(actualSpeed, this.animator.clip.referenceSpeed));
+    } else {
+      this.animator.setPlaybackRate(1);
     }
-    this.animator.play(moving ? movementAnimation : 'idle');
     this.state = moving ? 'walk' : 'idle';
     this.clampToPlayfield();
     this.syncVisual();

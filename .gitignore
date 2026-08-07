@@ -6,3 +6,7 @@ dist/
 Thumbs.db
 
 *.tsbuildinfo
+
+# Character Factory intermediates: keep approved sources/masters/QA, discard rebuildable cells.
+character_factory/**/raw_cells/
+character_factory/**/key_removed/

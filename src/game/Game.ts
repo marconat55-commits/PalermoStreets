@@ -15,6 +15,8 @@ export class Game {
   private titleScene: TitleScene | null = null;
   private catalog!: AssetCatalog;
   private stageData!: StageData;
+  private defaultPlayerId = 'marco';
+  private defaultEnemyId = 'barbetta';
 
   async init(host: HTMLElement): Promise<void> {
     await this.app.init({
@@ -37,10 +39,11 @@ export class Game {
       loadStage1(),
     ]);
     this.stageData = stageData;
+    this.defaultPlayerId = index.default_player;
+    this.defaultEnemyId = index.default_enemy;
     this.catalog = new AssetCatalog(frameMeta);
     const profiles = await Promise.all(index.characters.map((id) => loadCharacterProfile(id)));
     for (const profile of profiles) this.catalog.registerProfile(profile);
-    await Promise.all(profiles.map((profile) => this.catalog.loadCharacter(profile)));
 
     this.showTitle();
     this.app.ticker.add((ticker: { deltaMS: number }) => {
@@ -80,7 +83,12 @@ export class Game {
     this.app.stage.addChild(loading);
     old?.destroy();
     this.app.stage.removeChildren();
-    const stage = await StageScene.create(this.catalog, this.stageData);
+    const stage = await StageScene.create(
+      this.catalog,
+      this.stageData,
+      this.defaultPlayerId,
+      this.defaultEnemyId,
+    );
     this.scene = stage;
     this.app.stage.addChild(stage.root);
   }

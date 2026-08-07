@@ -22,7 +22,6 @@ export class Actor {
   velocity: Vec2 = { x: 0, y: 0 };
   maxHealth: number;
   health: number;
-  visualHeight: number;
   facing: -1 | 1 = 1;
   state = 'idle';
   stateElapsed = 0;
@@ -32,12 +31,11 @@ export class Actor {
   dead = false;
   removeReady = false;
 
-  constructor(bank: AnimationBank, position: Vec2, maxHealth: number, visualHeight: number) {
+  constructor(bank: AnimationBank, position: Vec2, maxHealth: number) {
     this.animator = new Animator(bank);
     this.position = { ...position };
     this.maxHealth = maxHealth;
     this.health = maxHealth;
-    this.visualHeight = visualHeight;
 
     this.root.sortableChildren = true;
     for (const [dx, dy] of [[-1, 0], [1, 0], [0, -1], [0, 1]] as const) {
@@ -92,6 +90,7 @@ export class Actor {
   beginState(state: string, animation = state, restart = true): void {
     this.state = state;
     this.stateElapsed = 0;
+    this.animator.setPlaybackRate(1);
     this.animator.play(animation, restart);
     this.syncVisual(true);
   }

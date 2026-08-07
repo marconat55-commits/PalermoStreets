@@ -9,6 +9,8 @@ export interface AnimationJson {
   durations: number[];
   loop?: boolean;
   source_facing?: -1 | 1;
+  reference_speed?: number;
+  contact_frame?: number;
 }
 
 export interface CharacterProfile {
@@ -22,6 +24,7 @@ export interface CharacterProfile {
   assets: {
     master_root: string;
     animation_root: string;
+    texture_atlas?: string;
   };
   identity: Record<string, unknown>;
   gameplay: {
@@ -106,6 +109,8 @@ export interface AnimationClip {
   frames: VisualFrame[];
   loop: boolean;
   sourceFacing: -1 | 1;
+  referenceSpeed?: number;
+  contactFrame?: number;
 }
 
 export interface AnimationBank {

@@ -8,7 +8,8 @@
   "visual_height": 305,
   "assets": {
     "master_root": "assets/characters/talebano",
-    "animation_root": "assets/characters/talebano_anim"
+    "animation_root": "assets/characters/talebano_anim",
+    "texture_atlas": "assets/characters/talebano_anim/atlas/atlas.json"
   },
   "identity": {
     "outfit": "canotta bianca aderente, pantaloni tuta adidas blu, scarpe da tennis bianche",
@@ -36,7 +37,8 @@
       640,
       420
     ],
-    "baseline_y": 414,
+    "baseline_y": 400,
+    "scale_mode": "baked",
     "master_canvas": [
       1280,
       1760
@@ -71,7 +73,8 @@
         0.11
       ],
       "loop": true,
-      "source_facing": 1
+      "source_facing": 1,
+      "reference_speed": 120
     },
     "walk_up": {
       "folder": "walk_up",
@@ -80,7 +83,8 @@
         0.11
       ],
       "loop": true,
-      "source_facing": 1
+      "source_facing": 1,
+      "reference_speed": 92
     },
     "walk_down": {
       "folder": "walk_down",
@@ -89,7 +93,8 @@
         0.11
       ],
       "loop": true,
-      "source_facing": 1
+      "source_facing": 1,
+      "reference_speed": 92
     },
     "attack": {
       "folder": "attack",
@@ -101,7 +106,8 @@
         0.44
       ],
       "loop": false,
-      "source_facing": 1
+      "source_facing": 1,
+      "contact_frame": 3
     },
     "heavy": {
       "folder": "heavy",
@@ -114,7 +120,8 @@
         0.58
       ],
       "loop": false,
-      "source_facing": 1
+      "source_facing": 1,
+      "contact_frame": 4
     },
     "hit": {
       "folder": "hit",

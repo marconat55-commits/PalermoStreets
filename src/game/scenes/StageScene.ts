@@ -48,6 +48,7 @@ export class StageScene implements Scene {
   private readonly modules: ModuleData[];
   private readonly backgroundTextures: Texture[];
   private readonly catalog: AssetCatalog;
+  private readonly defaultEnemyId: string;
   readonly player: Player;
   private enemies: Enemy[] = [];
 
@@ -75,13 +76,32 @@ export class StageScene implements Scene {
   private transitionAlpha = 255;
   private transitionTarget = 0;
 
-  static async create(catalog: AssetCatalog, stageData: StageData): Promise<StageScene> {
-    const textures = await Promise.all(stageData.modules.map((module) => catalog.loadBackground(module.background)));
-    return new StageScene(catalog, stageData, textures);
+  static async create(
+    catalog: AssetCatalog,
+    stageData: StageData,
+    playerId: string,
+    defaultEnemyId: string,
+  ): Promise<StageScene> {
+    const characterIds = new Set<string>([playerId, defaultEnemyId]);
+    for (const module of stageData.modules) {
+      for (const wave of module.waves ?? []) characterIds.add(wave.character ?? defaultEnemyId);
+    }
+    const [textures] = await Promise.all([
+      Promise.all(stageData.modules.map((module) => catalog.loadBackground(module.background))),
+      Promise.all([...characterIds].map((id) => catalog.ensureCharacter(id))),
+    ]);
+    return new StageScene(catalog, stageData, textures, playerId, defaultEnemyId);
   }
 
-  private constructor(catalog: AssetCatalog, stageData: StageData, backgrounds: Texture[]) {
+  private constructor(
+    catalog: AssetCatalog,
+    stageData: StageData,
+    backgrounds: Texture[],
+    playerId: string,
+    defaultEnemyId: string,
+  ) {
     this.catalog = catalog;
+    this.defaultEnemyId = defaultEnemyId;
     this.modules = stageData.modules;
     this.backgroundTextures = backgrounds;
     this.actors.sortableChildren = true;
@@ -117,13 +137,12 @@ export class StageScene implements Scene {
     this.overlaySubtitle.anchor.set(0.5);
     this.overlaySubtitle.position.set(640, 378);
 
-    const playerProfile = this.catalog.getProfile('marco');
+    const playerProfile = this.catalog.getProfile(playerId);
     const tuning = playerProfile.gameplay.player ?? {};
     this.player = new Player(
-      this.catalog.getBank('marco'),
+      this.catalog.getBank(playerId),
       { ...PLAYER_START },
       tuning.max_health ?? 120,
-      playerProfile.visual_height,
       tuning.move_speed ?? 285,
       tuning.depth_speed ?? 205,
     );
@@ -217,7 +236,7 @@ export class StageScene implements Scene {
     if (this.waveIndex >= this.waveData.length) return;
     const wave = this.waveData[this.waveIndex]!;
     const boss = wave.boss ?? false;
-    const characterId = wave.character ?? 'barbetta';
+    const characterId = wave.character ?? this.defaultEnemyId;
     const profile = this.catalog.getProfile(characterId);
     const defaults = this.enemyDefaults(profile);
     for (let index = 0; index < wave.spawns.length; index += 1) {
@@ -229,7 +248,6 @@ export class StageScene implements Scene {
         displayName: wave.name ?? (boss ? profile.display_name : defaults.label),
         variantIndex: index % 3,
         characterId,
-        visualHeight: profile.visual_height,
         moveSpeedScale: wave.move_speed_scale ?? defaults.move_speed_scale,
         damageScale: wave.damage_scale ?? defaults.damage_scale,
         attackSpeedScale: wave.attack_speed_scale ?? defaults.attack_speed_scale,
@@ -402,6 +420,13 @@ export class StageScene implements Scene {
 
   private updateVisualLayers(): void {
     this.ground.clear();
+    for (const actor of [this.player, ...this.enemies]) {
+      const fallen = actor.state === 'knockdown' || actor.state === 'dead';
+      const radius = actor.collisionRadius;
+      this.ground
+        .ellipse(actor.position.x, actor.position.y + 1, radius.x * (fallen ? 1.18 : 0.92), fallen ? 5 : 8)
+        .fill({ color: 0x100b08, alpha: actor.dead ? 0.10 : 0.20 });
+    }
     for (const enemy of this.enemies) {
       if (enemy.dead) continue;
       const color = enemy.isBoss ? 0xb02a24 : (enemy.variantIndex === 1 ? 0x69499b : 0x415c80);

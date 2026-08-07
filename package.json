@@ -8,8 +8,9 @@
     "build": "tsc -b && vite build",
     "typecheck": "tsc -b --pretty false",
     "preview": "vite preview",
-    "check": "npm run validate:data && npm run typecheck && npm run build",
-    "validate:data": "node scripts/validate-data.mjs"
+    "check": "npm run validate:data && npm run test && npm run typecheck && npm run build",
+    "validate:data": "node scripts/validate-data.mjs",
+    "test": "node --experimental-strip-types --test"
   },
   "dependencies": {
     "pixi.js": "8.19.0"

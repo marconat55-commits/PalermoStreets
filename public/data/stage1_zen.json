@@ -32,9 +32,7 @@
           "move_speed_scale": 0.9,
           "damage_scale": 1.02,
           "attack_speed_scale": 0.94,
-          "heavy_chance": 0.3,
-          "cooldown_scale": 1.08,
-          "collision_scale": 1.06
+          "heavy_chance": 0.3
         },
         {
           "health": 70,
@@ -46,13 +44,7 @@
             ]
           ],
           "character": "piero_u_pizzetto",
-          "name": "PIERO U' PIZZETTO",
-          "move_speed_scale": 1.06,
-          "damage_scale": 0.92,
-          "attack_speed_scale": 1.1,
-          "heavy_chance": 0.24,
-          "cooldown_scale": 0.9,
-          "collision_scale": 0.96
+          "name": "PIERO U' PIZZETTO"
         }
       ]
     },
@@ -81,13 +73,7 @@
             ]
           ],
           "character": "piero_u_pizzetto",
-          "name": "PIERO U' PIZZETTO",
-          "move_speed_scale": 1.06,
-          "damage_scale": 0.92,
-          "attack_speed_scale": 1.1,
-          "heavy_chance": 0.24,
-          "cooldown_scale": 0.9,
-          "collision_scale": 0.96
+          "name": "PIERO U' PIZZETTO"
         },
         {
           "health": 88,
@@ -107,9 +93,7 @@
           "move_speed_scale": 0.9,
           "damage_scale": 1.02,
           "attack_speed_scale": 0.94,
-          "heavy_chance": 0.3,
-          "cooldown_scale": 1.08,
-          "collision_scale": 1.06
+          "heavy_chance": 0.3
         }
       ]
     },
@@ -142,9 +126,7 @@
           "move_speed_scale": 0.9,
           "damage_scale": 1.02,
           "attack_speed_scale": 0.94,
-          "heavy_chance": 0.3,
-          "cooldown_scale": 1.08,
-          "collision_scale": 1.06
+          "heavy_chance": 0.3
         },
         {
           "health": 81,
@@ -156,12 +138,6 @@
             ]
           ],
           "character": "piero_u_pizzetto",
-          "move_speed_scale": 1.06,
-          "damage_scale": 0.92,
-          "attack_speed_scale": 1.1,
-          "heavy_chance": 0.24,
-          "cooldown_scale": 0.9,
-          "collision_scale": 0.96,
           "name": "PIERO U' PIZZETTO"
         }
       ]
@@ -191,13 +167,7 @@
             ]
           ],
           "character": "piero_u_pizzetto",
-          "name": "PIERO U' PIZZETTO",
-          "move_speed_scale": 1.06,
-          "damage_scale": 0.92,
-          "attack_speed_scale": 1.1,
-          "heavy_chance": 0.24,
-          "cooldown_scale": 0.9,
-          "collision_scale": 0.96
+          "name": "PIERO U' PIZZETTO"
         },
         {
           "health": 108,
@@ -210,8 +180,6 @@
           ],
           "character": "talebano",
           "move_speed_scale": 0.9,
-          "damage_scale": 1.08,
-          "attack_speed_scale": 0.92,
           "heavy_chance": 0.35,
           "cooldown_scale": 1.05,
           "collision_scale": 1.07,
@@ -248,9 +216,7 @@
           "move_speed_scale": 0.9,
           "damage_scale": 1.02,
           "attack_speed_scale": 0.94,
-          "heavy_chance": 0.3,
-          "cooldown_scale": 1.08,
-          "collision_scale": 1.06
+          "heavy_chance": 0.3
         },
         {
           "health": 95,
@@ -262,12 +228,6 @@
             ]
           ],
           "character": "piero_u_pizzetto",
-          "move_speed_scale": 1.06,
-          "damage_scale": 0.92,
-          "attack_speed_scale": 1.1,
-          "heavy_chance": 0.24,
-          "cooldown_scale": 0.9,
-          "collision_scale": 0.96,
           "name": "PIERO U' PIZZETTO"
         }
       ]
@@ -297,13 +257,7 @@
             ]
           ],
           "character": "piero_u_pizzetto",
-          "name": "PIERO U' PIZZETTO",
-          "move_speed_scale": 1.06,
-          "damage_scale": 0.92,
-          "attack_speed_scale": 1.1,
-          "heavy_chance": 0.24,
-          "cooldown_scale": 0.9,
-          "collision_scale": 0.96
+          "name": "PIERO U' PIZZETTO"
         },
         {
           "health": 120,
@@ -315,7 +269,6 @@
             ]
           ],
           "character": "talebano",
-          "move_speed_scale": 0.88,
           "damage_scale": 1.12,
           "attack_speed_scale": 0.94,
           "heavy_chance": 0.37,
@@ -346,7 +299,6 @@
             ]
           ],
           "character": "talebano",
-          "move_speed_scale": 0.88,
           "damage_scale": 1.15,
           "attack_speed_scale": 0.95,
           "heavy_chance": 0.38,

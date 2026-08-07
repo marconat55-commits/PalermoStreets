@@ -3,7 +3,7 @@
   "id": "marco",
   "display_name": "MARCO",
   "role": "player",
-  "height_cm": 184,
+  "height_cm": 185,
   "body_type": "muscoloso atletico",
   "visual_height": 290,
   "assets": {
@@ -11,11 +11,11 @@
     "animation_root": "assets/characters/marco_anim"
   },
   "identity": {
-    "outfit": "mantello rosso, pantaloni scuri, fascia rossa",
-    "accessories": "fascia e dettagli metallici",
+    "outfit": "camicia bianca aperta con maniche arrotolate, pantaloni bianchi larghi, fascia rossa in vita e scarpe in pelle marrone",
+    "accessories": "doppia catena d'oro, anello d'oro all'orecchio sinistro e bracciali in pelle e metallo",
     "fighting_style": "street fighter potente e diretto",
     "special_move": "supermossa in avanzamento",
-    "canon": "Marco Definitive Pack v1.1 CLEAN — runtime v0.7.8: full edge decontamination and super-move horizontal keyframes normalized around the feet pivot"
+    "canon": "Marco Quality Pack v2 — volto bloccato sul master originale, 62 frame trasparenti ripuliti e normalizzati sul pivot dei piedi"
   },
   "gameplay": {
     "player": {
@@ -30,7 +30,7 @@
       640,
       420
     ],
-    "baseline_y": 414,
+    "baseline_y": 400,
     "master_canvas": [
       1280,
       1760
@@ -59,6 +59,24 @@
     },
     "walk": {
       "folder": "walk",
+      "frames": 6,
+      "durations": [
+        0.105
+      ],
+      "loop": true,
+      "source_facing": 1
+    },
+    "walk_up": {
+      "folder": "walk_up",
+      "frames": 6,
+      "durations": [
+        0.105
+      ],
+      "loop": true,
+      "source_facing": 1
+    },
+    "walk_down": {
+      "folder": "walk_down",
       "frames": 6,
       "durations": [
         0.105

@@ -147,7 +147,12 @@ export class Player extends Actor {
     if (x !== 0) this.facing = x > 0 ? 1 : -1;
     else this.faceAutoTarget();
     const moving = lengthSq(move) > 0.01;
-    this.animator.play(moving ? 'walk' : 'idle');
+    let movementAnimation = 'walk';
+    if (moving && Math.abs(move.y) > Math.abs(move.x) * 0.75) {
+      const directionalAnimation = move.y < 0 ? 'walk_up' : 'walk_down';
+      if (this.animator.bank.clips.has(directionalAnimation)) movementAnimation = directionalAnimation;
+    }
+    this.animator.play(moving ? movementAnimation : 'idle');
     this.state = moving ? 'walk' : 'idle';
     this.clampToPlayfield();
     this.syncVisual();

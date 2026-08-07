@@ -6,14 +6,14 @@
         420
       ],
       "bbox": [
-        178,
-        121,
-        379,
-        410
+        167,
+        110,
+        366,
+        400
       ],
-      "visible_height": 289,
-      "baseline": 410,
-      "sha256": "c5ebc0bfefbcde74336c41776fee938c17e579a33a4131e8e86fb7c85c030dc4",
+      "visible_height": 290,
+      "baseline": 400,
+      "sha256": "aad5a93e1003772de598f751076d5fd0530561002cb274e7909f92fb8397c903",
       "near_white_semialpha": 0
     },
     "02.png": {
@@ -22,14 +22,14 @@
         420
       ],
       "bbox": [
-        185,
-        172,
-        359,
-        410
+        160,
+        110,
+        368,
+        400
       ],
-      "visible_height": 238,
-      "baseline": 410,
-      "sha256": "b038888f237d44888e3de6e1e6ba020f4ca3c50d6d7019605c6683fdd692d821",
+      "visible_height": 290,
+      "baseline": 400,
+      "sha256": "774849009fa7328274946bdc354ba21b01508ae302a16a239e52356626813975",
       "near_white_semialpha": 0
     },
     "03.png": {
@@ -38,14 +38,14 @@
         420
       ],
       "bbox": [
-        178,
-        121,
-        379,
-        410
+        161,
+        110,
+        368,
+        400
       ],
-      "visible_height": 289,
-      "baseline": 410,
-      "sha256": "c5ebc0bfefbcde74336c41776fee938c17e579a33a4131e8e86fb7c85c030dc4",
+      "visible_height": 290,
+      "baseline": 400,
+      "sha256": "f6fd4765425d483785206f421753d4af7e089e03e470e263b3fe4b04ad5dd6ff",
       "near_white_semialpha": 0
     },
     "04.png": {
@@ -54,14 +54,14 @@
         420
       ],
       "bbox": [
-        158,
-        120,
-        381,
-        410
+        162,
+        110,
+        376,
+        400
       ],
       "visible_height": 290,
-      "baseline": 410,
-      "sha256": "52592070accb52064d68f9aa72ef0671ae809e3710b4fbebe253f942f3aa32a1",
+      "baseline": 400,
+      "sha256": "aa155751941af65102ac9c154a71c47afcd51a00dbb9f5bb1be4600cba54f13c",
       "near_white_semialpha": 0
     }
   },
@@ -72,14 +72,14 @@
         420
       ],
       "bbox": [
-        177,
-        137,
-        467,
-        410
+        211,
+        110,
+        343,
+        400
       ],
-      "visible_height": 273,
-      "baseline": 410,
-      "sha256": "143fba90a92b39d28d4f91c35060d499d39ceb355f204b797279c27074760ff8",
+      "visible_height": 290,
+      "baseline": 400,
+      "sha256": "82e53d84569ffba6070a665bd01d56550a8813dc36268ad54fc639b99a73f256",
       "near_white_semialpha": 0
     },
     "02.png": {
@@ -88,14 +88,14 @@
         420
       ],
       "bbox": [
-        265,
-        120,
-        486,
-        410
+        50,
+        201,
+        340,
+        400
       ],
-      "visible_height": 290,
-      "baseline": 410,
-      "sha256": "5c69872f8d3e7913c44721f37d745560896b9d340b9105be58d841bcc5e3b975",
+      "visible_height": 199,
+      "baseline": 400,
+      "sha256": "20044268fa8e3251acb587643e4bb4ab1bc8d05f0eb90f313d1b749c19fb5cbf",
       "near_white_semialpha": 0
     },
     "03.png": {
@@ -104,14 +104,14 @@
         420
       ],
       "bbox": [
-        195,
-        120,
-        422,
-        410
+        222,
+        110,
+        490,
+        400
       ],
       "visible_height": 290,
-      "baseline": 410,
-      "sha256": "e2a42a98d442656c3a223679d7a0da663b9448b9036876ab3365cbd94b0c7a33",
+      "baseline": 400,
+      "sha256": "1f1664642bd7c8f7f38c538ab782d7cae564aa495db01eea0698d1e860abc84c",
       "near_white_semialpha": 0
     },
     "04.png": {
@@ -120,14 +120,14 @@
         420
       ],
       "bbox": [
-        161,
-        133,
-        450,
-        410
+        94,
+        110,
+        337,
+        400
       ],
-      "visible_height": 277,
-      "baseline": 410,
-      "sha256": "4ced7c247869ed720a34830715c476a89c6f0b37c80d64f89f085f76236daffd",
+      "visible_height": 290,
+      "baseline": 400,
+      "sha256": "b059c637a957820e46bbbb530abd2021d6f00a38688970a756627edbed88ec98",
       "near_white_semialpha": 0
     }
   },
@@ -138,14 +138,14 @@
         420
       ],
       "bbox": [
-        94,
-        145,
-        384,
-        410
+        247,
+        110,
+        453,
+        400
       ],
-      "visible_height": 265,
-      "baseline": 410,
-      "sha256": "ff652e1f680dc72db2531f899ed78913dd46af53ab74738975dbd81a299c21c0",
+      "visible_height": 290,
+      "baseline": 400,
+      "sha256": "f52222113786bc8a637d627721ce6128c618a2c5fcfe1c7f50623fd8fcd0371a",
       "near_white_semialpha": 0
     },
     "02.png": {
@@ -154,14 +154,14 @@
         420
       ],
       "bbox": [
-        98,
-        170,
-        388,
-        410
+        118,
+        132,
+        408,
+        400
       ],
-      "visible_height": 240,
-      "baseline": 410,
-      "sha256": "d14d6d7dec9824263033ceb92f8926c548d724ade80aa66ea326455e9e95d0cd",
+      "visible_height": 268,
+      "baseline": 400,
+      "sha256": "0b756efbbf6d431c8e5b6fdf40564d7fc822c8b05c0d0749778f50024f29c03b",
       "near_white_semialpha": 0
     },
     "03.png": {
@@ -170,14 +170,14 @@
         420
       ],
       "bbox": [
-        206,
-        315,
-        495,
-        410
+        233,
+        240,
+        523,
+        400
       ],
-      "visible_height": 95,
-      "baseline": 410,
-      "sha256": "9edc94a177a2ce6b0bd2de5c977c3d2bc90b17a6d5c8111283682dfdad90f55a",
+      "visible_height": 160,
+      "baseline": 400,
+      "sha256": "dcb9f60aeeaa415ce66960728016607891792001d0fe70f4859beead3dd27869",
       "near_white_semialpha": 0
     },
     "04.png": {
@@ -186,14 +186,14 @@
         420
       ],
       "bbox": [
-        206,
-        315,
-        495,
-        410
+        99,
+        272,
+        389,
+        400
       ],
-      "visible_height": 95,
-      "baseline": 410,
-      "sha256": "9edc94a177a2ce6b0bd2de5c977c3d2bc90b17a6d5c8111283682dfdad90f55a",
+      "visible_height": 128,
+      "baseline": 400,
+      "sha256": "b7e3bc9bd00acdb4e6edba219a5e0ee82281dfed41fe77ce590f27b904caf41c",
       "near_white_semialpha": 0
     },
     "05.png": {
@@ -202,14 +202,14 @@
         420
       ],
       "bbox": [
-        206,
-        315,
-        495,
-        410
+        272,
+        317,
+        562,
+        400
       ],
-      "visible_height": 95,
-      "baseline": 410,
-      "sha256": "9edc94a177a2ce6b0bd2de5c977c3d2bc90b17a6d5c8111283682dfdad90f55a",
+      "visible_height": 83,
+      "baseline": 400,
+      "sha256": "7335bfdfd075997d7485a594eae6dac9a0032b9704244d910c63ddc9f1d76f69",
       "near_white_semialpha": 0
     }
   },
@@ -220,14 +220,14 @@
         420
       ],
       "bbox": [
-        206,
-        315,
-        495,
-        410
+        274,
+        319,
+        564,
+        400
       ],
-      "visible_height": 95,
-      "baseline": 410,
-      "sha256": "9edc94a177a2ce6b0bd2de5c977c3d2bc90b17a6d5c8111283682dfdad90f55a",
+      "visible_height": 81,
+      "baseline": 400,
+      "sha256": "4942a33ddd9f6a9318df9cc08fb5195b3503e3ae2758d0f79d657f0361f982cc",
       "near_white_semialpha": 0
     },
     "02.png": {
@@ -236,14 +236,14 @@
         420
       ],
       "bbox": [
-        186,
-        140,
-        475,
-        410
+        248,
+        271,
+        538,
+        400
       ],
-      "visible_height": 270,
-      "baseline": 410,
-      "sha256": "21aab4b56cb608f6f7feb9756db60af11d0b7064d66ab4feed84d22b25489be9",
+      "visible_height": 129,
+      "baseline": 400,
+      "sha256": "b41030b059003b84ae5af6b4ae06c21892a5d985feaa150908bf9d58baf2f151",
       "near_white_semialpha": 0
     },
     "03.png": {
@@ -252,14 +252,14 @@
         420
       ],
       "bbox": [
-        177,
-        137,
-        467,
-        410
+        79,
+        110,
+        348,
+        400
       ],
-      "visible_height": 273,
-      "baseline": 410,
-      "sha256": "143fba90a92b39d28d4f91c35060d499d39ceb355f204b797279c27074760ff8",
+      "visible_height": 290,
+      "baseline": 400,
+      "sha256": "071dc953c10162ff0c6c5bfd93c432c8a99f78d6552fdfd699e328d91e515acb",
       "near_white_semialpha": 0
     },
     "04.png": {
@@ -268,14 +268,14 @@
         420
       ],
       "bbox": [
-        178,
-        121,
-        379,
-        410
+        106,
+        110,
+        345,
+        400
       ],
-      "visible_height": 289,
-      "baseline": 410,
-      "sha256": "c5ebc0bfefbcde74336c41776fee938c17e579a33a4131e8e86fb7c85c030dc4",
+      "visible_height": 290,
+      "baseline": 400,
+      "sha256": "b6336e06528ee3f90b8cf3d59f778f76e5a1fcc20c383ba72406a5ea35149367",
       "near_white_semialpha": 0
     },
     "05.png": {
@@ -285,13 +285,13 @@
       ],
       "bbox": [
         158,
-        120,
-        381,
-        410
+        110,
+        364,
+        400
       ],
       "visible_height": 290,
-      "baseline": 410,
-      "sha256": "52592070accb52064d68f9aa72ef0671ae809e3710b4fbebe253f942f3aa32a1",
+      "baseline": 400,
+      "sha256": "9b6634a47d8797053bcde7c8f7e8d66aacb8b2425fc37dc13495d2f394a577f3",
       "near_white_semialpha": 0
     }
   },
@@ -302,14 +302,14 @@
         420
       ],
       "bbox": [
-        241,
-        120,
-        480,
-        410
+        257,
+        110,
+        437,
+        400
       ],
       "visible_height": 290,
-      "baseline": 410,
-      "sha256": "246beae42e98e374accdd66e7206f3aa07f6c6e32e484b77e8159b7186833efa",
+      "baseline": 400,
+      "sha256": "9ebb99f47966a8b20a6b267ba0b4c14f77c497987f44b8b425d06f62ba5eea75",
       "near_white_semialpha": 0
     },
     "02.png": {
@@ -318,14 +318,14 @@
         420
       ],
       "bbox": [
-        94,
-        145,
-        384,
-        410
+        182,
+        110,
+        346,
+        400
       ],
-      "visible_height": 265,
-      "baseline": 410,
-      "sha256": "ff652e1f680dc72db2531f899ed78913dd46af53ab74738975dbd81a299c21c0",
+      "visible_height": 290,
+      "baseline": 400,
+      "sha256": "3821c8c1e8db267b3a8204f1a32bc1f4bbc46555b82b71650009ee779d0e4726",
       "near_white_semialpha": 0
     },
     "03.png": {
@@ -334,14 +334,14 @@
         420
       ],
       "bbox": [
-        94,
-        145,
-        384,
-        410
+        161,
+        110,
+        361,
+        400
       ],
-      "visible_height": 265,
-      "baseline": 410,
-      "sha256": "ff652e1f680dc72db2531f899ed78913dd46af53ab74738975dbd81a299c21c0",
+      "visible_height": 290,
+      "baseline": 400,
+      "sha256": "5d98c636152f972e4efd44d88fefa749c8cc3cfff781d883022a3ddb165f9722",
       "near_white_semialpha": 0
     }
   },
@@ -352,14 +352,14 @@
         420
       ],
       "bbox": [
-        158,
-        120,
-        381,
-        410
+        188,
+        110,
+        369,
+        400
       ],
       "visible_height": 290,
-      "baseline": 410,
-      "sha256": "52592070accb52064d68f9aa72ef0671ae809e3710b4fbebe253f942f3aa32a1",
+      "baseline": 400,
+      "sha256": "958dc9c83c346c3cace115926c4481847b4fa8f413a473a874855307bebfe0e6",
       "near_white_semialpha": 0
     },
     "02.png": {
@@ -368,14 +368,14 @@
         420
       ],
       "bbox": [
-        178,
-        121,
-        379,
-        410
+        188,
+        110,
+        369,
+        400
       ],
-      "visible_height": 289,
-      "baseline": 410,
-      "sha256": "c5ebc0bfefbcde74336c41776fee938c17e579a33a4131e8e86fb7c85c030dc4",
+      "visible_height": 290,
+      "baseline": 400,
+      "sha256": "1e3b718cf0e8acca7ac96f06af35485ab44d4b7654cbfa91c9f515dde977abc4",
       "near_white_semialpha": 0
     },
     "03.png": {
@@ -384,14 +384,14 @@
         420
       ],
       "bbox": [
-        158,
-        120,
-        381,
-        410
+        188,
+        110,
+        369,
+        400
       ],
       "visible_height": 290,
-      "baseline": 410,
-      "sha256": "52592070accb52064d68f9aa72ef0671ae809e3710b4fbebe253f942f3aa32a1",
+      "baseline": 400,
+      "sha256": "3c2934603c2693cf9e0971bfa9f520f4ab308cf37a8278a32792b40a4ee5fb34",
       "near_white_semialpha": 0
     },
     "04.png": {
@@ -400,14 +400,14 @@
         420
       ],
       "bbox": [
-        178,
-        121,
-        379,
-        410
+        189,
+        110,
+        369,
+        400
       ],
-      "visible_height": 289,
-      "baseline": 410,
-      "sha256": "c5ebc0bfefbcde74336c41776fee938c17e579a33a4131e8e86fb7c85c030dc4",
+      "visible_height": 290,
+      "baseline": 400,
+      "sha256": "ec8900313b673d831f45559c1b5b95a294cd9376ef0171d6abdf3a928cec65cc",
       "near_white_semialpha": 0
     }
   },
@@ -418,14 +418,14 @@
         420
       ],
       "bbox": [
-        178,
-        121,
-        379,
-        410
+        276,
+        110,
+        472,
+        400
       ],
-      "visible_height": 289,
-      "baseline": 410,
-      "sha256": "c5ebc0bfefbcde74336c41776fee938c17e579a33a4131e8e86fb7c85c030dc4",
+      "visible_height": 290,
+      "baseline": 400,
+      "sha256": "de6dbb43b69edfa247c19f84874712f1d346308b06aefdf579e9c2a22b51bf5b",
       "near_white_semialpha": 0
     },
     "02.png": {
@@ -434,14 +434,14 @@
         420
       ],
       "bbox": [
-        209,
-        120,
-        416,
-        410
+        252,
+        110,
+        414,
+        400
       ],
       "visible_height": 290,
-      "baseline": 410,
-      "sha256": "f9097d3d0af5d815c6382c947a3d9ff729298b3af18fa3e88ae8c5db4f1c21be",
+      "baseline": 400,
+      "sha256": "27a0d9fd259e05c25b28349afbb813c595036fd60dfd2cf6a64c3158119a3493",
       "near_white_semialpha": 0
     },
     "03.png": {
@@ -450,14 +450,14 @@
         420
       ],
       "bbox": [
-        231,
-        127,
-        521,
-        410
+        254,
+        114,
+        544,
+        400
       ],
-      "visible_height": 283,
-      "baseline": 410,
-      "sha256": "d46b85b17a40e8af48dec51d1f05f54385f78033755197b787e31f1f9eeedc9e",
+      "visible_height": 286,
+      "baseline": 400,
+      "sha256": "c8e7b896835b9775bfd4f4d696416275d945acf6b0fa6aba181d63656a3fdb16",
       "near_white_semialpha": 0
     },
     "04.png": {
@@ -466,14 +466,14 @@
         420
       ],
       "bbox": [
-        209,
-        120,
-        416,
-        410
+        250,
+        110,
+        432,
+        400
       ],
       "visible_height": 290,
-      "baseline": 410,
-      "sha256": "f9097d3d0af5d815c6382c947a3d9ff729298b3af18fa3e88ae8c5db4f1c21be",
+      "baseline": 400,
+      "sha256": "bc7cbaa1e239f6427147239250e73a5a7686e2dc5b24b6235029d967465f4321",
       "near_white_semialpha": 0
     },
     "05.png": {
@@ -482,14 +482,14 @@
         420
       ],
       "bbox": [
-        158,
-        120,
-        381,
-        410
+        275,
+        110,
+        471,
+        400
       ],
       "visible_height": 290,
-      "baseline": 410,
-      "sha256": "52592070accb52064d68f9aa72ef0671ae809e3710b4fbebe253f942f3aa32a1",
+      "baseline": 400,
+      "sha256": "3410244526fa93634bfc0fa0304b13bd5d6b163e48914e782ace19d1520fc248",
       "near_white_semialpha": 0
     }
   },
@@ -500,14 +500,14 @@
         420
       ],
       "bbox": [
-        165,
-        120,
-        388,
-        410
+        150,
+        110,
+        363,
+        400
       ],
       "visible_height": 290,
-      "baseline": 410,
-      "sha256": "2582b558132d67b00a5054be63e6dc8906fe259d3fab75627a16e1842908e18c",
+      "baseline": 400,
+      "sha256": "f79578f2310d6a0c6eb71949f5be1d868538fd4435518f0098e5ad3b2a984a01",
       "near_white_semialpha": 0
     },
     "02.png": {
@@ -516,14 +516,14 @@
         420
       ],
       "bbox": [
-        152,
-        120,
-        432,
-        410
+        147,
+        110,
+        406,
+        400
       ],
       "visible_height": 290,
-      "baseline": 410,
-      "sha256": "d408483923204609606698357e6ab8a74cc7ad3a19c64bce6ef690d1a1d0f0c6",
+      "baseline": 400,
+      "sha256": "7680b140ed64397f4245897de94035a92db8bce59df51cefb8c4c8da9a7fd161",
       "near_white_semialpha": 0
     },
     "03.png": {
@@ -532,14 +532,14 @@
         420
       ],
       "bbox": [
-        234,
-        121,
-        489,
-        410
+        144,
+        117,
+        434,
+        400
       ],
-      "visible_height": 289,
-      "baseline": 410,
-      "sha256": "b604e65d89910cb96b29fad5cf654c3aa3ea8f238a728af8d8b0de59b5365ad8",
+      "visible_height": 283,
+      "baseline": 400,
+      "sha256": "da3af563c63b74df2dc1f4bb163a2877c68a74317bd433bdfadfcc71eaeeb794",
       "near_white_semialpha": 0
     },
     "04.png": {
@@ -548,14 +548,14 @@
         420
       ],
       "bbox": [
-        178,
-        121,
-        379,
-        410
+        144,
+        110,
+        365,
+        400
       ],
-      "visible_height": 289,
-      "baseline": 410,
-      "sha256": "c5ebc0bfefbcde74336c41776fee938c17e579a33a4131e8e86fb7c85c030dc4",
+      "visible_height": 290,
+      "baseline": 400,
+      "sha256": "633adcd9b3219ac4422a5ca950af35ea7eecfdb7caad146ddceedcccf3401874",
       "near_white_semialpha": 0
     }
   },
@@ -566,14 +566,14 @@
         420
       ],
       "bbox": [
-        178,
-        121,
-        379,
-        410
+        136,
+        110,
+        368,
+        400
       ],
-      "visible_height": 289,
-      "baseline": 410,
-      "sha256": "c5ebc0bfefbcde74336c41776fee938c17e579a33a4131e8e86fb7c85c030dc4",
+      "visible_height": 290,
+      "baseline": 400,
+      "sha256": "2ba08eca4952e1056a4b99642adcf572a27af15fcdf9e63a03cee6164b0877f1",
       "near_white_semialpha": 0
     },
     "02.png": {
@@ -582,14 +582,14 @@
         420
       ],
       "bbox": [
-        232,
-        121,
-        487,
-        410
+        135,
+        123,
+        425,
+        400
       ],
-      "visible_height": 289,
-      "baseline": 410,
-      "sha256": "496518e982750c90c845a3effd6c2b0346482f0e8b36612ff93d52982a1fd66f",
+      "visible_height": 277,
+      "baseline": 400,
+      "sha256": "f398cf492aebfa26ca69e1523b92d9c5a42b5c931d674f8117dd7fe6c1953e51",
       "near_white_semialpha": 0
     },
     "03.png": {
@@ -598,14 +598,14 @@
         420
       ],
       "bbox": [
-        155,
-        120,
-        435,
-        410
+        137,
+        132,
+        427,
+        400
       ],
-      "visible_height": 290,
-      "baseline": 410,
-      "sha256": "9668f99034b22e33cad952917479dabe4b5fcfa251f04903f928dfbeb0fa37b8",
+      "visible_height": 268,
+      "baseline": 400,
+      "sha256": "135432c819ac49488d1182375311a7bfbcea45e1a8219b9e2ead09c8d8f5d1a9",
       "near_white_semialpha": 0
     },
     "04.png": {
@@ -614,14 +614,14 @@
         420
       ],
       "bbox": [
-        158,
-        120,
-        381,
-        410
+        150,
+        110,
+        365,
+        400
       ],
       "visible_height": 290,
-      "baseline": 410,
-      "sha256": "52592070accb52064d68f9aa72ef0671ae809e3710b4fbebe253f942f3aa32a1",
+      "baseline": 400,
+      "sha256": "b012cf7f7024d02b710ea4c27ee7a48768b81eba6fbc8e11196fdfb7b0274345",
       "near_white_semialpha": 0
     }
   },
@@ -632,14 +632,14 @@
         420
       ],
       "bbox": [
-        177,
-        137,
-        467,
-        410
+        150,
+        167,
+        440,
+        400
       ],
-      "visible_height": 273,
-      "baseline": 410,
-      "sha256": "54e253d502b10b2088fa5d79855831949835704e9e21b2b6874ce6f994dead72",
+      "visible_height": 233,
+      "baseline": 400,
+      "sha256": "e26ca20ba37318f70a80bc690d9aae98197c2c0f03d22fc485ef013076d7a680",
       "near_white_semialpha": 0
     },
     "02.png": {
@@ -648,14 +648,14 @@
         420
       ],
       "bbox": [
-        165,
-        120,
-        388,
-        410
+        106,
+        110,
+        368,
+        400
       ],
       "visible_height": 290,
-      "baseline": 410,
-      "sha256": "fdaa9eb37db81f57183ae74a6c76afb45a640cf75932762322d69278b69bfe3d",
+      "baseline": 400,
+      "sha256": "fff74f652817de04e3049e6794e00630a6ca4a90f0f0c248b2bd1f9b12f4543d",
       "near_white_semialpha": 0
     },
     "03.png": {
@@ -664,14 +664,14 @@
         420
       ],
       "bbox": [
-        173,
-        232,
-        473,
-        410
+        110,
+        178,
+        400,
+        400
       ],
-      "visible_height": 178,
-      "baseline": 410,
-      "sha256": "f607c7e667e2d5555885a65a67290017d6eed835922d0a8cec9cae55fb4985c1",
+      "visible_height": 222,
+      "baseline": 400,
+      "sha256": "3725e995fcaa32c8771a8af86eac9c3ac964973c0fdd87b12e3e854a1bda5b87",
       "near_white_semialpha": 0
     },
     "04.png": {
@@ -680,14 +680,14 @@
         420
       ],
       "bbox": [
-        179,
-        232,
-        480,
-        410
+        163,
+        211,
+        453,
+        400
       ],
-      "visible_height": 178,
-      "baseline": 410,
-      "sha256": "5e17bb8b0fb4105f77200d39abe98e5cac1e2e1f3e0bcd21a60e667c1ee230f9",
+      "visible_height": 189,
+      "baseline": 400,
+      "sha256": "5a52e5afe408b54a6f05e680f370d0c913f9adfa818bf55a6a6d88587e669479",
       "near_white_semialpha": 0
     },
     "05.png": {
@@ -696,14 +696,14 @@
         420
       ],
       "bbox": [
-        154,
-        120,
-        434,
-        410
+        139,
+        208,
+        429,
+        400
       ],
-      "visible_height": 290,
-      "baseline": 410,
-      "sha256": "64cfa3d3eadda51e63b01cbba01481ae4f0954da4ba6441f9bf1871f57a84833",
+      "visible_height": 192,
+      "baseline": 400,
+      "sha256": "e6ea71102f8f289a4307274d860a403c9f852c5c1784ffb833658aeb439dbf66",
       "near_white_semialpha": 0
     },
     "06.png": {
@@ -712,14 +712,14 @@
         420
       ],
       "bbox": [
-        154,
-        113,
-        383,
-        410
+        102,
+        110,
+        373,
+        400
       ],
-      "visible_height": 297,
-      "baseline": 410,
-      "sha256": "5d1be28bcfc7969dbcfcacf53aad86ef336b07a4e05b296f9f9e7b5f5fd4d51b",
+      "visible_height": 290,
+      "baseline": 400,
+      "sha256": "9e104b4017052844fd9fd87bd180be63c2c997e1d4ac459a82aea6d840ffddbf",
       "near_white_semialpha": 0
     }
   },
@@ -730,14 +730,14 @@
         420
       ],
       "bbox": [
-        189,
-        120,
-        386,
-        410
+        172,
+        110,
+        372,
+        400
       ],
       "visible_height": 290,
-      "baseline": 410,
-      "sha256": "5defeb2cd2d7b321c62b3ffc2e6b6a32e1d30206d6a3daf417ca286ada6de87e",
+      "baseline": 400,
+      "sha256": "2de7baf91158bacb38e080a7ed6d4ae92a308fb0229987e7464bf1a98e83ccca",
       "near_white_semialpha": 0
     },
     "02.png": {
@@ -746,14 +746,14 @@
         420
       ],
       "bbox": [
-        186,
-        120,
-        386,
-        410
+        253,
+        110,
+        366,
+        400
       ],
       "visible_height": 290,
-      "baseline": 410,
-      "sha256": "4c98653de30fc3933a87ef6d23144cf490fcbd29af851652e061dc0d72e52e13",
+      "baseline": 400,
+      "sha256": "570ab5634f3d4b02486c184d5ee2ce43c2b02ea67a8d5fdde32e4e587ee129e7",
       "near_white_semialpha": 0
     },
     "03.png": {
@@ -762,14 +762,14 @@
         420
       ],
       "bbox": [
-        189,
-        120,
-        386,
-        410
+        280,
+        110,
+        464,
+        400
       ],
       "visible_height": 290,
-      "baseline": 410,
-      "sha256": "5defeb2cd2d7b321c62b3ffc2e6b6a32e1d30206d6a3daf417ca286ada6de87e",
+      "baseline": 400,
+      "sha256": "06a4a69abde531ffe83aae63a2b61bc3d4bd23d237c0bdc1c6f2b1505e61021e",
       "near_white_semialpha": 0
     },
     "04.png": {
@@ -778,14 +778,14 @@
         420
       ],
       "bbox": [
-        186,
-        120,
-        386,
-        410
+        165,
+        110,
+        366,
+        400
       ],
       "visible_height": 290,
-      "baseline": 410,
-      "sha256": "4c98653de30fc3933a87ef6d23144cf490fcbd29af851652e061dc0d72e52e13",
+      "baseline": 400,
+      "sha256": "14670b8b828e3c844b574bbf7cc3dba9f9a4935d5b7143432e3d4c31f528021c",
       "near_white_semialpha": 0
     },
     "05.png": {
@@ -794,14 +794,14 @@
         420
       ],
       "bbox": [
-        189,
-        120,
-        386,
-        410
+        284,
+        110,
+        377,
+        400
       ],
       "visible_height": 290,
-      "baseline": 410,
-      "sha256": "5defeb2cd2d7b321c62b3ffc2e6b6a32e1d30206d6a3daf417ca286ada6de87e",
+      "baseline": 400,
+      "sha256": "d46467140e16e392a0154ce44429cdc2ae7012ddc86a43288302026f518bfc78",
       "near_white_semialpha": 0
     },
     "06.png": {
@@ -810,14 +810,210 @@
         420
       ],
       "bbox": [
-        186,
-        120,
-        386,
-        410
+        278,
+        110,
+        487,
+        400
       ],
       "visible_height": 290,
-      "baseline": 410,
-      "sha256": "4c98653de30fc3933a87ef6d23144cf490fcbd29af851652e061dc0d72e52e13",
+      "baseline": 400,
+      "sha256": "95b451165860e21eac56a2b71ced7a8a0874bc64c1e484aaa75f0af39680f904",
+      "near_white_semialpha": 0
+    }
+  },
+  "walk_down": {
+    "01.png": {
+      "canvas": [
+        640,
+        420
+      ],
+      "bbox": [
+        295,
+        110,
+        404,
+        400
+      ],
+      "visible_height": 290,
+      "baseline": 400,
+      "sha256": "216cc81e8e64c8e0ee8b4d2c581a2a3f8c2976e7fe74d82e84191f850754cc19",
+      "near_white_semialpha": 0
+    },
+    "02.png": {
+      "canvas": [
+        640,
+        420
+      ],
+      "bbox": [
+        268,
+        110,
+        387,
+        400
+      ],
+      "visible_height": 290,
+      "baseline": 400,
+      "sha256": "8f734345071bd2a44b019ad3cc2306ab12d201f674bc4bb341d8e709dd7af347",
+      "near_white_semialpha": 0
+    },
+    "03.png": {
+      "canvas": [
+        640,
+        420
+      ],
+      "bbox": [
+        272,
+        110,
+        390,
+        400
+      ],
+      "visible_height": 290,
+      "baseline": 400,
+      "sha256": "cbdbbc1c94713dbf014519cd89ea052868ef509a686ca4d087e1b02f47e8af51",
+      "near_white_semialpha": 0
+    },
+    "04.png": {
+      "canvas": [
+        640,
+        420
+      ],
+      "bbox": [
+        271,
+        110,
+        391,
+        400
+      ],
+      "visible_height": 290,
+      "baseline": 400,
+      "sha256": "c399dc6de708ebf826162c4a7cadb8a9f14d66c340c480d7271bfa344071cd9e",
+      "near_white_semialpha": 0
+    },
+    "05.png": {
+      "canvas": [
+        640,
+        420
+      ],
+      "bbox": [
+        261,
+        110,
+        377,
+        400
+      ],
+      "visible_height": 290,
+      "baseline": 400,
+      "sha256": "5348e0300340f334519576fec5a2eb36437e613bd5e7cef6ac82747bdba07aca",
+      "near_white_semialpha": 0
+    },
+    "06.png": {
+      "canvas": [
+        640,
+        420
+      ],
+      "bbox": [
+        292,
+        110,
+        400,
+        400
+      ],
+      "visible_height": 290,
+      "baseline": 400,
+      "sha256": "25c275c5521967a15a68d28ec31b8b7d269828b4e2abf1e5080ae84cc6c3352e",
+      "near_white_semialpha": 0
+    }
+  },
+  "walk_up": {
+    "01.png": {
+      "canvas": [
+        640,
+        420
+      ],
+      "bbox": [
+        250,
+        110,
+        367,
+        400
+      ],
+      "visible_height": 290,
+      "baseline": 400,
+      "sha256": "e27161e0d1d941215a5a67ffcab6cc635e8c446b595aeabc01650f136e361d4c",
+      "near_white_semialpha": 0
+    },
+    "02.png": {
+      "canvas": [
+        640,
+        420
+      ],
+      "bbox": [
+        264,
+        110,
+        378,
+        400
+      ],
+      "visible_height": 290,
+      "baseline": 400,
+      "sha256": "a85968d602172a3aed187312d22f03af3eec2eb1b91b5345c5aa0032de068930",
+      "near_white_semialpha": 0
+    },
+    "03.png": {
+      "canvas": [
+        640,
+        420
+      ],
+      "bbox": [
+        275,
+        110,
+        392,
+        400
+      ],
+      "visible_height": 290,
+      "baseline": 400,
+      "sha256": "2ed1ff1cadfeb02939eb6b150652d575e829e8ed52d9f603cd71ed393a643e60",
+      "near_white_semialpha": 0
+    },
+    "04.png": {
+      "canvas": [
+        640,
+        420
+      ],
+      "bbox": [
+        277,
+        110,
+        387,
+        400
+      ],
+      "visible_height": 290,
+      "baseline": 400,
+      "sha256": "6a195ee4b17156fc4027f488aec8d3b3985c4177d864c8281ba62ca2adf2dd6d",
+      "near_white_semialpha": 0
+    },
+    "05.png": {
+      "canvas": [
+        640,
+        420
+      ],
+      "bbox": [
+        262,
+        110,
+        378,
+        400
+      ],
+      "visible_height": 290,
+      "baseline": 400,
+      "sha256": "904d350ad0c020fc1f9d99642634858db8566f2cd8fc82692a197192e8a8fc0e",
+      "near_white_semialpha": 0
+    },
+    "06.png": {
+      "canvas": [
+        640,
+        420
+      ],
+      "bbox": [
+        276,
+        110,
+        388,
+        400
+      ],
+      "visible_height": 290,
+      "baseline": 400,
+      "sha256": "0711b46cb28760a98ea92a4ee39914e900724a38e4e8d0418171939b7cfd96a2",
       "near_white_semialpha": 0
     }
   }

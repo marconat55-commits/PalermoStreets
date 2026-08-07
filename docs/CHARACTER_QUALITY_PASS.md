@@ -48,3 +48,28 @@ Verification:
 - Sprite audit: pass (32 required enemy frames).
 - Metadata audit: pass (44 total Piero frames).
 - Data validation, TypeScript, production build and browser runtime smoke test: see the verification run recorded after integration.
+
+## Marco quality pack v2
+
+Status: approved, integrated and verified.
+
+- Replaced all 50 existing runtime frames with the face-locked pack approved from the original Marco master.
+- Added six `walk_up` and six `walk_down` frames for complete forward/back depth movement.
+- Kept the 290 px gameplay scale, movement speeds, combat data and every v0.7.8 animation duration unchanged.
+- Removed gray divider strips, detached neighbouring-cell fragments, white gaps, isolated light fringe pixels and chroma-key remnants.
+- Regenerated the six-frame Super source in a wider 2 Ã— 3 layout so fists, shoes, sash and fire effects remain fully inside each frame.
+- Added player-side directional clip selection only when `walk_up`/`walk_down` exist; the standard `walk` fallback remains available.
+- Rebuilt per-frame bounds metadata and the sprite QA manifest for 62 frames.
+- Confirmed zero suspicious magenta pixels, zero detached strips and fully transparent runtime canvases.
+
+Verification:
+
+- Sprite audit: pass (50 required player frames).
+- Metadata audit: pass (62 total Marco frames).
+- Character runtime asset audit: pass (176 referenced PNG files, zero missing and zero unused).
+- Data validation: pass (4 characters, 7 modules, 176 frame metadata entries).
+- TypeScript check: pass.
+- Production build: pass.
+- Browser runtime test: pass; Marco, Talebano and Piero completed the two waves of the first area, and Marco's fall/get-up and Super rendered without warnings or errors.
+- PNG hash guard: 50 Marco files changed, 12 Marco files added, zero deleted, zero changes outside `marco_anim`.
+- Barbetta: no tracked files modified.

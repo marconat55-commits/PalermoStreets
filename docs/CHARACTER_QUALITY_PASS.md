@@ -33,5 +33,18 @@ Verification:
 
 ## Piero u Pizzetto quality pack v2
 
-Status: master reference card generated; waiting for visual approval before animation generation and runtime integration.
+Status: approved, integrated and verified.
 
+- Replaced the 32 existing runtime frames with a coherent, identity-locked set.
+- Kept the small pointed goatee, head scale and waist bag consistent through standing, falling and grounded poses.
+- Removed gray borders, white masking gaps and chroma-key remnants.
+- Added six `walk_up` and six `walk_down` frames for depth movement.
+- Kept the 292 px runtime scale and every v0.7.8 animation duration unchanged.
+- Rebuilt per-frame bounds metadata and the sprite QA manifest for 44 frames.
+- Confirmed zero visible magenta-key pixels and fully transparent corners across the integrated pack.
+
+Verification:
+
+- Sprite audit: pass (32 required enemy frames).
+- Metadata audit: pass (44 total Piero frames).
+- Data validation, TypeScript, production build and browser runtime smoke test: see the verification run recorded after integration.

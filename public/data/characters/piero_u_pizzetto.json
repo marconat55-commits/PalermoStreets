@@ -15,7 +15,7 @@
     "accessories": "marsupio scuro frontale",
     "fighting_style": "schiaffi larghi, calci scoordinati e movimenti imprevedibili",
     "special_move": "nessuna mossa speciale; attacchi rapidi e goffi",
-    "canon": "Piero u' Pizzetto Definitive Pack v1 — runtime v0.7.8: 292 px standing scale, enlarged grounded poses, stable idle and complete animation playback"
+    "canon": "Piero u' Pizzetto Quality Pack v2 — runtime v0.7.8: clean transparency, stable 292 px scale, identity-locked goatee and directional depth walk"
   },
   "gameplay": {
     "enemy": {
@@ -66,6 +66,24 @@
     },
     "walk": {
       "folder": "walk",
+      "frames": 6,
+      "durations": [
+        0.1
+      ],
+      "loop": true,
+      "source_facing": 1
+    },
+    "walk_up": {
+      "folder": "walk_up",
+      "frames": 6,
+      "durations": [
+        0.1
+      ],
+      "loop": true,
+      "source_facing": 1
+    },
+    "walk_down": {
+      "folder": "walk_down",
       "frames": 6,
       "durations": [
         0.1

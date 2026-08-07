@@ -839,9 +839,9 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      230,
+      212,
       108,
-      181,
+      157,
       292
     ],
     "offsetY": 20
@@ -850,9 +850,9 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      194,
+      208,
       108,
-      273,
+      208,
       292
     ],
     "offsetY": 20
@@ -861,9 +861,9 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      217,
+      207,
       108,
-      206,
+      222,
       292
     ],
     "offsetY": 20
@@ -872,9 +872,9 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      179,
+      209,
       108,
-      215,
+      159,
       292
     ],
     "offsetY": 20
@@ -883,9 +883,9 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      231,
+      260,
       108,
-      199,
+      221,
       292
     ],
     "offsetY": 20
@@ -894,9 +894,9 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      188,
+      215,
       108,
-      166,
+      241,
       292
     ],
     "offsetY": 20
@@ -905,21 +905,21 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      172,
-      83,
-      287,
-      316
+      101,
+      173,
+      292,
+      227
     ],
-    "offsetY": 21
+    "offsetY": 20
   },
   "/assets/characters/piero_u_pizzetto_anim/fall/04.png": {
     "width": 640,
     "height": 420,
     "bounds": [
-      294,
-      240,
-      287,
-      160
+      62,
+      235,
+      292,
+      165
     ],
     "offsetY": 20
   },
@@ -927,10 +927,10 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      294,
-      240,
-      287,
-      160
+      192,
+      295,
+      292,
+      105
     ],
     "offsetY": 20
   },
@@ -938,10 +938,10 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      294,
-      240,
-      287,
-      160
+      100,
+      272,
+      292,
+      128
     ],
     "offsetY": 20
   },
@@ -949,10 +949,10 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      228,
-      164,
-      201,
-      236
+      48,
+      202,
+      292,
+      198
     ],
     "offsetY": 20
   },
@@ -960,10 +960,10 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      217,
-      108,
-      214,
-      292
+      241,
+      125,
+      292,
+      275
     ],
     "offsetY": 20
   },
@@ -971,9 +971,9 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      217,
+      198,
       108,
-      214,
+      171,
       292
     ],
     "offsetY": 20
@@ -982,9 +982,9 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      217,
+      203,
       108,
-      214,
+      165,
       292
     ],
     "offsetY": 20
@@ -993,10 +993,10 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      232,
-      176,
-      194,
-      224
+      284,
+      108,
+      184,
+      292
     ],
     "offsetY": 20
   },
@@ -1004,10 +1004,10 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      232,
-      138,
-      168,
-      262
+      262,
+      108,
+      150,
+      292
     ],
     "offsetY": 20
   },
@@ -1015,10 +1015,10 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      251,
-      163,
-      208,
-      237
+      250,
+      108,
+      259,
+      292
     ],
     "offsetY": 20
   },
@@ -1026,10 +1026,10 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      254,
-      144,
-      184,
-      256
+      223,
+      108,
+      168,
+      292
     ],
     "offsetY": 20
   },
@@ -1037,10 +1037,10 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      210,
-      95,
-      226,
-      305
+      203,
+      108,
+      163,
+      292
     ],
     "offsetY": 20
   },
@@ -1048,9 +1048,9 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      231,
+      220,
       108,
-      199,
+      149,
       292
     ],
     "offsetY": 20
@@ -1059,9 +1059,9 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      188,
+      263,
       108,
-      166,
+      185,
       292
     ],
     "offsetY": 20
@@ -1070,9 +1070,9 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      231,
+      224,
       108,
-      199,
+      146,
       292
     ],
     "offsetY": 20
@@ -1081,9 +1081,9 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      217,
+      216,
       108,
-      214,
+      154,
       292
     ],
     "offsetY": 20
@@ -1094,7 +1094,7 @@
     "bounds": [
       217,
       108,
-      214,
+      153,
       292
     ],
     "offsetY": 20
@@ -1104,9 +1104,9 @@
     "height": 420,
     "bounds": [
       216,
-      110,
-      216,
-      290
+      108,
+      154,
+      292
     ],
     "offsetY": 20
   },
@@ -1114,10 +1114,10 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      213,
-      107,
-      218,
-      293
+      216,
+      108,
+      154,
+      292
     ],
     "offsetY": 20
   },
@@ -1125,9 +1125,9 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      232,
+      274,
       108,
-      163,
+      172,
       292
     ],
     "offsetY": 20
@@ -1136,9 +1136,9 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      229,
+      221,
       108,
-      178,
+      146,
       292
     ],
     "offsetY": 20
@@ -1147,9 +1147,9 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      234,
+      186,
       108,
-      196,
+      170,
       292
     ],
     "offsetY": 20
@@ -1158,10 +1158,10 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      244,
-      109,
-      205,
-      291
+      191,
+      108,
+      176,
+      292
     ],
     "offsetY": 20
   },
@@ -1169,9 +1169,9 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      234,
+      294,
       108,
-      196,
+      76,
       292
     ],
     "offsetY": 20
@@ -1180,9 +1180,141 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      229,
+      203,
       108,
-      178,
+      153,
+      292
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/piero_u_pizzetto_anim/walk_down/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      265,
+      108,
+      125,
+      292
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/piero_u_pizzetto_anim/walk_down/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      262,
+      108,
+      125,
+      292
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/piero_u_pizzetto_anim/walk_down/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      259,
+      108,
+      123,
+      292
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/piero_u_pizzetto_anim/walk_down/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      265,
+      108,
+      118,
+      292
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/piero_u_pizzetto_anim/walk_down/05.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      267,
+      108,
+      123,
+      292
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/piero_u_pizzetto_anim/walk_down/06.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      263,
+      108,
+      123,
+      292
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/piero_u_pizzetto_anim/walk_up/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      274,
+      108,
+      105,
+      292
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/piero_u_pizzetto_anim/walk_up/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      275,
+      108,
+      113,
+      292
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/piero_u_pizzetto_anim/walk_up/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      268,
+      108,
+      114,
+      292
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/piero_u_pizzetto_anim/walk_up/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      269,
+      108,
+      118,
+      292
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/piero_u_pizzetto_anim/walk_up/05.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      268,
+      108,
+      117,
+      292
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/piero_u_pizzetto_anim/walk_up/06.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      272,
+      108,
+      107,
       292
     ],
     "offsetY": 20

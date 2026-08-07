@@ -1191,10 +1191,10 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      199,
-      113,
-      229,
-      287
+      144,
+      95,
+      230,
+      305
     ],
     "offsetY": 20
   },
@@ -1202,10 +1202,10 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      203,
-      136,
-      239,
-      264
+      73,
+      96,
+      305,
+      304
     ],
     "offsetY": 20
   },
@@ -1213,10 +1213,10 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      189,
-      113,
-      260,
-      287
+      111,
+      112,
+      305,
+      288
     ],
     "offsetY": 20
   },
@@ -1224,10 +1224,10 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      230,
-      99,
-      178,
-      301
+      140,
+      95,
+      236,
+      305
     ],
     "offsetY": 20
   },
@@ -1235,10 +1235,10 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      243,
-      149,
-      203,
-      251
+      219,
+      95,
+      228,
+      305
     ],
     "offsetY": 20
   },
@@ -1246,10 +1246,10 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      198,
-      233,
-      256,
-      167
+      126,
+      108,
+      305,
+      292
     ],
     "offsetY": 20
   },
@@ -1257,10 +1257,10 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      209,
-      292,
-      306,
-      108
+      71,
+      158,
+      305,
+      242
     ],
     "offsetY": 20
   },
@@ -1268,10 +1268,10 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      209,
-      292,
-      306,
-      108
+      244,
+      291,
+      305,
+      109
     ],
     "offsetY": 20
   },
@@ -1279,10 +1279,10 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      209,
-      292,
-      306,
-      108
+      216,
+      311,
+      305,
+      89
     ],
     "offsetY": 20
   },
@@ -1290,10 +1290,10 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      207,
-      290,
-      312,
-      110
+      234,
+      307,
+      305,
+      93
     ],
     "offsetY": 20
   },
@@ -1301,10 +1301,10 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      233,
-      197,
-      239,
-      203
+      151,
+      246,
+      305,
+      154
     ],
     "offsetY": 20
   },
@@ -1312,10 +1312,10 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      169,
-      169,
-      257,
-      231
+      177,
+      95,
+      276,
+      305
     ],
     "offsetY": 20
   },
@@ -1323,10 +1323,10 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      225,
-      101,
-      187,
-      299
+      150,
+      95,
+      279,
+      305
     ],
     "offsetY": 20
   },
@@ -1334,10 +1334,10 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      214,
-      93,
-      221,
-      307
+      184,
+      95,
+      189,
+      305
     ],
     "offsetY": 20
   },
@@ -1345,10 +1345,10 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      230,
-      99,
-      178,
-      301
+      259,
+      95,
+      202,
+      305
     ],
     "offsetY": 20
   },
@@ -1356,10 +1356,10 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      201,
-      131,
-      244,
-      269
+      179,
+      95,
+      192,
+      305
     ],
     "offsetY": 20
   },
@@ -1367,10 +1367,10 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      196,
-      127,
-      256,
-      273
+      122,
+      95,
+      305,
+      305
     ],
     "offsetY": 20
   },
@@ -1378,10 +1378,10 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      156,
-      149,
-      279,
-      251
+      209,
+      95,
+      194,
+      305
     ],
     "offsetY": 20
   },
@@ -1389,10 +1389,10 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      214,
-      93,
-      221,
-      307
+      263,
+      95,
+      190,
+      305
     ],
     "offsetY": 20
   },
@@ -1400,10 +1400,10 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      233,
-      177,
-      151,
-      223
+      142,
+      95,
+      240,
+      305
     ],
     "offsetY": 20
   },
@@ -1411,10 +1411,10 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      243,
-      151,
-      202,
-      249
+      260,
+      95,
+      304,
+      305
     ],
     "offsetY": 20
   },
@@ -1422,10 +1422,10 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      224,
-      153,
-      167,
-      247
+      141,
+      95,
+      241,
+      305
     ],
     "offsetY": 20
   },
@@ -1433,10 +1433,10 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      214,
-      93,
-      221,
-      307
+      274,
+      95,
+      208,
+      305
     ],
     "offsetY": 20
   },
@@ -1444,10 +1444,10 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      214,
-      93,
-      221,
-      307
+      159,
+      95,
+      195,
+      305
     ],
     "offsetY": 20
   },
@@ -1455,9 +1455,9 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      216,
+      287,
       95,
-      219,
+      200,
       305
     ],
     "offsetY": 20
@@ -1466,10 +1466,10 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      213,
-      92,
-      222,
-      308
+      274,
+      95,
+      209,
+      305
     ],
     "offsetY": 20
   },
@@ -1477,10 +1477,10 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      233,
-      100,
-      200,
-      300
+      275,
+      95,
+      197,
+      305
     ],
     "offsetY": 20
   },
@@ -1488,10 +1488,10 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      227,
-      99,
-      216,
-      301
+      274,
+      95,
+      171,
+      305
     ],
     "offsetY": 20
   },
@@ -1499,10 +1499,10 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      221,
-      100,
-      228,
-      300
+      270,
+      95,
+      222,
+      305
     ],
     "offsetY": 20
   },
@@ -1510,10 +1510,10 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      227,
-      99,
-      216,
-      301
+      178,
+      95,
+      200,
+      305
     ],
     "offsetY": 20
   },
@@ -1521,10 +1521,10 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      233,
-      100,
-      200,
-      300
+      279,
+      95,
+      145,
+      305
     ],
     "offsetY": 20
   },
@@ -1532,10 +1532,142 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      225,
-      100,
-      188,
-      300
+      270,
+      95,
+      198,
+      305
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/talebano_anim/walk_down/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      261,
+      95,
+      169,
+      305
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/talebano_anim/walk_down/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      222,
+      95,
+      165,
+      305
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/talebano_anim/walk_down/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      221,
+      95,
+      170,
+      305
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/talebano_anim/walk_down/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      224,
+      95,
+      170,
+      305
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/talebano_anim/walk_down/05.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      223,
+      95,
+      164,
+      305
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/talebano_anim/walk_down/06.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      221,
+      95,
+      172,
+      305
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/talebano_anim/walk_up/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      237,
+      95,
+      158,
+      305
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/talebano_anim/walk_up/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      227,
+      95,
+      173,
+      305
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/talebano_anim/walk_up/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      231,
+      95,
+      162,
+      305
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/talebano_anim/walk_up/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      229,
+      95,
+      156,
+      305
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/talebano_anim/walk_up/05.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      248,
+      95,
+      158,
+      305
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/talebano_anim/walk_up/06.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      229,
+      95,
+      163,
+      305
     ],
     "offsetY": 20
   }

@@ -185,6 +185,7 @@ export class Enemy extends Actor {
     }
 
     let moved = false;
+    let movementAnimation = 'walk';
     if (lengthSq(toSlot) > 12 * 12) {
       const direction = normalize(toSlot);
       const speedX = (mayAttack ? (this.isBoss ? 132 : 120) : 92) * this.moveSpeedScale;
@@ -195,6 +196,10 @@ export class Enemy extends Actor {
       this.position.x += step.x;
       this.position.y += step.y;
       moved = lengthSq(step) > 0.01;
+      if (moved && Math.abs(step.y) > Math.abs(step.x) * 0.75) {
+        const directionalAnimation = step.y < 0 ? 'walk_up' : 'walk_down';
+        if (this.animator.bank.clips.has(directionalAnimation)) movementAnimation = directionalAnimation;
+      }
     }
 
     for (const ally of allies) {
@@ -207,7 +212,7 @@ export class Enemy extends Actor {
       }
     }
 
-    this.animator.play(moved ? 'walk' : 'idle');
+    this.animator.play(moved ? movementAnimation : 'idle');
     this.state = moved ? 'walk' : 'idle';
     this.clampToPlayfield();
     this.syncVisual();

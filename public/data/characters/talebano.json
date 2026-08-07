@@ -15,7 +15,7 @@
     "accessories": "catena dorata, bracciali/orologio, occhiali scuri, coltello",
     "fighting_style": "guardia pesante, pugni larghi, spintoni e corpo a corpo",
     "special_move": "colpo di pancia",
-    "canon": "Talebano Pack v0.1 REVIEW — runtime v0.7.8: full-feet scale retained; hit/fall/get-up spans normalized; complete animation playback"
+    "canon": "Talebano Quality Pack v2 — runtime v0.7.8: clean transparency, stable full-feet scale, complete animation playback and directional depth walk"
   },
   "gameplay": {
     "enemy": {
@@ -66,6 +66,24 @@
     },
     "walk": {
       "folder": "walk",
+      "frames": 6,
+      "durations": [
+        0.11
+      ],
+      "loop": true,
+      "source_facing": 1
+    },
+    "walk_up": {
+      "folder": "walk_up",
+      "frames": 6,
+      "durations": [
+        0.11
+      ],
+      "loop": true,
+      "source_facing": 1
+    },
+    "walk_down": {
+      "folder": "walk_down",
       "frames": 6,
       "durations": [
         0.11

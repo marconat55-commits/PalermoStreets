@@ -1,0 +1,13 @@
+export const GAME_TITLE = 'Minchia Fighters: Palermo Streets — PixiJS Port';
+export const GAME_VERSION = 'pixi-0.1.0-from-v0.7.8';
+export const LOGICAL_WIDTH = 1280;
+export const LOGICAL_HEIGHT = 720;
+export const PLAYFIELD = { left: 45, top: 510, right: 1235, bottom: 684 } as const;
+export const PLAYER_START = { x: 128, y: 610 } as const;
+export const EXIT_X = 1215;
+export const EXIT_TRIGGER_TOLERANCE = 8;
+export const FURY_MAX = 100;
+export const MODULE_FADE_SECONDS = 0.42;
+export const MODULE_ENTRY_LOCK = 0.22;
+export const SPRITE_CANVAS = { width: 640, height: 420 } as const;
+export const DEBUG_DRAW_DEFAULT = false;

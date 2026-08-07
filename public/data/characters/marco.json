@@ -1,0 +1,231 @@
+{
+  "schema": 1,
+  "id": "marco",
+  "display_name": "MARCO",
+  "role": "player",
+  "height_cm": 184,
+  "body_type": "muscoloso atletico",
+  "visual_height": 290,
+  "assets": {
+    "master_root": "assets/characters/marco",
+    "animation_root": "assets/characters/marco_anim"
+  },
+  "identity": {
+    "outfit": "mantello rosso, pantaloni scuri, fascia rossa",
+    "accessories": "fascia e dettagli metallici",
+    "fighting_style": "street fighter potente e diretto",
+    "special_move": "supermossa in avanzamento",
+    "canon": "Marco Definitive Pack v1.1 CLEAN — runtime v0.7.8: full edge decontamination and super-move horizontal keyframes normalized around the feet pivot"
+  },
+  "gameplay": {
+    "player": {
+      "max_health": 120,
+      "move_speed": 285.0,
+      "depth_speed": 205.0
+    }
+  },
+  "factory": {
+    "recipe": "player_standard",
+    "animation_canvas": [
+      640,
+      420
+    ],
+    "baseline_y": 414,
+    "master_canvas": [
+      1280,
+      1760
+    ],
+    "master_pack_required": [
+      "01_fronte.png",
+      "02_3-4_fronte_guardia.png",
+      "03_lato.png",
+      "04_3-4_dietro_guardia.png",
+      "05_dietro.png",
+      "06_ritratto_aggressivo.png",
+      "07_ritratto_neutro.png",
+      "08_camminata_contatto.png",
+      "09_camminata_passaggio.png"
+    ]
+  },
+  "animations": {
+    "idle": {
+      "folder": "idle",
+      "frames": 4,
+      "durations": [
+        0.14
+      ],
+      "loop": true,
+      "source_facing": 1
+    },
+    "walk": {
+      "folder": "walk",
+      "frames": 6,
+      "durations": [
+        0.105
+      ],
+      "loop": true,
+      "source_facing": 1
+    },
+    "punch_left": {
+      "folder": "punch_left",
+      "frames": 4,
+      "durations": [
+        0.075,
+        0.075,
+        0.085,
+        0.13
+      ],
+      "source_facing": 1
+    },
+    "punch_right": {
+      "folder": "punch_right",
+      "frames": 4,
+      "durations": [
+        0.07,
+        0.075,
+        0.085,
+        0.16
+      ],
+      "source_facing": 1
+    },
+    "kick_right": {
+      "folder": "kick_right",
+      "frames": 5,
+      "durations": [
+        0.09,
+        0.09,
+        0.1,
+        0.11,
+        0.18
+      ],
+      "source_facing": 1
+    },
+    "block": {
+      "folder": "block",
+      "frames": 4,
+      "durations": [
+        0.1,
+        0.09,
+        0.1,
+        0.12
+      ],
+      "loop": true,
+      "source_facing": 1
+    },
+    "super": {
+      "folder": "super",
+      "frames": 6,
+      "durations": [
+        0.12,
+        0.18,
+        0.1,
+        0.1,
+        0.12,
+        0.24
+      ],
+      "source_facing": 1
+    },
+    "hit": {
+      "folder": "hit",
+      "frames": 3,
+      "durations": [
+        0.08,
+        0.09,
+        0.12
+      ],
+      "source_facing": 1
+    },
+    "knockdown": {
+      "folder": "fall",
+      "frames": 5,
+      "durations": [
+        0.08,
+        0.09,
+        0.1,
+        0.12,
+        0.28
+      ],
+      "source_facing": 1
+    },
+    "getup": {
+      "folder": "getup",
+      "frames": 5,
+      "durations": [
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.16
+      ],
+      "source_facing": 1
+    },
+    "dead": {
+      "folder": "fall",
+      "frames": 5,
+      "durations": [
+        0.08,
+        0.09,
+        0.1,
+        0.12,
+        9.0
+      ],
+      "source_facing": 1
+    },
+    "dodge": {
+      "folder": "dodge",
+      "frames": 4,
+      "durations": [
+        0.05
+      ],
+      "loop": true,
+      "source_facing": 1
+    },
+    "punch1": {
+      "folder": "punch_left",
+      "frames": 4,
+      "durations": [
+        0.075,
+        0.075,
+        0.085,
+        0.13
+      ],
+      "source_facing": 1
+    },
+    "punch2": {
+      "folder": "punch_right",
+      "frames": 4,
+      "durations": [
+        0.07,
+        0.075,
+        0.085,
+        0.16
+      ],
+      "source_facing": 1
+    },
+    "kick": {
+      "folder": "kick_right",
+      "frames": 5,
+      "durations": [
+        0.09,
+        0.09,
+        0.1,
+        0.11,
+        0.18
+      ],
+      "source_facing": 1
+    },
+    "fury": {
+      "folder": "super",
+      "frames": 6,
+      "durations": [
+        0.12,
+        0.18,
+        0.1,
+        0.1,
+        0.12,
+        0.24
+      ],
+      "source_facing": 1
+    }
+  }
+}

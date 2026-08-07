@@ -1,0 +1,492 @@
+import { Container, Graphics, Sprite, Text, TextStyle, type Texture } from 'pixi.js';
+import type { Scene } from './Scene';
+import type { Input } from '../input/Input';
+import type { AssetCatalog } from '../assets/AssetCatalog';
+import type { CharacterProfile, ModuleData, StageData, Vec2, WaveData } from '../types';
+import { Player } from '../entities/Player';
+import { Enemy } from '../entities/Enemy';
+import { EffectsLayer } from '../effects/EffectsLayer';
+import { EnemyHudLayer } from '../ui/EnemyHudLayer';
+import { Hud } from '../ui/Hud';
+import { EXIT_TRIGGER_TOLERANCE, EXIT_X, LOGICAL_HEIGHT, LOGICAL_WIDTH, MODULE_ENTRY_LOCK, MODULE_FADE_SECONDS, PLAYER_START } from '../config';
+import { preventCrossings, resolveEnemyAttack, resolvePlayerAttack, separateActors } from '../combat/combat';
+
+export class StageScene implements Scene {
+  readonly root = new Container();
+  private readonly world = new Container();
+  private readonly background = new Sprite();
+  private readonly grade = new Graphics();
+  private readonly ground = new Graphics();
+  private readonly actors = new Container();
+  private readonly warningGraphics = new Graphics();
+  private readonly enemyHud = new EnemyHudLayer();
+  private readonly effects = new EffectsLayer();
+  private readonly screen = new Container();
+  private readonly hud = new Hud();
+  private readonly messagePanel = new Graphics();
+  private readonly messageText = new Text({
+    text: '',
+    style: new TextStyle({ fontFamily: 'Arial, sans-serif', fontSize: 28, fontWeight: '700', fill: 0xfff5e1, align: 'center' }),
+  });
+  private readonly clearText = new Text({
+    text: '',
+    style: new TextStyle({ fontFamily: 'Arial, sans-serif', fontSize: 22, fontWeight: '700', fill: 0xffeeb2 }),
+  });
+  private readonly exitGraphics = new Graphics();
+  private readonly overlay = new Graphics();
+  private readonly overlayTitle = new Text({
+    text: '',
+    style: new TextStyle({ fontFamily: 'Arial Black, Arial, sans-serif', fontSize: 44, fontWeight: '900', fill: 0xffbc2d }),
+  });
+  private readonly overlaySubtitle = new Text({
+    text: '',
+    style: new TextStyle({ fontFamily: 'Arial, sans-serif', fontSize: 22, fill: 0xeee6da }),
+  });
+  private readonly fade = new Graphics();
+  private readonly debug = new Graphics();
+
+  private readonly modules: ModuleData[];
+  private readonly backgroundTextures: Texture[];
+  private readonly catalog: AssetCatalog;
+  readonly player: Player;
+  private enemies: Enemy[] = [];
+
+  private moduleIndex = 0;
+  private currentModule!: ModuleData;
+  private waveData: WaveData[] = [];
+  private waveIndex = -1;
+  private nextWaveTimer = 0.70;
+  private moduleClear = false;
+  private clearTimer = 0;
+  private exitX = EXIT_X;
+  private entryLock = MODULE_ENTRY_LOCK;
+  private checkpointModule = 0;
+
+  private hitStop = 0;
+  private screenShake = 0;
+  private enemyAttackLock = 0;
+  private message = '';
+  private messageTimer = 0;
+  private stageComplete = false;
+  private paused = false;
+  private debugDraw = false;
+  private elapsed = 0;
+  private transitionPhase: 'in' | 'out' | null = 'in';
+  private transitionAlpha = 255;
+  private transitionTarget = 0;
+
+  static async create(catalog: AssetCatalog, stageData: StageData): Promise<StageScene> {
+    const textures = await Promise.all(stageData.modules.map((module) => catalog.loadBackground(module.background)));
+    return new StageScene(catalog, stageData, textures);
+  }
+
+  private constructor(catalog: AssetCatalog, stageData: StageData, backgrounds: Texture[]) {
+    this.catalog = catalog;
+    this.modules = stageData.modules;
+    this.backgroundTextures = backgrounds;
+    this.actors.sortableChildren = true;
+    this.world.sortableChildren = true;
+
+    this.background.anchor.set(0.5);
+    this.background.position.set(LOGICAL_WIDTH / 2, LOGICAL_HEIGHT / 2);
+    this.background.width = LOGICAL_WIDTH + 34;
+    this.background.height = LOGICAL_HEIGHT + 20;
+    this.background.zIndex = -1000;
+
+    this.grade
+      .rect(0, 0, LOGICAL_WIDTH, 120).fill({ color: 0x000000, alpha: 0.16 })
+      .rect(0, LOGICAL_HEIGHT - 58, LOGICAL_WIDTH, 58).fill({ color: 0x000000, alpha: 0.11 })
+      .rect(0, 0, 32, LOGICAL_HEIGHT).fill({ color: 0x000000, alpha: 0.11 })
+      .rect(LOGICAL_WIDTH - 32, 0, 32, LOGICAL_HEIGHT).fill({ color: 0x000000, alpha: 0.11 });
+    this.grade.zIndex = -900;
+    this.ground.zIndex = 0;
+    this.actors.zIndex = 10;
+    this.warningGraphics.zIndex = 8500;
+    this.effects.root.zIndex = 9000;
+
+    this.world.addChild(this.background, this.grade, this.ground, this.actors, this.warningGraphics, this.effects.root, this.enemyHud.root);
+    this.root.addChild(this.world, this.screen);
+
+    this.screen.addChild(this.hud.root, this.exitGraphics, this.messagePanel, this.messageText, this.clearText, this.debug, this.overlay, this.overlayTitle, this.overlaySubtitle, this.fade);
+    this.messageText.anchor.set(0.5);
+    this.messageText.position.set(640, 122);
+    this.clearText.anchor.set(0.5);
+    this.clearText.position.set(640, 119);
+    this.overlayTitle.anchor.set(0.5);
+    this.overlayTitle.position.set(640, 320);
+    this.overlaySubtitle.anchor.set(0.5);
+    this.overlaySubtitle.position.set(640, 378);
+
+    const playerProfile = this.catalog.getProfile('marco');
+    const tuning = playerProfile.gameplay.player ?? {};
+    this.player = new Player(
+      this.catalog.getBank('marco'),
+      { ...PLAYER_START },
+      tuning.max_health ?? 120,
+      playerProfile.visual_height,
+      tuning.move_speed ?? 285,
+      tuning.depth_speed ?? 205,
+    );
+    this.actors.addChild(this.player.root);
+    this.enterModule(0, false);
+  }
+
+  get wantsMenu(): boolean {
+    return false;
+  }
+
+  private enterModule(index: number, preservePlayer: boolean): void {
+    this.moduleIndex = index;
+    this.checkpointModule = index;
+    this.currentModule = this.modules[index]!;
+    this.background.texture = this.backgroundTextures[index]!;
+    this.waveData = this.currentModule.waves ?? [];
+    this.waveIndex = -1;
+    this.nextWaveTimer = 0.70;
+    this.moduleClear = false;
+    this.clearTimer = 0;
+    this.exitX = this.currentModule.exit_x ?? EXIT_X;
+    this.entryLock = MODULE_ENTRY_LOCK;
+
+    for (const enemy of this.enemies) {
+      this.enemyHud.removeActor(enemy.actorId);
+      enemy.destroy();
+    }
+    this.enemies = [];
+    this.effects.clear();
+    this.enemyAttackLock = 0;
+    this.hitStop = 0;
+    this.screenShake = 0;
+    this.world.position.set(0, 0);
+
+    const entry = this.currentModule.entry ?? [PLAYER_START.x, PLAYER_START.y];
+    this.player.position.x = entry[0];
+    this.player.position.y = entry[1];
+    this.player.velocity = { x: 0, y: 0 };
+    this.player.currentAttack = null;
+    this.player.queuedAttack = null;
+    this.player.attackHits.clear();
+    this.player.comboCounter = 0;
+    this.player.comboDisplayTimer = 0;
+    this.player.dead = false;
+    this.player.removeReady = false;
+    this.player.invulnerable = 0.32;
+    this.player.alpha255 = 255;
+    this.player.beginState('idle', 'idle');
+    if (preservePlayer) {
+      this.player.health = Math.min(this.player.maxHealth, this.player.health + (this.currentModule.heal ?? 0));
+    } else {
+      this.player.health = this.player.maxHealth;
+      this.player.fury = 0;
+    }
+    this.player.syncVisual(true);
+
+    this.message = `${this.currentModule.id} — ${this.currentModule.name.toUpperCase()}`;
+    this.messageTimer = 2;
+  }
+
+  private restart(): void {
+    const score = this.player.score;
+    this.player.score = Math.max(0, score - 500);
+    this.stageComplete = false;
+    this.transitionPhase = 'in';
+    this.transitionAlpha = 255;
+    this.transitionTarget = this.checkpointModule;
+    this.enterModule(this.checkpointModule, false);
+    this.message = 'CHECKPOINT — RIPROVA';
+    this.messageTimer = 1.3;
+  }
+
+  private enemyDefaults(profile: CharacterProfile): Required<NonNullable<CharacterProfile['gameplay']['enemy']>> {
+    const d = profile.gameplay.enemy ?? {};
+    return {
+      health: d.health ?? 82,
+      aggression: d.aggression ?? 1,
+      move_speed_scale: d.move_speed_scale ?? 1,
+      damage_scale: d.damage_scale ?? 1,
+      attack_speed_scale: d.attack_speed_scale ?? 1,
+      heavy_chance: d.heavy_chance ?? 0.13,
+      cooldown_scale: d.cooldown_scale ?? 1,
+      collision_scale: d.collision_scale ?? 1,
+      label: d.label ?? profile.display_name,
+    };
+  }
+
+  private spawnNextWave(): void {
+    this.waveIndex += 1;
+    if (this.waveIndex >= this.waveData.length) return;
+    const wave = this.waveData[this.waveIndex]!;
+    const boss = wave.boss ?? false;
+    const characterId = wave.character ?? 'barbetta';
+    const profile = this.catalog.getProfile(characterId);
+    const defaults = this.enemyDefaults(profile);
+    for (let index = 0; index < wave.spawns.length; index += 1) {
+      const spawn = wave.spawns[index]!;
+      const enemy = new Enemy(this.catalog.getBank(characterId), { x: spawn[0], y: spawn[1] }, {
+        health: wave.health ?? defaults.health,
+        aggression: (wave.aggression ?? defaults.aggression) + index * 0.035,
+        boss,
+        displayName: wave.name ?? (boss ? profile.display_name : defaults.label),
+        variantIndex: index % 3,
+        characterId,
+        visualHeight: profile.visual_height,
+        moveSpeedScale: wave.move_speed_scale ?? defaults.move_speed_scale,
+        damageScale: wave.damage_scale ?? defaults.damage_scale,
+        attackSpeedScale: wave.attack_speed_scale ?? defaults.attack_speed_scale,
+        heavyChance: wave.heavy_chance ?? defaults.heavy_chance,
+        cooldownScale: wave.cooldown_scale ?? defaults.cooldown_scale,
+        collisionScale: wave.collision_scale ?? defaults.collision_scale,
+      });
+      this.enemies.push(enemy);
+      this.actors.addChild(enemy.root);
+    }
+    if (boss) {
+      const bossName = (wave.name ?? profile.display_name).toUpperCase();
+      this.message = `${bossName} — RESA DEI CONTI`;
+      this.messageTimer = 2.1;
+      this.screenShake = 5;
+    } else {
+      this.message = `ONDATA ${this.waveIndex + 1}/${this.waveData.length}`;
+      this.messageTimer = 1.05;
+    }
+  }
+
+  private startTransition(): void {
+    if (this.transitionPhase !== null) return;
+    this.transitionPhase = 'out';
+    this.transitionAlpha = 0;
+    this.transitionTarget = this.moduleIndex + 1;
+    this.player.beginState('idle', 'idle');
+    this.player.velocity = { x: 0, y: 0 };
+  }
+
+  private updateTransition(dt: number): void {
+    const rate = 255 / Math.max(0.05, MODULE_FADE_SECONDS);
+    if (this.transitionPhase === 'out') {
+      this.transitionAlpha = Math.min(255, this.transitionAlpha + rate * dt);
+      if (this.transitionAlpha >= 255) {
+        if (this.transitionTarget >= this.modules.length) {
+          this.stageComplete = true;
+          this.transitionPhase = null;
+          this.transitionAlpha = 0;
+          return;
+        }
+        this.enterModule(this.transitionTarget, true);
+        this.transitionPhase = 'in';
+        this.transitionAlpha = 255;
+      }
+    } else if (this.transitionPhase === 'in') {
+      this.transitionAlpha = Math.max(0, this.transitionAlpha - rate * dt);
+      if (this.transitionAlpha <= 0) this.transitionPhase = null;
+    }
+  }
+
+  update(dt: number, input: Input): void {
+    if (input.wasPressed('KeyP')) this.paused = !this.paused;
+    if (input.wasPressed('F3')) this.debugDraw = !this.debugDraw;
+    if (input.wasPressed('KeyR') && this.player.dead) this.restart();
+    if (!this.paused && !this.stageComplete && this.transitionPhase === null) {
+      if (input.wasPressed('KeyJ')) this.player.requestPunch();
+      if (input.wasPressed('KeyI')) this.player.requestKick();
+      if (input.wasPressed('KeyL')) this.player.requestSuper();
+    }
+
+    if (this.paused) {
+      this.updateVisualLayers();
+      return;
+    }
+    this.elapsed += dt;
+    this.messageTimer = Math.max(0, this.messageTimer - dt);
+    if (this.transitionPhase !== null) {
+      this.updateTransition(dt);
+      this.updateVisualLayers();
+      return;
+    }
+    if (this.stageComplete) {
+      this.updateVisualLayers();
+      return;
+    }
+
+    this.entryLock = Math.max(0, this.entryLock - dt);
+    if (this.hitStop > 0) {
+      this.hitStop = Math.max(0, this.hitStop - dt);
+      this.updateVisualLayers();
+      return;
+    }
+
+    this.screenShake = Math.max(0, this.screenShake - 24 * dt);
+    if (this.screenShake > 0) {
+      const amount = Math.min(8, this.screenShake);
+      this.world.position.set((Math.random() * 2 - 1) * amount, (Math.random() * 2 - 1) * amount);
+    } else {
+      this.world.position.set(0, 0);
+    }
+
+    this.enemyAttackLock = Math.max(0, this.enemyAttackLock - dt);
+    const previous = new Map<number, Vec2>();
+    for (const actor of [this.player, ...this.enemies]) previous.set(actor.actorId, { ...actor.position });
+
+    const liveBefore = this.enemies.filter((enemy) => !enemy.dead && enemy.state !== 'spawn');
+    const combatReady = liveBefore.filter((enemy) => !['hit', 'knockdown', 'getup'].includes(enemy.state));
+    const targetPool = combatReady.length ? combatReady : liveBefore;
+    const nearest = [...targetPool].sort((a, b) =>
+      (Math.abs(a.position.x - this.player.position.x) + Math.abs(a.position.y - this.player.position.y) * 1.35) -
+      (Math.abs(b.position.x - this.player.position.x) + Math.abs(b.position.y - this.player.position.y) * 1.35)
+    )[0];
+    this.player.setAutoTarget(nearest?.position.x ?? null);
+    this.player.update(dt, input, this.entryLock <= 0);
+
+    const playerCanBePressured = !['hit', 'knockdown', 'getup'].includes(this.player.state) && !this.player.dead;
+    let activeAttacker = combatReady.find((enemy) => enemy.state === 'attack');
+    if (!activeAttacker && combatReady.length && this.enemyAttackLock <= 0 && playerCanBePressured) {
+      activeAttacker = [...combatReady].sort((a, b) => {
+        const ca = Math.max(0, a.attackCooldown) * 95 + Math.abs(a.position.x - this.player.position.x) + Math.abs(a.position.y - this.player.position.y) * 1.7;
+        const cb = Math.max(0, b.attackCooldown) * 95 + Math.abs(b.position.x - this.player.position.x) + Math.abs(b.position.y - this.player.position.y) * 1.7;
+        return ca - cb;
+      })[0];
+    }
+    const supporters = liveBefore.filter((enemy) => enemy !== activeAttacker).sort((a, b) => a.actorId - b.actorId);
+    const supportRank = new Map(supporters.map((enemy, index) => [enemy.actorId, index]));
+    const attackBefore = new Map(this.enemies.map((enemy) => [enemy.actorId, enemy.state === 'attack']));
+    for (const enemy of this.enemies) enemy.update(dt, this.player, this.enemies, enemy === activeAttacker, supportRank.get(enemy.actorId) ?? 0);
+    if (this.enemies.some((enemy) => attackBefore.get(enemy.actorId) && enemy.state !== 'attack')) this.enemyAttackLock = Math.max(this.enemyAttackLock, 0.40);
+
+    for (const event of resolvePlayerAttack(this.player, this.enemies)) {
+      this.hitStop = Math.max(this.hitStop, event.hitStop);
+      this.screenShake = Math.max(this.screenShake, event.shake);
+      this.effects.hitSpark(event.position, event.heavy);
+      this.effects.damageText(event.position, event.damage, event.heavy);
+    }
+    for (const enemy of this.enemies) {
+      const event = resolveEnemyAttack(enemy, this.player);
+      if (!event) continue;
+      this.hitStop = Math.max(this.hitStop, event.hitStop);
+      this.screenShake = Math.max(this.screenShake, event.shake);
+      this.effects.hitSpark(event.position, event.heavy);
+      this.effects.damageText(event.position, event.damage, event.heavy);
+      this.enemyAttackLock = Math.max(this.enemyAttackLock, 0.48);
+    }
+
+    separateActors([this.player, ...this.enemies], this.player);
+    preventCrossings(this.player, this.enemies, previous);
+    separateActors([this.player, ...this.enemies], this.player);
+    for (const actor of [this.player, ...this.enemies]) actor.syncVisual();
+
+    const removed = this.enemies.filter((enemy) => enemy.removeReady);
+    this.enemies = this.enemies.filter((enemy) => !enemy.removeReady);
+    for (const enemy of removed) {
+      this.enemyHud.removeActor(enemy.actorId);
+      enemy.destroy();
+    }
+    this.effects.update(dt);
+
+    const liveEnemies = this.enemies.filter((enemy) => !enemy.dead);
+    const anyEnemyObjects = this.enemies.length > 0;
+    if (!liveEnemies.length && !anyEnemyObjects && this.waveIndex < this.waveData.length - 1) {
+      this.nextWaveTimer -= dt;
+      if (this.nextWaveTimer <= 0) {
+        this.spawnNextWave();
+        this.nextWaveTimer = 0.82;
+      }
+    } else if (!liveEnemies.length && !anyEnemyObjects && this.waveIndex === this.waveData.length - 1) {
+      this.clearTimer += dt;
+      if (this.clearTimer > 0.38) this.moduleClear = true;
+      if (this.moduleClear && this.player.position.x >= this.exitX - EXIT_TRIGGER_TOLERANCE) this.startTransition();
+    } else {
+      this.clearTimer = 0;
+      this.moduleClear = false;
+    }
+
+    this.updateVisualLayers();
+  }
+
+  private updateVisualLayers(): void {
+    this.ground.clear();
+    for (const enemy of this.enemies) {
+      if (enemy.dead) continue;
+      const color = enemy.isBoss ? 0xb02a24 : (enemy.variantIndex === 1 ? 0x69499b : 0x415c80);
+      const width = enemy.isBoss ? 104 : 76;
+      this.ground.ellipse(enemy.position.x, enemy.position.y - 1.5, width / 2, 6.5).stroke({ color, width: 2, alpha: 0.95 });
+    }
+
+    this.warningGraphics.clear();
+    for (const enemy of this.enemies) {
+      const ratio = enemy.attackWarningRatio;
+      if (ratio <= 0 || enemy.dead) continue;
+      const cx = enemy.position.x + (enemy.isBoss ? 58 : 46);
+      const cy = enemy.visualTop() - 20;
+      const radius = 13 + ratio * 6;
+      this.warningGraphics.circle(cx, cy, radius).stroke({ color: 0xffd44a, width: 3, alpha: 0.95 });
+      this.warningGraphics.moveTo(cx, cy - 7).lineTo(cx, cy + 2).stroke({ color: 0xfff0b4, width: 3 });
+      this.warningGraphics.circle(cx, cy + 7, 1.8).fill(0xfff0b4);
+    }
+
+    this.enemyHud.update(this.enemies);
+    this.hud.update(this.player, this.enemies, this.moduleIndex, this.currentModule.id, this.waveIndex, this.waveData.length, this.modules.length);
+
+    this.exitGraphics.clear();
+    this.clearText.visible = false;
+    if (this.moduleClear && this.transitionPhase === null) {
+      const pulse = 185 + 55 * Math.abs(Math.sin(this.elapsed * 4.2));
+      const x = Math.min(1255, Math.round(this.exitX + 34));
+      this.exitGraphics.moveTo(x - 42, 530).lineTo(x, 555).lineTo(x - 42, 580).closePath().fill({ color: (Math.round(pulse) << 8) + 0xff0000 + 45 });
+      this.clearText.visible = this.messageTimer <= 0;
+      this.clearText.text = this.moduleIndex === this.modules.length - 1 ? 'TETTO LIBERO — VAI A DESTRA' : 'AREA LIBERA — VAI A DESTRA';
+    }
+
+    this.messagePanel.clear();
+    this.messageText.visible = this.messageTimer > 0;
+    if (this.messageText.visible) {
+      this.messageText.text = this.message;
+      const width = Math.max(260, this.messageText.width + 34);
+      this.messagePanel.roundRect(640 - width / 2, 100, width, 44, 4).fill({ color: 0x000000, alpha: 0.72 });
+    }
+
+    this.debug.clear();
+    if (this.debugDraw) this.drawDebug();
+
+    this.overlay.clear();
+    this.overlayTitle.visible = false;
+    this.overlaySubtitle.visible = false;
+    if (this.paused) this.showCenterOverlay('PAUSA', 'PREMI P PER CONTINUARE');
+    else if (this.player.dead) this.showCenterOverlay('MARCO È A TERRA', 'PREMI R — RIPARTI DAL CHECKPOINT');
+    else if (this.stageComplete) this.showCenterOverlay('STAGE 1 COMPLETATO', 'ZEN — BOSS PROVVISORIO SCONFITTO');
+
+    this.fade.clear();
+    if (this.transitionPhase !== null && this.transitionAlpha > 0) {
+      this.fade.rect(0, 0, LOGICAL_WIDTH, LOGICAL_HEIGHT).fill({ color: 0x000000, alpha: this.transitionAlpha / 255 });
+    }
+  }
+
+  private showCenterOverlay(title: string, subtitle: string): void {
+    this.overlay.rect(0, 0, LOGICAL_WIDTH, LOGICAL_HEIGHT).fill({ color: 0x000000, alpha: 0.70 });
+    this.overlayTitle.visible = true;
+    this.overlaySubtitle.visible = true;
+    this.overlayTitle.text = title;
+    this.overlaySubtitle.text = subtitle;
+  }
+
+  private drawDebug(): void {
+    const g = this.debug;
+    g.rect(45, 510, 1190, 174).stroke({ color: 0x28ff6e, width: 2 });
+    for (const actor of [this.player, ...this.enemies]) {
+      const hb = actor.hurtbox;
+      g.rect(hb.x, hb.y, hb.width, hb.height).stroke({ color: 0x50d2ff, width: 2 });
+      const r = actor.collisionRadius;
+      g.ellipse(actor.position.x, actor.position.y, r.x, r.y).stroke({ color: 0xb95aff, width: 2 });
+      g.moveTo(actor.position.x, actor.position.y - 92).lineTo(actor.position.x + actor.facing * 58, actor.position.y - 92).stroke({ color: 0xffeb46, width: 3 });
+    }
+    const pb = this.player.activeAttackBox();
+    if (pb) g.rect(pb.x, pb.y, pb.width, pb.height).stroke({ color: 0xffd228, width: 2 });
+    for (const enemy of this.enemies) {
+      const box = enemy.activeAttackBox();
+      if (box) g.rect(box.x, box.y, box.width, box.height).stroke({ color: 0xff4646, width: 2 });
+    }
+  }
+
+  destroy(): void {
+    for (const enemy of this.enemies) enemy.destroy();
+    this.player.destroy();
+    this.root.destroy({ children: true });
+  }
+}

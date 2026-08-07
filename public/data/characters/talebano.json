@@ -1,0 +1,152 @@
+{
+  "schema": 1,
+  "id": "talebano",
+  "display_name": "TALEBANO",
+  "role": "enemy",
+  "height_cm": 183,
+  "body_type": "sovrappeso con pancia prominente",
+  "visual_height": 305,
+  "assets": {
+    "master_root": "assets/characters/talebano",
+    "animation_root": "assets/characters/talebano_anim"
+  },
+  "identity": {
+    "outfit": "canotta bianca aderente, pantaloni tuta adidas blu, scarpe da tennis bianche",
+    "accessories": "catena dorata, bracciali/orologio, occhiali scuri, coltello",
+    "fighting_style": "guardia pesante, pugni larghi, spintoni e corpo a corpo",
+    "special_move": "colpo di pancia",
+    "canon": "Talebano Pack v0.1 REVIEW — runtime v0.7.8: full-feet scale retained; hit/fall/get-up spans normalized; complete animation playback"
+  },
+  "gameplay": {
+    "enemy": {
+      "health": 92,
+      "aggression": 0.96,
+      "move_speed_scale": 0.88,
+      "damage_scale": 1.08,
+      "attack_speed_scale": 0.92,
+      "heavy_chance": 0.34,
+      "cooldown_scale": 1.08,
+      "collision_scale": 1.06,
+      "label": "TALEBANO"
+    }
+  },
+  "factory": {
+    "recipe": "enemy_standard",
+    "animation_canvas": [
+      640,
+      420
+    ],
+    "baseline_y": 414,
+    "master_canvas": [
+      1280,
+      1760
+    ],
+    "master_pack_required": [
+      "01_fronte.png",
+      "02_3-4_fronte_guardia.png",
+      "03_lato.png",
+      "04_3-4_dietro_guardia.png",
+      "05_dietro.png",
+      "06_ritratto_aggressivo.png",
+      "07_ritratto_neutro.png",
+      "08_camminata_contatto.png",
+      "09_camminata_passaggio.png"
+    ],
+    "content_bottom_y": 400
+  },
+  "animations": {
+    "idle": {
+      "folder": "idle",
+      "frames": 4,
+      "durations": [
+        0.16
+      ],
+      "loop": true,
+      "source_facing": 1
+    },
+    "walk": {
+      "folder": "walk",
+      "frames": 6,
+      "durations": [
+        0.11
+      ],
+      "loop": true,
+      "source_facing": 1
+    },
+    "attack": {
+      "folder": "attack",
+      "frames": 4,
+      "durations": [
+        0.16,
+        0.16,
+        0.18,
+        0.44
+      ],
+      "loop": false,
+      "source_facing": 1
+    },
+    "heavy": {
+      "folder": "heavy",
+      "frames": 5,
+      "durations": [
+        0.18,
+        0.18,
+        0.16,
+        0.18,
+        0.58
+      ],
+      "loop": false,
+      "source_facing": 1
+    },
+    "hit": {
+      "folder": "hit",
+      "frames": 3,
+      "durations": [
+        0.09,
+        0.12,
+        0.12
+      ],
+      "loop": false,
+      "source_facing": 1
+    },
+    "knockdown": {
+      "folder": "fall",
+      "frames": 5,
+      "durations": [
+        0.1,
+        0.12,
+        0.16,
+        0.2,
+        0.44
+      ],
+      "loop": false,
+      "source_facing": 1
+    },
+    "getup": {
+      "folder": "getup",
+      "frames": 5,
+      "durations": [
+        0.14,
+        0.14,
+        0.16,
+        0.18,
+        0.22
+      ],
+      "loop": false,
+      "source_facing": 1
+    },
+    "dead": {
+      "folder": "fall",
+      "frames": 5,
+      "durations": [
+        0.1,
+        0.12,
+        0.16,
+        0.2,
+        9.0
+      ],
+      "loop": false,
+      "source_facing": 1
+    }
+  }
+}

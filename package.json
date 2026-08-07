@@ -1,0 +1,21 @@
+{
+  "name": "palermo-streets-pixijs",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "typecheck": "tsc -b --pretty false",
+    "preview": "vite preview",
+    "check": "npm run validate:data && npm run typecheck && npm run build",
+    "validate:data": "node scripts/validate-data.mjs"
+  },
+  "dependencies": {
+    "pixi.js": "8.19.0"
+  },
+  "devDependencies": {
+    "typescript": "7.0.2",
+    "vite": "8.1.5"
+  }
+}

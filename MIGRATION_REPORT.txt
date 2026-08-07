@@ -1,0 +1,28 @@
+Palermo Streets — PixiJS Migration 0.1
+Source baseline: Palermo Streets v0.7.8 Character Polish
+Target: TypeScript + PixiJS 8.19.0 + Vite
+
+PORT STATUS
+- Title scene: ported
+- Stage 1 / 7 modules: ported
+- Runtime backgrounds: copied
+- Marco/Talebano/Piero/Barbetta runtime animation assets: copied
+- Character profiles and stage JSON: preserved
+- Per-frame animation timing: ported
+- Feet-pivot alpha metadata: generated for 140 unique runtime PNGs
+- Player movement/attacks/fury/score/combo: ported
+- Enemy AI and attacks: ported baseline
+- Combat hurtboxes/pushboxes/crossing prevention: ported
+- Hit-stop/screen shake/effects: ported baseline
+- Waves/checkpoints/module transitions: ported
+- Enemy name/health bars and HUD: ported
+- Fullscreen/pause/debug/restart/menu controls: ported
+
+VALIDATION PERFORMED IN BUILD ENVIRONMENT
+- Node data validation: PASS (4 characters, 7 modules, 140 frame metadata)
+- TypeScript strict syntax/type pass: PASS using a local PixiJS API shim because the execution environment blocks public npm package installation.
+- Runtime asset count: 151 files under public/assets
+- Project size without node_modules: ~29 MB
+
+IMPORTANT
+The public npm registry is not available from the build sandbox used to prepare this package, so a real `npm install`/Vite browser build could not be executed here. On a normal Windows development machine, run `npm install` then `npm run check`; the real PixiJS/Vite type packages will provide the final API-level verification.

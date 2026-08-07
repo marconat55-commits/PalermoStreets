@@ -1,0 +1,24 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Palermo Streets: Gioca",
+      "type": "shell",
+      "command": "npm.cmd run dev -- --open",
+      "problemMatcher": [],
+      "isBackground": true
+    },
+    {
+      "label": "Palermo Streets: Controlla tutto",
+      "type": "shell",
+      "command": "npm.cmd run check",
+      "problemMatcher": ["$tsc"]
+    },
+    {
+      "label": "Palermo Streets: Build",
+      "type": "shell",
+      "command": "npm.cmd run build",
+      "problemMatcher": ["$tsc"]
+    }
+  ]
+}

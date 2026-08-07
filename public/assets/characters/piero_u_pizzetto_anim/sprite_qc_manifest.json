@@ -1,0 +1,528 @@
+{
+  "attack": {
+    "01.png": {
+      "canvas": [
+        640,
+        420
+      ],
+      "bbox": [
+        230,
+        108,
+        411,
+        400
+      ],
+      "visible_height": 292,
+      "baseline": 400,
+      "sha256": "99b02fdb9611f859c031b721d3e4e2d901095090d12e2100f631866f9d72a83b",
+      "near_white_semialpha": 0
+    },
+    "02.png": {
+      "canvas": [
+        640,
+        420
+      ],
+      "bbox": [
+        194,
+        108,
+        467,
+        400
+      ],
+      "visible_height": 292,
+      "baseline": 400,
+      "sha256": "bc51f72fb8add4917154d2666967f38526de73bb5b1eecba3a11ba832ab2193a",
+      "near_white_semialpha": 0
+    },
+    "03.png": {
+      "canvas": [
+        640,
+        420
+      ],
+      "bbox": [
+        217,
+        108,
+        423,
+        400
+      ],
+      "visible_height": 292,
+      "baseline": 400,
+      "sha256": "c0c01bf519a2899b7cdec0e33bf6cc87f60e2db9d942b2e52f251d28448e9812",
+      "near_white_semialpha": 0
+    },
+    "04.png": {
+      "canvas": [
+        640,
+        420
+      ],
+      "bbox": [
+        179,
+        108,
+        394,
+        400
+      ],
+      "visible_height": 292,
+      "baseline": 400,
+      "sha256": "73a4a1be41232d4146e8d9194b9341d58d8edaba92cb1714fc8d31581b2e1f17",
+      "near_white_semialpha": 0
+    }
+  },
+  "fall": {
+    "01.png": {
+      "canvas": [
+        640,
+        420
+      ],
+      "bbox": [
+        231,
+        108,
+        430,
+        400
+      ],
+      "visible_height": 292,
+      "baseline": 400,
+      "sha256": "9072fc765d27314bff9fd58b7f314bb35f7a9d8a6e4f1b93c89f3c0f985d9941",
+      "near_white_semialpha": 0
+    },
+    "02.png": {
+      "canvas": [
+        640,
+        420
+      ],
+      "bbox": [
+        188,
+        108,
+        354,
+        400
+      ],
+      "visible_height": 292,
+      "baseline": 400,
+      "sha256": "92c5fef4bc98384f3bda07373fe0e52c27fd4b4bc6bb730013f9764897299873",
+      "near_white_semialpha": 0
+    },
+    "03.png": {
+      "canvas": [
+        640,
+        420
+      ],
+      "bbox": [
+        172,
+        83,
+        459,
+        400
+      ],
+      "visible_height": 317,
+      "baseline": 400,
+      "sha256": "6ceb226355c3ee695a390099324682a5c15ef4c27a1f8bd267caf0993c3c2fda",
+      "near_white_semialpha": 0
+    },
+    "04.png": {
+      "canvas": [
+        640,
+        420
+      ],
+      "bbox": [
+        294,
+        237,
+        581,
+        400
+      ],
+      "visible_height": 163,
+      "baseline": 400,
+      "sha256": "66708c42a5790b64f33236ff1824bd357517f5660442902b499ae64860536101",
+      "near_white_semialpha": 0
+    },
+    "05.png": {
+      "canvas": [
+        640,
+        420
+      ],
+      "bbox": [
+        294,
+        237,
+        581,
+        400
+      ],
+      "visible_height": 163,
+      "baseline": 400,
+      "sha256": "66708c42a5790b64f33236ff1824bd357517f5660442902b499ae64860536101",
+      "near_white_semialpha": 0
+    }
+  },
+  "getup": {
+    "01.png": {
+      "canvas": [
+        640,
+        420
+      ],
+      "bbox": [
+        294,
+        237,
+        581,
+        400
+      ],
+      "visible_height": 163,
+      "baseline": 400,
+      "sha256": "66708c42a5790b64f33236ff1824bd357517f5660442902b499ae64860536101",
+      "near_white_semialpha": 0
+    },
+    "02.png": {
+      "canvas": [
+        640,
+        420
+      ],
+      "bbox": [
+        227,
+        164,
+        429,
+        400
+      ],
+      "visible_height": 236,
+      "baseline": 400,
+      "sha256": "dc95f5ec561b0c58a5a9d42f4551641865788ccbeb293c4217b9e2b56023862f",
+      "near_white_semialpha": 0
+    },
+    "03.png": {
+      "canvas": [
+        640,
+        420
+      ],
+      "bbox": [
+        217,
+        108,
+        432,
+        400
+      ],
+      "visible_height": 292,
+      "baseline": 400,
+      "sha256": "948f12457c23a893f05939d1b8f40ebcfbbaff8d2a1cc10fe609d0d0eee569d9",
+      "near_white_semialpha": 0
+    },
+    "04.png": {
+      "canvas": [
+        640,
+        420
+      ],
+      "bbox": [
+        217,
+        108,
+        432,
+        400
+      ],
+      "visible_height": 292,
+      "baseline": 400,
+      "sha256": "948f12457c23a893f05939d1b8f40ebcfbbaff8d2a1cc10fe609d0d0eee569d9",
+      "near_white_semialpha": 0
+    },
+    "05.png": {
+      "canvas": [
+        640,
+        420
+      ],
+      "bbox": [
+        217,
+        108,
+        432,
+        400
+      ],
+      "visible_height": 292,
+      "baseline": 400,
+      "sha256": "948f12457c23a893f05939d1b8f40ebcfbbaff8d2a1cc10fe609d0d0eee569d9",
+      "near_white_semialpha": 0
+    }
+  },
+  "heavy": {
+    "01.png": {
+      "canvas": [
+        640,
+        420
+      ],
+      "bbox": [
+        232,
+        176,
+        426,
+        400
+      ],
+      "visible_height": 224,
+      "baseline": 400,
+      "sha256": "d8f3f730301e395d3dddfc44a92c6b38885a14cf0e15b9c3a7c0f7d94b4f7e06",
+      "near_white_semialpha": 0
+    },
+    "02.png": {
+      "canvas": [
+        640,
+        420
+      ],
+      "bbox": [
+        232,
+        138,
+        400,
+        400
+      ],
+      "visible_height": 262,
+      "baseline": 400,
+      "sha256": "f60c20328b0c8a3e4dec680becbf3a3831b0a32159321b9799f135e443b15f3d",
+      "near_white_semialpha": 0
+    },
+    "03.png": {
+      "canvas": [
+        640,
+        420
+      ],
+      "bbox": [
+        251,
+        162,
+        460,
+        400
+      ],
+      "visible_height": 238,
+      "baseline": 400,
+      "sha256": "34dae3489ab48d144ec4d894d57a89e455e1ac1adcb76940c96d58273c2d0423",
+      "near_white_semialpha": 0
+    },
+    "04.png": {
+      "canvas": [
+        640,
+        420
+      ],
+      "bbox": [
+        254,
+        144,
+        438,
+        400
+      ],
+      "visible_height": 256,
+      "baseline": 400,
+      "sha256": "acc5eb3bd95571ef2ee1bebaa00450c23cedfc33617772c1813451bab8dfa393",
+      "near_white_semialpha": 0
+    },
+    "05.png": {
+      "canvas": [
+        640,
+        420
+      ],
+      "bbox": [
+        210,
+        93,
+        437,
+        400
+      ],
+      "visible_height": 307,
+      "baseline": 400,
+      "sha256": "872eb741e10188697f1800b10dc06f73767127ade6293b54082a097aaa5b3c36",
+      "near_white_semialpha": 0
+    }
+  },
+  "hit": {
+    "01.png": {
+      "canvas": [
+        640,
+        420
+      ],
+      "bbox": [
+        231,
+        108,
+        430,
+        400
+      ],
+      "visible_height": 292,
+      "baseline": 400,
+      "sha256": "9072fc765d27314bff9fd58b7f314bb35f7a9d8a6e4f1b93c89f3c0f985d9941",
+      "near_white_semialpha": 0
+    },
+    "02.png": {
+      "canvas": [
+        640,
+        420
+      ],
+      "bbox": [
+        188,
+        108,
+        354,
+        400
+      ],
+      "visible_height": 292,
+      "baseline": 400,
+      "sha256": "92c5fef4bc98384f3bda07373fe0e52c27fd4b4bc6bb730013f9764897299873",
+      "near_white_semialpha": 0
+    },
+    "03.png": {
+      "canvas": [
+        640,
+        420
+      ],
+      "bbox": [
+        231,
+        108,
+        430,
+        400
+      ],
+      "visible_height": 292,
+      "baseline": 400,
+      "sha256": "9072fc765d27314bff9fd58b7f314bb35f7a9d8a6e4f1b93c89f3c0f985d9941",
+      "near_white_semialpha": 0
+    }
+  },
+  "idle": {
+    "01.png": {
+      "canvas": [
+        640,
+        420
+      ],
+      "bbox": [
+        217,
+        108,
+        432,
+        400
+      ],
+      "visible_height": 292,
+      "baseline": 400,
+      "sha256": "948f12457c23a893f05939d1b8f40ebcfbbaff8d2a1cc10fe609d0d0eee569d9",
+      "near_white_semialpha": 0
+    },
+    "02.png": {
+      "canvas": [
+        640,
+        420
+      ],
+      "bbox": [
+        217,
+        108,
+        432,
+        400
+      ],
+      "visible_height": 292,
+      "baseline": 400,
+      "sha256": "948f12457c23a893f05939d1b8f40ebcfbbaff8d2a1cc10fe609d0d0eee569d9",
+      "near_white_semialpha": 0
+    },
+    "03.png": {
+      "canvas": [
+        640,
+        420
+      ],
+      "bbox": [
+        216,
+        108,
+        432,
+        400
+      ],
+      "visible_height": 292,
+      "baseline": 400,
+      "sha256": "e418d29f5b91bd9c320ccafcda089a16d5cd7bfcf3b9811db851b750e3480bf9",
+      "near_white_semialpha": 0
+    },
+    "04.png": {
+      "canvas": [
+        640,
+        420
+      ],
+      "bbox": [
+        213,
+        105,
+        431,
+        400
+      ],
+      "visible_height": 295,
+      "baseline": 400,
+      "sha256": "93991386112c31fc8b3d07b740ee1818baf4461cf3e1b0dee980f2d8a740818f",
+      "near_white_semialpha": 0
+    }
+  },
+  "walk": {
+    "01.png": {
+      "canvas": [
+        640,
+        420
+      ],
+      "bbox": [
+        232,
+        108,
+        395,
+        400
+      ],
+      "visible_height": 292,
+      "baseline": 400,
+      "sha256": "6db7b33b6fd4ea53f1f610cbc067fe4ba486c7d596155bec59d4d5dfb007cc48",
+      "near_white_semialpha": 0
+    },
+    "02.png": {
+      "canvas": [
+        640,
+        420
+      ],
+      "bbox": [
+        229,
+        108,
+        407,
+        400
+      ],
+      "visible_height": 292,
+      "baseline": 400,
+      "sha256": "72ba2196fd32aa7d25cf16eaebe8b2fe7c8b7f09648165b28b7e4791d48f3e2f",
+      "near_white_semialpha": 0
+    },
+    "03.png": {
+      "canvas": [
+        640,
+        420
+      ],
+      "bbox": [
+        233,
+        108,
+        430,
+        400
+      ],
+      "visible_height": 292,
+      "baseline": 400,
+      "sha256": "45533eb5345d43cfc3bfa4f953edff352a0914510be74013075f565b2dc20dba",
+      "near_white_semialpha": 0
+    },
+    "04.png": {
+      "canvas": [
+        640,
+        420
+      ],
+      "bbox": [
+        244,
+        109,
+        449,
+        400
+      ],
+      "visible_height": 291,
+      "baseline": 400,
+      "sha256": "cc7355b5033ec9f288d51118c7b51ce615dc2372761c43f03d068a3e4392d37f",
+      "near_white_semialpha": 0
+    },
+    "05.png": {
+      "canvas": [
+        640,
+        420
+      ],
+      "bbox": [
+        233,
+        108,
+        430,
+        400
+      ],
+      "visible_height": 292,
+      "baseline": 400,
+      "sha256": "45533eb5345d43cfc3bfa4f953edff352a0914510be74013075f565b2dc20dba",
+      "near_white_semialpha": 0
+    },
+    "06.png": {
+      "canvas": [
+        640,
+        420
+      ],
+      "bbox": [
+        229,
+        108,
+        407,
+        400
+      ],
+      "visible_height": 292,
+      "baseline": 400,
+      "sha256": "72ba2196fd32aa7d25cf16eaebe8b2fe7c8b7f09648165b28b7e4791d48f3e2f",
+      "near_white_semialpha": 0
+    }
+  }
+}

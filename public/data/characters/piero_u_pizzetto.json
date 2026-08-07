@@ -1,0 +1,152 @@
+{
+  "schema": 1,
+  "id": "piero_u_pizzetto",
+  "display_name": "PIERO U' PIZZETTO",
+  "role": "enemy",
+  "height_cm": 180,
+  "body_type": "corporatura normale, poco allenato",
+  "visual_height": 292,
+  "assets": {
+    "master_root": "assets/characters/piero_u_pizzetto",
+    "animation_root": "assets/characters/piero_u_pizzetto_anim"
+  },
+  "identity": {
+    "outfit": "tuta acetata azzurra coordinata con bande bianche e sneakers bianche",
+    "accessories": "marsupio scuro frontale",
+    "fighting_style": "schiaffi larghi, calci scoordinati e movimenti imprevedibili",
+    "special_move": "nessuna mossa speciale; attacchi rapidi e goffi",
+    "canon": "Piero u' Pizzetto Definitive Pack v1 — runtime v0.7.8: 292 px standing scale, enlarged grounded poses, stable idle and complete animation playback"
+  },
+  "gameplay": {
+    "enemy": {
+      "health": 74,
+      "aggression": 1.08,
+      "move_speed_scale": 1.06,
+      "damage_scale": 0.92,
+      "attack_speed_scale": 1.1,
+      "heavy_chance": 0.24,
+      "cooldown_scale": 0.9,
+      "collision_scale": 0.96,
+      "label": "PIERO U' PIZZETTO"
+    }
+  },
+  "factory": {
+    "recipe": "enemy_standard",
+    "animation_canvas": [
+      640,
+      420
+    ],
+    "baseline_y": 414,
+    "content_bottom_y": 400,
+    "master_canvas": [
+      1280,
+      1760
+    ],
+    "master_pack_required": [
+      "01_fronte.png",
+      "02_3-4_fronte_guardia.png",
+      "03_lato.png",
+      "04_3-4_dietro_guardia.png",
+      "05_dietro.png",
+      "06_ritratto_aggressivo.png",
+      "07_ritratto_neutro.png",
+      "08_camminata_contatto.png",
+      "09_camminata_passaggio.png"
+    ]
+  },
+  "animations": {
+    "idle": {
+      "folder": "idle",
+      "frames": 4,
+      "durations": [
+        0.15
+      ],
+      "loop": true,
+      "source_facing": 1
+    },
+    "walk": {
+      "folder": "walk",
+      "frames": 6,
+      "durations": [
+        0.1
+      ],
+      "loop": true,
+      "source_facing": 1
+    },
+    "attack": {
+      "folder": "attack",
+      "frames": 4,
+      "durations": [
+        0.12,
+        0.12,
+        0.14,
+        0.34
+      ],
+      "loop": false,
+      "source_facing": 1
+    },
+    "heavy": {
+      "folder": "heavy",
+      "frames": 5,
+      "durations": [
+        0.14,
+        0.14,
+        0.14,
+        0.16,
+        0.46
+      ],
+      "loop": false,
+      "source_facing": 1
+    },
+    "hit": {
+      "folder": "hit",
+      "frames": 3,
+      "durations": [
+        0.08,
+        0.1,
+        0.11
+      ],
+      "loop": false,
+      "source_facing": 1
+    },
+    "knockdown": {
+      "folder": "fall",
+      "frames": 5,
+      "durations": [
+        0.09,
+        0.11,
+        0.14,
+        0.18,
+        0.38
+      ],
+      "loop": false,
+      "source_facing": 1
+    },
+    "getup": {
+      "folder": "getup",
+      "frames": 5,
+      "durations": [
+        0.13,
+        0.13,
+        0.15,
+        0.17,
+        0.2
+      ],
+      "loop": false,
+      "source_facing": 1
+    },
+    "dead": {
+      "folder": "fall",
+      "frames": 5,
+      "durations": [
+        0.09,
+        0.11,
+        0.14,
+        0.18,
+        9.0
+      ],
+      "loop": false,
+      "source_facing": 1
+    }
+  }
+}

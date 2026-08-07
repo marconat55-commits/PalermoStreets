@@ -8,6 +8,7 @@
 - `Shift` blocks frontal attacks with 18% chip damage.
 - `Space` performs an invulnerable directional dodge.
 - A second horizontal direction tap inside 260 ms starts the run cycle.
+- Releasing all movement after a run plays a dedicated four-frame brake before returning to idle.
 - At close range Marco automatically enters a grab while moving into a grabbable enemy. During the hold, `J` performs a knee and `I` performs a knockdown throw.
 - The sprite elevation is independent from the actor's world-space feet. Shadows, depth sorting and ground collision therefore remain anchored while jumping.
 
@@ -16,6 +17,7 @@
 - Existing v0.7.8 movement speeds, playfield scale, enemy pressure limit, hit-stop, knockdown/get-up and module timing remain the baseline.
 - New move timings are profile-driven in `public/data/characters/marco.json`.
 - Runtime art remains fixed at 640x420 with the feet pivot at y=400.
+- Character scale is baked into the PNGs. Runtime-only horizontal stretching is forbidden because it changes body proportions during get-up.
 - Enemy characters do not require a player-sized animation pack. Each enemy profile will declare only one to three attacks and reuse the common locomotion/reaction clips.
 
 ## 2–4 player contract (prepared, not enabled)

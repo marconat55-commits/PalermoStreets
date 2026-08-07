@@ -1,7 +1,6 @@
 import { Assets, Rectangle, Texture } from 'pixi.js';
 import type { AnimationBank, AnimationClip, CharacterProfile, FrameMeta, VisualFrame } from '../types';
 import { publicUrl } from '../data/paths';
-import { finalGetupScale } from '../animation/visualNormalization';
 
 interface AtlasPage {
   file: string;
@@ -152,18 +151,6 @@ export class AssetCatalog {
       });
     }
     if (!clips.has('idle')) throw new Error(`${profile.id}: clip idle mancante`);
-    const idle = clips.get('idle')!;
-    const getup = clips.get('getup');
-    if (getup) {
-      const finalFrame = getup.frames[getup.frames.length - 1];
-      if (finalFrame && finalFrame.bounds[2] > 0) {
-        finalFrame.renderScaleX = finalGetupScale(
-          profile.id,
-          idle.frames.map((frame) => frame.bounds[2]),
-          finalFrame.bounds[2],
-        );
-      }
-    }
     const bank = { clips } satisfies AnimationBank;
     this.banks.set(profile.id, bank);
     return bank;

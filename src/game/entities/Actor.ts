@@ -151,15 +151,14 @@ export class Actor {
       for (const outline of this.outlineSprites) outline.texture = frame.texture;
     }
     const flip = this.facing === this.animator.sourceFacing ? 1 : -1;
-    const renderScaleX = frame.renderScaleX ?? 1;
-    this.sprite.scale.x = flip * renderScaleX;
+    this.sprite.scale.x = flip;
     this.sprite.y = frame.offsetY;
     this.sprite.tint = this.hitFlash > 0 ? 0xffa08e : 0xffffff;
     for (let i = 0; i < this.outlineSprites.length; i += 1) {
       const outline = this.outlineSprites[i]!;
       const offsets: ReadonlyArray<readonly [number, number]> = [[-1, 0], [1, 0], [0, -1], [0, 1]];
       const [dx, dy] = offsets[i] ?? [0, 0];
-      outline.scale.x = flip * renderScaleX;
+      outline.scale.x = flip;
       outline.x = dx;
       outline.y = frame.offsetY + dy;
     }

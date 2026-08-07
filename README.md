@@ -13,7 +13,7 @@ L'obiettivo non è infilare Python dentro il browser: il runtime è stato riscri
 - caricamento profili personaggio JSON;
 - animazioni con durate per-frame e facing;
 - allineamento degli sprite sul pivot dei piedi tramite metadata alpha generati offline;
-- movimento WASD/frecce e corsa con doppio tocco orizzontale;
+- movimento WASD/frecce, corsa con doppio tocco orizzontale e frenata animata al rilascio;
 - combo a tre colpi J, calcio I, salto K + attacco aereo J, supermossa L;
 - parata Shift, schivata Spazio, presa automatica ravvicinata con ginocchiata J e lancio I;
 - fury, salute, score e combo counter;

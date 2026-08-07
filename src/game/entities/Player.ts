@@ -13,6 +13,7 @@ import {
 import { lengthSq, normalize } from '../../utils/math';
 import type { Input } from '../input/Input';
 import { locomotionPlaybackRate, selectLocomotionClip } from '../animation/locomotion';
+import { shouldStartRunBrake } from '../animation/movementTransitions';
 import type { Enemy } from './Enemy';
 
 const RUN_MULTIPLIER = 1.55;
@@ -137,7 +138,7 @@ export class Player extends Actor {
   }
 
   requestDodge(direction: Vec2): boolean {
-    if (this.dead || this.elevation > 0 || !['idle', 'walk', 'run', 'block'].includes(this.state)) return false;
+    if (this.dead || this.elevation > 0 || !['idle', 'walk', 'run', 'brake', 'block'].includes(this.state)) return false;
     const fallback = { x: this.facing, y: 0 };
     this.dodgeDirection = lengthSq(direction) > 0.01 ? normalize(direction) : fallback;
     this.runningDirection = 0;
@@ -324,7 +325,21 @@ export class Player extends Actor {
     if (this.state === 'block') this.beginState('idle', 'idle');
 
     const move = this.readMove(input, movementEnabled);
+    if (this.state === 'brake') {
+      if (lengthSq(move) <= 0.01) {
+        const progress = Math.min(1, this.stateElapsed / 0.32);
+        this.position.x += this.facing * 92 * (1 - progress) * dt;
+        if (this.animator.finished) this.beginState('idle', 'idle');
+        this.clampToPlayfield(); this.syncVisual(); return;
+      }
+      this.beginState('idle', 'idle');
+    }
+    const wasRunning = this.state === 'run' && this.runningDirection !== 0;
     this.updateRunGesture(input, move.x);
+    if (shouldStartRunBrake(wasRunning, this.runningDirection, lengthSq(move))) {
+      this.beginState('brake', 'brake');
+      this.clampToPlayfield(); this.syncVisual(); return;
+    }
     const running = this.runningDirection !== 0 && move.x === this.runningDirection;
     if (lengthSq(move) > 0.01) this.lastMove = normalize(move);
     const horizontalSpeed = this.moveSpeed * (running ? RUN_MULTIPLIER : 1);

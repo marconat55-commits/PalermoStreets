@@ -3,8 +3,8 @@
   "pages": [
     {
       "file": "atlas_01.png",
-      "width": 2036,
-      "height": 1178
+      "width": 2020,
+      "height": 1134
     }
   ],
   "frames": {
@@ -19,20 +19,9 @@
       "source_x": 250,
       "source_y": 108
     },
-    "fall/02.png": {
-      "page": 0,
-      "x": 263,
-      "y": 2,
-      "width": 241,
-      "height": 292,
-      "source_width": 640,
-      "source_height": 420,
-      "source_x": 215,
-      "source_y": 108
-    },
     "attack/03.png": {
       "page": 0,
-      "x": 506,
+      "x": 263,
       "y": 2,
       "width": 222,
       "height": 292,
@@ -43,18 +32,18 @@
     },
     "fall/01.png": {
       "page": 0,
-      "x": 730,
+      "x": 487,
       "y": 2,
       "width": 221,
       "height": 292,
       "source_width": 640,
       "source_height": 420,
-      "source_x": 260,
+      "source_x": 209,
       "source_y": 108
     },
     "attack/02.png": {
       "page": 0,
-      "x": 953,
+      "x": 710,
       "y": 2,
       "width": 208,
       "height": 292,
@@ -65,7 +54,7 @@
     },
     "hit/02.png": {
       "page": 0,
-      "x": 1163,
+      "x": 920,
       "y": 2,
       "width": 185,
       "height": 292,
@@ -76,7 +65,7 @@
     },
     "heavy/01.png": {
       "page": 0,
-      "x": 1350,
+      "x": 1107,
       "y": 2,
       "width": 184,
       "height": 292,
@@ -87,7 +76,7 @@
     },
     "walk/04.png": {
       "page": 0,
-      "x": 1536,
+      "x": 1293,
       "y": 2,
       "width": 176,
       "height": 292,
@@ -98,7 +87,7 @@
     },
     "walk/01.png": {
       "page": 0,
-      "x": 1714,
+      "x": 1471,
       "y": 2,
       "width": 172,
       "height": 292,
@@ -107,21 +96,10 @@
       "source_x": 274,
       "source_y": 108
     },
-    "getup/04.png": {
-      "page": 0,
-      "x": 2,
-      "y": 296,
-      "width": 171,
-      "height": 292,
-      "source_width": 640,
-      "source_height": 420,
-      "source_x": 198,
-      "source_y": 108
-    },
     "walk/03.png": {
       "page": 0,
-      "x": 175,
-      "y": 296,
+      "x": 1645,
+      "y": 2,
       "width": 170,
       "height": 292,
       "source_width": 640,
@@ -131,8 +109,8 @@
     },
     "heavy/04.png": {
       "page": 0,
-      "x": 347,
-      "y": 296,
+      "x": 1817,
+      "y": 2,
       "width": 168,
       "height": 292,
       "source_width": 640,
@@ -140,20 +118,9 @@
       "source_x": 223,
       "source_y": 108
     },
-    "getup/05.png": {
-      "page": 0,
-      "x": 517,
-      "y": 296,
-      "width": 165,
-      "height": 292,
-      "source_width": 640,
-      "source_height": 420,
-      "source_x": 203,
-      "source_y": 108
-    },
     "heavy/05.png": {
       "page": 0,
-      "x": 684,
+      "x": 2,
       "y": 296,
       "width": 163,
       "height": 292,
@@ -164,7 +131,7 @@
     },
     "attack/04.png": {
       "page": 0,
-      "x": 849,
+      "x": 167,
       "y": 296,
       "width": 159,
       "height": 292,
@@ -175,7 +142,7 @@
     },
     "attack/01.png": {
       "page": 0,
-      "x": 1010,
+      "x": 328,
       "y": 296,
       "width": 157,
       "height": 292,
@@ -184,9 +151,20 @@
       "source_x": 212,
       "source_y": 108
     },
+    "getup/05.png": {
+      "page": 0,
+      "x": 487,
+      "y": 296,
+      "width": 154,
+      "height": 292,
+      "source_width": 640,
+      "source_height": 420,
+      "source_x": 216,
+      "source_y": 108
+    },
     "idle/01.png": {
       "page": 0,
-      "x": 1169,
+      "x": 643,
       "y": 296,
       "width": 154,
       "height": 292,
@@ -197,7 +175,7 @@
     },
     "idle/03.png": {
       "page": 0,
-      "x": 1325,
+      "x": 799,
       "y": 296,
       "width": 154,
       "height": 292,
@@ -208,7 +186,7 @@
     },
     "idle/04.png": {
       "page": 0,
-      "x": 1481,
+      "x": 955,
       "y": 296,
       "width": 154,
       "height": 292,
@@ -219,7 +197,7 @@
     },
     "idle/02.png": {
       "page": 0,
-      "x": 1637,
+      "x": 1111,
       "y": 296,
       "width": 153,
       "height": 292,
@@ -230,7 +208,7 @@
     },
     "walk/06.png": {
       "page": 0,
-      "x": 1792,
+      "x": 1266,
       "y": 296,
       "width": 153,
       "height": 292,
@@ -241,8 +219,8 @@
     },
     "heavy/02.png": {
       "page": 0,
-      "x": 2,
-      "y": 590,
+      "x": 1421,
+      "y": 296,
       "width": 150,
       "height": 292,
       "source_width": 640,
@@ -252,8 +230,8 @@
     },
     "hit/01.png": {
       "page": 0,
-      "x": 154,
-      "y": 590,
+      "x": 1573,
+      "y": 296,
       "width": 149,
       "height": 292,
       "source_width": 640,
@@ -263,8 +241,8 @@
     },
     "hit/03.png": {
       "page": 0,
-      "x": 305,
-      "y": 590,
+      "x": 1724,
+      "y": 296,
       "width": 146,
       "height": 292,
       "source_width": 640,
@@ -274,8 +252,8 @@
     },
     "walk/02.png": {
       "page": 0,
-      "x": 453,
-      "y": 590,
+      "x": 1872,
+      "y": 296,
       "width": 146,
       "height": 292,
       "source_width": 640,
@@ -285,7 +263,7 @@
     },
     "walk_down/01.png": {
       "page": 0,
-      "x": 601,
+      "x": 2,
       "y": 590,
       "width": 125,
       "height": 292,
@@ -296,7 +274,7 @@
     },
     "walk_down/02.png": {
       "page": 0,
-      "x": 728,
+      "x": 129,
       "y": 590,
       "width": 125,
       "height": 292,
@@ -307,7 +285,7 @@
     },
     "walk_down/03.png": {
       "page": 0,
-      "x": 855,
+      "x": 256,
       "y": 590,
       "width": 123,
       "height": 292,
@@ -318,7 +296,7 @@
     },
     "walk_down/05.png": {
       "page": 0,
-      "x": 980,
+      "x": 381,
       "y": 590,
       "width": 123,
       "height": 292,
@@ -329,7 +307,7 @@
     },
     "walk_down/06.png": {
       "page": 0,
-      "x": 1105,
+      "x": 506,
       "y": 590,
       "width": 123,
       "height": 292,
@@ -340,7 +318,7 @@
     },
     "walk_down/04.png": {
       "page": 0,
-      "x": 1230,
+      "x": 631,
       "y": 590,
       "width": 118,
       "height": 292,
@@ -351,7 +329,7 @@
     },
     "walk_up/04.png": {
       "page": 0,
-      "x": 1350,
+      "x": 751,
       "y": 590,
       "width": 118,
       "height": 292,
@@ -362,7 +340,7 @@
     },
     "walk_up/05.png": {
       "page": 0,
-      "x": 1470,
+      "x": 871,
       "y": 590,
       "width": 117,
       "height": 292,
@@ -373,7 +351,7 @@
     },
     "walk_up/03.png": {
       "page": 0,
-      "x": 1589,
+      "x": 990,
       "y": 590,
       "width": 114,
       "height": 292,
@@ -384,7 +362,7 @@
     },
     "walk_up/02.png": {
       "page": 0,
-      "x": 1705,
+      "x": 1106,
       "y": 590,
       "width": 113,
       "height": 292,
@@ -395,7 +373,7 @@
     },
     "walk_up/06.png": {
       "page": 0,
-      "x": 1820,
+      "x": 1221,
       "y": 590,
       "width": 107,
       "height": 292,
@@ -406,7 +384,7 @@
     },
     "walk_up/01.png": {
       "page": 0,
-      "x": 1929,
+      "x": 1330,
       "y": 590,
       "width": 105,
       "height": 292,
@@ -417,8 +395,8 @@
     },
     "walk/05.png": {
       "page": 0,
-      "x": 2,
-      "y": 884,
+      "x": 1437,
+      "y": 590,
       "width": 76,
       "height": 292,
       "source_width": 640,
@@ -426,71 +404,93 @@
       "source_x": 294,
       "source_y": 108
     },
-    "getup/03.png": {
+    "fall/02.png": {
       "page": 0,
-      "x": 80,
-      "y": 884,
-      "width": 292,
-      "height": 275,
+      "x": 1515,
+      "y": 590,
+      "width": 236,
+      "height": 286,
       "source_width": 640,
       "source_height": 420,
-      "source_x": 241,
-      "source_y": 125
+      "source_x": 202,
+      "source_y": 114
+    },
+    "getup/04.png": {
+      "page": 0,
+      "x": 1753,
+      "y": 590,
+      "width": 161,
+      "height": 274,
+      "source_width": 640,
+      "source_height": 420,
+      "source_x": 239,
+      "source_y": 126
+    },
+    "getup/03.png": {
+      "page": 0,
+      "x": 2,
+      "y": 884,
+      "width": 263,
+      "height": 248,
+      "source_width": 640,
+      "source_height": 420,
+      "source_x": 188,
+      "source_y": 152
     },
     "fall/03.png": {
       "page": 0,
-      "x": 374,
+      "x": 267,
       "y": 884,
-      "width": 292,
-      "height": 227,
+      "width": 280,
+      "height": 218,
       "source_width": 640,
       "source_height": 420,
-      "source_x": 101,
-      "source_y": 173
+      "source_x": 180,
+      "source_y": 182
     },
     "getup/02.png": {
       "page": 0,
-      "x": 668,
+      "x": 549,
       "y": 884,
-      "width": 292,
-      "height": 198,
+      "width": 280,
+      "height": 190,
       "source_width": 640,
       "source_height": 420,
-      "source_x": 48,
-      "source_y": 202
+      "source_x": 180,
+      "source_y": 210
     },
     "fall/04.png": {
       "page": 0,
-      "x": 962,
+      "x": 831,
       "y": 884,
-      "width": 292,
-      "height": 165,
+      "width": 280,
+      "height": 158,
       "source_width": 640,
       "source_height": 420,
-      "source_x": 62,
-      "source_y": 235
-    },
-    "getup/01.png": {
-      "page": 0,
-      "x": 1256,
-      "y": 884,
-      "width": 292,
-      "height": 128,
-      "source_width": 640,
-      "source_height": 420,
-      "source_x": 100,
-      "source_y": 272
+      "source_x": 180,
+      "source_y": 242
     },
     "fall/05.png": {
       "page": 0,
-      "x": 1550,
+      "x": 1113,
       "y": 884,
-      "width": 292,
-      "height": 105,
+      "width": 280,
+      "height": 101,
       "source_width": 640,
       "source_height": 420,
-      "source_x": 192,
-      "source_y": 295
+      "source_x": 180,
+      "source_y": 299
+    },
+    "getup/01.png": {
+      "page": 0,
+      "x": 1395,
+      "y": 884,
+      "width": 280,
+      "height": 101,
+      "source_width": 640,
+      "source_height": 420,
+      "source_x": 180,
+      "source_y": 299
     }
   }
 }

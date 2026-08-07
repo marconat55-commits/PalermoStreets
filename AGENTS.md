@@ -30,6 +30,7 @@ This repository is the PixiJS/TypeScript migration of the Python + pygame-ce Pal
 - Shift: frontal block
 - Space: directional dodge
 - Double-tap left/right: run
+- Releasing movement after a run: dedicated brake transition
 - P: pause
 - F3: debug hitboxes
 - F11: fullscreen

@@ -78,7 +78,45 @@ export interface ModuleData {
   entry?: [number, number];
   exit_x?: number;
   heal?: number;
+  /** Optional world-space width used by a future scrolling camera. Defaults to 1280. */
+  world_width?: number;
+  /** Optional horizontal camera limits in world units. */
+  camera_bounds?: [number, number];
   waves: WaveData[];
+}
+
+export type PlayerSlot = 1 | 2 | 3 | 4;
+export type CombatTeam = 'players' | 'enemies' | 'neutral';
+
+export interface PlayerSlotConfig {
+  slot: PlayerSlot;
+  characterId: string;
+  inputDevice: 'keyboard' | 'gamepad';
+  gamepadIndex?: number;
+}
+
+export interface CameraBounds {
+  left: number;
+  right: number;
+  viewportWidth: number;
+}
+
+export type WeaponKind = 'melee' | 'throwable' | 'firearm';
+
+export interface WeaponDefinition {
+  id: string;
+  kind: WeaponKind;
+  damage: number;
+  ammo?: number;
+  projectileSpeed?: number;
+  pickupAnimation?: string;
+  attackAnimation: string;
+  dropOnHit?: boolean;
+}
+
+export interface EnemyMoveSet {
+  characterId: string;
+  attacks: string[];
 }
 
 export interface StageData {
@@ -142,4 +180,5 @@ export interface CombatEvent {
   hitStop: number;
   shake: number;
   targetKilled: boolean;
+  blocked?: boolean;
 }

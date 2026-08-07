@@ -90,6 +90,40 @@
       "source_facing": 1,
       "reference_speed": 205
     },
+    "run": {
+      "folder": "run",
+      "frames": 8,
+      "durations": [
+        0.075
+      ],
+      "loop": true,
+      "source_facing": 1,
+      "reference_speed": 442
+    },
+    "jump": {
+      "folder": "jump",
+      "frames": 5,
+      "durations": [
+        0.12,
+        0.1,
+        0.18,
+        0.2,
+        0.16
+      ],
+      "source_facing": 1
+    },
+    "air_attack": {
+      "folder": "air_attack",
+      "frames": 4,
+      "durations": [
+        0.09,
+        0.11,
+        0.12,
+        0.16
+      ],
+      "source_facing": 1,
+      "contact_frame": 2
+    },
     "punch_left": {
       "folder": "punch_left",
       "frames": 4,
@@ -110,6 +144,18 @@
         0.075,
         0.085,
         0.16
+      ],
+      "source_facing": 1,
+      "contact_frame": 3
+    },
+    "combo_finisher": {
+      "folder": "combo_finisher",
+      "frames": 4,
+      "durations": [
+        0.1,
+        0.1,
+        0.12,
+        0.22
       ],
       "source_facing": 1,
       "contact_frame": 3
@@ -138,6 +184,41 @@
       ],
       "loop": true,
       "source_facing": 1
+    },
+    "grab": {
+      "folder": "grab",
+      "frames": 4,
+      "durations": [
+        0.1,
+        0.1,
+        0.12,
+        0.18
+      ],
+      "source_facing": 1
+    },
+    "grab_strike": {
+      "folder": "grab_strike",
+      "frames": 4,
+      "durations": [
+        0.08,
+        0.1,
+        0.1,
+        0.12
+      ],
+      "source_facing": 1,
+      "contact_frame": 3
+    },
+    "throw": {
+      "folder": "throw",
+      "frames": 4,
+      "durations": [
+        0.12,
+        0.14,
+        0.12,
+        0.24
+      ],
+      "source_facing": 1,
+      "contact_frame": 3
     },
     "super": {
       "folder": "super",
@@ -203,9 +284,11 @@
       "folder": "dodge",
       "frames": 4,
       "durations": [
-        0.05
+        0.055,
+        0.07,
+        0.07,
+        0.12
       ],
-      "loop": true,
       "source_facing": 1
     }
   }

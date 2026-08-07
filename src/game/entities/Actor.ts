@@ -28,6 +28,7 @@ export class Actor {
   invulnerable = 0;
   hitFlash = 0;
   alpha255 = 255;
+  elevation = 0;
   dead = false;
   removeReady = false;
 
@@ -77,7 +78,7 @@ export class Actor {
     }
     return {
       x: this.position.x - width / 2,
-      y: this.position.y - height,
+      y: this.position.y - this.elevation - height,
       width,
       height,
     };
@@ -138,7 +139,7 @@ export class Actor {
   visualTop(): number {
     const frame = this.animator.frame;
     const [, top, , height] = frame.bounds;
-    const canvasBottom = this.position.y + frame.offsetY;
+    const canvasBottom = this.position.y - this.elevation + frame.offsetY;
     const canvasTop = canvasBottom - frame.height;
     return height > 0 ? canvasTop + top : canvasTop;
   }
@@ -163,7 +164,7 @@ export class Actor {
       outline.y = frame.offsetY + dy;
     }
     this.root.alpha = this.alpha255 / 255;
-    this.root.position.set(this.position.x, this.position.y);
+    this.root.position.set(this.position.x, this.position.y - this.elevation);
     this.root.zIndex = Math.round(this.position.y);
   }
 

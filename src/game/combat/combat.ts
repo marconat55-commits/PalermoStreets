@@ -1,18 +1,21 @@
 import type { CombatEvent, Vec2 } from '../types';
-import { KICK_RIGHT, LIGHT_COMBO, SUPER } from './attacks';
+import { canAcquireAttackTarget, GRAB_STRIKE, KICK_RIGHT, LIGHT_COMBO, SUPER, THROW } from './attacks';
 import type { Player } from '../entities/Player';
 import type { Enemy } from '../entities/Enemy';
-import type { Actor } from '../entities/Actor';
+import type { Actor, HitResult } from '../entities/Actor';
 import { rectsIntersect } from '../../utils/math';
 
 export function resolvePlayerAttack(player: Player, enemies: Enemy[]): CombatEvent[] {
   const box = player.activeAttackBox();
   const attack = player.currentAttack;
   if (!box || !attack) return [];
+  if (!canAcquireAttackTarget(attack, player.attackHits.size)) return [];
 
   const candidates = enemies
     .filter((enemy) => !enemy.dead)
     .sort((a, b) => {
+      if (a === player.grabbedTarget) return -1;
+      if (b === player.grabbedTarget) return 1;
       const frontA = (a.position.x - player.position.x) * player.facing >= 0 ? 0 : 1;
       const frontB = (b.position.x - player.position.x) * player.facing >= 0 ? 0 : 1;
       if (frontA !== frontB) return frontA - frontB;
@@ -25,7 +28,13 @@ export function resolvePlayerAttack(player: Player, enemies: Enemy[]): CombatEve
   for (const enemy of candidates) {
     if (player.attackHits.has(enemy.actorId)) continue;
     if (!rectsIntersect(box, enemy.hurtbox)) continue;
-    const result = enemy.receiveHit(attack.damage, { x: player.facing * attack.knockbackX, y: 0 }, attack.knockdown ?? false);
+    let result: HitResult;
+    if (enemy === player.grabbedTarget && attack === GRAB_STRIKE) {
+      result = enemy.receiveGrabHit(attack.damage);
+    } else {
+      if (enemy === player.grabbedTarget && attack === THROW) player.releaseGrab();
+      result = enemy.receiveHit(attack.damage, { x: player.facing * attack.knockbackX, y: 0 }, attack.knockdown ?? false);
+    }
     if (!result.accepted) continue;
     player.registerHit(enemy.actorId, attack.damage);
     const hb = enemy.hurtbox;
@@ -47,17 +56,23 @@ export function resolveEnemyAttack(enemy: Enemy, player: Player): CombatEvent | 
   const attack = enemy.currentAttack;
   if (!box || !attack || !rectsIntersect(box, player.hurtbox)) return null;
   const direction = player.position.x >= enemy.position.x ? 1 : -1;
-  const result = player.receiveHit(attack.damage, { x: direction * attack.knockbackX, y: 0 }, attack.knockdown ?? false);
+  const result = player.receiveEnemyHit(
+    attack.damage,
+    { x: direction * attack.knockbackX, y: 0 },
+    attack.knockdown ?? false,
+    enemy.position.x,
+  );
   if (!result.accepted) return null;
   enemy.attackHitPlayer = true;
   const hb = player.hurtbox;
   return {
     position: { x: hb.x + hb.width / 2, y: hb.y + hb.height / 2 },
-    damage: attack.damage,
-    heavy: attack.knockdown ?? false,
-    hitStop: attack.hitStop,
-    shake: attack.shake,
+    damage: result.damageTaken,
+    heavy: result.blocked ? false : (attack.knockdown ?? false),
+    hitStop: result.blocked ? attack.hitStop * 0.45 : attack.hitStop,
+    shake: result.blocked ? 1.5 : attack.shake,
     targetKilled: result.killed,
+    blocked: result.blocked,
   };
 }
 
@@ -68,7 +83,7 @@ function pairShares(first: Actor, second: Actor, player: Player): [number, numbe
 }
 
 function separatePair(first: Actor, second: Actor, player: Player): boolean {
-  if (first.dead || second.dead) return false;
+  if (first.dead || second.dead || first.state === 'grabbed' || second.state === 'grabbed') return false;
   const r1 = first.collisionRadius;
   const r2 = second.collisionRadius;
   const rx = r1.x + r2.x;
@@ -117,7 +132,7 @@ export function preventCrossings(player: Player, enemies: Enemy[], previous: Map
   const pp = previous.get(player.actorId);
   if (!pp) return;
   for (const enemy of enemies) {
-    if (enemy.dead) continue;
+    if (enemy.dead || enemy.state === 'grabbed') continue;
     const pe = previous.get(enemy.actorId);
     if (!pe) continue;
     const oldDx = pe.x - pp.x;

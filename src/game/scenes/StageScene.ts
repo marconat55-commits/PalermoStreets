@@ -265,6 +265,8 @@ export class StageScene implements Scene {
     this.player.dead = false;
     this.player.removeReady = false;
     this.player.invulnerable = 0.32;
+    this.player.releaseGrab();
+    this.player.elevation = 0;
     this.player.alpha255 = 255;
     this.player.beginState('idle', 'idle');
     if (preservePlayer) {
@@ -394,13 +396,39 @@ export class StageScene implements Scene {
     }
   }
 
+  private inputDirection(input: Input): Vec2 {
+    return {
+      x: Number(input.isDown('KeyD', 'ArrowRight')) - Number(input.isDown('KeyA', 'ArrowLeft')),
+      y: Number(input.isDown('KeyS', 'ArrowDown')) - Number(input.isDown('KeyW', 'ArrowUp')),
+    };
+  }
+
+  private tryStartGrab(): boolean {
+    if (!this.player.canStartGrab) return false;
+    const target = this.enemies
+      .filter((enemy) => enemy.canBeGrabbed)
+      .filter((enemy) => Math.abs(enemy.position.x - this.player.position.x) <= 76)
+      .filter((enemy) => Math.abs(enemy.position.y - this.player.position.y) <= 34)
+      .sort((a, b) => Math.abs(a.position.x - this.player.position.x) - Math.abs(b.position.x - this.player.position.x))[0];
+    return target ? this.player.beginGrab(target) : false;
+  }
+
   update(dt: number, input: Input): void {
     if (input.wasPressed('KeyP')) this.paused = !this.paused;
     if (input.wasPressed('F3')) this.debugDraw = !this.debugDraw;
     if (input.wasPressed('KeyR') && this.player.dead) this.restart();
     if (!this.paused && !this.stageComplete && this.transitionPhase === null && this.stageIntroTimer <= 0) {
-      if (input.wasPressed('KeyJ')) this.player.requestPunch();
-      if (input.wasPressed('KeyI')) this.player.requestKick();
+      if (input.wasPressed('Space')) this.player.requestDodge(this.inputDirection(input));
+      if (input.wasPressed('KeyK')) this.player.requestJump();
+      if (input.wasPressed('KeyJ')) {
+        if (this.player.isAirborne) this.player.requestAirAttack();
+        else if (this.player.grabbedTarget) this.player.requestGrabStrike();
+        else if (!this.tryStartGrab()) this.player.requestPunch();
+      }
+      if (input.wasPressed('KeyI')) {
+        if (this.player.grabbedTarget) this.player.requestThrow();
+        else this.player.requestKick();
+      }
       if (input.wasPressed('KeyL')) this.player.requestSuper();
     }
 
@@ -455,6 +483,8 @@ export class StageScene implements Scene {
     )[0];
     this.player.setAutoTarget(nearest?.position.x ?? null);
     this.player.update(dt, input, this.entryLock <= 0);
+    const movementIntent = this.inputDirection(input);
+    if ((movementIntent.x !== 0 || movementIntent.y !== 0) && this.player.canStartGrab) this.tryStartGrab();
 
     const playerCanBePressured = !['hit', 'knockdown', 'getup'].includes(this.player.state) && !this.player.dead;
     let activeAttacker = combatReady.find((enemy) => enemy.state === 'attack');

@@ -23,15 +23,18 @@ This repository is the PixiJS/TypeScript migration of the Python + pygame-ce Pal
 
 ## Player controls currently active
 - WASD / arrows: movement
-- J: alternating punch combo
+- J: three-hit punch combo; aerial attack while jumping; grab strike while holding an enemy
 - I: kick
+- K: jump
 - L: super move (requires 50 fury)
+- Shift: frontal block
+- Space: directional dodge
+- Double-tap left/right: run
 - P: pause
 - F3: debug hitboxes
 - F11: fullscreen
 - Esc: return to title
 - R: restart checkpoint when defeated
-- K remains reserved for future jump.
 
 ## Before declaring a task complete
 1. Run `npm run validate:data`.

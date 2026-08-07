@@ -118,7 +118,7 @@ export class TitleScene implements Scene {
     controlsPlate.rect(990, 571, 4, 64).fill(0xffb62e);
     this.root.addChild(controlsPlate);
     this.root.addChild(centeredText(
-      'WASD / FRECCE  MUOVI     J  PUGNO     I  CALCIO     L  SUPER\nP  PAUSA     F3  HITBOX     F11  FULLSCREEN     ESC  MENU',
+      'WASD / FRECCE  MUOVI     J  COMBO     I  CALCIO     K  SALTO     L  SUPER\nSHIFT  PARA     SPAZIO  SCHIVA     DOPPIO TOCCO  CORSA     P  PAUSA',
       new TextStyle({ fontFamily: UI_FONT, fontSize: 16, fontWeight: '700', fill: 0xdcecff, align: 'center', lineHeight: 29 }),
       640,
       604,

@@ -1,4 +1,4 @@
-import { Actor } from './Actor';
+import { Actor, type HitResult } from './Actor';
 import type { AnimationBank, AttackData, Rect, Vec2 } from '../types';
 import { ENEMY_ATTACK, ENEMY_HEAVY, attackTotal } from '../combat/attacks';
 import { clamp, lengthSq, normalize, randomRange, sub } from '../../utils/math';
@@ -50,6 +50,7 @@ export class Enemy extends Actor {
   preferredDepthOffset = randomRange(-28, 28);
   engageSide: -1 | 1 | null = null;
   spawnElapsed = 0;
+  grabbedBy: Actor | null = null;
 
   constructor(bank: AnimationBank, position: Vec2, options: EnemyOptions = {}) {
     super(bank, position, options.health ?? 82);
@@ -83,6 +84,43 @@ export class Enemy extends Actor {
     return clamp(this.attackElapsed / attack.startup, 0, 1);
   }
 
+  get canBeGrabbed(): boolean {
+    return !this.dead && this.invulnerable <= 0 && ['idle', 'walk'].includes(this.state);
+  }
+
+  beginGrabbed(holder: Actor): boolean {
+    if (!this.canBeGrabbed) return false;
+    this.grabbedBy = holder;
+    this.velocity = { x: 0, y: 0 };
+    this.currentAttack = null;
+    this.beginState('grabbed', 'hit');
+    this.animator.setPlaybackRate(0);
+    return true;
+  }
+
+  releaseGrab(): void {
+    if (!this.grabbedBy) return;
+    this.grabbedBy = null;
+    if (!this.dead && this.state === 'grabbed') this.beginState('idle', 'idle');
+  }
+
+  receiveGrabHit(damage: number): HitResult {
+    if (this.dead || !this.grabbedBy) return { accepted: false, killed: false, knockedDown: false };
+    this.health = Math.max(0, this.health - damage);
+    this.hitFlash = 0.09;
+    const killed = this.health <= 0;
+    if (killed) {
+      this.grabbedBy = null;
+      this.dead = true;
+      this.beginState('dead', 'dead');
+      this.invulnerable = 999;
+      return { accepted: true, killed: true, knockedDown: true };
+    }
+    this.beginState('grabbed', 'hit');
+    this.animator.setPlaybackRate(0);
+    return { accepted: true, killed: false, knockedDown: false };
+  }
+
   private startAttack(attack: AttackData, player: Actor): void {
     this.currentAttack = attack;
     this.attackElapsed = 0;
@@ -97,6 +135,22 @@ export class Enemy extends Actor {
   update(dt: number, player: Actor, allies: Enemy[], mayAttack: boolean, supportRank = 0): void {
     this.updateCommon(dt);
     this.attackCooldown = Math.max(0, this.attackCooldown - dt);
+
+    if (this.grabbedBy) {
+      if (this.grabbedBy.dead || !['grab', 'attack'].includes(this.grabbedBy.state)) {
+        this.releaseGrab();
+      } else {
+        const holder = this.grabbedBy;
+        this.position.x = holder.position.x + holder.facing * 54;
+        this.position.y = holder.position.y;
+        this.facing = holder.facing === 1 ? -1 : 1;
+        this.velocity = { x: 0, y: 0 };
+        this.state = 'grabbed';
+        this.animator.setPlaybackRate(0);
+        this.syncVisual();
+        return;
+      }
+    }
 
     if (this.dead) {
       const deadClip = this.animator.bank.clips.get('dead')!;

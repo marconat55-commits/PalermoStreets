@@ -7,7 +7,7 @@
 | `states/stage.py` | `src/game/scenes/StageScene.ts` | migrato baseline |
 | `systems/animation.py` | `src/game/animation/Animator.ts` | migrato |
 | `entities/actor.py` | `src/game/entities/Actor.ts` | migrato |
-| `entities/player.py` | `src/game/entities/Player.ts` | migrato per comandi attivi |
+| `entities/player.py` | `src/game/entities/Player.ts` | migrato + combat pack Marco (corsa, salto, difesa, presa) |
 | `entities/enemy.py` | `src/game/entities/Enemy.ts` | migrato |
 | `systems/combat.py` | `src/game/combat/combat.ts` | migrato |
 | `systems/effects.py` | `src/game/effects/EffectsLayer.ts` | migrato baseline |
@@ -29,8 +29,8 @@
 ## Prossime fasi consigliate
 
 1. Test di parità visiva e gameplay contro un video della v0.7.8.
-2. Aggiunta jump su K e nuove combo come sistemi TypeScript, senza più intervenire sul port Python.
-3. Sistema oggetti/armi (`WorldObject`, `Pickup`, `Breakable`).
+2. Camera/world bounds per moduli orizzontali estesi, secondo `docs/COMBAT_WORLD_FOUNDATION.md`.
+3. Sistema oggetti/armi (`WorldObject`, `Pickup`, `Breakable`, `WeaponInstance`, `Projectile`).
 4. Boss system separato dall'AI standard.
 5. Audio system.
 6. AssetPack/spritesheet per ridurre richieste HTTP quando il roster cresce.

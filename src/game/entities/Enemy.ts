@@ -178,7 +178,7 @@ export class Enemy extends Actor {
       this.clampToPlayfield(); this.syncVisual(); return;
     }
     if (this.state === 'knockdown') {
-      if (this.animator.finished) this.beginState('getup', 'getup');
+      if (this.animator.finished && this.elevation <= 0) this.beginState('getup', 'getup');
       this.clampToPlayfield(); this.syncVisual(); return;
     }
     if (this.state === 'getup') {

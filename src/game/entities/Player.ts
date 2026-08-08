@@ -14,6 +14,7 @@ import { lengthSq, normalize } from '../../utils/math';
 import type { Input } from '../input/Input';
 import { locomotionPlaybackRate, selectLocomotionClip } from '../animation/locomotion';
 import { shouldStartRunBrake } from '../animation/movementTransitions';
+import { nextIdleVariant, orderedIdleVariants } from '../animation/idleVariants';
 import type { Enemy } from './Enemy';
 
 const RUN_MULTIPLIER = 1.55;
@@ -21,6 +22,7 @@ const RUN_TAP_WINDOW = 0.26;
 const DODGE_DURATION = 0.34;
 const JUMP_GRAVITY = 1550;
 const JUMP_VELOCITY = 620;
+const IDLE_VARIANT_DELAY = 4.2;
 
 export interface PlayerHitResult extends HitResult {
   blocked: boolean;
@@ -49,11 +51,15 @@ export class Player extends Actor {
   private runningDirection: -1 | 0 | 1 = 0;
   private dodgeDirection: Vec2 = { x: 1, y: 0 };
   private airVelocity = 0;
+  private readonly idleVariants: string[];
+  private idleVariantIndex = 0;
+  private idleStillTime = 0;
 
   constructor(bank: AnimationBank, position: Vec2, maxHealth = 120, moveSpeed = 285, depthSpeed = 205) {
     super(bank, position, maxHealth);
     this.moveSpeed = moveSpeed;
     this.depthSpeed = depthSpeed;
+    this.idleVariants = orderedIdleVariants(this.animator.bank.clips.keys());
   }
 
   override get collisionRadius(): Vec2 {
@@ -255,13 +261,14 @@ export class Player extends Actor {
     this.comboDisplayTimer = Math.max(0, this.comboDisplayTimer - dt);
     this.runTapWindow = Math.max(0, this.runTapWindow - dt);
     if (this.dead) return;
+    if (this.state !== 'idle' && !this.animator.name.startsWith('idle_variant_')) this.idleStillTime = 0;
 
     if (this.state === 'hit') {
       if (this.animator.finished) this.beginState('idle', 'idle');
       this.clampToPlayfield(); this.syncVisual(); return;
     }
     if (this.state === 'knockdown') {
-      if (this.animator.finished) this.beginState('getup', 'getup');
+      if (this.animator.finished && this.elevation <= 0) this.beginState('getup', 'getup');
       this.clampToPlayfield(); this.syncVisual(); return;
     }
     if (this.state === 'getup') {
@@ -353,12 +360,29 @@ export class Player extends Actor {
       ? 'run'
       : selectLocomotionClip(move, this.animator.name, (name) => this.animator.bank.clips.has(name));
     const preservesStride = ['walk', 'walk_up', 'walk_down', 'run'].includes(this.animator.name);
-    this.animator.play(moving ? movementAnimation : 'idle', false, moving && preservesStride);
     if (moving) {
+      this.idleStillTime = 0;
+      this.animator.play(movementAnimation, false, preservesStride);
       const actualSpeed = Math.hypot(move.x * horizontalSpeed, move.y * depthSpeed);
       this.animator.setPlaybackRate(locomotionPlaybackRate(actualSpeed, this.animator.clip.referenceSpeed));
     } else {
       this.animator.setPlaybackRate(1);
+      if (this.animator.name.startsWith('idle_variant_')) {
+        if (this.animator.finished) {
+          this.animator.play('idle', true);
+          this.idleStillTime = 0;
+        }
+      } else {
+        this.idleStillTime += dt;
+        if (this.idleStillTime >= IDLE_VARIANT_DELAY) {
+          const next = nextIdleVariant(this.idleVariants, this.idleVariantIndex);
+          this.idleVariantIndex = next.nextIndex;
+          if (next.name) this.animator.play(next.name, true);
+          this.idleStillTime = 0;
+        } else {
+          this.animator.play('idle', false);
+        }
+      }
     }
     this.state = running ? 'run' : moving ? 'walk' : 'idle';
     this.clampToPlayfield();
@@ -380,7 +404,7 @@ export class Player extends Actor {
     };
   }
 
-  receiveEnemyHit(damage: number, knockback: Vec2, knockdown: boolean, attackerX: number): PlayerHitResult {
+  receiveEnemyHit(damage: number, knockback: Vec2, knockdown: boolean, attackerX: number, launchVelocity = 0): PlayerHitResult {
     const attackInFront = (attackerX - this.position.x) * this.facing >= -8;
     if (this.isBlocking && attackInFront && this.canBeHit) {
       const damageTaken = Math.max(1, Math.round(damage * 0.18));
@@ -396,17 +420,17 @@ export class Player extends Actor {
       }
       return { accepted: true, killed, knockedDown: killed, blocked: true, damageTaken };
     }
-    const result = this.receiveHit(damage, knockback, knockdown);
+    const result = this.receiveHit(damage, knockback, knockdown, launchVelocity);
     return { ...result, blocked: false, damageTaken: result.accepted ? damage : 0 };
   }
 
-  override receiveHit(damage: number, knockback: Vec2, knockdown = false): HitResult {
+  override receiveHit(damage: number, knockback: Vec2, knockdown = false, launchVelocity = 0): HitResult {
     this.releaseGrab();
     this.elevation = 0;
     this.airVelocity = 0;
     this.currentAttack = null;
     this.queuedAttack = null;
-    return super.receiveHit(damage, knockback, knockdown);
+    return super.receiveHit(damage, knockback, knockdown, launchVelocity);
   }
 
   registerHit(actorId: number, damage: number): void {

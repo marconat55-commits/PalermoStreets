@@ -7,18 +7,19 @@ L'obiettivo non è infilare Python dentro il browser: il runtime è stato riscri
 ## Cosa è già migrato
 
 - risoluzione logica 1280x720 e letterbox 16:9;
-- schermata titolo;
+- schermata titolo e selezione personaggio arcade con Marco più tre slot roster vuoti;
 - 7 moduli dello Stage 1 ZEN e relativi fondali;
 - Marco, Talebano, Piero u' Pizzetto e Barbetta provvisorio;
 - caricamento profili personaggio JSON;
 - animazioni con durate per-frame e facing;
 - allineamento degli sprite sul pivot dei piedi tramite metadata alpha generati offline;
 - movimento WASD/frecce, corsa con doppio tocco orizzontale e frenata animata al rilascio;
+- camminata e salto di Marco a 8 frame, più quattro animazioni idle di personalità a rotazione;
 - combo a tre colpi J, calcio I, salto K + attacco aereo J, supermossa L;
 - parata Shift, schivata Spazio, presa automatica ravvicinata con ginocchiata J e lancio I;
 - fury, salute, score e combo counter;
 - hitbox/hurtbox e pushbox;
-- hit-stop e screen shake;
+- hit-stop, screen shake e knockdown in parabola con atterraggio enfatizzato;
 - AI nemici con attacker/supporters;
 - attacchi leggeri/pesanti nemici;
 - hit, knockdown, caduta, rialzata, morte e dissolvenza;
@@ -95,7 +96,7 @@ src/
     effects/       hit spark e damage text
     entities/      Actor, Player, Enemy
     input/         tastiera
-    scenes/        TitleScene e StageScene
+    scenes/        TitleScene, CharacterSelectScene e StageScene
     ui/            HUD e barre nemici
 public/
   assets/          solo asset runtime necessari

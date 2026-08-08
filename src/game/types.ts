@@ -82,6 +82,8 @@ export interface ModuleData {
   world_width?: number;
   /** Optional horizontal camera limits in world units. */
   camera_bounds?: [number, number];
+  /** Optional [worldX, screenYOffset] samples for ramps, rises and descents. */
+  ground_profile?: Array<[number, number]>;
   waves: WaveData[];
 }
 
@@ -165,6 +167,8 @@ export interface AttackData {
   rangeY: number;
   knockbackX: number;
   knockbackY: number;
+  /** Upward launch speed for exaggerated arcade knockdowns. */
+  launchVelocity?: number;
   furyGain: number;
   hitStop: number;
   shake: number;

@@ -452,45 +452,45 @@
       "page": 0,
       "x": 514,
       "y": 1230,
-      "width": 287,
-      "height": 145,
+      "width": 309,
+      "height": 156,
       "source_width": 640,
       "source_height": 420,
-      "source_x": 176,
-      "source_y": 255
+      "source_x": 165,
+      "source_y": 244
     },
     "fall/04.png": {
       "page": 0,
-      "x": 803,
+      "x": 825,
       "y": 1230,
-      "width": 287,
-      "height": 102,
+      "width": 309,
+      "height": 110,
       "source_width": 640,
       "source_height": 420,
-      "source_x": 176,
-      "source_y": 298
+      "source_x": 165,
+      "source_y": 290
     },
     "fall/05.png": {
       "page": 0,
-      "x": 1092,
+      "x": 1136,
       "y": 1230,
-      "width": 287,
-      "height": 84,
+      "width": 309,
+      "height": 90,
       "source_width": 640,
       "source_height": 420,
-      "source_x": 176,
-      "source_y": 316
+      "source_x": 165,
+      "source_y": 310
     },
     "getup/01.png": {
       "page": 0,
-      "x": 1381,
+      "x": 1447,
       "y": 1230,
-      "width": 287,
-      "height": 84,
+      "width": 309,
+      "height": 90,
       "source_width": 640,
       "source_height": 420,
-      "source_x": 176,
-      "source_y": 316
+      "source_x": 165,
+      "source_y": 310
     }
   }
 }

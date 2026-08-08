@@ -501,6 +501,14 @@ export class StageScene implements Scene {
     for (const enemy of this.enemies) enemy.update(dt, this.player, this.enemies, enemy === activeAttacker, supportRank.get(enemy.actorId) ?? 0);
     if (this.enemies.some((enemy) => attackBefore.get(enemy.actorId) && enemy.state !== 'attack')) this.enemyAttackLock = Math.max(this.enemyAttackLock, 0.40);
 
+    for (const actor of [this.player, ...this.enemies]) {
+      if (!actor.landedThisFrame) continue;
+      const heavyLanding = actor.landingImpact >= 390;
+      this.effects.landingDust(actor.position, heavyLanding);
+      this.screenShake = Math.max(this.screenShake, heavyLanding ? 7 : 4);
+      this.hitStop = Math.max(this.hitStop, heavyLanding ? 0.035 : 0.022);
+    }
+
     for (const event of resolvePlayerAttack(this.player, this.enemies)) {
       this.hitStop = Math.max(this.hitStop, event.hitStop);
       this.screenShake = Math.max(this.screenShake, event.shake);
@@ -564,9 +572,10 @@ export class StageScene implements Scene {
     for (const actor of [this.player, ...this.enemies]) {
       const fallen = actor.state === 'knockdown' || actor.state === 'dead';
       const radius = actor.collisionRadius;
+      const airborneScale = Math.max(0.45, 1 - actor.elevation / 480);
       this.ground
-        .ellipse(actor.position.x, actor.position.y + 1, radius.x * (fallen ? 1.18 : 0.92), fallen ? 5 : 8)
-        .fill({ color: 0x100b08, alpha: actor.dead ? 0.10 : 0.20 });
+        .ellipse(actor.position.x, actor.position.y + 1, radius.x * (fallen ? 1.18 : 0.92) * airborneScale, (fallen ? 5 : 8) * airborneScale)
+        .fill({ color: 0x100b08, alpha: (actor.dead ? 0.10 : 0.20) * airborneScale });
     }
     for (const enemy of this.enemies) {
       if (enemy.dead) continue;

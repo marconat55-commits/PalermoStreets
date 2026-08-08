@@ -16,6 +16,7 @@ This repository is the PixiJS/TypeScript migration of the Python + pygame-ce Pal
 - Keep stage/waves data-driven through `public/data/stage1_zen.json`.
 - Do not hard-code a specific enemy into StageScene when a character profile can supply the value.
 - Animation timing comes from character profile JSON. Do not silently replace it with uniform AnimatedSprite speed.
+- Personality idle animations use `idle_variant_N` clips discovered by the custom Animator controller; every protagonist may define a different count and timing.
 - Do not resize or rewrite source PNG assets unless the task explicitly asks for art processing.
 - Preserve full feet/pivot alignment using `public/data/generated/frame_meta.json`.
 - All combat ranges/hurtboxes use logical 1280x720 world units, independent of transparent sprite canvas size.

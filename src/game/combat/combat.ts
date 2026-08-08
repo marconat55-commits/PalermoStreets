@@ -33,7 +33,12 @@ export function resolvePlayerAttack(player: Player, enemies: Enemy[]): CombatEve
       result = enemy.receiveGrabHit(attack.damage);
     } else {
       if (enemy === player.grabbedTarget && attack === THROW) player.releaseGrab();
-      result = enemy.receiveHit(attack.damage, { x: player.facing * attack.knockbackX, y: 0 }, attack.knockdown ?? false);
+      result = enemy.receiveHit(
+        attack.damage,
+        { x: player.facing * attack.knockbackX, y: 0 },
+        attack.knockdown ?? false,
+        attack.launchVelocity ?? 0,
+      );
     }
     if (!result.accepted) continue;
     player.registerHit(enemy.actorId, attack.damage);
@@ -61,6 +66,7 @@ export function resolveEnemyAttack(enemy: Enemy, player: Player): CombatEvent | 
     { x: direction * attack.knockbackX, y: 0 },
     attack.knockdown ?? false,
     enemy.position.x,
+    attack.launchVelocity ?? 0,
   );
   if (!result.accepted) return null;
   enemy.attackHitPlayer = true;

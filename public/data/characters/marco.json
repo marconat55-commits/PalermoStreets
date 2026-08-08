@@ -16,7 +16,7 @@
     "accessories": "doppia catena d'oro, anello d'oro all'orecchio sinistro e bracciali in pelle e metallo",
     "fighting_style": "street fighter potente e diretto",
     "special_move": "supermossa in avanzamento",
-    "canon": "Marco Quality Pack v3 — volto bloccato sul master originale, scala continua, rialzata corretta e transizioni corsa/frenata/super"
+    "canon": "Marco Quality Pack v4 — volto master bloccato, camminata e salto a 8 frame, quattro idle di personalità e scala continua"
   },
   "gameplay": {
     "player": {
@@ -60,11 +60,35 @@
       "loop": true,
       "source_facing": 1
     },
+    "idle_variant_1": {
+      "folder": "idle_variant_1",
+      "frames": 4,
+      "durations": [0.22, 0.28, 0.36, 0.22],
+      "source_facing": 1
+    },
+    "idle_variant_2": {
+      "folder": "idle_variant_2",
+      "frames": 4,
+      "durations": [0.24, 0.38, 0.34, 0.22],
+      "source_facing": 1
+    },
+    "idle_variant_3": {
+      "folder": "idle_variant_3",
+      "frames": 4,
+      "durations": [0.28, 0.48, 0.42, 0.24],
+      "source_facing": 1
+    },
+    "idle_variant_4": {
+      "folder": "idle_variant_4",
+      "frames": 5,
+      "durations": [0.28, 0.42, 0.56, 0.38, 0.24],
+      "source_facing": 1
+    },
     "walk": {
       "folder": "walk",
-      "frames": 6,
+      "frames": 8,
       "durations": [
-        0.105
+        0.082
       ],
       "loop": true,
       "source_facing": 1,
@@ -113,13 +137,16 @@
     },
     "jump": {
       "folder": "jump",
-      "frames": 5,
+      "frames": 8,
       "durations": [
-        0.12,
+        0.08,
+        0.09,
         0.1,
-        0.18,
-        0.2,
-        0.16
+        0.12,
+        0.11,
+        0.1,
+        0.09,
+        0.11
       ],
       "source_facing": 1
     },

@@ -45,6 +45,20 @@ export class EffectsLayer {
     this.effects.push({ root: text, life: 0.62, total: 0.62, vx: (Math.random() - 0.5) * 28, vy: -48 });
   }
 
+  landingDust(position: Vec2, heavy: boolean): void {
+    const dust = new Graphics();
+    const width = heavy ? 58 : 42;
+    dust.ellipse(0, 0, width, heavy ? 10 : 7).fill({ color: 0xd9b98a, alpha: 0.34 });
+    for (let index = 0; index < 7; index += 1) {
+      const x = (index - 3) * (heavy ? 15 : 11);
+      const radius = (index % 2 === 0 ? 6 : 4) * (heavy ? 1.2 : 1);
+      dust.circle(x, -4 - (index % 3) * 3, radius).fill({ color: 0xe8cfaa, alpha: 0.42 });
+    }
+    dust.position.set(position.x, position.y);
+    this.root.addChild(dust);
+    this.effects.push({ root: dust, life: 0.24, total: 0.24, vy: -18 });
+  }
+
   update(dt: number): void {
     for (let i = this.effects.length - 1; i >= 0; i -= 1) {
       const effect = this.effects[i]!;

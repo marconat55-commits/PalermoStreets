@@ -3,6 +3,7 @@ import { Animator } from '../animation/Animator';
 import { PLAYFIELD } from '../config';
 import type { AnimationBank, Rect, Vec2 } from '../types';
 import { clamp } from '../../utils/math';
+import { integrateLaunch } from '../combat/knockdownPhysics';
 
 let nextActorId = 1;
 
@@ -29,6 +30,9 @@ export class Actor {
   hitFlash = 0;
   alpha255 = 255;
   elevation = 0;
+  verticalVelocity = 0;
+  landedThisFrame = false;
+  landingImpact = 0;
   dead = false;
   removeReady = false;
 
@@ -97,6 +101,8 @@ export class Actor {
   }
 
   updateCommon(dt: number): void {
+    this.landedThisFrame = false;
+    this.landingImpact = 0;
     this.stateElapsed += dt;
     this.invulnerable = Math.max(0, this.invulnerable - dt);
     this.hitFlash = Math.max(0, this.hitFlash - dt);
@@ -106,6 +112,18 @@ export class Actor {
     const damping = Math.max(0, 1 - 8 * dt);
     this.velocity.x *= damping;
     this.velocity.y *= damping;
+    if (['knockdown', 'dead'].includes(this.state) && (this.verticalVelocity !== 0 || this.elevation > 0)) {
+      const impactVelocity = Math.abs(this.verticalVelocity);
+      const launch = integrateLaunch(this.elevation, this.verticalVelocity, dt);
+      this.elevation = launch.elevation;
+      this.verticalVelocity = launch.verticalVelocity;
+      this.landedThisFrame = launch.landed;
+      if (launch.landed) {
+        this.landingImpact = impactVelocity;
+        this.velocity.x *= 0.42;
+        this.velocity.y *= 0.42;
+      }
+    }
     this.syncVisual(changed);
   }
 
@@ -114,7 +132,7 @@ export class Actor {
     this.position.y = clamp(this.position.y, PLAYFIELD.top, PLAYFIELD.bottom);
   }
 
-  receiveHit(damage: number, knockback: Vec2, knockdown = false): HitResult {
+  receiveHit(damage: number, knockback: Vec2, knockdown = false, launchVelocity = 0): HitResult {
     if (!this.canBeHit) return { accepted: false, killed: false, knockedDown: false };
     this.health = Math.max(0, this.health - damage);
     this.hitFlash = 0.075;
@@ -122,12 +140,16 @@ export class Actor {
     this.velocity = { ...knockback };
     const killed = this.health <= 0;
     if (killed) {
+      this.elevation = launchVelocity > 0 ? 1 : 0;
+      this.verticalVelocity = Math.max(0, launchVelocity);
       this.dead = true;
       this.beginState('dead', 'dead');
       this.invulnerable = 999;
       return { accepted: true, killed: true, knockedDown: true };
     }
     if (knockdown) {
+      this.elevation = launchVelocity > 0 ? 1 : 0;
+      this.verticalVelocity = Math.max(0, launchVelocity);
       this.beginState('knockdown', 'knockdown');
       this.invulnerable = 0.55;
       return { accepted: true, killed: false, knockedDown: true };

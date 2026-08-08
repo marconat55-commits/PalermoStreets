@@ -11,6 +11,8 @@
 - Releasing all movement after a run plays a dedicated four-frame brake before returning to idle.
 - At close range Marco automatically enters a grab while moving into a grabbable enemy. During the hold, `J` performs a knee and `I` performs a knockdown throw.
 - The sprite elevation is independent from the actor's world-space feet. Shadows, depth sorting and ground collision therefore remain anchored while jumping.
+- Knockdown finishers now launch actors on a readable vertical arc, reduce the ground shadow while airborne and emit a dust/shake landing accent.
+- Marco cycles through four character-specific idle gags after sustained inactivity; the controller discovers `idle_variant_N` clips from each future protagonist's animation bank.
 
 ## Locked gameplay rules
 
@@ -30,9 +32,17 @@
 ## Scrolling-stage contract (prepared, not enabled)
 
 - A module may declare `world_width` and `camera_bounds`; omitted values preserve the current 1280-wide module exactly.
+- A module may declare `ground_profile` samples (`worldX`, `screenYOffset`) for future rises, descents and ramps without baking gameplay state into DOM coordinates.
 - Extended backgrounds must be authored at their real world width. They must not be stretched from the current 1280 image.
 - Actor positions, exits, wave triggers, pickups and projectiles use world coordinates. Only the render camera applies a viewport offset.
 - Before enabling scrolling, `Actor.clampToPlayfield` and stage exits must consume module bounds instead of the current global horizontal limits.
+- Camera acceleration, deceleration and dead-zone must follow the player group rather than snapping to the lead fighter; background layers will use independent parallax factors.
+
+## Arcade feel reference
+
+- The target reference is Capcom's *Cadillacs and Dinosaurs*: long readable knockback, airborne enemy silhouettes, emphatic landings, forward momentum and comic crowd control.
+- The tone is physical and humorous in the spirit of Bud Spencer and Terence Hill: hit-stop and reactions sell weight without raising normal attack damage unnecessarily.
+- Full scrolling, slopes and module-specific jump geometry remain deferred until the Stage 1 modules are rebuilt; the current pass adds the data contract and combat feedback foundation only.
 
 ## Weapons and objects contract (prepared, not enabled)
 

@@ -4,6 +4,7 @@ import { Input } from './input/Input';
 import { loadCharacterIndex, loadCharacterProfile, loadFrameMeta, loadStage1 } from './data/loadData';
 import { AssetCatalog } from './assets/AssetCatalog';
 import { TitleScene } from './scenes/TitleScene';
+import { CharacterSelectScene } from './scenes/CharacterSelectScene';
 import { StageScene } from './scenes/StageScene';
 import type { Scene } from './scenes/Scene';
 import type { StageData } from './types';
@@ -13,11 +14,13 @@ export class Game {
   readonly input = new Input();
   private scene: Scene | null = null;
   private titleScene: TitleScene | null = null;
+  private characterSelectScene: CharacterSelectScene | null = null;
   private catalog!: AssetCatalog;
   private stageData!: StageData;
   private defaultPlayerId = 'marco';
   private defaultEnemyId = 'barbetta';
   private startingStage = false;
+  private openingCharacterSelect = false;
 
   async init(host: HTMLElement): Promise<void> {
     await this.app.init({
@@ -61,11 +64,13 @@ export class Game {
         // Nel browser ESC è anche riservato all'uscita dal fullscreen: non chiudiamo la pagina.
       } else {
         this.showTitle();
+        return;
       }
     }
 
     this.scene?.update(dt, this.input);
-    if (this.titleScene?.startRequested) void this.startStage();
+    if (this.titleScene?.startRequested) void this.showCharacterSelect();
+    if (this.characterSelectScene?.confirmRequested) void this.startStage();
   }
 
   private showTitle(): void {
@@ -73,15 +78,42 @@ export class Game {
     this.scene?.destroy();
     this.app.stage.removeChildren();
     this.titleScene = new TitleScene();
+    this.characterSelectScene = null;
     this.scene = this.titleScene;
     this.app.stage.addChild(this.titleScene.root);
   }
 
-  private async startStage(): Promise<void> {
-    if (!this.titleScene || this.startingStage) return;
-    this.startingStage = true;
+  private async showCharacterSelect(): Promise<void> {
     const title = this.titleScene;
+    if (!title || this.openingCharacterSelect) return;
+    this.openingCharacterSelect = true;
     title.setLoading(true);
+    try {
+      const selection = await CharacterSelectScene.create();
+      if (this.titleScene !== title) {
+        selection.destroy();
+        return;
+      }
+      title.destroy();
+      this.app.stage.removeChildren();
+      this.titleScene = null;
+      this.characterSelectScene = selection;
+      this.scene = selection;
+      this.app.stage.addChild(selection.root);
+    } catch (error) {
+      console.error('Selezione personaggio non caricabile', error);
+      title.startRequested = false;
+      title.setLoading(false);
+    } finally {
+      this.openingCharacterSelect = false;
+    }
+  }
+
+  private async startStage(): Promise<void> {
+    if (!this.characterSelectScene || this.startingStage) return;
+    this.startingStage = true;
+    const selection = this.characterSelectScene;
+    selection.setLoading(true);
     try {
       const stage = await StageScene.create(
         this.catalog,
@@ -89,16 +121,16 @@ export class Game {
         this.defaultPlayerId,
         this.defaultEnemyId,
       );
-      title.destroy();
+      selection.destroy();
       this.app.stage.removeChildren();
-      this.titleScene = null;
+      this.characterSelectScene = null;
       this.scene = stage;
       this.app.stage.addChild(stage.root);
     } catch (error) {
       console.error('Avvio stage fallito', error);
       this.startingStage = false;
-      title.startRequested = false;
-      title.setLoading(false);
+      selection.confirmRequested = false;
+      selection.setLoading(false);
     }
   }
 

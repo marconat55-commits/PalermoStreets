@@ -4,6 +4,7 @@
 |---|---|---|
 | `palermo_streets/game.py` | `src/game/Game.ts` | migrato |
 | `states/title.py` | `src/game/scenes/TitleScene.ts` | migrato |
+| nuova selezione roster | `src/game/scenes/CharacterSelectScene.ts` | attiva: Marco + 3 slot vuoti |
 | `states/stage.py` | `src/game/scenes/StageScene.ts` | migrato baseline |
 | `systems/animation.py` | `src/game/animation/Animator.ts` | migrato |
 | `entities/actor.py` | `src/game/entities/Actor.ts` | migrato |
@@ -25,6 +26,7 @@
 - Gli outline scuri sono quattro copie tintate dello sprite, evitando una dipendenza filter aggiuntiva nella prima migrazione.
 - Il browser non può essere "chiuso" con ESC: ESC torna al titolo; il browser gestisce anche l'uscita dal fullscreen.
 - Barbetta resta un placeholder e non è stato artisticamente modificato.
+- Il custom `Animator` resta preferibile a `AnimatedSprite`/Spine: conserva timing per-frame, pivot piedi, hit-frame e PNG dipinti senza introdurre rig scheletrici.
 
 ## Prossime fasi consigliate
 

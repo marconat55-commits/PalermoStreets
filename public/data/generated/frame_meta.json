@@ -289,10 +289,10 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      199,
-      155,
-      241,
-      245
+      205,
+      125,
+      229,
+      275
     ],
     "offsetY": 20
   },
@@ -300,10 +300,10 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      146,
-      190,
-      347,
-      210
+      212,
+      128,
+      215,
+      272
     ],
     "offsetY": 20
   },
@@ -311,10 +311,10 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      202,
-      117,
-      235,
-      283
+      252,
+      110,
+      162,
+      290
     ],
     "offsetY": 20
   },
@@ -322,10 +322,10 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      206,
-      195,
-      227,
-      205
+      254,
+      114,
+      290,
+      286
     ],
     "offsetY": 20
   },
@@ -916,10 +916,10 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      144,
-      117,
-      290,
-      283
+      147,
+      110,
+      259,
+      290
     ],
     "offsetY": 20
   },
@@ -927,10 +927,10 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      144,
-      110,
-      221,
-      290
+      236,
+      113,
+      167,
+      287
     ],
     "offsetY": 20
   },
@@ -971,10 +971,10 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      150,
-      110,
-      215,
-      290
+      236,
+      113,
+      167,
+      287
     ],
     "offsetY": 20
   },
@@ -2577,10 +2577,10 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      223,
-      110,
-      194,
-      290
+      236,
+      113,
+      167,
+      287
     ],
     "offsetY": 20
   },
@@ -2603,6 +2603,83 @@
       109,
       126,
       291
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/air_attack/05.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      211,
+      121,
+      217,
+      279
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/air_attack/06.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      213,
+      220,
+      213,
+      180
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/combo_finisher/05.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      236,
+      113,
+      167,
+      287
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/kick_right/06.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      236,
+      113,
+      167,
+      287
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/throw/05.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      236,
+      113,
+      167,
+      287
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/hit/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      236,
+      113,
+      167,
+      287
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/dodge/05.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      236,
+      113,
+      167,
+      287
     ],
     "offsetY": 20
   }

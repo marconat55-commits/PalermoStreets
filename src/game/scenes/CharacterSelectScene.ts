@@ -24,133 +24,136 @@ export class CharacterSelectScene implements Scene {
   private readonly loadingBar = new Graphics();
 
   static async create(): Promise<CharacterSelectScene> {
-    const portrait = await Assets.load<Texture>(publicUrl('assets/ui/character_select/marco_portrait.png'));
-    return new CharacterSelectScene(portrait);
+    const [portrait, background] = await Promise.all([
+      Assets.load<Texture>(publicUrl('assets/ui/character_select/marco_portrait.png')),
+      Assets.load<Texture>(publicUrl('assets/ui/title/palermo_night.png')),
+    ]);
+    return new CharacterSelectScene(portrait, background);
   }
 
-  private constructor(portraitTexture: Texture) {
-    const background = new Graphics();
-    background.rect(0, 0, 1280, 720).fill(0x060914);
-    for (let index = -2; index < 12; index += 1) {
-      const x = index * 158;
-      background.moveTo(x, 0).lineTo(x + 260, 0).lineTo(x - 42, 720).lineTo(x - 302, 720)
-        .fill({ color: index % 3 === 0 ? 0xb51f35 : index % 3 === 1 ? 0x0c7590 : 0x172240, alpha: 0.34 });
-    }
-    background.moveTo(0, 595).lineTo(1280, 432).lineTo(1280, 720).lineTo(0, 720).fill(0xd8432e);
-    background.moveTo(0, 630).lineTo(1280, 498).lineTo(1280, 720).lineTo(0, 720).fill(0xf6ad22);
-    background.moveTo(0, 672).lineTo(1280, 548).lineTo(1280, 720).lineTo(0, 720).fill(0x09152c);
+  private constructor(portraitTexture: Texture, backgroundTexture: Texture) {
+    const background = new Sprite(backgroundTexture);
+    background.width = 1280;
+    background.height = 720;
     this.root.addChild(background);
 
-    const dots = new Graphics();
-    for (let y = 18; y < 700; y += 22) {
-      for (let x = 18; x < 1260; x += 22) {
-        if ((x + y) % 5 < 2) dots.circle(x, y, 2.1).fill({ color: 0xffffff, alpha: 0.065 });
-      }
-    }
-    this.root.addChild(dots);
+    const grade = new Graphics();
+    grade.rect(0, 0, 1280, 720).fill({ color: 0x050100, alpha: 0.62 });
+    grade.moveTo(0, 0).lineTo(885, 0).lineTo(690, 720).lineTo(0, 720).closePath()
+      .fill({ color: 0x120300, alpha: 0.72 });
+    grade.moveTo(866, 0).lineTo(1280, 0).lineTo(1280, 720).lineTo(668, 720).closePath()
+      .fill({ color: 0x020204, alpha: 0.72 });
+    this.root.addChild(grade);
 
     const header = new Graphics();
-    header.moveTo(0, 0).lineTo(922, 0).lineTo(850, 106).lineTo(0, 106).fill(0x101a37);
-    header.moveTo(0, 88).lineTo(875, 88).lineTo(848, 106).lineTo(0, 106).fill(0x20c8d8);
+    header.moveTo(0, 0).lineTo(1045, 0).lineTo(976, 96).lineTo(0, 96).closePath().fill(0x140502);
+    header.moveTo(0, 88).lineTo(990, 88).lineTo(974, 102).lineTo(0, 102).closePath().fill(0xd92812);
+    header.moveTo(0, 96).lineTo(980, 96).stroke({ color: 0xffa314, width: 4 });
     this.root.addChild(header);
-    this.root.addChild(label('SELECT YOUR FIGHTER', new TextStyle({
-      fontFamily: DISPLAY_FONT, fontSize: 54, fontStyle: 'italic', fontWeight: '900', fill: 0xffffff,
-      stroke: { color: 0x111b3d, width: 6 }, letterSpacing: 2,
-    }), 42, 49));
+    this.root.addChild(label('SCEGLI IL TUO COMBATTENTE', new TextStyle({
+      fontFamily: DISPLAY_FONT, fontSize: 52, fontStyle: 'italic', fontWeight: '900', fill: 0xffdf94,
+      stroke: { color: 0x641000, width: 7 }, letterSpacing: 2,
+    }), 40, 48));
     this.root.addChild(label('PLAYER 1', new TextStyle({
-      fontFamily: UI_FONT, fontSize: 22, fontWeight: '900', fill: 0xffc72f, letterSpacing: 4,
-    }), 1040, 45, 0.5));
-    this.root.addChild(label('CHOOSE YOUR STREET LEGEND', new TextStyle({
-      fontFamily: UI_FONT, fontSize: 13, fontWeight: '700', fill: 0xbdeeff, letterSpacing: 3,
-    }), 1040, 77, 0.5));
+      fontFamily: UI_FONT, fontSize: 20, fontWeight: '900', fill: 0xffb11b, letterSpacing: 4,
+      stroke: { color: 0x160400, width: 4 },
+    }), 1134, 43, 0.5));
 
     const portraitPlate = new Graphics();
-    portraitPlate.moveTo(58, 139).lineTo(576, 112).lineTo(650, 555).lineTo(104, 590).fill(0xf1e5cf);
-    portraitPlate.moveTo(58, 139).lineTo(576, 112).lineTo(585, 158).lineTo(66, 183).fill(0xffc226);
-    portraitPlate.moveTo(104, 590).lineTo(650, 555).lineTo(641, 507).lineTo(96, 541).fill(0xc72d3a);
-    portraitPlate.stroke({ color: 0xffffff, width: 5 });
+    portraitPlate.moveTo(48, 138).lineTo(571, 108).lineTo(654, 574).lineTo(94, 610).closePath()
+      .fill(0x170604).stroke({ color: 0xffa315, width: 6 });
+    portraitPlate.moveTo(62, 154).lineTo(559, 127).lineTo(622, 545).lineTo(107, 579).closePath()
+      .fill(0x6f1008).stroke({ color: 0xf02b14, width: 4 });
     this.root.addChild(portraitPlate);
 
     const portraitMask = new Graphics();
-    portraitMask.roundRect(86, 145, 520, 402, 8).fill(0xffffff);
+    portraitMask.moveTo(76, 164).lineTo(548, 139).lineTo(608, 526).lineTo(119, 557).closePath().fill(0xffffff);
     const portrait = new Sprite(portraitTexture);
-    portrait.position.set(70, 105);
+    portrait.position.set(66, 105);
     portrait.width = 550;
     portrait.height = 550;
     portrait.mask = portraitMask;
     this.root.addChild(portrait, portraitMask);
 
-    const nameSlash = new Graphics();
-    nameSlash.moveTo(58, 486).lineTo(642, 452).lineTo(658, 548).lineTo(91, 584).fill({ color: 0x071126, alpha: 0.94 });
-    nameSlash.moveTo(78, 543).lineTo(645, 507).lineTo(651, 544).lineTo(85, 580).fill(0x22cada);
-    this.root.addChild(nameSlash);
+    const nameBand = new Graphics();
+    nameBand.moveTo(55, 493).lineTo(629, 457).lineTo(646, 563).lineTo(89, 603).closePath()
+      .fill({ color: 0x090100, alpha: 0.95 });
+    nameBand.moveTo(88, 576).lineTo(640, 538).stroke({ color: 0xff9e12, width: 5 });
+    this.root.addChild(nameBand);
     this.root.addChild(label('MARCO', new TextStyle({
-      fontFamily: DISPLAY_FONT, fontSize: 72, fontStyle: 'italic', fontWeight: '900', fill: 0xffc42c,
-      stroke: { color: 0x7d172c, width: 7 }, letterSpacing: 3,
-    }), 130, 513));
-    this.root.addChild(label('THE STREET KING', new TextStyle({
-      fontFamily: UI_FONT, fontSize: 15, fontWeight: '900', fill: 0x071126, letterSpacing: 4,
-    }), 147, 561));
+      fontFamily: DISPLAY_FONT, fontSize: 76, fontStyle: 'italic', fontWeight: '900', fill: 0xffc025,
+      stroke: { color: 0x661006, width: 8 }, letterSpacing: 3,
+    }), 120, 518));
+    this.root.addChild(label('PALERMO STREET KING', new TextStyle({
+      fontFamily: UI_FONT, fontSize: 14, fontWeight: '900', fill: 0xffe0a3, letterSpacing: 4,
+    }), 138, 568));
 
-    const stats = new Graphics();
-    stats.roundRect(694, 132, 514, 154, 12).fill({ color: 0x071226, alpha: 0.92 }).stroke({ color: 0x22ccda, width: 3 });
-    this.root.addChild(stats);
+    const statPanel = new Graphics();
+    statPanel.roundRect(690, 124, 520, 145, 10).fill({ color: 0x0d0302, alpha: 0.92 })
+      .stroke({ color: 0xff9e12, width: 3 });
+    statPanel.rect(704, 139, 7, 116).fill(0xd82613);
+    this.root.addChild(statPanel);
     this.root.addChild(label('MARCO', new TextStyle({
-      fontFamily: DISPLAY_FONT, fontSize: 48, fontStyle: 'italic', fontWeight: '900', fill: 0xffffff,
-      stroke: { color: 0x951d35, width: 5 }, letterSpacing: 2,
-    }), 724, 174));
-    this.root.addChild(label('POTENZA', new TextStyle({ fontFamily: UI_FONT, fontSize: 14, fill: 0xaed4ed }), 726, 225));
-    this.root.addChild(label('VELOCITÀ', new TextStyle({ fontFamily: UI_FONT, fontSize: 14, fill: 0xaed4ed }), 726, 254));
-    for (const [row, amount, color] of [[0, 5, 0xffb927], [1, 4, 0x20cedb]] as const) {
+      fontFamily: DISPLAY_FONT, fontSize: 43, fontStyle: 'italic', fontWeight: '900', fill: 0xffdf9e,
+      stroke: { color: 0x5e0d05, width: 5 },
+    }), 730, 164));
+    for (const [row, text, amount] of [[0, 'POTENZA', 5], [1, 'VELOCITÀ', 4]] as const) {
+      this.root.addChild(label(text, new TextStyle({ fontFamily: UI_FONT, fontSize: 13, fill: 0xe8cda7 }), 733, 211 + row * 28));
       for (let pip = 0; pip < 5; pip += 1) {
-        stats.roundRect(842 + pip * 59, 214 + row * 29, 47, 12, 5).fill(pip < amount ? color : 0x23304c);
+        statPanel.roundRect(844 + pip * 59, 203 + row * 28, 47, 12, 5).fill(pip < amount ? 0xffa316 : 0x39201a);
       }
     }
 
-    const slotPositions = [[694, 316], [956, 316], [694, 478], [956, 478]] as const;
-    for (let index = 0; index < slotPositions.length; index += 1) {
-      const [x, y] = slotPositions[index]!;
+    const slots = [[690, 300], [955, 300], [690, 468], [955, 468]] as const;
+    for (let index = 0; index < slots.length; index += 1) {
+      const [x, y] = slots[index]!;
       const slot = new Graphics();
-      slot.roundRect(x, y, 238, 138, 10).fill(index === 0 ? 0x15315c : 0x0b1021)
-        .stroke({ color: index === 0 ? 0xffc426 : 0x3b4563, width: index === 0 ? 4 : 2 });
-      slot.moveTo(x, y + 105).lineTo(x + 238, y + 88).lineTo(x + 238, y + 138).lineTo(x, y + 138)
-        .fill(index === 0 ? 0xc62f3e : 0x171d30);
+      slot.roundRect(x, y, 242, 143, 8).fill({ color: index === 0 ? 0x571008 : 0x090405, alpha: 0.96 })
+        .stroke({ color: index === 0 ? 0xffa315 : 0x5b382a, width: index === 0 ? 4 : 2 });
+      slot.moveTo(x, y + 108).lineTo(x + 242, y + 90).lineTo(x + 242, y + 143).lineTo(x, y + 143).closePath()
+        .fill(index === 0 ? 0xd82713 : 0x21110d);
       this.root.addChild(slot);
       if (index === 0) {
         const thumb = new Sprite(portraitTexture);
-        thumb.position.set(x + 12, y + 9);
-        thumb.width = 82;
-        thumb.height = 82;
+        thumb.position.set(x + 10, y + 8);
+        thumb.width = 88;
+        thumb.height = 88;
         this.root.addChild(thumb);
-        this.root.addChild(label('MARCO', new TextStyle({ fontFamily: DISPLAY_FONT, fontSize: 32, fontWeight: '900', fontStyle: 'italic', fill: 0xffffff }), x + 104, y + 47));
-        this.root.addChild(label('READY', new TextStyle({ fontFamily: UI_FONT, fontSize: 14, fontWeight: '900', fill: 0xffe26e, letterSpacing: 3 }), x + 119, y + 119, 0.5));
+        this.root.addChild(label('MARCO', new TextStyle({
+          fontFamily: DISPLAY_FONT, fontSize: 31, fontWeight: '900', fontStyle: 'italic', fill: 0xffe0a0,
+        }), x + 106, y + 48));
+        this.root.addChild(label('PRONTO', new TextStyle({
+          fontFamily: UI_FONT, fontSize: 13, fontWeight: '900', fill: 0xffe06b, letterSpacing: 3,
+        }), x + 121, y + 121, 0.5));
       } else {
-        this.root.addChild(label('?', new TextStyle({ fontFamily: DISPLAY_FONT, fontSize: 61, fontWeight: '900', fill: 0x48516c }), x + 119, y + 52, 0.5));
-        this.root.addChild(label('SLOT VUOTO', new TextStyle({ fontFamily: UI_FONT, fontSize: 13, fontWeight: '900', fill: 0x707993, letterSpacing: 2 }), x + 119, y + 117, 0.5));
+        this.root.addChild(label('?', new TextStyle({ fontFamily: DISPLAY_FONT, fontSize: 58, fontWeight: '900', fill: 0x634332 }), x + 121, y + 54, 0.5));
+        this.root.addChild(label('SLOT VUOTO', new TextStyle({
+          fontFamily: UI_FONT, fontSize: 12, fontWeight: '900', fill: 0x83614e, letterSpacing: 2,
+        }), x + 121, y + 120, 0.5));
       }
     }
 
-    this.selectionFrame.roundRect(686, 308, 254, 154, 13).stroke({ color: 0xffffff, width: 3 });
+    this.selectionFrame.roundRect(682, 292, 258, 159, 11).stroke({ color: 0xffedb3, width: 4 });
     this.root.addChild(this.selectionFrame);
     const promptPlate = new Graphics();
-    promptPlate.roundRect(688, 643, 518, 50, 10).fill({ color: 0x050a16, alpha: 0.94 }).stroke({ color: 0xffbd25, width: 3 });
+    promptPlate.roundRect(688, 642, 520, 52, 9).fill({ color: 0x0c0302, alpha: 0.95 }).stroke({ color: 0xff9f13, width: 3 });
     this.root.addChild(promptPlate);
     this.confirmPrompt = label('INVIO  CONFERMA     ESC  INDIETRO', new TextStyle({
-      fontFamily: UI_FONT, fontSize: 16, fontWeight: '900', fill: 0xffffff, letterSpacing: 2,
-    }), 947, 668, 0.5);
+      fontFamily: UI_FONT, fontSize: 15, fontWeight: '900', fill: 0xffe2ad, letterSpacing: 2,
+    }), 948, 668, 0.5);
     this.root.addChild(this.confirmPrompt);
 
     const loadingShade = new Graphics();
-    loadingShade.rect(0, 0, 1280, 720).fill({ color: 0x030611, alpha: 0.82 });
-    loadingShade.roundRect(388, 286, 504, 148, 14).fill(0x08132b).stroke({ color: 0xffc12b, width: 4 });
+    loadingShade.rect(0, 0, 1280, 720).fill({ color: 0x030100, alpha: 0.84 });
+    loadingShade.roundRect(388, 286, 504, 148, 14).fill(0x160604).stroke({ color: 0xffa315, width: 4 });
     this.loadingGroup.addChild(loadingShade);
-    this.loadingGroup.addChild(label('FIGHTER READY', new TextStyle({
-      fontFamily: DISPLAY_FONT, fontSize: 45, fontWeight: '900', fontStyle: 'italic', fill: 0xffffff,
-      stroke: { color: 0x9b2036, width: 5 }, letterSpacing: 3,
+    this.loadingGroup.addChild(label('COMBATTENTE PRONTO', new TextStyle({
+      fontFamily: DISPLAY_FONT, fontSize: 43, fontWeight: '900', fontStyle: 'italic', fill: 0xffdf9e,
+      stroke: { color: 0x6b1007, width: 5 }, letterSpacing: 2,
     }), 640, 337, 0.5));
-    const barTrack = new Graphics();
-    barTrack.roundRect(470, 392, 340, 12, 6).fill(0x1c2741);
-    this.loadingGroup.addChild(barTrack, this.loadingBar);
+    const track = new Graphics();
+    track.roundRect(470, 392, 340, 12, 6).fill(0x3b160c);
+    this.loadingGroup.addChild(track, this.loadingBar);
     this.loadingGroup.visible = false;
     this.root.addChild(this.loadingGroup);
   }
@@ -165,7 +168,7 @@ export class CharacterSelectScene implements Scene {
     this.elapsed += dt;
     if (this.loading) {
       const progress = (this.elapsed * 0.88) % 1;
-      this.loadingBar.clear().roundRect(470 + progress * 244, 392, 96, 12, 6).fill(0xffc32d);
+      this.loadingBar.clear().roundRect(470 + progress * 244, 392, 96, 12, 6).fill(0xffa315);
       return;
     }
     const pulse = 0.72 + 0.28 * (0.5 + 0.5 * Math.sin(this.elapsed * 7));

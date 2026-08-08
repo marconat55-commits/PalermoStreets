@@ -55,6 +55,8 @@ npm run check
 
 Il risultato viene scritto in `dist/`.
 
+`npm run check` valida profili e atlas, controlla automaticamente i PNG (canvas, metadata, bordi, tagli e continuita fall/getup), esegue i test, il typecheck e la build.
+
 ## Visual Studio Code + Codex
 
 Apri **la cartella intera del progetto** in Visual Studio Code, non un singolo file.
@@ -90,7 +92,7 @@ PixiJS 8.19 include inoltre le skills nel package npm sotto `node_modules/pixi.j
 ```text
 src/
   game/
-    animation/     animatore per-frame
+    animation/     controller a stati, timing/scale per-frame e limiti visivi
     assets/        caricamento texture/profili
     combat/        attacchi, collisioni e combat solver
     effects/       hit spark e damage text
@@ -103,6 +105,7 @@ public/
   data/            profili, stage e frame metadata
 legacy-reference/  vecchio codice Python, solo riferimento
 AGENTS.md           regole operative per Codex
+docs/ANIMATION_CONTRACT.md  contratto obbligatorio per i character pack
 ```
 
 ## Nota importante

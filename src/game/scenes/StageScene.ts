@@ -549,7 +549,7 @@ export class StageScene implements Scene {
     } else if (!liveEnemies.length && !anyEnemyObjects && this.waveIndex === this.waveData.length - 1) {
       this.clearTimer += dt;
       if (this.clearTimer > 0.38) this.moduleClear = true;
-      if (this.moduleClear && this.player.position.x >= this.exitX - EXIT_TRIGGER_TOLERANCE) this.startTransition();
+      if (this.moduleClear && this.player.visualHorizontalBounds().right >= this.exitX - EXIT_TRIGGER_TOLERANCE) this.startTransition();
     } else {
       this.clearTimer = 0;
       this.moduleClear = false;

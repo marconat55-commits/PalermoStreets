@@ -16,6 +16,8 @@ This repository is the PixiJS/TypeScript migration of the Python + pygame-ce Pal
 - Keep stage/waves data-driven through `public/data/stage1_zen.json`.
 - Do not hard-code a specific enemy into StageScene when a character profile can supply the value.
 - Animation timing comes from character profile JSON. Do not silently replace it with uniform AnimatedSprite speed.
+- Per-frame `visual_scales` may correct perceived mass between painted poses, but must stay uniform on both axes; never stretch a body horizontally or vertically.
+- One-shot clips must end on a compatible recovery pose. `knockdown` last frame and `getup` first frame must be pixel-identical and use the same visual scale.
 - Personality idle animations use `idle_variant_N` clips discovered by the custom Animator controller; every protagonist may define a different count and timing.
 - Do not resize or rewrite source PNG assets unless the task explicitly asks for art processing.
 - Preserve full feet/pivot alignment using `public/data/generated/frame_meta.json`.
@@ -40,10 +42,14 @@ This repository is the PixiJS/TypeScript migration of the Python + pygame-ce Pal
 
 ## Before declaring a task complete
 1. Run `npm run validate:data`.
-2. Run `npm run typecheck`.
-3. Run `npm run build`.
-4. If gameplay changed, run `npm run dev` and manually test at least one wave with Marco, Talebano and Piero.
-5. Do not modify Barbetta art unless explicitly requested; it is a temporary boss placeholder.
+2. Run `npm run validate:art`.
+3. Run `npm run test`.
+4. Run `npm run typecheck`.
+5. Run `npm run build`.
+6. If gameplay changed, run `npm run dev` and manually test at least one wave with Marco, Talebano and Piero.
+7. Do not modify Barbetta art unless explicitly requested; it is a temporary boss placeholder.
+
+The complete sprite contract is documented in `docs/ANIMATION_CONTRACT.md`.
 
 ## Migration reference
 The previous Python gameplay code is available under `legacy-reference/python/` for behavioral comparison only. New features should be implemented in `src/`, not in the legacy copy.

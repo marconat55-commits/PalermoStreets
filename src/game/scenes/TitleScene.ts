@@ -1,4 +1,4 @@
-import { Container, Graphics, Text, TextStyle } from 'pixi.js';
+import { Container, Graphics, Sprite, Text, TextStyle, Texture } from 'pixi.js';
 import type { Input } from '../input/Input';
 import type { Scene } from './Scene';
 
@@ -6,10 +6,24 @@ const DISPLAY_FONT = 'Impact, Haettenschweiler, Arial Black, sans-serif';
 const UI_FONT = 'Arial Black, Arial, sans-serif';
 
 function centeredText(text: string, style: TextStyle, x: number, y: number): Text {
-  const label = new Text({ text, style });
-  label.anchor.set(0.5);
-  label.position.set(x, y);
-  return label;
+  const value = new Text({ text, style });
+  value.anchor.set(0.5);
+  value.position.set(x, y);
+  return value;
+}
+
+function logoLayer(text: string, size: number, fill: number, stroke: number, strokeWidth: number, x: number, y: number): Text {
+  const value = centeredText(text, new TextStyle({
+    fontFamily: DISPLAY_FONT,
+    fontSize: size,
+    fontWeight: '900',
+    fontStyle: 'italic',
+    fill,
+    stroke: { color: stroke, width: strokeWidth },
+    letterSpacing: 2,
+  }), x, y);
+  value.skew.x = -0.08;
+  return value;
 }
 
 export class TitleScene implements Scene {
@@ -22,122 +36,80 @@ export class TitleScene implements Scene {
   private readonly loadingGroup = new Container();
   private readonly loadingBar = new Graphics();
 
-  constructor() {
-    const backdrop = new Graphics();
-    const sky = [0x09142e, 0x101b3e, 0x1c2450, 0x35234c, 0x642637, 0xa33a28, 0xe66a27];
-    for (let row = 0; row < sky.length; row += 1) {
-      backdrop.rect(0, row * 76, 1280, 78).fill(sky[row]!);
-    }
-    backdrop.rect(0, 532, 1280, 188).fill(0x080c18);
-    backdrop.circle(1060, 170, 132).fill({ color: 0xffc341, alpha: 0.92 });
-    backdrop.circle(1060, 170, 93).fill({ color: 0xff7b27, alpha: 0.78 });
+  constructor(backgroundTexture: Texture) {
+    const background = new Sprite(backgroundTexture);
+    background.width = 1280;
+    background.height = 720;
+    this.root.addChild(background);
 
-    // Skyline originale: geometria semplice, leggibile e leggera da renderizzare.
-    const buildings = [
-      [0, 350, 118, 196], [102, 302, 144, 244], [232, 377, 104, 169], [322, 328, 168, 218],
-      [472, 385, 102, 161], [558, 288, 182, 258], [724, 348, 110, 198], [816, 310, 176, 236],
-      [976, 370, 116, 176], [1076, 326, 204, 220],
-    ] as const;
-    for (const [x, y, width, height] of buildings) {
-      backdrop.rect(x, y, width, height).fill(0x0b1123);
-      for (let wx = x + 16; wx < x + width - 8; wx += 28) {
-        for (let wy = y + 20; wy < y + height - 12; wy += 34) {
-          if ((wx + wy) % 3 < 1.4) backdrop.rect(wx, wy, 8, 12).fill({ color: 0xffbd45, alpha: 0.48 });
-        }
-      }
-    }
-    backdrop.moveTo(0, 720).lineTo(488, 532).lineTo(792, 532).lineTo(1280, 720).fill(0x11172a);
-    for (let lane = -4; lane <= 4; lane += 1) {
-      const center = 640 + lane * 88;
-      backdrop.moveTo(center - 8, 720).lineTo(640 + lane * 28 - 2, 532)
-        .lineTo(640 + lane * 28 + 2, 532).lineTo(center + 8, 720)
-        .fill({ color: lane % 2 === 0 ? 0x243050 : 0xf0a72d, alpha: lane % 2 === 0 ? 0.48 : 0.22 });
-    }
-    this.root.addChild(backdrop);
+    const grade = new Graphics();
+    grade.rect(0, 0, 1280, 720).fill({ color: 0x120400, alpha: 0.18 });
+    grade.rect(0, 0, 1280, 88).fill({ color: 0x000000, alpha: 0.64 });
+    grade.rect(0, 628, 1280, 92).fill({ color: 0x000000, alpha: 0.70 });
+    grade.rect(0, 0, 180, 720).fill({ color: 0x000000, alpha: 0.38 });
+    grade.rect(1100, 0, 180, 720).fill({ color: 0x000000, alpha: 0.38 });
+    this.root.addChild(grade);
 
-    const energy = new Graphics();
-    energy.moveTo(-80, 132).lineTo(620, 55).lineTo(545, 114).lineTo(-80, 205).fill({ color: 0x17d7e8, alpha: 0.92 });
-    energy.moveTo(1360, 326).lineTo(660, 396).lineTo(734, 338).lineTo(1360, 264).fill({ color: 0xffb21f, alpha: 0.92 });
-    energy.moveTo(-100, 475).lineTo(540, 401).lineTo(476, 460).lineTo(-100, 535).fill({ color: 0xf04431, alpha: 0.72 });
-    this.root.addChild(energy);
-
-    const badge = new Graphics();
-    badge.roundRect(465, 74, 350, 45, 8).fill(0x0a1023).stroke({ color: 0x35e1ee, width: 3 });
-    this.root.addChild(badge);
+    const crest = new Graphics();
+    crest.moveTo(640, 62).lineTo(910, 112).lineTo(820, 132).lineTo(640, 100)
+      .lineTo(460, 132).lineTo(370, 112).closePath().fill({ color: 0xc51d0d, alpha: 0.92 });
+    crest.moveTo(395, 118).lineTo(885, 118).stroke({ color: 0xffad18, width: 5, alpha: 0.9 });
+    this.root.addChild(crest);
     this.root.addChild(centeredText('PALERMO STREETS', new TextStyle({
-      fontFamily: UI_FONT, fontSize: 22, fontWeight: '900', fill: 0xffffff, letterSpacing: 5,
-    }), 640, 96));
+      fontFamily: UI_FONT, fontSize: 19, fontWeight: '900', fill: 0xffefbd, letterSpacing: 7,
+      stroke: { color: 0x250600, width: 4 },
+    }), 640, 93));
 
-    const titleStyle = new TextStyle({
-      fontFamily: DISPLAY_FONT,
-      fontSize: 112,
-      fontWeight: '900',
-      fontStyle: 'italic',
-      fill: 0xffbd25,
-      stroke: { color: 0x5f151d, width: 8 },
-      letterSpacing: 2,
-    });
-    const shadowStyle = new TextStyle({
-      ...titleStyle,
-      fill: 0x090d1d,
-      stroke: { color: 0x090d1d, width: 14 },
-    });
-    this.root.addChild(centeredText('MINCHIA', shadowStyle, 652, 206));
-    this.root.addChild(centeredText('MINCHIA', titleStyle, 640, 194));
-
-    const fightersShadow = centeredText('FIGHTERS', shadowStyle, 658, 315);
-    fightersShadow.scale.set(1.12, 0.82);
-    this.root.addChild(fightersShadow);
-    const fighters = centeredText('FIGHTERS', new TextStyle({
-      ...titleStyle,
-      fill: 0xff5b32,
-      stroke: { color: 0x52142b, width: 8 },
-    }), 644, 301);
-    fighters.scale.set(1.12, 0.82);
+    this.root.addChild(logoLayer('MINCHIA', 142, 0x160300, 0x160300, 18, 653, 226));
+    this.root.addChild(logoLayer('MINCHIA', 142, 0xffc126, 0x5b0800, 10, 640, 212));
+    this.root.addChild(logoLayer('FIGHTERS', 154, 0x140200, 0x140200, 20, 655, 356));
+    const fighters = logoLayer('FIGHTERS', 154, 0xf02a12, 0x641000, 11, 640, 340);
+    fighters.scale.x = 1.08;
     this.root.addChild(fighters);
 
-    const edition = new Graphics();
-    edition.roundRect(466, 363, 348, 38, 19).fill(0x17cadb).stroke({ color: 0xffffff, width: 2 });
-    this.root.addChild(edition);
-    this.root.addChild(centeredText('PIXIJS ARCADE EDITION', new TextStyle({
-      fontFamily: UI_FONT, fontSize: 17, fontWeight: '900', fill: 0x071127, letterSpacing: 3,
-    }), 640, 382));
+    const slash = new Graphics();
+    slash.moveTo(286, 428).lineTo(1008, 405).lineTo(944, 430).lineTo(330, 454).closePath()
+      .fill({ color: 0xd1170d, alpha: 0.96 });
+    slash.moveTo(322, 451).lineTo(950, 428).stroke({ color: 0xff9d16, width: 3 });
+    this.root.addChild(slash);
+    this.root.addChild(centeredText('SCHIAFFI, CALCI E SENTIMENTI', new TextStyle({
+      fontFamily: DISPLAY_FONT, fontSize: 37, fontWeight: '900', fontStyle: 'italic', fill: 0xfff0d2,
+      stroke: { color: 0x1c0500, width: 7 }, letterSpacing: 2,
+    }), 640, 423));
 
-    this.promptPlate.roundRect(465, 444, 350, 68, 10)
-      .fill({ color: 0x071020, alpha: 0.92 })
-      .stroke({ color: 0xffd13b, width: 4 });
+    this.promptPlate.roundRect(394, 505, 492, 96, 14)
+      .fill({ color: 0x170602, alpha: 0.92 })
+      .stroke({ color: 0xff3c0d, width: 10, alpha: 0.34 });
+    this.promptPlate.roundRect(403, 514, 474, 78, 10)
+      .stroke({ color: 0xffa312, width: 4 });
     this.root.addChild(this.promptPlate);
     this.prompt = centeredText('PREMI INVIO', new TextStyle({
-      fontFamily: UI_FONT, fontSize: 28, fontWeight: '900', fill: 0xffffff, letterSpacing: 3,
-    }), 640, 478);
+      fontFamily: DISPLAY_FONT, fontSize: 48, fontWeight: '900', fontStyle: 'italic', fill: 0xffc22b,
+      stroke: { color: 0x641000, width: 6 }, letterSpacing: 3,
+    }), 640, 553);
     this.root.addChild(this.prompt);
 
-    const controlsPlate = new Graphics();
-    controlsPlate.roundRect(264, 552, 752, 104, 12).fill({ color: 0x050a16, alpha: 0.86 });
-    controlsPlate.rect(286, 571, 4, 64).fill(0x19d8e6);
-    controlsPlate.rect(990, 571, 4, 64).fill(0xffb62e);
-    this.root.addChild(controlsPlate);
     this.root.addChild(centeredText(
-      'WASD / FRECCE  MUOVI     J  COMBO     I  CALCIO     K  SALTO     L  SUPER\nSHIFT  PARA     SPAZIO  SCHIVA     DOPPIO TOCCO  CORSA     P  PAUSA',
-      new TextStyle({ fontFamily: UI_FONT, fontSize: 16, fontWeight: '700', fill: 0xdcecff, align: 'center', lineHeight: 29 }),
+      'J COMBO   I CALCIO   K SALTO   L SUPER   SHIFT PARA   SPAZIO SCHIVA',
+      new TextStyle({ fontFamily: UI_FONT, fontSize: 14, fontWeight: '700', fill: 0xe8cda9, letterSpacing: 1 }),
       640,
-      604,
+      672,
     ));
 
     const loadingShade = new Graphics();
-    loadingShade.rect(0, 0, 1280, 720).fill({ color: 0x030611, alpha: 0.76 });
-    loadingShade.roundRect(390, 285, 500, 150, 14).fill(0x08132b).stroke({ color: 0x2bdce8, width: 4 });
+    loadingShade.rect(0, 0, 1280, 720).fill({ color: 0x050100, alpha: 0.82 });
+    loadingShade.roundRect(385, 278, 510, 164, 14).fill(0x160704).stroke({ color: 0xffa217, width: 4 });
     this.loadingGroup.addChild(loadingShade);
     this.loadingGroup.addChild(centeredText('CARICAMENTO', new TextStyle({
-      fontFamily: DISPLAY_FONT, fontSize: 42, fontWeight: '900', fontStyle: 'italic', fill: 0xffbd2e,
-      stroke: { color: 0x63152a, width: 5 }, letterSpacing: 3,
-    }), 640, 335));
+      fontFamily: DISPLAY_FONT, fontSize: 46, fontWeight: '900', fontStyle: 'italic', fill: 0xffc127,
+      stroke: { color: 0x5b0800, width: 6 }, letterSpacing: 3,
+    }), 640, 330));
     this.loadingGroup.addChild(centeredText('PREPARAZIONE DELLO ZEN...', new TextStyle({
-      fontFamily: UI_FONT, fontSize: 16, fontWeight: '700', fill: 0xcdeeff, letterSpacing: 2,
-    }), 640, 380));
-    const barTrack = new Graphics();
-    barTrack.roundRect(470, 402, 340, 12, 6).fill(0x182443);
-    this.loadingGroup.addChild(barTrack, this.loadingBar);
+      fontFamily: UI_FONT, fontSize: 16, fontWeight: '700', fill: 0xf2d9b5, letterSpacing: 2,
+    }), 640, 378));
+    const track = new Graphics();
+    track.roundRect(470, 402, 340, 12, 6).fill(0x3b160c);
+    this.loadingGroup.addChild(track, this.loadingBar);
     this.loadingGroup.visible = false;
     this.root.addChild(this.loadingGroup);
   }
@@ -153,9 +125,7 @@ export class TitleScene implements Scene {
     this.elapsed += dt;
     if (this.loading) {
       const progress = (this.elapsed * 0.72) % 1;
-      const width = 96;
-      const x = 470 + progress * (340 - width);
-      this.loadingBar.clear().roundRect(x, 402, width, 12, 6).fill(0x28dce8);
+      this.loadingBar.clear().roundRect(470 + progress * 244, 402, 96, 12, 6).fill(0xff9d16);
       return;
     }
     const pulse = 0.78 + 0.22 * (0.5 + 0.5 * Math.sin(this.elapsed * 5));

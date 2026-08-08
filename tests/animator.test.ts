@@ -9,6 +9,7 @@ function clip(durations: number[], loop = true): AnimationClip {
     duration,
     offsetX: 0,
     offsetY: 0,
+    scale: 1,
     bounds: [0, 0, 1, 1] as [number, number, number, number],
     width: 1,
     height: 1,
@@ -48,4 +49,17 @@ test('fitDuration adatta il clip alla finestra di attacco', () => {
   assert.equal(animator.finished, false);
   animator.update(0.02);
   assert.equal(animator.finished, true);
+});
+
+test('il cambio clip conserva brevemente la posa precedente senza alterare il timing', () => {
+  const animator = new Animator(bank(), 'idle');
+  const previous = animator.frame;
+  animator.play('attack', true);
+  assert.equal(animator.transitionFrame, previous);
+  assert.equal(animator.transitionAlpha, 1);
+  animator.update(0.03);
+  assert.ok(animator.transitionAlpha > 0 && animator.transitionAlpha < 1);
+  animator.update(0.04);
+  assert.equal(animator.transitionFrame, null);
+  assert.equal(animator.frameIndex, 0);
 });

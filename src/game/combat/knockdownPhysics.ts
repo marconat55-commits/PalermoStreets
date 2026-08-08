@@ -1,4 +1,19 @@
 export const KNOCKDOWN_GRAVITY = 1480;
+export const AIRBORNE_HORIZONTAL_DRAG = 1.15;
+export const GROUND_HORIZONTAL_DRAG = 3.8;
+
+export function integrateHorizontalLaunch(
+  position: number,
+  velocity: number,
+  dt: number,
+  airborne: boolean,
+): { position: number; velocity: number } {
+  const drag = airborne ? AIRBORNE_HORIZONTAL_DRAG : GROUND_HORIZONTAL_DRAG;
+  return {
+    position: position + velocity * dt,
+    velocity: velocity * Math.max(0, 1 - drag * dt),
+  };
+}
 
 export function integrateLaunch(
   elevation: number,

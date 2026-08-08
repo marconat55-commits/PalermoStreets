@@ -137,6 +137,7 @@
     "knockdown": {
       "folder": "fall",
       "frames": 5,
+      "visual_scales": [1.0, 1.03, 1.07, 1.11, 1.14],
       "durations": [
         0.1,
         0.12,
@@ -150,6 +151,7 @@
     "getup": {
       "folder": "getup",
       "frames": 5,
+      "visual_scales": [1.14, 1.11, 1.07, 1.03, 1.0],
       "durations": [
         0.14,
         0.14,
@@ -163,6 +165,7 @@
     "dead": {
       "folder": "fall",
       "frames": 5,
+      "visual_scales": [1.0, 1.03, 1.07, 1.11, 1.14],
       "durations": [
         0.1,
         0.12,

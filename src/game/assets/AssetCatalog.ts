@@ -26,9 +26,10 @@ interface AtlasManifest {
   frames: Record<string, AtlasFrame>;
 }
 
-function expandedDurations(frames: number, values: number[]): number[] {
-  if (values.length === 1) return Array.from({ length: frames }, () => values[0] ?? 0.1);
-  if (values.length !== frames) throw new Error(`Durate non coerenti: ${values.length} per ${frames} frame`);
+function expandedValues(frames: number, values: number[] | undefined, fallback: number, label: string): number[] {
+  if (!values?.length) return Array.from({ length: frames }, () => fallback);
+  if (values.length === 1) return Array.from({ length: frames }, () => values[0] ?? fallback);
+  if (values.length !== frames) throw new Error(`${label} non coerenti: ${values.length} per ${frames} frame`);
   return [...values];
 }
 
@@ -119,7 +120,8 @@ export class AssetCatalog {
     const atlas = await this.loadAtlas(profile);
     const clips = new Map<string, AnimationClip>();
     for (const [name, spec] of Object.entries(profile.animations)) {
-      const durations = expandedDurations(spec.frames, spec.durations);
+      const durations = expandedValues(spec.frames, spec.durations, 0.1, 'Durate');
+      const visualScales = expandedValues(spec.frames, spec.visual_scales, 1, 'Scale visive');
       const frames: VisualFrame[] = [];
       for (let i = 1; i <= spec.frames; i += 1) {
         const filename = `${spec.folder}/${frameName(i)}`;
@@ -137,6 +139,7 @@ export class AssetCatalog {
           duration: durations[i - 1] ?? durations[0] ?? 0.1,
           offsetX: 0,
           offsetY: meta.offsetY,
+          scale: visualScales[i - 1] ?? 1,
           bounds: meta.bounds,
           width: meta.width,
           height: meta.height,

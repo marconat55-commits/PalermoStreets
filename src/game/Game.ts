@@ -1,4 +1,4 @@
-import { Application } from 'pixi.js';
+import { Application, Assets, Texture } from 'pixi.js';
 import { LOGICAL_HEIGHT, LOGICAL_WIDTH } from './config';
 import { Input } from './input/Input';
 import { loadCharacterIndex, loadCharacterProfile, loadFrameMeta, loadStage1 } from './data/loadData';
@@ -8,6 +8,7 @@ import { CharacterSelectScene } from './scenes/CharacterSelectScene';
 import { StageScene } from './scenes/StageScene';
 import type { Scene } from './scenes/Scene';
 import type { StageData } from './types';
+import { publicUrl } from './data/paths';
 
 export class Game {
   readonly app = new Application();
@@ -19,6 +20,7 @@ export class Game {
   private stageData!: StageData;
   private defaultPlayerId = 'marco';
   private defaultEnemyId = 'barbetta';
+  private titleBackground!: Texture;
   private startingStage = false;
   private openingCharacterSelect = false;
 
@@ -37,11 +39,13 @@ export class Game {
     this.resizeCanvas();
     window.addEventListener('resize', () => this.resizeCanvas());
 
-    const [frameMeta, index, stageData] = await Promise.all([
+    const [frameMeta, index, stageData, titleBackground] = await Promise.all([
       loadFrameMeta(),
       loadCharacterIndex(),
       loadStage1(),
+      Assets.load<Texture>(publicUrl('assets/ui/title/palermo_night.png')),
     ]);
+    this.titleBackground = titleBackground;
     this.stageData = stageData;
     this.defaultPlayerId = index.default_player;
     this.defaultEnemyId = index.default_enemy;
@@ -77,7 +81,7 @@ export class Game {
     this.startingStage = false;
     this.scene?.destroy();
     this.app.stage.removeChildren();
-    this.titleScene = new TitleScene();
+    this.titleScene = new TitleScene(this.titleBackground);
     this.characterSelectScene = null;
     this.scene = this.titleScene;
     this.app.stage.addChild(this.titleScene.root);

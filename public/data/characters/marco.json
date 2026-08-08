@@ -152,24 +152,26 @@
     },
     "air_attack": {
       "folder": "air_attack",
-      "frames": 4,
+      "frames": 6,
       "durations": [
-        0.09,
-        0.11,
-        0.12,
-        0.16
+        0.06,
+        0.07,
+        0.08,
+        0.1,
+        0.07,
+        0.06
       ],
       "source_facing": 1,
-      "contact_frame": 2
+      "contact_frame": 4
     },
     "punch_left": {
       "folder": "punch_left",
       "frames": 4,
       "durations": [
+        0.065,
         0.075,
         0.075,
-        0.085,
-        0.13
+        0.18
       ],
       "source_facing": 1,
       "contact_frame": 3
@@ -188,25 +190,27 @@
     },
     "combo_finisher": {
       "folder": "combo_finisher",
-      "frames": 4,
+      "frames": 5,
       "durations": [
+        0.08,
+        0.09,
+        0.11,
         0.1,
-        0.1,
-        0.12,
-        0.22
+        0.16
       ],
       "source_facing": 1,
       "contact_frame": 3
     },
     "kick_right": {
       "folder": "kick_right",
-      "frames": 5,
+      "frames": 6,
       "durations": [
         0.09,
         0.09,
         0.1,
         0.11,
-        0.18
+        0.13,
+        0.16
       ],
       "source_facing": 1,
       "contact_frame": 3
@@ -248,12 +252,13 @@
     },
     "throw": {
       "folder": "throw",
-      "frames": 4,
+      "frames": 5,
       "durations": [
         0.12,
         0.14,
         0.12,
-        0.24
+        0.16,
+        0.18
       ],
       "source_facing": 1,
       "contact_frame": 3
@@ -276,17 +281,19 @@
     },
     "hit": {
       "folder": "hit",
-      "frames": 3,
+      "frames": 4,
       "durations": [
         0.08,
         0.09,
-        0.12
+        0.11,
+        0.14
       ],
       "source_facing": 1
     },
     "knockdown": {
       "folder": "fall",
       "frames": 5,
+      "visual_scales": [1.0, 1.02, 1.05, 1.08, 1.1],
       "durations": [
         0.08,
         0.09,
@@ -299,6 +306,7 @@
     "getup": {
       "folder": "getup",
       "frames": 5,
+      "visual_scales": [1.1, 1.08, 1.05, 1.02, 1.0],
       "durations": [
         0.12,
         0.12,
@@ -311,6 +319,7 @@
     "dead": {
       "folder": "fall",
       "frames": 5,
+      "visual_scales": [1.0, 1.02, 1.05, 1.08, 1.1],
       "durations": [
         0.08,
         0.09,
@@ -322,12 +331,13 @@
     },
     "dodge": {
       "folder": "dodge",
-      "frames": 4,
+      "frames": 5,
       "durations": [
         0.06,
         0.08,
         0.09,
-        0.11
+        0.09,
+        0.12
       ],
       "source_facing": 1
     }

@@ -48,7 +48,11 @@ for (const id of index.characters) {
   if (!String(profile.factory?.scale_mode ?? '').startsWith('baked')) fail(`${id}: scale_mode baked mancante`);
 
   const required = profile.role === 'player'
-    ? ['idle', 'walk', 'walk_up', 'walk_down', 'punch_left', 'punch_right', 'kick_right', 'super', 'hit', 'knockdown', 'getup', 'dead']
+    ? [
+      'idle', 'walk', 'walk_up', 'walk_down', 'run', 'brake', 'jump', 'air_attack',
+      'punch_left', 'punch_right', 'combo_finisher', 'kick_right', 'block', 'dodge',
+      'grab', 'grab_strike', 'throw', 'super', 'hit', 'knockdown', 'getup', 'dead',
+    ]
     : ['idle', 'walk', 'attack', 'heavy', 'hit', 'knockdown', 'getup', 'dead'];
   for (const name of required) if (!profile.animations[name]) fail(`${id}: animazione obbligatoria mancante: ${name}`);
 
@@ -69,6 +73,9 @@ for (const id of index.characters) {
     if (!Number.isInteger(spec.frames) || spec.frames < 1) fail(`${id}/${name}: frames non valido`);
     if (!Array.isArray(spec.durations) || ![1, spec.frames].includes(spec.durations.length)) fail(`${id}/${name}: durations deve avere 1 o ${spec.frames} valori`);
     if ((spec.durations ?? []).some((value) => !Number.isFinite(value) || value <= 0)) fail(`${id}/${name}: durata non positiva`);
+    if (spec.visual_scales !== undefined && (!Array.isArray(spec.visual_scales) || ![1, spec.frames].includes(spec.visual_scales.length))) fail(`${id}/${name}: visual_scales deve avere 1 o ${spec.frames} valori`);
+    if ((spec.visual_scales ?? []).some((value) => !Number.isFinite(value) || value < 0.82 || value > 1.24)) fail(`${id}/${name}: visual_scales fuori intervallo 0.82-1.24`);
+    if ((spec.visual_scales ?? []).some((value, indexValue, values) => indexValue > 0 && Math.abs(value - values[indexValue - 1]) > 0.08)) fail(`${id}/${name}: salto di scala visiva superiore a 0.08`);
     if (spec.reference_speed !== undefined && (!Number.isFinite(spec.reference_speed) || spec.reference_speed <= 0)) fail(`${id}/${name}: reference_speed non valida`);
     if (spec.contact_frame !== undefined && (!Number.isInteger(spec.contact_frame) || spec.contact_frame < 1 || spec.contact_frame > spec.frames)) fail(`${id}/${name}: contact_frame fuori range`);
 
@@ -94,6 +101,11 @@ for (const id of index.characters) {
       if (atlas && !atlas.frames?.[filename]) fail(`${id}/${name}: frame assente dall'atlas: ${filename}`);
     }
   }
+
+  const knockdownScales = profile.animations.knockdown.visual_scales ?? [1];
+  const getupScales = profile.animations.getup.visual_scales ?? [1];
+  if (Math.abs((knockdownScales.at(-1) ?? 1) - (getupScales[0] ?? 1)) > 0.0001) fail(`${id}: scala non continua tra knockdown e getup`);
+  if (id !== 'barbetta' && Math.abs((getupScales.at(-1) ?? 1) - 1) > 0.0001) fail(`${id}: getup deve chiudere a scala 1`);
 }
 
 const runtimePng = index.characters.flatMap((id) => {

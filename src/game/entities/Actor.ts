@@ -3,7 +3,8 @@ import { Animator } from '../animation/Animator';
 import { PLAYFIELD } from '../config';
 import type { AnimationBank, Rect, Vec2 } from '../types';
 import { clamp } from '../../utils/math';
-import { integrateLaunch } from '../combat/knockdownPhysics';
+import { integrateHorizontalLaunch, integrateLaunch } from '../combat/knockdownPhysics';
+import { clampFeetX, horizontalExtents } from '../animation/visualBounds';
 
 let nextActorId = 1;
 
@@ -17,6 +18,7 @@ export class Actor {
   readonly actorId = nextActorId++;
   readonly root = new Container();
   readonly sprite = new Sprite();
+  readonly transitionSprite = new Sprite();
   readonly outlineSprites: Sprite[] = [];
   readonly animator: Animator;
   readonly position: Vec2;
@@ -53,6 +55,10 @@ export class Actor {
       this.outlineSprites.push(outline);
       this.root.addChild(outline);
     }
+    this.transitionSprite.anchor.set(0.5, 1);
+    this.transitionSprite.zIndex = 0.5;
+    this.transitionSprite.visible = false;
+    this.root.addChild(this.transitionSprite);
     this.sprite.texture = this.animator.frame.texture;
     this.sprite.anchor.set(0.5, 1);
     this.sprite.zIndex = 1;
@@ -107,11 +113,21 @@ export class Actor {
     this.invulnerable = Math.max(0, this.invulnerable - dt);
     this.hitFlash = Math.max(0, this.hitFlash - dt);
     const changed = this.animator.update(dt);
-    this.position.x += this.velocity.x * dt;
-    this.position.y += this.velocity.y * dt;
-    const damping = Math.max(0, 1 - 8 * dt);
-    this.velocity.x *= damping;
-    this.velocity.y *= damping;
+    const fallen = ['knockdown', 'dead'].includes(this.state);
+    const launched = fallen && (this.verticalVelocity !== 0 || this.elevation > 0);
+    if (fallen) {
+      const horizontal = integrateHorizontalLaunch(this.position.x, this.velocity.x, dt, launched);
+      this.position.x = horizontal.position;
+      this.velocity.x = horizontal.velocity;
+      this.position.y += this.velocity.y * dt;
+      this.velocity.y *= Math.max(0, 1 - 3.8 * dt);
+    } else {
+      this.position.x += this.velocity.x * dt;
+      this.position.y += this.velocity.y * dt;
+      const damping = Math.max(0, 1 - 8 * dt);
+      this.velocity.x *= damping;
+      this.velocity.y *= damping;
+    }
     if (['knockdown', 'dead'].includes(this.state) && (this.verticalVelocity !== 0 || this.elevation > 0)) {
       const impactVelocity = Math.abs(this.verticalVelocity);
       const launch = integrateLaunch(this.elevation, this.verticalVelocity, dt);
@@ -128,8 +144,15 @@ export class Actor {
   }
 
   clampToPlayfield(): void {
-    this.position.x = clamp(this.position.x, PLAYFIELD.left, PLAYFIELD.right);
+    const flip = this.facing === this.animator.sourceFacing ? 1 : -1;
+    this.position.x = clampFeetX(this.position.x, this.animator.frame, flip, PLAYFIELD.left, PLAYFIELD.right);
     this.position.y = clamp(this.position.y, PLAYFIELD.top, PLAYFIELD.bottom);
+  }
+
+  visualHorizontalBounds(): { left: number; right: number } {
+    const flip = this.facing === this.animator.sourceFacing ? 1 : -1;
+    const extents = horizontalExtents(this.animator.frame, flip);
+    return { left: this.position.x + extents.left, right: this.position.x + extents.right };
   }
 
   receiveHit(damage: number, knockback: Vec2, knockdown = false, launchVelocity = 0): HitResult {
@@ -162,8 +185,8 @@ export class Actor {
     const frame = this.animator.frame;
     const [, top, , height] = frame.bounds;
     const canvasBottom = this.position.y - this.elevation + frame.offsetY;
-    const canvasTop = canvasBottom - frame.height;
-    return height > 0 ? canvasTop + top : canvasTop;
+    const canvasTop = canvasBottom - frame.height * frame.scale;
+    return height > 0 ? canvasTop + top * frame.scale : canvasTop;
   }
 
   syncVisual(forceTexture = false): void {
@@ -173,15 +196,30 @@ export class Actor {
       for (const outline of this.outlineSprites) outline.texture = frame.texture;
     }
     const flip = this.facing === this.animator.sourceFacing ? 1 : -1;
-    this.sprite.scale.x = flip;
+    this.sprite.scale.set(flip * frame.scale, frame.scale);
+    this.sprite.x = frame.offsetX * frame.scale;
     this.sprite.y = frame.offsetY;
     this.sprite.tint = this.hitFlash > 0 ? 0xffa08e : 0xffffff;
+    const transition = this.animator.transitionFrame;
+    if (transition) {
+      const transitionFlip = this.facing === this.animator.transitionSourceFacing ? 1 : -1;
+      this.transitionSprite.texture = transition.texture;
+      this.transitionSprite.scale.set(transitionFlip * transition.scale, transition.scale);
+      this.transitionSprite.position.set(transition.offsetX * transition.scale, transition.offsetY);
+      this.transitionSprite.alpha = this.animator.transitionAlpha * 0.52;
+      this.transitionSprite.tint = this.sprite.tint;
+      this.transitionSprite.visible = true;
+      this.sprite.alpha = 1 - this.animator.transitionAlpha * 0.22;
+    } else {
+      this.transitionSprite.visible = false;
+      this.sprite.alpha = 1;
+    }
     for (let i = 0; i < this.outlineSprites.length; i += 1) {
       const outline = this.outlineSprites[i]!;
       const offsets: ReadonlyArray<readonly [number, number]> = [[-1, 0], [1, 0], [0, -1], [0, 1]];
       const [dx, dy] = offsets[i] ?? [0, 0];
-      outline.scale.x = flip;
-      outline.x = dx;
+      outline.scale.set(flip * frame.scale, frame.scale);
+      outline.x = frame.offsetX * frame.scale + dx;
       outline.y = frame.offsetY + dy;
     }
     this.root.alpha = this.alpha255 / 255;

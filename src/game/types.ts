@@ -7,6 +7,8 @@ export interface AnimationJson {
   folder: string;
   frames: number;
   durations: number[];
+  /** Optional per-frame display scale. Use this only to preserve perceived body size across foreshortened poses. */
+  visual_scales?: number[];
   loop?: boolean;
   source_facing?: -1 | 1;
   reference_speed?: number;
@@ -140,6 +142,7 @@ export interface VisualFrame {
   duration: number;
   offsetX: number;
   offsetY: number;
+  scale: number;
   bounds: [number, number, number, number];
   width: number;
   height: number;

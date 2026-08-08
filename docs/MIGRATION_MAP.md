@@ -6,7 +6,7 @@
 | `states/title.py` | `src/game/scenes/TitleScene.ts` | migrato |
 | nuova selezione roster | `src/game/scenes/CharacterSelectScene.ts` | attiva: Marco + 3 slot vuoti |
 | `states/stage.py` | `src/game/scenes/StageScene.ts` | migrato baseline |
-| `systems/animation.py` | `src/game/animation/Animator.ts` | migrato |
+| `systems/animation.py` | `src/game/animation/Animator.ts` | migrato + blend pose, timing e scala per-frame |
 | `entities/actor.py` | `src/game/entities/Actor.ts` | migrato |
 | `entities/player.py` | `src/game/entities/Player.ts` | migrato + combat pack Marco (corsa, salto, difesa, presa) |
 | `entities/enemy.py` | `src/game/entities/Enemy.ts` | migrato |
@@ -21,6 +21,8 @@
 
 ## Differenze intenzionali
 
+- I limiti orizzontali usano il bounding box visivo della posa corrente: anche salti e cadute restano interamente dentro il viewport.
+- `visual_scales` corregge in modo uniforme la massa percepita di fall/getup senza deformare il corpo; curva e raccordo sono verificati automaticamente.
 - Non usiamo `AnimatedSprite`: le animazioni hanno durate diverse frame-per-frame e metadata di pivot, quindi un `Animator` custom aggiorna una singola `Sprite`.
 - I metadata `frame_meta.json` conservano bounding box alpha e offset piedi già calcolati: non facciamo scansioni pixel a ogni caricamento nel browser.
 - Gli outline scuri sono quattro copie tintate dello sprite, evitando una dipendenza filter aggiuntiva nella prima migrazione.
@@ -30,10 +32,8 @@
 
 ## Prossime fasi consigliate
 
-1. Test di parità visiva e gameplay contro un video della v0.7.8.
-2. Camera/world bounds per moduli orizzontali estesi, secondo `docs/COMBAT_WORLD_FOUNDATION.md`.
-3. Sistema oggetti/armi (`WorldObject`, `Pickup`, `Breakable`, `WeaponInstance`, `Projectile`).
-4. Boss system separato dall'AI standard.
-5. Audio system.
-6. AssetPack/spritesheet per ridurre richieste HTTP quando il roster cresce.
-7. Packaging desktop con Tauri o Electron solo quando la versione web è stabile.
+1. Camera/world bounds per moduli orizzontali estesi, secondo `docs/COMBAT_WORLD_FOUNDATION.md`.
+2. Sistema oggetti/armi (`WorldObject`, `Pickup`, `Breakable`, `WeaponInstance`, `Projectile`).
+3. Boss system separato dall'AI standard.
+4. Audio system.
+5. Packaging desktop con Tauri o Electron solo quando la versione web è stabile.

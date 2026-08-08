@@ -3,13 +3,18 @@
   "pages": [
     {
       "file": "atlas_01.png",
-      "width": 2041,
-      "height": 2046
+      "width": 2047,
+      "height": 2048
     },
     {
       "file": "atlas_02.png",
-      "width": 2032,
-      "height": 1641
+      "width": 1981,
+      "height": 1971
+    },
+    {
+      "file": "atlas_03.png",
+      "width": 1870,
+      "height": 517
     }
   ],
   "frames": {
@@ -90,7 +95,7 @@
       "source_x": 212,
       "source_y": 102
     },
-    "idle_variant_4/03.png": {
+    "idle_variant_4/04.png": {
       "page": 0,
       "x": 1400,
       "y": 2,
@@ -101,9 +106,31 @@
       "source_x": 249,
       "source_y": 102
     },
-    "throw/01.png": {
+    "idle_variant_4/05.png": {
       "page": 0,
       "x": 1543,
+      "y": 2,
+      "width": 141,
+      "height": 298,
+      "source_width": 640,
+      "source_height": 420,
+      "source_x": 249,
+      "source_y": 102
+    },
+    "idle_variant_4/06.png": {
+      "page": 0,
+      "x": 1686,
+      "y": 2,
+      "width": 141,
+      "height": 298,
+      "source_width": 640,
+      "source_height": 420,
+      "source_x": 249,
+      "source_y": 102
+    },
+    "throw/01.png": {
+      "page": 0,
+      "x": 1829,
       "y": 2,
       "width": 216,
       "height": 297,
@@ -114,8 +141,8 @@
     },
     "grab_strike/01.png": {
       "page": 0,
-      "x": 1761,
-      "y": 2,
+      "x": 2,
+      "y": 334,
       "width": 211,
       "height": 296,
       "source_width": 640,
@@ -125,7 +152,7 @@
     },
     "grab/01.png": {
       "page": 0,
-      "x": 2,
+      "x": 215,
       "y": 334,
       "width": 273,
       "height": 295,
@@ -136,7 +163,7 @@
     },
     "grab/02.png": {
       "page": 0,
-      "x": 277,
+      "x": 490,
       "y": 334,
       "width": 248,
       "height": 295,
@@ -147,7 +174,7 @@
     },
     "walk/01.png": {
       "page": 0,
-      "x": 527,
+      "x": 740,
       "y": 334,
       "width": 178,
       "height": 294,
@@ -158,7 +185,7 @@
     },
     "idle_variant_2/01.png": {
       "page": 0,
-      "x": 707,
+      "x": 920,
       "y": 334,
       "width": 141,
       "height": 293,
@@ -169,7 +196,7 @@
     },
     "walk/05.png": {
       "page": 0,
-      "x": 850,
+      "x": 1063,
       "y": 334,
       "width": 140,
       "height": 292,
@@ -180,7 +207,7 @@
     },
     "dodge/04.png": {
       "page": 0,
-      "x": 992,
+      "x": 1205,
       "y": 334,
       "width": 223,
       "height": 291,
@@ -191,7 +218,7 @@
     },
     "walk/06.png": {
       "page": 0,
-      "x": 1217,
+      "x": 1430,
       "y": 334,
       "width": 190,
       "height": 291,
@@ -202,7 +229,7 @@
     },
     "idle/04.png": {
       "page": 0,
-      "x": 1409,
+      "x": 1622,
       "y": 334,
       "width": 168,
       "height": 291,
@@ -213,7 +240,7 @@
     },
     "idle/03.png": {
       "page": 0,
-      "x": 1579,
+      "x": 1792,
       "y": 334,
       "width": 167,
       "height": 291,
@@ -224,8 +251,8 @@
     },
     "walk/08.png": {
       "page": 0,
-      "x": 1748,
-      "y": 334,
+      "x": 2,
+      "y": 632,
       "width": 126,
       "height": 291,
       "source_width": 640,
@@ -235,8 +262,19 @@
     },
     "idle_variant_1/02.png": {
       "page": 0,
-      "x": 1876,
-      "y": 334,
+      "x": 130,
+      "y": 632,
+      "width": 121,
+      "height": 291,
+      "source_width": 640,
+      "source_height": 420,
+      "source_x": 259,
+      "source_y": 109
+    },
+    "idle_variant_1/03.png": {
+      "page": 0,
+      "x": 253,
+      "y": 632,
       "width": 121,
       "height": 291,
       "source_width": 640,
@@ -246,8 +284,8 @@
     },
     "punch_left/02.png": {
       "page": 0,
-      "x": 2,
-      "y": 631,
+      "x": 376,
+      "y": 632,
       "width": 259,
       "height": 290,
       "source_width": 640,
@@ -257,8 +295,8 @@
     },
     "punch_left/03.png": {
       "page": 0,
-      "x": 263,
-      "y": 631,
+      "x": 637,
+      "y": 632,
       "width": 259,
       "height": 290,
       "source_width": 640,
@@ -268,8 +306,8 @@
     },
     "punch_right/01.png": {
       "page": 0,
-      "x": 524,
-      "y": 631,
+      "x": 898,
+      "y": 632,
       "width": 232,
       "height": 290,
       "source_width": 640,
@@ -279,8 +317,8 @@
     },
     "combo_finisher/01.png": {
       "page": 0,
-      "x": 758,
-      "y": 631,
+      "x": 1132,
+      "y": 632,
       "width": 218,
       "height": 290,
       "source_width": 640,
@@ -290,8 +328,8 @@
     },
     "block/04.png": {
       "page": 0,
-      "x": 978,
-      "y": 631,
+      "x": 1352,
+      "y": 632,
       "width": 214,
       "height": 290,
       "source_width": 640,
@@ -301,8 +339,8 @@
     },
     "punch_left/01.png": {
       "page": 0,
-      "x": 1194,
-      "y": 631,
+      "x": 1568,
+      "y": 632,
       "width": 213,
       "height": 290,
       "source_width": 640,
@@ -310,10 +348,21 @@
       "source_x": 150,
       "source_y": 110
     },
-    "idle_variant_4/04.png": {
+    "idle_variant_4/07.png": {
       "page": 0,
-      "x": 1409,
-      "y": 631,
+      "x": 1783,
+      "y": 632,
+      "width": 211,
+      "height": 290,
+      "source_width": 640,
+      "source_height": 420,
+      "source_x": 214,
+      "source_y": 110
+    },
+    "idle_variant_4/08.png": {
+      "page": 0,
+      "x": 2,
+      "y": 925,
       "width": 211,
       "height": 290,
       "source_width": 640,
@@ -323,8 +372,8 @@
     },
     "block/02.png": {
       "page": 0,
-      "x": 1622,
-      "y": 631,
+      "x": 215,
+      "y": 925,
       "width": 208,
       "height": 290,
       "source_width": 640,
@@ -334,8 +383,8 @@
     },
     "block/03.png": {
       "page": 0,
-      "x": 1832,
-      "y": 631,
+      "x": 425,
+      "y": 925,
       "width": 207,
       "height": 290,
       "source_width": 640,
@@ -345,8 +394,8 @@
     },
     "fall/01.png": {
       "page": 0,
-      "x": 2,
-      "y": 923,
+      "x": 634,
+      "y": 925,
       "width": 206,
       "height": 290,
       "source_width": 640,
@@ -356,8 +405,8 @@
     },
     "dodge/01.png": {
       "page": 0,
-      "x": 210,
-      "y": 923,
+      "x": 842,
+      "y": 925,
       "width": 202,
       "height": 290,
       "source_width": 640,
@@ -367,8 +416,8 @@
     },
     "hit/03.png": {
       "page": 0,
-      "x": 414,
-      "y": 923,
+      "x": 1046,
+      "y": 925,
       "width": 200,
       "height": 290,
       "source_width": 640,
@@ -378,8 +427,8 @@
     },
     "block/01.png": {
       "page": 0,
-      "x": 616,
-      "y": 923,
+      "x": 1248,
+      "y": 925,
       "width": 199,
       "height": 290,
       "source_width": 640,
@@ -387,10 +436,32 @@
       "source_x": 167,
       "source_y": 110
     },
+    "kick_front/01.png": {
+      "page": 0,
+      "x": 1449,
+      "y": 925,
+      "width": 196,
+      "height": 290,
+      "source_width": 640,
+      "source_height": 420,
+      "source_x": 276,
+      "source_y": 110
+    },
+    "kick_front/06.png": {
+      "page": 0,
+      "x": 1647,
+      "y": 925,
+      "width": 196,
+      "height": 290,
+      "source_width": 640,
+      "source_height": 420,
+      "source_x": 275,
+      "source_y": 110
+    },
     "kick_right/01.png": {
       "page": 0,
-      "x": 817,
-      "y": 923,
+      "x": 1845,
+      "y": 925,
       "width": 196,
       "height": 290,
       "source_width": 640,
@@ -400,8 +471,8 @@
     },
     "kick_right/05.png": {
       "page": 0,
-      "x": 1015,
-      "y": 923,
+      "x": 2,
+      "y": 1217,
       "width": 196,
       "height": 290,
       "source_width": 640,
@@ -409,10 +480,10 @@
       "source_x": 275,
       "source_y": 110
     },
-    "idle_variant_3/03.png": {
+    "idle_variant_3/04.png": {
       "page": 0,
-      "x": 1213,
-      "y": 923,
+      "x": 200,
+      "y": 1217,
       "width": 195,
       "height": 290,
       "source_width": 640,
@@ -420,10 +491,43 @@
       "source_x": 222,
       "source_y": 110
     },
+    "idle_variant_3/05.png": {
+      "page": 0,
+      "x": 397,
+      "y": 1217,
+      "width": 195,
+      "height": 290,
+      "source_width": 640,
+      "source_height": 420,
+      "source_x": 222,
+      "source_y": 110
+    },
+    "idle_variant_3/06.png": {
+      "page": 0,
+      "x": 594,
+      "y": 1217,
+      "width": 195,
+      "height": 290,
+      "source_width": 640,
+      "source_height": 420,
+      "source_x": 222,
+      "source_y": 110
+    },
+    "kick_front/05.png": {
+      "page": 0,
+      "x": 791,
+      "y": 1217,
+      "width": 182,
+      "height": 290,
+      "source_width": 640,
+      "source_height": 420,
+      "source_x": 250,
+      "source_y": 110
+    },
     "kick_right/04.png": {
       "page": 0,
-      "x": 1410,
-      "y": 923,
+      "x": 975,
+      "y": 1217,
       "width": 182,
       "height": 290,
       "source_width": 640,
@@ -433,8 +537,8 @@
     },
     "hit/01.png": {
       "page": 0,
-      "x": 1594,
-      "y": 923,
+      "x": 1159,
+      "y": 1217,
       "width": 180,
       "height": 290,
       "source_width": 640,
@@ -444,8 +548,8 @@
     },
     "hit/02.png": {
       "page": 0,
-      "x": 1776,
-      "y": 923,
+      "x": 1341,
+      "y": 1217,
       "width": 164,
       "height": 290,
       "source_width": 640,
@@ -455,8 +559,8 @@
     },
     "air_attack/03.png": {
       "page": 0,
-      "x": 2,
-      "y": 1215,
+      "x": 1507,
+      "y": 1217,
       "width": 162,
       "height": 290,
       "source_width": 640,
@@ -466,8 +570,8 @@
     },
     "idle_variant_3/02.png": {
       "page": 0,
-      "x": 166,
-      "y": 1215,
+      "x": 1671,
+      "y": 1217,
       "width": 162,
       "height": 290,
       "source_width": 640,
@@ -475,10 +579,21 @@
       "source_x": 239,
       "source_y": 110
     },
-    "kick_right/02.png": {
+    "idle_variant_3/03.png": {
       "page": 0,
-      "x": 330,
-      "y": 1215,
+      "x": 1835,
+      "y": 1217,
+      "width": 162,
+      "height": 290,
+      "source_width": 640,
+      "source_height": 420,
+      "source_x": 239,
+      "source_y": 110
+    },
+    "kick_front/02.png": {
+      "page": 0,
+      "x": 2,
+      "y": 1509,
       "width": 162,
       "height": 290,
       "source_width": 640,
@@ -486,10 +601,21 @@
       "source_x": 252,
       "source_y": 110
     },
-    "idle_variant_1/03.png": {
+    "kick_right/02.png": {
       "page": 0,
-      "x": 494,
-      "y": 1215,
+      "x": 166,
+      "y": 1509,
+      "width": 162,
+      "height": 290,
+      "source_width": 640,
+      "source_height": 420,
+      "source_x": 252,
+      "source_y": 110
+    },
+    "idle_variant_1/04.png": {
+      "page": 0,
+      "x": 330,
+      "y": 1509,
       "width": 146,
       "height": 290,
       "source_width": 640,
@@ -497,10 +623,54 @@
       "source_x": 247,
       "source_y": 110
     },
-    "idle_variant_2/03.png": {
+    "idle_variant_1/05.png": {
       "page": 0,
-      "x": 642,
-      "y": 1215,
+      "x": 478,
+      "y": 1509,
+      "width": 146,
+      "height": 290,
+      "source_width": 640,
+      "source_height": 420,
+      "source_x": 247,
+      "source_y": 110
+    },
+    "idle_variant_1/06.png": {
+      "page": 0,
+      "x": 626,
+      "y": 1509,
+      "width": 146,
+      "height": 290,
+      "source_width": 640,
+      "source_height": 420,
+      "source_x": 247,
+      "source_y": 110
+    },
+    "idle_variant_2/04.png": {
+      "page": 0,
+      "x": 774,
+      "y": 1509,
+      "width": 142,
+      "height": 290,
+      "source_width": 640,
+      "source_height": 420,
+      "source_x": 249,
+      "source_y": 110
+    },
+    "idle_variant_2/05.png": {
+      "page": 0,
+      "x": 918,
+      "y": 1509,
+      "width": 142,
+      "height": 290,
+      "source_width": 640,
+      "source_height": 420,
+      "source_x": 249,
+      "source_y": 110
+    },
+    "idle_variant_2/06.png": {
+      "page": 0,
+      "x": 1062,
+      "y": 1509,
       "width": 142,
       "height": 290,
       "source_width": 640,
@@ -510,8 +680,8 @@
     },
     "idle_variant_4/01.png": {
       "page": 0,
-      "x": 786,
-      "y": 1215,
+      "x": 1206,
+      "y": 1509,
       "width": 134,
       "height": 290,
       "source_width": 640,
@@ -521,8 +691,8 @@
     },
     "idle_variant_1/01.png": {
       "page": 0,
-      "x": 922,
-      "y": 1215,
+      "x": 1342,
+      "y": 1509,
       "width": 129,
       "height": 290,
       "source_width": 640,
@@ -532,8 +702,19 @@
     },
     "idle_variant_4/02.png": {
       "page": 0,
-      "x": 1053,
-      "y": 1215,
+      "x": 1473,
+      "y": 1509,
+      "width": 121,
+      "height": 290,
+      "source_width": 640,
+      "source_height": 420,
+      "source_x": 259,
+      "source_y": 110
+    },
+    "idle_variant_4/03.png": {
+      "page": 0,
+      "x": 1596,
+      "y": 1509,
       "width": 121,
       "height": 290,
       "source_width": 640,
@@ -543,8 +724,8 @@
     },
     "walk_down/04.png": {
       "page": 0,
-      "x": 1176,
-      "y": 1215,
+      "x": 1719,
+      "y": 1509,
       "width": 120,
       "height": 290,
       "source_width": 640,
@@ -554,8 +735,8 @@
     },
     "walk_down/02.png": {
       "page": 0,
-      "x": 1298,
-      "y": 1215,
+      "x": 1841,
+      "y": 1509,
       "width": 119,
       "height": 290,
       "source_width": 640,
@@ -563,197 +744,10 @@
       "source_x": 268,
       "source_y": 110
     },
-    "walk_down/03.png": {
-      "page": 0,
-      "x": 1419,
-      "y": 1215,
-      "width": 118,
-      "height": 290,
-      "source_width": 640,
-      "source_height": 420,
-      "source_x": 272,
-      "source_y": 110
-    },
-    "walk_up/01.png": {
-      "page": 0,
-      "x": 1539,
-      "y": 1215,
-      "width": 117,
-      "height": 290,
-      "source_width": 640,
-      "source_height": 420,
-      "source_x": 250,
-      "source_y": 110
-    },
-    "walk_up/03.png": {
-      "page": 0,
-      "x": 1658,
-      "y": 1215,
-      "width": 117,
-      "height": 290,
-      "source_width": 640,
-      "source_height": 420,
-      "source_x": 275,
-      "source_y": 110
-    },
-    "walk_down/05.png": {
-      "page": 0,
-      "x": 1777,
-      "y": 1215,
-      "width": 116,
-      "height": 290,
-      "source_width": 640,
-      "source_height": 420,
-      "source_x": 261,
-      "source_y": 110
-    },
-    "walk_up/05.png": {
-      "page": 0,
-      "x": 1895,
-      "y": 1215,
-      "width": 116,
-      "height": 290,
-      "source_width": 640,
-      "source_height": 420,
-      "source_x": 262,
-      "source_y": 110
-    },
-    "walk_up/02.png": {
-      "page": 0,
-      "x": 2,
-      "y": 1507,
-      "width": 114,
-      "height": 290,
-      "source_width": 640,
-      "source_height": 420,
-      "source_x": 264,
-      "source_y": 110
-    },
-    "walk_up/06.png": {
-      "page": 0,
-      "x": 118,
-      "y": 1507,
-      "width": 112,
-      "height": 290,
-      "source_width": 640,
-      "source_height": 420,
-      "source_x": 276,
-      "source_y": 110
-    },
-    "walk_up/04.png": {
-      "page": 0,
-      "x": 232,
-      "y": 1507,
-      "width": 110,
-      "height": 290,
-      "source_width": 640,
-      "source_height": 420,
-      "source_x": 277,
-      "source_y": 110
-    },
-    "walk_down/01.png": {
-      "page": 0,
-      "x": 344,
-      "y": 1507,
-      "width": 109,
-      "height": 290,
-      "source_width": 640,
-      "source_height": 420,
-      "source_x": 295,
-      "source_y": 110
-    },
-    "walk_down/06.png": {
-      "page": 0,
-      "x": 455,
-      "y": 1507,
-      "width": 108,
-      "height": 290,
-      "source_width": 640,
-      "source_height": 420,
-      "source_x": 292,
-      "source_y": 110
-    },
-    "grab/04.png": {
-      "page": 0,
-      "x": 565,
-      "y": 1507,
-      "width": 205,
-      "height": 289,
-      "source_width": 640,
-      "source_height": 420,
-      "source_x": 217,
-      "source_y": 111
-    },
-    "idle/02.png": {
-      "page": 0,
-      "x": 772,
-      "y": 1507,
-      "width": 168,
-      "height": 289,
-      "source_width": 640,
-      "source_height": 420,
-      "source_x": 236,
-      "source_y": 111
-    },
-    "walk/02.png": {
-      "page": 0,
-      "x": 942,
-      "y": 1507,
-      "width": 156,
-      "height": 289,
-      "source_width": 640,
-      "source_height": 420,
-      "source_x": 242,
-      "source_y": 111
-    },
-    "grab/03.png": {
-      "page": 0,
-      "x": 1100,
-      "y": 1507,
-      "width": 221,
-      "height": 288,
-      "source_width": 640,
-      "source_height": 420,
-      "source_x": 209,
-      "source_y": 112
-    },
-    "walk/03.png": {
-      "page": 0,
-      "x": 1323,
-      "y": 1507,
-      "width": 186,
-      "height": 288,
-      "source_width": 640,
-      "source_height": 420,
-      "source_x": 227,
-      "source_y": 112
-    },
-    "walk/04.png": {
-      "page": 0,
-      "x": 1511,
-      "y": 1507,
-      "width": 165,
-      "height": 288,
-      "source_width": 640,
-      "source_height": 420,
-      "source_x": 237,
-      "source_y": 112
-    },
-    "combo_finisher/02.png": {
-      "page": 0,
-      "x": 1678,
-      "y": 1507,
-      "width": 231,
-      "height": 287,
-      "source_width": 640,
-      "source_height": 420,
-      "source_x": 204,
-      "source_y": 113
-    },
     "jump/04.png": {
       "page": 0,
       "x": 2,
-      "y": 1799,
+      "y": 1801,
       "width": 185,
       "height": 245,
       "source_width": 640,
@@ -764,7 +758,7 @@
     "run/08.png": {
       "page": 0,
       "x": 189,
-      "y": 1799,
+      "y": 1801,
       "width": 261,
       "height": 243,
       "source_width": 640,
@@ -775,7 +769,7 @@
     "brake/02.png": {
       "page": 0,
       "x": 452,
-      "y": 1799,
+      "y": 1801,
       "width": 233,
       "height": 239,
       "source_width": 640,
@@ -786,7 +780,7 @@
     "super/03.png": {
       "page": 0,
       "x": 687,
-      "y": 1799,
+      "y": 1801,
       "width": 262,
       "height": 237,
       "source_width": 640,
@@ -797,7 +791,7 @@
     "jump/05.png": {
       "page": 0,
       "x": 951,
-      "y": 1799,
+      "y": 1801,
       "width": 191,
       "height": 230,
       "source_width": 640,
@@ -808,7 +802,7 @@
     "super/06.png": {
       "page": 0,
       "x": 1144,
-      "y": 1799,
+      "y": 1801,
       "width": 324,
       "height": 226,
       "source_width": 640,
@@ -819,7 +813,7 @@
     "run/06.png": {
       "page": 0,
       "x": 1470,
-      "y": 1799,
+      "y": 1801,
       "width": 180,
       "height": 226,
       "source_width": 640,
@@ -830,7 +824,7 @@
     "run/02.png": {
       "page": 0,
       "x": 1652,
-      "y": 1799,
+      "y": 1801,
       "width": 194,
       "height": 225,
       "source_width": 640,
@@ -838,10 +832,197 @@
       "source_x": 223,
       "source_y": 175
     },
-    "brake/04.png": {
+    "walk_down/03.png": {
       "page": 1,
       "x": 2,
       "y": 2,
+      "width": 118,
+      "height": 290,
+      "source_width": 640,
+      "source_height": 420,
+      "source_x": 272,
+      "source_y": 110
+    },
+    "walk_up/01.png": {
+      "page": 1,
+      "x": 122,
+      "y": 2,
+      "width": 117,
+      "height": 290,
+      "source_width": 640,
+      "source_height": 420,
+      "source_x": 250,
+      "source_y": 110
+    },
+    "walk_up/03.png": {
+      "page": 1,
+      "x": 241,
+      "y": 2,
+      "width": 117,
+      "height": 290,
+      "source_width": 640,
+      "source_height": 420,
+      "source_x": 275,
+      "source_y": 110
+    },
+    "walk_down/05.png": {
+      "page": 1,
+      "x": 360,
+      "y": 2,
+      "width": 116,
+      "height": 290,
+      "source_width": 640,
+      "source_height": 420,
+      "source_x": 261,
+      "source_y": 110
+    },
+    "walk_up/05.png": {
+      "page": 1,
+      "x": 478,
+      "y": 2,
+      "width": 116,
+      "height": 290,
+      "source_width": 640,
+      "source_height": 420,
+      "source_x": 262,
+      "source_y": 110
+    },
+    "walk_up/02.png": {
+      "page": 1,
+      "x": 596,
+      "y": 2,
+      "width": 114,
+      "height": 290,
+      "source_width": 640,
+      "source_height": 420,
+      "source_x": 264,
+      "source_y": 110
+    },
+    "walk_up/06.png": {
+      "page": 1,
+      "x": 712,
+      "y": 2,
+      "width": 112,
+      "height": 290,
+      "source_width": 640,
+      "source_height": 420,
+      "source_x": 276,
+      "source_y": 110
+    },
+    "walk_up/04.png": {
+      "page": 1,
+      "x": 826,
+      "y": 2,
+      "width": 110,
+      "height": 290,
+      "source_width": 640,
+      "source_height": 420,
+      "source_x": 277,
+      "source_y": 110
+    },
+    "walk_down/01.png": {
+      "page": 1,
+      "x": 938,
+      "y": 2,
+      "width": 109,
+      "height": 290,
+      "source_width": 640,
+      "source_height": 420,
+      "source_x": 295,
+      "source_y": 110
+    },
+    "walk_down/06.png": {
+      "page": 1,
+      "x": 1049,
+      "y": 2,
+      "width": 108,
+      "height": 290,
+      "source_width": 640,
+      "source_height": 420,
+      "source_x": 292,
+      "source_y": 110
+    },
+    "grab/04.png": {
+      "page": 1,
+      "x": 1159,
+      "y": 2,
+      "width": 205,
+      "height": 289,
+      "source_width": 640,
+      "source_height": 420,
+      "source_x": 217,
+      "source_y": 111
+    },
+    "idle/02.png": {
+      "page": 1,
+      "x": 1366,
+      "y": 2,
+      "width": 168,
+      "height": 289,
+      "source_width": 640,
+      "source_height": 420,
+      "source_x": 236,
+      "source_y": 111
+    },
+    "walk/02.png": {
+      "page": 1,
+      "x": 1536,
+      "y": 2,
+      "width": 156,
+      "height": 289,
+      "source_width": 640,
+      "source_height": 420,
+      "source_x": 242,
+      "source_y": 111
+    },
+    "grab/03.png": {
+      "page": 1,
+      "x": 1694,
+      "y": 2,
+      "width": 221,
+      "height": 288,
+      "source_width": 640,
+      "source_height": 420,
+      "source_x": 209,
+      "source_y": 112
+    },
+    "walk/03.png": {
+      "page": 1,
+      "x": 2,
+      "y": 294,
+      "width": 186,
+      "height": 288,
+      "source_width": 640,
+      "source_height": 420,
+      "source_x": 227,
+      "source_y": 112
+    },
+    "walk/04.png": {
+      "page": 1,
+      "x": 190,
+      "y": 294,
+      "width": 165,
+      "height": 288,
+      "source_width": 640,
+      "source_height": 420,
+      "source_x": 237,
+      "source_y": 112
+    },
+    "combo_finisher/02.png": {
+      "page": 1,
+      "x": 357,
+      "y": 294,
+      "width": 231,
+      "height": 287,
+      "source_width": 640,
+      "source_height": 420,
+      "source_x": 204,
+      "source_y": 113
+    },
+    "brake/04.png": {
+      "page": 1,
+      "x": 590,
+      "y": 294,
       "width": 167,
       "height": 287,
       "source_width": 640,
@@ -851,8 +1032,8 @@
     },
     "combo_finisher/05.png": {
       "page": 1,
-      "x": 171,
-      "y": 2,
+      "x": 759,
+      "y": 294,
       "width": 167,
       "height": 287,
       "source_width": 640,
@@ -862,8 +1043,8 @@
     },
     "dodge/05.png": {
       "page": 1,
-      "x": 340,
-      "y": 2,
+      "x": 928,
+      "y": 294,
       "width": 167,
       "height": 287,
       "source_width": 640,
@@ -873,8 +1054,8 @@
     },
     "getup/05.png": {
       "page": 1,
-      "x": 509,
-      "y": 2,
+      "x": 1097,
+      "y": 294,
       "width": 167,
       "height": 287,
       "source_width": 640,
@@ -884,8 +1065,8 @@
     },
     "hit/04.png": {
       "page": 1,
-      "x": 678,
-      "y": 2,
+      "x": 1266,
+      "y": 294,
       "width": 167,
       "height": 287,
       "source_width": 640,
@@ -895,8 +1076,8 @@
     },
     "idle/01.png": {
       "page": 1,
-      "x": 847,
-      "y": 2,
+      "x": 1435,
+      "y": 294,
       "width": 167,
       "height": 287,
       "source_width": 640,
@@ -904,10 +1085,10 @@
       "source_x": 236,
       "source_y": 113
     },
-    "idle_variant_1/04.png": {
+    "idle_variant_1/07.png": {
       "page": 1,
-      "x": 1016,
-      "y": 2,
+      "x": 1604,
+      "y": 294,
       "width": 167,
       "height": 287,
       "source_width": 640,
@@ -915,10 +1096,10 @@
       "source_x": 236,
       "source_y": 113
     },
-    "idle_variant_2/04.png": {
+    "idle_variant_2/07.png": {
       "page": 1,
-      "x": 1185,
-      "y": 2,
+      "x": 1773,
+      "y": 294,
       "width": 167,
       "height": 287,
       "source_width": 640,
@@ -926,10 +1107,10 @@
       "source_x": 236,
       "source_y": 113
     },
-    "idle_variant_3/04.png": {
+    "idle_variant_3/07.png": {
       "page": 1,
-      "x": 1354,
-      "y": 2,
+      "x": 2,
+      "y": 584,
       "width": 167,
       "height": 287,
       "source_width": 640,
@@ -937,10 +1118,10 @@
       "source_x": 236,
       "source_y": 113
     },
-    "idle_variant_4/05.png": {
+    "idle_variant_4/09.png": {
       "page": 1,
-      "x": 1523,
-      "y": 2,
+      "x": 171,
+      "y": 584,
       "width": 167,
       "height": 287,
       "source_width": 640,
@@ -950,8 +1131,19 @@
     },
     "jump/08.png": {
       "page": 1,
-      "x": 1692,
-      "y": 2,
+      "x": 340,
+      "y": 584,
+      "width": 167,
+      "height": 287,
+      "source_width": 640,
+      "source_height": 420,
+      "source_x": 236,
+      "source_y": 113
+    },
+    "kick_front/07.png": {
+      "page": 1,
+      "x": 509,
+      "y": 584,
       "width": 167,
       "height": 287,
       "source_width": 640,
@@ -961,8 +1153,8 @@
     },
     "kick_right/06.png": {
       "page": 1,
-      "x": 1861,
-      "y": 2,
+      "x": 678,
+      "y": 584,
       "width": 167,
       "height": 287,
       "source_width": 640,
@@ -972,8 +1164,8 @@
     },
     "punch_left/04.png": {
       "page": 1,
-      "x": 2,
-      "y": 291,
+      "x": 847,
+      "y": 584,
       "width": 167,
       "height": 287,
       "source_width": 640,
@@ -983,8 +1175,8 @@
     },
     "punch_right/04.png": {
       "page": 1,
-      "x": 171,
-      "y": 291,
+      "x": 1016,
+      "y": 584,
       "width": 167,
       "height": 287,
       "source_width": 640,
@@ -994,8 +1186,8 @@
     },
     "super/08.png": {
       "page": 1,
-      "x": 340,
-      "y": 291,
+      "x": 1185,
+      "y": 584,
       "width": 167,
       "height": 287,
       "source_width": 640,
@@ -1005,8 +1197,8 @@
     },
     "throw/05.png": {
       "page": 1,
-      "x": 509,
-      "y": 291,
+      "x": 1354,
+      "y": 584,
       "width": 167,
       "height": 287,
       "source_width": 640,
@@ -1016,8 +1208,8 @@
     },
     "idle_variant_3/01.png": {
       "page": 1,
-      "x": 678,
-      "y": 291,
+      "x": 1523,
+      "y": 584,
       "width": 160,
       "height": 287,
       "source_width": 640,
@@ -1027,8 +1219,8 @@
     },
     "idle_variant_2/02.png": {
       "page": 1,
-      "x": 840,
-      "y": 291,
+      "x": 1685,
+      "y": 584,
       "width": 130,
       "height": 287,
       "source_width": 640,
@@ -1036,10 +1228,43 @@
       "source_x": 255,
       "source_y": 113
     },
+    "idle_variant_2/03.png": {
+      "page": 1,
+      "x": 1817,
+      "y": 584,
+      "width": 130,
+      "height": 287,
+      "source_width": 640,
+      "source_height": 420,
+      "source_x": 255,
+      "source_y": 113
+    },
+    "air_punch/03.png": {
+      "page": 1,
+      "x": 2,
+      "y": 873,
+      "width": 316,
+      "height": 286,
+      "source_width": 640,
+      "source_height": 420,
+      "source_x": 202,
+      "source_y": 114
+    },
+    "air_punch/04.png": {
+      "page": 1,
+      "x": 320,
+      "y": 873,
+      "width": 316,
+      "height": 286,
+      "source_width": 640,
+      "source_height": 420,
+      "source_x": 202,
+      "source_y": 114
+    },
     "air_attack/04.png": {
       "page": 1,
-      "x": 972,
-      "y": 291,
+      "x": 638,
+      "y": 873,
       "width": 290,
       "height": 286,
       "source_width": 640,
@@ -1049,8 +1274,8 @@
     },
     "kick_right/03.png": {
       "page": 1,
-      "x": 1264,
-      "y": 291,
+      "x": 930,
+      "y": 873,
       "width": 290,
       "height": 286,
       "source_width": 640,
@@ -1058,10 +1283,32 @@
       "source_x": 254,
       "source_y": 114
     },
+    "kick_front/03.png": {
+      "page": 1,
+      "x": 1222,
+      "y": 873,
+      "width": 281,
+      "height": 286,
+      "source_width": 640,
+      "source_height": 420,
+      "source_x": 286,
+      "source_y": 114
+    },
+    "kick_front/04.png": {
+      "page": 1,
+      "x": 1505,
+      "y": 873,
+      "width": 281,
+      "height": 286,
+      "source_width": 640,
+      "source_height": 420,
+      "source_x": 286,
+      "source_y": 114
+    },
     "walk/07.png": {
       "page": 1,
-      "x": 1556,
-      "y": 291,
+      "x": 1788,
+      "y": 873,
       "width": 191,
       "height": 286,
       "source_width": 640,
@@ -1071,8 +1318,19 @@
     },
     "air_attack/05.png": {
       "page": 1,
-      "x": 1749,
-      "y": 291,
+      "x": 2,
+      "y": 1161,
+      "width": 217,
+      "height": 279,
+      "source_width": 640,
+      "source_height": 420,
+      "source_x": 211,
+      "source_y": 121
+    },
+    "air_punch/05.png": {
+      "page": 1,
+      "x": 221,
+      "y": 1161,
       "width": 217,
       "height": 279,
       "source_width": 640,
@@ -1082,8 +1340,8 @@
     },
     "jump/06.png": {
       "page": 1,
-      "x": 2,
-      "y": 580,
+      "x": 440,
+      "y": 1161,
       "width": 217,
       "height": 279,
       "source_width": 640,
@@ -1093,8 +1351,8 @@
     },
     "punch_right/02.png": {
       "page": 1,
-      "x": 221,
-      "y": 580,
+      "x": 659,
+      "y": 1161,
       "width": 290,
       "height": 277,
       "source_width": 640,
@@ -1104,8 +1362,19 @@
     },
     "air_attack/01.png": {
       "page": 1,
-      "x": 513,
-      "y": 580,
+      "x": 951,
+      "y": 1161,
+      "width": 229,
+      "height": 275,
+      "source_width": 640,
+      "source_height": 420,
+      "source_x": 205,
+      "source_y": 125
+    },
+    "air_punch/01.png": {
+      "page": 1,
+      "x": 1182,
+      "y": 1161,
       "width": 229,
       "height": 275,
       "source_width": 640,
@@ -1115,8 +1384,8 @@
     },
     "jump/02.png": {
       "page": 1,
-      "x": 744,
-      "y": 580,
+      "x": 1413,
+      "y": 1161,
       "width": 229,
       "height": 275,
       "source_width": 640,
@@ -1126,8 +1395,19 @@
     },
     "air_attack/02.png": {
       "page": 1,
-      "x": 975,
-      "y": 580,
+      "x": 1644,
+      "y": 1161,
+      "width": 215,
+      "height": 272,
+      "source_width": 640,
+      "source_height": 420,
+      "source_x": 212,
+      "source_y": 128
+    },
+    "air_punch/02.png": {
+      "page": 1,
+      "x": 2,
+      "y": 1442,
       "width": 215,
       "height": 272,
       "source_width": 640,
@@ -1137,8 +1417,8 @@
     },
     "jump/03.png": {
       "page": 1,
-      "x": 1192,
-      "y": 580,
+      "x": 219,
+      "y": 1442,
       "width": 215,
       "height": 272,
       "source_width": 640,
@@ -1148,8 +1428,8 @@
     },
     "punch_right/03.png": {
       "page": 1,
-      "x": 1409,
-      "y": 580,
+      "x": 436,
+      "y": 1442,
       "width": 290,
       "height": 268,
       "source_width": 640,
@@ -1159,8 +1439,8 @@
     },
     "fall/02.png": {
       "page": 1,
-      "x": 1701,
-      "y": 580,
+      "x": 728,
+      "y": 1442,
       "width": 284,
       "height": 263,
       "source_width": 640,
@@ -1170,8 +1450,8 @@
     },
     "run/04.png": {
       "page": 1,
-      "x": 2,
-      "y": 861,
+      "x": 1014,
+      "y": 1442,
       "width": 249,
       "height": 256,
       "source_width": 640,
@@ -1181,8 +1461,8 @@
     },
     "throw/03.png": {
       "page": 1,
-      "x": 253,
-      "y": 861,
+      "x": 1265,
+      "y": 1442,
       "width": 303,
       "height": 255,
       "source_width": 640,
@@ -1192,8 +1472,8 @@
     },
     "super/02.png": {
       "page": 1,
-      "x": 558,
-      "y": 861,
+      "x": 1570,
+      "y": 1442,
       "width": 232,
       "height": 255,
       "source_width": 640,
@@ -1203,8 +1483,8 @@
     },
     "super/05.png": {
       "page": 1,
-      "x": 792,
-      "y": 861,
+      "x": 2,
+      "y": 1716,
       "width": 341,
       "height": 253,
       "source_width": 640,
@@ -1214,8 +1494,8 @@
     },
     "run/07.png": {
       "page": 1,
-      "x": 1135,
-      "y": 861,
+      "x": 345,
+      "y": 1716,
       "width": 266,
       "height": 252,
       "source_width": 640,
@@ -1225,8 +1505,8 @@
     },
     "super/07.png": {
       "page": 1,
-      "x": 1403,
-      "y": 861,
+      "x": 613,
+      "y": 1716,
       "width": 277,
       "height": 250,
       "source_width": 640,
@@ -1236,8 +1516,8 @@
     },
     "run/03.png": {
       "page": 1,
-      "x": 1682,
-      "y": 861,
+      "x": 892,
+      "y": 1716,
       "width": 254,
       "height": 249,
       "source_width": 640,
@@ -1247,8 +1527,8 @@
     },
     "run/01.png": {
       "page": 1,
-      "x": 2,
-      "y": 1119,
+      "x": 1148,
+      "y": 1716,
       "width": 247,
       "height": 249,
       "source_width": 640,
@@ -1258,8 +1538,8 @@
     },
     "run/05.png": {
       "page": 1,
-      "x": 251,
-      "y": 1119,
+      "x": 1397,
+      "y": 1716,
       "width": 236,
       "height": 249,
       "source_width": 640,
@@ -1269,8 +1549,8 @@
     },
     "getup/04.png": {
       "page": 1,
-      "x": 489,
-      "y": 1119,
+      "x": 1635,
+      "y": 1716,
       "width": 231,
       "height": 249,
       "source_width": 640,
@@ -1279,9 +1559,9 @@
       "source_y": 151
     },
     "getup/03.png": {
-      "page": 1,
-      "x": 722,
-      "y": 1119,
+      "page": 2,
+      "x": 2,
+      "y": 2,
       "width": 206,
       "height": 249,
       "source_width": 640,
@@ -1290,9 +1570,9 @@
       "source_y": 151
     },
     "jump/01.png": {
-      "page": 1,
-      "x": 930,
-      "y": 1119,
+      "page": 2,
+      "x": 210,
+      "y": 2,
       "width": 199,
       "height": 224,
       "source_width": 640,
@@ -1301,9 +1581,9 @@
       "source_y": 176
     },
     "dodge/02.png": {
-      "page": 1,
-      "x": 1131,
-      "y": 1119,
+      "page": 2,
+      "x": 411,
+      "y": 2,
       "width": 235,
       "height": 215,
       "source_width": 640,
@@ -1312,9 +1592,9 @@
       "source_y": 185
     },
     "super/01.png": {
-      "page": 1,
-      "x": 1368,
-      "y": 1119,
+      "page": 2,
+      "x": 648,
+      "y": 2,
       "width": 237,
       "height": 207,
       "source_width": 640,
@@ -1323,9 +1603,9 @@
       "source_y": 193
     },
     "brake/01.png": {
-      "page": 1,
-      "x": 1607,
-      "y": 1119,
+      "page": 2,
+      "x": 887,
+      "y": 2,
       "width": 227,
       "height": 207,
       "source_width": 640,
@@ -1334,9 +1614,9 @@
       "source_y": 193
     },
     "super/04.png": {
-      "page": 1,
-      "x": 2,
-      "y": 1370,
+      "page": 2,
+      "x": 1116,
+      "y": 2,
       "width": 322,
       "height": 187,
       "source_width": 640,
@@ -1345,9 +1625,20 @@
       "source_y": 213
     },
     "air_attack/06.png": {
-      "page": 1,
-      "x": 326,
-      "y": 1370,
+      "page": 2,
+      "x": 1440,
+      "y": 2,
+      "width": 213,
+      "height": 180,
+      "source_width": 640,
+      "source_height": 420,
+      "source_x": 213,
+      "source_y": 220
+    },
+    "air_punch/06.png": {
+      "page": 2,
+      "x": 1655,
+      "y": 2,
       "width": 213,
       "height": 180,
       "source_width": 640,
@@ -1356,9 +1647,9 @@
       "source_y": 220
     },
     "jump/07.png": {
-      "page": 1,
-      "x": 541,
-      "y": 1370,
+      "page": 2,
+      "x": 2,
+      "y": 253,
       "width": 213,
       "height": 180,
       "source_width": 640,
@@ -1367,9 +1658,9 @@
       "source_y": 220
     },
     "brake/03.png": {
-      "page": 1,
-      "x": 756,
-      "y": 1370,
+      "page": 2,
+      "x": 217,
+      "y": 253,
       "width": 184,
       "height": 167,
       "source_width": 640,
@@ -1378,9 +1669,9 @@
       "source_y": 233
     },
     "dodge/03.png": {
-      "page": 1,
-      "x": 942,
-      "y": 1370,
+      "page": 2,
+      "x": 403,
+      "y": 253,
       "width": 248,
       "height": 157,
       "source_width": 640,
@@ -1389,9 +1680,9 @@
       "source_y": 243
     },
     "fall/03.png": {
-      "page": 1,
-      "x": 1192,
-      "y": 1370,
+      "page": 2,
+      "x": 653,
+      "y": 253,
       "width": 278,
       "height": 154,
       "source_width": 640,
@@ -1400,9 +1691,9 @@
       "source_y": 246
     },
     "getup/02.png": {
-      "page": 1,
-      "x": 1472,
-      "y": 1370,
+      "page": 2,
+      "x": 933,
+      "y": 253,
       "width": 278,
       "height": 124,
       "source_width": 640,
@@ -1411,9 +1702,9 @@
       "source_y": 276
     },
     "fall/04.png": {
-      "page": 1,
-      "x": 1752,
-      "y": 1370,
+      "page": 2,
+      "x": 1213,
+      "y": 253,
       "width": 278,
       "height": 123,
       "source_width": 640,
@@ -1422,9 +1713,9 @@
       "source_y": 277
     },
     "fall/05.png": {
-      "page": 1,
-      "x": 2,
-      "y": 1559,
+      "page": 2,
+      "x": 1493,
+      "y": 253,
       "width": 278,
       "height": 80,
       "source_width": 640,
@@ -1433,9 +1724,9 @@
       "source_y": 320
     },
     "getup/01.png": {
-      "page": 1,
-      "x": 282,
-      "y": 1559,
+      "page": 2,
+      "x": 2,
+      "y": 435,
       "width": 278,
       "height": 80,
       "source_width": 640,

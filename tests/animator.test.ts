@@ -51,6 +51,15 @@ test('fitDuration adatta il clip alla finestra di attacco', () => {
   assert.equal(animator.finished, true);
 });
 
+test('seekNormalized riallinea la posa del salto alla parabola fisica', () => {
+  const animator = new Animator(bank(), 'walk');
+  animator.seekNormalized(0.74);
+  assert.equal(animator.frameIndex, 2);
+  assert.ok(animator.frameElapsed > 0.09 && animator.frameElapsed < 0.10);
+  animator.seekNormalized(5);
+  assert.equal(animator.frameIndex, 3);
+});
+
 test('il cambio clip conserva brevemente la posa precedente senza alterare il timing', () => {
   const animator = new Animator(bank(), 'idle');
   const previous = animator.frame;

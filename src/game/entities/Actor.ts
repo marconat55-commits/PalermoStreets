@@ -35,6 +35,7 @@ export class Actor {
   verticalVelocity = 0;
   landedThisFrame = false;
   landingImpact = 0;
+  private remainingKnockdownBounces = 0;
   dead = false;
   removeReady = false;
 
@@ -136,8 +137,16 @@ export class Actor {
       this.landedThisFrame = launch.landed;
       if (launch.landed) {
         this.landingImpact = impactVelocity;
-        this.velocity.x *= 0.42;
-        this.velocity.y *= 0.42;
+        if (this.remainingKnockdownBounces > 0 && impactVelocity >= 285) {
+          this.remainingKnockdownBounces -= 1;
+          this.elevation = 1;
+          this.verticalVelocity = impactVelocity * 0.31;
+          this.velocity.x *= 0.74;
+          this.velocity.y *= 0.58;
+        } else {
+          this.velocity.x *= 0.42;
+          this.velocity.y *= 0.42;
+        }
       }
     }
     this.syncVisual(changed);
@@ -163,6 +172,7 @@ export class Actor {
     this.velocity = { ...knockback };
     const killed = this.health <= 0;
     if (killed) {
+      this.remainingKnockdownBounces = launchVelocity >= 560 ? 2 : launchVelocity >= 420 ? 1 : 0;
       this.elevation = launchVelocity > 0 ? 1 : 0;
       this.verticalVelocity = Math.max(0, launchVelocity);
       this.dead = true;
@@ -171,12 +181,14 @@ export class Actor {
       return { accepted: true, killed: true, knockedDown: true };
     }
     if (knockdown) {
+      this.remainingKnockdownBounces = launchVelocity >= 560 ? 2 : launchVelocity >= 420 ? 1 : 0;
       this.elevation = launchVelocity > 0 ? 1 : 0;
       this.verticalVelocity = Math.max(0, launchVelocity);
       this.beginState('knockdown', 'knockdown');
       this.invulnerable = 0.55;
       return { accepted: true, killed: false, knockedDown: true };
     }
+    this.remainingKnockdownBounces = 0;
     this.beginState('hit', 'hit');
     return { accepted: true, killed: false, knockedDown: false };
   }

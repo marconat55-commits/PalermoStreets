@@ -1,5 +1,5 @@
 import type { CombatEvent, Vec2 } from '../types';
-import { canAcquireAttackTarget, GRAB_STRIKE, KICK_RIGHT, LIGHT_COMBO, SUPER, THROW } from './attacks';
+import { canAcquireAttackTarget, GRAB_STRIKE, THROW } from './attacks';
 import type { Player } from '../entities/Player';
 import type { Enemy } from '../entities/Enemy';
 import type { Actor, HitResult } from '../entities/Actor';
@@ -46,7 +46,7 @@ export function resolvePlayerAttack(player: Player, enemies: Enemy[]): CombatEve
     events.push({
       position: { x: hb.x + hb.width / 2, y: hb.y + hb.height / 2 },
       damage: attack.damage,
-      heavy: attack === KICK_RIGHT || attack === SUPER || attack === LIGHT_COMBO[LIGHT_COMBO.length - 1],
+      heavy: attack.knockdown ?? false,
       hitStop: attack.hitStop,
       shake: attack.shake,
       targetKilled: result.killed,

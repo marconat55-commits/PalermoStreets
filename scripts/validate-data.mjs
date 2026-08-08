@@ -49,8 +49,8 @@ for (const id of index.characters) {
 
   const required = profile.role === 'player'
     ? [
-      'idle', 'walk', 'walk_up', 'walk_down', 'run', 'brake', 'jump', 'air_attack',
-      'punch_left', 'punch_right', 'combo_finisher', 'kick_right', 'block', 'dodge',
+      'idle', 'walk', 'walk_up', 'walk_down', 'run', 'brake', 'jump', 'air_attack', 'air_punch',
+      'punch_left', 'punch_right', 'combo_finisher', 'kick_front', 'kick_right', 'kick_finisher', 'block', 'dodge',
       'grab', 'grab_strike', 'throw', 'super', 'hit', 'knockdown', 'getup', 'dead',
     ]
     : ['idle', 'walk', 'attack', 'heavy', 'hit', 'knockdown', 'getup', 'dead'];

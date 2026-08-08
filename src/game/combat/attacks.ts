@@ -10,34 +10,50 @@ export const PUNCH_RIGHT: AttackData = {
 };
 export const COMBO_FINISHER: AttackData = {
   name: 'combo_finisher', damage: 27, startup: 0.14, active: 0.13, recovery: 0.27,
-  rangeX: 116, rangeY: 66, knockbackX: 360, knockbackY: 0, furyGain: 13, hitStop: 0.078, shake: 8,
-  knockdown: true, launchVelocity: 385,
+  rangeX: 122, rangeY: 66, knockbackX: 470, knockbackY: 0, furyGain: 13, hitStop: 0.086, shake: 10,
+  knockdown: true, launchVelocity: 430,
+};
+export const KICK_FRONT: AttackData = {
+  name: 'kick_front', damage: 13, startup: 0.12, active: 0.10, recovery: 0.17,
+  rangeX: 122, rangeY: 60, knockbackX: 190, knockbackY: 0, furyGain: 6, hitStop: 0.050, shake: 4,
 };
 export const KICK_RIGHT: AttackData = {
-  name: 'kick_right', damage: 30, startup: 0.20, active: 0.14, recovery: 0.34,
-  rangeX: 132, rangeY: 62, knockbackX: 390, knockbackY: 0, furyGain: 15, hitStop: 0.085, shake: 9,
-  knockdown: true, launchVelocity: 420,
+  name: 'kick_right', damage: 19, startup: 0.14, active: 0.11, recovery: 0.22,
+  rangeX: 136, rangeY: 64, knockbackX: 285, knockbackY: 0, furyGain: 9, hitStop: 0.064, shake: 6,
+};
+export const KICK_FINISHER: AttackData = {
+  name: 'kick_finisher', damage: 32, startup: 0.17, active: 0.13, recovery: 0.30,
+  rangeX: 148, rangeY: 68, knockbackX: 590, knockbackY: 0, furyGain: 16, hitStop: 0.096, shake: 12,
+  knockdown: true, launchVelocity: 480,
 };
 export const SUPER: AttackData = {
   name: 'super', damage: 52, startup: 0.18, active: 0.34, recovery: 0.38,
-  rangeX: 158, rangeY: 74, knockbackX: 560, knockbackY: 0, furyGain: 0, hitStop: 0.115, shake: 15,
-  knockdown: true, multiHit: true, launchVelocity: 520,
+  rangeX: 168, rangeY: 76, knockbackX: 780, knockbackY: 0, furyGain: 0, hitStop: 0.125, shake: 18,
+  knockdown: true, multiHit: true, launchVelocity: 590,
 };
-export const AIR_ATTACK: AttackData = {
+export const AIR_PUNCH: AttackData = {
+  name: 'air_punch', damage: 24, startup: 0.08, active: 0.14, recovery: 0.15,
+  rangeX: 142, rangeY: 62, knockbackX: 440, knockbackY: 0, furyGain: 11, hitStop: 0.074, shake: 8,
+  knockdown: true, launchVelocity: 425,
+};
+export const AIR_KICK: AttackData = {
   name: 'air_attack', damage: 26, startup: 0.10, active: 0.16, recovery: 0.18,
-  rangeX: 126, rangeY: 58, knockbackX: 330, knockbackY: 0, furyGain: 12, hitStop: 0.072, shake: 7,
-  knockdown: true, launchVelocity: 450,
+  rangeX: 142, rangeY: 64, knockbackX: 520, knockbackY: 0, furyGain: 13, hitStop: 0.084, shake: 10,
+  knockdown: true, launchVelocity: 465,
 };
+/** Backward-compatible name used by earlier tests and documentation. */
+export const AIR_ATTACK = AIR_KICK;
 export const GRAB_STRIKE: AttackData = {
   name: 'grab_strike', damage: 18, startup: 0.10, active: 0.12, recovery: 0.18,
   rangeX: 76, rangeY: 72, knockbackX: 0, knockbackY: 0, furyGain: 8, hitStop: 0.060, shake: 5,
 };
 export const THROW: AttackData = {
   name: 'throw', damage: 34, startup: 0.18, active: 0.12, recovery: 0.32,
-  rangeX: 92, rangeY: 78, knockbackX: 470, knockbackY: 0, furyGain: 16, hitStop: 0.090, shake: 11,
-  knockdown: true, launchVelocity: 485,
+  rangeX: 96, rangeY: 80, knockbackX: 700, knockbackY: 0, furyGain: 16, hitStop: 0.105, shake: 14,
+  knockdown: true, launchVelocity: 520,
 };
 export const LIGHT_COMBO = [PUNCH_LEFT, PUNCH_RIGHT, COMBO_FINISHER] as const;
+export const KICK_COMBO = [KICK_FRONT, KICK_RIGHT, KICK_FINISHER] as const;
 export const ENEMY_ATTACK: AttackData = {
   name: 'attack', damage: 10, startup: 0.48, active: 0.12, recovery: 0.56,
   rangeX: 84, rangeY: 56, knockbackX: 175, knockbackY: 0, furyGain: 0, hitStop: 0.05, shake: 3,

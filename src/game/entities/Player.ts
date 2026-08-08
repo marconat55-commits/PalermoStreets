@@ -2,9 +2,10 @@ import { Actor, type HitResult } from './Actor';
 import type { AnimationBank, AttackData, Rect, Vec2 } from '../types';
 import { FURY_MAX } from '../config';
 import {
-  AIR_ATTACK,
+  AIR_KICK,
+  AIR_PUNCH,
   GRAB_STRIKE,
-  KICK_RIGHT,
+  KICK_COMBO,
   LIGHT_COMBO,
   SUPER,
   THROW,
@@ -22,7 +23,7 @@ const RUN_TAP_WINDOW = 0.26;
 const DODGE_DURATION = 0.34;
 const JUMP_GRAVITY = 1550;
 const JUMP_VELOCITY = 620;
-const IDLE_VARIANT_DELAY = 4.2;
+const IDLE_VARIANT_DELAY = 4.8;
 
 export interface PlayerHitResult extends HitResult {
   blocked: boolean;
@@ -40,6 +41,7 @@ export class Player extends Actor {
   attackHits = new Set<number>();
   comboStep = 0;
   nextPunchIndex = 0;
+  nextKickIndex = 0;
   comboCounter = 0;
   comboDisplayTimer = 0;
   autoTargetX: number | null = null;
@@ -51,6 +53,9 @@ export class Player extends Actor {
   private runningDirection: -1 | 0 | 1 = 0;
   private dodgeDirection: Vec2 = { x: 1, y: 0 };
   private airVelocity = 0;
+  private airMomentumX = 0;
+  private jumpElapsed = 0;
+  private jumpDuration = (JUMP_VELOCITY * 2) / JUMP_GRAVITY;
   private readonly idleVariants: string[];
   private idleVariantIndex = 0;
   private idleStillTime = 0;
@@ -78,7 +83,7 @@ export class Player extends Actor {
   }
 
   get isAirborne(): boolean {
-    return this.elevation > 0 || this.state === 'jump' || this.currentAttack === AIR_ATTACK;
+    return this.elevation > 0 || this.state === 'jump' || this.currentAttack === AIR_PUNCH || this.currentAttack === AIR_KICK;
   }
 
   get canStartGrab(): boolean {
@@ -98,13 +103,18 @@ export class Player extends Actor {
   private requestAttack(attack: AttackData, chainable = false): boolean {
     if (this.dead || this.elevation > 0 || ['hit', 'knockdown', 'getup', 'dodge', 'block', 'grab'].includes(this.state)) return false;
     if (this.state === 'attack') {
+      const currentCombo: readonly AttackData[] | null = this.currentAttack && LIGHT_COMBO.includes(this.currentAttack as typeof LIGHT_COMBO[number])
+        ? LIGHT_COMBO
+        : this.currentAttack && KICK_COMBO.includes(this.currentAttack as typeof KICK_COMBO[number])
+          ? KICK_COMBO
+          : null;
       if (
         chainable &&
         this.currentAttack !== null &&
-        LIGHT_COMBO.includes(this.currentAttack as typeof LIGHT_COMBO[number]) &&
-        LIGHT_COMBO.includes(attack as typeof LIGHT_COMBO[number]) &&
+        currentCombo !== null &&
+        currentCombo.includes(attack) &&
         attack !== this.currentAttack &&
-        this.attackElapsed >= this.currentAttack.startup + this.currentAttack.active * 0.45
+        this.queuedAttack === null
       ) {
         this.queuedAttack = attack;
         return true;
@@ -132,7 +142,16 @@ export class Player extends Actor {
   }
 
   requestKick(): boolean {
-    return this.requestAttack(KICK_RIGHT);
+    let attack: typeof KICK_COMBO[number];
+    if (this.state === 'attack' && this.currentAttack) {
+      const currentIndex = KICK_COMBO.indexOf(this.currentAttack as typeof KICK_COMBO[number]);
+      attack = KICK_COMBO[(currentIndex + 1) % KICK_COMBO.length]!;
+    } else {
+      attack = KICK_COMBO[this.nextKickIndex]!;
+    }
+    const accepted = this.requestAttack(attack, true);
+    if (accepted) this.nextKickIndex = (KICK_COMBO.indexOf(attack) + 1) % KICK_COMBO.length;
+    return accepted;
   }
 
   requestSuper(): boolean {
@@ -155,25 +174,44 @@ export class Player extends Actor {
 
   requestJump(): boolean {
     if (this.dead || this.elevation > 0 || !['idle', 'walk', 'run'].includes(this.state)) return false;
+    const launchDirection = this.runningDirection !== 0 ? this.runningDirection : 0;
+    this.airMomentumX = launchDirection * this.moveSpeed * RUN_MULTIPLIER * 0.94;
     this.runningDirection = 0;
     this.airVelocity = JUMP_VELOCITY;
+    this.jumpElapsed = 0;
+    this.jumpDuration = (JUMP_VELOCITY * 2) / JUMP_GRAVITY;
     this.elevation = 1;
     this.beginState('jump', 'jump');
-    this.animator.fitDuration((JUMP_VELOCITY * 2) / JUMP_GRAVITY);
+    this.animator.fitDuration(this.jumpDuration);
     return true;
   }
 
-  requestAirAttack(): boolean {
+  private startAerialAttack(attack: AttackData, forwardImpulse: number): boolean {
     if (this.dead || this.elevation < 18 || this.currentAttack !== null) return false;
-    this.startAttack(AIR_ATTACK);
+    if (this.airMomentumX * this.facing < forwardImpulse) this.airMomentumX = this.facing * forwardImpulse;
+    this.startAttack(attack);
     return true;
+  }
+
+  requestAirPunch(): boolean {
+    return this.startAerialAttack(AIR_PUNCH, 390);
+  }
+
+  requestAirKick(): boolean {
+    return this.startAerialAttack(AIR_KICK, 350);
+  }
+
+  requestAirAttack(): boolean {
+    return this.requestAirKick();
   }
 
   beginGrab(target: Enemy): boolean {
     if (!this.canStartGrab || !target.beginGrabbed(this)) return false;
     this.grabbedTarget = target;
-    this.facing = target.position.x >= this.position.x ? 1 : -1;
+    const direction = target.position.x >= this.position.x ? 1 : -1;
+    this.facing = direction;
     this.runningDirection = 0;
+    this.position.x = target.position.x - direction * 52;
     this.position.y = target.position.y;
     this.beginState('grab', 'grab');
     return true;
@@ -231,23 +269,35 @@ export class Player extends Actor {
       this.lastMove = normalize(move);
       if (move.x !== 0) this.facing = move.x > 0 ? 1 : -1;
     }
-    this.position.x += move.x * this.moveSpeed * 0.74 * dt;
+    this.jumpElapsed += dt;
+    const steer = move.x * this.moveSpeed * 0.32;
+    this.position.x += (this.airMomentumX + steer) * dt;
     this.position.y += move.y * this.depthSpeed * 0.58 * dt;
+    this.airMomentumX *= Math.max(0, 1 - 0.22 * dt);
     this.airVelocity -= JUMP_GRAVITY * dt;
     this.elevation += this.airVelocity * dt;
 
-    if (this.currentAttack === AIR_ATTACK) {
+    const aerialAttack = this.currentAttack === AIR_PUNCH || this.currentAttack === AIR_KICK
+      ? this.currentAttack
+      : null;
+    if (aerialAttack) {
       this.attackElapsed += dt;
-      if (this.attackElapsed >= attackTotal(AIR_ATTACK)) {
+      if (this.attackElapsed >= attackTotal(aerialAttack)) {
         this.currentAttack = null;
         this.attackHits.clear();
-        if (this.elevation > 0) this.beginState('jump', 'jump');
+        if (this.elevation > 0) {
+          this.beginState('jump', 'jump');
+          this.animator.seekNormalized(this.jumpElapsed / this.jumpDuration);
+        }
       }
+    } else if (this.elevation > 0 && this.animator.name === 'jump') {
+      this.animator.seekNormalized(this.jumpElapsed / this.jumpDuration);
     }
 
     if (this.elevation <= 0 && this.airVelocity < 0) {
       this.elevation = 0;
       this.airVelocity = 0;
+      this.airMomentumX = 0;
       this.currentAttack = null;
       this.attackHits.clear();
       this.beginState('idle', 'idle');
@@ -290,7 +340,14 @@ export class Player extends Actor {
       if (this.currentAttack === SUPER) {
         if (this.attackElapsed >= 0.18) this.position.x += this.facing * 245 * dt;
       } else if (![GRAB_STRIKE, THROW].includes(this.currentAttack) && this.attackElapsed < this.currentAttack.startup + this.currentAttack.active) {
-        const lunge: Record<string, number> = { punch_left: 82, punch_right: 104, combo_finisher: 116, kick_right: 72 };
+        const lunge: Record<string, number> = {
+          punch_left: 86,
+          punch_right: 108,
+          combo_finisher: 132,
+          kick_front: 88,
+          kick_right: 102,
+          kick_finisher: 126,
+        };
         this.position.x += this.facing * (lunge[this.currentAttack.name] ?? 52) * dt;
       }
       if (this.attackElapsed >= attackTotal(this.currentAttack)) {
@@ -428,6 +485,7 @@ export class Player extends Actor {
     this.releaseGrab();
     this.elevation = 0;
     this.airVelocity = 0;
+    this.airMomentumX = 0;
     this.currentAttack = null;
     this.queuedAttack = null;
     return super.receiveHit(damage, knockback, knockdown, launchVelocity);

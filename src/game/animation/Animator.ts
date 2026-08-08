@@ -79,6 +79,12 @@ export class Animator {
     this.setPlaybackRate(targetSeconds > 0 ? this.duration / targetSeconds : 1);
   }
 
+  /** Synchronizes a pose to an external motion curve, such as the jump parabola. */
+  seekNormalized(phase: number): void {
+    this.finished = false;
+    this.seekPhase(Math.max(0, Math.min(0.999999, phase)));
+  }
+
   update(dt: number): boolean {
     if (this.blendFrom) {
       this.blendElapsed += dt;

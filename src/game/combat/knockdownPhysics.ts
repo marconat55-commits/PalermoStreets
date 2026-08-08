@@ -1,6 +1,6 @@
 export const KNOCKDOWN_GRAVITY = 1480;
-export const AIRBORNE_HORIZONTAL_DRAG = 1.15;
-export const GROUND_HORIZONTAL_DRAG = 3.8;
+export const AIRBORNE_HORIZONTAL_DRAG = 0.82;
+export const GROUND_HORIZONTAL_DRAG = 3.25;
 
 export function integrateHorizontalLaunch(
   position: number,

@@ -90,7 +90,7 @@ export class TitleScene implements Scene {
     this.root.addChild(this.prompt);
 
     this.root.addChild(centeredText(
-      'J COMBO   I CALCIO   K SALTO   L SUPER   SHIFT PARA   SPAZIO SCHIVA',
+      'J COMBO/PUGNO AEREO   I COMBO CALCI/CALCIO AEREO   K SALTO   L SUPER   SHIFT PARA   SPAZIO SCHIVA',
       new TextStyle({ fontFamily: UI_FONT, fontSize: 14, fontWeight: '700', fill: 0xe8cda9, letterSpacing: 1 }),
       640,
       672,

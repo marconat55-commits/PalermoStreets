@@ -407,9 +407,16 @@ export class StageScene implements Scene {
     if (!this.player.canStartGrab) return false;
     const target = this.enemies
       .filter((enemy) => enemy.canBeGrabbed)
-      .filter((enemy) => Math.abs(enemy.position.x - this.player.position.x) <= 76)
-      .filter((enemy) => Math.abs(enemy.position.y - this.player.position.y) <= 34)
-      .sort((a, b) => Math.abs(a.position.x - this.player.position.x) - Math.abs(b.position.x - this.player.position.x))[0];
+      .filter((enemy) => Math.abs(enemy.position.x - this.player.position.x) <= 108)
+      .filter((enemy) => Math.abs(enemy.position.y - this.player.position.y) <= 48)
+      .sort((a, b) => {
+        const frontA = (a.position.x - this.player.position.x) * this.player.facing >= -12 ? 0 : 1;
+        const frontB = (b.position.x - this.player.position.x) * this.player.facing >= -12 ? 0 : 1;
+        if (frontA !== frontB) return frontA - frontB;
+        const distanceA = Math.abs(a.position.x - this.player.position.x) + Math.abs(a.position.y - this.player.position.y) * 1.6;
+        const distanceB = Math.abs(b.position.x - this.player.position.x) + Math.abs(b.position.y - this.player.position.y) * 1.6;
+        return distanceA - distanceB;
+      })[0];
     return target ? this.player.beginGrab(target) : false;
   }
 
@@ -421,12 +428,13 @@ export class StageScene implements Scene {
       if (input.wasPressed('Space')) this.player.requestDodge(this.inputDirection(input));
       if (input.wasPressed('KeyK')) this.player.requestJump();
       if (input.wasPressed('KeyJ')) {
-        if (this.player.isAirborne) this.player.requestAirAttack();
+        if (this.player.isAirborne) this.player.requestAirPunch();
         else if (this.player.grabbedTarget) this.player.requestGrabStrike();
         else if (!this.tryStartGrab()) this.player.requestPunch();
       }
       if (input.wasPressed('KeyI')) {
-        if (this.player.grabbedTarget) this.player.requestThrow();
+        if (this.player.isAirborne) this.player.requestAirKick();
+        else if (this.player.grabbedTarget) this.player.requestThrow();
         else this.player.requestKick();
       }
       if (input.wasPressed('KeyL')) this.player.requestSuper();

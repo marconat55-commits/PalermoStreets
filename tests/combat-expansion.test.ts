@@ -2,9 +2,12 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 
 import {
-  AIR_ATTACK,
+  AIR_KICK,
+  AIR_PUNCH,
   COMBO_FINISHER,
   GRAB_STRIKE,
+  KICK_COMBO,
+  KICK_FINISHER,
   LIGHT_COMBO,
   THROW,
   attackTotal,
@@ -21,8 +24,27 @@ test('Marco light combo has three ordered, distinct attacks', () => {
   assert.equal(COMBO_FINISHER.knockdown, true);
 });
 
+test('Marco kick combo has two setup hits and a distinct launch finisher', () => {
+  assert.deepEqual(KICK_COMBO.map((attack) => attack.name), [
+    'kick_front',
+    'kick_right',
+    'kick_finisher',
+  ]);
+  assert.equal(new Set(KICK_COMBO).size, 3);
+  assert.equal(KICK_COMBO[0].knockdown, undefined);
+  assert.equal(KICK_COMBO[1].knockdown, undefined);
+  assert.equal(KICK_FINISHER.knockdown, true);
+});
+
+test('aerial punch and kick are separate readable actions', () => {
+  assert.equal(AIR_PUNCH.name, 'air_punch');
+  assert.equal(AIR_KICK.name, 'air_attack');
+  assert.notEqual(AIR_PUNCH, AIR_KICK);
+  assert.ok(AIR_KICK.rangeX >= AIR_PUNCH.rangeX);
+});
+
 test('new attacks have valid phase timing and restrained damage', () => {
-  for (const attack of [COMBO_FINISHER, AIR_ATTACK, GRAB_STRIKE, THROW]) {
+  for (const attack of [COMBO_FINISHER, KICK_FINISHER, AIR_PUNCH, AIR_KICK, GRAB_STRIKE, THROW]) {
     assert.ok(attack.startup > 0);
     assert.ok(attack.active > 0);
     assert.ok(attack.recovery > 0);

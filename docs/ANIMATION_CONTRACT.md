@@ -11,7 +11,7 @@ This contract is mandatory for every new or replaced character pack.
 
 ## Player clip set
 
-Player profiles must provide: `idle`, `walk`, `walk_up`, `walk_down`, `run`, `brake`, `jump`, `air_attack`, `punch_left`, `punch_right`, `combo_finisher`, `kick_right`, `block`, `dodge`, `grab`, `grab_strike`, `throw`, `super`, `hit`, `knockdown`, `getup` and `dead`.
+Player profiles must provide: `idle`, `walk`, `walk_up`, `walk_down`, `run`, `brake`, `jump`, `air_attack`, `air_punch`, `punch_left`, `punch_right`, `combo_finisher`, `kick_front`, `kick_right`, `kick_finisher`, `block`, `dodge`, `grab`, `grab_strike`, `throw`, `super`, `hit`, `knockdown`, `getup` and `dead`.
 
 Enemies may keep a smaller attack set, but must provide locomotion, hit, knockdown, getup and dead reactions. Enemy attack count remains profile-driven.
 

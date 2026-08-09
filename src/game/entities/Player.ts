@@ -15,6 +15,7 @@ import { lengthSq, normalize } from '../../utils/math';
 import type { Input } from '../input/Input';
 import { locomotionPlaybackRate, selectLocomotionClip } from '../animation/locomotion';
 import { shouldStartRunBrake } from '../animation/movementTransitions';
+import { updateRunGesture as advanceRunGesture } from '../animation/runGesture';
 import { nextIdleVariant, orderedIdleVariants } from '../animation/idleVariants';
 import type { Enemy } from './Enemy';
 
@@ -49,12 +50,13 @@ export class Player extends Actor {
   grabbedTarget: Enemy | null = null;
 
   private runTapWindow = 0;
-  private runTapDirection: -1 | 0 | 1 = 0;
-  private runningDirection: -1 | 0 | 1 = 0;
+  private runTapDirection: Vec2 = { x: 0, y: 0 };
+  private runningDirection: Vec2 = { x: 0, y: 0 };
+  private brakeDirection: Vec2 = { x: 1, y: 0 };
   private dodgeDirection: Vec2 = { x: 1, y: 0 };
   private airVelocity = 0;
-  private airMomentumX = 0;
-  private landingMomentumX = 0;
+  private airMomentum: Vec2 = { x: 0, y: 0 };
+  private landingMomentum: Vec2 = { x: 0, y: 0 };
   private jumpElapsed = 0;
   private jumpDuration = (JUMP_VELOCITY * 2) / JUMP_GRAVITY;
   private readonly idleVariants: string[];
@@ -80,7 +82,12 @@ export class Player extends Actor {
   }
 
   get isRunning(): boolean {
-    return this.runningDirection !== 0 && this.state === 'run';
+    return lengthSq(this.runningDirection) > 0.01 && this.state === 'run';
+  }
+
+  private clearRun(): void {
+    this.runningDirection = { x: 0, y: 0 };
+    this.runTapWindow = 0;
   }
 
   get isAirborne(): boolean {
@@ -123,7 +130,7 @@ export class Player extends Actor {
       return false;
     }
     this.comboStep = 0;
-    this.runningDirection = 0;
+    this.clearRun();
     this.faceAutoTarget();
     this.startAttack(attack);
     return true;
@@ -167,7 +174,7 @@ export class Player extends Actor {
     if (this.dead || this.elevation > 0 || !['idle', 'walk', 'run', 'brake', 'block'].includes(this.state)) return false;
     const fallback = { x: this.facing, y: 0 };
     this.dodgeDirection = lengthSq(direction) > 0.01 ? normalize(direction) : fallback;
-    this.runningDirection = 0;
+    this.clearRun();
     this.invulnerable = DODGE_DURATION;
     this.beginState('dodge', 'dodge');
     return true;
@@ -175,9 +182,14 @@ export class Player extends Actor {
 
   requestJump(): boolean {
     if (this.dead || this.elevation > 0 || !['idle', 'walk', 'run'].includes(this.state)) return false;
-    const launchDirection = this.runningDirection !== 0 ? this.runningDirection : 0;
-    this.airMomentumX = launchDirection * this.moveSpeed * RUN_MULTIPLIER * 0.94;
-    this.runningDirection = 0;
+    const launchDirection = lengthSq(this.runningDirection) > 0.01
+      ? normalize(this.runningDirection)
+      : { x: 0, y: 0 };
+    this.airMomentum = {
+      x: launchDirection.x * this.moveSpeed * RUN_MULTIPLIER * 0.94,
+      y: launchDirection.y * this.depthSpeed * RUN_MULTIPLIER * 0.94,
+    };
+    this.clearRun();
     this.airVelocity = JUMP_VELOCITY;
     this.jumpElapsed = 0;
     this.jumpDuration = (JUMP_VELOCITY * 2) / JUMP_GRAVITY;
@@ -189,7 +201,7 @@ export class Player extends Actor {
 
   private startAerialAttack(attack: AttackData, forwardImpulse: number): boolean {
     if (this.dead || this.elevation < 18 || this.currentAttack !== null) return false;
-    if (this.airMomentumX * this.facing < forwardImpulse) this.airMomentumX = this.facing * forwardImpulse;
+    if (this.airMomentum.x * this.facing < forwardImpulse) this.airMomentum.x = this.facing * forwardImpulse;
     this.startAttack(attack);
     return true;
   }
@@ -211,7 +223,7 @@ export class Player extends Actor {
     this.grabbedTarget = target;
     const direction = target.position.x >= this.position.x ? 1 : -1;
     this.facing = direction;
-    this.runningDirection = 0;
+    this.clearRun();
     this.position.x = target.position.x - direction * 52;
     this.position.y = target.position.y;
     this.beginState('grab', 'grab');
@@ -253,15 +265,19 @@ export class Player extends Actor {
     return lengthSq(raw) > 1 ? normalize(raw) : raw;
   }
 
-  private updateRunGesture(input: Input, horizontal: number): void {
-    this.runTapWindow = Math.max(0, this.runTapWindow);
-    const pressedDirection = input.wasPressed('KeyD', 'ArrowRight') ? 1 : input.wasPressed('KeyA', 'ArrowLeft') ? -1 : 0;
-    if (pressedDirection !== 0) {
-      if (pressedDirection === this.runTapDirection && this.runTapWindow > 0) this.runningDirection = pressedDirection;
-      this.runTapDirection = pressedDirection;
-      this.runTapWindow = RUN_TAP_WINDOW;
-    }
-    if (horizontal === 0 || (this.runningDirection !== 0 && horizontal !== this.runningDirection)) this.runningDirection = 0;
+  private updateRunGesture(input: Input, movement: Vec2): void {
+    const directionalPressed = input.wasPressed(
+      'KeyD', 'ArrowRight', 'KeyA', 'ArrowLeft',
+      'KeyS', 'ArrowDown', 'KeyW', 'ArrowUp',
+    );
+    const next = advanceRunGesture({
+      tapWindow: this.runTapWindow,
+      tapDirection: this.runTapDirection,
+      runningDirection: this.runningDirection,
+    }, movement, directionalPressed, RUN_TAP_WINDOW);
+    this.runTapWindow = next.tapWindow;
+    this.runTapDirection = next.tapDirection;
+    this.runningDirection = next.runningDirection;
   }
 
   private updateAirborne(dt: number, input: Input, movementEnabled: boolean): void {
@@ -271,10 +287,15 @@ export class Player extends Actor {
       if (move.x !== 0) this.facing = move.x > 0 ? 1 : -1;
     }
     this.jumpElapsed += dt;
-    const steer = move.x * this.moveSpeed * 0.32;
-    this.position.x += (this.airMomentumX + steer) * dt;
-    this.position.y += move.y * this.depthSpeed * 0.58 * dt;
-    this.airMomentumX *= Math.max(0, 1 - 0.22 * dt);
+    const steer = {
+      x: move.x * this.moveSpeed * 0.32,
+      y: move.y * this.depthSpeed * 0.32,
+    };
+    this.position.x += (this.airMomentum.x + steer.x) * dt;
+    this.position.y += (this.airMomentum.y + steer.y) * dt;
+    const airDamping = Math.max(0, 1 - 0.22 * dt);
+    this.airMomentum.x *= airDamping;
+    this.airMomentum.y *= airDamping;
     this.airVelocity -= JUMP_GRAVITY * dt;
     this.elevation += this.airVelocity * dt;
 
@@ -298,8 +319,11 @@ export class Player extends Actor {
     if (this.elevation <= 0 && this.airVelocity < 0) {
       this.elevation = 0;
       this.airVelocity = 0;
-      this.landingMomentumX = this.airMomentumX * 0.32;
-      this.airMomentumX = 0;
+      this.landingMomentum = {
+        x: this.airMomentum.x * 0.32,
+        y: this.airMomentum.y * 0.32,
+      };
+      this.airMomentum = { x: 0, y: 0 };
       this.currentAttack = null;
       this.attackHits.clear();
       this.beginState('land', 'land');
@@ -329,10 +353,13 @@ export class Player extends Actor {
     }
     if (this.state === 'land') {
       const recovery = Math.max(0, 1 - this.stateElapsed / 0.26);
-      this.position.x += this.landingMomentumX * recovery * dt;
-      this.landingMomentumX *= Math.max(0, 1 - 8 * dt);
+      this.position.x += this.landingMomentum.x * recovery * dt;
+      this.position.y += this.landingMomentum.y * recovery * dt;
+      const landingDamping = Math.max(0, 1 - 8 * dt);
+      this.landingMomentum.x *= landingDamping;
+      this.landingMomentum.y *= landingDamping;
       if (this.animator.finished) {
-        this.landingMomentumX = 0;
+        this.landingMomentum = { x: 0, y: 0 };
         this.beginState('idle', 'idle');
       }
       this.clampToPlayfield(); this.syncVisual(); return;
@@ -393,7 +420,7 @@ export class Player extends Actor {
 
     const blocking = input.isDown('ShiftLeft', 'ShiftRight');
     if (blocking && movementEnabled) {
-      this.runningDirection = 0;
+      this.clearRun();
       if (this.state !== 'block') this.beginState('block', 'block');
       this.syncVisual();
       return;
@@ -404,30 +431,36 @@ export class Player extends Actor {
     if (this.state === 'brake') {
       if (lengthSq(move) <= 0.01) {
         const progress = Math.min(1, this.stateElapsed / 0.32);
-        this.position.x += this.facing * 92 * (1 - progress) * dt;
+        this.position.x += this.brakeDirection.x * 92 * (1 - progress) * dt;
+        this.position.y += this.brakeDirection.y * 66 * (1 - progress) * dt;
         if (this.animator.finished) this.beginState('idle', 'idle');
         this.clampToPlayfield(); this.syncVisual(); return;
       }
       this.beginState('idle', 'idle');
     }
-    const wasRunning = this.state === 'run' && this.runningDirection !== 0;
-    this.updateRunGesture(input, move.x);
-    if (shouldStartRunBrake(wasRunning, this.runningDirection, lengthSq(move))) {
+    const previousRunDirection = { ...this.runningDirection };
+    const wasRunning = this.state === 'run' && lengthSq(previousRunDirection) > 0.01;
+    this.updateRunGesture(input, move);
+    const running = lengthSq(this.runningDirection) > 0.01;
+    if (shouldStartRunBrake(wasRunning, running, lengthSq(move))) {
+      this.brakeDirection = normalize(previousRunDirection);
       this.beginState('brake', 'brake');
       this.clampToPlayfield(); this.syncVisual(); return;
     }
-    const running = this.runningDirection !== 0 && move.x === this.runningDirection;
     if (lengthSq(move) > 0.01) this.lastMove = normalize(move);
     const horizontalSpeed = this.moveSpeed * (running ? RUN_MULTIPLIER : 1);
-    const depthSpeed = this.depthSpeed * (running ? 1.10 : 1);
+    const depthSpeed = this.depthSpeed * (running ? RUN_MULTIPLIER : 1);
     this.position.x += move.x * horizontalSpeed * dt;
     this.position.y += move.y * depthSpeed * dt;
     if (move.x !== 0) this.facing = move.x > 0 ? 1 : -1;
     else this.faceAutoTarget();
     const moving = lengthSq(move) > 0.01;
-    const movementAnimation = running
-      ? 'run'
-      : selectLocomotionClip(move, this.animator.name, (name) => this.animator.bank.clips.has(name));
+    const directionalClip = selectLocomotionClip(move, this.animator.name, (name) => this.animator.bank.clips.has(name));
+    let movementAnimation: string = directionalClip;
+    if (running) {
+      const directionalRun = directionalClip === 'walk' ? 'run' : directionalClip.replace('walk_', 'run_');
+      movementAnimation = this.animator.bank.clips.has(directionalRun) ? directionalRun : directionalClip;
+    }
     const preservesStride = ['walk', 'walk_up', 'walk_down', 'run'].includes(this.animator.name);
     if (moving) {
       this.idleStillTime = 0;
@@ -495,10 +528,11 @@ export class Player extends Actor {
 
   override receiveHit(damage: number, knockback: Vec2, knockdown = false, launchVelocity = 0): HitResult {
     this.releaseGrab();
+    this.clearRun();
     this.elevation = 0;
     this.airVelocity = 0;
-    this.airMomentumX = 0;
-    this.landingMomentumX = 0;
+    this.airMomentum = { x: 0, y: 0 };
+    this.landingMomentum = { x: 0, y: 0 };
     this.currentAttack = null;
     this.queuedAttack = null;
     return super.receiveHit(damage, knockback, knockdown, launchVelocity);

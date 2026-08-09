@@ -277,8 +277,11 @@ for (const id of index.characters) {
     const getupArt = decoded.get(getupRelative) ?? decodePng(getupRelative);
     if (!fallArt.rawPixels.equals(getupArt.rawPixels)) fail(`${id}: ultimo fall e primo getup non sono pixel-identici`);
     if (Math.abs(fallScale - getupScale) > 0.0001) fail(`${id}: scala fall/getup non continua`);
+    if (Math.abs(fallScale - 1) > 0.0001 || Math.abs(getupScale - 1) > 0.0001) {
+      fail(`${id}: fall/getup devono mantenere scala runtime 1.0`);
+    }
     const groundRatio = fallArt.bounds[2] * fallScale / profile.visual_height;
-    if (groundRatio < 1.04 || groundRatio > 1.24) fail(`${id}: corpo a terra sproporzionato (${groundRatio.toFixed(2)}x)`);
+    if (groundRatio < 0.92 || groundRatio > 1.08) fail(`${id}: corpo a terra sproporzionato (${groundRatio.toFixed(2)}x)`);
   }
 }
 

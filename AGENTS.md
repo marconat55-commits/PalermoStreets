@@ -16,7 +16,7 @@ This repository is the PixiJS/TypeScript migration of the Python + pygame-ce Pal
 - Keep stage/waves data-driven through `public/data/stage1_zen.json`.
 - Do not hard-code a specific enemy into StageScene when a character profile can supply the value.
 - Animation timing comes from character profile JSON. Do not silently replace it with uniform AnimatedSprite speed.
-- Per-frame `visual_scales` may correct perceived mass between painted poses, but must stay uniform on both axes; never stretch a body horizontally or vertically.
+- Per-frame `visual_scales` may correct perceived mass between painted poses, but must stay uniform on both axes; never stretch a body horizontally or vertically. `knockdown`, `getup` and `dead` are always locked to runtime scale `1.0`.
 - One-shot clips must end on a compatible recovery pose. `knockdown` last frame and `getup` first frame must be pixel-identical and use the same visual scale.
 - Personality idle animations use `idle_variant_N` clips discovered by the custom Animator controller; every protagonist may define a different count and timing.
 - Do not resize or rewrite source PNG assets unless the task explicitly asks for art processing.
@@ -32,7 +32,7 @@ This repository is the PixiJS/TypeScript migration of the Python + pygame-ce Pal
 - L: super move (requires 50 fury)
 - Shift: frontal block
 - Space: directional dodge
-- Double-tap left/right: run
+- Double-tap any movement direction: normalized horizontal, vertical or diagonal run
 - Releasing movement after a run: dedicated brake transition
 - P: pause
 - F3: debug hitboxes

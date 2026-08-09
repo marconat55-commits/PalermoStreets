@@ -218,10 +218,10 @@ export class Actor {
       this.transitionSprite.texture = transition.texture;
       this.transitionSprite.scale.set(transitionFlip * transition.scale, transition.scale);
       this.transitionSprite.position.set(transition.offsetX * transition.scale, transition.offsetY);
-      this.transitionSprite.alpha = this.animator.transitionAlpha * 0.52;
+      this.transitionSprite.alpha = this.animator.transitionAlpha;
       this.transitionSprite.tint = this.sprite.tint;
       this.transitionSprite.visible = true;
-      this.sprite.alpha = 1 - this.animator.transitionAlpha * 0.22;
+      this.sprite.alpha = 1 - this.animator.transitionAlpha;
     } else {
       this.transitionSprite.visible = false;
       this.sprite.alpha = 1;
@@ -233,6 +233,7 @@ export class Actor {
       outline.scale.set(flip * frame.scale, frame.scale);
       outline.x = frame.offsetX * frame.scale + dx;
       outline.y = frame.offsetY + dy;
+      outline.alpha = 0.58 * this.sprite.alpha;
     }
     this.root.alpha = this.alpha255 / 255;
     this.root.position.set(this.position.x, this.position.y - this.elevation);

@@ -1,7 +1,7 @@
 export function shouldStartRunBrake(
   wasRunning: boolean,
-  runningDirection: -1 | 0 | 1,
+  isRunning: boolean,
   movementLengthSq: number,
 ): boolean {
-  return wasRunning && runningDirection === 0 && movementLengthSq <= 0.01;
+  return wasRunning && !isRunning && movementLengthSq <= 0.01;
 }

@@ -59,14 +59,12 @@
         0.14
       ],
       "loop": true,
-      "frame_blend": 0.04,
       "source_facing": 1
     },
     "idle_variant_1": {
       "folder": "idle_variant_1",
       "frames": 7,
       "durations": [0.28, 0.38, 0.48, 0.52, 0.72, 0.55, 0.44],
-      "frame_blend": 0.035,
       "source_facing": 1
     },
     "walk": {
@@ -312,7 +310,7 @@
     "knockdown": {
       "folder": "fall",
       "frames": 5,
-      "visual_scales": [1.0, 1.02, 1.05, 1.08, 1.1],
+      "visual_scales": [1.0],
       "durations": [
         0.08,
         0.09,
@@ -325,7 +323,7 @@
     "getup": {
       "folder": "getup",
       "frames": 5,
-      "visual_scales": [1.1, 1.08, 1.05, 1.02, 1.0],
+      "visual_scales": [1.0],
       "durations": [
         0.12,
         0.12,
@@ -338,7 +336,7 @@
     "dead": {
       "folder": "fall",
       "frames": 5,
-      "visual_scales": [1.0, 1.02, 1.05, 1.08, 1.1],
+      "visual_scales": [1.0],
       "durations": [
         0.08,
         0.09,

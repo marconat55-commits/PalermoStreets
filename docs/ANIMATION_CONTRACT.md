@@ -19,11 +19,15 @@ Enemies may keep a smaller attack set, but must provide locomotion, hit, knockdo
 
 - `durations` is authoritative per frame; combat windows are never inferred from rendering speed.
 - `visual_scales` is optional. One value applies to the whole clip; otherwise its length must equal `frames`.
+- `knockdown`, `getup` and `dead` must use runtime scale `1.0` on every frame. Never animate a fall or recovery by zooming the complete character.
 - Loop clips must close without a large centroid jump.
 - One-shot moves must include a compatible recovery pose before returning to idle.
 - The final `knockdown` frame and first `getup` frame must be pixel-identical. Their visual scales must also match.
 - Contact frame indexes must exist inside the clip and remain stable after any art replacement.
 - `frame_blend` may be used only as a short 0-60 ms transition between distinct authored poses; it must never hide duplicated PNGs or replace missing key poses.
+- `frame_blend` is forbidden on `idle` and `idle_variant_N`; personality animation must use authored intermediate poses without periodic opacity flicker.
+
+`data/character_templates/main_player_full_v2.json` defines the complete generation target for future protagonists, including directional running, four long personality idles and the minimum real-frame counts for reactions and attacks.
 
 ## Runtime controller
 
@@ -33,4 +37,4 @@ Do not replace this system with uniform-speed `AnimatedSprite`. Spine is appropr
 
 ## Required checks
 
-Run `npm run check`. It covers data/atlas integrity, PNG canvas and alpha bounds, hard crops, fall/getup continuity, scale curves, unit tests, TypeScript and the production build.
+Run `npm run check`. It covers data/atlas integrity, PNG canvas and alpha bounds, hard crops, fall/getup continuity, locked fall/getup/dead scale, idle opacity rules, unit tests, TypeScript and the production build.

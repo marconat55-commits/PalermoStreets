@@ -22,7 +22,8 @@
 ## Differenze intenzionali
 
 - I limiti orizzontali usano il bounding box visivo della posa corrente: anche salti e cadute restano interamente dentro il viewport.
-- `visual_scales` corregge in modo uniforme la massa percepita di fall/getup senza deformare il corpo; curva e raccordo sono verificati automaticamente.
+- `knockdown`, `getup` e `dead` usano scala runtime fissa `1.0`: eventuali correzioni di proporzione devono essere risolte nell'asset e non con uno zoom durante la posa.
+- La corsa usa un gesto vettoriale: il doppio impulso funziona in orizzontale, verticale e diagonale normalizzata.
 - Non usiamo `AnimatedSprite`: le animazioni hanno durate diverse frame-per-frame e metadata di pivot, quindi un `Animator` custom aggiorna una singola `Sprite`.
 - I metadata `frame_meta.json` conservano bounding box alpha e offset piedi già calcolati: non facciamo scansioni pixel a ogni caricamento nel browser.
 - Gli outline scuri sono quattro copie tintate dello sprite, evitando una dipendenza filter aggiuntiva nella prima migrazione.

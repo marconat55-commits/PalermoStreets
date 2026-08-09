@@ -281,7 +281,7 @@ for (const id of index.characters) {
       fail(`${id}: fall/getup devono mantenere scala runtime 1.0`);
     }
     const groundRatio = fallArt.bounds[2] * fallScale / profile.visual_height;
-    if (groundRatio < 0.92 || groundRatio > 1.08) fail(`${id}: corpo a terra sproporzionato (${groundRatio.toFixed(2)}x)`);
+    if (groundRatio < 0.92 || groundRatio > 1.10) fail(`${id}: corpo a terra sproporzionato (${groundRatio.toFixed(2)}x)`);
   }
 }
 

@@ -143,12 +143,16 @@ def build_profile(public: Path, profile: dict) -> tuple[int, int, int]:
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("project", type=Path, help="Root del progetto PixiJS")
+    parser.add_argument("--character", help="Ricostruisce soltanto il personaggio indicato")
     args = parser.parse_args()
     project = args.project.resolve()
     public = project / "public"
     index = load_json(public / "data/characters/index.json")
     total_frames = total_pages = total_decoded = 0
-    for character_id in index["characters"]:
+    character_ids = [args.character] if args.character else index["characters"]
+    if args.character and args.character not in index["characters"]:
+        raise ValueError(f"Personaggio non registrato: {args.character}")
+    for character_id in character_ids:
         profile = load_json(public / f"data/characters/{character_id}.json")
         frames, pages, decoded = build_profile(public, profile)
         total_frames += frames

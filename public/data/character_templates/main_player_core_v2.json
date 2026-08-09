@@ -17,9 +17,9 @@
   ],
   "locomotion": {
     "idle": {
-      "frames": 8,
+      "frames": 4,
       "loop": true,
-      "phases": ["guard_low", "inhale_1", "inhale_2", "settle_a", "guard_high", "exhale_1", "exhale_2", "settle_b"]
+      "phases": ["guard_low", "inhale", "guard_high", "exhale"]
     },
     "walk": {
       "frames": 12,
@@ -89,6 +89,18 @@
     "max_visual_height_error_px": 6,
     "max_bottom_opaque_run_px": 23,
     "max_bottom_opaque_ratio": 0.24,
-    "max_loop_centroid_step": 0.18
+    "max_loop_centroid_step": 0.18,
+    "apparent_area_reference_clip": "idle",
+    "apparent_area_ratio_by_clip": {
+      "walk": [0.82, 1.15],
+      "walk_up": [0.76, 1.12],
+      "walk_down": [0.82, 1.20],
+      "run": [1.12, 1.36],
+      "run_up": [0.94, 1.18],
+      "run_down": [0.88, 1.16],
+      "grab": [1.00, 1.30],
+      "grab_strike": [0.95, 1.26],
+      "throw": [1.00, 1.30]
+    }
   }
 }

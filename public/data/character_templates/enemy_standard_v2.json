@@ -1,0 +1,40 @@
+{
+  "schema": 1,
+  "id": "enemy_standard_v2",
+  "role": "enemy",
+  "purpose": "Contratto grafico per nemici fluidi con uno-tre attacchi e scala coerente tra tutte le pose",
+  "raster": {
+    "canvas": [640, 420],
+    "baseline_y": 400,
+    "scale_mode": "baked",
+    "uniform_runtime_scale_only": true
+  },
+  "required_clips": [
+    "idle", "walk", "walk_up", "walk_down", "attack", "hit", "knockdown", "getup", "dead"
+  ],
+  "optional_clips": ["heavy", "attack_3"],
+  "minimum_frames": {
+    "idle": 6,
+    "walk": 12,
+    "walk_up": 10,
+    "walk_down": 10,
+    "attack": 6,
+    "heavy": 8,
+    "attack_3": 8,
+    "hit": 5,
+    "knockdown": 8,
+    "getup": 8,
+    "dead": 8
+  },
+  "continuity": {
+    "knockdown_last_equals_getup_first": true,
+    "runtime_scale_locked_clips": ["knockdown", "getup", "dead"]
+  },
+  "generation_rules": [
+    "personaggio sempre intero, inclusi capelli e suole",
+    "stessa testa, corporatura, abiti e accessori in ogni cella",
+    "nessun cambio di zoom o prospettiva tra pose",
+    "un solo personaggio per cella su sfondo chroma uniforme",
+    "nessun effetto, testo, ombra esterna o elemento scenico"
+  ]
+}

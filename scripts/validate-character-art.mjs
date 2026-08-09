@@ -182,6 +182,7 @@ for (const id of index.characters) {
   const maxBottomOpaqueRatio = qa.max_bottom_opaque_ratio ?? 0.24;
   const maxLoopCentroidStep = qa.max_loop_centroid_step ?? 0.42;
   const decoded = new Map();
+  const medianVisibleAreaByClip = new Map();
   for (const [clipName, spec] of Object.entries(profile.animations)) {
     const uprightGrounded = profile.role === 'player' && (
       uprightGroundedClips.has(clipName) || uprightGroundedPrefixes.some((prefix) => clipName.startsWith(prefix))
@@ -263,6 +264,28 @@ for (const id of index.characters) {
           first.art.centroid[1] - second.art.centroid[1],
         ) / profile.visual_height;
         if (distance > maxLoopCentroidStep) fail(`${id}/${clipName}: salto del baricentro tra frame ${frameIndex + 1} e ${(frameIndex + 1) % sequence.length + 1} (${distance.toFixed(3)})`);
+      }
+    }
+    const visibleAreas = sequence.map(({ art, scale }) => art.visibleCount * scale * scale).sort((a, b) => a - b);
+    const middle = Math.floor(visibleAreas.length / 2);
+    const medianVisibleArea = visibleAreas.length % 2 === 0
+      ? (visibleAreas[middle - 1] + visibleAreas[middle]) / 2
+      : visibleAreas[middle];
+    medianVisibleAreaByClip.set(clipName, medianVisibleArea);
+  }
+
+  const areaReferenceClip = qa.apparent_area_reference_clip;
+  const areaLimits = qa.apparent_area_ratio_by_clip ?? {};
+  if (areaReferenceClip && Object.keys(areaLimits).length > 0) {
+    const referenceArea = medianVisibleAreaByClip.get(areaReferenceClip);
+    if (!referenceArea) fail(`${id}: clip di riferimento scala apparente mancante: ${areaReferenceClip}`);
+    for (const [clipName, limits] of Object.entries(areaLimits)) {
+      const area = medianVisibleAreaByClip.get(clipName);
+      if (!area || !referenceArea) continue;
+      const ratio = area / referenceArea;
+      const [minimum, maximum] = limits;
+      if (ratio < minimum || ratio > maximum) {
+        fail(`${id}/${clipName}: massa apparente ${ratio.toFixed(2)}x rispetto a ${areaReferenceClip}, atteso ${minimum.toFixed(2)}–${maximum.toFixed(2)}x`);
       }
     }
   }

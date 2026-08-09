@@ -89,18 +89,18 @@ export class CharacterSelectScene implements Scene {
     }), 138, 568));
 
     const statPanel = new Graphics();
-    statPanel.roundRect(690, 124, 520, 145, 10).fill({ color: 0x0d0302, alpha: 0.92 })
+    statPanel.roundRect(690, 124, 520, 164, 10).fill({ color: 0x0d0302, alpha: 0.92 })
       .stroke({ color: 0xff9e12, width: 3 });
-    statPanel.rect(704, 139, 7, 116).fill(0xd82613);
+    statPanel.rect(704, 139, 7, 135).fill(0xd82613);
     this.root.addChild(statPanel);
     this.root.addChild(label('MARCO', new TextStyle({
       fontFamily: DISPLAY_FONT, fontSize: 43, fontStyle: 'italic', fontWeight: '900', fill: 0xffdf9e,
       stroke: { color: 0x5e0d05, width: 5 },
     }), 730, 164));
-    for (const [row, text, amount] of [[0, 'POTENZA', 5], [1, 'VELOCITÀ', 4]] as const) {
-      this.root.addChild(label(text, new TextStyle({ fontFamily: UI_FONT, fontSize: 13, fill: 0xe8cda7 }), 733, 211 + row * 28));
+    for (const [row, text, amount] of [[0, 'FORZA', 5], [1, 'VELOCITÀ', 4], [2, 'TECNICA', 4]] as const) {
+      this.root.addChild(label(text, new TextStyle({ fontFamily: UI_FONT, fontSize: 13, fill: 0xe8cda7 }), 733, 207 + row * 26));
       for (let pip = 0; pip < 5; pip += 1) {
-        statPanel.roundRect(844 + pip * 59, 203 + row * 28, 47, 12, 5).fill(pip < amount ? 0xffa316 : 0x39201a);
+        statPanel.roundRect(844 + pip * 59, 199 + row * 26, 47, 12, 5).fill(pip < amount ? 0xffa316 : 0x39201a);
       }
     }
 

@@ -16,7 +16,7 @@
     "accessories": "doppia catena d'oro, anello d'oro all'orecchio sinistro e bracciali in pelle e metallo",
     "fighting_style": "street fighter potente e diretto",
     "special_move": "supermossa in avanzamento",
-    "canon": "Marco V2 Core — volto master bloccato, locomozione a sei direzioni, scala baked e continuità fall/getup pixel-identica"
+    "canon": "Marco V2 Core — guardia laterale destra, volto master bloccato, locomozione a sei direzioni, scala baked e continuità fall/getup pixel-identica"
   },
   "gameplay": {
     "player": {
@@ -54,9 +54,9 @@
   "animations": {
     "idle": {
       "folder": "idle",
-      "frames": 8,
+      "frames": 4,
       "durations": [
-        0.12
+        0.16
       ],
       "loop": true,
       "source_facing": 1

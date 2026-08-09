@@ -49,8 +49,8 @@ export const GRAB_STRIKE: AttackData = {
 };
 export const THROW: AttackData = {
   name: 'throw', damage: 34, startup: 0.18, active: 0.12, recovery: 0.32,
-  rangeX: 96, rangeY: 80, knockbackX: 700, knockbackY: 0, furyGain: 16, hitStop: 0.105, shake: 14,
-  knockdown: true, launchVelocity: 520,
+  rangeX: 108, rangeY: 88, knockbackX: 900, knockbackY: 0, furyGain: 16, hitStop: 0.12, shake: 17,
+  knockdown: true, launchVelocity: 610,
 };
 export const LIGHT_COMBO = [PUNCH_LEFT, PUNCH_RIGHT, COMBO_FINISHER] as const;
 export const KICK_COMBO = [KICK_FRONT, KICK_RIGHT, KICK_FINISHER] as const;

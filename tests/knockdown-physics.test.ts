@@ -25,8 +25,9 @@ test('le mosse finali hanno lanci crescenti e controllati', () => {
   assert.ok((COMBO_FINISHER.launchVelocity ?? 0) > 300);
   assert.ok((KICK_FINISHER.launchVelocity ?? 0) > (COMBO_FINISHER.launchVelocity ?? 0));
   assert.ok((THROW.launchVelocity ?? 0) > (KICK_FINISHER.launchVelocity ?? 0));
-  assert.ok((SUPER.launchVelocity ?? 0) > (THROW.launchVelocity ?? 0));
-  assert.ok((SUPER.launchVelocity ?? 0) <= 620);
+  assert.ok((THROW.launchVelocity ?? 0) >= (SUPER.launchVelocity ?? 0));
+  assert.ok((THROW.knockbackX ?? 0) > (SUPER.knockbackX ?? 0));
+  assert.ok((THROW.launchVelocity ?? 0) <= 640);
 });
 
 test('il knockback arcade percorre una distanza leggibile prima dell’atterraggio', () => {

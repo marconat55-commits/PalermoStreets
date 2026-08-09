@@ -13,6 +13,8 @@ export interface AnimationJson {
   source_facing?: -1 | 1;
   reference_speed?: number;
   contact_frame?: number;
+  /** Short cross-fade between authored frames; useful for dense painted locomotion. */
+  frame_blend?: number;
 }
 
 export interface CharacterProfile {
@@ -154,6 +156,7 @@ export interface AnimationClip {
   sourceFacing: -1 | 1;
   referenceSpeed?: number;
   contactFrame?: number;
+  frameBlend?: number;
 }
 
 export interface AnimationBank {

@@ -46,15 +46,38 @@ for (const id of index.characters) {
   const canvas = profile.factory?.animation_canvas;
   if (!Array.isArray(canvas) || canvas[0] !== 640 || canvas[1] !== 420) fail(`${id}: animation_canvas deve essere 640x420`);
   if (!String(profile.factory?.scale_mode ?? '').startsWith('baked')) fail(`${id}: scale_mode baked mancante`);
+  const animationTemplatePath = profile.factory?.animation_template;
+  let animationTemplate = null;
+  if (profile.role === 'player' && !animationTemplatePath) fail(`${id}: animation_template obbligatorio per un protagonista`);
+  if (animationTemplatePath) {
+    if (!exists(animationTemplatePath)) fail(`${id}: animation_template mancante: ${animationTemplatePath}`);
+    else {
+      animationTemplate = read(animationTemplatePath);
+      if (animationTemplate.schema !== 1 || animationTemplate.role !== 'player') fail(`${id}: animation_template non valido`);
+      const templateCanvas = animationTemplate.raster?.canvas;
+      if (!Array.isArray(templateCanvas) || templateCanvas[0] !== canvas?.[0] || templateCanvas[1] !== canvas?.[1]) fail(`${id}: canvas diverso dal template`);
+      if (animationTemplate.raster?.baseline_y !== profile.factory?.baseline_y) fail(`${id}: baseline diversa dal template`);
+    }
+  }
 
   const required = profile.role === 'player'
     ? [
-      'idle', 'walk', 'walk_up', 'walk_down', 'run', 'brake', 'jump', 'air_attack', 'air_punch',
+      'idle', 'walk', 'walk_up', 'walk_down', 'run', 'brake', 'jump', 'land', 'air_attack', 'air_punch',
       'punch_left', 'punch_right', 'combo_finisher', 'kick_front', 'kick_right', 'kick_finisher', 'block', 'dodge',
       'grab', 'grab_strike', 'throw', 'super', 'hit', 'knockdown', 'getup', 'dead',
     ]
     : ['idle', 'walk', 'attack', 'heavy', 'hit', 'knockdown', 'getup', 'dead'];
   for (const name of required) if (!profile.animations[name]) fail(`${id}: animazione obbligatoria mancante: ${name}`);
+  for (const name of animationTemplate?.required_clips ?? []) {
+    if (!profile.animations[name]) fail(`${id}: clip richiesta dal template mancante: ${name}`);
+  }
+  for (const [name, contract] of Object.entries(animationTemplate?.locomotion ?? {})) {
+    const animation = profile.animations[name];
+    if (!animation) continue;
+    if (animation.frames !== contract.frames) fail(`${id}/${name}: ${animation.frames} frame, il template ne richiede ${contract.frames}`);
+    if (Boolean(animation.loop) !== Boolean(contract.loop)) fail(`${id}/${name}: loop non coerente con il template`);
+    if (!Array.isArray(contract.phases) || contract.phases.length !== contract.frames) fail(`${id}/${name}: fasi del template non coerenti`);
+  }
 
   const atlasPath = profile.assets.texture_atlas;
   let atlas = null;
@@ -78,6 +101,7 @@ for (const id of index.characters) {
     if ((spec.visual_scales ?? []).some((value, indexValue, values) => indexValue > 0 && Math.abs(value - values[indexValue - 1]) > 0.08)) fail(`${id}/${name}: salto di scala visiva superiore a 0.08`);
     if (spec.reference_speed !== undefined && (!Number.isFinite(spec.reference_speed) || spec.reference_speed <= 0)) fail(`${id}/${name}: reference_speed non valida`);
     if (spec.contact_frame !== undefined && (!Number.isInteger(spec.contact_frame) || spec.contact_frame < 1 || spec.contact_frame > spec.frames)) fail(`${id}/${name}: contact_frame fuori range`);
+    if (spec.frame_blend !== undefined && (!Number.isFinite(spec.frame_blend) || spec.frame_blend < 0 || spec.frame_blend > 0.06)) fail(`${id}/${name}: frame_blend fuori intervallo 0-0.06s`);
 
     for (let frame = 1; frame <= spec.frames; frame += 1) {
       const filename = `${spec.folder}/${frameName(frame)}`;

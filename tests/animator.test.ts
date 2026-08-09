@@ -3,7 +3,7 @@ import test from 'node:test';
 import { Animator } from '../src/game/animation/Animator.ts';
 import type { AnimationBank, AnimationClip, VisualFrame } from '../src/game/types.ts';
 
-function clip(durations: number[], loop = true): AnimationClip {
+function clip(durations: number[], loop = true, frameBlend = 0): AnimationClip {
   const frames = durations.map((duration) => ({
     texture: {} as VisualFrame['texture'],
     duration,
@@ -14,13 +14,13 @@ function clip(durations: number[], loop = true): AnimationClip {
     width: 1,
     height: 1,
   }));
-  return { frames, loop, sourceFacing: 1 };
+  return { frames, loop, sourceFacing: 1, frameBlend };
 }
 
 function bank(): AnimationBank {
   return { clips: new Map([
     ['idle', clip([0.2])],
-    ['walk', clip([0.1, 0.1, 0.1, 0.1])],
+    ['walk', clip([0.1, 0.1, 0.1, 0.1], true, 0.03)],
     ['walk_up', clip([0.2, 0.2, 0.2, 0.2])],
     ['attack', clip([0.1, 0.2, 0.3], false)],
   ]) };
@@ -71,4 +71,18 @@ test('il cambio clip conserva brevemente la posa precedente senza alterare il ti
   animator.update(0.04);
   assert.equal(animator.transitionFrame, null);
   assert.equal(animator.frameIndex, 0);
+});
+
+test('la locomozione raccorda due pose distinte senza aggiungere frame finti', () => {
+  const animator = new Animator(bank(), 'walk');
+  const previous = animator.frame;
+  animator.update(0.1);
+  assert.equal(animator.frameIndex, 1);
+  assert.equal(animator.transitionFrame, previous);
+  assert.equal(animator.transitionAlpha, 1);
+  animator.update(0.015);
+  assert.ok(animator.transitionAlpha > 0 && animator.transitionAlpha < 1);
+  animator.update(0.02);
+  assert.equal(animator.transitionFrame, null);
+  assert.equal(animator.frameIndex, 1);
 });

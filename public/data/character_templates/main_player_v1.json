@@ -1,0 +1,79 @@
+{
+  "schema": 1,
+  "id": "main_player_v1",
+  "role": "player",
+  "purpose": "Contratto riutilizzabile per i quattro protagonisti principali",
+  "raster": {
+    "canvas": [640, 420],
+    "baseline_y": 400,
+    "scale_mode": "baked",
+    "uniform_runtime_scale_only": true
+  },
+  "required_clips": [
+    "idle", "walk", "walk_up", "walk_down", "run", "brake", "jump", "land",
+    "air_attack", "air_punch", "punch_left", "punch_right", "combo_finisher",
+    "kick_front", "kick_right", "kick_finisher", "block", "dodge", "grab",
+    "grab_strike", "throw", "super", "hit", "knockdown", "getup", "dead"
+  ],
+  "locomotion": {
+    "idle": {
+      "frames": 4,
+      "loop": true,
+      "phases": ["guard_low", "breath_in", "guard_high", "breath_out"]
+    },
+    "walk": {
+      "frames": 8,
+      "loop": true,
+      "phases": [
+        "right_contact", "right_down", "left_pass", "left_high",
+        "left_contact", "left_down", "right_pass", "right_high"
+      ]
+    },
+    "walk_up": {
+      "frames": 6,
+      "loop": true,
+      "phases": ["left_contact", "left_down", "right_pass", "right_contact", "right_down", "left_pass"]
+    },
+    "walk_down": {
+      "frames": 6,
+      "loop": true,
+      "phases": ["left_contact", "left_down", "right_pass", "right_contact", "right_down", "left_pass"]
+    },
+    "run": {
+      "frames": 8,
+      "loop": true,
+      "phases": [
+        "right_contact", "right_compress", "left_drive", "flight_a",
+        "left_contact", "left_compress", "right_drive", "flight_b"
+      ]
+    },
+    "brake": {
+      "frames": 4,
+      "loop": false,
+      "phases": ["plant", "counterlean", "compression", "recover"]
+    },
+    "jump": {
+      "frames": 8,
+      "loop": false,
+      "phases": ["anticipation", "takeoff", "rise", "apex", "fall", "prepare_land", "landing", "recover"]
+    },
+    "land": {
+      "frames": 4,
+      "loop": false,
+      "phases": ["contact", "compression", "recover", "guard"]
+    }
+  },
+  "qa": {
+    "upright_grounded_clips": ["idle", "walk", "walk_up", "walk_down"],
+    "upright_grounded_prefixes": ["idle_variant_"],
+    "unique_motion_clips": ["idle", "walk", "walk_up", "walk_down", "run", "brake", "jump", "land"],
+    "unique_motion_prefixes": ["idle_variant_"],
+    "distinct_motion_clips": ["walk", "walk_up", "walk_down", "run", "brake", "jump", "land"],
+    "distinct_motion_prefixes": ["idle_variant_"],
+    "min_silhouette_distance": 0.025,
+    "max_visual_height_error_px": 6,
+    "max_bottom_opaque_run_px": 23,
+    "max_bottom_opaque_ratio": 0.24,
+    "max_loop_centroid_step": 0.18
+  }
+}

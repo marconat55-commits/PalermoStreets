@@ -11,7 +11,7 @@ This contract is mandatory for every new or replaced character pack.
 
 ## Player clip set
 
-Player profiles must provide: `idle`, `walk`, `walk_up`, `walk_down`, `run`, `brake`, `jump`, `air_attack`, `air_punch`, `punch_left`, `punch_right`, `combo_finisher`, `kick_front`, `kick_right`, `kick_finisher`, `block`, `dodge`, `grab`, `grab_strike`, `throw`, `super`, `hit`, `knockdown`, `getup` and `dead`.
+Player profiles must provide: `idle`, `walk`, `walk_up`, `walk_down`, `run`, `brake`, `jump`, `land`, `air_attack`, `air_punch`, `punch_left`, `punch_right`, `combo_finisher`, `kick_front`, `kick_right`, `kick_finisher`, `block`, `dodge`, `grab`, `grab_strike`, `throw`, `super`, `hit`, `knockdown`, `getup` and `dead`.
 
 Enemies may keep a smaller attack set, but must provide locomotion, hit, knockdown, getup and dead reactions. Enemy attack count remains profile-driven.
 
@@ -23,6 +23,7 @@ Enemies may keep a smaller attack set, but must provide locomotion, hit, knockdo
 - One-shot moves must include a compatible recovery pose before returning to idle.
 - The final `knockdown` frame and first `getup` frame must be pixel-identical. Their visual scales must also match.
 - Contact frame indexes must exist inside the clip and remain stable after any art replacement.
+- `frame_blend` may be used only as a short 0-60 ms transition between distinct authored poses; it must never hide duplicated PNGs or replace missing key poses.
 
 ## Runtime controller
 

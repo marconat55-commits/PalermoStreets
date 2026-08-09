@@ -151,6 +151,7 @@ export class AssetCatalog {
         sourceFacing: spec.source_facing ?? 1,
         referenceSpeed: spec.reference_speed,
         contactFrame: spec.contact_frame,
+        frameBlend: Math.max(0, spec.frame_blend ?? 0),
       });
     }
     if (!clips.has('idle')) throw new Error(`${profile.id}: clip idle mancante`);

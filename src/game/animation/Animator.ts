@@ -93,6 +93,8 @@ export class Animator {
     const clip = this.clip;
     if (clip.frames.length === 0 || this.finished) return false;
     const before = this.frameIndex;
+    const beforeFrame = this.frame;
+    const beforeFacing = this.sourceFacing;
     this.frameElapsed += dt * this.playbackRate;
     while (this.frameElapsed >= (clip.frames[this.frameIndex]?.duration ?? 999)) {
       this.frameElapsed -= clip.frames[this.frameIndex]?.duration ?? 0;
@@ -107,7 +109,14 @@ export class Animator {
         }
       }
     }
-    return before !== this.frameIndex;
+    const changed = before !== this.frameIndex;
+    if (changed && (clip.frameBlend ?? 0) > 0) {
+      this.blendFrom = beforeFrame;
+      this.blendSourceFacing = beforeFacing;
+      this.blendElapsed = 0;
+      this.blendDuration = Math.min(clip.frameBlend ?? 0, (clip.frames[this.frameIndex]?.duration ?? 0.1) * 0.5);
+    }
+    return changed;
   }
 
   get clip(): AnimationClip {

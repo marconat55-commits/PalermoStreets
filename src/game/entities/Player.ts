@@ -54,6 +54,7 @@ export class Player extends Actor {
   private dodgeDirection: Vec2 = { x: 1, y: 0 };
   private airVelocity = 0;
   private airMomentumX = 0;
+  private landingMomentumX = 0;
   private jumpElapsed = 0;
   private jumpDuration = (JUMP_VELOCITY * 2) / JUMP_GRAVITY;
   private readonly idleVariants: string[];
@@ -297,10 +298,11 @@ export class Player extends Actor {
     if (this.elevation <= 0 && this.airVelocity < 0) {
       this.elevation = 0;
       this.airVelocity = 0;
+      this.landingMomentumX = this.airMomentumX * 0.32;
       this.airMomentumX = 0;
       this.currentAttack = null;
       this.attackHits.clear();
-      this.beginState('idle', 'idle');
+      this.beginState('land', 'land');
     }
     this.clampToPlayfield();
     this.syncVisual();
@@ -323,6 +325,16 @@ export class Player extends Actor {
     }
     if (this.state === 'getup') {
       if (this.animator.finished) this.beginState('idle', 'idle');
+      this.clampToPlayfield(); this.syncVisual(); return;
+    }
+    if (this.state === 'land') {
+      const recovery = Math.max(0, 1 - this.stateElapsed / 0.26);
+      this.position.x += this.landingMomentumX * recovery * dt;
+      this.landingMomentumX *= Math.max(0, 1 - 8 * dt);
+      if (this.animator.finished) {
+        this.landingMomentumX = 0;
+        this.beginState('idle', 'idle');
+      }
       this.clampToPlayfield(); this.syncVisual(); return;
     }
     if (this.state === 'dodge') {
@@ -486,6 +498,7 @@ export class Player extends Actor {
     this.elevation = 0;
     this.airVelocity = 0;
     this.airMomentumX = 0;
+    this.landingMomentumX = 0;
     this.currentAttack = null;
     this.queuedAttack = null;
     return super.receiveHit(damage, knockback, knockdown, launchVelocity);

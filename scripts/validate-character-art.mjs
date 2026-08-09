@@ -80,6 +80,7 @@ function decodePng(relative) {
   let meaningfulLeft = width;
   let meaningfulTop = height;
   let meaningfulRight = 0;
+  let meaningfulBottom = 0;
   let alphaCount = 0;
   let visibleCount = 0;
   let centroidX = 0;
@@ -97,6 +98,7 @@ function decodePng(relative) {
       meaningfulLeft = Math.min(meaningfulLeft, x);
       meaningfulTop = Math.min(meaningfulTop, y);
       meaningfulRight = Math.max(meaningfulRight, x + 1);
+      meaningfulBottom = Math.max(meaningfulBottom, y + 1);
       visibleCount += 1;
       centroidX += x;
       centroidY += y;
@@ -113,12 +115,46 @@ function decodePng(relative) {
       topRun = Math.max(topRun, currentRun);
     } else currentRun = 0;
   }
+  let bottomRun = 0;
+  let bottomCurrentRun = 0;
+  let bottomCount = 0;
+  let bottomOpaqueRun = 0;
+  let bottomOpaqueCurrentRun = 0;
+  let bottomOpaqueCount = 0;
+  for (let x = meaningfulLeft; x < meaningfulRight; x += 1) {
+    const bottomAlpha = alphaAt(x, Math.max(0, meaningfulBottom - 1));
+    if (bottomAlpha > 16) {
+      bottomCurrentRun += 1;
+      bottomCount += 1;
+      bottomRun = Math.max(bottomRun, bottomCurrentRun);
+    } else bottomCurrentRun = 0;
+    if (bottomAlpha > 224) {
+      bottomOpaqueCurrentRun += 1;
+      bottomOpaqueCount += 1;
+      bottomOpaqueRun = Math.max(bottomOpaqueRun, bottomOpaqueCurrentRun);
+    } else bottomOpaqueCurrentRun = 0;
+  }
+  const silhouette = [];
+  const silhouetteSize = 32;
+  for (let gridY = 0; gridY < silhouetteSize; gridY += 1) {
+    for (let gridX = 0; gridX < silhouetteSize; gridX += 1) {
+      const sampleX = Math.min(meaningfulRight - 1, Math.floor(meaningfulLeft + (gridX + 0.5) * (meaningfulRight - meaningfulLeft) / silhouetteSize));
+      const sampleY = Math.min(meaningfulBottom - 1, Math.floor(meaningfulTop + (gridY + 0.5) * (meaningfulBottom - meaningfulTop) / silhouetteSize));
+      silhouette.push(alphaAt(sampleX, sampleY) > 32 ? 1 : 0);
+    }
+  }
   return {
     width,
     height,
     bounds: [left, top, right - left, bottom - top],
     topRun,
     topRatio: topCount / Math.max(1, meaningfulRight - meaningfulLeft),
+    bottomRun,
+    bottomRatio: bottomCount / Math.max(1, meaningfulRight - meaningfulLeft),
+    bottomOpaqueRun,
+    bottomOpaqueRatio: bottomOpaqueCount / Math.max(1, meaningfulRight - meaningfulLeft),
+    visibleCount,
+    silhouette,
     centroid: [centroidX / Math.max(1, visibleCount), centroidY / Math.max(1, visibleCount)],
     rawPixels: pixels,
   };
@@ -130,8 +166,32 @@ let checkedFrames = 0;
 
 for (const id of index.characters) {
   const profile = readJson(`data/characters/${id}.json`);
+  const template = profile.factory?.animation_template
+    ? readJson(profile.factory.animation_template)
+    : null;
+  const qa = template?.qa ?? {};
+  const uprightGroundedClips = new Set(qa.upright_grounded_clips ?? ['idle', 'walk', 'walk_up', 'walk_down']);
+  const uprightGroundedPrefixes = qa.upright_grounded_prefixes ?? ['idle_variant_'];
+  const uniqueMotionClips = new Set(qa.unique_motion_clips ?? ['idle', 'walk', 'walk_up', 'walk_down', 'run', 'brake', 'jump']);
+  const uniqueMotionPrefixes = qa.unique_motion_prefixes ?? ['idle_variant_'];
+  const distinctMotionClips = new Set(qa.distinct_motion_clips ?? []);
+  const distinctMotionPrefixes = qa.distinct_motion_prefixes ?? [];
+  const minSilhouetteDistance = qa.min_silhouette_distance ?? 0;
+  const maxVisualHeightError = qa.max_visual_height_error_px ?? 6;
+  const maxBottomOpaqueRun = qa.max_bottom_opaque_run_px ?? 23;
+  const maxBottomOpaqueRatio = qa.max_bottom_opaque_ratio ?? 0.24;
+  const maxLoopCentroidStep = qa.max_loop_centroid_step ?? 0.42;
   const decoded = new Map();
   for (const [clipName, spec] of Object.entries(profile.animations)) {
+    const uprightGrounded = profile.role === 'player' && (
+      uprightGroundedClips.has(clipName) || uprightGroundedPrefixes.some((prefix) => clipName.startsWith(prefix))
+    );
+    const uniqueMotion = profile.role === 'player' && (
+      uniqueMotionClips.has(clipName) || uniqueMotionPrefixes.some((prefix) => clipName.startsWith(prefix))
+    );
+    const distinctMotion = profile.role === 'player' && (
+      distinctMotionClips.has(clipName) || distinctMotionPrefixes.some((prefix) => clipName.startsWith(prefix))
+    );
     const scales = spec.visual_scales?.length === 1
       ? Array.from({ length: spec.frames }, () => spec.visual_scales[0])
       : spec.visual_scales ?? Array.from({ length: spec.frames }, () => 1);
@@ -156,7 +216,42 @@ for (const id of index.characters) {
       if (art.topRun >= 24 && art.topRatio >= 0.12) {
         fail(`${id}/${clipName}/${frameName}: probabile taglio orizzontale superiore (${art.topRun}px)`);
       }
+      if (uprightGrounded) {
+        const targetBottom = profile.factory.content_bottom_y ?? profile.factory.baseline_y;
+        const renderedHeight = art.bounds[3] * (scales[frameIndex - 1] ?? 1);
+        if (Math.abs(art.bounds[1] + art.bounds[3] - targetBottom) > 1) {
+          fail(`${id}/${clipName}/${frameName}: piedi fuori baseline (${art.bounds[1] + art.bounds[3]} vs ${targetBottom})`);
+        }
+        if (Math.abs(renderedHeight - profile.visual_height) > maxVisualHeightError) {
+          fail(`${id}/${clipName}/${frameName}: scala verticale incoerente (${renderedHeight.toFixed(1)}px vs ${profile.visual_height}px)`);
+        }
+        if (art.bottomOpaqueRun > maxBottomOpaqueRun && art.bottomOpaqueRatio > maxBottomOpaqueRatio) {
+          fail(`${id}/${clipName}/${frameName}: probabile taglio orizzontale dei piedi (${art.bottomOpaqueRun}px opachi, ${(art.bottomOpaqueRatio * 100).toFixed(0)}%)`);
+        }
+      }
       sequence.push({ art, scale: scales[frameIndex - 1] ?? 1 });
+    }
+    if (uniqueMotion) {
+      for (let firstIndex = 0; firstIndex < sequence.length; firstIndex += 1) {
+        for (let secondIndex = firstIndex + 1; secondIndex < sequence.length; secondIndex += 1) {
+          if (sequence[firstIndex].art.rawPixels.equals(sequence[secondIndex].art.rawPixels)) {
+            fail(`${id}/${clipName}: frame duplicati ${firstIndex + 1} e ${secondIndex + 1}; usa una durata maggiore invece di copiare la stessa posa`);
+          }
+        }
+      }
+    }
+    if (distinctMotion && minSilhouetteDistance > 0) {
+      for (let firstIndex = 0; firstIndex < sequence.length; firstIndex += 1) {
+        for (let secondIndex = firstIndex + 1; secondIndex < sequence.length; secondIndex += 1) {
+          const first = sequence[firstIndex].art.silhouette;
+          const second = sequence[secondIndex].art.silhouette;
+          const changedCells = first.reduce((count, value, indexValue) => count + Number(value !== second[indexValue]), 0);
+          const distance = changedCells / Math.max(1, first.length);
+          if (distance < minSilhouetteDistance) {
+            fail(`${id}/${clipName}: pose quasi duplicate ${firstIndex + 1} e ${secondIndex + 1} (distanza silhouette ${distance.toFixed(3)})`);
+          }
+        }
+      }
     }
     if (spec.loop && sequence.length > 1) {
       for (let frameIndex = 0; frameIndex < sequence.length; frameIndex += 1) {
@@ -166,7 +261,7 @@ for (const id of index.characters) {
           first.art.centroid[0] - second.art.centroid[0],
           first.art.centroid[1] - second.art.centroid[1],
         ) / profile.visual_height;
-        if (distance > 0.42) warn(`${id}/${clipName}: salto del baricentro tra frame ${frameIndex + 1} e ${(frameIndex + 1) % sequence.length + 1}`);
+        if (distance > maxLoopCentroidStep) fail(`${id}/${clipName}: salto del baricentro tra frame ${frameIndex + 1} e ${(frameIndex + 1) % sequence.length + 1} (${distance.toFixed(3)})`);
       }
     }
   }

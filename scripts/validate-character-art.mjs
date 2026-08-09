@@ -192,6 +192,7 @@ for (const id of index.characters) {
     const distinctMotion = profile.role === 'player' && (
       distinctMotionClips.has(clipName) || distinctMotionPrefixes.some((prefix) => clipName.startsWith(prefix))
     );
+    const clipMinSilhouetteDistance = qa.min_silhouette_distance_by_clip?.[clipName] ?? minSilhouetteDistance;
     const scales = spec.visual_scales?.length === 1
       ? Array.from({ length: spec.frames }, () => spec.visual_scales[0])
       : spec.visual_scales ?? Array.from({ length: spec.frames }, () => 1);
@@ -240,14 +241,14 @@ for (const id of index.characters) {
         }
       }
     }
-    if (distinctMotion && minSilhouetteDistance > 0) {
+    if (distinctMotion && clipMinSilhouetteDistance > 0) {
       for (let firstIndex = 0; firstIndex < sequence.length; firstIndex += 1) {
         for (let secondIndex = firstIndex + 1; secondIndex < sequence.length; secondIndex += 1) {
           const first = sequence[firstIndex].art.silhouette;
           const second = sequence[secondIndex].art.silhouette;
           const changedCells = first.reduce((count, value, indexValue) => count + Number(value !== second[indexValue]), 0);
           const distance = changedCells / Math.max(1, first.length);
-          if (distance < minSilhouetteDistance) {
+          if (distance < clipMinSilhouetteDistance) {
             fail(`${id}/${clipName}: pose quasi duplicate ${firstIndex + 1} e ${secondIndex + 1} (distanza silhouette ${distance.toFixed(3)})`);
           }
         }

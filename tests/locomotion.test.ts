@@ -13,6 +13,7 @@ test('mappa movimento orizzontale, alto e basso sui clip canonici', () => {
 test('isteresi evita flicker nei cambi diagonali', () => {
   assert.equal(selectLocomotionClip({ x: 1, y: -0.7 }, 'walk', hasAll), 'walk');
   assert.equal(selectLocomotionClip({ x: 1, y: -0.7 }, 'walk_up', hasAll), 'walk_up');
+  assert.equal(selectLocomotionClip({ x: 1, y: -0.7 }, 'run_up', hasAll), 'walk_up');
 });
 
 test('velocita animazione segue velocita reale e stride di riferimento', () => {

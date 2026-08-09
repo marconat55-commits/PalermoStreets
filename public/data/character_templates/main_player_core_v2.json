@@ -1,0 +1,94 @@
+{
+  "schema": 1,
+  "id": "main_player_core_v2",
+  "role": "player",
+  "purpose": "Base runtime riutilizzabile per protagonisti con locomozione completa e reazioni V2",
+  "raster": {
+    "canvas": [640, 420],
+    "baseline_y": 400,
+    "scale_mode": "baked",
+    "uniform_runtime_scale_only": true
+  },
+  "required_clips": [
+    "idle", "walk", "walk_up", "walk_down", "run", "run_up", "run_down", "brake", "jump", "land",
+    "air_attack", "air_punch", "punch_left", "punch_right", "combo_finisher",
+    "kick_front", "kick_right", "kick_finisher", "block", "dodge", "grab",
+    "grab_strike", "throw", "super", "hit", "knockdown", "getup", "dead"
+  ],
+  "locomotion": {
+    "idle": {
+      "frames": 8,
+      "loop": true,
+      "phases": ["guard_low", "inhale_1", "inhale_2", "settle_a", "guard_high", "exhale_1", "exhale_2", "settle_b"]
+    },
+    "walk": {
+      "frames": 12,
+      "loop": true,
+      "phases": ["right_contact", "right_down", "left_pass_1", "left_pass_2", "left_high", "neutral_a", "left_contact", "left_down", "right_pass_1", "right_pass_2", "right_high", "neutral_b"]
+    },
+    "walk_up": {
+      "frames": 10,
+      "loop": true,
+      "phases": ["left_contact", "left_down", "right_pass_1", "right_pass_2", "right_high", "right_contact", "right_down", "left_pass_1", "left_pass_2", "left_high"]
+    },
+    "walk_down": {
+      "frames": 10,
+      "loop": true,
+      "phases": ["left_contact", "left_down", "right_pass_1", "right_pass_2", "right_high", "right_contact", "right_down", "left_pass_1", "left_pass_2", "left_high"]
+    },
+    "run": {
+      "frames": 10,
+      "loop": true,
+      "phases": ["right_contact", "right_compress", "left_drive", "flight_a", "left_prepare", "left_contact", "left_compress", "right_drive", "flight_b", "right_prepare"]
+    },
+    "run_up": {
+      "frames": 10,
+      "loop": true,
+      "phases": ["right_contact", "right_compress", "left_drive", "flight_a", "left_prepare", "left_contact", "left_compress", "right_drive", "flight_b", "right_prepare"]
+    },
+    "run_down": {
+      "frames": 10,
+      "loop": true,
+      "phases": ["right_contact", "right_compress", "left_drive", "flight_a", "left_prepare", "left_contact", "left_compress", "right_drive", "flight_b", "right_prepare"]
+    },
+    "brake": {
+      "frames": 6,
+      "loop": false,
+      "phases": ["run_exit", "plant", "counterlean", "compression", "recover", "guard"]
+    },
+    "jump": {
+      "frames": 10,
+      "loop": false,
+      "phases": ["anticipation", "takeoff", "rise", "tuck", "apex_a", "apex_b", "open", "descent", "prepare_contact", "contact"]
+    },
+    "land": {
+      "frames": 6,
+      "loop": false,
+      "phases": ["contact", "deep_compression", "rebound", "half_rise", "guard", "idle"]
+    }
+  },
+  "qa": {
+    "upright_grounded_clips": ["idle", "walk", "walk_up", "walk_down"],
+    "upright_grounded_prefixes": ["idle_variant_"],
+    "unique_motion_clips": ["idle", "walk", "walk_up", "walk_down", "run", "run_up", "run_down", "brake", "jump", "land"],
+    "unique_motion_prefixes": ["idle_variant_"],
+    "distinct_motion_clips": ["walk", "walk_up", "walk_down", "run", "run_up", "run_down", "brake", "jump", "land"],
+    "distinct_motion_prefixes": ["idle_variant_"],
+    "min_silhouette_distance": 0.025,
+    "min_silhouette_distance_by_clip": {
+      "walk": 0.015,
+      "walk_up": 0.010,
+      "walk_down": 0.010,
+      "run": 0.012,
+      "run_up": 0.012,
+      "run_down": 0.012,
+      "brake": 0.010,
+      "jump": 0.010,
+      "land": 0.010
+    },
+    "max_visual_height_error_px": 6,
+    "max_bottom_opaque_run_px": 23,
+    "max_bottom_opaque_ratio": 0.24,
+    "max_loop_centroid_step": 0.18
+  }
+}

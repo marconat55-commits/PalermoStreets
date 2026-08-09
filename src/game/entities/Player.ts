@@ -461,7 +461,7 @@ export class Player extends Actor {
       const directionalRun = directionalClip === 'walk' ? 'run' : directionalClip.replace('walk_', 'run_');
       movementAnimation = this.animator.bank.clips.has(directionalRun) ? directionalRun : directionalClip;
     }
-    const preservesStride = ['walk', 'walk_up', 'walk_down', 'run'].includes(this.animator.name);
+    const preservesStride = ['walk', 'walk_up', 'walk_down', 'run', 'run_up', 'run_down'].includes(this.animator.name);
     if (moving) {
       this.idleStillTime = 0;
       this.animator.play(movementAnimation, false, preservesStride);

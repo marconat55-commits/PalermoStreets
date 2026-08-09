@@ -16,7 +16,7 @@
     "accessories": "doppia catena d'oro, anello d'oro all'orecchio sinistro e bracciali in pelle e metallo",
     "fighting_style": "street fighter potente e diretto",
     "special_move": "supermossa in avanzamento",
-    "canon": "Marco Quality Pack v5 — volto master bloccato, locomozione continua, combo pugni/calci, attacchi aerei distinti e quattro idle estese"
+    "canon": "Marco V2 Core — volto master bloccato, locomozione a sei direzioni, scala baked e continuità fall/getup pixel-identica"
   },
   "gameplay": {
     "player": {
@@ -27,7 +27,7 @@
   },
   "factory": {
     "recipe": "player_standard",
-    "animation_template": "data/character_templates/main_player_v1.json",
+    "animation_template": "data/character_templates/main_player_core_v2.json",
     "animation_canvas": [
       640,
       420
@@ -54,9 +54,9 @@
   "animations": {
     "idle": {
       "folder": "idle",
-      "frames": 4,
+      "frames": 8,
       "durations": [
-        0.14
+        0.12
       ],
       "loop": true,
       "source_facing": 1
@@ -69,80 +69,102 @@
     },
     "walk": {
       "folder": "walk",
-      "frames": 8,
+      "frames": 12,
       "durations": [
-        0.082
+        0.055
       ],
       "loop": true,
-      "frame_blend": 0.028,
+      "frame_blend": 0.018,
       "source_facing": 1,
       "reference_speed": 285
     },
     "walk_up": {
       "folder": "walk_up",
-      "frames": 6,
+      "frames": 10,
       "durations": [
-        0.105
+        0.063
       ],
       "loop": true,
-      "frame_blend": 0.028,
+      "frame_blend": 0.018,
       "source_facing": 1,
       "reference_speed": 205
     },
     "walk_down": {
       "folder": "walk_down",
-      "frames": 6,
+      "frames": 10,
       "durations": [
-        0.105
+        0.063
       ],
       "loop": true,
-      "frame_blend": 0.028,
+      "frame_blend": 0.018,
       "source_facing": 1,
       "reference_speed": 205
     },
     "run": {
       "folder": "run",
-      "frames": 8,
+      "frames": 10,
       "durations": [
-        0.075
+        0.06
       ],
       "loop": true,
-      "frame_blend": 0.022,
+      "frame_blend": 0.016,
       "source_facing": 1,
       "reference_speed": 442
     },
+    "run_up": {
+      "folder": "run_up",
+      "frames": 10,
+      "durations": [0.06],
+      "loop": true,
+      "frame_blend": 0.016,
+      "source_facing": 1,
+      "reference_speed": 318
+    },
+    "run_down": {
+      "folder": "run_down",
+      "frames": 10,
+      "durations": [0.06],
+      "loop": true,
+      "frame_blend": 0.016,
+      "source_facing": 1,
+      "reference_speed": 318
+    },
     "brake": {
       "folder": "brake",
-      "frames": 4,
+      "frames": 6,
       "durations": [
-        0.065,
-        0.075,
-        0.085,
-        0.095
+        0.045,
+        0.05,
+        0.05,
+        0.055,
+        0.06,
+        0.06
       ],
       "frame_blend": 0.025,
       "source_facing": 1
     },
     "jump": {
       "folder": "jump",
-      "frames": 8,
+      "frames": 10,
       "durations": [
+        0.07,
+        0.07,
+        0.075,
+        0.085,
+        0.1,
+        0.1,
+        0.09,
         0.08,
-        0.09,
-        0.1,
-        0.12,
-        0.11,
-        0.1,
-        0.09,
-        0.11
+        0.07,
+        0.06
       ],
       "frame_blend": 0.022,
       "source_facing": 1
     },
     "land": {
       "folder": "land",
-      "frames": 4,
-      "durations": [0.055, 0.06, 0.07, 0.075],
+      "frames": 6,
+      "durations": [0.045, 0.05, 0.055, 0.06, 0.07, 0.08],
       "frame_blend": 0.026,
       "source_facing": 1
     },
@@ -309,39 +331,48 @@
     },
     "knockdown": {
       "folder": "fall",
-      "frames": 5,
+      "frames": 8,
       "visual_scales": [1.0],
       "durations": [
+        0.06,
+        0.07,
         0.08,
         0.09,
         0.1,
-        0.12,
+        0.11,
+        0.14,
         0.28
       ],
       "source_facing": 1
     },
     "getup": {
       "folder": "getup",
-      "frames": 5,
+      "frames": 8,
       "visual_scales": [1.0],
       "durations": [
+        0.13,
         0.12,
         0.12,
         0.12,
         0.12,
+        0.12,
+        0.13,
         0.16
       ],
       "source_facing": 1
     },
     "dead": {
       "folder": "fall",
-      "frames": 5,
+      "frames": 8,
       "visual_scales": [1.0],
       "durations": [
+        0.06,
+        0.07,
         0.08,
         0.09,
         0.1,
-        0.12,
+        0.11,
+        0.14,
         9.0
       ],
       "source_facing": 1

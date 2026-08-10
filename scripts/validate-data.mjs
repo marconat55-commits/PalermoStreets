@@ -18,6 +18,11 @@ function fail(message) { errors.push(message); }
 function warn(message) { warnings.push(message); }
 function frameName(index) { return `${String(index).padStart(2, '0')}.png`; }
 
+function pngColorType(relative) {
+  const source = fs.readFileSync(absolute(relative));
+  return source.length >= 26 ? source[25] : null;
+}
+
 function walkFiles(directory) {
   if (!fs.existsSync(directory)) return [];
   return fs.readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
@@ -160,9 +165,20 @@ for (const module of stage.modules ?? []) {
       fail(`${module.id}: camera_bounds non validi`);
     }
   }
+  const playfieldY = module.playfield_y ?? [565, 684];
+  if (!Array.isArray(playfieldY) || playfieldY.length !== 2
+    || !playfieldY.every(Number.isFinite)
+    || playfieldY[0] < 0 || playfieldY[1] > 720 || playfieldY[1] <= playfieldY[0]) {
+    fail(`${module.id}: playfield_y non valido`);
+  }
   for (const [layerIndex, layer] of (module.background_layers ?? []).entries()) {
     if (!layer?.src || !exists(layer.src)) fail(`${module.id}: layer ${layerIndex + 1} mancante ${layer?.src ?? ''}`);
     if (!Number.isFinite(layer?.parallax) || layer.parallax < 0) fail(`${module.id}: parallax layer ${layerIndex + 1} non valido`);
+  }
+  const farLayer = (module.background_layers ?? []).find((layer) => layer.plane === 'far');
+  const mainLayer = (module.background_layers ?? []).find((layer) => layer.plane === 'main');
+  if (farLayer && mainLayer && exists(mainLayer.src) && pngColorType(mainLayer.src) === 2) {
+    warn(`${module.id}: il main è RGB opaco e copre completamente il far layer; esportare il main con cielo trasparente per un parallax reale`);
   }
   for (const wave of module.waves ?? []) {
     const character = wave.character ?? index.default_enemy;
@@ -171,6 +187,7 @@ for (const module of stage.modules ?? []) {
     for (const spawn of wave.spawns ?? []) {
       if (!Array.isArray(spawn) || spawn.length !== 2 || !spawn.every(Number.isFinite)) fail(`${module.id}: coordinate spawn non valide`);
       else if (spawn[0] < 0 || spawn[0] > worldWidth) fail(`${module.id}: spawn X fuori dal world_width`);
+      else if (spawn[1] < playfieldY[0] || spawn[1] > playfieldY[1]) fail(`${module.id}: spawn Y fuori dal playfield_y`);
     }
     if (wave.trigger_x !== undefined && (!Number.isFinite(wave.trigger_x) || wave.trigger_x < 0 || wave.trigger_x > worldWidth)) {
       fail(`${module.id}: trigger_x non valido`);

@@ -322,10 +322,10 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      167,
-      203,
-      305,
-      197
+      236,
+      126,
+      168,
+      274
     ],
     "offsetY": 20
   },
@@ -2423,10 +2423,10 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      175,
-      210,
-      290,
-      190
+      241,
+      145,
+      158,
+      255
     ],
     "offsetY": 20
   },
@@ -2434,10 +2434,10 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      236,
-      126,
-      168,
-      274
+      240,
+      81,
+      159,
+      319
     ],
     "offsetY": 20
   },
@@ -3186,28 +3186,6 @@
       112,
       156,
       288
-    ],
-    "offsetY": 20
-  },
-  "/assets/characters/marco_anim/air_attack/07.png": {
-    "width": 640,
-    "height": 420,
-    "bounds": [
-      241,
-      145,
-      158,
-      255
-    ],
-    "offsetY": 20
-  },
-  "/assets/characters/marco_anim/air_attack/08.png": {
-    "width": 640,
-    "height": 420,
-    "bounds": [
-      240,
-      81,
-      159,
-      319
     ],
     "offsetY": 20
   },

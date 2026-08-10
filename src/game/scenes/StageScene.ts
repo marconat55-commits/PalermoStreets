@@ -12,6 +12,7 @@ import { EXIT_TRIGGER_TOLERANCE, EXIT_X, LOGICAL_HEIGHT, LOGICAL_WIDTH, MODULE_E
 import { preventCrossings, resolveEnemyAttack, resolvePlayerAttack, separateActors } from '../combat/combat';
 import { cameraTargetForPlayer, resolveCameraBounds, smoothCamera, type HorizontalCameraBounds } from '../stage/camera';
 import { resolveArcadeAction } from '../input/arcadeControls';
+import { SPIN_SPECIAL } from '../combat/attacks';
 
 function authoredLayers(module: ModuleData): BackgroundLayerData[] {
   return module.background_layers?.length
@@ -108,9 +109,12 @@ export class StageScene implements Scene {
   private preloadTriggeredForModule = -1;
   private backgroundSprites: Array<{ sprite: Sprite; layer: BackgroundLayerData; baseX: number; baseY: number }> = [];
   private worldWidth = LOGICAL_WIDTH;
+  private playfieldTop: number = 565;
+  private playfieldBottom: number = 684;
   private cameraX = 0;
   private cameraBounds: HorizontalCameraBounds = { min: 0, max: 0 };
   private shakeOffset: Vec2 = { x: 0, y: 0 };
+  private specialFxTimer = 0;
 
   static async create(
     catalog: AssetCatalog,
@@ -284,6 +288,7 @@ export class StageScene implements Scene {
     const backgrounds = this.backgroundTextures[index];
     if (!backgrounds) throw new Error(`Background non caricato per il modulo ${index + 1}`);
     this.worldWidth = Math.max(LOGICAL_WIDTH, this.currentModule.world_width ?? LOGICAL_WIDTH);
+    [this.playfieldTop, this.playfieldBottom] = this.currentModule.playfield_y ?? [565, 684];
     this.cameraBounds = resolveCameraBounds(this.worldWidth, LOGICAL_WIDTH, this.currentModule.camera_bounds);
     this.cameraX = this.cameraBounds.min;
     this.shakeOffset = { x: 0, y: 0 };
@@ -322,7 +327,7 @@ export class StageScene implements Scene {
     this.player.elevation = 0;
     this.player.alpha255 = 255;
     this.player.beginState('idle', 'idle');
-    this.player.setPlayfieldBounds(45, this.worldWidth - 45);
+    this.player.setPlayfieldBounds(45, this.worldWidth - 45, this.playfieldTop, this.playfieldBottom);
     if (preservePlayer) {
       this.player.health = Math.min(this.player.maxHealth, this.player.health + (this.currentModule.heal ?? 0));
     } else {
@@ -392,7 +397,7 @@ export class StageScene implements Scene {
         cooldownScale: wave.cooldown_scale ?? defaults.cooldown_scale,
         collisionScale: wave.collision_scale ?? defaults.collision_scale,
       });
-      enemy.setPlayfieldBounds(45, this.worldWidth - 45);
+      enemy.setPlayfieldBounds(45, this.worldWidth - 45, this.playfieldTop, this.playfieldBottom);
       this.enemies.push(enemy);
       this.actors.addChild(enemy.root);
     }
@@ -481,13 +486,13 @@ export class StageScene implements Scene {
     if (input.wasPressed('F3')) this.debugDraw = !this.debugDraw;
     if (input.wasPressed('KeyR') && this.player.dead) this.restart();
     if (!this.paused && !this.stageComplete && this.transitionPhase === null && this.stageIntroTimer <= 0) {
-      const attackPressed = input.wasPressed('KeyA');
-      const jumpPressed = input.wasPressed('KeyB');
+      const attackPressed = input.wasPressed('KeyJ');
+      const jumpPressed = input.wasPressed('KeyK');
       const action = resolveArcadeAction({
         attackPressed,
         jumpPressed,
-        attackHeld: input.isDown('KeyA'),
-        jumpHeld: input.isDown('KeyB'),
+        attackHeld: input.isDown('KeyJ'),
+        jumpHeld: input.isDown('KeyK'),
       });
       if (action === 'special') this.player.requestSpinSpecial();
       else {
@@ -551,6 +556,18 @@ export class StageScene implements Scene {
     )[0];
     this.player.setAutoTarget(nearest?.position.x ?? null);
     this.player.update(dt, input, this.entryLock <= 0);
+    if (this.player.isSpinSpecialActive) {
+      this.specialFxTimer -= dt;
+      if (this.specialFxTimer <= 0) {
+        this.effects.fireRush({
+          x: this.player.position.x + this.player.facing * 72,
+          y: this.player.position.y - this.player.elevation - 92,
+        }, this.player.facing);
+        this.specialFxTimer = 0.045;
+      }
+    } else {
+      this.specialFxTimer = 0;
+    }
     const movementIntent = this.inputDirection(input);
     if ((movementIntent.x !== 0 || movementIntent.y !== 0) && this.player.canStartGrab) this.tryStartGrab();
 
@@ -582,6 +599,7 @@ export class StageScene implements Scene {
       this.screenShake = Math.max(this.screenShake, event.shake);
       this.effects.hitSpark(event.position, event.heavy);
       this.effects.damageText(event.position, event.damage, event.heavy);
+      if (this.player.currentAttack === SPIN_SPECIAL) this.effects.fireRush(event.position, this.player.facing, true);
     }
     for (const enemy of this.enemies) {
       const event = resolveEnemyAttack(enemy, this.player);
@@ -718,7 +736,8 @@ export class StageScene implements Scene {
 
   private drawDebug(): void {
     const g = this.debug;
-    g.rect(45, 510, 1190, 174).stroke({ color: 0x28ff6e, width: 2 });
+    g.rect(45, this.playfieldTop, this.worldWidth - 90, this.playfieldBottom - this.playfieldTop)
+      .stroke({ color: 0x28ff6e, width: 2 });
     for (const actor of [this.player, ...this.enemies]) {
       const hb = actor.hurtbox;
       g.rect(hb.x, hb.y, hb.width, hb.height).stroke({ color: 0x50d2ff, width: 2 });

@@ -165,7 +165,7 @@ export class Actor {
     this.position.y = clamp(this.position.y, this.playfieldBounds.top, this.playfieldBounds.bottom);
   }
 
-  setPlayfieldBounds(left: number, right: number, top = PLAYFIELD.top, bottom = PLAYFIELD.bottom): void {
+  setPlayfieldBounds(left: number, right: number, top: number = PLAYFIELD.top, bottom: number = PLAYFIELD.bottom): void {
     this.playfieldBounds = { left, right, top, bottom };
     this.clampToPlayfield();
   }

@@ -66,7 +66,6 @@ export class Player extends Actor {
   private readonly idleVariants: string[];
   private idleVariantIndex = 0;
   private idleStillTime = 0;
-  private specialHealthCharged = false;
 
   constructor(bank: AnimationBank, position: Vec2, maxHealth = 120, moveSpeed = 285, depthSpeed = 205) {
     super(bank, position, maxHealth);
@@ -191,9 +190,14 @@ export class Player extends Actor {
 
   requestSpinSpecial(): boolean {
     if (!this.requestAttack(SPIN_SPECIAL)) return false;
-    this.specialHealthCharged = false;
     this.invulnerable = SPIN_SPECIAL.startup + SPIN_SPECIAL.active;
     return true;
+  }
+
+  get isSpinSpecialActive(): boolean {
+    return this.currentAttack === SPIN_SPECIAL
+      && this.attackElapsed >= SPIN_SPECIAL.startup * 0.55
+      && this.attackElapsed <= SPIN_SPECIAL.startup + SPIN_SPECIAL.active;
   }
 
   requestDodge(direction: Vec2): boolean {
@@ -403,6 +407,8 @@ export class Player extends Actor {
       this.attackElapsed += dt;
       if (this.currentAttack === SUPER) {
         if (this.attackElapsed >= 0.18) this.position.x += this.facing * 245 * dt;
+      } else if (this.currentAttack === SPIN_SPECIAL) {
+        if (this.attackElapsed >= SPIN_SPECIAL.startup * 0.55) this.position.x += this.facing * 520 * dt;
       } else if (![GRAB_STRIKE, THROW].includes(this.currentAttack) && this.attackElapsed < this.currentAttack.startup + this.currentAttack.active) {
         const lunge: Record<string, number> = {
           punch_left: 86,
@@ -514,8 +520,9 @@ export class Player extends Actor {
     if (!(attack.startup <= this.attackElapsed && this.attackElapsed <= attack.startup + attack.active)) return null;
     if (attack === SPIN_SPECIAL) {
       const feetY = this.position.y - this.elevation;
+      const rearReach = attack.rangeX * 0.18;
       return {
-        x: this.position.x - attack.rangeX / 2,
+        x: this.facing > 0 ? this.position.x - rearReach : this.position.x - attack.rangeX + rearReach,
         y: feetY - attack.rangeY * 0.72,
         width: attack.rangeX,
         height: attack.rangeY,
@@ -570,11 +577,6 @@ export class Player extends Actor {
     this.score += damage * 10;
     this.comboCounter += 1;
     this.comboDisplayTimer = 1.25;
-    if (this.currentAttack === SPIN_SPECIAL && !this.specialHealthCharged) {
-      const healthCost = Math.max(1, Math.round(this.maxHealth * 0.05));
-      this.health = Math.max(1, this.health - healthCost);
-      this.specialHealthCharged = true;
-    }
   }
 
   addFury(amount: number): void {

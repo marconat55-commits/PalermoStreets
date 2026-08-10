@@ -13,12 +13,12 @@
     },
     {
       "file": "atlas_03.png",
-      "width": 1997,
-      "height": 1123
+      "width": 1969,
+      "height": 1103
     }
   ],
   "frames": {
-    "air_attack/08.png": {
+    "air_attack/06.png": {
       "page": 0,
       "x": 2,
       "y": 2,
@@ -1360,7 +1360,7 @@
       "source_x": 158,
       "source_y": 126
     },
-    "air_attack/06.png": {
+    "air_attack/04.png": {
       "page": 1,
       "x": 956,
       "y": 1146,
@@ -1569,7 +1569,7 @@
       "source_x": 230,
       "source_y": 144
     },
-    "air_attack/07.png": {
+    "air_attack/05.png": {
       "page": 1,
       "x": 1096,
       "y": 1694,
@@ -2009,31 +2009,9 @@
       "source_x": 192,
       "source_y": 199
     },
-    "air_attack/04.png": {
-      "page": 2,
-      "x": 602,
-      "y": 737,
-      "width": 305,
-      "height": 197,
-      "source_width": 640,
-      "source_height": 420,
-      "source_x": 167,
-      "source_y": 203
-    },
-    "air_attack/05.png": {
-      "page": 2,
-      "x": 909,
-      "y": 737,
-      "width": 290,
-      "height": 190,
-      "source_width": 640,
-      "source_height": 420,
-      "source_x": 175,
-      "source_y": 210
-    },
     "jump/06.png": {
       "page": 2,
-      "x": 1201,
+      "x": 602,
       "y": 737,
       "width": 147,
       "height": 189,
@@ -2044,7 +2022,7 @@
     },
     "land/01.png": {
       "page": 2,
-      "x": 1350,
+      "x": 751,
       "y": 737,
       "width": 171,
       "height": 178,
@@ -2055,7 +2033,7 @@
     },
     "getup/04.png": {
       "page": 2,
-      "x": 1523,
+      "x": 924,
       "y": 737,
       "width": 216,
       "height": 177,
@@ -2066,7 +2044,7 @@
     },
     "fall/03.png": {
       "page": 2,
-      "x": 1741,
+      "x": 1142,
       "y": 737,
       "width": 254,
       "height": 175,
@@ -2077,8 +2055,8 @@
     },
     "land/02.png": {
       "page": 2,
-      "x": 2,
-      "y": 947,
+      "x": 1398,
+      "y": 737,
       "width": 160,
       "height": 174,
       "source_width": 640,
@@ -2088,8 +2066,8 @@
     },
     "fall/05.png": {
       "page": 2,
-      "x": 164,
-      "y": 947,
+      "x": 1560,
+      "y": 737,
       "width": 272,
       "height": 155,
       "source_width": 640,
@@ -2099,7 +2077,7 @@
     },
     "fall/04.png": {
       "page": 2,
-      "x": 438,
+      "x": 2,
       "y": 947,
       "width": 269,
       "height": 154,
@@ -2110,7 +2088,7 @@
     },
     "getup/03.png": {
       "page": 2,
-      "x": 709,
+      "x": 273,
       "y": 947,
       "width": 249,
       "height": 148,
@@ -2121,7 +2099,7 @@
     },
     "getup/02.png": {
       "page": 2,
-      "x": 960,
+      "x": 524,
       "y": 947,
       "width": 257,
       "height": 128,
@@ -2132,7 +2110,7 @@
     },
     "fall/06.png": {
       "page": 2,
-      "x": 1219,
+      "x": 783,
       "y": 947,
       "width": 285,
       "height": 102,
@@ -2143,7 +2121,7 @@
     },
     "fall/07.png": {
       "page": 2,
-      "x": 1506,
+      "x": 1070,
       "y": 947,
       "width": 288,
       "height": 94,

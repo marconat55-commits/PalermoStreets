@@ -59,6 +59,34 @@ export class EffectsLayer {
     this.effects.push({ root: dust, life: 0.24, total: 0.24, vy: -18 });
   }
 
+  fireRush(position: Vec2, facing: -1 | 1, impact = false): void {
+    const flame = new Graphics();
+    const length = impact ? 92 : 66;
+    const direction = facing;
+    flame
+      .ellipse(direction * length * 0.18, 0, length * 0.56, impact ? 27 : 19)
+      .fill({ color: 0xff5414, alpha: 0.78 });
+    flame
+      .ellipse(direction * length * 0.34, 0, length * 0.34, impact ? 18 : 12)
+      .fill({ color: 0xffb21c, alpha: 0.92 });
+    flame
+      .moveTo(-direction * 8, -8)
+      .lineTo(-direction * length * 0.72, 0)
+      .lineTo(-direction * 8, 8)
+      .closePath()
+      .fill({ color: 0xff7817, alpha: 0.74 });
+    flame.circle(direction * length * 0.36, 0, impact ? 9 : 6).fill({ color: 0xfff0a0, alpha: 0.96 });
+    flame.position.set(position.x, position.y);
+    this.root.addChild(flame);
+    this.effects.push({
+      root: flame,
+      life: impact ? 0.24 : 0.16,
+      total: impact ? 0.24 : 0.16,
+      vx: -direction * (impact ? 42 : 92),
+      vy: impact ? -12 : 0,
+    });
+  }
+
   update(dt: number): void {
     for (let i = this.effects.length - 1; i >= 0; i -= 1) {
       const effect = this.effects[i]!;

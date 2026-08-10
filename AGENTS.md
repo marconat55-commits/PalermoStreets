@@ -26,11 +26,11 @@ This repository is the PixiJS/TypeScript migration of the Python + pygame-ce Pal
 
 ## Player controls currently active
 - Arrow keys: movement
-- A: context-sensitive mixed attack combo; aerial attack while jumping; grab strike while holding an enemy
-- B: jump
+- J: context-sensitive punch combo; aerial attack while jumping; grab strike while holding an enemy
+- K: jump
 - Double-tap a direction: normalized horizontal, vertical or diagonal run
-- Double-tap forward + A: running attack
-- A+B: 360-degree special attack with temporary invulnerability; it repels nearby enemies and costs 5% max health only when it hits
+- Double-tap forward + J: running attack
+- J+K: advancing fire special with temporary invulnerability and multi-enemy knockback; it has no health cost
 - Releasing movement after a run: dedicated brake transition
 - P: pause
 - F3: debug hitboxes

@@ -14,7 +14,7 @@ export class Hud {
     style: new TextStyle({ fontFamily: 'Arial, sans-serif', fontSize: 16, fill: 0xf5f5f0 }),
   });
   private readonly superReady = new Text({
-    text: 'A+B — ATTACCO SPECIALE',
+    text: 'J+K — ATTACCO SPECIALE',
     style: new TextStyle({ fontFamily: 'Arial, sans-serif', fontSize: 16, fontWeight: '700', fill: 0xffc32d }),
   });
   private readonly combo = new Text({

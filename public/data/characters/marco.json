@@ -16,7 +16,7 @@
     "accessories": "doppia catena d'oro, anello d'oro all'orecchio sinistro e bracciali in pelle e metallo",
     "fighting_style": "street fighter potente e diretto",
     "special_move": "supermossa in avanzamento",
-    "canon": "Marco Full V3 — guardia laterale destra, identità master bloccata, 194 frame coerenti, locomozione a sei direzioni, scala baked e continuità fall/getup pixel-identica"
+    "canon": "Marco Full V3 — guardia laterale destra, identità master bloccata, 192 frame runtime coerenti, locomozione a sei direzioni, scala baked e continuità fall/getup pixel-identica"
   },
   "gameplay": {
     "player": {
@@ -159,6 +159,7 @@
         0.06
       ],
       "frame_blend": 0.022,
+      "visual_scales": [0.92],
       "source_facing": 1
     },
     "land": {
@@ -170,10 +171,11 @@
     },
     "air_attack": {
       "folder": "air_attack",
-      "frames": 8,
-      "durations": [0.05, 0.06, 0.07, 0.09, 0.09, 0.07, 0.06, 0.05],
+      "frames": 6,
+      "durations": [0.06, 0.07, 0.12, 0.08, 0.07, 0.08],
+      "visual_scales": [0.92],
       "source_facing": 1,
-      "contact_frame": 5
+      "contact_frame": 3
     },
     "air_punch": {
       "folder": "air_punch",

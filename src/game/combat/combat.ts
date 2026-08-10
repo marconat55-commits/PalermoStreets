@@ -1,5 +1,5 @@
 import type { CombatEvent, Vec2 } from '../types';
-import { canAcquireAttackTarget, GRAB_STRIKE, THROW } from './attacks';
+import { canAcquireAttackTarget, GRAB_STRIKE, SPIN_SPECIAL, THROW } from './attacks';
 import type { Player } from '../entities/Player';
 import type { Enemy } from '../entities/Enemy';
 import type { Actor, HitResult } from '../entities/Actor';
@@ -33,9 +33,12 @@ export function resolvePlayerAttack(player: Player, enemies: Enemy[]): CombatEve
       result = enemy.receiveGrabHit(attack.damage);
     } else {
       if (enemy === player.grabbedTarget && attack === THROW) player.releaseGrab();
+      const knockbackDirection = attack === SPIN_SPECIAL
+        ? (enemy.position.x >= player.position.x ? 1 : -1)
+        : player.facing;
       result = enemy.receiveHit(
         attack.damage,
-        { x: player.facing * attack.knockbackX, y: 0 },
+        { x: knockbackDirection * attack.knockbackX, y: 0 },
         attack.knockdown ?? false,
         attack.launchVelocity ?? 0,
       );

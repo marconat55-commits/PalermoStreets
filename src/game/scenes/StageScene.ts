@@ -2,7 +2,7 @@ import { Container, Graphics, Sprite, Text, TextStyle, type Texture } from 'pixi
 import type { Scene } from './Scene';
 import type { Input } from '../input/Input';
 import type { AssetCatalog } from '../assets/AssetCatalog';
-import type { CharacterProfile, ModuleData, StageData, Vec2, WaveData } from '../types';
+import type { BackgroundLayerData, CharacterProfile, ModuleData, StageData, Vec2, WaveData } from '../types';
 import { Player } from '../entities/Player';
 import { Enemy } from '../entities/Enemy';
 import { EffectsLayer } from '../effects/EffectsLayer';
@@ -10,11 +10,20 @@ import { EnemyHudLayer } from '../ui/EnemyHudLayer';
 import { Hud } from '../ui/Hud';
 import { EXIT_TRIGGER_TOLERANCE, EXIT_X, LOGICAL_HEIGHT, LOGICAL_WIDTH, MODULE_ENTRY_LOCK, MODULE_FADE_SECONDS, PLAYER_START } from '../config';
 import { preventCrossings, resolveEnemyAttack, resolvePlayerAttack, separateActors } from '../combat/combat';
+import { cameraTargetForPlayer, resolveCameraBounds, smoothCamera, type HorizontalCameraBounds } from '../stage/camera';
+import { resolveArcadeAction } from '../input/arcadeControls';
+
+function authoredLayers(module: ModuleData): BackgroundLayerData[] {
+  return module.background_layers?.length
+    ? module.background_layers
+    : [{ src: module.background, parallax: 1, plane: 'main' }];
+}
 
 export class StageScene implements Scene {
   readonly root = new Container();
+  private readonly backgroundLayers = new Container();
+  private readonly foregroundLayers = new Container();
   private readonly world = new Container();
-  private readonly background = new Sprite();
   private readonly grade = new Graphics();
   private readonly ground = new Graphics();
   private readonly actors = new Container();
@@ -63,7 +72,7 @@ export class StageScene implements Scene {
   });
 
   private readonly modules: ModuleData[];
-  private readonly backgroundTextures: Array<Texture | null>;
+  private readonly backgroundTextures: Array<Texture[] | null>;
   private readonly catalog: AssetCatalog;
   private readonly defaultEnemyId: string;
   private readonly moduleLoads = new Map<number, Promise<void>>();
@@ -97,6 +106,11 @@ export class StageScene implements Scene {
   private stageIntroTimer = 0;
   private stageIntroShown = false;
   private preloadTriggeredForModule = -1;
+  private backgroundSprites: Array<{ sprite: Sprite; layer: BackgroundLayerData; baseX: number; baseY: number }> = [];
+  private worldWidth = LOGICAL_WIDTH;
+  private cameraX = 0;
+  private cameraBounds: HorizontalCameraBounds = { min: 0, max: 0 };
+  private shakeOffset: Vec2 = { x: 0, y: 0 };
 
   static async create(
     catalog: AssetCatalog,
@@ -108,19 +122,19 @@ export class StageScene implements Scene {
     if (!firstModule) throw new Error('Stage senza moduli');
     const firstCharacters = new Set<string>([playerId]);
     for (const wave of firstModule.waves ?? []) firstCharacters.add(wave.character ?? defaultEnemyId);
-    const [firstBackground] = await Promise.all([
-      catalog.loadBackground(firstModule.background),
+    const [firstBackgrounds] = await Promise.all([
+      Promise.all(authoredLayers(firstModule).map((layer) => catalog.loadBackground(layer.src))),
       Promise.all([...firstCharacters].map((id) => catalog.ensureCharacter(id))),
     ]);
-    const backgrounds = Array<Texture | null>(stageData.modules.length).fill(null);
-    backgrounds[0] = firstBackground;
+    const backgrounds = Array<Texture[] | null>(stageData.modules.length).fill(null);
+    backgrounds[0] = firstBackgrounds;
     return new StageScene(catalog, stageData, backgrounds, playerId, defaultEnemyId);
   }
 
   private constructor(
     catalog: AssetCatalog,
     stageData: StageData,
-    backgrounds: Array<Texture | null>,
+    backgrounds: Array<Texture[] | null>,
     playerId: string,
     defaultEnemyId: string,
   ) {
@@ -130,12 +144,13 @@ export class StageScene implements Scene {
     this.backgroundTextures = backgrounds;
     this.actors.sortableChildren = true;
     this.world.sortableChildren = true;
-
-    this.background.anchor.set(0.5);
-    this.background.position.set(LOGICAL_WIDTH / 2, LOGICAL_HEIGHT / 2);
-    this.background.width = LOGICAL_WIDTH + 34;
-    this.background.height = LOGICAL_HEIGHT + 20;
-    this.background.zIndex = -1000;
+    this.root.sortableChildren = true;
+    this.backgroundLayers.sortableChildren = true;
+    this.foregroundLayers.sortableChildren = true;
+    this.backgroundLayers.zIndex = -1000;
+    this.world.zIndex = 0;
+    this.foregroundLayers.zIndex = 1000;
+    this.screen.zIndex = 2000;
 
     this.grade
       .rect(0, 0, LOGICAL_WIDTH, 120).fill({ color: 0x000000, alpha: 0.16 })
@@ -148,8 +163,9 @@ export class StageScene implements Scene {
     this.warningGraphics.zIndex = 8500;
     this.effects.root.zIndex = 9000;
 
-    this.world.addChild(this.background, this.grade, this.ground, this.actors, this.warningGraphics, this.effects.root, this.enemyHud.root);
-    this.root.addChild(this.world, this.screen);
+    this.debug.zIndex = 9500;
+    this.world.addChild(this.ground, this.actors, this.warningGraphics, this.effects.root, this.enemyHud.root, this.debug);
+    this.root.addChild(this.backgroundLayers, this.world, this.foregroundLayers, this.screen);
 
     this.stageCardPanel
       .rect(0, 0, LOGICAL_WIDTH, 198).fill({ color: 0x050915, alpha: 0.92 })
@@ -168,7 +184,7 @@ export class StageScene implements Scene {
     this.stageCard.visible = false;
 
     this.screen.addChild(
-      this.hud.root, this.exitGraphics, this.messagePanel, this.messageText, this.clearText, this.debug,
+      this.grade, this.hud.root, this.exitGraphics, this.messagePanel, this.messageText, this.clearText,
       this.overlay, this.overlayTitle, this.overlaySubtitle, this.fade, this.stageCard,
     );
     this.messageText.anchor.set(0.5);
@@ -202,10 +218,10 @@ export class StageScene implements Scene {
     const characterIds = new Set<string>();
     for (const wave of module.waves ?? []) characterIds.add(wave.character ?? this.defaultEnemyId);
     const loading = Promise.all([
-      this.catalog.loadBackground(module.background),
+      Promise.all(authoredLayers(module).map((layer) => this.catalog.loadBackground(layer.src))),
       Promise.all([...characterIds].map((id) => this.catalog.ensureCharacter(id))),
-    ]).then(([background]) => {
-      this.backgroundTextures[index] = background;
+    ]).then(([backgrounds]) => {
+      this.backgroundTextures[index] = backgrounds;
     }).finally(() => {
       this.moduleLoads.delete(index);
     });
@@ -227,13 +243,51 @@ export class StageScene implements Scene {
     return false;
   }
 
+  private configureBackgroundLayers(module: ModuleData, textures: Texture[]): void {
+    for (const item of this.backgroundSprites) item.sprite.destroy();
+    this.backgroundSprites = [];
+    this.backgroundLayers.removeChildren();
+    this.foregroundLayers.removeChildren();
+    const layers = authoredLayers(module);
+    for (let index = 0; index < layers.length; index += 1) {
+      const layer = layers[index]!;
+      const texture = textures[index];
+      if (!texture) throw new Error(`${module.id}: texture layer ${index + 1} mancante`);
+      const sprite = new Sprite(texture);
+      sprite.anchor.set(0, 0);
+      sprite.width = layer.width ?? this.worldWidth;
+      sprite.height = layer.height ?? LOGICAL_HEIGHT;
+      sprite.zIndex = index;
+      const baseX = layer.x ?? 0;
+      const baseY = layer.y ?? 0;
+      sprite.position.set(baseX, baseY);
+      (layer.plane === 'foreground' ? this.foregroundLayers : this.backgroundLayers).addChild(sprite);
+      this.backgroundSprites.push({ sprite, layer, baseX, baseY });
+    }
+  }
+
+  private updateCamera(dt: number): void {
+    const target = cameraTargetForPlayer(this.cameraX, this.player.position.x, LOGICAL_WIDTH, this.cameraBounds);
+    this.cameraX = smoothCamera(this.cameraX, target, dt);
+    if (Math.abs(this.cameraX - target) < 0.05) this.cameraX = target;
+    this.world.position.set(-this.cameraX + this.shakeOffset.x, this.shakeOffset.y);
+    for (const { sprite, layer, baseX, baseY } of this.backgroundSprites) {
+      const parallax = Math.max(0, layer.parallax);
+      sprite.position.set(baseX - this.cameraX * parallax + this.shakeOffset.x * Math.min(1, parallax), baseY + this.shakeOffset.y * Math.min(1, parallax));
+    }
+  }
+
   private enterModule(index: number, preservePlayer: boolean): void {
     this.moduleIndex = index;
     this.checkpointModule = index;
     this.currentModule = this.modules[index]!;
-    const background = this.backgroundTextures[index];
-    if (!background) throw new Error(`Background non caricato per il modulo ${index + 1}`);
-    this.background.texture = background;
+    const backgrounds = this.backgroundTextures[index];
+    if (!backgrounds) throw new Error(`Background non caricato per il modulo ${index + 1}`);
+    this.worldWidth = Math.max(LOGICAL_WIDTH, this.currentModule.world_width ?? LOGICAL_WIDTH);
+    this.cameraBounds = resolveCameraBounds(this.worldWidth, LOGICAL_WIDTH, this.currentModule.camera_bounds);
+    this.cameraX = this.cameraBounds.min;
+    this.shakeOffset = { x: 0, y: 0 };
+    this.configureBackgroundLayers(this.currentModule, backgrounds);
     this.waveData = this.currentModule.waves ?? [];
     this.waveIndex = -1;
     this.nextWaveTimer = 0.70;
@@ -251,7 +305,6 @@ export class StageScene implements Scene {
     this.enemyAttackLock = 0;
     this.hitStop = 0;
     this.screenShake = 0;
-    this.world.position.set(0, 0);
 
     const entry = this.currentModule.entry ?? [PLAYER_START.x, PLAYER_START.y];
     this.player.position.x = entry[0];
@@ -269,6 +322,7 @@ export class StageScene implements Scene {
     this.player.elevation = 0;
     this.player.alpha255 = 255;
     this.player.beginState('idle', 'idle');
+    this.player.setPlayfieldBounds(45, this.worldWidth - 45);
     if (preservePlayer) {
       this.player.health = Math.min(this.player.maxHealth, this.player.health + (this.currentModule.heal ?? 0));
     } else {
@@ -276,6 +330,7 @@ export class StageScene implements Scene {
       this.player.fury = 0;
     }
     this.player.syncVisual(true);
+    this.updateCamera(1);
 
     if (index === 0 && !preservePlayer && !this.stageIntroShown) {
       this.stageIntroTimer = 3.2;
@@ -337,6 +392,7 @@ export class StageScene implements Scene {
         cooldownScale: wave.cooldown_scale ?? defaults.cooldown_scale,
         collisionScale: wave.collision_scale ?? defaults.collision_scale,
       });
+      enemy.setPlayfieldBounds(45, this.worldWidth - 45);
       this.enemies.push(enemy);
       this.actors.addChild(enemy.root);
     }
@@ -398,8 +454,8 @@ export class StageScene implements Scene {
 
   private inputDirection(input: Input): Vec2 {
     return {
-      x: Number(input.isDown('KeyD', 'ArrowRight')) - Number(input.isDown('KeyA', 'ArrowLeft')),
-      y: Number(input.isDown('KeyS', 'ArrowDown')) - Number(input.isDown('KeyW', 'ArrowUp')),
+      x: Number(input.isDown('ArrowRight')) - Number(input.isDown('ArrowLeft')),
+      y: Number(input.isDown('ArrowDown')) - Number(input.isDown('ArrowUp')),
     };
   }
 
@@ -425,57 +481,61 @@ export class StageScene implements Scene {
     if (input.wasPressed('F3')) this.debugDraw = !this.debugDraw;
     if (input.wasPressed('KeyR') && this.player.dead) this.restart();
     if (!this.paused && !this.stageComplete && this.transitionPhase === null && this.stageIntroTimer <= 0) {
-      if (input.wasPressed('Space')) this.player.requestDodge(this.inputDirection(input));
-      if (input.wasPressed('KeyK')) this.player.requestJump();
-      if (input.wasPressed('KeyJ')) {
-        if (this.player.isAirborne) this.player.requestAirPunch();
-        else if (this.player.grabbedTarget) this.player.requestGrabStrike();
-        else if (!this.tryStartGrab()) this.player.requestPunch();
+      const attackPressed = input.wasPressed('KeyA');
+      const jumpPressed = input.wasPressed('KeyB');
+      const action = resolveArcadeAction({
+        attackPressed,
+        jumpPressed,
+        attackHeld: input.isDown('KeyA'),
+        jumpHeld: input.isDown('KeyB'),
+      });
+      if (action === 'special') this.player.requestSpinSpecial();
+      else {
+        if (action === 'jump') this.player.requestJump();
+        if (action === 'attack') {
+          if (this.player.isAirborne) this.player.requestAirKick();
+          else if (this.player.grabbedTarget) this.player.requestGrabStrike();
+          else if (!this.tryStartGrab()) this.player.requestArcadeAttack();
+        }
       }
-      if (input.wasPressed('KeyI')) {
-        if (this.player.isAirborne) this.player.requestAirKick();
-        else if (this.player.grabbedTarget) this.player.requestThrow();
-        else this.player.requestKick();
-      }
-      if (input.wasPressed('KeyL')) this.player.requestSuper();
     }
 
     if (this.paused) {
-      this.updateVisualLayers();
+      this.updateVisualLayers(dt);
       return;
     }
     this.elapsed += dt;
     this.messageTimer = Math.max(0, this.messageTimer - dt);
     if (this.transitionPhase !== null) {
       this.updateTransition(dt);
-      this.updateVisualLayers();
+      this.updateVisualLayers(dt);
       return;
     }
     if (this.stageIntroTimer > 0) {
       this.stageIntroTimer = Math.max(0, this.stageIntroTimer - dt);
       this.player.update(dt, input, false);
-      this.updateVisualLayers();
+      this.updateVisualLayers(dt);
       return;
     }
     this.preloadNextModule();
     if (this.stageComplete) {
-      this.updateVisualLayers();
+      this.updateVisualLayers(dt);
       return;
     }
 
     this.entryLock = Math.max(0, this.entryLock - dt);
     if (this.hitStop > 0) {
       this.hitStop = Math.max(0, this.hitStop - dt);
-      this.updateVisualLayers();
+      this.updateVisualLayers(dt);
       return;
     }
 
     this.screenShake = Math.max(0, this.screenShake - 24 * dt);
     if (this.screenShake > 0) {
       const amount = Math.min(8, this.screenShake);
-      this.world.position.set((Math.random() * 2 - 1) * amount, (Math.random() * 2 - 1) * amount);
+      this.shakeOffset = { x: (Math.random() * 2 - 1) * amount, y: (Math.random() * 2 - 1) * amount };
     } else {
-      this.world.position.set(0, 0);
+      this.shakeOffset = { x: 0, y: 0 };
     }
 
     this.enemyAttackLock = Math.max(0, this.enemyAttackLock - dt);
@@ -549,10 +609,16 @@ export class StageScene implements Scene {
     const liveEnemies = this.enemies.filter((enemy) => !enemy.dead);
     const anyEnemyObjects = this.enemies.length > 0;
     if (!liveEnemies.length && !anyEnemyObjects && this.waveIndex < this.waveData.length - 1) {
-      this.nextWaveTimer -= dt;
-      if (this.nextWaveTimer <= 0) {
-        this.spawnNextWave();
-        this.nextWaveTimer = 0.82;
+      const nextWave = this.waveData[this.waveIndex + 1];
+      const triggerReached = this.player.position.x >= (nextWave?.trigger_x ?? 0);
+      if (triggerReached) {
+        this.nextWaveTimer -= dt;
+        if (this.nextWaveTimer <= 0) {
+          this.spawnNextWave();
+          this.nextWaveTimer = 0.82;
+        }
+      } else {
+        this.nextWaveTimer = 0.18;
       }
     } else if (!liveEnemies.length && !anyEnemyObjects && this.waveIndex === this.waveData.length - 1) {
       this.clearTimer += dt;
@@ -563,10 +629,11 @@ export class StageScene implements Scene {
       this.moduleClear = false;
     }
 
-    this.updateVisualLayers();
+    this.updateVisualLayers(dt);
   }
 
-  private updateVisualLayers(): void {
+  private updateVisualLayers(dt: number): void {
+    this.updateCamera(dt);
     const introProgress = 3.2 - this.stageIntroTimer;
     const showingStageIntro = this.stageIntroTimer > 0;
     this.stageCard.visible = showingStageIntro && !this.paused;
@@ -611,7 +678,7 @@ export class StageScene implements Scene {
     this.clearText.visible = false;
     if (this.moduleClear && this.transitionPhase === null) {
       const pulse = 185 + 55 * Math.abs(Math.sin(this.elapsed * 4.2));
-      const x = Math.min(1255, Math.round(this.exitX + 34));
+      const x = Math.min(1255, Math.round(this.exitX - this.cameraX + 34));
       this.exitGraphics.moveTo(x - 42, 530).lineTo(x, 555).lineTo(x - 42, 580).closePath().fill({ color: (Math.round(pulse) << 8) + 0xff0000 + 45 });
       this.clearText.visible = this.messageTimer <= 0;
       this.clearText.text = this.moduleIndex === this.modules.length - 1 ? 'TETTO LIBERO — VAI A DESTRA' : 'AREA LIBERA — VAI A DESTRA';

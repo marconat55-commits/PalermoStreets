@@ -1,32 +1,27 @@
 {
   "schema": 4,
-  "build_scope": "stage1_zen_marco_talebano_piero_v077",
+  "build_scope": "stage1_zen_layered_scroll_v1",
   "stage_name": "STAGE 1 — ZEN",
   "modules": [
     {
       "id": "M01",
-      "name": "Strada esterna",
-      "background": "assets/backgrounds/stage1_zen/ZEN_Modulo_01_1920x1080.png",
-      "entry": [
-        128,
-        610
+      "name": "Strada e cortile",
+      "background": "assets/backgrounds/stage1_zen/long/ZEN_LONG_01_STRADA_CORTILE.png",
+      "background_layers": [
+        { "src": "assets/backgrounds/stage1_zen/long/ZEN_FAR_SKYLINE.png", "parallax": 0.22, "plane": "far", "width": 2560, "height": 720 },
+        { "src": "assets/backgrounds/stage1_zen/long/ZEN_LONG_01_STRADA_CORTILE.png", "parallax": 1.0, "plane": "main", "width": 2560, "height": 720 }
       ],
-      "exit_x": 1215,
-      "heal": 0,
+      "world_width": 2560,
+      "camera_bounds": [0, 1280],
+      "entry": [128, 610],
+      "exit_x": 2510,
+      "heal": 12,
       "waves": [
         {
+          "trigger_x": 260,
           "health": 68,
           "aggression": 0.84,
-          "spawns": [
-            [
-              990,
-              550
-            ],
-            [
-              1130,
-              642
-            ]
-          ],
+          "spawns": [[760, 550], [930, 642]],
           "character": "talebano",
           "name": "TALEBANO",
           "move_speed_scale": 0.9,
@@ -35,92 +30,54 @@
           "heavy_chance": 0.3
         },
         {
+          "trigger_x": 880,
           "health": 70,
           "aggression": 1.02,
-          "spawns": [
-            [
-              1015,
-              610
-            ]
-          ],
+          "spawns": [[1180, 610]],
           "character": "piero_u_pizzetto",
           "name": "PIERO U' PIZZETTO"
+        },
+        {
+          "trigger_x": 1370,
+          "health": 61,
+          "aggression": 0.98,
+          "spawns": [[1680, 548], [1850, 645]],
+          "character": "piero_u_pizzetto",
+          "name": "PIERO U' PIZZETTO"
+        },
+        {
+          "trigger_x": 1980,
+          "health": 88,
+          "aggression": 0.96,
+          "spawns": [[2220, 630], [2390, 565]],
+          "character": "talebano",
+          "name": "TALEBANO",
+          "move_speed_scale": 0.9,
+          "damage_scale": 1.02,
+          "attack_speed_scale": 0.94,
+          "heavy_chance": 0.3
         }
       ]
     },
     {
       "id": "M02",
-      "name": "Cortile",
-      "background": "assets/backgrounds/stage1_zen/ZEN_Modulo_02_1920x1080.png",
-      "entry": [
-        105,
-        612
+      "name": "Porticato e garage",
+      "background": "assets/backgrounds/stage1_zen/long/ZEN_LONG_02_PORTICATO_GARAGE.png",
+      "background_layers": [
+        { "src": "assets/backgrounds/stage1_zen/long/ZEN_FAR_SKYLINE.png", "parallax": 0.22, "plane": "far", "width": 2560, "height": 720 },
+        { "src": "assets/backgrounds/stage1_zen/long/ZEN_LONG_02_PORTICATO_GARAGE.png", "parallax": 1.0, "plane": "main", "width": 2560, "height": 720 }
       ],
-      "exit_x": 1215,
-      "heal": 12,
+      "world_width": 2560,
+      "camera_bounds": [0, 1280],
+      "entry": [128, 616],
+      "exit_x": 2510,
+      "heal": 20,
       "waves": [
         {
-          "health": 61,
-          "aggression": 0.98,
-          "spawns": [
-            [
-              960,
-              548
-            ],
-            [
-              1115,
-              645
-            ]
-          ],
-          "character": "piero_u_pizzetto",
-          "name": "PIERO U' PIZZETTO"
-        },
-        {
-          "health": 88,
-          "aggression": 0.96,
-          "spawns": [
-            [
-              900,
-              630
-            ],
-            [
-              1135,
-              565
-            ]
-          ],
-          "character": "talebano",
-          "name": "TALEBANO",
-          "move_speed_scale": 0.9,
-          "damage_scale": 1.02,
-          "attack_speed_scale": 0.94,
-          "heavy_chance": 0.3
-        }
-      ]
-    },
-    {
-      "id": "M03",
-      "name": "Porticato",
-      "background": "assets/backgrounds/stage1_zen/ZEN_Modulo_03_1920x1080.png",
-      "entry": [
-        110,
-        616
-      ],
-      "exit_x": 1215,
-      "heal": 10,
-      "waves": [
-        {
+          "trigger_x": 250,
           "health": 82,
           "aggression": 0.94,
-          "spawns": [
-            [
-              955,
-              562
-            ],
-            [
-              1130,
-              638
-            ]
-          ],
+          "spawns": [[760, 562], [930, 638]],
           "character": "talebano",
           "name": "TALEBANO",
           "move_speed_scale": 0.9,
@@ -129,55 +86,26 @@
           "heavy_chance": 0.3
         },
         {
+          "trigger_x": 870,
           "health": 81,
           "aggression": 1.02,
-          "spawns": [
-            [
-              1005,
-              610
-            ]
-          ],
-          "character": "piero_u_pizzetto",
-          "name": "PIERO U' PIZZETTO"
-        }
-      ]
-    },
-    {
-      "id": "M04",
-      "name": "Garage",
-      "background": "assets/backgrounds/stage1_zen/ZEN_Modulo_04_1920x1080.png",
-      "entry": [
-        112,
-        616
-      ],
-      "exit_x": 1215,
-      "heal": 10,
-      "waves": [
-        {
-          "health": 75,
-          "aggression": 1.08,
-          "spawns": [
-            [
-              930,
-              550
-            ],
-            [
-              1125,
-              642
-            ]
-          ],
+          "spawns": [[1180, 610]],
           "character": "piero_u_pizzetto",
           "name": "PIERO U' PIZZETTO"
         },
         {
+          "trigger_x": 1370,
+          "health": 75,
+          "aggression": 1.08,
+          "spawns": [[1660, 550], [1840, 642]],
+          "character": "piero_u_pizzetto",
+          "name": "PIERO U' PIZZETTO"
+        },
+        {
+          "trigger_x": 1980,
           "health": 108,
           "aggression": 0.95,
-          "spawns": [
-            [
-              1000,
-              612
-            ]
-          ],
+          "spawns": [[2260, 612]],
           "character": "talebano",
           "move_speed_scale": 0.9,
           "heavy_chance": 0.35,
@@ -188,29 +116,24 @@
       ]
     },
     {
-      "id": "M05",
+      "id": "M03",
       "name": "Campetto",
-      "background": "assets/backgrounds/stage1_zen/ZEN_Modulo_05_1920x1080.png",
-      "entry": [
-        105,
-        612
+      "background": "assets/backgrounds/stage1_zen/long/ZEN_LONG_03_CAMPETTO.png",
+      "background_layers": [
+        { "src": "assets/backgrounds/stage1_zen/long/ZEN_FAR_SKYLINE.png", "parallax": 0.22, "plane": "far", "width": 2560, "height": 720 },
+        { "src": "assets/backgrounds/stage1_zen/long/ZEN_LONG_03_CAMPETTO.png", "parallax": 1.0, "plane": "main", "width": 2560, "height": 720 }
       ],
-      "exit_x": 1215,
+      "world_width": 2560,
+      "camera_bounds": [0, 1280],
+      "entry": [128, 612],
+      "exit_x": 2510,
       "heal": 12,
       "waves": [
         {
+          "trigger_x": 360,
           "health": 94,
           "aggression": 1.02,
-          "spawns": [
-            [
-              900,
-              548
-            ],
-            [
-              1110,
-              640
-            ]
-          ],
+          "spawns": [[840, 548], [1010, 640]],
           "character": "talebano",
           "name": "TALEBANO",
           "move_speed_scale": 0.9,
@@ -219,55 +142,42 @@
           "heavy_chance": 0.3
         },
         {
+          "trigger_x": 1480,
           "health": 95,
           "aggression": 1.08,
-          "spawns": [
-            [
-              1010,
-              610
-            ]
-          ],
+          "spawns": [[1900, 610]],
           "character": "piero_u_pizzetto",
           "name": "PIERO U' PIZZETTO"
         }
       ]
     },
     {
-      "id": "M06",
+      "id": "M04",
       "name": "Ingresso del palazzo",
-      "background": "assets/backgrounds/stage1_zen/ZEN_Modulo_06_1920x1080.png",
-      "entry": [
-        112,
-        612
+      "background": "assets/backgrounds/stage1_zen/long/ZEN_LONG_04_INGRESSO_PALAZZO.png",
+      "background_layers": [
+        { "src": "assets/backgrounds/stage1_zen/long/ZEN_FAR_SKYLINE.png", "parallax": 0.22, "plane": "far", "width": 2560, "height": 720 },
+        { "src": "assets/backgrounds/stage1_zen/long/ZEN_LONG_04_INGRESSO_PALAZZO.png", "parallax": 1.0, "plane": "main", "width": 2560, "height": 720 }
       ],
-      "exit_x": 1215,
+      "world_width": 2560,
+      "camera_bounds": [0, 1280],
+      "entry": [128, 612],
+      "exit_x": 2510,
       "heal": 16,
       "waves": [
         {
+          "trigger_x": 360,
           "health": 86,
           "aggression": 1.18,
-          "spawns": [
-            [
-              930,
-              548
-            ],
-            [
-              1125,
-              642
-            ]
-          ],
+          "spawns": [[840, 548], [1020, 642]],
           "character": "piero_u_pizzetto",
           "name": "PIERO U' PIZZETTO"
         },
         {
+          "trigger_x": 1510,
           "health": 120,
           "aggression": 1.02,
-          "spawns": [
-            [
-              1000,
-              610
-            ]
-          ],
+          "spawns": [[1960, 610]],
           "character": "talebano",
           "damage_scale": 1.12,
           "attack_speed_scale": 0.94,
@@ -282,22 +192,14 @@
       "id": "M07",
       "name": "Tetto di Barbetta",
       "background": "assets/backgrounds/stage1_zen/ZEN_Modulo_07_1920x1080.png",
-      "entry": [
-        122,
-        610
-      ],
+      "entry": [122, 610],
       "exit_x": 1215,
       "heal": 24,
       "waves": [
         {
           "health": 126,
           "aggression": 1.02,
-          "spawns": [
-            [
-              990,
-              610
-            ]
-          ],
+          "spawns": [[990, 610]],
           "character": "talebano",
           "damage_scale": 1.15,
           "attack_speed_scale": 0.95,
@@ -311,12 +213,7 @@
           "aggression": 1.28,
           "boss": true,
           "name": "BARBETTA",
-          "spawns": [
-            [
-              1030,
-              610
-            ]
-          ],
+          "spawns": [[1030, 610]],
           "character": "barbetta"
         }
       ]

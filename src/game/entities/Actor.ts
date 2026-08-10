@@ -36,6 +36,7 @@ export class Actor {
   landedThisFrame = false;
   landingImpact = 0;
   private remainingKnockdownBounces = 0;
+  private playfieldBounds: { left: number; right: number; top: number; bottom: number } = { ...PLAYFIELD };
   dead = false;
   removeReady = false;
 
@@ -154,8 +155,19 @@ export class Actor {
 
   clampToPlayfield(): void {
     const flip = this.facing === this.animator.sourceFacing ? 1 : -1;
-    this.position.x = clampFeetX(this.position.x, this.animator.frame, flip, PLAYFIELD.left, PLAYFIELD.right);
-    this.position.y = clamp(this.position.y, PLAYFIELD.top, PLAYFIELD.bottom);
+    this.position.x = clampFeetX(
+      this.position.x,
+      this.animator.frame,
+      flip,
+      this.playfieldBounds.left,
+      this.playfieldBounds.right,
+    );
+    this.position.y = clamp(this.position.y, this.playfieldBounds.top, this.playfieldBounds.bottom);
+  }
+
+  setPlayfieldBounds(left: number, right: number, top = PLAYFIELD.top, bottom = PLAYFIELD.bottom): void {
+    this.playfieldBounds = { left, right, top, bottom };
+    this.clampToPlayfield();
   }
 
   visualHorizontalBounds(): { left: number; right: number } {

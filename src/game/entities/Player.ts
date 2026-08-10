@@ -4,9 +4,12 @@ import { FURY_MAX } from '../config';
 import {
   AIR_KICK,
   AIR_PUNCH,
+  ARCADE_COMBO,
   GRAB_STRIKE,
   KICK_COMBO,
   LIGHT_COMBO,
+  RUN_ATTACK,
+  SPIN_SPECIAL,
   SUPER,
   THROW,
   attackTotal,
@@ -43,6 +46,7 @@ export class Player extends Actor {
   comboStep = 0;
   nextPunchIndex = 0;
   nextKickIndex = 0;
+  nextArcadeIndex = 0;
   comboCounter = 0;
   comboDisplayTimer = 0;
   autoTargetX: number | null = null;
@@ -62,6 +66,7 @@ export class Player extends Actor {
   private readonly idleVariants: string[];
   private idleVariantIndex = 0;
   private idleStillTime = 0;
+  private specialHealthCharged = false;
 
   constructor(bank: AnimationBank, position: Vec2, maxHealth = 120, moveSpeed = 285, depthSpeed = 205) {
     super(bank, position, maxHealth);
@@ -108,14 +113,14 @@ export class Player extends Actor {
     if (Math.abs(delta) > 3) this.facing = delta > 0 ? 1 : -1;
   }
 
-  private requestAttack(attack: AttackData, chainable = false): boolean {
+  private requestAttack(attack: AttackData, chainable = false, requestedCombo?: readonly AttackData[]): boolean {
     if (this.dead || this.elevation > 0 || ['hit', 'knockdown', 'getup', 'dodge', 'block', 'grab'].includes(this.state)) return false;
     if (this.state === 'attack') {
-      const currentCombo: readonly AttackData[] | null = this.currentAttack && LIGHT_COMBO.includes(this.currentAttack as typeof LIGHT_COMBO[number])
+      const currentCombo: readonly AttackData[] | null = requestedCombo ?? (this.currentAttack && LIGHT_COMBO.includes(this.currentAttack as typeof LIGHT_COMBO[number])
         ? LIGHT_COMBO
         : this.currentAttack && KICK_COMBO.includes(this.currentAttack as typeof KICK_COMBO[number])
           ? KICK_COMBO
-          : null;
+          : null);
       if (
         chainable &&
         this.currentAttack !== null &&
@@ -144,7 +149,7 @@ export class Player extends Actor {
     } else {
       attack = LIGHT_COMBO[this.nextPunchIndex]!;
     }
-    const accepted = this.requestAttack(attack, true);
+    const accepted = this.requestAttack(attack, true, LIGHT_COMBO);
     if (accepted) this.nextPunchIndex = (LIGHT_COMBO.indexOf(attack) + 1) % LIGHT_COMBO.length;
     return accepted;
   }
@@ -157,7 +162,7 @@ export class Player extends Actor {
     } else {
       attack = KICK_COMBO[this.nextKickIndex]!;
     }
-    const accepted = this.requestAttack(attack, true);
+    const accepted = this.requestAttack(attack, true, KICK_COMBO);
     if (accepted) this.nextKickIndex = (KICK_COMBO.indexOf(attack) + 1) % KICK_COMBO.length;
     return accepted;
   }
@@ -167,6 +172,27 @@ export class Player extends Actor {
     if (!this.requestAttack(SUPER)) return false;
     this.fury -= 50;
     this.invulnerable = SUPER.startup + SUPER.active;
+    return true;
+  }
+
+  requestArcadeAttack(): boolean {
+    if (this.isRunning) return this.requestAttack(RUN_ATTACK);
+    let attack: typeof ARCADE_COMBO[number];
+    if (this.state === 'attack' && this.currentAttack) {
+      const currentIndex = ARCADE_COMBO.indexOf(this.currentAttack as typeof ARCADE_COMBO[number]);
+      attack = ARCADE_COMBO[(currentIndex + 1) % ARCADE_COMBO.length]!;
+    } else {
+      attack = ARCADE_COMBO[this.nextArcadeIndex]!;
+    }
+    const accepted = this.requestAttack(attack, true, ARCADE_COMBO);
+    if (accepted) this.nextArcadeIndex = (ARCADE_COMBO.indexOf(attack) + 1) % ARCADE_COMBO.length;
+    return accepted;
+  }
+
+  requestSpinSpecial(): boolean {
+    if (!this.requestAttack(SPIN_SPECIAL)) return false;
+    this.specialHealthCharged = false;
+    this.invulnerable = SPIN_SPECIAL.startup + SPIN_SPECIAL.active;
     return true;
   }
 
@@ -253,22 +279,21 @@ export class Player extends Actor {
     this.queuedAttack = null;
     this.attackElapsed = 0;
     this.attackHits.clear();
-    this.beginState('attack', attack.name);
+    this.beginState('attack', attack.animation ?? attack.name);
     this.animator.fitDuration(attackTotal(attack));
   }
 
   private readMove(input: Input, movementEnabled: boolean): Vec2 {
     if (!movementEnabled) return { x: 0, y: 0 };
-    const x = Number(input.isDown('KeyD', 'ArrowRight')) - Number(input.isDown('KeyA', 'ArrowLeft'));
-    const y = Number(input.isDown('KeyS', 'ArrowDown')) - Number(input.isDown('KeyW', 'ArrowUp'));
+    const x = Number(input.isDown('ArrowRight')) - Number(input.isDown('ArrowLeft'));
+    const y = Number(input.isDown('ArrowDown')) - Number(input.isDown('ArrowUp'));
     const raw = { x, y };
     return lengthSq(raw) > 1 ? normalize(raw) : raw;
   }
 
   private updateRunGesture(input: Input, movement: Vec2): void {
     const directionalPressed = input.wasPressed(
-      'KeyD', 'ArrowRight', 'KeyA', 'ArrowLeft',
-      'KeyS', 'ArrowDown', 'KeyW', 'ArrowUp',
+      'ArrowRight', 'ArrowLeft', 'ArrowDown', 'ArrowUp',
     );
     const next = advanceRunGesture({
       tapWindow: this.runTapWindow,
@@ -386,6 +411,7 @@ export class Player extends Actor {
           kick_front: 88,
           kick_right: 102,
           kick_finisher: 126,
+          run_attack: 260,
         };
         this.position.x += this.facing * (lunge[this.currentAttack.name] ?? 52) * dt;
       }
@@ -417,15 +443,6 @@ export class Player extends Actor {
       this.syncVisual();
       return;
     }
-
-    const blocking = input.isDown('ShiftLeft', 'ShiftRight');
-    if (blocking && movementEnabled) {
-      this.clearRun();
-      if (this.state !== 'block') this.beginState('block', 'block');
-      this.syncVisual();
-      return;
-    }
-    if (this.state === 'block') this.beginState('idle', 'idle');
 
     const move = this.readMove(input, movementEnabled);
     if (this.state === 'brake') {
@@ -495,6 +512,15 @@ export class Player extends Actor {
     const attack = this.currentAttack;
     if (!attack || this.state !== 'attack') return null;
     if (!(attack.startup <= this.attackElapsed && this.attackElapsed <= attack.startup + attack.active)) return null;
+    if (attack === SPIN_SPECIAL) {
+      const feetY = this.position.y - this.elevation;
+      return {
+        x: this.position.x - attack.rangeX / 2,
+        y: feetY - attack.rangeY * 0.72,
+        width: attack.rangeX,
+        height: attack.rangeY,
+      };
+    }
     const factor = attack === SUPER ? 0.72 : 0.62;
     const centerX = this.position.x + this.facing * attack.rangeX * factor;
     const feetY = this.position.y - this.elevation;
@@ -544,6 +570,11 @@ export class Player extends Actor {
     this.score += damage * 10;
     this.comboCounter += 1;
     this.comboDisplayTimer = 1.25;
+    if (this.currentAttack === SPIN_SPECIAL && !this.specialHealthCharged) {
+      const healthCost = Math.max(1, Math.round(this.maxHealth * 0.05));
+      this.health = Math.max(1, this.health - healthCost);
+      this.specialHealthCharged = true;
+    }
   }
 
   addFury(amount: number): void {

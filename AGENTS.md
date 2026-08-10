@@ -25,14 +25,12 @@ This repository is the PixiJS/TypeScript migration of the Python + pygame-ce Pal
 - Keep hit-stop, camera shake, knockdown, get-up, wave progression, enemy labels/health bars and module transitions working after refactors.
 
 ## Player controls currently active
-- WASD / arrows: movement
-- J: three-hit punch combo; aerial attack while jumping; grab strike while holding an enemy
-- I: kick
-- K: jump
-- L: super move (requires 50 fury)
-- Shift: frontal block
-- Space: directional dodge
-- Double-tap any movement direction: normalized horizontal, vertical or diagonal run
+- Arrow keys: movement
+- A: context-sensitive mixed attack combo; aerial attack while jumping; grab strike while holding an enemy
+- B: jump
+- Double-tap a direction: normalized horizontal, vertical or diagonal run
+- Double-tap forward + A: running attack
+- A+B: 360-degree special attack with temporary invulnerability; it repels nearby enemies and costs 5% max health only when it hits
 - Releasing movement after a run: dedicated brake transition
 - P: pause
 - F3: debug hitboxes

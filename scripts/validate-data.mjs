@@ -152,12 +152,28 @@ for (const key of Object.keys(meta)) if (!expectedMeta.has(key)) fail(`Metadata 
 
 for (const module of stage.modules ?? []) {
   if (!exists(module.background)) fail(`${module.id}: background mancante ${module.background}`);
+  const worldWidth = module.world_width ?? 1280;
+  if (!Number.isFinite(worldWidth) || worldWidth < 1280) fail(`${module.id}: world_width non valido`);
+  if (module.camera_bounds) {
+    const [left, right] = module.camera_bounds;
+    if (![left, right].every(Number.isFinite) || left < 0 || right < left || right > worldWidth - 1280) {
+      fail(`${module.id}: camera_bounds non validi`);
+    }
+  }
+  for (const [layerIndex, layer] of (module.background_layers ?? []).entries()) {
+    if (!layer?.src || !exists(layer.src)) fail(`${module.id}: layer ${layerIndex + 1} mancante ${layer?.src ?? ''}`);
+    if (!Number.isFinite(layer?.parallax) || layer.parallax < 0) fail(`${module.id}: parallax layer ${layerIndex + 1} non valido`);
+  }
   for (const wave of module.waves ?? []) {
     const character = wave.character ?? index.default_enemy;
     if (!ids.has(character)) fail(`${module.id}: personaggio non registrato ${character}`);
     if (!Array.isArray(wave.spawns) || wave.spawns.length === 0) fail(`${module.id}: wave senza spawn`);
     for (const spawn of wave.spawns ?? []) {
       if (!Array.isArray(spawn) || spawn.length !== 2 || !spawn.every(Number.isFinite)) fail(`${module.id}: coordinate spawn non valide`);
+      else if (spawn[0] < 0 || spawn[0] > worldWidth) fail(`${module.id}: spawn X fuori dal world_width`);
+    }
+    if (wave.trigger_x !== undefined && (!Number.isFinite(wave.trigger_x) || wave.trigger_x < 0 || wave.trigger_x > worldWidth)) {
+      fail(`${module.id}: trigger_x non valido`);
     }
   }
 }

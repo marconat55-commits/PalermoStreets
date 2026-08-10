@@ -73,12 +73,27 @@ export interface WaveData {
   heavy_chance?: number;
   cooldown_scale?: number;
   collision_scale?: number;
+  /** World-space X that unlocks this wave in a scrolling module. */
+  trigger_x?: number;
+}
+
+export interface BackgroundLayerData {
+  src: string;
+  /** 0 is fixed to the horizon, 1 follows the gameplay camera. */
+  parallax: number;
+  plane?: 'far' | 'main' | 'foreground';
+  x?: number;
+  y?: number;
+  width?: number;
+  height?: number;
 }
 
 export interface ModuleData {
   id: string;
   name: string;
   background: string;
+  /** Ordered authored layers. `background` remains the backwards-compatible main fallback. */
+  background_layers?: BackgroundLayerData[];
   entry?: [number, number];
   exit_x?: number;
   heal?: number;
@@ -165,6 +180,8 @@ export interface AnimationBank {
 
 export interface AttackData {
   name: string;
+  /** Animation clip used when it differs from the gameplay action name. */
+  animation?: string;
   damage: number;
   startup: number;
   active: number;

@@ -4,6 +4,10 @@ Tutte le modifiche stabili di Palermo Streets vengono annotate qui.
 
 ## Unreleased - 2026-08-09
 
+- Portata la combo arcade di Marco a quattro colpi: due pugni, calcio frontale e diretto finale con knockdown.
+- Assegnata a ogni modulo Zen una fascia WALK specifica, con entry e spawn vincolati alla strada o al cortile visibile.
+- Reso visibile il parallax FAR a `0.22` tramite aperture sagomate sulle zone di cielo, senza rigenerare o modificare i PNG originali.
+- Aggiunti test per ordine della combo, fasce WALK, spawn e aperture dei layer; suite completa a 37 test.
 - Ripristinata per Marco la guardia idle laterale verso destra approvata, eliminando gli 8 frame frontali incompatibili.
 - Aggiunto un gate globale sulla massa apparente tra idle, camminata, corsa e prese.
 - La selezione personaggio mostra ora Forza, Velocità e Tecnica.

@@ -15,7 +15,7 @@ L'obiettivo non è infilare Python dentro il browser: il runtime è stato riscri
 - allineamento degli sprite sul pivot dei piedi tramite metadata alpha generati offline;
 - movimento WASD/frecce, corsa con doppio tocco orizzontale e frenata animata al rilascio;
 - camminata e salto di Marco a 8 frame, più quattro animazioni idle di personalità a rotazione;
-- combo a tre colpi J, calcio I, salto K + attacco aereo J, supermossa L;
+- combo arcade a quattro colpi J, salto K + attacco aereo J, speciale J+K;
 - parata Shift, schivata Spazio, presa automatica ravvicinata con ginocchiata J e lancio I;
 - fury, salute, score e combo counter;
 - hitbox/hurtbox e pushbox;

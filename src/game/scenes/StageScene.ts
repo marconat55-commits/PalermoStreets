@@ -107,7 +107,13 @@ export class StageScene implements Scene {
   private stageIntroTimer = 0;
   private stageIntroShown = false;
   private preloadTriggeredForModule = -1;
-  private backgroundSprites: Array<{ sprite: Sprite; layer: BackgroundLayerData; baseX: number; baseY: number }> = [];
+  private backgroundSprites: Array<{
+    sprite: Sprite;
+    layer: BackgroundLayerData;
+    baseX: number;
+    baseY: number;
+    revealMask?: Graphics;
+  }> = [];
   private worldWidth = LOGICAL_WIDTH;
   private playfieldTop: number = 565;
   private playfieldBottom: number = 684;
@@ -248,7 +254,10 @@ export class StageScene implements Scene {
   }
 
   private configureBackgroundLayers(module: ModuleData, textures: Texture[]): void {
-    for (const item of this.backgroundSprites) item.sprite.destroy();
+    for (const item of this.backgroundSprites) {
+      item.sprite.destroy();
+      item.revealMask?.destroy();
+    }
     this.backgroundSprites = [];
     this.backgroundLayers.removeChildren();
     this.foregroundLayers.removeChildren();
@@ -261,12 +270,29 @@ export class StageScene implements Scene {
       sprite.anchor.set(0, 0);
       sprite.width = layer.width ?? this.worldWidth;
       sprite.height = layer.height ?? LOGICAL_HEIGHT;
-      sprite.zIndex = index;
+      // Opaque MAIN art cannot reveal a layer behind it. A masked FAR layer is therefore
+      // composited above MAIN, but only inside its conservative open-sky polygons.
+      sprite.zIndex = layer.reveal_polygons?.length ? layers.length + index : index;
       const baseX = layer.x ?? 0;
       const baseY = layer.y ?? 0;
       sprite.position.set(baseX, baseY);
-      (layer.plane === 'foreground' ? this.foregroundLayers : this.backgroundLayers).addChild(sprite);
-      this.backgroundSprites.push({ sprite, layer, baseX, baseY });
+      const target = layer.plane === 'foreground' ? this.foregroundLayers : this.backgroundLayers;
+      target.addChild(sprite);
+      let revealMask: Graphics | undefined;
+      if (layer.reveal_polygons?.length) {
+        revealMask = new Graphics();
+        for (const polygon of layer.reveal_polygons) {
+          const [first, ...rest] = polygon;
+          if (!first || rest.length < 2) continue;
+          revealMask.moveTo(first[0], first[1]);
+          for (const point of rest) revealMask.lineTo(point[0], point[1]);
+          revealMask.closePath().fill(0xffffff);
+        }
+        target.addChild(revealMask);
+        revealMask.zIndex = sprite.zIndex;
+        sprite.mask = revealMask;
+      }
+      this.backgroundSprites.push({ sprite, layer, baseX, baseY, revealMask });
     }
   }
 
@@ -275,9 +301,10 @@ export class StageScene implements Scene {
     this.cameraX = smoothCamera(this.cameraX, target, dt);
     if (Math.abs(this.cameraX - target) < 0.05) this.cameraX = target;
     this.world.position.set(-this.cameraX + this.shakeOffset.x, this.shakeOffset.y);
-    for (const { sprite, layer, baseX, baseY } of this.backgroundSprites) {
+    for (const { sprite, layer, baseX, baseY, revealMask } of this.backgroundSprites) {
       const parallax = Math.max(0, layer.parallax);
       sprite.position.set(baseX - this.cameraX * parallax + this.shakeOffset.x * Math.min(1, parallax), baseY + this.shakeOffset.y * Math.min(1, parallax));
+      revealMask?.position.set(-this.cameraX + this.shakeOffset.x, this.shakeOffset.y);
     }
   }
 

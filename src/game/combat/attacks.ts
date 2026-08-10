@@ -8,6 +8,11 @@ export const PUNCH_RIGHT: AttackData = {
   name: 'punch_right', damage: 20, startup: 0.12, active: 0.12, recovery: 0.24,
   rangeX: 108, rangeY: 58, knockbackX: 250, knockbackY: 0, furyGain: 10, hitStop: 0.060, shake: 5,
 };
+/** Third beat of the arcade chain: a quick front kick that changes the silhouette before the final straight. */
+export const COMBO_KICK: AttackData = {
+  name: 'combo_kick', animation: 'kick_front', damage: 16, startup: 0.10, active: 0.10, recovery: 0.17,
+  rangeX: 126, rangeY: 62, knockbackX: 220, knockbackY: 0, furyGain: 8, hitStop: 0.055, shake: 5,
+};
 export const COMBO_FINISHER: AttackData = {
   name: 'combo_finisher', damage: 27, startup: 0.14, active: 0.13, recovery: 0.27,
   rangeX: 122, rangeY: 66, knockbackX: 470, knockbackY: 0, furyGain: 13, hitStop: 0.086, shake: 10,
@@ -62,9 +67,9 @@ export const THROW: AttackData = {
   rangeX: 108, rangeY: 88, knockbackX: 900, knockbackY: 0, furyGain: 16, hitStop: 0.12, shake: 17,
   knockdown: true, launchVelocity: 610,
 };
-export const LIGHT_COMBO = [PUNCH_LEFT, PUNCH_RIGHT, COMBO_FINISHER] as const;
+export const LIGHT_COMBO = [PUNCH_LEFT, PUNCH_RIGHT, COMBO_KICK, COMBO_FINISHER] as const;
 export const KICK_COMBO = [KICK_FRONT, KICK_RIGHT, KICK_FINISHER] as const;
-export const ARCADE_COMBO = [PUNCH_LEFT, PUNCH_RIGHT, COMBO_FINISHER] as const;
+export const ARCADE_COMBO = LIGHT_COMBO;
 export const ENEMY_ATTACK: AttackData = {
   name: 'attack', damage: 10, startup: 0.48, active: 0.12, recovery: 0.56,
   rangeX: 84, rangeY: 56, knockbackX: 175, knockbackY: 0, furyGain: 0, hitStop: 0.05, shake: 3,

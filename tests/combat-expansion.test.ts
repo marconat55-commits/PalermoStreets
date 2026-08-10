@@ -4,6 +4,8 @@ import test from 'node:test';
 import {
   AIR_KICK,
   AIR_PUNCH,
+  ARCADE_COMBO,
+  COMBO_KICK,
   COMBO_FINISHER,
   GRAB_STRIKE,
   KICK_COMBO,
@@ -14,13 +16,17 @@ import {
   canAcquireAttackTarget,
 } from '../src/game/combat/attacks.ts';
 
-test('Marco light combo has three ordered, distinct attacks', () => {
+test('Marco arcade combo has four ordered, visually distinct beats', () => {
   assert.deepEqual(LIGHT_COMBO.map((attack) => attack.name), [
     'punch_left',
     'punch_right',
+    'combo_kick',
     'combo_finisher',
   ]);
-  assert.equal(new Set(LIGHT_COMBO).size, 3);
+  assert.deepEqual(ARCADE_COMBO, LIGHT_COMBO);
+  assert.equal(new Set(LIGHT_COMBO).size, 4);
+  assert.equal(COMBO_KICK.animation, 'kick_front');
+  assert.equal(COMBO_KICK.knockdown, undefined);
   assert.equal(COMBO_FINISHER.knockdown, true);
 });
 
@@ -44,7 +50,7 @@ test('aerial punch and kick are separate readable actions', () => {
 });
 
 test('new attacks have valid phase timing and restrained damage', () => {
-  for (const attack of [COMBO_FINISHER, KICK_FINISHER, AIR_PUNCH, AIR_KICK, GRAB_STRIKE, THROW]) {
+  for (const attack of [COMBO_KICK, COMBO_FINISHER, KICK_FINISHER, AIR_PUNCH, AIR_KICK, GRAB_STRIKE, THROW]) {
     assert.ok(attack.startup > 0);
     assert.ok(attack.active > 0);
     assert.ok(attack.recovery > 0);

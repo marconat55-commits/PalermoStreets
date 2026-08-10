@@ -10,8 +10,10 @@ The Zen now uses the five authored PNG files supplied in `PalermoStreets_Stage1_
 
 Each long master is displayed proportionally at `2560x720`, exactly two logical viewports. The camera follows the player with a 40–60% horizontal dead zone and smooth damping. Actors, effects, shadows and enemy HUD remain in world space; the gameplay HUD remains screen-fixed.
 
-Every module declares `playfield_y`, the homogeneous feet band where actors may walk. Street modules currently use `565–684`; this prevents actors from walking over buildings while preserving depth movement on the road and pavement.
+Every module declares its own `playfield_y`, the homogeneous feet band where actors may walk. The band follows the visible road/courtyard of that specific composition: M01 `604–684`, M02 `578–684`, M03 `548–684`, M04 `592–684`. Actors therefore cannot enter buildings, walls or skyline, while the campetto intentionally offers more depth than the street and entrance modules.
 
-The supplied long main PNG files are RGB and fully opaque. They therefore cover `ZEN_FAR_SKYLINE.png`: the far layer is loaded and its camera transform is correct, but its parallax cannot be visible through an opaque main. A production export must separate the skyline/sky from the architecture and make the sky area of each main layer transparent.
+Because the delivered MAIN images are opaque RGB, each FAR layer also declares conservative `reveal_polygons` in main-world coordinates. These masks expose the Palermo skyline only through authored open-sky areas and move with the MAIN plane, while the skyline behind them keeps its slower `0.22` parallax. No stage bitmap is regenerated or stretched.
+
+The supplied long MAIN files remain RGB and fully opaque. For this demo the runtime masks above provide visible parallax without touching those masters. A later production-art export may replace the masks with MAIN images whose authored sky is transparent; the data format remains compatible with that upgrade.
 
 `background` is retained as a backwards-compatible fallback. New modules can declare `background_layers` entries with `src`, `parallax`, `plane`, position and display size. Waves may declare `trigger_x` so encounters unlock at authored world positions.

@@ -174,10 +174,19 @@ for (const module of stage.modules ?? []) {
   for (const [layerIndex, layer] of (module.background_layers ?? []).entries()) {
     if (!layer?.src || !exists(layer.src)) fail(`${module.id}: layer ${layerIndex + 1} mancante ${layer?.src ?? ''}`);
     if (!Number.isFinite(layer?.parallax) || layer.parallax < 0) fail(`${module.id}: parallax layer ${layerIndex + 1} non valido`);
+    for (const [polygonIndex, polygon] of (layer.reveal_polygons ?? []).entries()) {
+      if (!Array.isArray(polygon) || polygon.length < 3) fail(`${module.id}: reveal polygon ${polygonIndex + 1} incompleto`);
+      for (const point of polygon ?? []) {
+        if (!Array.isArray(point) || point.length !== 2 || !point.every(Number.isFinite)
+          || point[0] < 0 || point[0] > worldWidth || point[1] < 0 || point[1] > 720) {
+          fail(`${module.id}: punto reveal fuori dal modulo`);
+        }
+      }
+    }
   }
   const farLayer = (module.background_layers ?? []).find((layer) => layer.plane === 'far');
   const mainLayer = (module.background_layers ?? []).find((layer) => layer.plane === 'main');
-  if (farLayer && mainLayer && exists(mainLayer.src) && pngColorType(mainLayer.src) === 2) {
+  if (farLayer && mainLayer && exists(mainLayer.src) && pngColorType(mainLayer.src) === 2 && !farLayer.reveal_polygons?.length) {
     warn(`${module.id}: il main è RGB opaco e copre completamente il far layer; esportare il main con cielo trasparente per un parallax reale`);
   }
   for (const wave of module.waves ?? []) {

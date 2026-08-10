@@ -2,7 +2,7 @@
 
 ## Active in this build
 
-- Marco has a three-hit `J` combo with a knockdown finisher.
+- Marco has a four-hit `J` arcade combo (two punches, front kick, final straight) with a knockdown finisher.
 - `I` remains the standing kick and `L` remains the 50-fury super.
 - `K` starts a jump; `J` while airborne starts the aerial kick.
 - `Shift` blocks frontal attacks with 18% chip damage.

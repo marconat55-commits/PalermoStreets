@@ -86,6 +86,8 @@ export interface BackgroundLayerData {
   y?: number;
   width?: number;
   height?: number;
+  /** Main-world polygons where this layer is visible through an otherwise opaque layer above it. */
+  reveal_polygons?: Array<Array<[number, number]>>;
 }
 
 export interface ModuleData {

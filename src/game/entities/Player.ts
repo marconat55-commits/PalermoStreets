@@ -413,6 +413,7 @@ export class Player extends Actor {
         const lunge: Record<string, number> = {
           punch_left: 86,
           punch_right: 108,
+          combo_kick: 112,
           combo_finisher: 132,
           kick_front: 88,
           kick_right: 102,

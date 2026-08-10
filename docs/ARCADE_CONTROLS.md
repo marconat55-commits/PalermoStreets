@@ -3,7 +3,7 @@
 The control scheme deliberately uses two action buttons.
 
 - Arrow keys: move in eight directions.
-- J: three-hit punch combo; aerial attack while airborne; grab strike while holding an enemy.
+- J: four-hit arcade combo (two punches, front kick, final straight); aerial attack while airborne; grab strike while holding an enemy.
 - K: jump.
 - Double-tap a direction: run horizontally, vertically or diagonally.
 - Run + J: running knockdown attack.

@@ -2,7 +2,7 @@
   "schema": 1,
   "id": "main_player_core_v2",
   "role": "player",
-  "purpose": "Base runtime riutilizzabile per protagonisti con locomozione completa e reazioni V2",
+  "purpose": "Base runtime riutilizzabile per protagonisti Full V3 con locomozione completa, combattimento e reazioni coerenti",
   "raster": {
     "canvas": [640, 420],
     "baseline_y": 400,
@@ -17,39 +17,39 @@
   ],
   "locomotion": {
     "idle": {
-      "frames": 4,
+      "frames": 8,
       "loop": true,
-      "phases": ["guard_low", "inhale", "guard_high", "exhale"]
+      "phases": ["guard_low_a", "inhale_a", "guard_high_a", "exhale_a", "guard_low_b", "inhale_b", "guard_high_b", "exhale_b"]
     },
     "walk": {
-      "frames": 12,
+      "frames": 8,
       "loop": true,
-      "phases": ["right_contact", "right_down", "left_pass_1", "left_pass_2", "left_high", "neutral_a", "left_contact", "left_down", "right_pass_1", "right_pass_2", "right_high", "neutral_b"]
+      "phases": ["right_contact", "right_down", "left_pass", "left_high", "left_contact", "left_down", "right_pass", "right_high"]
     },
     "walk_up": {
-      "frames": 10,
+      "frames": 8,
       "loop": true,
-      "phases": ["left_contact", "left_down", "right_pass_1", "right_pass_2", "right_high", "right_contact", "right_down", "left_pass_1", "left_pass_2", "left_high"]
+      "phases": ["right_contact", "right_down", "left_pass", "left_high", "left_contact", "left_down", "right_pass", "right_high"]
     },
     "walk_down": {
-      "frames": 10,
+      "frames": 8,
       "loop": true,
-      "phases": ["left_contact", "left_down", "right_pass_1", "right_pass_2", "right_high", "right_contact", "right_down", "left_pass_1", "left_pass_2", "left_high"]
+      "phases": ["right_contact", "right_down", "left_pass", "left_high", "left_contact", "left_down", "right_pass", "right_high"]
     },
     "run": {
-      "frames": 10,
+      "frames": 8,
       "loop": true,
-      "phases": ["right_contact", "right_compress", "left_drive", "flight_a", "left_prepare", "left_contact", "left_compress", "right_drive", "flight_b", "right_prepare"]
+      "phases": ["right_contact", "right_compress", "left_drive", "flight_a", "left_contact", "left_compress", "right_drive", "flight_b"]
     },
     "run_up": {
-      "frames": 10,
+      "frames": 8,
       "loop": true,
-      "phases": ["right_contact", "right_compress", "left_drive", "flight_a", "left_prepare", "left_contact", "left_compress", "right_drive", "flight_b", "right_prepare"]
+      "phases": ["right_contact", "right_compress", "left_drive", "flight_a", "left_contact", "left_compress", "right_drive", "flight_b"]
     },
     "run_down": {
-      "frames": 10,
+      "frames": 8,
       "loop": true,
-      "phases": ["right_contact", "right_compress", "left_drive", "flight_a", "left_prepare", "left_contact", "left_compress", "right_drive", "flight_b", "right_prepare"]
+      "phases": ["right_contact", "right_compress", "left_drive", "flight_a", "left_contact", "left_compress", "right_drive", "flight_b"]
     },
     "brake": {
       "frames": 6,
@@ -76,6 +76,7 @@
     "distinct_motion_prefixes": ["idle_variant_"],
     "min_silhouette_distance": 0.025,
     "min_silhouette_distance_by_clip": {
+      "idle_variant_1": 0.008,
       "walk": 0.015,
       "walk_up": 0.010,
       "walk_down": 0.010,
@@ -87,6 +88,10 @@
       "land": 0.010
     },
     "max_visual_height_error_px": 6,
+    "max_visual_height_error_px_by_clip": {
+      "walk_up": 8,
+      "walk_down": 18
+    },
     "max_bottom_opaque_run_px": 23,
     "max_bottom_opaque_ratio": 0.24,
     "max_loop_centroid_step": 0.18,
@@ -95,10 +100,10 @@
       "walk": [0.82, 1.15],
       "walk_up": [0.76, 1.12],
       "walk_down": [0.82, 1.20],
-      "run": [1.12, 1.36],
-      "run_up": [0.94, 1.18],
-      "run_down": [0.88, 1.16],
-      "grab": [1.00, 1.30],
+      "run": [0.84, 0.94],
+      "run_up": [0.80, 0.90],
+      "run_down": [0.78, 0.88],
+      "grab": [0.98, 1.30],
       "grab_strike": [0.95, 1.26],
       "throw": [1.00, 1.30]
     }

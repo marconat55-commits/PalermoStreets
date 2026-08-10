@@ -16,7 +16,7 @@
     "accessories": "doppia catena d'oro, anello d'oro all'orecchio sinistro e bracciali in pelle e metallo",
     "fighting_style": "street fighter potente e diretto",
     "special_move": "supermossa in avanzamento",
-    "canon": "Marco V2 Core — guardia laterale destra, volto master bloccato, locomozione a sei direzioni, scala baked e continuità fall/getup pixel-identica"
+    "canon": "Marco Full V3 — guardia laterale destra, identità master bloccata, 194 frame coerenti, locomozione a sei direzioni, scala baked e continuità fall/getup pixel-identica"
   },
   "gameplay": {
     "player": {
@@ -54,24 +54,24 @@
   "animations": {
     "idle": {
       "folder": "idle",
-      "frames": 4,
+      "frames": 8,
       "durations": [
-        0.16
+        0.12
       ],
       "loop": true,
       "source_facing": 1
     },
     "idle_variant_1": {
       "folder": "idle_variant_1",
-      "frames": 7,
-      "durations": [0.28, 0.38, 0.48, 0.52, 0.72, 0.55, 0.44],
+      "frames": 12,
+      "durations": [0.25, 0.3, 0.34, 0.38, 0.42, 0.42, 0.4, 0.36, 0.45, 0.32, 0.28, 0.25],
       "source_facing": 1
     },
     "walk": {
       "folder": "walk",
-      "frames": 12,
+      "frames": 8,
       "durations": [
-        0.055
+        0.075
       ],
       "loop": true,
       "frame_blend": 0.018,
@@ -80,9 +80,9 @@
     },
     "walk_up": {
       "folder": "walk_up",
-      "frames": 10,
+      "frames": 8,
       "durations": [
-        0.063
+        0.078
       ],
       "loop": true,
       "frame_blend": 0.018,
@@ -91,9 +91,9 @@
     },
     "walk_down": {
       "folder": "walk_down",
-      "frames": 10,
+      "frames": 8,
       "durations": [
-        0.063
+        0.078
       ],
       "loop": true,
       "frame_blend": 0.018,
@@ -102,9 +102,9 @@
     },
     "run": {
       "folder": "run",
-      "frames": 10,
+      "frames": 8,
       "durations": [
-        0.06
+        0.072
       ],
       "loop": true,
       "frame_blend": 0.016,
@@ -113,8 +113,8 @@
     },
     "run_up": {
       "folder": "run_up",
-      "frames": 10,
-      "durations": [0.06],
+      "frames": 8,
+      "durations": [0.072],
       "loop": true,
       "frame_blend": 0.016,
       "source_facing": 1,
@@ -122,8 +122,8 @@
     },
     "run_down": {
       "folder": "run_down",
-      "frames": 10,
-      "durations": [0.06],
+      "frames": 8,
+      "durations": [0.072],
       "loop": true,
       "frame_blend": 0.016,
       "source_facing": 1,
@@ -170,24 +170,17 @@
     },
     "air_attack": {
       "folder": "air_attack",
-      "frames": 6,
-      "durations": [
-        0.06,
-        0.07,
-        0.08,
-        0.1,
-        0.07,
-        0.06
-      ],
+      "frames": 8,
+      "durations": [0.05, 0.06, 0.07, 0.09, 0.09, 0.07, 0.06, 0.05],
       "source_facing": 1,
-      "contact_frame": 4
+      "contact_frame": 5
     },
     "air_punch": {
       "folder": "air_punch",
-      "frames": 6,
-      "durations": [0.05, 0.06, 0.08, 0.07, 0.06, 0.05],
+      "frames": 8,
+      "durations": [0.05, 0.06, 0.07, 0.08, 0.06, 0.07, 0.08, 0.06],
       "source_facing": 1,
-      "contact_frame": 3
+      "contact_frame": 7
     },
     "punch_left": {
       "folder": "punch_left",
@@ -215,44 +208,31 @@
     },
     "combo_finisher": {
       "folder": "combo_finisher",
-      "frames": 5,
-      "durations": [
-        0.08,
-        0.09,
-        0.11,
-        0.1,
-        0.16
-      ],
+      "frames": 8,
+      "durations": [0.045, 0.055, 0.06, 0.065, 0.075, 0.09, 0.07, 0.09],
       "source_facing": 1,
-      "contact_frame": 3
+      "contact_frame": 6
     },
     "kick_front": {
       "folder": "kick_front",
-      "frames": 7,
-      "durations": [0.055, 0.065, 0.075, 0.065, 0.075, 0.085, 0.09],
+      "frames": 6,
+      "durations": [0.06, 0.07, 0.08, 0.1, 0.08, 0.11],
       "source_facing": 1,
-      "contact_frame": 3
+      "contact_frame": 4
     },
     "kick_right": {
       "folder": "kick_right",
       "frames": 6,
-      "durations": [
-        0.09,
-        0.09,
-        0.1,
-        0.11,
-        0.13,
-        0.16
-      ],
+      "durations": [0.06, 0.07, 0.08, 0.105, 0.08, 0.11],
       "source_facing": 1,
-      "contact_frame": 3
+      "contact_frame": 4
     },
     "kick_finisher": {
-      "folder": "kick_right",
+      "folder": "kick_finisher",
       "frames": 6,
-      "durations": [0.075, 0.085, 0.105, 0.105, 0.115, 0.115],
+      "durations": [0.07, 0.08, 0.09, 0.125, 0.09, 0.12],
       "source_facing": 1,
-      "contact_frame": 3
+      "contact_frame": 4
     },
     "block": {
       "folder": "block",
@@ -279,28 +259,17 @@
     },
     "grab_strike": {
       "folder": "grab_strike",
-      "frames": 4,
-      "durations": [
-        0.08,
-        0.1,
-        0.1,
-        0.12
-      ],
+      "frames": 6,
+      "durations": [0.07, 0.08, 0.09, 0.1, 0.08, 0.1],
       "source_facing": 1,
-      "contact_frame": 3
+      "contact_frame": 4
     },
     "throw": {
       "folder": "throw",
-      "frames": 5,
-      "durations": [
-        0.12,
-        0.14,
-        0.12,
-        0.16,
-        0.18
-      ],
+      "frames": 8,
+      "durations": [0.08, 0.09, 0.1, 0.11, 0.1, 0.12, 0.11, 0.14],
       "source_facing": 1,
-      "contact_frame": 3
+      "contact_frame": 6
     },
     "super": {
       "folder": "super",
@@ -379,14 +348,8 @@
     },
     "dodge": {
       "folder": "dodge",
-      "frames": 5,
-      "durations": [
-        0.06,
-        0.08,
-        0.09,
-        0.09,
-        0.12
-      ],
+      "frames": 4,
+      "durations": [0.06, 0.08, 0.09, 0.12],
       "source_facing": 1
     }
   }

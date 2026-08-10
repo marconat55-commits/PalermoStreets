@@ -194,6 +194,7 @@ for (const id of index.characters) {
       distinctMotionClips.has(clipName) || distinctMotionPrefixes.some((prefix) => clipName.startsWith(prefix))
     );
     const clipMinSilhouetteDistance = qa.min_silhouette_distance_by_clip?.[clipName] ?? minSilhouetteDistance;
+    const clipMaxVisualHeightError = qa.max_visual_height_error_px_by_clip?.[clipName] ?? maxVisualHeightError;
     const scales = spec.visual_scales?.length === 1
       ? Array.from({ length: spec.frames }, () => spec.visual_scales[0])
       : spec.visual_scales ?? Array.from({ length: spec.frames }, () => 1);
@@ -224,7 +225,7 @@ for (const id of index.characters) {
         if (Math.abs(art.bounds[1] + art.bounds[3] - targetBottom) > 1) {
           fail(`${id}/${clipName}/${frameName}: piedi fuori baseline (${art.bounds[1] + art.bounds[3]} vs ${targetBottom})`);
         }
-        if (Math.abs(renderedHeight - profile.visual_height) > maxVisualHeightError) {
+        if (Math.abs(renderedHeight - profile.visual_height) > clipMaxVisualHeightError) {
           fail(`${id}/${clipName}/${frameName}: scala verticale incoerente (${renderedHeight.toFixed(1)}px vs ${profile.visual_height}px)`);
         }
         if (art.bottomOpaqueRun > maxBottomOpaqueRun && art.bottomOpaqueRatio > maxBottomOpaqueRatio) {

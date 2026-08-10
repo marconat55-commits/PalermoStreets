@@ -4,7 +4,6 @@ This log documents the asset-only character cleanup performed on the PixiJS port
 
 ## Constraints
 
-- Barbetta is excluded and must remain unchanged.
 - Runtime sprite canvases remain 640 × 420 transparent PNG files.
 - Existing animation durations, combat data, movement speeds and collision values remain unchanged.
 - Generated source sheets and approval material stay under `character_factory/incoming/`; only approved runtime frames are copied into `public/assets/characters/`.
@@ -29,7 +28,6 @@ Verification:
 - TypeScript check: pass.
 - Production build: pass.
 - Browser runtime smoke test: pass; title screen and gameplay loaded with no console warnings or errors.
-- Barbetta: no tracked files modified.
 
 ## Piero u Pizzetto quality pack v2
 
@@ -72,4 +70,3 @@ Verification:
 - Production build: pass.
 - Browser runtime test: pass; Marco, Talebano and Piero completed the two waves of the first area, and Marco's fall/get-up and Super rendered without warnings or errors.
 - PNG hash guard: 50 Marco files changed, 12 Marco files added, zero deleted, zero changes outside `marco_anim`.
-- Barbetta: no tracked files modified.

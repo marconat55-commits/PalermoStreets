@@ -8,8 +8,8 @@ L'obiettivo non è infilare Python dentro il browser: il runtime è stato riscri
 
 - risoluzione logica 1280x720 e letterbox 16:9;
 - schermata titolo e selezione personaggio arcade con Marco più tre slot roster vuoti;
-- 7 moduli dello Stage 1 ZEN e relativi fondali;
-- Marco, Talebano, Piero u' Pizzetto e Barbetta provvisorio;
+- 4 moduli a scorrimento dello Stage 1 ZEN e relativi fondali;
+- Marco, Talebano e Piero u' Pizzetto;
 - caricamento profili personaggio JSON;
 - animazioni con durate per-frame e facing;
 - allineamento degli sprite sul pivot dei piedi tramite metadata alpha generati offline;

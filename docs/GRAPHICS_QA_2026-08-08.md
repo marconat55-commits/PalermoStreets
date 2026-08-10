@@ -34,5 +34,4 @@ The upgraded controller is intentionally a fighting-game state machine above Pix
 - Runtime canvas: 640×420 RGBA.
 - Feet baseline: y=400.
 - No runtime body stretching.
-- Barbetta art untouched.
 - `character_factory/` excluded from the commit.

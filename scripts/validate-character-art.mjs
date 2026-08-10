@@ -291,7 +291,7 @@ for (const id of index.characters) {
     }
   }
 
-  if (id !== 'barbetta') {
+  {
     const fall = profile.animations.knockdown;
     const getup = profile.animations.getup;
     const fallScale = fall.visual_scales?.at(-1) ?? 1;

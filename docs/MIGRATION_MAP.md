@@ -28,7 +28,6 @@
 - I metadata `frame_meta.json` conservano bounding box alpha e offset piedi già calcolati: non facciamo scansioni pixel a ogni caricamento nel browser.
 - Gli outline scuri sono quattro copie tintate dello sprite, evitando una dipendenza filter aggiuntiva nella prima migrazione.
 - Il browser non può essere "chiuso" con ESC: ESC torna al titolo; il browser gestisce anche l'uscita dal fullscreen.
-- Barbetta resta un placeholder e non è stato artisticamente modificato.
 - Il custom `Animator` resta preferibile a `AnimatedSprite`/Spine: conserva timing per-frame, pivot piedi, hit-frame e PNG dipinti senza introdurre rig scheletrici.
 
 ## Prossime fasi consigliate

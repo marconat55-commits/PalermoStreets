@@ -141,7 +141,7 @@ for (const id of index.characters) {
   const knockdownScales = profile.animations.knockdown.visual_scales ?? [1];
   const getupScales = profile.animations.getup.visual_scales ?? [1];
   if (Math.abs((knockdownScales.at(-1) ?? 1) - (getupScales[0] ?? 1)) > 0.0001) fail(`${id}: scala non continua tra knockdown e getup`);
-  if (id !== 'barbetta' && Math.abs((getupScales.at(-1) ?? 1) - 1) > 0.0001) fail(`${id}: getup deve chiudere a scala 1`);
+  if (Math.abs((getupScales.at(-1) ?? 1) - 1) > 0.0001) fail(`${id}: getup deve chiudere a scala 1`);
 }
 
 const runtimePng = index.characters.flatMap((id) => {

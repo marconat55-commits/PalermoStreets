@@ -7,7 +7,6 @@ The Zen now uses the five authored PNG files supplied in `PalermoStreets_Stage1_
 - `ZEN_LONG_02_PORTICATO_GARAGE.png`: M02 main layer.
 - `ZEN_LONG_03_CAMPETTO.png`: M03 main layer.
 - `ZEN_LONG_04_INGRESSO_PALAZZO.png`: M04 main layer.
-- M07, the Barbetta rooftop, remains unchanged.
 
 Each long master is displayed proportionally at `2560x720`, exactly two logical viewports. The camera follows the player with a 40–60% horizontal dead zone and smooth damping. Actors, effects, shadows and enemy HUD remain in world space; the gameplay HUD remains screen-fixed.
 

@@ -45,7 +45,6 @@ This repository is the PixiJS/TypeScript migration of the Python + pygame-ce Pal
 4. Run `npm run typecheck`.
 5. Run `npm run build`.
 6. If gameplay changed, run `npm run dev` and manually test at least one wave with Marco, Talebano and Piero.
-7. Do not modify Barbetta art unless explicitly requested; it is a temporary boss placeholder.
 
 The complete sprite contract is documented in `docs/ANIMATION_CONTRACT.md`.
 

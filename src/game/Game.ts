@@ -19,7 +19,7 @@ export class Game {
   private catalog!: AssetCatalog;
   private stageData!: StageData;
   private defaultPlayerId = 'marco';
-  private defaultEnemyId = 'barbetta';
+  private defaultEnemyId = 'talebano';
   private titleBackground!: Texture;
   private startingStage = false;
   private openingCharacterSelect = false;

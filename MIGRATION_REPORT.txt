@@ -6,7 +6,7 @@ PORT STATUS
 - Title scene: ported
 - Stage 1 / 7 modules: ported
 - Runtime backgrounds: copied
-- Marco/Talebano/Piero/Barbetta runtime animation assets: copied
+- Marco/Talebano/Piero runtime animation assets: copied
 - Character profiles and stage JSON: preserved
 - Per-frame animation timing: ported
 - Feet-pivot alpha metadata: generated for 140 unique runtime PNGs

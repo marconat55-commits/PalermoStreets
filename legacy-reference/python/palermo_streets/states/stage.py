@@ -36,7 +36,7 @@ class StageState:
         self.animation_banks: dict[str, object] = {}
         self.player_profile = self._get_character_profile("marco")
         self.player_bank = self._get_animation_bank("marco")
-        self.enemy_bank = self._get_animation_bank("barbetta")  # alias compatibilità smoke/tool
+        self.enemy_bank = self._get_animation_bank("talebano")  # alias compatibilità smoke/tool
         self.player = self._create_player()
         self.enemies: list[Enemy] = []
         self.effects = EffectsLayer()
@@ -186,7 +186,7 @@ class StageState:
             return
         wave = self.wave_data[self.wave_index]
         is_boss = bool(wave.get("boss", False))
-        character_id = str(wave.get("character", "barbetta"))
+        character_id = str(wave.get("character", "talebano"))
         profile = self._get_character_profile(character_id)
         bank = self._get_animation_bank(character_id)
         defaults = profile.enemy_defaults
@@ -441,7 +441,7 @@ class StageState:
         elif self.player.dead:
             self._draw_center_overlay(target, "MARCO È A TERRA", "PREMI R — RIPARTI DAL CHECKPOINT")
         elif self.stage_complete:
-            self._draw_center_overlay(target, "STAGE 1 COMPLETATO", "ZEN — BARBETTA È STATO SCONFITTO")
+            self._draw_center_overlay(target, "STAGE 1 COMPLETATO", "ZEN — AREA LIBERATA")
 
         if self.transition_phase is not None and self.transition_alpha > 0.0:
             overlay = pygame.Surface((LOGICAL_WIDTH, LOGICAL_HEIGHT), pygame.SRCALPHA)

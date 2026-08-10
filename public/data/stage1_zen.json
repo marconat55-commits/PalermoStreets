@@ -191,37 +191,6 @@
           "name": "TALEBANO"
         }
       ]
-    },
-    {
-      "id": "M07",
-      "name": "Tetto di Barbetta",
-      "background": "assets/backgrounds/stage1_zen/ZEN_Modulo_07_1920x1080.png",
-      "playfield_y": [565, 684],
-      "entry": [122, 610],
-      "exit_x": 1215,
-      "heal": 24,
-      "waves": [
-        {
-          "health": 126,
-          "aggression": 1.02,
-          "spawns": [[990, 610]],
-          "character": "talebano",
-          "damage_scale": 1.15,
-          "attack_speed_scale": 0.95,
-          "heavy_chance": 0.38,
-          "cooldown_scale": 1.0,
-          "collision_scale": 1.08,
-          "name": "TALEBANO"
-        },
-        {
-          "health": 340,
-          "aggression": 1.28,
-          "boss": true,
-          "name": "BARBETTA",
-          "spawns": [[1030, 610]],
-          "character": "barbetta"
-        }
-      ]
     }
   ],
   "character_system": "profile_registry_v1"

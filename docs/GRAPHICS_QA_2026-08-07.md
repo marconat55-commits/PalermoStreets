@@ -15,7 +15,6 @@ Reference video: `C:/Users/Utente/Videos/2026-08-07 22-43-07.mkv`.
 
 ## Invariants
 
-- No Barbetta artwork changed.
 - Gameplay speeds, damage, hit-stop and attack windows remain unchanged.
 - All corrected frames are transparent 640x420 PNGs.
 - Every corrected grounded frame has content bottom y=400.

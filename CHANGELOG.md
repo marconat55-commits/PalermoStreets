@@ -9,7 +9,7 @@ Tutte le modifiche stabili di Palermo Streets vengono annotate qui.
 - La selezione personaggio mostra ora Forza, Velocità e Tecnica.
 - Aumentati gittata, parabola, hit-stop e impatto del lancio per una resa arcade più comica.
 - Aggiunti il contratto `enemy_standard_v2` e i brief per delegare fogli sorgente a chat grafiche esterne.
-- Rigenerati senza perdita metadata e atlas di Marco; Barbetta non modificato.
+- Rigenerati senza perdita metadata e atlas di Marco.
 
 ## 0.1.0 - 2026-08-07
 

@@ -54,7 +54,7 @@ export class Enemy extends Actor {
 
   constructor(bank: AnimationBank, position: Vec2, options: EnemyOptions = {}) {
     super(bank, position, options.health ?? 82);
-    this.characterId = options.characterId ?? 'barbetta';
+    this.characterId = options.characterId ?? 'talebano';
     this.aggression = options.aggression ?? 1;
     this.isBoss = options.boss ?? false;
     this.displayName = options.displayName ?? 'SGHERRO';

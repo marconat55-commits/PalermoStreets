@@ -28,6 +28,5 @@ Scope: improve responsiveness and comic beat-em-up impact without changing the p
 
 ## Validation contract
 
-- Barbetta art remains untouched.
 - No existing approved Marco PNG was resampled or repainted; the pass adds two new master-derived key poses and reuses exact approved frames for transitions.
 - Full acceptance remains: data validation, art validation, unit tests, TypeScript strict check, production build, plus manual run/jump/aerial attack/kick-combo/grab/knockdown checks.

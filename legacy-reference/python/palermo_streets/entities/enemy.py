@@ -39,7 +39,7 @@ class Enemy(Actor):
         boss: bool = False,
         display_name: str = "SGHERRO",
         variant_index: int = 0,
-        character_id: str = "barbetta",
+        character_id: str = "talebano",
         visual_height: int = 275,
         move_speed_scale: float = 1.0,
         damage_scale: float = 1.0,

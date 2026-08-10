@@ -6,7 +6,9 @@
     "canonical_visual_height": 290,
     "feet_anchor": "bottom_center",
     "runtime_scale": 1.0,
-    "master_approval_required": true
+    "master_approval_required": false,
+    "master_approved": true,
+    "master_asset": "res://assets/characters/marco/source/MARCO_MASTER_APPROVED.png"
   },
   "modules": [
     {"id":"M01","name":"Strada e cortile","world_width":2560,"walk_y":[604,684],"entry":[128,630],"far_parallax":0.22},
@@ -16,4 +18,3 @@
   ],
   "excluded_characters": ["piero_u_pizzetto"]
 }
-

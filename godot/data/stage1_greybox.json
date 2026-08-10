@@ -1,0 +1,19 @@
+{
+  "schema": 1,
+  "stage_name": "STAGE 1 - THE ZEN",
+  "logical_viewport": [1280, 720],
+  "character_contract": {
+    "canonical_visual_height": 290,
+    "feet_anchor": "bottom_center",
+    "runtime_scale": 1.0,
+    "master_approval_required": true
+  },
+  "modules": [
+    {"id":"M01","name":"Strada e cortile","world_width":2560,"walk_y":[604,684],"entry":[128,630],"far_parallax":0.22},
+    {"id":"M02","name":"Porticato e garage","world_width":2560,"walk_y":[578,684],"entry":[128,624],"far_parallax":0.22},
+    {"id":"M03","name":"Campetto","world_width":2560,"walk_y":[548,684],"entry":[128,612],"far_parallax":0.22},
+    {"id":"M04","name":"Ingresso del palazzo","world_width":2560,"walk_y":[592,684],"entry":[128,626],"far_parallax":0.22}
+  ],
+  "excluded_characters": ["piero_u_pizzetto"]
+}
+

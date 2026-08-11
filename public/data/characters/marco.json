@@ -54,19 +54,11 @@
   "animations": {
     "idle": {
       "folder": "idle",
-      "frames": 4,
-      "source_frames": 4,
-      "frame_sequence": [1, 2, 3, 4],
-      "durations": [0.22],
+      "frames": 1,
+      "source_frames": 1,
+      "frame_sequence": [1],
+      "durations": [1.0],
       "loop": true,
-      "source_facing": 1
-    },
-    "idle_variant_1": {
-      "folder": "idle_variant_1",
-      "frames": 8,
-      "source_frames": 12,
-      "frame_sequence": [1, 2, 3, 5, 6, 8, 10, 12],
-      "durations": [0.28, 0.34, 0.42, 0.5, 0.5, 0.44, 0.36, 0.3],
       "source_facing": 1
     },
     "walk": {
@@ -296,6 +288,19 @@
     }
   },
   "archived_animations": {
+    "idle_breath_legacy": {
+      "folder": "idle_legacy",
+      "frames": 3,
+      "durations": [0.22],
+      "loop": true,
+      "source_facing": 1
+    },
+    "idle_variant_1": {
+      "folder": "idle_variant_1",
+      "frames": 12,
+      "durations": [0.28],
+      "source_facing": 1
+    },
     "walk_up": {
       "folder": "walk_up",
       "frames": 8,

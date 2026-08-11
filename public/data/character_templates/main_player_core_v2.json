@@ -17,9 +17,9 @@
   ],
   "locomotion": {
     "idle": {
-      "frames": 4,
+      "frames": 1,
       "loop": true,
-      "phases": ["guard_a", "inhale", "guard_b", "exhale"]
+      "phases": ["guard_static"]
     },
     "walk": {
       "frames": 8,
@@ -50,7 +50,7 @@
   "qa": {
     "upright_grounded_clips": ["idle", "walk"],
     "upright_grounded_prefixes": ["idle_variant_"],
-    "unique_motion_clips": ["idle", "walk", "run", "brake", "jump", "land"],
+    "unique_motion_clips": ["walk", "run", "brake", "jump", "land"],
     "unique_motion_prefixes": ["idle_variant_"],
     "distinct_motion_clips": ["walk", "run", "brake", "jump", "land"],
     "distinct_motion_prefixes": ["idle_variant_"],

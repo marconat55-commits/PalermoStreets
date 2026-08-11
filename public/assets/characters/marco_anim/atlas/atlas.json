@@ -139,7 +139,7 @@
       "source_x": 240,
       "source_y": 104
     },
-    "idle/03.png": {
+    "idle_legacy/02.png": {
       "page": 0,
       "x": 2,
       "y": 309,
@@ -161,7 +161,7 @@
       "source_x": 231,
       "source_y": 108
     },
-    "idle/02.png": {
+    "idle_legacy/01.png": {
       "page": 0,
       "x": 390,
       "y": 309,
@@ -172,7 +172,7 @@
       "source_x": 217,
       "source_y": 109
     },
-    "idle/04.png": {
+    "idle_legacy/03.png": {
       "page": 0,
       "x": 598,
       "y": 309,
@@ -348,7 +348,7 @@
       "source_x": 217,
       "source_y": 110
     },
-    "idle/01.png": {
+    "kick_front/02.png": {
       "page": 0,
       "x": 210,
       "y": 895,
@@ -359,20 +359,20 @@
       "source_x": 217,
       "source_y": 110
     },
-    "kick_front/02.png": {
+    "combo_finisher/06.png": {
       "page": 0,
       "x": 418,
       "y": 895,
-      "width": 206,
+      "width": 205,
       "height": 290,
       "source_width": 640,
       "source_height": 420,
-      "source_x": 217,
+      "source_x": 218,
       "source_y": 110
     },
-    "combo_finisher/06.png": {
+    "idle/01.png": {
       "page": 0,
-      "x": 626,
+      "x": 625,
       "y": 895,
       "width": 205,
       "height": 290,
@@ -383,7 +383,7 @@
     },
     "kick_front/01.png": {
       "page": 0,
-      "x": 833,
+      "x": 832,
       "y": 895,
       "width": 205,
       "height": 290,
@@ -394,7 +394,7 @@
     },
     "kick_front/06.png": {
       "page": 0,
-      "x": 1040,
+      "x": 1039,
       "y": 895,
       "width": 205,
       "height": 290,
@@ -405,7 +405,7 @@
     },
     "punch_left/01.png": {
       "page": 0,
-      "x": 1247,
+      "x": 1246,
       "y": 895,
       "width": 205,
       "height": 290,
@@ -416,7 +416,7 @@
     },
     "punch_left/02.png": {
       "page": 0,
-      "x": 1454,
+      "x": 1453,
       "y": 895,
       "width": 205,
       "height": 290,
@@ -427,7 +427,7 @@
     },
     "punch_right/04.png": {
       "page": 0,
-      "x": 1661,
+      "x": 1660,
       "y": 895,
       "width": 205,
       "height": 290,

@@ -22,14 +22,14 @@
       "phases": ["guard_a", "inhale", "guard_b", "exhale"]
     },
     "walk": {
-      "frames": 6,
+      "frames": 8,
       "loop": true,
-      "phases": ["right_contact", "right_down", "left_pass", "left_contact", "left_down", "right_pass"]
+      "phases": ["right_contact", "right_down", "right_pass", "right_up", "left_contact", "left_down", "left_pass", "left_up"]
     },
     "run": {
-      "frames": 6,
+      "frames": 8,
       "loop": true,
-      "phases": ["right_contact", "right_compress", "left_drive", "left_contact", "left_compress", "right_drive"]
+      "phases": ["right_contact", "right_compress", "right_drive", "flight_a", "left_contact", "left_compress", "left_drive", "flight_b"]
     },
     "brake": {
       "frames": 4,

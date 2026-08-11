@@ -20,8 +20,8 @@ Marco follows a classic Capcom belt-scroller policy: strong key poses, variable 
 |---|---:|---:|
 | idle | 4 | 8 |
 | idle_variant_1 | 8 | 12 |
-| walk | 6 | 8 |
-| run | 6 | 8 |
+| walk | 8 | 8 |
+| run | 8 | 8 |
 | brake | 4 | 6 |
 | jump | 8 | 10 |
 | land | 4 | 6 |
@@ -33,11 +33,11 @@ Marco follows a classic Capcom belt-scroller policy: strong key poses, variable 
 
 Attack combos, aerial attacks, super, knockdown and get-up keep their authored coverage because impact and continuity are more important there than a numerical reduction.
 
-The profile contains 139 logical runtime frame entries instead of 192. `dead` intentionally reuses the eight `knockdown` source images, so the number of unique active PNGs is lower still.
+The profile contains 143 logical runtime frame entries instead of 192. `dead` intentionally reuses the eight `knockdown` source images, so the number of unique active PNGs is lower still.
 
 ## Timing principles
 
-- Locomotion uses a compact six-pose cycle with playback rate coupled to actual movement speed.
+- Locomotion uses the complete eight-pose authored cycle with playback rate coupled to actual movement speed.
 - Attack anticipation, contact and recovery retain independent authored timings.
 - Hit-stop and enemy knockback communicate impact; extra duplicate poses must not replace timing.
 - One-shot clips end in a compatible recovery pose.

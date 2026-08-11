@@ -1,6 +1,6 @@
 import { Actor, type HitResult } from './Actor';
 import type { AnimationBank, AttackData, Rect, Vec2 } from '../types';
-import { FURY_MAX } from '../config';
+import { FURY_MAX, PLAYER_JUMP_GRAVITY, PLAYER_JUMP_VELOCITY } from '../config';
 import {
   AIR_KICK,
   AIR_PUNCH,
@@ -24,8 +24,6 @@ import type { Enemy } from './Enemy';
 
 const RUN_MULTIPLIER = 1.55;
 const RUN_TAP_WINDOW = 0.26;
-const JUMP_GRAVITY = 1550;
-const JUMP_VELOCITY = 620;
 const IDLE_VARIANT_DELAY = 4.8;
 
 export interface PlayerHitResult extends HitResult {
@@ -60,7 +58,7 @@ export class Player extends Actor {
   private airMomentum: Vec2 = { x: 0, y: 0 };
   private landingMomentum: Vec2 = { x: 0, y: 0 };
   private jumpElapsed = 0;
-  private jumpDuration = (JUMP_VELOCITY * 2) / JUMP_GRAVITY;
+  private jumpDuration = (PLAYER_JUMP_VELOCITY * 2) / PLAYER_JUMP_GRAVITY;
   private readonly idleVariants: string[];
   private idleVariantIndex = 0;
   private idleStillTime = 0;
@@ -208,9 +206,9 @@ export class Player extends Actor {
       y: launchDirection.y * this.depthSpeed * RUN_MULTIPLIER * 0.94,
     };
     this.clearRun();
-    this.airVelocity = JUMP_VELOCITY;
+    this.airVelocity = PLAYER_JUMP_VELOCITY;
     this.jumpElapsed = 0;
-    this.jumpDuration = (JUMP_VELOCITY * 2) / JUMP_GRAVITY;
+    this.jumpDuration = (PLAYER_JUMP_VELOCITY * 2) / PLAYER_JUMP_GRAVITY;
     this.elevation = 1;
     this.beginState('jump', 'jump');
     this.animator.fitDuration(this.jumpDuration);
@@ -313,7 +311,7 @@ export class Player extends Actor {
     const airDamping = Math.max(0, 1 - 0.22 * dt);
     this.airMomentum.x *= airDamping;
     this.airMomentum.y *= airDamping;
-    this.airVelocity -= JUMP_GRAVITY * dt;
+    this.airVelocity -= PLAYER_JUMP_GRAVITY * dt;
     this.elevation += this.airVelocity * dt;
 
     const aerialAttack = this.currentAttack === AIR_PUNCH || this.currentAttack === AIR_KICK

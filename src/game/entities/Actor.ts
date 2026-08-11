@@ -37,6 +37,7 @@ export class Actor {
   landingImpact = 0;
   private remainingKnockdownBounces = 0;
   private playfieldBounds: { left: number; right: number; top: number; bottom: number } = { ...PLAYFIELD };
+  private playfieldProfile?: (worldX: number) => [number, number];
   dead = false;
   removeReady = false;
 
@@ -162,11 +163,19 @@ export class Actor {
       this.playfieldBounds.left,
       this.playfieldBounds.right,
     );
-    this.position.y = clamp(this.position.y, this.playfieldBounds.top, this.playfieldBounds.bottom);
+    const profile = this.playfieldProfile?.(this.position.x);
+    const top = profile ? Math.min(profile[0], profile[1]) : this.playfieldBounds.top;
+    const bottom = profile ? Math.max(profile[0], profile[1]) : this.playfieldBounds.bottom;
+    this.position.y = clamp(this.position.y, top, bottom);
   }
 
   setPlayfieldBounds(left: number, right: number, top: number = PLAYFIELD.top, bottom: number = PLAYFIELD.bottom): void {
     this.playfieldBounds = { left, right, top, bottom };
+    this.clampToPlayfield();
+  }
+
+  setPlayfieldProfile(profile?: (worldX: number) => [number, number]): void {
+    this.playfieldProfile = profile;
     this.clampToPlayfield();
   }
 

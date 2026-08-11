@@ -86,6 +86,8 @@ export interface WaveData {
 
 export interface BackgroundLayerData {
   src: string;
+  /** Disabled authored placeholders are ignored by loading and rendering. */
+  enabled?: boolean;
   /** 0 is fixed to the horizon, 1 follows the gameplay camera. */
   parallax: number;
   plane?: 'far' | 'main' | 'foreground';
@@ -112,6 +114,10 @@ export interface ModuleData {
   camera_bounds?: [number, number];
   /** Homogeneous walkable band expressed as [top feet Y, bottom feet Y]. */
   playfield_y?: [number, number];
+  /** World-space samples describing the upper edge of the walkable feet band. */
+  walk_top?: Array<[number, number]>;
+  /** World-space samples describing the lower edge of the walkable feet band. */
+  walk_bottom?: Array<[number, number]>;
   /** Optional [worldX, screenYOffset] samples for ramps, rises and descents. */
   ground_profile?: Array<[number, number]>;
   waves: WaveData[];

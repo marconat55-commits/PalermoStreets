@@ -13,10 +13,12 @@ import { preventCrossings, resolveEnemyAttack, resolvePlayerAttack, separateActo
 import { cameraTargetForPlayer, resolveCameraBounds, smoothCamera, type HorizontalCameraBounds } from '../stage/camera';
 import { resolveArcadeAction } from '../input/arcadeControls';
 import { SPIN_SPECIAL } from '../combat/attacks';
+import { resolveWalkBand } from '../stage/walkBand';
 
 function authoredLayers(module: ModuleData): BackgroundLayerData[] {
-  return module.background_layers?.length
-    ? module.background_layers
+  const enabled = module.background_layers?.filter((layer) => layer.enabled !== false);
+  return enabled?.length
+    ? enabled
     : [{ src: module.background, parallax: 1, plane: 'main' }];
 }
 
@@ -355,6 +357,11 @@ export class StageScene implements Scene {
     this.player.alpha255 = 255;
     this.player.beginState('idle', 'idle');
     this.player.setPlayfieldBounds(45, this.worldWidth - 45, this.playfieldTop, this.playfieldBottom);
+    this.player.setPlayfieldProfile((worldX) => resolveWalkBand(
+      this.currentModule,
+      worldX,
+      [this.playfieldTop, this.playfieldBottom],
+    ));
     if (preservePlayer) {
       this.player.health = Math.min(this.player.maxHealth, this.player.health + (this.currentModule.heal ?? 0));
     } else {
@@ -425,6 +432,11 @@ export class StageScene implements Scene {
         collisionScale: wave.collision_scale ?? defaults.collision_scale,
       });
       enemy.setPlayfieldBounds(45, this.worldWidth - 45, this.playfieldTop, this.playfieldBottom);
+      enemy.setPlayfieldProfile((worldX) => resolveWalkBand(
+        this.currentModule,
+        worldX,
+        [this.playfieldTop, this.playfieldBottom],
+      ));
       this.enemies.push(enemy);
       this.actors.addChild(enemy.root);
     }

@@ -60,29 +60,29 @@ test('seekNormalized riallinea la posa del salto alla parabola fisica', () => {
   assert.equal(animator.frameIndex, 3);
 });
 
-test('il cambio clip conserva brevemente la posa precedente senza alterare il timing', () => {
+test('il cambio clip raccorda la posa precedente senza ghosting oltre un frame', () => {
   const animator = new Animator(bank(), 'idle');
   const previous = animator.frame;
   animator.play('attack', true);
   assert.equal(animator.transitionFrame, previous);
   assert.equal(animator.transitionAlpha, 1);
-  animator.update(0.03);
+  animator.update(0.008);
   assert.ok(animator.transitionAlpha > 0 && animator.transitionAlpha < 1);
-  animator.update(0.04);
+  animator.update(0.009);
   assert.equal(animator.transitionFrame, null);
   assert.equal(animator.frameIndex, 0);
 });
 
-test('la locomozione raccorda due pose distinte senza aggiungere frame finti', () => {
+test('la locomozione limita il frame blending a 12 ms', () => {
   const animator = new Animator(bank(), 'walk');
   const previous = animator.frame;
   animator.update(0.1);
   assert.equal(animator.frameIndex, 1);
   assert.equal(animator.transitionFrame, previous);
   assert.equal(animator.transitionAlpha, 1);
-  animator.update(0.015);
+  animator.update(0.006);
   assert.ok(animator.transitionAlpha > 0 && animator.transitionAlpha < 1);
-  animator.update(0.02);
+  animator.update(0.007);
   assert.equal(animator.transitionFrame, null);
   assert.equal(animator.frameIndex, 1);
 });

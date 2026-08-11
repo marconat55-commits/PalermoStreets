@@ -1,5 +1,12 @@
 # Changelog
 
+## Core runtime scale / Talebano continuity pass
+
+- Locked every active character clip to uniform runtime scale `1.0`; removed Marco's pose-specific zoom from walk, run, brake, grab, grab strike and throw.
+- Reduced Animator cross-fades to a maximum of 12 ms between authored frames and 16 ms between states; removed profile-driven locomotion blends that produced double silhouettes.
+- Reordered Talebano's six existing side-walk poses for lower frame-to-frame discontinuity and retimed his light-hit reaction into a fast impact followed by a readable recovery.
+- Added regression tests for global runtime scale, profile ghosting and the Talebano motion sequence.
+
 Tutte le modifiche stabili di Palermo Streets vengono annotate qui.
 
 ## Unreleased - 2026-08-09

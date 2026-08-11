@@ -2,7 +2,9 @@ import type { AnimationBank, AnimationClip, VisualFrame } from '../types';
 
 const MIN_PLAYBACK_RATE = 0.45;
 const MAX_PLAYBACK_RATE = 2.25;
-const DEFAULT_POSE_BLEND = 0.055;
+const DEFAULT_POSE_BLEND = 0.016;
+const PRESERVED_PHASE_BLEND = 0.012;
+const MAX_FRAME_BLEND = 0.012;
 
 function clipDuration(clip: AnimationClip): number {
   return clip.frames.reduce((sum, frame) => sum + frame.duration, 0);
@@ -67,7 +69,7 @@ export class Animator {
       this.blendFrom = previousFrame;
       this.blendSourceFacing = previousFacing;
       this.blendElapsed = 0;
-      this.blendDuration = preservePhase ? 0.035 : DEFAULT_POSE_BLEND;
+      this.blendDuration = preservePhase ? PRESERVED_PHASE_BLEND : DEFAULT_POSE_BLEND;
     }
   }
 
@@ -114,7 +116,11 @@ export class Animator {
       this.blendFrom = beforeFrame;
       this.blendSourceFacing = beforeFacing;
       this.blendElapsed = 0;
-      this.blendDuration = Math.min(clip.frameBlend ?? 0, (clip.frames[this.frameIndex]?.duration ?? 0.1) * 0.5);
+      this.blendDuration = Math.min(
+        clip.frameBlend ?? 0,
+        MAX_FRAME_BLEND,
+        (clip.frames[this.frameIndex]?.duration ?? 0.1) * 0.5,
+      );
     }
     return changed;
   }

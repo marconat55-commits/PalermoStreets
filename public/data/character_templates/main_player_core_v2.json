@@ -70,11 +70,11 @@
     "max_loop_centroid_step": 0.18,
     "apparent_area_reference_clip": "idle",
     "apparent_area_ratio_by_clip": {
-      "walk": [0.82, 1.15],
-      "run": [0.84, 0.94],
-      "grab": [0.98, 1.30],
-      "grab_strike": [0.95, 1.26],
-      "throw": [1.00, 1.30]
+      "walk": [0.74, 0.88],
+      "run": [0.70, 0.85],
+      "grab": [0.78, 0.93],
+      "grab_strike": [0.82, 0.98],
+      "throw": [0.82, 1.00]
     }
   }
 }

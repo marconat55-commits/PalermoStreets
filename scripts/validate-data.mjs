@@ -13,8 +13,6 @@ const warnings = [];
 const expectedPng = new Set();
 const activePng = new Set();
 const expectedMeta = new Set();
-const LOCKED_SCALE_CLIPS = new Set(['knockdown', 'getup', 'dead']);
-
 function fail(message) { errors.push(message); }
 function warn(message) { warnings.push(message); }
 function frameName(index) { return `${String(index).padStart(2, '0')}.png`; }
@@ -112,8 +110,8 @@ for (const id of index.characters) {
     if (spec.visual_scales !== undefined && (!Array.isArray(spec.visual_scales) || ![1, spec.frames].includes(spec.visual_scales.length))) fail(`${id}/${name}: visual_scales deve avere 1 o ${spec.frames} valori`);
     if ((spec.visual_scales ?? []).some((value) => !Number.isFinite(value) || value < 0.82 || value > 1.24)) fail(`${id}/${name}: visual_scales fuori intervallo 0.82-1.24`);
     if ((spec.visual_scales ?? []).some((value, indexValue, values) => indexValue > 0 && Math.abs(value - values[indexValue - 1]) > 0.08)) fail(`${id}/${name}: salto di scala visiva superiore a 0.08`);
-    if (LOCKED_SCALE_CLIPS.has(name) && (spec.visual_scales ?? [1]).some((value) => Math.abs(value - 1) > 0.0001)) {
-      fail(`${id}/${name}: scala runtime bloccata a 1; correggere il PNG, non ingrandire il personaggio durante la posa`);
+    if ((spec.visual_scales ?? [1]).some((value) => Math.abs(value - 1) > 0.0001)) {
+      fail(`${id}/${name}: tutte le pose runtime devono restare a scala 1.0`);
     }
     if (spec.reference_speed !== undefined && (!Number.isFinite(spec.reference_speed) || spec.reference_speed <= 0)) fail(`${id}/${name}: reference_speed non valida`);
     if (spec.contact_frame !== undefined && (!Number.isInteger(spec.contact_frame) || spec.contact_frame < 1 || spec.contact_frame > spec.frames)) fail(`${id}/${name}: contact_frame fuori range`);

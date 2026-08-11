@@ -69,7 +69,14 @@
     "walk": {
       "folder": "walk",
       "frames": 6,
+      "source_frames": 6,
+      "frame_sequence": [5, 4, 2, 6, 3, 1],
       "durations": [
+        0.1,
+        0.095,
+        0.09,
+        0.095,
+        0.1,
         0.11
       ],
       "loop": true,
@@ -126,10 +133,12 @@
     "hit": {
       "folder": "hit",
       "frames": 3,
+      "source_frames": 3,
+      "frame_sequence": [1, 2, 3],
       "durations": [
-        0.09,
-        0.12,
-        0.12
+        0.07,
+        0.1,
+        0.15
       ],
       "loop": false,
       "source_facing": 1

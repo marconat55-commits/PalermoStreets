@@ -68,8 +68,7 @@
       "frame_sequence": [1, 2, 3, 4, 5, 6, 7, 8],
       "durations": [0.068],
       "loop": true,
-      "frame_blend": 0.018,
-      "visual_scales": [1.02],
+      "visual_scales": [1.0],
       "source_facing": 1,
       "reference_speed": 285
     },
@@ -80,8 +79,7 @@
       "frame_sequence": [1, 2, 3, 4, 5, 6, 7, 8],
       "durations": [0.056],
       "loop": true,
-      "frame_blend": 0.016,
-      "visual_scales": [1.07],
+      "visual_scales": [1.0],
       "source_facing": 1,
       "reference_speed": 442
     },
@@ -91,8 +89,7 @@
       "source_frames": 6,
       "frame_sequence": [1, 2, 4, 6],
       "durations": [0.055, 0.07, 0.09, 0.1],
-      "frame_blend": 0.025,
-      "visual_scales": [0.96, 0.96, 0.93, 0.98],
+      "visual_scales": [1.0],
       "source_facing": 1
     },
     "jump": {
@@ -101,7 +98,6 @@
       "source_frames": 10,
       "frame_sequence": [1, 2, 3, 4, 6, 7, 8, 10],
       "durations": [0.08, 0.08, 0.09, 0.11, 0.12, 0.1, 0.1, 0.12],
-      "frame_blend": 0.022,
       "visual_scales": [1.0],
       "source_facing": 1
     },
@@ -111,7 +107,7 @@
       "source_frames": 6,
       "frame_sequence": [1, 2, 4, 6],
       "durations": [0.07, 0.08, 0.1, 0.12],
-      "frame_blend": 0.026,
+      "visual_scales": [1.0],
       "source_facing": 1
     },
     "air_attack": {
@@ -193,14 +189,14 @@
       "source_frames": 4,
       "frame_sequence": [1, 2, 4],
       "durations": [0.12, 0.14, 0.2],
-      "visual_scales": [1.1],
+      "visual_scales": [1.0],
       "source_facing": 1
     },
     "grab_strike": {
       "folder": "grab_strike",
       "frames": 4,
       "durations": [0.07, 0.075, 0.13, 0.14],
-      "visual_scales": [1.07],
+      "visual_scales": [1.0],
       "source_facing": 1,
       "contact_frame": 3
     },
@@ -210,7 +206,7 @@
       "source_frames": 8,
       "frame_sequence": [1, 2, 3, 5, 6, 8],
       "durations": [0.08, 0.1, 0.12, 0.1, 0.14, 0.18],
-      "visual_scales": [1.08],
+      "visual_scales": [1.0],
       "source_facing": 1,
       "contact_frame": 5
     },

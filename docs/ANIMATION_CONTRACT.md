@@ -22,13 +22,14 @@ Enemies may keep a smaller attack set, but must provide locomotion, hit, knockdo
 ## Timing and continuity
 
 - `durations` is authoritative per frame; combat windows are never inferred from rendering speed.
-- `visual_scales` is optional. One value applies to the whole clip; otherwise its length must equal `frames`.
+- `visual_scales` is optional, but every runtime value is locked to `1.0`. Apparent body-size corrections must be baked into approved art before integration.
+- Silhouette-area QA ranges describe the natural coverage of each pose at scale `1.0`; they must not be calibrated by runtime zoom.
 - `knockdown`, `getup` and `dead` must use runtime scale `1.0` on every frame. Never animate a fall or recovery by zooming the complete character.
 - Loop clips must close without a large centroid jump.
 - One-shot moves must include a compatible recovery pose before returning to idle.
 - The final `knockdown` frame and first `getup` frame must be pixel-identical. Their visual scales must also match.
 - Contact frame indexes must exist inside the clip and remain stable after any art replacement.
-- `frame_blend` may be used only as a short 0-60 ms transition between distinct authored poses; it must never hide duplicated PNGs or replace missing key poses.
+- `frame_blend` is not authored in character profiles. The Animator owns only a bounded 12-16 ms state raccord; it must never hide duplicated PNGs or replace missing key poses.
 - `frame_blend` is forbidden on `idle` and `idle_variant_N`; personality animation must use authored intermediate poses without periodic opacity flicker.
 
 `data/character_templates/main_player_full_v2.json` defines the generation target for future protagonists: shared side-facing locomotion, one mandatory personality idle and complete combat/reaction coverage. Additional narrative idles are optional expansions after the core is approved.

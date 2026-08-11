@@ -24,3 +24,12 @@ test('le idle non applicano dissolvenze periodiche', () => {
     }
   }
 });
+
+test('Marco mantiene scala piena in salto e attacco aereo e una frenata progressiva', () => {
+  const profile = JSON.parse(fs.readFileSync('public/data/characters/marco.json', 'utf8'));
+  for (const clip of ['jump', 'air_attack']) {
+    const scales = profile.animations[clip].visual_scales ?? [1];
+    assert.ok(scales.every((value: number) => Math.abs(value - 1) < 0.0001), `marco/${clip}: riduzione runtime rilevata`);
+  }
+  assert.deepEqual(profile.animations.brake.visual_scales, [0.96, 0.96, 0.93, 0.98]);
+});

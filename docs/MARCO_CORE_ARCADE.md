@@ -43,6 +43,12 @@ The profile contains 139 logical runtime frame entries instead of 192. `dead` in
 - One-shot clips end in a compatible recovery pose.
 - Feet remain anchored through `frame_meta.json`; whole-body X/Y stretching is forbidden.
 
+## Runtime scale correction
+
+- `jump` and `air_attack` stay at scale `1.0`, so Marco no longer shrinks in the air.
+- `brake` uses the conservative progression `0.96, 0.96, 0.93, 0.98` to connect the running silhouette to guard without the previous mass jump.
+- No PNG was rewritten. Knockdown, get-up and death remain locked to scale `1.0`.
+
 ## Preservation
 
 `source_frames` records the complete authored folder. `frame_sequence` selects the runtime subset without copying or deleting PNGs. Entire clips removed from gameplay live in `archived_animations`; validation still checks their files, metadata and atlas entries, while `AssetCatalog` does not load them.

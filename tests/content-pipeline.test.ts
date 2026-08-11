@@ -25,6 +25,8 @@ test('M02 greybox uses exact exportable stage geometry', () => {
   assert.equal(module.walk_band.bottom_runtime_y, 705);
   assert.equal(module.status, 'approved');
   assert.equal(module.approval.art_direction_pending, true);
+  assert.equal(module.art_candidate.status, 'approval_candidate');
+  assert.equal(module.art_candidate.runtime_integration, false);
   for (const actor of module.reference_actors) {
     assert.ok(actor.feet_y_runtime >= module.walk_band.top_runtime_y);
     assert.ok(actor.feet_y_runtime <= module.walk_band.bottom_runtime_y);

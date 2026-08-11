@@ -2,6 +2,8 @@
 
 ## Production Pipeline v1
 
+- Built a non-destructive M02 final-layer candidate from the existing 3840x1080 sources; replaced the rejected curved sky cut with a soft, color-matched window that does not touch architecture.
+- Added master/runtime FAR, MAIN and disabled transparent FOREGROUND artifacts, three real-character camera proofs and checksum validation without integrating them into the game.
 - Captured the original shared storyboard as a non-destructive campaign manifest, separating reusable direction from later canon decisions.
 - Marked the M02 geometry, character scale, horizon, walk band and three camera proofs as approved; added the final FAR/MAIN/FOREGROUND delivery contract.
 - Added a versioned content catalog and separate manifests for characters, stages and the M02 pilot.

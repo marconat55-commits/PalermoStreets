@@ -1,0 +1,91 @@
+{
+  "schema": 1,
+  "id": "M02_final_layers_v1",
+  "status": "approval_candidate",
+  "source_master": "public/assets/backgrounds/stage1_zen/long/ZEN_LONG_02_PORTICATO_GARAGE.png",
+  "far_master_source": "public/assets/backgrounds/stage1_zen/long/ZEN_FAR_SKYLINE.png",
+  "legacy_alpha_reference": "public/assets/backgrounds/stage1_zen/layers_v2/M02/MAIN_V2.png",
+  "mask_strategy": {
+    "type": "soft_sky_window",
+    "runtime_points": [
+      [
+        0,
+        0
+      ],
+      [
+        168,
+        0
+      ],
+      [
+        132,
+        305
+      ],
+      [
+        0,
+        305
+      ]
+    ],
+    "feather_master_px": 18,
+    "far_color_match": "mean_std_per_rgb_channel_against_source_sky",
+    "reason": "Replaces the rejected curved V2 edge without cutting any architecture."
+  },
+  "master_size": [
+    3840,
+    1080
+  ],
+  "runtime_size": [
+    2560,
+    720
+  ],
+  "walk_band": [
+    515,
+    705
+  ],
+  "horizon_y": 300,
+  "camera_proofs": [
+    0,
+    640,
+    1280
+  ],
+  "parallax": {
+    "far": 0.22,
+    "main": 1.0,
+    "foreground": 1.08
+  },
+  "foreground_policy": "transparent_placeholder_disabled_until_authored",
+  "runtime_main_alpha": {
+    "transparent_pixels": 33501,
+    "opaque_pixels": 1782960,
+    "partial_pixels": 26739
+  },
+  "files": {
+    "masters": {
+      "far": "art_source/stages/stage1_zen/M02/final_v1/M02_FAR_MASTER.png",
+      "main": "art_source/stages/stage1_zen/M02/final_v1/M02_MAIN_MASTER.png",
+      "foreground": "art_source/stages/stage1_zen/M02/final_v1/M02_FOREGROUND_MASTER.png"
+    },
+    "runtime_candidates": {
+      "far": "art_source/stages/stage1_zen/M02/final_v1/runtime/M02_FAR.png",
+      "main": "art_source/stages/stage1_zen/M02/final_v1/runtime/M02_MAIN.png",
+      "foreground": "art_source/stages/stage1_zen/M02/final_v1/runtime/M02_FOREGROUND.png"
+    },
+    "previews": [
+      "production-preview/M02/final_v1/M02_CAMERA_X0000.png",
+      "production-preview/M02/final_v1/M02_CAMERA_X0640.png",
+      "production-preview/M02/final_v1/M02_CAMERA_X1280.png"
+    ],
+    "contact_sheet": "production-preview/M02/final_v1/M02_APPROVAL_CONTACT_SHEET.jpg"
+  },
+  "sha256": {
+    "art_source/stages/stage1_zen/M02/final_v1/M02_FAR_MASTER.png": "140ad6d9d91555b7a18e003e1379cf78cea35ed7d6fa5c0b68f8d85268c10078",
+    "art_source/stages/stage1_zen/M02/final_v1/M02_MAIN_MASTER.png": "c8f8bfd16d0db784d3917b44cb6bd77b9ee87921befd4e66d59dbca89bf07240",
+    "art_source/stages/stage1_zen/M02/final_v1/M02_FOREGROUND_MASTER.png": "ef2bc07cd6154ac90d866f5fa2f560995b3bdf65633e5251a4abcc4c7dbdd6aa",
+    "art_source/stages/stage1_zen/M02/final_v1/runtime/M02_FAR.png": "0b4bd435ff12dde6d6bbc8af75f2a3840c1989a041a3cc2764a1ddd21c0ad082",
+    "art_source/stages/stage1_zen/M02/final_v1/runtime/M02_MAIN.png": "414882d8284d2c67a87a53e7fcf94e1b5f4435f2cd512bd0c1ecc0db5597e591",
+    "art_source/stages/stage1_zen/M02/final_v1/runtime/M02_FOREGROUND.png": "27062e8ae0d7ebda1ff68e8b5d45545d82cc45908b4284d3dc52f5b481bf6283",
+    "production-preview/M02/final_v1/M02_CAMERA_X0000.png": "911f92bdf263d8a1bedddfc9968492d6ddc74181e1c8d0a6aabf61524d846a00",
+    "production-preview/M02/final_v1/M02_CAMERA_X0640.png": "4e13c31571a8e2c8cfcbd4e348c84c2ce1aeca5357d3229f1a42bcd6d43ba61c",
+    "production-preview/M02/final_v1/M02_CAMERA_X1280.png": "8aa39aa6e77d9bcd3ca22f8c2a00c7444c396e3320794c4c9e3abbdc67f20feb",
+    "production-preview/M02/final_v1/M02_APPROVAL_CONTACT_SHEET.jpg": "2e1dbe1723e5e08aa2778ee4e86c60ba8ea8a5a7d054bdaf47a2f935a5597671"
+  }
+}

@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import crypto from 'node:crypto';
 
 const PIPELINE_SCHEMA = 1;
 const POSIX = path.posix;
@@ -177,7 +178,7 @@ export function validateRepository(root, { verifyOutputs = false } = {}) {
             } else {
               const sourceModule = readJson(root, module.authoring_manifest);
               manifests.set(`${entry.id}.${module.id}`, sourceModule);
-              validateStageModule(sourceModule, fail);
+              validateStageModule(sourceModule, fail, root);
             }
           }
         }
@@ -197,7 +198,7 @@ export function validateRepository(root, { verifyOutputs = false } = {}) {
   return { errors, warnings, catalog, manifests };
 }
 
-function validateStageModule(module, fail) {
+function validateStageModule(module, fail, root) {
   if (module.schema !== PIPELINE_SCHEMA || module.kind !== 'stage_module') fail(`${module.id ?? 'module'}: manifest modulo non valido`);
   const geometry = module.geometry ?? {};
   const master = geometry.master_size;
@@ -225,6 +226,25 @@ function validateStageModule(module, fail) {
   for (const required of ['far', 'main']) if (!planes.has(required)) fail(`${module.id}: layer ${required} mancante`);
   for (const rect of walk.blocked_rects_runtime ?? []) {
     if (!Array.isArray(rect) || rect.length !== 4 || !rect.every(Number.isFinite)) fail(`${module.id}: blocked rect non valida`);
+  }
+  const artManifestPath = module.art_candidate?.manifest;
+  if (artManifestPath) {
+    if (!isSafeRelative(artManifestPath) || !fs.existsSync(path.join(root, artManifestPath))) {
+      fail(`${module.id}: manifest art candidate mancante`);
+    } else {
+      const artManifest = readJson(root, artManifestPath);
+      if (artManifest.status !== 'approval_candidate' && artManifest.status !== 'approved') fail(`${module.id}: stato art candidate non valido`);
+      if (artManifest.master_size?.join('x') !== '3840x1080') fail(`${module.id}: art master non 3840x1080`);
+      if (artManifest.runtime_size?.join('x') !== '2560x720') fail(`${module.id}: art runtime candidate non 2560x720`);
+      for (const [relative, expectedHash] of Object.entries(artManifest.sha256 ?? {})) {
+        if (!isSafeRelative(relative) || !fs.existsSync(path.join(root, relative))) {
+          fail(`${module.id}: file art candidate mancante ${relative}`);
+          continue;
+        }
+        const actualHash = crypto.createHash('sha256').update(fs.readFileSync(path.join(root, relative))).digest('hex');
+        if (actualHash !== expectedHash) fail(`${module.id}: checksum art candidate non coerente ${relative}`);
+      }
+    }
   }
 }
 

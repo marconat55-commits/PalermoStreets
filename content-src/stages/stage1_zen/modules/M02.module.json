@@ -10,6 +10,11 @@
     "scope": ["master_geometry", "character_scale", "horizon", "walk_band", "camera_proofs"],
     "art_direction_pending": true
   },
+  "art_candidate": {
+    "status": "approval_candidate",
+    "manifest": "art_source/stages/stage1_zen/M02/final_v1/M02_FINAL_LAYERS_MANIFEST.json",
+    "runtime_integration": false
+  },
   "integration": {
     "status": "not_integrated",
     "runtime_module_id": "M02"

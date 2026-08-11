@@ -108,6 +108,18 @@ AGENTS.md           regole operative per Codex
 docs/ANIMATION_CONTRACT.md  contratto obbligatorio per i character pack
 ```
 
+## Production Pipeline v1
+
+La base scalabile per nuovi personaggi, nemici, stage, oggetti e attori ambientali e descritta in `docs/PRODUCTION_PIPELINE_V1.md`.
+
+```bash
+npm run content:check
+npm run content:build
+npm run content:scaffold -- enemy nuovo_nemico "NUOVO NEMICO"
+```
+
+Il primo pilot e il greybox tecnico di M02: master 3840x1080, runtime 2560x720, walk band misurata e prove camera X=0/640/1280. Non sostituisce ancora i fondali del gioco.
+
 ## Nota importante
 
 PixiJS è il renderer/graphics framework. Il "game engine" di Palermo Streets resta il nostro codice TypeScript sopra PixiJS: combat system, AI, animazioni, stage system, oggetti, boss, audio e così via. Questa separazione è intenzionale e rende il gioco controllabile senza dipendere da un engine generalista.

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="3840" height="1080" viewBox="0 0 3840 1080" role="img" aria-label="M02 deterministic greybox">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#172554"/><stop offset="0.62" stop-color="#fb923c"/><stop offset="1" stop-color="#fed7aa"/></linearGradient>
+    <linearGradient id="ground" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#78716c"/><stop offset="1" stop-color="#292524"/></linearGradient>
+  </defs>
+  <rect width="3840" height="1080" fill="url(#sky)"/>
+  <path d="M0 450 L420 335 L760 392 L1110 270 L1460 390 L1870 245 L2320 360 L2740 230 L3210 350 L3550 275 L3840 365 L3840 540 L0 540Z" fill="#334155" opacity="0.9"/>
+  <g fill="#475569" opacity="0.92">
+    <rect x="0" y="390" width="340" height="190"/><rect x="365" y="420" width="300" height="160"/><rect x="700" y="370" width="420" height="210"/>
+    <rect x="1160" y="410" width="330" height="170"/><rect x="1530" y="350" width="380" height="230"/><rect x="1950" y="400" width="320" height="180"/>
+    <rect x="2310" y="365" width="410" height="215"/><rect x="2760" y="410" width="300" height="170"/><rect x="3100" y="345" width="390" height="235"/><rect x="3530" y="395" width="310" height="185"/>
+  </g>
+  <rect x="0" y="540" width="1140" height="232.5" fill="#57534e"/>
+  <rect x="0" y="540" width="1140" height="42" fill="#1c1917"/>
+  <g fill="#1c1917"><rect x="110" y="600" width="260" height="172.5"/><rect x="440" y="600" width="260" height="172.5"/><rect x="770" y="600" width="260" height="172.5"/></g>
+  <g fill="#a8a29e"><rect x="80" y="580" width="38" height="192.5"/><rect x="370" y="580" width="38" height="192.5"/><rect x="700" y="580" width="38" height="192.5"/><rect x="1030" y="580" width="42" height="192.5"/></g>
+  <rect x="2130" y="510" width="1710" height="262.5" fill="#57534e"/>
+  <rect x="2130" y="510" width="1710" height="42" fill="#1c1917"/>
+  <g fill="#1c1917"><rect x="2240" y="610" width="350" height="162.5"/><rect x="2680" y="610" width="350" height="162.5"/><rect x="3120" y="610" width="350" height="162.5"/><rect x="3560" y="610" width="230" height="162.5"/></g>
+  <g fill="#a8a29e"><rect x="2180" y="570" width="44" height="202.5"/><rect x="2600" y="570" width="44" height="202.5"/><rect x="3040" y="570" width="44" height="202.5"/><rect x="3480" y="570" width="44" height="202.5"/><rect x="3790" y="570" width="44" height="202.5"/></g>
+  <rect x="0" y="772.5" width="3840" height="285" fill="url(#ground)"/>
+  <rect x="0" y="772.5" width="3840" height="285" fill="#22c55e" fill-opacity="0.18" stroke="#4ade80" stroke-width="6"/>
+  <rect x="0" y="1057.5" width="3840" height="22.5" fill="#111827"/>
+  <g stroke="#ffffff" stroke-opacity="0.13" stroke-width="2"><line x1="0" y1="0" x2="0" y2="1080"/>
+<line x1="240" y1="0" x2="240" y2="1080"/>
+<line x1="480" y1="0" x2="480" y2="1080"/>
+<line x1="720" y1="0" x2="720" y2="1080"/>
+<line x1="960" y1="0" x2="960" y2="1080"/>
+<line x1="1200" y1="0" x2="1200" y2="1080"/>
+<line x1="1440" y1="0" x2="1440" y2="1080"/>
+<line x1="1680" y1="0" x2="1680" y2="1080"/>
+<line x1="1920" y1="0" x2="1920" y2="1080"/>
+<line x1="2160" y1="0" x2="2160" y2="1080"/>
+<line x1="2400" y1="0" x2="2400" y2="1080"/>
+<line x1="2640" y1="0" x2="2640" y2="1080"/>
+<line x1="2880" y1="0" x2="2880" y2="1080"/>
+<line x1="3120" y1="0" x2="3120" y2="1080"/>
+<line x1="3360" y1="0" x2="3360" y2="1080"/>
+<line x1="3600" y1="0" x2="3600" y2="1080"/>
+<line x1="3840" y1="0" x2="3840" y2="1080"/><line x1="0" y1="0" x2="3840" y2="0"/>
+<line x1="0" y1="120" x2="3840" y2="120"/>
+<line x1="0" y1="240" x2="3840" y2="240"/>
+<line x1="0" y1="360" x2="3840" y2="360"/>
+<line x1="0" y1="480" x2="3840" y2="480"/>
+<line x1="0" y1="600" x2="3840" y2="600"/>
+<line x1="0" y1="720" x2="3840" y2="720"/>
+<line x1="0" y1="840" x2="3840" y2="840"/>
+<line x1="0" y1="960" x2="3840" y2="960"/>
+<line x1="0" y1="1080" x2="3840" y2="1080"/></g>
+  <line x1="0" y1="450" x2="3840" y2="450" stroke="#facc15" stroke-width="5" stroke-dasharray="30 18"/>
+  <line x1="1920" y1="0" x2="1920" y2="1080" stroke="#f43f5e" stroke-width="8" stroke-dasharray="32 16"/>
+  <text x="34" y="752.5" fill="#86efac" font-family="Arial,sans-serif" font-size="26" font-weight="700">WALK TOP 515px runtime</text>
+  <text x="34" y="1039.5" fill="#86efac" font-family="Arial,sans-serif" font-size="26" font-weight="700">WALK BOTTOM 705px runtime</text>
+  <text x="1948" y="104" fill="#fb7185" font-family="Arial,sans-serif" font-size="28" font-weight="700">SCREEN 2 / camera max</text>
+  <g aria-label="marco_start" fill="none" stroke="#22d3ee" stroke-width="19.575" stroke-linecap="round" stroke-linejoin="round">
+<circle cx="480" cy="639.15" r="39.15" fill="#22d3ee" fill-opacity="0.22"/>
+<path d="M 480 708.75 L 480 852.3 M 480 726.75 L 410.4 808.8 M 480 726.75 L 549.6 800.1 M 480 852.3 L 423.45 1035 M 480 852.3 L 545.25 1035"/>
+</g>
+<text x="508" y="624" fill="#22d3ee" font-family="Arial,sans-serif" font-size="24" font-weight="700">marco_start 290px</text>
+<g aria-label="marco_mid" fill="none" stroke="#22d3ee" stroke-width="19.575" stroke-linecap="round" stroke-linejoin="round">
+<circle cx="1920" cy="639.15" r="39.15" fill="#22d3ee" fill-opacity="0.22"/>
+<path d="M 1920 708.75 L 1920 852.3 M 1920 726.75 L 1850.4 808.8 M 1920 726.75 L 1989.6 800.1 M 1920 852.3 L 1863.45 1035 M 1920 852.3 L 1985.25 1035"/>
+</g>
+<text x="1948" y="624" fill="#22d3ee" font-family="Arial,sans-serif" font-size="24" font-weight="700">marco_mid 290px</text>
+<g aria-label="talebano_end" fill="none" stroke="#f97316" stroke-width="20.5875" stroke-linecap="round" stroke-linejoin="round">
+<circle cx="3360" cy="618.675" r="41.175" fill="#f97316" fill-opacity="0.22"/>
+<path d="M 3360 691.875 L 3360 842.8499999999999 M 3360 709.875 L 3286.8 797.1 M 3360 709.875 L 3433.2 787.95 M 3360 842.8499999999999 L 3300.525 1035 M 3360 842.8499999999999 L 3428.625 1035"/>
+</g>
+<text x="3388" y="601.5" fill="#f97316" font-family="Arial,sans-serif" font-size="24" font-weight="700">talebano_end 305px</text>
+
+</svg>

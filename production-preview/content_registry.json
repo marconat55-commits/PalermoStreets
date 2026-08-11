@@ -1,0 +1,25 @@
+{
+  "schema": 1,
+  "pipeline_version": "1.0.0",
+  "generated_from": "content-src/catalog.json",
+  "content": [
+    {
+      "id": "character.marco",
+      "kind": "character",
+      "status": "integrated",
+      "manifest": "content-src/characters/marco.content.json"
+    },
+    {
+      "id": "character.talebano",
+      "kind": "character",
+      "status": "integrated",
+      "manifest": "content-src/characters/talebano.content.json"
+    },
+    {
+      "id": "stage.stage1_zen",
+      "kind": "stage",
+      "status": "pilot",
+      "manifest": "content-src/stages/stage1_zen/stage1_zen.content.json"
+    }
+  ]
+}

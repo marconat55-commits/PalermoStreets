@@ -1,0 +1,32 @@
+{
+  "schema": 1,
+  "pipeline_version": "1.0.0",
+  "project": "palermo-streets",
+  "runtime": {
+    "engine": "pixijs",
+    "logical_viewport": [1280, 720],
+    "character_canvas": [640, 420],
+    "character_baseline_y": 400,
+    "max_texture_size": 2048
+  },
+  "entries": [
+    {
+      "id": "character.marco",
+      "kind": "character",
+      "status": "integrated",
+      "manifest": "content-src/characters/marco.content.json"
+    },
+    {
+      "id": "character.talebano",
+      "kind": "character",
+      "status": "integrated",
+      "manifest": "content-src/characters/talebano.content.json"
+    },
+    {
+      "id": "stage.stage1_zen",
+      "kind": "stage",
+      "status": "pilot",
+      "manifest": "content-src/stages/stage1_zen/stage1_zen.content.json"
+    }
+  ]
+}

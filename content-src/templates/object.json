@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "kind": "object",
+  "id": "__ID__",
+  "display_name": "__DISPLAY_NAME__",
+  "status": "draft",
+  "runtime_profile": "public/data/objects/__ID__.json",
+  "interaction": {
+    "pickup": true,
+    "throwable": true,
+    "weapon": false,
+    "breakable": false
+  },
+  "contracts": {
+    "pivot": "bottom_center",
+    "runtime_scale": 1
+  }
+}

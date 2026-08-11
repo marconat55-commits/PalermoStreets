@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "kind": "stage",
+  "id": "__ID__",
+  "display_name": "__DISPLAY_NAME__",
+  "status": "draft",
+  "runtime_profile": "public/data/__ID__.json",
+  "authoring": {
+    "master_size": [3840, 1080],
+    "runtime_size": [2560, 720],
+    "viewport": [1280, 720],
+    "master_to_runtime_scale": 0.6666666666666666,
+    "layers": ["far", "main", "foreground"],
+    "max_master_width": 4096
+  },
+  "modules": []
+}

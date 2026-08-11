@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "kind": "ambient_actor",
+  "id": "__ID__",
+  "display_name": "__DISPLAY_NAME__",
+  "status": "draft",
+  "runtime_profile": "public/data/ambient/__ID__.json",
+  "placement": {
+    "plane": "main",
+    "depth_sort": false,
+    "interactive": false
+  },
+  "contracts": {
+    "pivot": "bottom_center",
+    "runtime_scale": 1,
+    "loop_required": true
+  }
+}

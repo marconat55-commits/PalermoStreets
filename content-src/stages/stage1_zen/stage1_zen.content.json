@@ -1,0 +1,31 @@
+{
+  "schema": 1,
+  "kind": "stage",
+  "id": "stage1_zen",
+  "display_name": "STAGE 1 - THE ZEN",
+  "status": "pilot",
+  "runtime_profile": "public/data/stage1_zen.json",
+  "authoring": {
+    "master_size": [3840, 1080],
+    "runtime_size": [2560, 720],
+    "viewport": [1280, 720],
+    "master_to_runtime_scale": 0.6666666666666666,
+    "layers": ["far", "main", "foreground"],
+    "max_master_width": 4096
+  },
+  "modules": [
+    { "id": "M01", "status": "legacy_integrated", "runtime_module_id": "M01" },
+    {
+      "id": "M02",
+      "status": "greybox",
+      "runtime_module_id": "M02",
+      "authoring_manifest": "content-src/stages/stage1_zen/modules/M02.module.json"
+    },
+    { "id": "M03", "status": "legacy_integrated", "runtime_module_id": "M03" },
+    { "id": "M04", "status": "legacy_integrated", "runtime_module_id": "M04" }
+  ],
+  "boss_rooftop": {
+    "status": "existing_out_of_scope",
+    "note": "Il tetto resta separato dal pilot dei quattro moduli stradali."
+  }
+}

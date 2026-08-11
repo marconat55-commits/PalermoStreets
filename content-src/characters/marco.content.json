@@ -1,0 +1,29 @@
+{
+  "schema": 1,
+  "kind": "character",
+  "id": "marco",
+  "display_name": "MARCO",
+  "status": "integrated",
+  "archetype": "player_main_v1",
+  "runtime_profile": "public/data/characters/marco.json",
+  "source": {
+    "identity_lock": "art_source/characters/marco/MARCO_MASTER_APPROVED.png",
+    "authoring_format": "blender_or_krita",
+    "license": "project_owned"
+  },
+  "contracts": {
+    "canvas": [640, 420],
+    "baseline_y": 400,
+    "runtime_scale": 1,
+    "visual_height": 290,
+    "facing": "right"
+  },
+  "quality_gates": [
+    "identity_consistency",
+    "full_limb_integrity",
+    "alpha_edge_cleanliness",
+    "baseline_lock",
+    "runtime_scale_lock",
+    "animation_continuity"
+  ]
+}

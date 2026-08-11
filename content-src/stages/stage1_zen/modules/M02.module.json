@@ -1,0 +1,48 @@
+{
+  "schema": 1,
+  "kind": "stage_module",
+  "id": "M02",
+  "stage_id": "stage1_zen",
+  "display_name": "Porticato e garage",
+  "status": "greybox",
+  "integration": {
+    "status": "not_integrated",
+    "runtime_module_id": "M02"
+  },
+  "geometry": {
+    "master_size": [3840, 1080],
+    "runtime_size": [2560, 720],
+    "viewport": [1280, 720],
+    "master_to_runtime_scale": 0.6666666666666666,
+    "screen_split_master_x": 1920,
+    "horizon_runtime_y": 300,
+    "camera_bounds_runtime": [0, 1280]
+  },
+  "walk_band": {
+    "top_runtime_y": 515,
+    "bottom_runtime_y": 705,
+    "entry_runtime": [128, 610],
+    "exit_runtime_x": 2510,
+    "blocked_rects_runtime": []
+  },
+  "layers": [
+    { "plane": "far", "parallax": 0.22, "required": true, "alpha": false },
+    { "plane": "main", "parallax": 1, "required": true, "alpha": true },
+    { "plane": "foreground", "parallax": 1.08, "required": false, "alpha": true }
+  ],
+  "reference_actors": [
+    { "id": "marco_start", "x_runtime": 320, "feet_y_runtime": 690, "height_runtime": 290 },
+    { "id": "marco_mid", "x_runtime": 1280, "feet_y_runtime": 690, "height_runtime": 290 },
+    { "id": "talebano_end", "x_runtime": 2240, "feet_y_runtime": 690, "height_runtime": 305 }
+  ],
+  "composition": {
+    "left_portico_runtime": [0, 280, 760, 235],
+    "garage_block_runtime": [1420, 250, 1140, 265],
+    "open_sky_runtime": [760, 0, 660, 300],
+    "notes": [
+      "Nessun elemento architettonico entra nella walk band.",
+      "Le aperture del MAIN devono mostrare il FAR senza bordi dipinti.",
+      "Il modulo deve funzionare a camera X=0, X=640 e X=1280."
+    ]
+  }
+}

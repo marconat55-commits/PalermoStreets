@@ -8,7 +8,10 @@
     "build": "tsc -b && vite build",
     "typecheck": "tsc -b --pretty false",
     "preview": "vite preview",
-    "check": "npm run validate:data && npm run validate:art && npm run test && npm run typecheck && npm run build",
+    "check": "npm run content:check && npm run validate:data && npm run validate:art && npm run test && npm run typecheck && npm run build",
+    "content:check": "node scripts/content/check-content.mjs",
+    "content:build": "node scripts/content/build-content.mjs",
+    "content:scaffold": "node scripts/content/scaffold-content.mjs",
     "validate:data": "node scripts/validate-data.mjs",
     "validate:art": "node scripts/validate-character-art.mjs",
     "test": "node --experimental-strip-types --test"

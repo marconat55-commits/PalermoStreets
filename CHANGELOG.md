@@ -1,5 +1,13 @@
 # Changelog
 
+## Production Pipeline v1
+
+- Added a versioned content catalog and separate manifests for characters, stages and the M02 pilot.
+- Added reusable templates for main players, enemies, stages, objects and ambient actors.
+- Added deterministic scaffold/build/check commands; the full project check now rejects invalid or stale production content.
+- Added an exact 3840x1080 M02 greybox, walk mask and camera proofs at X=0/640/1280 without changing runtime art or gameplay.
+- Added regression tests and a documented definition of done for portable, repeatable content production.
+
 ## Core runtime scale / Talebano continuity pass
 
 - Locked every active character clip to uniform runtime scale `1.0`; removed Marco's pose-specific zoom from walk, run, brake, grab, grab strike and throw.

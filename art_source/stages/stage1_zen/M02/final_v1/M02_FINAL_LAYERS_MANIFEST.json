@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "id": "M02_final_layers_v1",
-  "status": "approval_candidate",
+  "status": "approved",
   "source_master": "public/assets/backgrounds/stage1_zen/long/ZEN_LONG_02_PORTICATO_GARAGE.png",
   "far_master_source": "public/assets/backgrounds/stage1_zen/long/ZEN_FAR_SKYLINE.png",
   "legacy_alpha_reference": "public/assets/backgrounds/stage1_zen/layers_v2/M02/MAIN_V2.png",

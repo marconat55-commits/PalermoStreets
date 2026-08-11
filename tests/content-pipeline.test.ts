@@ -23,10 +23,10 @@ test('M02 greybox uses exact exportable stage geometry', () => {
   assert.deepEqual(module.geometry.camera_bounds_runtime, [0, 1280]);
   assert.equal(module.walk_band.top_runtime_y, 515);
   assert.equal(module.walk_band.bottom_runtime_y, 705);
-  assert.equal(module.status, 'approved');
-  assert.equal(module.approval.art_direction_pending, true);
-  assert.equal(module.art_candidate.status, 'approval_candidate');
-  assert.equal(module.art_candidate.runtime_integration, false);
+  assert.equal(module.status, 'integrated');
+  assert.equal(module.approval.art_direction_pending, false);
+  assert.equal(module.art_candidate.status, 'approved');
+  assert.equal(module.art_candidate.runtime_integration, true);
   for (const actor of module.reference_actors) {
     assert.ok(actor.feet_y_runtime >= module.walk_band.top_runtime_y);
     assert.ok(actor.feet_y_runtime <= module.walk_band.bottom_runtime_y);

@@ -59,7 +59,7 @@ Le animazioni comuni devono appartenere all'archetipo; le mosse uniche restano n
 
 Il pilot M02 e descritto da `content-src/stages/stage1_zen/modules/M02.module.json`. Geometria, scala, orizzonte, walk band e camere sono approvati. Gli SVG in `production-preview/M02/` restano prove tecniche e non sono ancora collegati al runtime; il prossimo gate riguarda i tre layer artistici FAR/MAIN/FOREGROUND.
 
-La candidata artistica M02 v1 si trova in `art_source/stages/stage1_zen/M02/final_v1/`. E ricostruita deterministicamente dagli asset esistenti: skyline FAR color-matched, MAIN con finestra cielo alpha morbida e FOREGROUND trasparente/disattivato. Il manifest contiene gli SHA-256 di master, runtime candidate e preview; `content:check` rileva file mancanti o modificati. Nessun file entra nel runtime prima dell'approvazione visiva.
+La versione artistica M02 v1 approvata si trova in `art_source/stages/stage1_zen/M02/final_v1/`. E ricostruita deterministicamente dagli asset esistenti: skyline FAR color-matched, MAIN con finestra cielo alpha morbida e FOREGROUND trasparente/disattivato. Il manifest contiene gli SHA-256 di master, runtime e preview; `content:check` rileva file mancanti o modificati. M02 usa ora questi layer nel runtime a 2560x720, con camera 0-1280 e walk band 515-705.
 
 ## Definition of done
 

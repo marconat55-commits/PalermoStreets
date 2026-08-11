@@ -17,7 +17,7 @@
     { "id": "M01", "status": "legacy_integrated", "runtime_module_id": "M01" },
     {
       "id": "M02",
-      "status": "approved_greybox",
+      "status": "integrated",
       "runtime_module_id": "M02",
       "authoring_manifest": "content-src/stages/stage1_zen/modules/M02.module.json"
     },

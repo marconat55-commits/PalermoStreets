@@ -10,7 +10,8 @@ interface Module {
   entry: [number, number];
   waves: Array<{ spawns: Array<[number, number]> }>;
   world_width: number;
-  background_layers: Array<{ plane: string; parallax: number; enabled?: boolean }>;
+  camera_bounds: [number, number];
+  background_layers: Array<{ src: string; plane: string; parallax: number; enabled?: boolean; y?: number; width?: number; height?: number }>;
 }
 
 const stage = JSON.parse(fs.readFileSync('public/data/stage1_zen.json', 'utf8')) as { modules: Module[] };
@@ -24,7 +25,23 @@ test('each Zen module owns an authored walk band and every feet spawn stays insi
     assert.equal(module.walk_bottom[0]?.[0], 0, `${module.id}: WALK bottom must start at world X 0`);
     assert.equal(module.walk_top.at(-1)?.[0], module.world_width, `${module.id}: WALK top must span the world`);
     assert.equal(module.walk_bottom.at(-1)?.[0], module.world_width, `${module.id}: WALK bottom must span the world`);
+    assert.equal(module.world_width, 2944, `${module.id}: world width must include the 1.15x stage calibration`);
+    assert.deepEqual(module.camera_bounds, [0, 1664], `${module.id}: camera must cover the calibrated world`);
+    assert.ok(module.entry[1] >= top && module.entry[1] <= bottom, `${module.id}: entry outside WALK band`);
+    for (const wave of module.waves) {
+      for (const [, feetY] of wave.spawns) {
+        assert.ok(feetY >= top && feetY <= bottom, `${module.id}: enemy spawn outside WALK band`);
+      }
+    }
+    for (const layer of module.background_layers) {
+      assert.equal(layer.width, 2944, `${module.id}: layer width not calibrated`);
+      assert.equal(layer.height, 828, `${module.id}: layer height not calibrated`);
+      assert.equal(layer.y, -108, `${module.id}: layer must remain bottom-anchored`);
+    }
     const far = module.background_layers.find((layer) => layer.plane === 'far');
-    assert.equal(far?.parallax, 1, `${module.id}: sparse FAR cannot scroll independently without coverage gaps`);
+    const main = module.background_layers.find((layer) => layer.plane === 'main');
+    assert.equal(far?.parallax, 0.22, `${module.id}: continuous Palermo skyline must use far parallax`);
+    assert.equal(far?.src, 'assets/backgrounds/stage1_zen/long/ZEN_FAR_SKYLINE.png', `${module.id}: FAR must be continuous`);
+    assert.ok(main?.src.endsWith(`${module.id}/MAIN_SKY_V3.png`), `${module.id}: MAIN must use the sky-only alpha cut`);
   }
 });

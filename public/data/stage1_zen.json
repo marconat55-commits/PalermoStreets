@@ -6,25 +6,25 @@
     {
       "id": "M01",
       "name": "Strada e cortile",
-      "background": "assets/backgrounds/stage1_zen/layers_v2/M01/MAIN_V2.png",
+      "background": "assets/backgrounds/stage1_zen/layers_v2/M01/MAIN_SKY_V3.png",
       "background_layers": [
-        { "src": "assets/backgrounds/stage1_zen/layers_v2/M01/FAR_V2.png", "parallax": 1.0, "plane": "far", "width": 2560, "height": 720 },
-        { "src": "assets/backgrounds/stage1_zen/layers_v2/M01/MAIN_V2.png", "parallax": 1.0, "plane": "main", "width": 2560, "height": 720 }
+        { "src": "assets/backgrounds/stage1_zen/long/ZEN_FAR_SKYLINE.png", "parallax": 0.22, "plane": "far", "y": -108, "width": 2944, "height": 828 },
+        { "src": "assets/backgrounds/stage1_zen/layers_v2/M01/MAIN_SKY_V3.png", "parallax": 1.0, "plane": "main", "y": -108, "width": 2944, "height": 828 }
       ],
-      "world_width": 2560,
-      "camera_bounds": [0, 1280],
-      "playfield_y": [578, 708],
-      "walk_top": [[0, 578], [323, 594], [650, 596], [1005, 596], [1301, 591], [1618, 589], [1927, 585], [2226, 594], [2560, 592]],
-      "walk_bottom": [[0, 708], [320, 708], [640, 708], [960, 708], [1280, 708], [1600, 708], [1920, 708], [2240, 708], [2560, 708]],
-      "entry": [128, 630],
-      "exit_x": 2510,
+      "world_width": 2944,
+      "camera_bounds": [0, 1664],
+      "playfield_y": [635, 705],
+      "walk_top": [[0, 635], [2944, 635]],
+      "walk_bottom": [[0, 705], [2944, 705]],
+      "entry": [147, 670],
+      "exit_x": 2887,
       "heal": 12,
       "waves": [
         {
-          "trigger_x": 260,
+          "trigger_x": 299,
           "health": 68,
           "aggression": 0.84,
-          "spawns": [[760, 608], [930, 652]],
+          "spawns": [[874, 650], [1070, 690]],
           "character": "talebano",
           "name": "TALEBANO",
           "move_speed_scale": 0.9,
@@ -33,26 +33,26 @@
           "heavy_chance": 0.3
         },
         {
-          "trigger_x": 880,
+          "trigger_x": 1012,
           "health": 70,
           "aggression": 1.02,
-          "spawns": [[1180, 610]],
+          "spawns": [[1357, 665]],
           "character": "talebano",
           "name": "TALEBANO"
         },
         {
-          "trigger_x": 1370,
+          "trigger_x": 1576,
           "health": 61,
           "aggression": 0.98,
-          "spawns": [[1680, 610], [1850, 650]],
+          "spawns": [[1932, 650], [2128, 690]],
           "character": "talebano",
           "name": "TALEBANO"
         },
         {
-          "trigger_x": 1980,
+          "trigger_x": 2277,
           "health": 88,
           "aggression": 0.96,
-          "spawns": [[2220, 630], [2390, 610]],
+          "spawns": [[2553, 670], [2749, 650]],
           "character": "talebano",
           "name": "TALEBANO",
           "move_speed_scale": 0.9,
@@ -65,25 +65,25 @@
     {
       "id": "M02",
       "name": "Porticato e garage",
-      "background": "assets/backgrounds/stage1_zen/layers_v2/M02/MAIN_V2.png",
+      "background": "assets/backgrounds/stage1_zen/layers_v2/M02/MAIN_SKY_V3.png",
       "background_layers": [
-        { "src": "assets/backgrounds/stage1_zen/layers_v2/M02/FAR_V2.png", "parallax": 1.0, "plane": "far", "width": 2560, "height": 720 },
-        { "src": "assets/backgrounds/stage1_zen/layers_v2/M02/MAIN_V2.png", "parallax": 1.0, "plane": "main", "width": 2560, "height": 720 }
+        { "src": "assets/backgrounds/stage1_zen/long/ZEN_FAR_SKYLINE.png", "parallax": 0.22, "plane": "far", "y": -108, "width": 2944, "height": 828 },
+        { "src": "assets/backgrounds/stage1_zen/layers_v2/M02/MAIN_SKY_V3.png", "parallax": 1.0, "plane": "main", "y": -108, "width": 2944, "height": 828 }
       ],
-      "world_width": 2560,
-      "camera_bounds": [0, 1280],
-      "playfield_y": [394, 708],
-      "walk_top": [[0, 497], [278, 405], [474, 404], [679, 394], [998, 402], [1311, 417], [1594, 453], [1938, 460], [2244, 421], [2560, 549]],
-      "walk_bottom": [[0, 708], [320, 708], [640, 708], [960, 708], [1280, 708], [1600, 708], [1920, 708], [2240, 708], [2560, 708]],
-      "entry": [128, 624],
-      "exit_x": 2510,
+      "world_width": 2944,
+      "camera_bounds": [0, 1664],
+      "playfield_y": [515, 705],
+      "walk_top": [[0, 515], [2944, 515]],
+      "walk_bottom": [[0, 705], [2944, 705]],
+      "entry": [147, 610],
+      "exit_x": 2887,
       "heal": 20,
       "waves": [
         {
-          "trigger_x": 250,
+          "trigger_x": 288,
           "health": 82,
           "aggression": 0.94,
-          "spawns": [[760, 582], [930, 646]],
+          "spawns": [[874, 582], [1070, 646]],
           "character": "talebano",
           "name": "TALEBANO",
           "move_speed_scale": 0.9,
@@ -92,26 +92,26 @@
           "heavy_chance": 0.3
         },
         {
-          "trigger_x": 870,
+          "trigger_x": 1001,
           "health": 81,
           "aggression": 1.02,
-          "spawns": [[1180, 610]],
+          "spawns": [[1357, 610]],
           "character": "talebano",
           "name": "TALEBANO"
         },
         {
-          "trigger_x": 1370,
+          "trigger_x": 1576,
           "health": 75,
           "aggression": 1.08,
-          "spawns": [[1660, 584], [1840, 648]],
+          "spawns": [[1909, 584], [2116, 648]],
           "character": "talebano",
           "name": "TALEBANO"
         },
         {
-          "trigger_x": 1980,
+          "trigger_x": 2277,
           "health": 108,
           "aggression": 0.95,
-          "spawns": [[2260, 612]],
+          "spawns": [[2599, 612]],
           "character": "talebano",
           "move_speed_scale": 0.9,
           "heavy_chance": 0.35,
@@ -124,25 +124,25 @@
     {
       "id": "M03",
       "name": "Campetto",
-      "background": "assets/backgrounds/stage1_zen/layers_v2/M03/MAIN_V2.png",
+      "background": "assets/backgrounds/stage1_zen/layers_v2/M03/MAIN_SKY_V3.png",
       "background_layers": [
-        { "src": "assets/backgrounds/stage1_zen/layers_v2/M03/FAR_V2.png", "parallax": 1.0, "plane": "far", "width": 2560, "height": 720 },
-        { "src": "assets/backgrounds/stage1_zen/layers_v2/M03/MAIN_V2.png", "parallax": 1.0, "plane": "main", "width": 2560, "height": 720 }
+        { "src": "assets/backgrounds/stage1_zen/long/ZEN_FAR_SKYLINE.png", "parallax": 0.22, "plane": "far", "y": -108, "width": 2944, "height": 828 },
+        { "src": "assets/backgrounds/stage1_zen/layers_v2/M03/MAIN_SKY_V3.png", "parallax": 1.0, "plane": "main", "y": -108, "width": 2944, "height": 828 }
       ],
-      "world_width": 2560,
-      "camera_bounds": [0, 1280],
-      "playfield_y": [404, 708],
-      "walk_top": [[0, 485], [436, 453], [706, 413], [1106, 404], [1362, 404], [1649, 404], [1918, 404], [2257, 452], [2560, 466]],
-      "walk_bottom": [[0, 708], [320, 708], [640, 708], [960, 708], [1280, 708], [1600, 708], [1920, 708], [2240, 708], [2560, 708]],
-      "entry": [128, 612],
-      "exit_x": 2510,
+      "world_width": 2944,
+      "camera_bounds": [0, 1664],
+      "playfield_y": [475, 705],
+      "walk_top": [[0, 475], [2944, 475]],
+      "walk_bottom": [[0, 705], [2944, 705]],
+      "entry": [147, 590],
+      "exit_x": 2887,
       "heal": 12,
       "waves": [
         {
-          "trigger_x": 360,
+          "trigger_x": 414,
           "health": 94,
           "aggression": 1.02,
-          "spawns": [[840, 556], [1010, 646]],
+          "spawns": [[966, 556], [1162, 646]],
           "character": "talebano",
           "name": "TALEBANO",
           "move_speed_scale": 0.9,
@@ -151,10 +151,10 @@
           "heavy_chance": 0.3
         },
         {
-          "trigger_x": 1480,
+          "trigger_x": 1702,
           "health": 95,
           "aggression": 1.08,
-          "spawns": [[1900, 610]],
+          "spawns": [[2185, 610]],
           "character": "talebano",
           "name": "TALEBANO"
         }
@@ -163,33 +163,33 @@
     {
       "id": "M04",
       "name": "Ingresso del palazzo",
-      "background": "assets/backgrounds/stage1_zen/layers_v2/M04/MAIN_V2.png",
+      "background": "assets/backgrounds/stage1_zen/layers_v2/M04/MAIN_SKY_V3.png",
       "background_layers": [
-        { "src": "assets/backgrounds/stage1_zen/layers_v2/M04/FAR_V2.png", "parallax": 1.0, "plane": "far", "width": 2560, "height": 720 },
-        { "src": "assets/backgrounds/stage1_zen/layers_v2/M04/MAIN_V2.png", "parallax": 1.0, "plane": "main", "width": 2560, "height": 720 }
+        { "src": "assets/backgrounds/stage1_zen/long/ZEN_FAR_SKYLINE.png", "parallax": 0.22, "plane": "far", "y": -108, "width": 2944, "height": 828 },
+        { "src": "assets/backgrounds/stage1_zen/layers_v2/M04/MAIN_SKY_V3.png", "parallax": 1.0, "plane": "main", "y": -108, "width": 2944, "height": 828 }
       ],
-      "world_width": 2560,
-      "camera_bounds": [0, 1280],
-      "playfield_y": [452, 708],
-      "walk_top": [[0, 509], [500, 452], [660, 452], [1047, 455], [1604, 460], [1954, 460], [2066, 452], [2560, 519]],
-      "walk_bottom": [[0, 708], [320, 708], [640, 708], [960, 708], [1280, 708], [1600, 708], [1920, 708], [2240, 708], [2560, 708]],
-      "entry": [128, 626],
-      "exit_x": 2510,
+      "world_width": 2944,
+      "camera_bounds": [0, 1664],
+      "playfield_y": [510, 705],
+      "walk_top": [[0, 510], [2944, 510]],
+      "walk_bottom": [[0, 705], [2944, 705]],
+      "entry": [147, 610],
+      "exit_x": 2887,
       "heal": 16,
       "waves": [
         {
-          "trigger_x": 360,
+          "trigger_x": 414,
           "health": 86,
           "aggression": 1.18,
-          "spawns": [[840, 598], [1020, 650]],
+          "spawns": [[966, 598], [1173, 650]],
           "character": "talebano",
           "name": "TALEBANO"
         },
         {
-          "trigger_x": 1510,
+          "trigger_x": 1737,
           "health": 120,
           "aggression": 1.02,
-          "spawns": [[1960, 610]],
+          "spawns": [[2254, 610]],
           "character": "talebano",
           "damage_scale": 1.12,
           "attack_speed_scale": 0.94,

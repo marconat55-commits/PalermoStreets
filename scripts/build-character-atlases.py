@@ -40,8 +40,10 @@ def load_json(path: Path) -> dict:
 def collect_cells(public: Path, profile: dict) -> list[Cell]:
     root = public / profile["assets"]["animation_root"]
     unique: dict[str, Path] = {}
-    for spec in profile["animations"].values():
-        for index in range(1, spec["frames"] + 1):
+    specs = list(profile["animations"].values()) + list(profile.get("archived_animations", {}).values())
+    for spec in specs:
+        source_frames = spec.get("source_frames", spec["frames"])
+        for index in range(1, source_frames + 1):
             key = f'{spec["folder"]}/{index:02d}.png'
             unique[key] = root / key
 

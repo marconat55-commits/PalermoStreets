@@ -26,7 +26,7 @@ test('ogni selezione runtime usa sorgenti unici e validi', () => {
 test('il budget runtime resta compatto senza ridurre caduta e rialzata', () => {
   const logicalFrames = Object.values(marco.animations as Record<string, { frames: number }>)
     .reduce((total, spec) => total + spec.frames, 0);
-  assert.equal(logicalFrames, 143);
+  assert.equal(logicalFrames, 145);
   assert.equal(marco.animations.knockdown.frames, 8);
   assert.equal(marco.animations.getup.frames, 8);
 });

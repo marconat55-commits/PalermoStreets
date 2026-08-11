@@ -5,6 +5,7 @@ import {
   AIR_KICK,
   AIR_PUNCH,
   ARCADE_COMBO,
+  COMBO_ELBOW,
   COMBO_KICK,
   COMBO_FINISHER,
   GRAB_STRIKE,
@@ -20,12 +21,13 @@ test('Marco arcade combo has four ordered, visually distinct beats', () => {
   assert.deepEqual(LIGHT_COMBO.map((attack) => attack.name), [
     'punch_left',
     'punch_right',
-    'combo_kick',
+    'combo_elbow',
     'combo_finisher',
   ]);
   assert.deepEqual(ARCADE_COMBO, LIGHT_COMBO);
   assert.equal(new Set(LIGHT_COMBO).size, 4);
-  assert.equal(COMBO_KICK.animation, 'kick_front');
+  assert.equal(COMBO_ELBOW.animation, 'muay_elbow');
+  assert.equal(COMBO_KICK, COMBO_ELBOW);
   assert.equal(COMBO_KICK.knockdown, undefined);
   assert.equal(COMBO_FINISHER.knockdown, true);
 });

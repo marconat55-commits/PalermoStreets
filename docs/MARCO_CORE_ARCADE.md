@@ -33,7 +33,9 @@ Marco follows a classic Capcom belt-scroller policy: strong key poses, variable 
 
 Attack combos, aerial attacks, super, knockdown and get-up keep their authored coverage because impact and continuity are more important there than a numerical reduction.
 
-The profile contains 143 logical runtime frame entries instead of 192. `dead` intentionally reuses the eight `knockdown` source images, so the number of unique active PNGs is lower still.
+The approved Muay Thai pass changes the four-hit arcade chain to jab, rear cross, horizontal elbow and torso-height roundhouse. The aerial kick uses a knee-led takeoff followed by a fully extended flying side kick; the close grab strike uses the same approved knee family.
+
+The profile contains 145 logical runtime frame entries instead of 192. `dead` intentionally reuses the eight `knockdown` source images, so the number of unique active PNGs is lower still.
 
 ## Timing principles
 

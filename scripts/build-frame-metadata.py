@@ -29,8 +29,10 @@ def main() -> None:
     content_bottom = profile["factory"].get("content_bottom_y", profile["factory"]["baseline_y"])
     expected: dict[str, dict] = {}
 
-    for spec in profile["animations"].values():
-        for index in range(1, spec["frames"] + 1):
+    specs = list(profile["animations"].values()) + list(profile.get("archived_animations", {}).values())
+    for spec in specs:
+        source_frames = spec.get("source_frames", spec["frames"])
+        for index in range(1, source_frames + 1):
             relative = f'{animation_root}/{spec["folder"]}/{index:02d}.png'
             path = public / relative
             image = Image.open(path).convert("RGBA")

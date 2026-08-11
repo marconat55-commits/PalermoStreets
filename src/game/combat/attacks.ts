@@ -8,15 +8,17 @@ export const PUNCH_RIGHT: AttackData = {
   name: 'punch_right', damage: 20, startup: 0.12, active: 0.12, recovery: 0.24,
   rangeX: 108, rangeY: 58, knockbackX: 250, knockbackY: 0, furyGain: 10, hitStop: 0.060, shake: 5,
 };
-/** Third beat of the arcade chain: a quick front kick that changes the silhouette before the final straight. */
-export const COMBO_KICK: AttackData = {
-  name: 'combo_kick', animation: 'kick_front', damage: 16, startup: 0.10, active: 0.10, recovery: 0.17,
-  rangeX: 126, rangeY: 62, knockbackX: 220, knockbackY: 0, furyGain: 8, hitStop: 0.055, shake: 5,
+/** Third beat of Marco's arcade chain: a compact Muay Thai elbow before the roundhouse finisher. */
+export const COMBO_ELBOW: AttackData = {
+  name: 'combo_elbow', animation: 'muay_elbow', damage: 17, startup: 0.09, active: 0.11, recovery: 0.18,
+  rangeX: 112, rangeY: 66, knockbackX: 230, knockbackY: 0, furyGain: 8, hitStop: 0.065, shake: 6,
 };
+/** Backward-compatible export retained for older tooling. */
+export const COMBO_KICK = COMBO_ELBOW;
 export const COMBO_FINISHER: AttackData = {
-  name: 'combo_finisher', damage: 27, startup: 0.14, active: 0.13, recovery: 0.27,
-  rangeX: 122, rangeY: 66, knockbackX: 470, knockbackY: 0, furyGain: 13, hitStop: 0.086, shake: 10,
-  knockdown: true, launchVelocity: 430,
+  name: 'combo_finisher', damage: 29, startup: 0.14, active: 0.14, recovery: 0.27,
+  rangeX: 152, rangeY: 70, knockbackX: 560, knockbackY: 0, furyGain: 14, hitStop: 0.098, shake: 12,
+  knockdown: true, launchVelocity: 460,
 };
 export const RUN_ATTACK: AttackData = {
   name: 'run_attack', animation: 'combo_finisher', damage: 30, startup: 0.10, active: 0.15, recovery: 0.26,
@@ -52,9 +54,9 @@ export const AIR_PUNCH: AttackData = {
   knockdown: true, launchVelocity: 425,
 };
 export const AIR_KICK: AttackData = {
-  name: 'air_attack', damage: 26, startup: 0.10, active: 0.16, recovery: 0.18,
-  rangeX: 142, rangeY: 64, knockbackX: 520, knockbackY: 0, furyGain: 13, hitStop: 0.084, shake: 10,
-  knockdown: true, launchVelocity: 465,
+  name: 'air_attack', damage: 28, startup: 0.10, active: 0.17, recovery: 0.18,
+  rangeX: 166, rangeY: 68, knockbackX: 620, knockbackY: 0, furyGain: 14, hitStop: 0.098, shake: 12,
+  knockdown: true, launchVelocity: 510,
 };
 /** Backward-compatible name used by earlier tests and documentation. */
 export const AIR_ATTACK = AIR_KICK;
@@ -67,7 +69,7 @@ export const THROW: AttackData = {
   rangeX: 108, rangeY: 88, knockbackX: 900, knockbackY: 0, furyGain: 16, hitStop: 0.12, shake: 17,
   knockdown: true, launchVelocity: 610,
 };
-export const LIGHT_COMBO = [PUNCH_LEFT, PUNCH_RIGHT, COMBO_KICK, COMBO_FINISHER] as const;
+export const LIGHT_COMBO = [PUNCH_LEFT, PUNCH_RIGHT, COMBO_ELBOW, COMBO_FINISHER] as const;
 export const KICK_COMBO = [KICK_FRONT, KICK_RIGHT, KICK_FINISHER] as const;
 export const ARCADE_COMBO = LIGHT_COMBO;
 export const ENEMY_ATTACK: AttackData = {

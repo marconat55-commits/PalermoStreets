@@ -2,6 +2,8 @@
 
 ## Production Pipeline v1
 
+- Captured the original shared storyboard as a non-destructive campaign manifest, separating reusable direction from later canon decisions.
+- Marked the M02 geometry, character scale, horizon, walk band and three camera proofs as approved; added the final FAR/MAIN/FOREGROUND delivery contract.
 - Added a versioned content catalog and separate manifests for characters, stages and the M02 pilot.
 - Added reusable templates for main players, enemies, stages, objects and ambient actors.
 - Added deterministic scaffold/build/check commands; the full project check now rejects invalid or stale production content.

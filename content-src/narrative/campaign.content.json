@@ -1,0 +1,70 @@
+{
+  "schema": 1,
+  "kind": "campaign",
+  "id": "campaign_main",
+  "display_name": "PALERMO STREETS - CAMPAGNA PRINCIPALE",
+  "status": "storyboard",
+  "source": {
+    "type": "shared_chat_storyboard",
+    "url": "https://chatgpt.com/share/6a724844-a184-83eb-ac7f-a500a385ba8b",
+    "scope": "Parte iniziale: concept, campagna e Stage 1 ZEN",
+    "captured_on": "2026-08-12"
+  },
+  "canon_policy": {
+    "runtime_and_approved_manifests_win": true,
+    "storyboard_names_are_candidates": true,
+    "rejected_characters_must_not_return": ["barbetta", "pizzetto"],
+    "notes": [
+      "Marco e i personaggi registrati nel catalogo sono canonici.",
+      "Barbaccia e il roster iniziale restano concept finche non approvati esplicitamente.",
+      "La storyboard guida struttura e tono, non sostituisce dati gameplay o asset approvati."
+    ]
+  },
+  "pillars": [
+    "Beat em up arcade cooperativo ambientato in una Palermo fumettistica e immaginaria.",
+    "Cartoline urbane trasformate in arene con parallasse, folla, mezzi, luci e meteo.",
+    "Colpi leggibili ed esagerati, lanci comici e violenza fumettistica senza gore realistico.",
+    "Alternanza fra combattimento a piedi, eventi ambientali e sezioni su veicoli.",
+    "Quartieri e abitanti non vengono identificati con i criminali: le bande sono inventate."
+  ],
+  "campaign": {
+    "structure": "three_acts",
+    "stage_count_candidate": 18,
+    "vehicle_sections_candidate": 8,
+    "route": [
+      "ZEN", "Mondello", "Favorita", "San Lorenzo", "Cruillas", "CEP", "Borgo Nuovo", "Viale Regione",
+      "Liberta e Politeama", "Borgo Vecchio e Porto", "Mercato del Capo", "Corso Vittorio e Cattedrale",
+      "Ballaro e Albergheria", "Brancaccio", "Kalsa e Foro Italico", "Vucciria", "Teatro Massimo e Via Maqueda", "Quattro Canti"
+    ],
+    "production_rule": "La campagna ampia e una banca di idee; si produce e approva uno stage pilota alla volta."
+  },
+  "stage1_zen": {
+    "role": "tutorial_and_vertical_slice",
+    "visual_motifs": ["palazzoni", "cortili", "porticati", "garage", "campetto", "motorini", "tetti"],
+    "module_flow": [
+      { "id": "M01", "beat": "Ingresso dalla strada e primo agguato nel cortile" },
+      { "id": "M02", "beat": "Porticati e autorimesse con aperture sullo skyline" },
+      { "id": "M03", "beat": "Campetto come arena aperta e leggibile" },
+      { "id": "M04", "beat": "Ingresso del palazzo e preparazione al climax" },
+      { "id": "ROOFTOP", "beat": "Arena finale separata sul tetto", "status": "existing_out_of_scope" }
+    ],
+    "boss_concept": {
+      "name": "Barbaccia",
+      "status": "legacy_candidate_not_canon",
+      "do_not_integrate_without_approval": true
+    }
+  },
+  "content_families": {
+    "enemy_archetypes": ["balanced", "heavy", "fast", "shooter", "knife_thrower", "grappler", "shield", "electric", "mutant", "captain"],
+    "weapon_families": ["firearms", "melee", "throwable_props", "stage_specific"],
+    "healing_and_buffs": ["arancina", "pane_e_panelle", "sfincione", "pani_ca_meusa", "cannolo", "brioche_con_gelato", "granita", "caffe_speed_buff"],
+    "ambient_systems": ["background_actors", "traffic", "animated_signs", "weather", "smoke", "crowd_reactions", "destructibles"],
+    "boss_requirements": ["readable_intro", "unique_arena_interaction", "at_least_two_phases_for_major_bosses", "stage_specific_signature"]
+  },
+  "initial_roster_concepts": [
+    { "id": "marco", "status": "canon", "role": "balanced" },
+    { "id": "leandra_scirocco", "status": "candidate", "role": "fast_mma_capoeira" },
+    { "id": "toto_u_muru", "status": "candidate", "role": "heavy_grappler" },
+    { "id": "player_slot_4", "status": "open", "role": "to_define" }
+  ]
+}

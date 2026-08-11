@@ -16,6 +16,8 @@ Non sostituisce gli asset approvati e non genera immagini. Prima blocca scala, g
 - `public/assets/`: soli asset runtime approvati.
 - `production-preview/`: output tecnici deterministici da controllare e versionare.
 
+La storyboard iniziale condivisa e registrata in `content-src/narrative/campaign.content.json`. E una banca di direzione creativa: i manifest approvati e il runtime corrente hanno sempre priorita. Nomi o personaggi successivamente scartati non vengono reintrodotti automaticamente.
+
 Le immagini generative servono solo come concept o identity reference. Le sorgenti definitive scalabili devono essere BLEND o KRA; l'export runtime resta PNG/JSON/WAV/OGG.
 
 ## Comandi
@@ -55,7 +57,7 @@ Le animazioni comuni devono appartenere all'archetipo; le mosse uniche restano n
 5. Integrare un solo modulo pilota.
 6. Solo dopo il test runtime estendere il metodo agli altri moduli.
 
-Il pilot M02 e descritto da `content-src/stages/stage1_zen/modules/M02.module.json`. Gli SVG in `production-preview/M02/` sono prove geometriche, non fondali finali e non sono ancora collegati al runtime.
+Il pilot M02 e descritto da `content-src/stages/stage1_zen/modules/M02.module.json`. Geometria, scala, orizzonte, walk band e camere sono approvati. Gli SVG in `production-preview/M02/` restano prove tecniche e non sono ancora collegati al runtime; il prossimo gate riguarda i tre layer artistici FAR/MAIN/FOREGROUND.
 
 ## Definition of done
 

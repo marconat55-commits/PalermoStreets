@@ -6,9 +6,9 @@
   "required": ["schema", "kind", "id", "status"],
   "properties": {
     "schema": { "const": 1 },
-    "kind": { "enum": ["character", "stage", "stage_module", "object", "ambient_actor"] },
+    "kind": { "enum": ["campaign", "character", "stage", "stage_module", "object", "ambient_actor"] },
     "id": { "type": "string", "pattern": "^[a-zA-Z][a-zA-Z0-9_-]*$" },
-    "status": { "enum": ["draft", "greybox", "pilot", "approved", "integrated", "legacy_integrated"] }
+    "status": { "enum": ["draft", "storyboard", "greybox", "pilot", "approved", "integrated", "legacy_integrated"] }
   },
   "additionalProperties": true
 }

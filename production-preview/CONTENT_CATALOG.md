@@ -4,6 +4,7 @@ Pipeline: `1.0.0`
 
 | ID | Tipo | Stato | Manifest |
 |---|---|---|---|
+| narrative.campaign | campaign | storyboard | `content-src/narrative/campaign.content.json` |
 | character.marco | character | integrated | `content-src/characters/marco.content.json` |
 | character.talebano | character | integrated | `content-src/characters/talebano.content.json` |
 | stage.stage1_zen | stage | pilot | `content-src/stages/stage1_zen/stage1_zen.content.json` |

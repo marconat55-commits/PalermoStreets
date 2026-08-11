@@ -11,6 +11,12 @@
   },
   "entries": [
     {
+      "id": "narrative.campaign",
+      "kind": "campaign",
+      "status": "storyboard",
+      "manifest": "content-src/narrative/campaign.content.json"
+    },
+    {
       "id": "character.marco",
       "kind": "character",
       "status": "integrated",

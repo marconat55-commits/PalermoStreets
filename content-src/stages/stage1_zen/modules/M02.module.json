@@ -4,7 +4,12 @@
   "id": "M02",
   "stage_id": "stage1_zen",
   "display_name": "Porticato e garage",
-  "status": "greybox",
+  "status": "approved",
+  "approval": {
+    "approved_on": "2026-08-12",
+    "scope": ["master_geometry", "character_scale", "horizon", "walk_band", "camera_proofs"],
+    "art_direction_pending": true
+  },
   "integration": {
     "status": "not_integrated",
     "runtime_module_id": "M02"
@@ -30,6 +35,21 @@
     { "plane": "main", "parallax": 1, "required": true, "alpha": true },
     { "plane": "foreground", "parallax": 1.08, "required": false, "alpha": true }
   ],
+  "final_layer_contract": {
+    "master_size": [3840, 1080],
+    "runtime_size": [2560, 720],
+    "deliverables": [
+      { "plane": "far", "file": "M02_FAR_MASTER.png", "alpha": false, "parallax": 0.22 },
+      { "plane": "main", "file": "M02_MAIN_MASTER.png", "alpha": true, "parallax": 1 },
+      { "plane": "foreground", "file": "M02_FOREGROUND_MASTER.png", "alpha": true, "parallax": 1.08, "optional": true }
+    ],
+    "acceptance": [
+      "Nessun bordo dipinto o alone lungo le aperture alpha del MAIN.",
+      "Nessun elemento copre o contraddice la walk band approvata.",
+      "La scala architettonica resta coerente con attori da 290-305px runtime.",
+      "Le camere X=0, X=640 e X=1280 devono essere approvate prima dell'integrazione."
+    ]
+  },
   "reference_actors": [
     { "id": "marco_start", "x_runtime": 320, "feet_y_runtime": 690, "height_runtime": 290 },
     { "id": "marco_mid", "x_runtime": 1280, "feet_y_runtime": 690, "height_runtime": 290 },

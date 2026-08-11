@@ -9,6 +9,7 @@ test('production content catalog and manifests satisfy the v1 contract', () => {
   assert.equal(result.catalog.runtime.engine, 'pixijs');
   assert.deepEqual(result.catalog.runtime.logical_viewport, [1280, 720]);
   assert.deepEqual(result.catalog.runtime.character_canvas, [640, 420]);
+  assert.ok(result.manifests.has('narrative.campaign'));
 });
 
 test('M02 greybox uses exact exportable stage geometry', () => {
@@ -22,10 +23,22 @@ test('M02 greybox uses exact exportable stage geometry', () => {
   assert.deepEqual(module.geometry.camera_bounds_runtime, [0, 1280]);
   assert.equal(module.walk_band.top_runtime_y, 515);
   assert.equal(module.walk_band.bottom_runtime_y, 705);
+  assert.equal(module.status, 'approved');
+  assert.equal(module.approval.art_direction_pending, true);
   for (const actor of module.reference_actors) {
     assert.ok(actor.feet_y_runtime >= module.walk_band.top_runtime_y);
     assert.ok(actor.feet_y_runtime <= module.walk_band.bottom_runtime_y);
   }
+});
+
+test('the shared storyboard is captured without overriding current canon', () => {
+  const result = validateRepository(process.cwd());
+  const campaign = result.manifests.get('narrative.campaign');
+  assert.ok(campaign);
+  assert.equal(campaign.campaign.stage_count_candidate, 18);
+  assert.equal(campaign.stage1_zen.boss_concept.status, 'legacy_candidate_not_canon');
+  assert.deepEqual(campaign.canon_policy.rejected_characters_must_not_return, ['barbetta', 'pizzetto']);
+  assert.equal(campaign.initial_roster_concepts.find((entry: { id: string }) => entry.id === 'marco')?.status, 'canon');
 });
 
 test('M02 build is deterministic and includes three camera proofs', () => {

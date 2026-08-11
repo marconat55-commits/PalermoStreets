@@ -122,9 +122,11 @@ export class AssetCatalog {
     for (const [name, spec] of Object.entries(profile.animations)) {
       const durations = expandedValues(spec.frames, spec.durations, 0.1, 'Durate');
       const visualScales = expandedValues(spec.frames, spec.visual_scales, 1, 'Scale visive');
+      const frameSequence = spec.frame_sequence ?? Array.from({ length: spec.frames }, (_, index) => index + 1);
       const frames: VisualFrame[] = [];
-      for (let i = 1; i <= spec.frames; i += 1) {
-        const filename = `${spec.folder}/${frameName(i)}`;
+      for (let i = 0; i < spec.frames; i += 1) {
+        const sourceFrame = frameSequence[i] ?? i + 1;
+        const filename = `${spec.folder}/${frameName(sourceFrame)}`;
         const rel = `${profile.assets.animation_root}/${filename}`;
         const texture = atlas?.get(filename) ?? await Assets.load<Texture>(publicUrl(rel));
         const key = `/${rel}`;
@@ -136,10 +138,10 @@ export class AssetCatalog {
         };
         frames.push({
           texture,
-          duration: durations[i - 1] ?? durations[0] ?? 0.1,
+          duration: durations[i] ?? durations[0] ?? 0.1,
           offsetX: 0,
           offsetY: meta.offsetY,
-          scale: visualScales[i - 1] ?? 1,
+          scale: visualScales[i] ?? 1,
           bounds: meta.bounds,
           width: meta.width,
           height: meta.height,

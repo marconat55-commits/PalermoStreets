@@ -16,7 +16,7 @@ import {
 } from '../combat/attacks';
 import { lengthSq, normalize } from '../../utils/math';
 import type { Input } from '../input/Input';
-import { locomotionPlaybackRate, selectLocomotionClip } from '../animation/locomotion';
+import { locomotionPlaybackRate, resolveCombatFacing, selectLocomotionClip } from '../animation/locomotion';
 import { shouldStartRunBrake } from '../animation/movementTransitions';
 import { updateRunGesture as advanceRunGesture } from '../animation/runGesture';
 import { nextIdleVariant, orderedIdleVariants } from '../animation/idleVariants';
@@ -24,7 +24,6 @@ import type { Enemy } from './Enemy';
 
 const RUN_MULTIPLIER = 1.55;
 const RUN_TAP_WINDOW = 0.26;
-const DODGE_DURATION = 0.34;
 const JUMP_GRAVITY = 1550;
 const JUMP_VELOCITY = 620;
 const IDLE_VARIANT_DELAY = 4.8;
@@ -57,7 +56,6 @@ export class Player extends Actor {
   private runTapDirection: Vec2 = { x: 0, y: 0 };
   private runningDirection: Vec2 = { x: 0, y: 0 };
   private brakeDirection: Vec2 = { x: 1, y: 0 };
-  private dodgeDirection: Vec2 = { x: 1, y: 0 };
   private airVelocity = 0;
   private airMomentum: Vec2 = { x: 0, y: 0 };
   private landingMomentum: Vec2 = { x: 0, y: 0 };
@@ -113,7 +111,7 @@ export class Player extends Actor {
   }
 
   private requestAttack(attack: AttackData, chainable = false, requestedCombo?: readonly AttackData[]): boolean {
-    if (this.dead || this.elevation > 0 || ['hit', 'knockdown', 'getup', 'dodge', 'block', 'grab'].includes(this.state)) return false;
+    if (this.dead || this.elevation > 0 || ['hit', 'knockdown', 'getup', 'block', 'grab'].includes(this.state)) return false;
     if (this.state === 'attack') {
       const currentCombo: readonly AttackData[] | null = requestedCombo ?? (this.currentAttack && LIGHT_COMBO.includes(this.currentAttack as typeof LIGHT_COMBO[number])
         ? LIGHT_COMBO
@@ -198,16 +196,6 @@ export class Player extends Actor {
     return this.currentAttack === SPIN_SPECIAL
       && this.attackElapsed >= SPIN_SPECIAL.startup * 0.55
       && this.attackElapsed <= SPIN_SPECIAL.startup + SPIN_SPECIAL.active;
-  }
-
-  requestDodge(direction: Vec2): boolean {
-    if (this.dead || this.elevation > 0 || !['idle', 'walk', 'run', 'brake', 'block'].includes(this.state)) return false;
-    const fallback = { x: this.facing, y: 0 };
-    this.dodgeDirection = lengthSq(direction) > 0.01 ? normalize(direction) : fallback;
-    this.clearRun();
-    this.invulnerable = DODGE_DURATION;
-    this.beginState('dodge', 'dodge');
-    return true;
   }
 
   requestJump(): boolean {
@@ -393,12 +381,6 @@ export class Player extends Actor {
       }
       this.clampToPlayfield(); this.syncVisual(); return;
     }
-    if (this.state === 'dodge') {
-      this.position.x += this.dodgeDirection.x * 520 * dt;
-      this.position.y += this.dodgeDirection.y * 330 * dt;
-      if (this.animator.finished || this.stateElapsed >= DODGE_DURATION) this.beginState('idle', 'idle');
-      this.clampToPlayfield(); this.syncVisual(); return;
-    }
     if (this.isAirborne) {
       this.updateAirborne(dt, input, movementEnabled);
       return;
@@ -476,16 +458,12 @@ export class Player extends Actor {
     const depthSpeed = this.depthSpeed * (running ? RUN_MULTIPLIER : 1);
     this.position.x += move.x * horizontalSpeed * dt;
     this.position.y += move.y * depthSpeed * dt;
-    if (move.x !== 0) this.facing = move.x > 0 ? 1 : -1;
-    else this.faceAutoTarget();
     const moving = lengthSq(move) > 0.01;
+    if (moving) this.facing = resolveCombatFacing(this.facing, move);
+    else this.faceAutoTarget();
     const directionalClip = selectLocomotionClip(move, this.animator.name, (name) => this.animator.bank.clips.has(name));
-    let movementAnimation: string = directionalClip;
-    if (running) {
-      const directionalRun = directionalClip === 'walk' ? 'run' : directionalClip.replace('walk_', 'run_');
-      movementAnimation = this.animator.bank.clips.has(directionalRun) ? directionalRun : directionalClip;
-    }
-    const preservesStride = ['walk', 'walk_up', 'walk_down', 'run', 'run_up', 'run_down'].includes(this.animator.name);
+    const movementAnimation = running && this.animator.bank.clips.has('run') ? 'run' : directionalClip;
+    const preservesStride = ['walk', 'run'].includes(this.animator.name);
     if (moving) {
       this.idleStillTime = 0;
       this.animator.play(movementAnimation, false, preservesStride);

@@ -5,7 +5,12 @@ export type Rect = { x: number; y: number; width: number; height: number };
 
 export interface AnimationJson {
   folder: string;
+  /** Number of frames used by the runtime clip. */
   frames: number;
+  /** Total authored frames preserved in the source folder. Defaults to `frames`. */
+  source_frames?: number;
+  /** One-based authored frame indexes selected by the runtime, in playback order. */
+  frame_sequence?: number[];
   durations: number[];
   /** Optional per-frame display scale. Use this only to preserve perceived body size across foreshortened poses. */
   visual_scales?: number[];
@@ -51,6 +56,8 @@ export interface CharacterProfile {
   };
   factory: Record<string, unknown>;
   animations: Record<string, AnimationJson>;
+  /** Preserved authored clips excluded from loading and gameplay. */
+  archived_animations?: Record<string, AnimationJson>;
 }
 
 export interface CharacterIndex {

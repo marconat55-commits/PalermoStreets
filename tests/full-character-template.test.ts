@@ -4,11 +4,13 @@ import test from 'node:test';
 
 const template = JSON.parse(fs.readFileSync('public/data/character_templates/main_player_full_v2.json', 'utf8'));
 
-test('il template full impone corsa verticale e quattro idle narrative', () => {
-  assert.ok(template.required_clips.includes('run_up'));
-  assert.ok(template.required_clips.includes('run_down'));
-  assert.equal(template.personality_idles.required_count, 4);
-  assert.ok(template.personality_idles.minimum_frames_each >= 16);
+test('il template full usa locomozione laterale condivisa e una idle narrativa core', () => {
+  assert.deepEqual(template.direction_policy.authored_clips, ['walk', 'run']);
+  assert.ok(!template.required_clips.includes('run_up'));
+  assert.ok(!template.required_clips.includes('run_down'));
+  assert.ok(!template.required_clips.includes('dodge'));
+  assert.equal(template.personality_idles.required_count, 1);
+  assert.ok(template.personality_idles.minimum_frames_each >= 8);
   assert.equal(template.personality_idles.allow_frame_blend, false);
 });
 

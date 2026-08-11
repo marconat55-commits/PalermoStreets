@@ -3,8 +3,8 @@
   "id": "main_player_full_v2",
   "role": "player",
   "status": "generation_target",
-  "extends": "data/character_templates/main_player_v1.json",
-  "purpose": "Pack completo ad alta fluidità per tutti i prossimi protagonisti",
+  "extends": "data/character_templates/main_player_core_v2.json",
+  "purpose": "Target protagonista arcade: poche pose chiave ad alta leggibilità, combo complete e timing variabile",
   "raster": {
     "canvas": [640, 420],
     "baseline_y": 400,
@@ -14,55 +14,43 @@
   },
   "direction_policy": {
     "logical_directions": 8,
-    "authored_clips": ["walk", "walk_up", "walk_down", "run", "run_up", "run_down"],
-    "diagonals": "blend movement vector and select the closest authored depth clip",
+    "authored_clips": ["walk", "run"],
+    "vertical_and_diagonal": "reuse side-facing clip and preserve last horizontal combat facing",
     "allow_runtime_stretch": false
   },
   "required_clips": [
-    "idle", "idle_variant_1", "idle_variant_2", "idle_variant_3", "idle_variant_4",
-    "walk", "walk_up", "walk_down", "run", "run_up", "run_down", "brake",
-    "jump", "land", "air_attack", "air_punch",
-    "punch_left", "punch_right", "combo_finisher",
-    "kick_front", "kick_right", "kick_finisher",
-    "block", "dodge", "grab", "grab_strike", "throw", "super",
-    "hit", "knockdown", "getup", "dead"
+    "idle", "idle_variant_1", "walk", "run", "brake", "jump", "land",
+    "air_attack", "air_punch", "punch_left", "punch_right", "combo_finisher",
+    "kick_front", "kick_right", "kick_finisher", "block", "grab", "grab_strike",
+    "throw", "super", "hit", "knockdown", "getup", "dead"
   ],
   "locomotion": {
-    "idle": { "frames": 8, "loop": true },
-    "walk": { "frames": 12, "loop": true },
-    "walk_up": { "frames": 10, "loop": true },
-    "walk_down": { "frames": 10, "loop": true },
-    "run": { "frames": 10, "loop": true },
-    "run_up": { "frames": 10, "loop": true },
-    "run_down": { "frames": 10, "loop": true },
-    "brake": { "frames": 6, "loop": false },
-    "jump": { "frames": 10, "loop": false },
-    "land": { "frames": 6, "loop": false }
+    "idle": { "frames": 4, "loop": true },
+    "walk": { "frames": 6, "loop": true },
+    "run": { "frames": 6, "loop": true },
+    "brake": { "frames": 4, "loop": false },
+    "jump": { "frames": 8, "loop": false },
+    "land": { "frames": 4, "loop": false }
   },
   "clip_targets": {
-    "light_attack": { "minimum_frames": 8 },
-    "finisher": { "minimum_frames": 10 },
-    "aerial_attack": { "minimum_frames": 8 },
-    "grab_or_throw": { "minimum_frames": 8 },
-    "super": { "minimum_frames": 14 },
-    "hit": { "minimum_frames": 5 },
+    "four_hit_punch_combo_total": { "minimum_frames": 16 },
+    "kick_combo_total": { "minimum_frames": 12 },
+    "aerial_attack": { "minimum_frames": 6 },
+    "grab_and_throw_total": { "minimum_frames": 10 },
+    "super": { "minimum_frames": 8 },
+    "hit": { "minimum_frames": 3 },
     "knockdown": { "minimum_frames": 8 },
     "getup": { "minimum_frames": 8 },
     "dead": { "minimum_frames": 8 }
   },
   "personality_idles": {
-    "required_count": 4,
-    "minimum_frames_each": 16,
-    "maximum_frames_each": 24,
-    "duration_seconds": [3.5, 6.0],
+    "required_count": 1,
+    "optional_expansion_count": 3,
+    "minimum_frames_each": 8,
+    "maximum_frames_each": 12,
+    "duration_seconds": [2.5, 5.0],
     "must_return_to_base_idle": true,
-    "allow_frame_blend": false,
-    "concept_slots": [
-      "character_pride_or_grooming",
-      "signature_prop_inspection",
-      "signature_prop_action",
-      "comic_personality_beat"
-    ]
+    "allow_frame_blend": false
   },
   "mandatory_transitions": [
     "idle_to_walk", "walk_to_idle", "walk_to_run", "run_to_brake",

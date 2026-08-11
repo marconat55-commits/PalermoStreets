@@ -199,8 +199,10 @@ for (const id of index.characters) {
       ? Array.from({ length: spec.frames }, () => spec.visual_scales[0])
       : spec.visual_scales ?? Array.from({ length: spec.frames }, () => 1);
     const sequence = [];
+    const frameSequence = spec.frame_sequence ?? Array.from({ length: spec.frames }, (_, indexValue) => indexValue + 1);
     for (let frameIndex = 1; frameIndex <= spec.frames; frameIndex += 1) {
-      const frameName = `${String(frameIndex).padStart(2, '0')}.png`;
+      const sourceFrameIndex = frameSequence[frameIndex - 1] ?? frameIndex;
+      const frameName = `${String(sourceFrameIndex).padStart(2, '0')}.png`;
       const relative = `${profile.assets.animation_root}/${spec.folder}/${frameName}`;
       let art = decoded.get(relative);
       if (!art) {

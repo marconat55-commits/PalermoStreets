@@ -11,7 +11,11 @@ This contract is mandatory for every new or replaced character pack.
 
 ## Player clip set
 
-Player profiles must provide: `idle`, `walk`, `walk_up`, `walk_down`, `run`, `brake`, `jump`, `land`, `air_attack`, `air_punch`, `punch_left`, `punch_right`, `combo_finisher`, `kick_front`, `kick_right`, `kick_finisher`, `block`, `dodge`, `grab`, `grab_strike`, `throw`, `super`, `hit`, `knockdown`, `getup` and `dead`.
+Player profiles must provide: `idle`, `walk`, `run`, `brake`, `jump`, `land`, `air_attack`, `air_punch`, `punch_left`, `punch_right`, `combo_finisher`, `kick_front`, `kick_right`, `kick_finisher`, `block`, `grab`, `grab_strike`, `throw`, `super`, `hit`, `knockdown`, `getup` and `dead`.
+
+The classic belt-scroller direction policy is mandatory for the core pack: `walk` and `run` remain side-facing and are reused for horizontal, vertical and diagonal movement. Vertical input preserves the last horizontal combat facing. Do not generate dedicated back/front locomotion unless a future gameplay feature explicitly requires it.
+
+`source_frames` and `frame_sequence` may preserve a larger authored set while loading only approved runtime poses. `frames` is always the runtime count; `frame_sequence` contains one-based indexes into the source folder and may not contain duplicates. Removed experiments belong in `archived_animations`, which are validated but never loaded.
 
 Enemies may keep a smaller attack set, but must provide locomotion, hit, knockdown, getup and dead reactions. Enemy attack count remains profile-driven.
 
@@ -27,7 +31,7 @@ Enemies may keep a smaller attack set, but must provide locomotion, hit, knockdo
 - `frame_blend` may be used only as a short 0-60 ms transition between distinct authored poses; it must never hide duplicated PNGs or replace missing key poses.
 - `frame_blend` is forbidden on `idle` and `idle_variant_N`; personality animation must use authored intermediate poses without periodic opacity flicker.
 
-`data/character_templates/main_player_full_v2.json` defines the complete generation target for future protagonists, including directional running, four long personality idles and the minimum real-frame counts for reactions and attacks.
+`data/character_templates/main_player_full_v2.json` defines the generation target for future protagonists: shared side-facing locomotion, one mandatory personality idle and complete combat/reaction coverage. Additional narrative idles are optional expansions after the core is approved.
 
 ## Runtime controller
 

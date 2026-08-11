@@ -15,8 +15,9 @@ test('il template protagonista descrive ogni fase della locomozione', () => {
 
 test('il template include atterraggio e gate anti-duplicati', () => {
   assert.ok(template.required_clips.includes('land'));
-  assert.ok(template.required_clips.includes('run_up'));
-  assert.ok(template.required_clips.includes('run_down'));
+  assert.ok(!template.required_clips.includes('run_up'));
+  assert.ok(!template.required_clips.includes('run_down'));
+  assert.ok(!template.required_clips.includes('dodge'));
   assert.ok(template.qa.distinct_motion_clips.includes('land'));
   assert.ok(template.qa.max_bottom_opaque_run_px < 24);
   assert.ok(template.qa.min_silhouette_distance > 0);

@@ -21,15 +21,15 @@ function bank(): AnimationBank {
   return { clips: new Map([
     ['idle', clip([0.2])],
     ['walk', clip([0.1, 0.1, 0.1, 0.1], true, 0.03)],
-    ['walk_up', clip([0.2, 0.2, 0.2, 0.2])],
+    ['run', clip([0.2, 0.2, 0.2, 0.2])],
     ['attack', clip([0.1, 0.2, 0.3], false)],
   ]) };
 }
 
-test('preserva la fase del passo tra direzioni', () => {
+test('preserva la fase del passo tra camminata e corsa', () => {
   const animator = new Animator(bank(), 'walk');
   animator.update(0.25);
-  animator.play('walk_up', false, true);
+  animator.play('run', false, true);
   assert.equal(animator.frameIndex, 2);
   assert.ok(Math.abs(animator.frameElapsed - 0.1) < 1e-8);
 });

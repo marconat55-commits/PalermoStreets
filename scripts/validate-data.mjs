@@ -11,6 +11,7 @@ const posix = (value) => value.split(path.sep).join('/');
 const errors = [];
 const warnings = [];
 const expectedPng = new Set();
+const activePng = new Set();
 const expectedMeta = new Set();
 const LOCKED_SCALE_CLIPS = new Set(['knockdown', 'getup', 'dead']);
 
@@ -68,8 +69,8 @@ for (const id of index.characters) {
 
   const required = profile.role === 'player'
     ? [
-      'idle', 'walk', 'walk_up', 'walk_down', 'run', 'brake', 'jump', 'land', 'air_attack', 'air_punch',
-      'punch_left', 'punch_right', 'combo_finisher', 'kick_front', 'kick_right', 'kick_finisher', 'block', 'dodge',
+      'idle', 'walk', 'run', 'brake', 'jump', 'land', 'air_attack', 'air_punch',
+      'punch_left', 'punch_right', 'combo_finisher', 'kick_front', 'kick_right', 'kick_finisher', 'block',
       'grab', 'grab_strike', 'throw', 'super', 'hit', 'knockdown', 'getup', 'dead',
     ]
     : ['idle', 'walk', 'attack', 'heavy', 'hit', 'knockdown', 'getup', 'dead'];
@@ -100,6 +101,12 @@ for (const id of index.characters) {
 
   for (const [name, spec] of Object.entries(profile.animations)) {
     if (!Number.isInteger(spec.frames) || spec.frames < 1) fail(`${id}/${name}: frames non valido`);
+    const sourceFrames = spec.source_frames ?? spec.frames;
+    if (!Number.isInteger(sourceFrames) || sourceFrames < spec.frames) fail(`${id}/${name}: source_frames non valido`);
+    const frameSequence = spec.frame_sequence ?? Array.from({ length: spec.frames }, (_, indexValue) => indexValue + 1);
+    if (!Array.isArray(frameSequence) || frameSequence.length !== spec.frames) fail(`${id}/${name}: frame_sequence deve avere ${spec.frames} valori`);
+    if (new Set(frameSequence).size !== frameSequence.length) fail(`${id}/${name}: frame_sequence contiene pose duplicate`);
+    if (frameSequence.some((value) => !Number.isInteger(value) || value < 1 || value > sourceFrames)) fail(`${id}/${name}: frame_sequence fuori range 1-${sourceFrames}`);
     if (!Array.isArray(spec.durations) || ![1, spec.frames].includes(spec.durations.length)) fail(`${id}/${name}: durations deve avere 1 o ${spec.frames} valori`);
     if ((spec.durations ?? []).some((value) => !Number.isFinite(value) || value <= 0)) fail(`${id}/${name}: durata non positiva`);
     if (spec.visual_scales !== undefined && (!Array.isArray(spec.visual_scales) || ![1, spec.frames].includes(spec.visual_scales.length))) fail(`${id}/${name}: visual_scales deve avere 1 o ${spec.frames} valori`);
@@ -115,11 +122,12 @@ for (const id of index.characters) {
       fail(`${id}/${name}: frame_blend vietato sulle idle per evitare lampeggi e doppie silhouette`);
     }
 
-    for (let frame = 1; frame <= spec.frames; frame += 1) {
+    for (let frame = 1; frame <= sourceFrames; frame += 1) {
       const filename = `${spec.folder}/${frameName(frame)}`;
       const relative = `${profile.assets.animation_root}/${filename}`;
       const metaKey = `/${relative}`;
       expectedPng.add(relative);
+      activePng.add(relative);
       expectedMeta.add(metaKey);
       if (!exists(relative)) fail(`${id}/${name}: asset mancante ${relative}`);
       const frameMeta = meta[metaKey];
@@ -135,6 +143,22 @@ for (const id of index.characters) {
         }
       }
       if (atlas && !atlas.frames?.[filename]) fail(`${id}/${name}: frame assente dall'atlas: ${filename}`);
+    }
+  }
+
+  for (const [name, spec] of Object.entries(profile.archived_animations ?? {})) {
+    if (profile.animations[name]) fail(`${id}/${name}: clip presente sia nel runtime sia nell'archivio`);
+    const sourceFrames = spec.source_frames ?? spec.frames;
+    if (!Number.isInteger(sourceFrames) || sourceFrames < 1) fail(`${id}/${name}: source_frames archivio non valido`);
+    for (let frame = 1; frame <= sourceFrames; frame += 1) {
+      const filename = `${spec.folder}/${frameName(frame)}`;
+      const relative = `${profile.assets.animation_root}/${filename}`;
+      const metaKey = `/${relative}`;
+      expectedPng.add(relative);
+      expectedMeta.add(metaKey);
+      if (!exists(relative)) fail(`${id}/${name}: asset archivio mancante ${relative}`);
+      if (!meta[metaKey]) fail(`${id}/${name}: metadata archivio mancante ${metaKey}`);
+      if (atlas && !atlas.frames?.[filename]) fail(`${id}/${name}: frame archivio assente dall'atlas: ${filename}`);
     }
   }
 
@@ -210,4 +234,4 @@ if (errors.length) {
   for (const error of errors) console.error(`- ${error}`);
   process.exit(1);
 }
-console.log(`VALIDATION PASS - ${index.characters.length} personaggi, ${stage.modules.length} moduli, ${expectedPng.size} PNG runtime, ${Object.keys(meta).length} metadata.`);
+console.log(`VALIDATION PASS - ${index.characters.length} personaggi, ${stage.modules.length} moduli, ${activePng.size} PNG attivi, ${expectedPng.size - activePng.size} PNG archiviati, ${Object.keys(meta).length} metadata.`);

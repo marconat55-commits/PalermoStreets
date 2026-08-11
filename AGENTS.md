@@ -29,6 +29,7 @@ This repository is the PixiJS/TypeScript migration of the Python + pygame-ce Pal
 - J: context-sensitive punch combo; aerial attack while jumping; grab strike while holding an enemy
 - K: jump
 - Double-tap a direction: normalized horizontal, vertical or diagonal run
+- Vertical and diagonal travel reuse the side-facing `walk`/`run` clips and preserve the last horizontal combat facing
 - Double-tap forward + J: running attack
 - J+K: advancing fire special with temporary invulnerability and multi-enemy knockback; it has no health cost
 - Releasing movement after a run: dedicated brake transition
@@ -37,6 +38,8 @@ This repository is the PixiJS/TypeScript migration of the Python + pygame-ce Pal
 - F11: fullscreen
 - Esc: return to title
 - R: restart checkpoint when defeated
+
+There is no dodge action in the core arcade control set.
 
 ## Before declaring a task complete
 1. Run `npm run validate:data`.

@@ -1,19 +1,21 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { locomotionPlaybackRate, selectLocomotionClip } from '../src/game/animation/locomotion.ts';
+import { locomotionPlaybackRate, resolveCombatFacing, selectLocomotionClip } from '../src/game/animation/locomotion.ts';
 
 const hasAll = () => true;
 
-test('mappa movimento orizzontale, alto e basso sui clip canonici', () => {
+test('riusa la camminata laterale in ogni direzione', () => {
   assert.equal(selectLocomotionClip({ x: 1, y: 0 }, 'idle', hasAll), 'walk');
-  assert.equal(selectLocomotionClip({ x: 0, y: -1 }, 'walk', hasAll), 'walk_up');
-  assert.equal(selectLocomotionClip({ x: 0, y: 1 }, 'walk', hasAll), 'walk_down');
+  assert.equal(selectLocomotionClip({ x: 0, y: -1 }, 'walk', hasAll), 'walk');
+  assert.equal(selectLocomotionClip({ x: 0, y: 1 }, 'walk', hasAll), 'walk');
+  assert.equal(selectLocomotionClip({ x: -0.7, y: -0.7 }, 'run', hasAll), 'walk');
 });
 
-test('isteresi evita flicker nei cambi diagonali', () => {
-  assert.equal(selectLocomotionClip({ x: 1, y: -0.7 }, 'walk', hasAll), 'walk');
-  assert.equal(selectLocomotionClip({ x: 1, y: -0.7 }, 'walk_up', hasAll), 'walk_up');
-  assert.equal(selectLocomotionClip({ x: 1, y: -0.7 }, 'run_up', hasAll), 'walk_up');
+test('il movimento verticale conserva il facing di combattimento', () => {
+  assert.equal(resolveCombatFacing(1, { x: 0, y: -1 }), 1);
+  assert.equal(resolveCombatFacing(-1, { x: 0, y: 1 }), -1);
+  assert.equal(resolveCombatFacing(-1, { x: 1, y: -1 }), 1);
+  assert.equal(resolveCombatFacing(1, { x: -1, y: 1 }), -1);
 });
 
 test('velocita animazione segue velocita reale e stride di riferimento', () => {

@@ -16,7 +16,7 @@
     "accessories": "doppia catena d'oro, anello d'oro all'orecchio sinistro e bracciali in pelle e metallo",
     "fighting_style": "street fighter potente e diretto",
     "special_move": "supermossa in avanzamento",
-    "canon": "Marco Full V3 — guardia laterale destra, identità master bloccata, 192 frame runtime coerenti, locomozione a sei direzioni, scala baked e continuità fall/getup pixel-identica"
+    "canon": "Marco Core Arcade — guardia laterale destra, identità master bloccata, locomozione laterale condivisa su ogni vettore, scala baked e continuità fall/getup pixel-identica"
   },
   "gameplay": {
     "player": {
@@ -54,118 +54,68 @@
   "animations": {
     "idle": {
       "folder": "idle",
-      "frames": 8,
-      "durations": [
-        0.12
-      ],
+      "frames": 4,
+      "source_frames": 8,
+      "frame_sequence": [1, 3, 5, 7],
+      "durations": [0.22],
       "loop": true,
       "source_facing": 1
     },
     "idle_variant_1": {
       "folder": "idle_variant_1",
-      "frames": 12,
-      "durations": [0.25, 0.3, 0.34, 0.38, 0.42, 0.42, 0.4, 0.36, 0.45, 0.32, 0.28, 0.25],
+      "frames": 8,
+      "source_frames": 12,
+      "frame_sequence": [1, 2, 3, 5, 6, 8, 10, 12],
+      "durations": [0.28, 0.34, 0.42, 0.5, 0.5, 0.44, 0.36, 0.3],
       "source_facing": 1
     },
     "walk": {
       "folder": "walk",
-      "frames": 8,
-      "durations": [
-        0.075
-      ],
+      "frames": 6,
+      "source_frames": 8,
+      "frame_sequence": [1, 2, 3, 5, 6, 7],
+      "durations": [0.09],
       "loop": true,
       "frame_blend": 0.018,
       "source_facing": 1,
       "reference_speed": 285
     },
-    "walk_up": {
-      "folder": "walk_up",
-      "frames": 8,
-      "durations": [
-        0.078
-      ],
-      "loop": true,
-      "frame_blend": 0.018,
-      "source_facing": 1,
-      "reference_speed": 205
-    },
-    "walk_down": {
-      "folder": "walk_down",
-      "frames": 8,
-      "durations": [
-        0.078
-      ],
-      "loop": true,
-      "frame_blend": 0.018,
-      "source_facing": 1,
-      "reference_speed": 205
-    },
     "run": {
       "folder": "run",
-      "frames": 8,
-      "durations": [
-        0.072
-      ],
+      "frames": 6,
+      "source_frames": 8,
+      "frame_sequence": [1, 2, 3, 5, 6, 7],
+      "durations": [0.075],
       "loop": true,
       "frame_blend": 0.016,
       "source_facing": 1,
       "reference_speed": 442
     },
-    "run_up": {
-      "folder": "run_up",
-      "frames": 8,
-      "durations": [0.072],
-      "loop": true,
-      "frame_blend": 0.016,
-      "source_facing": 1,
-      "reference_speed": 318
-    },
-    "run_down": {
-      "folder": "run_down",
-      "frames": 8,
-      "durations": [0.072],
-      "loop": true,
-      "frame_blend": 0.016,
-      "source_facing": 1,
-      "reference_speed": 318
-    },
     "brake": {
       "folder": "brake",
-      "frames": 6,
-      "durations": [
-        0.045,
-        0.05,
-        0.05,
-        0.055,
-        0.06,
-        0.06
-      ],
+      "frames": 4,
+      "source_frames": 6,
+      "frame_sequence": [1, 2, 4, 6],
+      "durations": [0.055, 0.07, 0.09, 0.1],
       "frame_blend": 0.025,
       "source_facing": 1
     },
     "jump": {
       "folder": "jump",
-      "frames": 10,
-      "durations": [
-        0.07,
-        0.07,
-        0.075,
-        0.085,
-        0.1,
-        0.1,
-        0.09,
-        0.08,
-        0.07,
-        0.06
-      ],
+      "frames": 8,
+      "source_frames": 10,
+      "frame_sequence": [1, 2, 3, 4, 6, 7, 8, 10],
+      "durations": [0.08, 0.08, 0.09, 0.11, 0.12, 0.1, 0.1, 0.12],
       "frame_blend": 0.022,
       "visual_scales": [0.92],
       "source_facing": 1
     },
     "land": {
       "folder": "land",
-      "frames": 6,
-      "durations": [0.045, 0.05, 0.055, 0.06, 0.07, 0.08],
+      "frames": 4,
+      "source_frames": 6,
+      "frame_sequence": [1, 2, 4, 6],
+      "durations": [0.07, 0.08, 0.1, 0.12],
       "frame_blend": 0.026,
       "source_facing": 1
     },
@@ -238,40 +188,38 @@
     },
     "block": {
       "folder": "block",
-      "frames": 4,
-      "durations": [
-        0.1,
-        0.09,
-        0.1,
-        0.12
-      ],
+      "frames": 3,
+      "source_frames": 4,
+      "frame_sequence": [1, 2, 4],
+      "durations": [0.12, 0.16, 0.12],
       "loop": true,
       "source_facing": 1
     },
     "grab": {
       "folder": "grab",
-      "frames": 4,
-      "durations": [
-        0.1,
-        0.1,
-        0.12,
-        0.18
-      ],
+      "frames": 3,
+      "source_frames": 4,
+      "frame_sequence": [1, 2, 4],
+      "durations": [0.12, 0.14, 0.2],
       "source_facing": 1
     },
     "grab_strike": {
       "folder": "grab_strike",
-      "frames": 6,
-      "durations": [0.07, 0.08, 0.09, 0.1, 0.08, 0.1],
+      "frames": 4,
+      "source_frames": 6,
+      "frame_sequence": [1, 2, 4, 6],
+      "durations": [0.08, 0.1, 0.1, 0.14],
       "source_facing": 1,
-      "contact_frame": 4
+      "contact_frame": 3
     },
     "throw": {
       "folder": "throw",
-      "frames": 8,
-      "durations": [0.08, 0.09, 0.1, 0.11, 0.1, 0.12, 0.11, 0.14],
+      "frames": 6,
+      "source_frames": 8,
+      "frame_sequence": [1, 2, 3, 5, 6, 8],
+      "durations": [0.08, 0.1, 0.12, 0.1, 0.14, 0.18],
       "source_facing": 1,
-      "contact_frame": 6
+      "contact_frame": 5
     },
     "super": {
       "folder": "super",
@@ -291,13 +239,10 @@
     },
     "hit": {
       "folder": "hit",
-      "frames": 4,
-      "durations": [
-        0.08,
-        0.09,
-        0.11,
-        0.14
-      ],
+      "frames": 3,
+      "source_frames": 4,
+      "frame_sequence": [1, 2, 4],
+      "durations": [0.09, 0.12, 0.16],
       "source_facing": 1
     },
     "knockdown": {
@@ -347,6 +292,40 @@
         9.0
       ],
       "source_facing": 1
+    }
+  },
+  "archived_animations": {
+    "walk_up": {
+      "folder": "walk_up",
+      "frames": 8,
+      "durations": [0.078],
+      "loop": true,
+      "source_facing": 1,
+      "reference_speed": 205
+    },
+    "walk_down": {
+      "folder": "walk_down",
+      "frames": 8,
+      "durations": [0.078],
+      "loop": true,
+      "source_facing": 1,
+      "reference_speed": 205
+    },
+    "run_up": {
+      "folder": "run_up",
+      "frames": 8,
+      "durations": [0.072],
+      "loop": true,
+      "source_facing": 1,
+      "reference_speed": 318
+    },
+    "run_down": {
+      "folder": "run_down",
+      "frames": 8,
+      "durations": [0.072],
+      "loop": true,
+      "source_facing": 1,
+      "reference_speed": 318
     },
     "dodge": {
       "folder": "dodge",

@@ -388,42 +388,9 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      241,
-      109,
-      158,
-      291
-    ],
-    "offsetY": 20
-  },
-  "/assets/characters/marco_anim/idle/02.png": {
-    "width": 640,
-    "height": 420,
-    "bounds": [
-      240,
-      109,
-      160,
-      291
-    ],
-    "offsetY": 20
-  },
-  "/assets/characters/marco_anim/idle/03.png": {
-    "width": 640,
-    "height": 420,
-    "bounds": [
-      239,
-      109,
-      161,
-      291
-    ],
-    "offsetY": 20
-  },
-  "/assets/characters/marco_anim/idle/04.png": {
-    "width": 640,
-    "height": 420,
-    "bounds": [
-      241,
+      217,
       110,
-      158,
+      206,
       290
     ],
     "offsetY": 20
@@ -1990,50 +1957,6 @@
     ],
     "offsetY": 20
   },
-  "/assets/characters/marco_anim/idle/05.png": {
-    "width": 640,
-    "height": 420,
-    "bounds": [
-      241,
-      111,
-      157,
-      289
-    ],
-    "offsetY": 20
-  },
-  "/assets/characters/marco_anim/idle/06.png": {
-    "width": 640,
-    "height": 420,
-    "bounds": [
-      241,
-      111,
-      157,
-      289
-    ],
-    "offsetY": 20
-  },
-  "/assets/characters/marco_anim/idle/07.png": {
-    "width": 640,
-    "height": 420,
-    "bounds": [
-      241,
-      112,
-      157,
-      288
-    ],
-    "offsetY": 20
-  },
-  "/assets/characters/marco_anim/idle/08.png": {
-    "width": 640,
-    "height": 420,
-    "bounds": [
-      241,
-      111,
-      157,
-      289
-    ],
-    "offsetY": 20
-  },
   "/assets/characters/marco_anim/idle_variant_1/09.png": {
     "width": 640,
     "height": 420,
@@ -2591,6 +2514,39 @@
       230,
       109,
       179,
+      291
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/idle/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      217,
+      109,
+      206,
+      291
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/idle/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      217,
+      108,
+      206,
+      292
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/idle/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      217,
+      109,
+      206,
       291
     ],
     "offsetY": 20

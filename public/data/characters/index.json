@@ -2,8 +2,7 @@
   "schema": 1,
   "characters": [
     "marco",
-    "talebano",
-    "piero_u_pizzetto"
+    "talebano"
   ],
   "default_player": "marco",
   "default_enemy": "talebano"

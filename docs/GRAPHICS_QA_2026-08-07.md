@@ -5,7 +5,7 @@ Reference video: `C:/Users/Utente/Videos/2026-08-07 22-43-07.mkv`.
 ## Corrections applied
 
 - Removed the runtime-only horizontal stretch on the last get-up frame.
-- Rebuilt the final get-up frame of Marco, Talebano and Piero from each character's exact canonical idle pixels.
+- Rebuilt the final get-up frame of Marco and Talebano from each character's exact canonical idle pixels.
 - Reordered Marco's middle get-up poses into floor → knee → crouch → guard order.
 - Reduced inconsistent intermediate fall/get-up poses while preserving the 640x420 canvas and y=400 feet baseline.
 - Reduced Marco's generated run and jump art to match the head/body scale of the approved idle pack.

@@ -36,16 +36,16 @@
           "health": 70,
           "aggression": 1.02,
           "spawns": [[1180, 610]],
-          "character": "piero_u_pizzetto",
-          "name": "PIERO U' PIZZETTO"
+          "character": "talebano",
+          "name": "TALEBANO"
         },
         {
           "trigger_x": 1370,
           "health": 61,
           "aggression": 0.98,
           "spawns": [[1680, 610], [1850, 650]],
-          "character": "piero_u_pizzetto",
-          "name": "PIERO U' PIZZETTO"
+          "character": "talebano",
+          "name": "TALEBANO"
         },
         {
           "trigger_x": 1980,
@@ -94,16 +94,16 @@
           "health": 81,
           "aggression": 1.02,
           "spawns": [[1180, 610]],
-          "character": "piero_u_pizzetto",
-          "name": "PIERO U' PIZZETTO"
+          "character": "talebano",
+          "name": "TALEBANO"
         },
         {
           "trigger_x": 1370,
           "health": 75,
           "aggression": 1.08,
           "spawns": [[1660, 584], [1840, 648]],
-          "character": "piero_u_pizzetto",
-          "name": "PIERO U' PIZZETTO"
+          "character": "talebano",
+          "name": "TALEBANO"
         },
         {
           "trigger_x": 1980,
@@ -152,8 +152,8 @@
           "health": 95,
           "aggression": 1.08,
           "spawns": [[1900, 610]],
-          "character": "piero_u_pizzetto",
-          "name": "PIERO U' PIZZETTO"
+          "character": "talebano",
+          "name": "TALEBANO"
         }
       ]
     },
@@ -178,8 +178,8 @@
           "health": 86,
           "aggression": 1.18,
           "spawns": [[840, 598], [1020, 650]],
-          "character": "piero_u_pizzetto",
-          "name": "PIERO U' PIZZETTO"
+          "character": "talebano",
+          "name": "TALEBANO"
         },
         {
           "trigger_x": 1510,

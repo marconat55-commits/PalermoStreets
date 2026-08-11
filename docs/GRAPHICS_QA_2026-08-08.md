@@ -9,7 +9,7 @@
 
 ## Corrections
 
-- Enlarged only Talebano and Piero horizontal ground/early get-up frames so their perceived body mass no longer shrinks on impact.
+- Enlarged only Talebano horizontal ground/early get-up frames so their perceived body mass no longer shrinks on impact.
 - Replaced Marco's 6-frame side walk with an ordered 8-frame contact/recoil/pass/high cycle.
 - Replaced Marco's 5-frame compact jump with 8 readable phases and full head separation.
 - Rebuilt Marco's normal idle and added four data-driven personality variants: shoulder dust/smile, cheeky waistband adjustment, revolver check and hand-rolled cigarette flick.
@@ -17,7 +17,7 @@
 - Added explicit vertical launch values to knockdown attacks, airborne shadow compression and landing dust/shake feedback.
 - Removed Marco's genuinely cropped air-attack and left-punch frames from runtime sequences, rebuilt safe recovery endpoints and regenerated the atlas losslessly.
 - Added a short pose blend between animation states so a finished attack, dodge or reaction reconnects cleanly without changing gameplay timing.
-- Added uniform per-frame mass curves to Marco, Talebano and Piero fall/getup; the fall-to-getup handoff is now pixel- and scale-continuous.
+- Added uniform per-frame mass curves to Marco and Talebano fall/getup; the fall-to-getup handoff is now pixel- and scale-continuous.
 - Changed airborne horizontal damping to a low-drag arcade launch: finishers now travel roughly 230-300 logical pixels before landing.
 - Clamped actors by the visible alpha bounds of the current pose rather than by feet alone, preventing heads, fists and horizontal bodies from leaving the screen.
 - Added `validate:art` and regression tests for animation blends, visual bounds and knockback distance.

@@ -30,9 +30,6 @@ Produrre due fogli separati, usando il master originale di Marco.
 
 > Sprite sheet 4x3 con 12 pose consecutive di Marco che esegue una presa laterale arcade e un grande lancio a proiezione verso destra. Mostra acquisizione, aggancio, caricamento del peso, torsione, proiezione ampia e recupero nella guardia laterale; il nemico non deve essere disegnato, perché nel gioco è uno sprite separato. La gestualità deve far capire chiaramente dove sarebbe il corpo afferrato. Lancio comico, potente e leggibile da beat 'em up, senza copiare un personaggio esistente. Identità e scala perfettamente bloccate sul master di Marco. Corpo intero, sfondo ciano uniforme, nessun testo, effetto o scenario.
 
-## Pizzetto
-
-Prima di generare nuove immagini, consegnare a Codex il master e una lista delle pose che sembrano mancanti. Codex restituisce l'elenco esatto dei soli fogli necessari; questo evita di rigenerare clip già valide e protegge la dimensione del pizzetto tra le pose.
 
 ## Sfondi Stage 1
 

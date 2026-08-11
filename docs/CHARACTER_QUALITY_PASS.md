@@ -29,23 +29,6 @@ Verification:
 - Production build: pass.
 - Browser runtime smoke test: pass; title screen and gameplay loaded with no console warnings or errors.
 
-## Piero u Pizzetto quality pack v2
-
-Status: approved, integrated and verified.
-
-- Replaced the 32 existing runtime frames with a coherent, identity-locked set.
-- Kept the small pointed goatee, head scale and waist bag consistent through standing, falling and grounded poses.
-- Removed gray borders, white masking gaps and chroma-key remnants.
-- Added six `walk_up` and six `walk_down` frames for depth movement.
-- Kept the 292 px runtime scale and every v0.7.8 animation duration unchanged.
-- Rebuilt per-frame bounds metadata and the sprite QA manifest for 44 frames.
-- Confirmed zero visible magenta-key pixels and fully transparent corners across the integrated pack.
-
-Verification:
-
-- Sprite audit: pass (32 required enemy frames).
-- Metadata audit: pass (44 total Piero frames).
-- Data validation, TypeScript, production build and browser runtime smoke test: see the verification run recorded after integration.
 
 ## Marco quality pack v2
 
@@ -68,5 +51,5 @@ Verification:
 - Data validation: pass (4 characters, 7 modules, 176 frame metadata entries).
 - TypeScript check: pass.
 - Production build: pass.
-- Browser runtime test: pass; Marco, Talebano and Piero completed the two waves of the first area, and Marco's fall/get-up and Super rendered without warnings or errors.
+- Browser runtime test: pass; Marco and Talebano completed the two waves of the first area, and Marco's fall/get-up and Super rendered without warnings or errors.
 - PNG hash guard: 50 Marco files changed, 12 Marco files added, zero deleted, zero changes outside `marco_anim`.

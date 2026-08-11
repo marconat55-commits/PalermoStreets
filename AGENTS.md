@@ -44,7 +44,7 @@ This repository is the PixiJS/TypeScript migration of the Python + pygame-ce Pal
 3. Run `npm run test`.
 4. Run `npm run typecheck`.
 5. Run `npm run build`.
-6. If gameplay changed, run `npm run dev` and manually test at least one wave with Marco, Talebano and Piero.
+6. If gameplay changed, run `npm run dev` and manually test at least one wave with Marco and Talebano.
 
 The complete sprite contract is documented in `docs/ANIMATION_CONTRACT.md`.
 

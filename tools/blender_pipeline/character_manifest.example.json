@@ -1,0 +1,25 @@
+{
+  "schema": 1,
+  "character_id": "marco_3d_pilot",
+  "blend_file": "models/marco_3d_pilot.blend",
+  "rig_object": "PS_Rig",
+  "character_collection": "PS_Character",
+  "camera_object": "PS_Camera",
+  "render": {
+    "source_width": 1024,
+    "source_height": 1024,
+    "runtime_width": 640,
+    "runtime_height": 420,
+    "visual_height": 290,
+    "baseline_y": 400,
+    "samples": 32
+  },
+  "clips": {
+    "idle": { "action": "PS_idle", "start": 1, "end": 8, "step": 1, "loop": true },
+    "walk": { "action": "PS_walk", "start": 1, "end": 8, "step": 1, "loop": true },
+    "run": { "action": "PS_run", "start": 1, "end": 8, "step": 1, "loop": true },
+    "jump": { "action": "PS_jump", "start": 1, "end": 8, "step": 1, "loop": false },
+    "punch_left": { "action": "PS_punch_left", "start": 1, "end": 4, "step": 1, "loop": false },
+    "throw": { "action": "PS_throw", "start": 1, "end": 8, "step": 1, "loop": false }
+  }
+}

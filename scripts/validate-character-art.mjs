@@ -10,6 +10,18 @@ const warnings = [];
 
 function fail(message) { errors.push(message); }
 function warn(message) { warnings.push(message); }
+function isRecord(value) { return Boolean(value) && typeof value === 'object' && !Array.isArray(value); }
+function deepMerge(base, override) {
+  if (!isRecord(base) || !isRecord(override)) return override;
+  const result = { ...base };
+  for (const [key, value] of Object.entries(override)) result[key] = isRecord(value) && isRecord(result[key]) ? deepMerge(result[key], value) : value;
+  return result;
+}
+function resolveProfile(id, chain = []) {
+  if (chain.includes(id)) throw new Error(`Eredità circolare: ${[...chain, id].join(' -> ')}`);
+  const source = readJson(`data/characters/${id}.json`);
+  return source.extends ? deepMerge(resolveProfile(source.extends, [...chain, id]), source) : source;
+}
 
 function paeth(a, b, c) {
   const p = a + b - c;
@@ -165,7 +177,7 @@ const meta = readJson('data/generated/frame_meta.json');
 let checkedFrames = 0;
 
 for (const id of index.characters) {
-  const profile = readJson(`data/characters/${id}.json`);
+  const profile = resolveProfile(id);
   const template = profile.factory?.animation_template
     ? readJson(profile.factory.animation_template)
     : null;

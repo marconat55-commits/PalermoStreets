@@ -16,6 +16,18 @@ const expectedMeta = new Set();
 function fail(message) { errors.push(message); }
 function warn(message) { warnings.push(message); }
 function frameName(index) { return `${String(index).padStart(2, '0')}.png`; }
+function isRecord(value) { return Boolean(value) && typeof value === 'object' && !Array.isArray(value); }
+function deepMerge(base, override) {
+  if (!isRecord(base) || !isRecord(override)) return override;
+  const result = { ...base };
+  for (const [key, value] of Object.entries(override)) result[key] = isRecord(value) && isRecord(result[key]) ? deepMerge(result[key], value) : value;
+  return result;
+}
+function resolveProfile(id, chain = []) {
+  if (chain.includes(id)) throw new Error(`Eredità circolare: ${[...chain, id].join(' -> ')}`);
+  const source = read(`data/characters/${id}.json`);
+  return source.extends ? deepMerge(resolveProfile(source.extends, [...chain, id]), source) : source;
+}
 
 function pngColorType(relative) {
   const source = fs.readFileSync(absolute(relative));
@@ -43,7 +55,7 @@ if (new Set(index.characters).size !== index.characters.length) fail('ID duplica
 for (const id of index.characters) {
   const profilePath = `data/characters/${id}.json`;
   if (!exists(profilePath)) { fail(`Profilo mancante: ${profilePath}`); continue; }
-  const profile = read(profilePath);
+  const profile = resolveProfile(id);
   profiles.set(id, profile);
   if (profile.id !== id) fail(`${id}: profile.id non coerente (${profile.id})`);
   if (profile.schema !== 1) fail(`${id}: schema profilo non supportato`);

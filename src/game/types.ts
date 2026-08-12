@@ -25,6 +25,8 @@ export interface AnimationJson {
 export interface CharacterProfile {
   schema: number;
   id: string;
+  /** Optional data inheritance used by variants and technical prototypes. */
+  extends?: string;
   display_name: string;
   role: 'player' | 'enemy' | 'elite' | 'boss';
   height_cm: number;
@@ -58,6 +60,12 @@ export interface CharacterProfile {
   animations: Record<string, AnimationJson>;
   /** Preserved authored clips excluded from loading and gameplay. */
   archived_animations?: Record<string, AnimationJson>;
+  selection?: {
+    portrait?: string;
+    subtitle?: string;
+    stats?: { strength: number; speed: number; technique: number };
+    prototype?: boolean;
+  };
 }
 
 export interface CharacterIndex {

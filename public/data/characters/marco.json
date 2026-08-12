@@ -18,6 +18,11 @@
     "special_move": "supermossa in avanzamento",
     "canon": "Marco Core Arcade — guardia laterale destra, identità master bloccata, locomozione laterale condivisa su ogni vettore, scala baked e continuità fall/getup pixel-identica"
   },
+  "selection": {
+    "portrait": "assets/ui/character_select/marco_portrait.png",
+    "subtitle": "PALERMO STREET KING",
+    "stats": { "strength": 5, "speed": 4, "technique": 4 }
+  },
   "gameplay": {
     "player": {
       "max_health": 120,

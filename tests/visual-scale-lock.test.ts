@@ -3,10 +3,20 @@ import fs from 'node:fs';
 import test from 'node:test';
 
 const index = JSON.parse(fs.readFileSync('public/data/characters/index.json', 'utf8'));
+const merge = (base: any, override: any): any => {
+  if (!base || !override || typeof base !== 'object' || typeof override !== 'object' || Array.isArray(base) || Array.isArray(override)) return override;
+  const result = { ...base };
+  for (const [key, value] of Object.entries(override)) result[key] = value && typeof value === 'object' && !Array.isArray(value) ? merge(result[key], value) : value;
+  return result;
+};
+const readProfile = (id: string): any => {
+  const source = JSON.parse(fs.readFileSync(`public/data/characters/${id}.json`, 'utf8'));
+  return source.extends ? merge(readProfile(source.extends), source) : source;
+};
 
 test('ogni posa runtime mantiene scala 1 per ogni personaggio', () => {
   for (const id of index.characters) {
-    const profile = JSON.parse(fs.readFileSync(`public/data/characters/${id}.json`, 'utf8'));
+    const profile = readProfile(id);
     for (const [name, clip] of Object.entries(profile.animations) as Array<[string, { visual_scales?: number[] }]>) {
       const scales = clip.visual_scales ?? [1];
       assert.ok(scales.every((value: number) => Math.abs(value - 1) < 0.0001), `${id}/${name}: zoom runtime rilevato`);
@@ -16,7 +26,7 @@ test('ogni posa runtime mantiene scala 1 per ogni personaggio', () => {
 
 test('le idle non applicano dissolvenze periodiche', () => {
   for (const id of index.characters) {
-    const profile = JSON.parse(fs.readFileSync(`public/data/characters/${id}.json`, 'utf8'));
+    const profile = readProfile(id);
     for (const [name, clip] of Object.entries(profile.animations) as Array<[string, { frame_blend?: number }]>) {
       if (name === 'idle' || name.startsWith('idle_variant_')) {
         assert.equal(clip.frame_blend ?? 0, 0, `${id}/${name}: possibile lampeggio idle`);
@@ -27,7 +37,7 @@ test('le idle non applicano dissolvenze periodiche', () => {
 
 test('nessun profilo richiede frame blending, gestito solo dal raccordo breve del runtime', () => {
   for (const id of index.characters) {
-    const profile = JSON.parse(fs.readFileSync(`public/data/characters/${id}.json`, 'utf8'));
+    const profile = readProfile(id);
     for (const [name, clip] of Object.entries(profile.animations) as Array<[string, { frame_blend?: number }]>) {
       assert.equal(clip.frame_blend ?? 0, 0, `${id}/${name}: frame blending configurato nel profilo`);
     }

@@ -1,0 +1,22 @@
+{
+  "schema": 1,
+  "id": "merco",
+  "extends": "marco",
+  "display_name": "MERCO",
+  "identity": {
+    "canon": "Prototipo tecnico scalabile derivato dal core approvato di Marco; identitÃ  grafica provvisoria"
+  },
+  "gameplay": {
+    "player": {
+      "max_health": 108,
+      "move_speed": 310.0,
+      "depth_speed": 225.0
+    }
+  },
+  "selection": {
+    "portrait": "assets/ui/character_select/marco_portrait.png",
+    "subtitle": "PROTOTIPO SCALABILE",
+    "stats": { "strength": 4, "speed": 5, "technique": 5 },
+    "prototype": true
+  }
+}

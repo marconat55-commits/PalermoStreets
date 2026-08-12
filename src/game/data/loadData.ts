@@ -1,5 +1,6 @@
 import type { CharacterIndex, CharacterProfile, FrameMeta, StageData } from '../types';
 import { publicUrl } from './paths';
+import { mergeCharacterProfile, type CharacterProfileSource } from './characterProfiles';
 
 async function getJson<T>(path: string): Promise<T> {
   const response = await fetch(publicUrl(path));
@@ -11,8 +12,12 @@ export async function loadCharacterIndex(): Promise<CharacterIndex> {
   return getJson<CharacterIndex>('data/characters/index.json');
 }
 
-export async function loadCharacterProfile(id: string): Promise<CharacterProfile> {
-  return getJson<CharacterProfile>(`data/characters/${id}.json`);
+export async function loadCharacterProfile(id: string, chain: string[] = []): Promise<CharacterProfile> {
+  if (chain.includes(id)) throw new Error(`Eredità circolare personaggio: ${[...chain, id].join(' -> ')}`);
+  const source = await getJson<CharacterProfileSource>(`data/characters/${id}.json`);
+  if (!source.extends) return source as CharacterProfile;
+  const base = await loadCharacterProfile(source.extends, [...chain, id]);
+  return mergeCharacterProfile(base, source);
 }
 
 export async function loadStage1(): Promise<StageData> {

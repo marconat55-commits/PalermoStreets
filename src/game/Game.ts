@@ -7,7 +7,7 @@ import { TitleScene } from './scenes/TitleScene';
 import { CharacterSelectScene } from './scenes/CharacterSelectScene';
 import { StageScene } from './scenes/StageScene';
 import type { Scene } from './scenes/Scene';
-import type { StageData } from './types';
+import type { CharacterProfile, StageData } from './types';
 import { publicUrl } from './data/paths';
 
 export class Game {
@@ -26,6 +26,7 @@ export class Game {
   private initialStagePreload: Promise<void> | null = null;
   private initialStageLoadCompleted = 0;
   private initialStageLoadTotal = 0;
+  private playerProfiles: CharacterProfile[] = [];
 
   async init(host: HTMLElement): Promise<void> {
     await this.app.init({
@@ -55,6 +56,7 @@ export class Game {
     this.catalog = new AssetCatalog(frameMeta);
     const profiles = await Promise.all(index.characters.map((id) => loadCharacterProfile(id)));
     for (const profile of profiles) this.catalog.registerProfile(profile);
+    this.playerProfiles = profiles.filter((profile) => profile.role === 'player');
 
     void this.preloadInitialStage().catch((error) => {
       console.error('Precaricamento stage iniziale fallito', error);
@@ -99,7 +101,7 @@ export class Game {
     this.openingCharacterSelect = true;
     title.setLoading(true);
     try {
-      const selection = await CharacterSelectScene.create();
+      const selection = await CharacterSelectScene.create(this.playerProfiles, this.defaultPlayerId);
       if (this.titleScene !== title) {
         selection.destroy();
         return;
@@ -128,10 +130,12 @@ export class Game {
     this.updateInitialStageLoadProgress();
     try {
       await this.preloadInitialStage();
+      const playerId = selection.selectedCharacterId;
+      await this.catalog.ensureCharacter(playerId);
       const stage = await StageScene.create(
         this.catalog,
         this.stageData,
-        this.defaultPlayerId,
+        playerId,
         this.defaultEnemyId,
       );
       selection.destroy();

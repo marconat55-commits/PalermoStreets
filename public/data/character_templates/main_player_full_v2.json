@@ -37,7 +37,12 @@
     "kick_combo_total": { "minimum_frames": 12 },
     "aerial_attack": { "minimum_frames": 6 },
     "grab_and_throw_total": { "minimum_frames": 10 },
-    "super": { "minimum_frames": 8 },
+    "super": {
+      "minimum_frames": 5,
+      "required_phases": ["anticipation", "drive", "impact", "retract", "recovery"],
+      "identity_locked": true,
+      "runtime_scale": 1.0
+    },
     "hit": { "minimum_frames": 3 },
     "knockdown": { "minimum_frames": 8 },
     "getup": { "minimum_frames": 8 },

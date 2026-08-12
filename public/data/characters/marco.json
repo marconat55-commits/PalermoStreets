@@ -212,19 +212,17 @@
     },
     "super": {
       "folder": "super",
-      "frames": 8,
+      "frames": 5,
       "durations": [
-        0.09,
-        0.1,
-        0.1,
-        0.11,
         0.12,
-        0.11,
-        0.13,
-        0.14
+        0.09,
+        0.14,
+        0.1,
+        0.16
       ],
+      "visual_scales": [1.0],
       "source_facing": 1,
-      "contact_frame": 5
+      "contact_frame": 3
     },
     "hit": {
       "folder": "hit",

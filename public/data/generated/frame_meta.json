@@ -685,10 +685,10 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      224,
-      116,
-      191,
-      284
+      200,
+      110,
+      241,
+      290
     ],
     "offsetY": 20
   },
@@ -696,10 +696,10 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      196,
-      191,
-      249,
-      209
+      168,
+      110,
+      305,
+      290
     ],
     "offsetY": 20
   },
@@ -707,10 +707,10 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      200,
-      137,
-      239,
-      263
+      163,
+      110,
+      314,
+      290
     ],
     "offsetY": 20
   },
@@ -718,10 +718,10 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      155,
-      132,
-      330,
-      268
+      183,
+      110,
+      274,
+      290
     ],
     "offsetY": 20
   },
@@ -729,43 +729,10 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      159,
-      118,
-      322,
-      282
-    ],
-    "offsetY": 20
-  },
-  "/assets/characters/marco_anim/super/06.png": {
-    "width": 640,
-    "height": 420,
-    "bounds": [
-      214,
-      118,
-      211,
-      282
-    ],
-    "offsetY": 20
-  },
-  "/assets/characters/marco_anim/super/07.png": {
-    "width": 640,
-    "height": 420,
-    "bounds": [
-      218,
-      112,
-      205,
-      288
-    ],
-    "offsetY": 20
-  },
-  "/assets/characters/marco_anim/super/08.png": {
-    "width": 640,
-    "height": 420,
-    "bounds": [
-      222,
-      112,
-      197,
-      288
+      202,
+      110,
+      237,
+      290
     ],
     "offsetY": 20
   },

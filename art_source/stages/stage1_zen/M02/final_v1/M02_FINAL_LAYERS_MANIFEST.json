@@ -38,7 +38,7 @@
     720
   ],
   "walk_band": [
-    515,
+    600,
     705
   ],
   "horizon_y": 300,
@@ -86,6 +86,6 @@
     "production-preview/M02/final_v1/M02_CAMERA_X0000.png": "911f92bdf263d8a1bedddfc9968492d6ddc74181e1c8d0a6aabf61524d846a00",
     "production-preview/M02/final_v1/M02_CAMERA_X0640.png": "4e13c31571a8e2c8cfcbd4e348c84c2ce1aeca5357d3229f1a42bcd6d43ba61c",
     "production-preview/M02/final_v1/M02_CAMERA_X1280.png": "8aa39aa6e77d9bcd3ca22f8c2a00c7444c396e3320794c4c9e3abbdc67f20feb",
-    "production-preview/M02/final_v1/M02_APPROVAL_CONTACT_SHEET.jpg": "2e1dbe1723e5e08aa2778ee4e86c60ba8ea8a5a7d054bdaf47a2f935a5597671"
+    "production-preview/M02/final_v1/M02_APPROVAL_CONTACT_SHEET.jpg": "2e73dbbb9f535611cc0d504ae37bb170d618721a98c48fc533c6075758d0e60a"
   }
 }

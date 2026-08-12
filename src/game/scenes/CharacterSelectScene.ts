@@ -22,6 +22,8 @@ export class CharacterSelectScene implements Scene {
   private readonly confirmPrompt: Text;
   private readonly loadingGroup = new Container();
   private readonly loadingBar = new Graphics();
+  private readonly loadingPercent: Text;
+  private loadProgress = 0;
 
   static async create(): Promise<CharacterSelectScene> {
     const [portrait, background] = await Promise.all([
@@ -153,7 +155,10 @@ export class CharacterSelectScene implements Scene {
     }), 640, 337, 0.5));
     const track = new Graphics();
     track.roundRect(470, 392, 340, 12, 6).fill(0x3b160c);
-    this.loadingGroup.addChild(track, this.loadingBar);
+    this.loadingPercent = label('CARICAMENTO 0%', new TextStyle({
+      fontFamily: UI_FONT, fontSize: 13, fontWeight: '900', fill: 0xffd980, letterSpacing: 2,
+    }), 640, 418, 0.5);
+    this.loadingGroup.addChild(track, this.loadingBar, this.loadingPercent);
     this.loadingGroup.visible = false;
     this.root.addChild(this.loadingGroup);
   }
@@ -162,13 +167,24 @@ export class CharacterSelectScene implements Scene {
     this.loading = value;
     this.loadingGroup.visible = value;
     this.confirmPrompt.visible = !value;
+    this.drawLoadProgress();
+  }
+
+  setLoadingProgress(value: number): void {
+    this.loadProgress = Math.max(0, Math.min(1, value));
+    this.drawLoadProgress();
+  }
+
+  private drawLoadProgress(): void {
+    const width = 340 * this.loadProgress;
+    this.loadingBar.clear();
+    if (width > 0) this.loadingBar.roundRect(470, 392, width, 12, 6).fill(0xffa315);
+    this.loadingPercent.text = `CARICAMENTO ${Math.round(this.loadProgress * 100)}%`;
   }
 
   update(dt: number, input: Input): void {
     this.elapsed += dt;
     if (this.loading) {
-      const progress = (this.elapsed * 0.88) % 1;
-      this.loadingBar.clear().roundRect(470 + progress * 244, 392, 96, 12, 6).fill(0xffa315);
       return;
     }
     const pulse = 0.72 + 0.28 * (0.5 + 0.5 * Math.sin(this.elapsed * 7));

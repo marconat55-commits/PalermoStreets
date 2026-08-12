@@ -2,14 +2,12 @@
 
 ## Active in this build
 
-- Marco has a four-hit `J` arcade combo (two punches, front kick, final straight) with a knockdown finisher.
-- `I` remains the standing kick and `L` remains the 50-fury super.
+- Marco has a four-hit `J` arcade combo with a knockdown finisher.
 - `K` starts a jump; `J` while airborne starts the aerial kick.
-- `Shift` blocks frontal attacks with 18% chip damage.
-- `Space` performs an invulnerable directional dodge.
-- A second horizontal direction tap inside 260 ms starts the run cycle.
+- `J+K` starts the advancing fire special with temporary invulnerability.
+- A second direction tap inside 260 ms starts the run cycle horizontally, vertically or diagonally.
 - Releasing all movement after a run plays a dedicated four-frame brake before returning to idle.
-- At close range Marco automatically enters a grab while moving into a grabbable enemy. During the hold, `J` performs a knee and `I` performs a knockdown throw.
+- At close range `J` acquires a grabbable enemy. During the hold, `J` performs the grab strike and `K` performs the knockdown throw. Walking alone never starts a grab, and an unused hold releases automatically.
 - The sprite elevation is independent from the actor's world-space feet. Shadows, depth sorting and ground collision therefore remain anchored while jumping.
 - Knockdown finishers now launch actors on a readable vertical arc, reduce the ground shadow while airborne and emit a dust/shake landing accent.
 - Marco cycles through four character-specific idle gags after sustained inactivity; the controller discovers `idle_variant_N` clips from each future protagonist's animation bank.

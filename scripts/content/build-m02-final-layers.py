@@ -14,7 +14,7 @@ from PIL import Image, ImageDraw, ImageFilter, ImageFont, ImageStat
 MASTER_SIZE = (3840, 1080)
 RUNTIME_SIZE = (2560, 720)
 VIEWPORT_SIZE = (1280, 720)
-WALK_TOP = 515
+WALK_TOP = 600
 WALK_BOTTOM = 705
 HORIZON_Y = 300
 FAR_PARALLAX = 0.22
@@ -105,7 +105,7 @@ def technical_overlay(image: Image.Image) -> Image.Image:
     draw.line((0, WALK_TOP, VIEWPORT_SIZE[0], WALK_TOP), fill=(74, 222, 128, 255), width=3)
     draw.line((0, WALK_BOTTOM, VIEWPORT_SIZE[0], WALK_BOTTOM), fill=(74, 222, 128, 255), width=3)
     draw.line((0, HORIZON_Y, VIEWPORT_SIZE[0], HORIZON_Y), fill=(250, 204, 21, 220), width=2)
-    draw.text((18, WALK_TOP + 8), "WALK 515-705", font=font(18), fill=(220, 252, 231, 255))
+    draw.text((18, WALK_TOP + 8), "WALK 600-705", font=font(18), fill=(220, 252, 231, 255))
     draw.text((18, HORIZON_Y - 28), "HORIZON 300", font=font(18), fill=(254, 240, 138, 255))
     return result
 

@@ -25,6 +25,7 @@ import type { Enemy } from './Enemy';
 const RUN_MULTIPLIER = 1.55;
 const RUN_TAP_WINDOW = 0.26;
 const IDLE_VARIANT_DELAY = 4.8;
+export const GRAB_HOLD_SECONDS = 1.35;
 
 export interface PlayerHitResult extends HitResult {
   blocked: boolean;
@@ -424,6 +425,9 @@ export class Player extends Actor {
 
     if (this.state === 'grab') {
       if (!this.grabbedTarget || this.grabbedTarget.dead) {
+        this.releaseGrab();
+        this.beginState('idle', 'idle');
+      } else if (this.stateElapsed >= GRAB_HOLD_SECONDS) {
         this.releaseGrab();
         this.beginState('idle', 'idle');
       }

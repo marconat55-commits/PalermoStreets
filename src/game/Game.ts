@@ -23,6 +23,9 @@ export class Game {
   private titleBackground!: Texture;
   private startingStage = false;
   private openingCharacterSelect = false;
+  private initialStagePreload: Promise<void> | null = null;
+  private initialStageLoadCompleted = 0;
+  private initialStageLoadTotal = 0;
 
   async init(host: HTMLElement): Promise<void> {
     await this.app.init({
@@ -53,6 +56,9 @@ export class Game {
     const profiles = await Promise.all(index.characters.map((id) => loadCharacterProfile(id)));
     for (const profile of profiles) this.catalog.registerProfile(profile);
 
+    void this.preloadInitialStage().catch((error) => {
+      console.error('Precaricamento stage iniziale fallito', error);
+    });
     this.showTitle();
     this.app.ticker.add((ticker: { deltaMS: number }) => {
       const dt = Math.min(0.05, ticker.deltaMS / 1000);
@@ -104,6 +110,7 @@ export class Game {
       this.characterSelectScene = selection;
       this.scene = selection;
       this.app.stage.addChild(selection.root);
+      this.updateInitialStageLoadProgress();
     } catch (error) {
       console.error('Selezione personaggio non caricabile', error);
       title.startRequested = false;
@@ -118,7 +125,9 @@ export class Game {
     this.startingStage = true;
     const selection = this.characterSelectScene;
     selection.setLoading(true);
+    this.updateInitialStageLoadProgress();
     try {
+      await this.preloadInitialStage();
       const stage = await StageScene.create(
         this.catalog,
         this.stageData,
@@ -136,6 +145,43 @@ export class Game {
       selection.confirmRequested = false;
       selection.setLoading(false);
     }
+  }
+
+  private updateInitialStageLoadProgress(): void {
+    const progress = this.initialStageLoadTotal > 0
+      ? this.initialStageLoadCompleted / this.initialStageLoadTotal
+      : 0;
+    this.characterSelectScene?.setLoadingProgress(progress);
+  }
+
+  private preloadInitialStage(): Promise<void> {
+    if (this.initialStagePreload) return this.initialStagePreload;
+    const firstModule = this.stageData.modules[0];
+    if (!firstModule) return Promise.reject(new Error('Stage senza moduli'));
+    const enabledLayers = firstModule.background_layers?.filter((layer) => layer.enabled !== false);
+    const backgroundPaths = enabledLayers?.length
+      ? enabledLayers.map((layer) => layer.src)
+      : [firstModule.background];
+    const characterIds = new Set<string>([this.defaultPlayerId]);
+    for (const wave of firstModule.waves ?? []) {
+      characterIds.add(wave.character ?? this.defaultEnemyId);
+    }
+    const tasks: Array<Promise<unknown>> = [
+      ...backgroundPaths.map((path) => this.catalog.loadBackground(path)),
+      ...[...characterIds].map((id) => this.catalog.ensureCharacter(id)),
+    ];
+    this.initialStageLoadCompleted = 0;
+    this.initialStageLoadTotal = tasks.length;
+    this.updateInitialStageLoadProgress();
+    this.initialStagePreload = Promise.all(tasks.map(async (task) => {
+      await task;
+      this.initialStageLoadCompleted += 1;
+      this.updateInitialStageLoadProgress();
+    })).then(() => undefined).catch((error: unknown) => {
+      this.initialStagePreload = null;
+      throw error;
+    });
+    return this.initialStagePreload;
   }
 
   private resizeCanvas(): void {

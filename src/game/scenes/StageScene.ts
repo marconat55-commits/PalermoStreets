@@ -11,7 +11,7 @@ import { Hud } from '../ui/Hud';
 import { EXIT_TRIGGER_TOLERANCE, EXIT_X, LOGICAL_HEIGHT, LOGICAL_WIDTH, MODULE_ENTRY_LOCK, MODULE_FADE_SECONDS, PLAYER_START } from '../config';
 import { preventCrossings, resolveEnemyAttack, resolvePlayerAttack, separateActors } from '../combat/combat';
 import { cameraTargetForPlayer, resolveCameraBounds, smoothCamera, type HorizontalCameraBounds } from '../stage/camera';
-import { resolveArcadeAction } from '../input/arcadeControls';
+import { resolveArcadeAction, resolveGrabAction } from '../input/arcadeControls';
 import { SPIN_SPECIAL } from '../combat/attacks';
 import { resolveWalkBand } from '../stage/walkBand';
 
@@ -496,13 +496,6 @@ export class StageScene implements Scene {
     }
   }
 
-  private inputDirection(input: Input): Vec2 {
-    return {
-      x: Number(input.isDown('ArrowRight')) - Number(input.isDown('ArrowLeft')),
-      y: Number(input.isDown('ArrowDown')) - Number(input.isDown('ArrowUp')),
-    };
-  }
-
   private tryStartGrab(): boolean {
     if (!this.player.canStartGrab) return false;
     const target = this.enemies
@@ -533,12 +526,16 @@ export class StageScene implements Scene {
         attackHeld: input.isDown('KeyJ'),
         jumpHeld: input.isDown('KeyK'),
       });
-      if (action === 'special') this.player.requestSpinSpecial();
+      const grabAction = this.player.grabbedTarget
+        ? resolveGrabAction({ attackPressed, jumpPressed })
+        : null;
+      if (grabAction === 'throw') this.player.requestThrow();
+      else if (grabAction === 'strike') this.player.requestGrabStrike();
+      else if (action === 'special') this.player.requestSpinSpecial();
       else {
         if (action === 'jump') this.player.requestJump();
         if (action === 'attack') {
           if (this.player.isAirborne) this.player.requestAirKick();
-          else if (this.player.grabbedTarget) this.player.requestGrabStrike();
           else if (!this.tryStartGrab()) this.player.requestArcadeAttack();
         }
       }
@@ -607,9 +604,6 @@ export class StageScene implements Scene {
     } else {
       this.specialFxTimer = 0;
     }
-    const movementIntent = this.inputDirection(input);
-    if ((movementIntent.x !== 0 || movementIntent.y !== 0) && this.player.canStartGrab) this.tryStartGrab();
-
     const playerCanBePressured = !['hit', 'knockdown', 'getup'].includes(this.player.state) && !this.player.dead;
     let activeAttacker = combatReady.find((enemy) => enemy.state === 'attack');
     if (!activeAttacker && combatReady.length && this.enemyAttackLock <= 0 && playerCanBePressured) {

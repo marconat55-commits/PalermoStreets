@@ -55,3 +55,18 @@ test('each Zen module owns an authored walk band and every feet spawn stays insi
     }
   }
 });
+
+test('M01 and M02 keep actors on the foreground lane and away from portico thresholds', () => {
+  const m01 = stage.modules.find((module) => module.id === 'M01');
+  const m02 = stage.modules.find((module) => module.id === 'M02');
+  assert.deepEqual(m01?.playfield_y, [660, 705]);
+  assert.deepEqual(m02?.playfield_y, [600, 705]);
+  for (const module of [m01, m02]) {
+    assert.ok(module);
+    for (const wave of module.waves) {
+      for (const [, feetY] of wave.spawns) {
+        assert.ok(feetY >= module.playfield_y[0], `${module.id}: spawn enters the portico depth`);
+      }
+    }
+  }
+});

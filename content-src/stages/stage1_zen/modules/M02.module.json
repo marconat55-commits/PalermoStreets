@@ -29,7 +29,7 @@
     "camera_bounds_runtime": [0, 1280]
   },
   "walk_band": {
-    "top_runtime_y": 515,
+    "top_runtime_y": 600,
     "bottom_runtime_y": 705,
     "entry_runtime": [128, 610],
     "exit_runtime_x": 2510,
@@ -65,7 +65,7 @@
     "garage_block_runtime": [1420, 250, 1140, 265],
     "open_sky_runtime": [760, 0, 660, 300],
     "notes": [
-      "Nessun elemento architettonico entra nella walk band.",
+      "La walk band inizia a Y=600 e mantiene gli attori davanti alla soglia dei portici.",
       "Le aperture del MAIN devono mostrare il FAR senza bordi dipinti.",
       "Il modulo deve funzionare a camera X=0, X=640 e X=1280."
     ]

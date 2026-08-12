@@ -21,7 +21,7 @@ test('M02 greybox uses exact exportable stage geometry', () => {
   assert.deepEqual(module.geometry.viewport, [1280, 720]);
   assert.equal(module.geometry.master_to_runtime_scale, 2 / 3);
   assert.deepEqual(module.geometry.camera_bounds_runtime, [0, 1280]);
-  assert.equal(module.walk_band.top_runtime_y, 515);
+  assert.equal(module.walk_band.top_runtime_y, 600);
   assert.equal(module.walk_band.bottom_runtime_y, 705);
   assert.equal(module.status, 'integrated');
   assert.equal(module.approval.art_direction_pending, false);
@@ -51,6 +51,6 @@ test('M02 build is deterministic and includes three camera proofs', () => {
   for (const cameraX of ['0000', '0640', '1280']) {
     assert.ok(first.has(`production-preview/M02/M02_CAMERA_X${cameraX}.svg`));
   }
-  assert.match(first.get('production-preview/M02/M02_GREYBOX_MASTER.svg') ?? '', /WALK TOP 515px runtime/);
+  assert.match(first.get('production-preview/M02/M02_GREYBOX_MASTER.svg') ?? '', /WALK TOP 600px runtime/);
   assert.match(first.get('production-preview/M02/M02_GREYBOX_MASTER.svg') ?? '', /marco_start 290px/);
 });

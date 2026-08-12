@@ -1,0 +1,72 @@
+{
+  "schema": 1,
+  "character": "marco",
+  "canonical_reference": "public/assets/characters/marco_anim/idle/01.png",
+  "status": "pending_human_identity_review",
+  "clips": [
+    {
+      "name": "jump",
+      "sheet": "production-preview/character_review/marco/jump_identity_review.jpg",
+      "source_frames": [
+        1,
+        2,
+        3,
+        4,
+        6,
+        7,
+        8,
+        10
+      ],
+      "status": "pending_human_identity_review"
+    },
+    {
+      "name": "super",
+      "sheet": "production-preview/character_review/marco/super_identity_review.jpg",
+      "source_frames": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "status": "pending_human_identity_review"
+    },
+    {
+      "name": "grab",
+      "sheet": "production-preview/character_review/marco/grab_identity_review.jpg",
+      "source_frames": [
+        1,
+        2,
+        4
+      ],
+      "status": "pending_human_identity_review"
+    },
+    {
+      "name": "grab_strike",
+      "sheet": "production-preview/character_review/marco/grab_strike_identity_review.jpg",
+      "source_frames": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "status": "pending_human_identity_review"
+    },
+    {
+      "name": "throw",
+      "sheet": "production-preview/character_review/marco/throw_identity_review.jpg",
+      "source_frames": [
+        1,
+        2,
+        3,
+        5,
+        6,
+        8
+      ],
+      "status": "pending_human_identity_review"
+    }
+  ]
+}

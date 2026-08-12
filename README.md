@@ -13,10 +13,10 @@ L'obiettivo non è infilare Python dentro il browser: il runtime è stato riscri
 - caricamento profili personaggio JSON;
 - animazioni con durate per-frame e facing;
 - allineamento degli sprite sul pivot dei piedi tramite metadata alpha generati offline;
-- movimento WASD/frecce, corsa con doppio tocco orizzontale e frenata animata al rilascio;
+- movimento con frecce, corsa con doppio tocco in ogni direzione e frenata animata al rilascio;
 - camminata e salto di Marco a 8 frame, più quattro animazioni idle di personalità a rotazione;
 - combo arcade a quattro colpi J, salto K + attacco aereo J, speciale J+K;
-- parata Shift, schivata Spazio, presa automatica ravvicinata con ginocchiata J e lancio I;
+- presa contestuale ravvicinata con J, colpo in presa J e lancio K; rilascio automatico di sicurezza;
 - fury, salute, score e combo counter;
 - hitbox/hurtbox e pushbox;
 - hit-stop, screen shake e knockdown in parabola con atterraggio enfatizzato;

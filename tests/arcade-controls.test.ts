@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { resolveArcadeAction } from '../src/game/input/arcadeControls.ts';
+import { resolveArcadeAction, resolveGrabAction } from '../src/game/input/arcadeControls.ts';
 import { RUN_ATTACK, SPIN_SPECIAL } from '../src/game/combat/attacks.ts';
 
 test('J and K map to attack and jump', () => {
@@ -11,6 +11,13 @@ test('J and K map to attack and jump', () => {
 test('J+K has priority regardless of which button is pressed last', () => {
   assert.equal(resolveArcadeAction({ attackPressed: true, jumpPressed: false, attackHeld: true, jumpHeld: true }), 'special');
   assert.equal(resolveArcadeAction({ attackPressed: false, jumpPressed: true, attackHeld: true, jumpHeld: true }), 'special');
+});
+
+test('grab controls use J for a strike and K for a real throw', () => {
+  assert.equal(resolveGrabAction({ attackPressed: true, jumpPressed: false }), 'strike');
+  assert.equal(resolveGrabAction({ attackPressed: false, jumpPressed: true }), 'throw');
+  assert.equal(resolveGrabAction({ attackPressed: true, jumpPressed: true }), 'throw');
+  assert.equal(resolveGrabAction({ attackPressed: false, jumpPressed: false }), null);
 });
 
 test('running attack knocks down and special covers multiple targets', () => {

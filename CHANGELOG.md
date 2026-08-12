@@ -2,6 +2,7 @@
 
 ## Production Pipeline v1
 
+- Added real initial-stage preload progress, safe foreground walk bands for M01/M02, explicit J/K grab controls with automatic release, and deterministic visual-review sheets for Marco/Talebano without generating new art.
 - Integrated the approved M02 v1 FAR/MAIN layers at the authored 2560x720 runtime scale; adjusted only M02 camera, exit, wave triggers and spawn X coordinates to the new world width.
 - Built a non-destructive M02 final-layer candidate from the existing 3840x1080 sources; replaced the rejected curved sky cut with a soft, color-matched window that does not touch architecture.
 - Added master/runtime FAR, MAIN and disabled transparent FOREGROUND artifacts, three real-character camera proofs and checksum validation without integrating them into the game.

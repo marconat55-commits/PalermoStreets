@@ -26,8 +26,8 @@ This repository is the PixiJS/TypeScript migration of the Python + pygame-ce Pal
 
 ## Player controls currently active
 - Arrow keys: movement
-- J: context-sensitive punch combo; aerial attack while jumping; grab strike while holding an enemy
-- K: jump
+- J: context-sensitive punch combo; aerial attack while jumping; acquire/strike a nearby grabbed enemy
+- K: jump; throw the held enemy while in grab state
 - Double-tap a direction: normalized horizontal, vertical or diagonal run
 - Vertical and diagonal travel reuse the side-facing `walk`/`run` clips and preserve the last horizontal combat facing
 - Double-tap forward + J: running attack

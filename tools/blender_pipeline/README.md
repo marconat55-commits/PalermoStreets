@@ -35,7 +35,8 @@ Atlanti, metadata e validazione finale restano affidati agli script già present
 ```powershell
 powershell -ExecutionPolicy Bypass -File tools/blender_pipeline/run_pipeline.ps1 `
   -Blender "C:\percorso\blender.exe" `
-  -Manifest "tools/blender_pipeline/character_manifest.marco.json"
+  -Manifest "tools/blender_pipeline/character_manifest.marco.json" `
+  -Python "C:\percorso\python.exe"
 ```
 
 I risultati saranno in `build/blender_pipeline/runtime_candidate/`. Nessun file sotto `public/assets` viene modificato.

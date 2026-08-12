@@ -29,7 +29,13 @@
     "walk": { "frames": 6, "loop": true },
     "run": { "frames": 6, "loop": true },
     "brake": { "frames": 4, "loop": false },
-    "jump": { "frames": 8, "loop": false },
+    "jump": {
+      "frames": 5,
+      "loop": false,
+      "phases": ["rise", "tuck", "apex", "open", "descent"],
+      "identity_locked": true,
+      "runtime_scale": 1.0
+    },
     "land": { "frames": 4, "loop": false }
   },
   "clip_targets": {

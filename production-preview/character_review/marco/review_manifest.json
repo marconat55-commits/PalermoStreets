@@ -20,8 +20,21 @@
       "status": "pending_human_identity_review"
     },
     {
-      "name": "super",
-      "sheet": "production-preview/character_review/marco/super_identity_review.jpg",
+      "name": "air_attack",
+      "sheet": "production-preview/character_review/marco/air_attack_identity_review.jpg",
+      "source_frames": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "status": "pending_human_identity_review"
+    },
+    {
+      "name": "air_punch",
+      "sheet": "production-preview/character_review/marco/air_punch_identity_review.jpg",
       "source_frames": [
         1,
         2,
@@ -35,36 +48,13 @@
       "status": "pending_human_identity_review"
     },
     {
-      "name": "grab",
-      "sheet": "production-preview/character_review/marco/grab_identity_review.jpg",
+      "name": "land",
+      "sheet": "production-preview/character_review/marco/land_identity_review.jpg",
       "source_frames": [
         1,
         2,
-        4
-      ],
-      "status": "pending_human_identity_review"
-    },
-    {
-      "name": "grab_strike",
-      "sheet": "production-preview/character_review/marco/grab_strike_identity_review.jpg",
-      "source_frames": [
-        1,
-        2,
-        3,
-        4
-      ],
-      "status": "pending_human_identity_review"
-    },
-    {
-      "name": "throw",
-      "sheet": "production-preview/character_review/marco/throw_identity_review.jpg",
-      "source_frames": [
-        1,
-        2,
-        3,
-        5,
-        6,
-        8
+        4,
+        6
       ],
       "status": "pending_human_identity_review"
     }

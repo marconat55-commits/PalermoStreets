@@ -399,10 +399,10 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      215,
-      118,
-      210,
-      282
+      225,
+      110,
+      191,
+      290
     ],
     "offsetY": 20
   },
@@ -411,9 +411,9 @@
     "height": 420,
     "bounds": [
       237,
-      192,
-      166,
-      208
+      135,
+      167,
+      265
     ],
     "offsetY": 20
   },
@@ -421,10 +421,10 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      224,
-      120,
-      192,
-      280
+      240,
+      198,
+      160,
+      202
     ],
     "offsetY": 20
   },
@@ -432,10 +432,10 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      246,
-      175,
-      147,
-      225
+      236,
+      122,
+      168,
+      278
     ],
     "offsetY": 20
   },
@@ -443,10 +443,10 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      241,
-      191,
-      158,
-      209
+      236,
+      123,
+      168,
+      277
     ],
     "offsetY": 20
   },
@@ -1330,39 +1330,6 @@
     ],
     "offsetY": 20
   },
-  "/assets/characters/marco_anim/jump/06.png": {
-    "width": 640,
-    "height": 420,
-    "bounds": [
-      246,
-      211,
-      147,
-      189
-    ],
-    "offsetY": 20
-  },
-  "/assets/characters/marco_anim/jump/07.png": {
-    "width": 640,
-    "height": 420,
-    "bounds": [
-      244,
-      163,
-      152,
-      237
-    ],
-    "offsetY": 20
-  },
-  "/assets/characters/marco_anim/jump/08.png": {
-    "width": 640,
-    "height": 420,
-    "bounds": [
-      228,
-      142,
-      185,
-      258
-    ],
-    "offsetY": 20
-  },
   "/assets/characters/marco_anim/walk/07.png": {
     "width": 640,
     "height": 420,
@@ -1987,28 +1954,6 @@
       112,
       205,
       288
-    ],
-    "offsetY": 20
-  },
-  "/assets/characters/marco_anim/jump/09.png": {
-    "width": 640,
-    "height": 420,
-    "bounds": [
-      220,
-      139,
-      199,
-      261
-    ],
-    "offsetY": 20
-  },
-  "/assets/characters/marco_anim/jump/10.png": {
-    "width": 640,
-    "height": 420,
-    "bounds": [
-      227,
-      166,
-      186,
-      234
     ],
     "offsetY": 20
   },

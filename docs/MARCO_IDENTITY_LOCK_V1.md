@@ -34,3 +34,21 @@ sprite. Gli otto frame precedenti sono conservati in
 
 Questa pipeline è il modello da riutilizzare per le future mosse e per i nuovi
 protagonisti: identità approvata prima, movimento dopo, integrazione per ultima.
+
+## Salto v1 approvato
+
+Il salto utilizza cinque pose uniche:
+
+1. rise
+2. tuck
+3. apex
+4. open
+5. descent
+
+Le cinque sorgenti condividono un'unica scala di conversione. La posa raccolta
+all'apice resta naturalmente meno alta sul canvas e non viene ingrandita per
+riempire il riquadro. In questo modo massa, testa e lunghezza degli arti non
+cambiano durante la parabola. L'atterraggio resta una clip separata.
+
+I dieci frame precedenti sono conservati in
+`art_source/characters/marco/archive/jump_pre_identity_lock_v1/`.

@@ -37,9 +37,9 @@
       "phases": ["run_exit", "plant", "compression", "guard"]
     },
     "jump": {
-      "frames": 8,
+      "frames": 5,
       "loop": false,
-      "phases": ["anticipation", "takeoff", "rise", "tuck", "apex", "open", "descent", "contact"]
+      "phases": ["rise", "tuck", "apex", "open", "descent"]
     },
     "land": {
       "frames": 4,

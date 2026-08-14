@@ -72,6 +72,7 @@
     "apparent_area_ratio_by_clip": {
       "walk": [0.74, 0.88],
       "run": [0.70, 0.85],
+      "air_attack": [0.72, 0.93],
       "grab": [0.78, 0.93],
       "grab_strike": [0.82, 0.98],
       "throw": [0.82, 1.00]

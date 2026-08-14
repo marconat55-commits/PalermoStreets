@@ -37,6 +37,25 @@ def load_json(path: Path) -> dict:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
+def deep_merge(base: object, override: object) -> object:
+    if not isinstance(base, dict) or not isinstance(override, dict):
+        return override
+    result = dict(base)
+    for key, value in override.items():
+        result[key] = deep_merge(result[key], value) if key in result else value
+    return result
+
+
+def resolve_profile(public: Path, character_id: str, chain: tuple[str, ...] = ()) -> dict:
+    if character_id in chain:
+        raise ValueError(f"Eredità circolare: {' -> '.join((*chain, character_id))}")
+    source = load_json(public / "data" / "characters" / f"{character_id}.json")
+    base_id = source.get("extends")
+    if not base_id:
+        return source
+    return deep_merge(resolve_profile(public, base_id, (*chain, character_id)), source)
+
+
 def collect_cells(public: Path, profile: dict) -> list[Cell]:
     root = public / profile["assets"]["animation_root"]
     unique: dict[str, Path] = {}
@@ -155,7 +174,7 @@ def main() -> None:
     if args.character and args.character not in index["characters"]:
         raise ValueError(f"Personaggio non registrato: {args.character}")
     for character_id in character_ids:
-        profile = load_json(public / f"data/characters/{character_id}.json")
+        profile = resolve_profile(public, character_id)
         frames, pages, decoded = build_profile(public, profile)
         total_frames += frames
         total_pages += pages

@@ -3,14 +3,25 @@
   "pages": [
     {
       "file": "atlas_01.png",
-      "width": 2033,
-      "height": 1476
+      "width": 2018,
+      "height": 1481
     }
   ],
   "frames": {
-    "heavy/03.png": {
+    "walk/01.png": {
       "page": 0,
       "x": 2,
+      "y": 2,
+      "width": 140,
+      "height": 306,
+      "source_width": 640,
+      "source_height": 420,
+      "source_x": 250,
+      "source_y": 94
+    },
+    "heavy/03.png": {
+      "page": 0,
+      "x": 144,
       "y": 2,
       "width": 305,
       "height": 305,
@@ -21,7 +32,7 @@
     },
     "hit/02.png": {
       "page": 0,
-      "x": 309,
+      "x": 451,
       "y": 2,
       "width": 304,
       "height": 305,
@@ -32,7 +43,7 @@
     },
     "hit/03.png": {
       "page": 0,
-      "x": 615,
+      "x": 757,
       "y": 2,
       "width": 241,
       "height": 305,
@@ -43,7 +54,7 @@
     },
     "hit/01.png": {
       "page": 0,
-      "x": 858,
+      "x": 1000,
       "y": 2,
       "width": 240,
       "height": 305,
@@ -54,7 +65,7 @@
     },
     "attack/04.png": {
       "page": 0,
-      "x": 1100,
+      "x": 1242,
       "y": 2,
       "width": 236,
       "height": 305,
@@ -65,7 +76,7 @@
     },
     "attack/01.png": {
       "page": 0,
-      "x": 1338,
+      "x": 1480,
       "y": 2,
       "width": 230,
       "height": 305,
@@ -76,7 +87,7 @@
     },
     "fall/01.png": {
       "page": 0,
-      "x": 1570,
+      "x": 1712,
       "y": 2,
       "width": 228,
       "height": 305,
@@ -85,33 +96,11 @@
       "source_x": 206,
       "source_y": 95
     },
-    "walk/03.png": {
-      "page": 0,
-      "x": 1800,
-      "y": 2,
-      "width": 222,
-      "height": 305,
-      "source_width": 640,
-      "source_height": 420,
-      "source_x": 270,
-      "source_y": 95
-    },
     "idle/04.png": {
       "page": 0,
       "x": 2,
-      "y": 309,
+      "y": 310,
       "width": 209,
-      "height": 305,
-      "source_width": 640,
-      "source_height": 420,
-      "source_x": 274,
-      "source_y": 95
-    },
-    "getup/05.png": {
-      "page": 0,
-      "x": 213,
-      "y": 309,
-      "width": 208,
       "height": 305,
       "source_width": 640,
       "source_height": 420,
@@ -120,8 +109,8 @@
     },
     "idle/01.png": {
       "page": 0,
-      "x": 423,
-      "y": 309,
+      "x": 213,
+      "y": 310,
       "width": 208,
       "height": 305,
       "source_width": 640,
@@ -131,8 +120,8 @@
     },
     "heavy/01.png": {
       "page": 0,
-      "x": 633,
-      "y": 309,
+      "x": 423,
+      "y": 310,
       "width": 202,
       "height": 305,
       "source_width": 640,
@@ -142,8 +131,8 @@
     },
     "idle/03.png": {
       "page": 0,
-      "x": 837,
-      "y": 309,
+      "x": 627,
+      "y": 310,
       "width": 200,
       "height": 305,
       "source_width": 640,
@@ -151,43 +140,10 @@
       "source_x": 287,
       "source_y": 95
     },
-    "walk/04.png": {
-      "page": 0,
-      "x": 1039,
-      "y": 309,
-      "width": 200,
-      "height": 305,
-      "source_width": 640,
-      "source_height": 420,
-      "source_x": 178,
-      "source_y": 95
-    },
-    "walk/06.png": {
-      "page": 0,
-      "x": 1241,
-      "y": 309,
-      "width": 198,
-      "height": 305,
-      "source_width": 640,
-      "source_height": 420,
-      "source_x": 270,
-      "source_y": 95
-    },
-    "walk/01.png": {
-      "page": 0,
-      "x": 1441,
-      "y": 309,
-      "width": 197,
-      "height": 305,
-      "source_width": 640,
-      "source_height": 420,
-      "source_x": 275,
-      "source_y": 95
-    },
     "idle/02.png": {
       "page": 0,
-      "x": 1640,
-      "y": 309,
+      "x": 829,
+      "y": 310,
       "width": 195,
       "height": 305,
       "source_width": 640,
@@ -197,8 +153,8 @@
     },
     "heavy/04.png": {
       "page": 0,
-      "x": 1837,
-      "y": 309,
+      "x": 1026,
+      "y": 310,
       "width": 194,
       "height": 305,
       "source_width": 640,
@@ -208,8 +164,8 @@
     },
     "heavy/02.png": {
       "page": 0,
-      "x": 2,
-      "y": 616,
+      "x": 1222,
+      "y": 310,
       "width": 192,
       "height": 305,
       "source_width": 640,
@@ -219,8 +175,8 @@
     },
     "heavy/05.png": {
       "page": 0,
-      "x": 196,
-      "y": 616,
+      "x": 1416,
+      "y": 310,
       "width": 190,
       "height": 305,
       "source_width": 640,
@@ -230,8 +186,8 @@
     },
     "walk_up/02.png": {
       "page": 0,
-      "x": 388,
-      "y": 616,
+      "x": 1608,
+      "y": 310,
       "width": 173,
       "height": 305,
       "source_width": 640,
@@ -241,8 +197,8 @@
     },
     "walk_down/06.png": {
       "page": 0,
-      "x": 563,
-      "y": 616,
+      "x": 1783,
+      "y": 310,
       "width": 172,
       "height": 305,
       "source_width": 640,
@@ -250,21 +206,10 @@
       "source_x": 221,
       "source_y": 95
     },
-    "walk/02.png": {
-      "page": 0,
-      "x": 737,
-      "y": 616,
-      "width": 171,
-      "height": 305,
-      "source_width": 640,
-      "source_height": 420,
-      "source_x": 274,
-      "source_y": 95
-    },
     "walk_down/03.png": {
       "page": 0,
-      "x": 910,
-      "y": 616,
+      "x": 2,
+      "y": 617,
       "width": 170,
       "height": 305,
       "source_width": 640,
@@ -274,8 +219,8 @@
     },
     "walk_down/04.png": {
       "page": 0,
-      "x": 1082,
-      "y": 616,
+      "x": 174,
+      "y": 617,
       "width": 170,
       "height": 305,
       "source_width": 640,
@@ -285,8 +230,8 @@
     },
     "walk_down/01.png": {
       "page": 0,
-      "x": 1254,
-      "y": 616,
+      "x": 346,
+      "y": 617,
       "width": 169,
       "height": 305,
       "source_width": 640,
@@ -296,8 +241,8 @@
     },
     "walk_down/02.png": {
       "page": 0,
-      "x": 1425,
-      "y": 616,
+      "x": 517,
+      "y": 617,
       "width": 165,
       "height": 305,
       "source_width": 640,
@@ -307,8 +252,8 @@
     },
     "walk_down/05.png": {
       "page": 0,
-      "x": 1592,
-      "y": 616,
+      "x": 684,
+      "y": 617,
       "width": 164,
       "height": 305,
       "source_width": 640,
@@ -318,8 +263,8 @@
     },
     "walk_up/06.png": {
       "page": 0,
-      "x": 1758,
-      "y": 616,
+      "x": 850,
+      "y": 617,
       "width": 163,
       "height": 305,
       "source_width": 640,
@@ -329,8 +274,8 @@
     },
     "walk_up/03.png": {
       "page": 0,
-      "x": 2,
-      "y": 923,
+      "x": 1015,
+      "y": 617,
       "width": 162,
       "height": 305,
       "source_width": 640,
@@ -338,10 +283,21 @@
       "source_x": 231,
       "source_y": 95
     },
+    "walk/03.png": {
+      "page": 0,
+      "x": 1179,
+      "y": 617,
+      "width": 161,
+      "height": 305,
+      "source_width": 640,
+      "source_height": 420,
+      "source_x": 240,
+      "source_y": 95
+    },
     "walk_up/01.png": {
       "page": 0,
-      "x": 166,
-      "y": 923,
+      "x": 1342,
+      "y": 617,
       "width": 158,
       "height": 305,
       "source_width": 640,
@@ -351,8 +307,8 @@
     },
     "walk_up/05.png": {
       "page": 0,
-      "x": 326,
-      "y": 923,
+      "x": 1502,
+      "y": 617,
       "width": 158,
       "height": 305,
       "source_width": 640,
@@ -360,10 +316,21 @@
       "source_x": 248,
       "source_y": 95
     },
+    "walk/02.png": {
+      "page": 0,
+      "x": 1662,
+      "y": 617,
+      "width": 156,
+      "height": 305,
+      "source_width": 640,
+      "source_height": 420,
+      "source_x": 242,
+      "source_y": 95
+    },
     "walk_up/04.png": {
       "page": 0,
-      "x": 486,
-      "y": 923,
+      "x": 1820,
+      "y": 617,
       "width": 156,
       "height": 305,
       "source_width": 640,
@@ -371,21 +338,21 @@
       "source_x": 229,
       "source_y": 95
     },
-    "walk/05.png": {
+    "walk/04.png": {
       "page": 0,
-      "x": 644,
-      "y": 923,
-      "width": 145,
+      "x": 2,
+      "y": 924,
+      "width": 143,
       "height": 305,
       "source_width": 640,
       "source_height": 420,
-      "source_x": 279,
+      "source_x": 248,
       "source_y": 95
     },
     "attack/02.png": {
       "page": 0,
-      "x": 791,
-      "y": 923,
+      "x": 147,
+      "y": 924,
       "width": 305,
       "height": 304,
       "source_width": 640,
@@ -393,10 +360,54 @@
       "source_x": 73,
       "source_y": 96
     },
+    "walk/05.png": {
+      "page": 0,
+      "x": 454,
+      "y": 924,
+      "width": 139,
+      "height": 303,
+      "source_width": 640,
+      "source_height": 420,
+      "source_x": 250,
+      "source_y": 97
+    },
+    "walk/06.png": {
+      "page": 0,
+      "x": 595,
+      "y": 924,
+      "width": 133,
+      "height": 302,
+      "source_width": 640,
+      "source_height": 420,
+      "source_x": 254,
+      "source_y": 98
+    },
+    "getup/05.png": {
+      "page": 0,
+      "x": 730,
+      "y": 924,
+      "width": 204,
+      "height": 299,
+      "source_width": 640,
+      "source_height": 420,
+      "source_x": 218,
+      "source_y": 101
+    },
+    "fall/02.png": {
+      "page": 0,
+      "x": 936,
+      "y": 924,
+      "width": 305,
+      "height": 291,
+      "source_width": 640,
+      "source_height": 420,
+      "source_x": 168,
+      "source_y": 109
+    },
     "attack/03.png": {
       "page": 0,
-      "x": 1098,
-      "y": 923,
+      "x": 1243,
+      "y": 924,
       "width": 305,
       "height": 288,
       "source_width": 640,
@@ -404,93 +415,82 @@
       "source_x": 111,
       "source_y": 112
     },
-    "fall/02.png": {
+    "getup/03.png": {
       "page": 0,
-      "x": 1405,
-      "y": 923,
-      "width": 296,
-      "height": 283,
+      "x": 1550,
+      "y": 924,
+      "width": 234,
+      "height": 259,
       "source_width": 640,
       "source_height": 420,
-      "source_x": 172,
-      "source_y": 117
+      "source_x": 203,
+      "source_y": 141
     },
     "getup/04.png": {
       "page": 0,
-      "x": 1703,
-      "y": 923,
-      "width": 223,
-      "height": 244,
+      "x": 1786,
+      "y": 924,
+      "width": 230,
+      "height": 251,
       "source_width": 640,
       "source_height": 420,
-      "source_x": 208,
-      "source_y": 156
-    },
-    "getup/03.png": {
-      "page": 0,
-      "x": 2,
-      "y": 1230,
-      "width": 221,
-      "height": 244,
-      "source_width": 640,
-      "source_height": 420,
-      "source_x": 209,
-      "source_y": 156
+      "source_x": 205,
+      "source_y": 149
     },
     "fall/03.png": {
       "page": 0,
-      "x": 225,
-      "y": 1230,
-      "width": 296,
-      "height": 234,
+      "x": 2,
+      "y": 1231,
+      "width": 314,
+      "height": 248,
       "source_width": 640,
       "source_height": 420,
-      "source_x": 172,
-      "source_y": 166
+      "source_x": 163,
+      "source_y": 152
     },
     "getup/02.png": {
       "page": 0,
-      "x": 523,
-      "y": 1230,
-      "width": 324,
-      "height": 164,
+      "x": 318,
+      "y": 1231,
+      "width": 356,
+      "height": 180,
       "source_width": 640,
       "source_height": 420,
-      "source_x": 158,
-      "source_y": 236
+      "source_x": 142,
+      "source_y": 220
     },
     "fall/04.png": {
       "page": 0,
-      "x": 849,
-      "y": 1230,
-      "width": 324,
-      "height": 116,
+      "x": 676,
+      "y": 1231,
+      "width": 356,
+      "height": 128,
       "source_width": 640,
       "source_height": 420,
-      "source_x": 158,
-      "source_y": 284
+      "source_x": 142,
+      "source_y": 272
     },
     "fall/05.png": {
       "page": 0,
-      "x": 1175,
-      "y": 1230,
-      "width": 332,
-      "height": 97,
+      "x": 1034,
+      "y": 1231,
+      "width": 375,
+      "height": 110,
       "source_width": 640,
       "source_height": 420,
-      "source_x": 154,
-      "source_y": 303
+      "source_x": 132,
+      "source_y": 290
     },
     "getup/01.png": {
       "page": 0,
-      "x": 1509,
-      "y": 1230,
-      "width": 332,
-      "height": 97,
+      "x": 1411,
+      "y": 1231,
+      "width": 375,
+      "height": 110,
       "source_width": 640,
       "source_height": 420,
-      "source_x": 154,
-      "source_y": 303
+      "source_x": 132,
+      "source_y": 290
     }
   }
 }

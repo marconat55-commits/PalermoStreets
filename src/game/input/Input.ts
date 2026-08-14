@@ -7,7 +7,7 @@ export class Input {
       const code = event.code;
       if (!this.held.has(code)) this.pressed.add(code);
       this.held.add(code);
-      if (['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Space'].includes(code)) {
+      if (['KeyA', 'KeyD', 'KeyW', 'KeyS', 'Space'].includes(code)) {
         event.preventDefault();
       }
     });

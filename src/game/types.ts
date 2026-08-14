@@ -53,6 +53,10 @@ export interface CharacterProfile {
       heavy_chance?: number;
       cooldown_scale?: number;
       collision_scale?: number;
+      /** Optional reactive evade used by agile enemy templates. */
+      dodge_chance?: number;
+      /** Minimum seconds between successful evades. */
+      dodge_cooldown?: number;
       label?: string;
     };
   };
@@ -88,6 +92,8 @@ export interface WaveData {
   heavy_chance?: number;
   cooldown_scale?: number;
   collision_scale?: number;
+  dodge_chance?: number;
+  dodge_cooldown?: number;
   /** World-space X that unlocks this wave in a scrolling module. */
   trigger_x?: number;
 }
@@ -225,6 +231,8 @@ export interface AttackData {
 }
 
 export interface CombatEvent {
+  /** Actor that accepted the hit; used by short, local combat assists. */
+  targetActorId?: number;
   position: Vec2;
   damage: number;
   heavy: boolean;

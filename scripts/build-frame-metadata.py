@@ -14,6 +14,25 @@ def load_json(path: Path) -> dict:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
+def deep_merge(base: object, override: object) -> object:
+    if not isinstance(base, dict) or not isinstance(override, dict):
+        return override
+    result = dict(base)
+    for key, value in override.items():
+        result[key] = deep_merge(result[key], value) if key in result else value
+    return result
+
+
+def resolve_profile(public: Path, character_id: str, chain: tuple[str, ...] = ()) -> dict:
+    if character_id in chain:
+        raise ValueError(f"Eredità circolare: {' -> '.join((*chain, character_id))}")
+    source = load_json(public / "data" / "characters" / f"{character_id}.json")
+    base_id = source.get("extends")
+    if not base_id:
+        return source
+    return deep_merge(resolve_profile(public, base_id, (*chain, character_id)), source)
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("project", type=Path)
@@ -22,7 +41,7 @@ def main() -> None:
 
     project = args.project.resolve()
     public = project / "public"
-    profile = load_json(public / "data" / "characters" / f"{args.character}.json")
+    profile = resolve_profile(public, args.character)
     meta_path = public / "data" / "generated" / "frame_meta.json"
     meta = load_json(meta_path)
     animation_root = profile["assets"]["animation_root"]

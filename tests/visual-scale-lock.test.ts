@@ -46,7 +46,7 @@ test('nessun profilo richiede frame blending, gestito solo dal raccordo breve de
 
 test('Talebano usa sei fasi di camminata uniche e una reazione impatto-recupero esplicita', () => {
   const profile = JSON.parse(fs.readFileSync('public/data/characters/talebano.json', 'utf8'));
-  assert.deepEqual(profile.animations.walk.frame_sequence, [5, 4, 2, 6, 3, 1]);
+  assert.deepEqual(profile.animations.walk.frame_sequence, [1, 2, 3, 4, 5, 6]);
   assert.equal(new Set(profile.animations.walk.frame_sequence).size, 6);
   assert.deepEqual(profile.animations.hit.frame_sequence, [1, 2, 3]);
   assert.ok(profile.animations.hit.durations[0] < profile.animations.hit.durations[2]);

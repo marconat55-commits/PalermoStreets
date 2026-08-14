@@ -22,43 +22,11 @@
       "waves": [
         {
           "trigger_x": 299,
-          "health": 68,
+          "health": 52,
           "aggression": 0.84,
-          "spawns": [[874, 665], [1070, 690]],
-          "character": "talebano",
-          "name": "TALEBANO",
-          "move_speed_scale": 0.9,
-          "damage_scale": 1.02,
-          "attack_speed_scale": 0.94,
-          "heavy_chance": 0.3
-        },
-        {
-          "trigger_x": 1012,
-          "health": 70,
-          "aggression": 1.02,
-          "spawns": [[1357, 665]],
+          "spawns": [[874, 675]],
           "character": "talebano",
           "name": "TALEBANO"
-        },
-        {
-          "trigger_x": 1576,
-          "health": 61,
-          "aggression": 0.98,
-          "spawns": [[1932, 665], [2128, 690]],
-          "character": "talebano",
-          "name": "TALEBANO"
-        },
-        {
-          "trigger_x": 2277,
-          "health": 88,
-          "aggression": 0.96,
-          "spawns": [[2553, 670], [2749, 665]],
-          "character": "talebano",
-          "name": "TALEBANO",
-          "move_speed_scale": 0.9,
-          "damage_scale": 1.02,
-          "attack_speed_scale": 0.94,
-          "heavy_chance": 0.3
         }
       ]
     },
@@ -82,43 +50,11 @@
       "waves": [
         {
           "trigger_x": 250,
-          "health": 82,
+          "health": 58,
           "aggression": 0.94,
-          "spawns": [[760, 610], [930, 646]],
-          "character": "talebano",
-          "name": "TALEBANO",
-          "move_speed_scale": 0.9,
-          "damage_scale": 1.02,
-          "attack_speed_scale": 0.94,
-          "heavy_chance": 0.3
-        },
-        {
-          "trigger_x": 870,
-          "health": 81,
-          "aggression": 1.02,
-          "spawns": [[1180, 610]],
-          "character": "talebano",
-          "name": "TALEBANO"
-        },
-        {
-          "trigger_x": 1370,
-          "health": 75,
-          "aggression": 1.08,
-          "spawns": [[1660, 610], [1840, 648]],
-          "character": "talebano",
-          "name": "TALEBANO"
-        },
-        {
-          "trigger_x": 1980,
-          "health": 108,
-          "aggression": 0.95,
-          "spawns": [[2260, 612]],
-          "character": "talebano",
-          "move_speed_scale": 0.9,
-          "heavy_chance": 0.35,
-          "cooldown_scale": 1.05,
-          "collision_scale": 1.07,
-          "name": "TALEBANO"
+          "spawns": [[760, 635]],
+          "character": "haggar_ref",
+          "name": "HAGGAR REF"
         }
       ]
     },
@@ -141,23 +77,15 @@
       "waves": [
         {
           "trigger_x": 414,
-          "health": 94,
+          "health": 64,
           "aggression": 1.02,
-          "spawns": [[966, 556], [1162, 646]],
+          "spawns": [[966, 600]],
           "character": "talebano",
           "name": "TALEBANO",
           "move_speed_scale": 0.9,
           "damage_scale": 1.02,
           "attack_speed_scale": 0.94,
           "heavy_chance": 0.3
-        },
-        {
-          "trigger_x": 1702,
-          "health": 95,
-          "aggression": 1.08,
-          "spawns": [[2185, 610]],
-          "character": "talebano",
-          "name": "TALEBANO"
         }
       ]
     },
@@ -180,24 +108,16 @@
       "waves": [
         {
           "trigger_x": 414,
-          "health": 86,
+          "health": 96,
           "aggression": 1.18,
-          "spawns": [[966, 598], [1173, 650]],
+          "spawns": [[966, 620]],
           "character": "talebano",
-          "name": "TALEBANO"
-        },
-        {
-          "trigger_x": 1737,
-          "health": 120,
-          "aggression": 1.02,
-          "spawns": [[2254, 610]],
-          "character": "talebano",
+          "name": "TALEBANO FINALE",
           "damage_scale": 1.12,
           "attack_speed_scale": 0.94,
           "heavy_chance": 0.37,
           "cooldown_scale": 1.02,
-          "collision_scale": 1.08,
-          "name": "TALEBANO"
+          "collision_scale": 1.08
         }
       ]
     }

@@ -1,0 +1,19 @@
+{
+  "schema": 1,
+  "id": "enemy_reference_v1",
+  "role": "enemy",
+  "purpose": "Import MUGEN privato riutilizzabile per archetipi nemico",
+  "description": "Contratto QA per sprite MUGEN pixel-art importati senza reinterpretazione grafica.",
+  "raster": {
+    "canvas": [640, 420],
+    "baseline_y": 400,
+    "scale_mode": "baked",
+    "uniform_runtime_scale_only": true
+  },
+  "required_clips": ["idle", "walk", "attack", "heavy", "hit", "knockdown", "getup", "dead"],
+  "qa": {
+    "max_top_opaque_run_px": 48,
+    "ground_body_width_ratio": [0.75, 1.30],
+    "max_loop_centroid_step": 0.48
+  }
+}

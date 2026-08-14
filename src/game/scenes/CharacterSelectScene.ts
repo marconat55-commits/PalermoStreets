@@ -116,7 +116,7 @@ export class CharacterSelectScene implements Scene {
     const promptPlate = new Graphics();
     promptPlate.roundRect(688, 642, 520, 52, 9).fill({ color: 0x0c0302, alpha: 0.95 }).stroke({ color: 0xff9f13, width: 3 });
     this.root.addChild(promptPlate);
-    this.confirmPrompt = label('FRECCE  SCEGLI     INVIO  CONFERMA', new TextStyle({ fontFamily: UI_FONT, fontSize: 15, fontWeight: '900', fill: 0xffe2ad }), 948, 668, 0.5);
+    this.confirmPrompt = label('WASD  SCEGLI     INVIO  CONFERMA', new TextStyle({ fontFamily: UI_FONT, fontSize: 15, fontWeight: '900', fill: 0xffe2ad }), 948, 668, 0.5);
     this.root.addChild(this.confirmPrompt);
 
     const loadingShade = new Graphics();
@@ -167,10 +167,10 @@ export class CharacterSelectScene implements Scene {
     const pulse = 0.72 + 0.28 * (0.5 + 0.5 * Math.sin(this.elapsed * 7));
     this.selectionFrame.alpha = pulse;
     const previous = this.selectedIndex;
-    if (input.wasPressed('ArrowRight', 'KeyD')) this.selectedIndex = Math.min(this.profiles.length - 1, this.selectedIndex + 1);
-    if (input.wasPressed('ArrowLeft', 'KeyA')) this.selectedIndex = Math.max(0, this.selectedIndex - 1);
-    if (input.wasPressed('ArrowDown', 'KeyS')) this.selectedIndex = Math.min(this.profiles.length - 1, this.selectedIndex + 2);
-    if (input.wasPressed('ArrowUp', 'KeyW')) this.selectedIndex = Math.max(0, this.selectedIndex - 2);
+    if (input.wasPressed('KeyD')) this.selectedIndex = Math.min(this.profiles.length - 1, this.selectedIndex + 1);
+    if (input.wasPressed('KeyA')) this.selectedIndex = Math.max(0, this.selectedIndex - 1);
+    if (input.wasPressed('KeyS')) this.selectedIndex = Math.min(this.profiles.length - 1, this.selectedIndex + 2);
+    if (input.wasPressed('KeyW')) this.selectedIndex = Math.max(0, this.selectedIndex - 2);
     if (previous !== this.selectedIndex) this.refreshSelection();
     if (input.wasPressed('Enter', 'NumpadEnter')) this.confirmRequested = true;
   }

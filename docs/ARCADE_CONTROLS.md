@@ -2,7 +2,7 @@
 
 The control scheme deliberately uses two action buttons.
 
-- Arrow keys: move in eight directions.
+- WASD: move in eight directions.
 - J: four-hit arcade combo; aerial attack while airborne; acquire a nearby enemy and strike while holding them.
 - K: jump; throw the held enemy while in grab state.
 - Double-tap a direction: run horizontally, vertically or diagonally.

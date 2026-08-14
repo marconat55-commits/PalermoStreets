@@ -28,6 +28,8 @@ export interface EnemyOptions {
   heavyChance?: number;
   cooldownScale?: number;
   collisionScale?: number;
+  dodgeChance?: number;
+  dodgeCooldown?: number;
 }
 
 export class Enemy extends Actor {
@@ -42,6 +44,8 @@ export class Enemy extends Actor {
   readonly heavyChance: number;
   readonly lightAttack: AttackData;
   readonly heavyAttack: AttackData;
+  readonly dodgeChance: number;
+  readonly dodgeCooldownDuration: number;
   currentAttack: AttackData | null = null;
   attackElapsed = 0;
   attackHitPlayer = false;
@@ -51,6 +55,7 @@ export class Enemy extends Actor {
   engageSide: -1 | 1 | null = null;
   spawnElapsed = 0;
   grabbedBy: Actor | null = null;
+  dodgeCooldown = 0;
 
   constructor(bank: AnimationBank, position: Vec2, options: EnemyOptions = {}) {
     super(bank, position, options.health ?? 82);
@@ -65,9 +70,31 @@ export class Enemy extends Actor {
     this.heavyChance = clamp((options.heavyChance ?? 0.13) + (this.isBoss ? 0.11 : 0), 0, 0.8);
     this.lightAttack = scaledAttack(ENEMY_ATTACK, options.damageScale ?? 1, options.attackSpeedScale ?? 1);
     this.heavyAttack = scaledAttack(ENEMY_HEAVY, options.damageScale ?? 1, options.attackSpeedScale ?? 1);
+    this.dodgeChance = clamp(options.dodgeChance ?? 0, 0, 0.8);
+    this.dodgeCooldownDuration = clamp(options.dodgeCooldown ?? 2.6, 0.4, 12);
     this.attackCooldown = randomRange(0.82, 1.22) * this.cooldownScale;
     this.alpha255 = 0;
     this.beginState('spawn', 'idle');
+  }
+
+  override receiveHit(damage: number, knockback: Vec2, knockdown = false, launchVelocity = 0): HitResult {
+    // A successful evade intentionally rejects the hit; combat resolution then
+    // produces neither damage nor a false hit effect.
+    const canDodge = this.animator.bank.clips.has('dodge')
+      && this.canBeHit
+      && this.dodgeCooldown <= 0
+      && this.dodgeChance > 0
+      && Math.random() < this.dodgeChance;
+    if (!canDodge) return super.receiveHit(damage, knockback, knockdown, launchVelocity);
+    const away = knockback.x === 0 ? -this.facing : (Math.sign(knockback.x) as -1 | 1);
+    this.currentAttack = null;
+    this.attackHitPlayer = false;
+    this.velocity = { x: away * 245, y: 0 };
+    this.facing = away === 1 ? -1 : 1;
+    this.beginState('dodge', 'dodge');
+    this.invulnerable = Math.max(0.30, this.animator.duration);
+    this.dodgeCooldown = this.dodgeCooldownDuration;
+    return { accepted: false, killed: false, knockedDown: false };
   }
 
   override get collisionRadius(): Vec2 {
@@ -135,6 +162,7 @@ export class Enemy extends Actor {
   update(dt: number, player: Actor, allies: Enemy[], mayAttack: boolean, supportRank = 0): void {
     this.updateCommon(dt);
     this.attackCooldown = Math.max(0, this.attackCooldown - dt);
+    this.dodgeCooldown = Math.max(0, this.dodgeCooldown - dt);
 
     if (this.grabbedBy) {
       if (this.grabbedBy.dead || !['grab', 'attack'].includes(this.grabbedBy.state)) {
@@ -174,6 +202,10 @@ export class Enemy extends Actor {
       return;
     }
     if (this.state === 'hit') {
+      if (this.animator.finished) this.beginState('idle', 'idle');
+      this.clampToPlayfield(); this.syncVisual(); return;
+    }
+    if (this.state === 'dodge') {
       if (this.animator.finished) this.beginState('idle', 'idle');
       this.clampToPlayfield(); this.syncVisual(); return;
     }

@@ -90,7 +90,7 @@ export class TitleScene implements Scene {
     this.root.addChild(this.prompt);
 
     this.root.addChild(centeredText(
-      'FRECCE MUOVI   J ATTACCA   K SALTA   DOPPIA DIREZIONE + J ATTACCO IN CORSA   J+K SPECIALE',
+      'WASD MUOVI   J ATTACCA   K SALTA   DOPPIA DIREZIONE + J ATTACCO IN CORSA   J+K SPECIALE',
       new TextStyle({ fontFamily: UI_FONT, fontSize: 13, fontWeight: '700', fill: 0xe8cda9, letterSpacing: 0.6 }),
       640,
       672,

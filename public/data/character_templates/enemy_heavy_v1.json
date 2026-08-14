@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "id": "enemy_heavy_v1",
+  "role": "enemy",
+  "purpose": "Nemico pesante con massa apparente continua tra posa in piedi, caduta e rialzata",
+  "description": "Contratto QA per nemici pesanti: silhouette distesa più larga per conservare la massa apparente.",
+  "raster": {
+    "canvas": [640, 420],
+    "baseline_y": 400,
+    "scale_mode": "baked",
+    "uniform_runtime_scale_only": true
+  },
+  "required_clips": ["idle", "walk", "attack", "heavy", "hit", "knockdown", "getup", "dead"],
+  "qa": {
+    "ground_body_width_ratio": [0.92, 1.25]
+  }
+}

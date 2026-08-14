@@ -3,8 +3,16 @@
   "id": "merco",
   "extends": "marco",
   "display_name": "MERCO",
+  "assets": {
+    "master_root": "assets/characters/merco",
+    "animation_root": "assets/characters/merco_anim",
+    "texture_atlas": "assets/characters/merco_anim/atlas/atlas.json"
+  },
   "identity": {
-    "canon": "Prototipo tecnico scalabile derivato dal core approvato di Marco; identitÃ  grafica provvisoria"
+    "outfit": "camicia bianca aperta con maniche arrotolate, cintura marrone, jeans blu leggermente strappati e scarpe da tennis nere e bianche",
+    "fighting_style": "kickboxing e Muay Thai dinamica",
+    "special_move": "long kick volante",
+    "canon": "Prototipo scalabile Merco V1: identità master bloccata; long kick e presa/lancio originali approvati; locomozione e reazioni ereditate temporaneamente dal core Marco"
   },
   "gameplay": {
     "player": {
@@ -13,10 +21,145 @@
       "depth_speed": 225.0
     }
   },
+  "factory": {
+    "animation_template": "data/character_templates/merco_hq_ken_clone_v2.json"
+  },
   "selection": {
-    "portrait": "assets/ui/character_select/marco_portrait.png",
-    "subtitle": "PROTOTIPO SCALABILE",
+    "portrait": "assets/ui/character_select/merco_portrait.png",
+    "subtitle": "PALERMO KICKBOXER — PROTOTIPO",
     "stats": { "strength": 4, "speed": 5, "technique": 5 },
     "prototype": true
+  },
+  "animations": {
+    "idle": {
+      "folder": "idle",
+      "frames": 6,
+      "source_frames": 6,
+      "frame_sequence": [1, 2, 3, 4, 5, 6],
+      "durations": [0.1, 0.1, 0.1, 0.1, 0.1, 0.1],
+      "visual_scales": [1.0],
+      "source_facing": 1,
+      "loop": true
+    },
+    "walk": {
+      "folder": "walk",
+      "frames": 8,
+      "source_frames": 8,
+      "frame_sequence": [1, 2, 3, 4, 5, 6, 7, 8],
+      "durations": [0.068],
+      "loop": true,
+      "visual_scales": [1.0],
+      "source_facing": 1,
+      "reference_speed": 285
+    },
+    "jump": {
+      "folder": "jump",
+      "frames": 9,
+      "source_frames": 9,
+      "frame_sequence": [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      "durations": [0.1167, 0.0333, 0.0333, 0.05, 0.1, 0.05, 0.05, 0.05, 0.2],
+      "visual_scales": [1.0],
+      "source_facing": 1,
+      "loop": false
+    },
+    "jump_forward": {
+      "folder": "jump_forward",
+      "frames": 8,
+      "source_frames": 8,
+      "frame_sequence": [1, 2, 3, 4, 5, 6, 7, 8],
+      "durations": [0.1167, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.2],
+      "visual_scales": [1.0],
+      "source_facing": 1,
+      "loop": false
+    },
+    "land": {
+      "folder": "land",
+      "frames": 2,
+      "source_frames": 2,
+      "frame_sequence": [1, 2],
+      "durations": [0.05, 0.0834],
+      "visual_scales": [1.0],
+      "source_facing": 1,
+      "loop": false
+    },
+    "air_attack": {
+      "folder": "air_attack",
+      "frames": 5,
+      "source_frames": 5,
+      "frame_sequence": [1, 2, 3, 4, 5],
+      "durations": [0.06, 0.07, 0.14, 0.08, 0.1],
+      "visual_scales": [1.0],
+      "source_facing": 1,
+      "contact_frame": 3
+    },
+    "punch_left": {
+      "folder": "punch_left",
+      "frames": 3,
+      "source_frames": 3,
+      "frame_sequence": [1, 2, 3],
+      "durations": [0.08, 0.12, 0.1],
+      "visual_scales": [1.0],
+      "source_facing": 1,
+      "contact_frame": 2
+    },
+    "punch_right": {
+      "folder": "punch_right",
+      "frames": 3,
+      "source_frames": 3,
+      "frame_sequence": [1, 2, 3],
+      "durations": [0.07, 0.12, 0.1],
+      "visual_scales": [1.0],
+      "source_facing": 1,
+      "contact_frame": 2
+    },
+    "muay_elbow": {
+      "folder": "muay_elbow",
+      "frames": 3,
+      "source_frames": 3,
+      "frame_sequence": [1, 2, 3],
+      "durations": [0.07, 0.13, 0.11],
+      "visual_scales": [1.0],
+      "source_facing": 1,
+      "contact_frame": 2
+    },
+    "combo_finisher": {
+      "folder": "combo_finisher",
+      "frames": 3,
+      "source_frames": 3,
+      "frame_sequence": [1, 2, 3],
+      "durations": [0.09, 0.18, 0.17],
+      "visual_scales": [1.0],
+      "source_facing": 1,
+      "contact_frame": 2
+    },
+    "grab": {
+      "folder": "grab",
+      "frames": 1,
+      "source_frames": 1,
+      "frame_sequence": [1],
+      "durations": [1.0],
+      "visual_scales": [1.0],
+      "source_facing": 1
+    },
+    "grab_strike": {
+      "folder": "grab_strike",
+      "frames": 3,
+      "source_frames": 3,
+      "frame_sequence": [1, 2, 3],
+      "durations": [0.07, 0.13, 0.15],
+      "visual_scales": [1.0],
+      "source_facing": 1,
+      "contact_frame": 2
+    },
+    "throw": {
+      "folder": "throw",
+      "frames": 3,
+      "source_frames": 3,
+      "frame_sequence": [1, 2, 3],
+      "durations": [0.1, 0.15, 0.27],
+      "visual_scales": [1.0],
+      "source_facing": 1,
+      "contact_frame": 3
+    }
   }
 }

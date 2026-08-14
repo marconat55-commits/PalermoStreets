@@ -1,0 +1,427 @@
+{
+  "schema": 1,
+  "id": "ken_ref",
+  "display_name": "KEN REF",
+  "role": "player",
+  "height_cm": 175,
+  "body_type": "fighter arcade",
+  "visual_height": 290,
+  "assets": {
+    "master_root": "assets/characters/ken_ref",
+    "animation_root": "assets/characters/ken_ref_anim",
+    "texture_atlas": "assets/characters/ken_ref_anim/atlas/atlas.json"
+  },
+  "identity": {
+    "fighting_style": "Ansatsuken arcade adattato al belt-scroller",
+    "special_move": "Shouryureppa di riferimento",
+    "canon": "PROTOTIPO TECNICO PRIVATO derivato dal personaggio MUGEN fornito dall'utente; non destinato alla distribuzione commerciale"
+  },
+  "gameplay": {
+    "player": {
+      "max_health": 112,
+      "move_speed": 295.0,
+      "depth_speed": 215.0
+    }
+  },
+  "factory": {
+    "animation_template": "data/character_templates/ken_reference_v1.json",
+    "animation_canvas": [
+      640,
+      420
+    ],
+    "baseline_y": 400,
+    "content_bottom_y": 400,
+    "scale_mode": "baked"
+  },
+  "selection": {
+    "portrait": "assets/ui/character_select/ken_ref_portrait.png",
+    "subtitle": "MUGEN MOTION REFERENCE — NON COMMERCIALE",
+    "stats": {
+      "strength": 4,
+      "speed": 5,
+      "technique": 5
+    },
+    "prototype": true
+  },
+  "animations": {
+    "idle": {
+      "folder": "idle",
+      "frames": 6,
+      "durations": [
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1
+      ],
+      "visual_scales": [
+        1.0
+      ],
+      "source_facing": 1,
+      "loop": true
+    },
+    "walk": {
+      "folder": "walk",
+      "frames": 8,
+      "durations": [
+        0.0833,
+        0.0833,
+        0.0833,
+        0.0833,
+        0.0833,
+        0.0833,
+        0.0833,
+        0.0833
+      ],
+      "visual_scales": [
+        1.0
+      ],
+      "source_facing": 1,
+      "loop": true,
+      "reference_speed": 295
+    },
+    "run": {
+      "folder": "run",
+      "frames": 6,
+      "durations": [
+        0.05,
+        0.0833,
+        0.0833,
+        0.0833,
+        0.0833,
+        0.0833
+      ],
+      "visual_scales": [
+        1.0
+      ],
+      "source_facing": 1,
+      "loop": true,
+      "reference_speed": 455
+    },
+    "brake": {
+      "folder": "brake",
+      "frames": 2,
+      "durations": [
+        0.05,
+        0.2
+      ],
+      "visual_scales": [
+        1.0
+      ],
+      "source_facing": 1
+    },
+    "jump": {
+      "folder": "jump",
+      "frames": 5,
+      "durations": [
+        0.1167,
+        0.05,
+        0.05,
+        0.05,
+        0.2
+      ],
+      "visual_scales": [
+        1.0
+      ],
+      "source_facing": 1
+    },
+    "land": {
+      "folder": "land",
+      "frames": 3,
+      "durations": [
+        0.0333,
+        0.0667,
+        0.0333
+      ],
+      "visual_scales": [
+        1.0
+      ],
+      "source_facing": 1
+    },
+    "air_attack": {
+      "folder": "air_attack",
+      "frames": 6,
+      "durations": [
+        0.05,
+        0.0333,
+        0.0333,
+        0.05,
+        0.05,
+        0.2
+      ],
+      "visual_scales": [
+        1.0
+      ],
+      "source_facing": 1,
+      "contact_frame": 4
+    },
+    "air_punch": {
+      "folder": "air_punch",
+      "frames": 6,
+      "durations": [
+        0.0333,
+        0.05,
+        0.05,
+        0.05,
+        0.05,
+        0.2
+      ],
+      "visual_scales": [
+        1.0
+      ],
+      "source_facing": 1,
+      "contact_frame": 4
+    },
+    "punch_left": {
+      "folder": "punch_left",
+      "frames": 4,
+      "durations": [
+        0.05,
+        0.0333,
+        0.0333,
+        0.0333
+      ],
+      "visual_scales": [
+        1.0
+      ],
+      "source_facing": 1,
+      "contact_frame": 3
+    },
+    "punch_right": {
+      "folder": "punch_right",
+      "frames": 5,
+      "durations": [
+        0.0333,
+        0.05,
+        0.05,
+        0.05,
+        0.0333
+      ],
+      "visual_scales": [
+        1.0
+      ],
+      "source_facing": 1,
+      "contact_frame": 3
+    },
+    "muay_elbow": {
+      "folder": "muay_elbow",
+      "frames": 5,
+      "durations": [
+        0.0833,
+        0.0333,
+        0.0667,
+        0.0667,
+        0.0333
+      ],
+      "visual_scales": [
+        1.0
+      ],
+      "source_facing": 1,
+      "contact_frame": 3
+    },
+    "combo_finisher": {
+      "folder": "combo_finisher",
+      "frames": 6,
+      "durations": [
+        0.05,
+        0.0333,
+        0.0333,
+        0.0667,
+        0.0667,
+        0.05
+      ],
+      "visual_scales": [
+        1.0
+      ],
+      "source_facing": 1,
+      "contact_frame": 4
+    },
+    "kick_front": {
+      "folder": "kick_front",
+      "frames": 5,
+      "durations": [
+        0.0333,
+        0.0333,
+        0.0667,
+        0.05,
+        0.0333
+      ],
+      "visual_scales": [
+        1.0
+      ],
+      "source_facing": 1,
+      "contact_frame": 3
+    },
+    "kick_right": {
+      "folder": "kick_right",
+      "frames": 5,
+      "durations": [
+        0.0333,
+        0.0333,
+        0.05,
+        0.05,
+        0.05
+      ],
+      "visual_scales": [
+        1.0
+      ],
+      "source_facing": 1,
+      "contact_frame": 3
+    },
+    "kick_finisher": {
+      "folder": "kick_finisher",
+      "frames": 6,
+      "durations": [
+        0.05,
+        0.0333,
+        0.0333,
+        0.0667,
+        0.0667,
+        0.05
+      ],
+      "visual_scales": [
+        1.0
+      ],
+      "source_facing": 1,
+      "contact_frame": 4
+    },
+    "block": {
+      "folder": "block",
+      "frames": 1,
+      "durations": [
+        0.1
+      ],
+      "visual_scales": [
+        1.0
+      ],
+      "source_facing": 1,
+      "loop": true
+    },
+    "grab": {
+      "folder": "grab",
+      "frames": 4,
+      "durations": [
+        0.0333,
+        0.0333,
+        0.1333,
+        0.0667
+      ],
+      "visual_scales": [
+        1.0
+      ],
+      "source_facing": 1
+    },
+    "grab_strike": {
+      "folder": "grab_strike",
+      "frames": 4,
+      "durations": [
+        0.0833,
+        0.0333,
+        0.0833,
+        0.0333
+      ],
+      "visual_scales": [
+        1.0
+      ],
+      "source_facing": 1,
+      "contact_frame": 3
+    },
+    "throw": {
+      "folder": "throw",
+      "frames": 8,
+      "durations": [
+        0.2,
+        0.0333,
+        0.0333,
+        0.0667,
+        0.0333,
+        0.05,
+        0.1333,
+        0.0333
+      ],
+      "visual_scales": [
+        1.0
+      ],
+      "source_facing": 1,
+      "contact_frame": 5
+    },
+    "super": {
+      "folder": "super",
+      "frames": 10,
+      "durations": [
+        0.05,
+        0.0333,
+        0.0333,
+        0.0333,
+        0.1,
+        0.0333,
+        0.0333,
+        0.05,
+        0.0667,
+        0.0667
+      ],
+      "visual_scales": [
+        1.0
+      ],
+      "source_facing": 1,
+      "contact_frame": 6
+    },
+    "hit": {
+      "folder": "hit",
+      "frames": 2,
+      "durations": [
+        0.05,
+        0.05
+      ],
+      "visual_scales": [
+        1.0
+      ],
+      "source_facing": 1
+    },
+    "knockdown": {
+      "folder": "fall",
+      "frames": 3,
+      "durations": [
+        0.05,
+        0.0333,
+        0.2
+      ],
+      "visual_scales": [
+        1.0
+      ],
+      "source_facing": 1
+    },
+    "dead": {
+      "folder": "fall",
+      "frames": 3,
+      "durations": [
+        0.05,
+        0.0333,
+        9.0
+      ],
+      "visual_scales": [
+        1.0
+      ],
+      "source_facing": 1
+    },
+    "getup": {
+      "folder": "getup",
+      "frames": 8,
+      "durations": [
+        0.2,
+        0.0667,
+        0.0667,
+        0.0667,
+        0.0667,
+        0.0667,
+        0.05,
+        0.0667
+      ],
+      "visual_scales": [
+        1.0
+      ],
+      "source_facing": 1
+    }
+  }
+}

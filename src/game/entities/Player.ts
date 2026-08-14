@@ -20,6 +20,7 @@ import { locomotionPlaybackRate, resolveCombatFacing, selectLocomotionClip } fro
 import { shouldStartRunBrake } from '../animation/movementTransitions';
 import { updateRunGesture as advanceRunGesture } from '../animation/runGesture';
 import { nextIdleVariant, orderedIdleVariants } from '../animation/idleVariants';
+import { selectJumpClip } from '../animation/jumpAnimation';
 import type { Enemy } from './Enemy';
 
 const RUN_MULTIPLIER = 1.55;
@@ -60,6 +61,7 @@ export class Player extends Actor {
   private landingMomentum: Vec2 = { x: 0, y: 0 };
   private jumpElapsed = 0;
   private jumpDuration = (PLAYER_JUMP_VELOCITY * 2) / PLAYER_JUMP_GRAVITY;
+  private activeJumpClip = 'jump';
   private readonly idleVariants: string[];
   private idleVariantIndex = 0;
   private idleStillTime = 0;
@@ -197,21 +199,32 @@ export class Player extends Actor {
       && this.attackElapsed <= SPIN_SPECIAL.startup + SPIN_SPECIAL.active;
   }
 
-  requestJump(): boolean {
+  requestJump(horizontalIntent = 0): boolean {
     if (this.dead || this.elevation > 0 || !['idle', 'walk', 'run'].includes(this.state)) return false;
+    const horizontalJumpIntent = horizontalIntent !== 0
+      ? Math.sign(horizontalIntent)
+      : Math.sign(this.runningDirection.x);
     const launchDirection = lengthSq(this.runningDirection) > 0.01
       ? normalize(this.runningDirection)
-      : { x: 0, y: 0 };
+      : { x: horizontalJumpIntent, y: 0 };
+    const launchMultiplier = lengthSq(this.runningDirection) > 0.01
+      ? RUN_MULTIPLIER * 0.94
+      : 0.72;
     this.airMomentum = {
-      x: launchDirection.x * this.moveSpeed * RUN_MULTIPLIER * 0.94,
-      y: launchDirection.y * this.depthSpeed * RUN_MULTIPLIER * 0.94,
+      x: launchDirection.x * this.moveSpeed * launchMultiplier,
+      y: launchDirection.y * this.depthSpeed * launchMultiplier,
     };
+    if (horizontalJumpIntent !== 0) this.facing = horizontalJumpIntent < 0 ? -1 : 1;
     this.clearRun();
     this.airVelocity = PLAYER_JUMP_VELOCITY;
     this.jumpElapsed = 0;
     this.jumpDuration = (PLAYER_JUMP_VELOCITY * 2) / PLAYER_JUMP_GRAVITY;
     this.elevation = 1;
-    this.beginState('jump', 'jump');
+    this.activeJumpClip = selectJumpClip(
+      horizontalJumpIntent,
+      this.animator.bank.clips.has('jump_forward'),
+    );
+    this.beginState('jump', this.activeJumpClip);
     this.animator.fitDuration(this.jumpDuration);
     return true;
   }
@@ -276,15 +289,15 @@ export class Player extends Actor {
 
   private readMove(input: Input, movementEnabled: boolean): Vec2 {
     if (!movementEnabled) return { x: 0, y: 0 };
-    const x = Number(input.isDown('ArrowRight')) - Number(input.isDown('ArrowLeft'));
-    const y = Number(input.isDown('ArrowDown')) - Number(input.isDown('ArrowUp'));
+    const x = Number(input.isDown('KeyD')) - Number(input.isDown('KeyA'));
+    const y = Number(input.isDown('KeyS')) - Number(input.isDown('KeyW'));
     const raw = { x, y };
     return lengthSq(raw) > 1 ? normalize(raw) : raw;
   }
 
   private updateRunGesture(input: Input, movement: Vec2): void {
     const directionalPressed = input.wasPressed(
-      'ArrowRight', 'ArrowLeft', 'ArrowDown', 'ArrowUp',
+      'KeyD', 'KeyA', 'KeyS', 'KeyW',
     );
     const next = advanceRunGesture({
       tapWindow: this.runTapWindow,
@@ -324,11 +337,11 @@ export class Player extends Actor {
         this.currentAttack = null;
         this.attackHits.clear();
         if (this.elevation > 0) {
-          this.beginState('jump', 'jump');
+          this.beginState('jump', this.activeJumpClip);
           this.animator.seekNormalized(this.jumpElapsed / this.jumpDuration);
         }
       }
-    } else if (this.elevation > 0 && this.animator.name === 'jump') {
+    } else if (this.elevation > 0 && this.animator.name === this.activeJumpClip) {
       this.animator.seekNormalized(this.jumpElapsed / this.jumpDuration);
     }
 

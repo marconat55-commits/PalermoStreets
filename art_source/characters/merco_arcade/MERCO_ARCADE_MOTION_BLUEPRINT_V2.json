@@ -1,0 +1,215 @@
+{
+  "schema": 2,
+  "character": "merco_arcade",
+  "status": "approved_hq_ken_runtime_clone_blueprint",
+  "purpose": "Produrre Merco Arcade HQ come clone tecnico temporaneo della copertura runtime di ken_ref: stesse clip, conteggi, timing, contact frame e locomotion; grafica e identita Merco originali",
+  "legal_boundary": "Ken resta riferimento tecnico privato e temporaneo. Si copiano struttura del moveset, biomeccanica e timing, non pixel, volto, costume, palette, marchi o nome Ken negli asset distribuibili di Merco Arcade.",
+  "visual_tier": "HQ painterly arcade illustration; vietato usare come output finale il recente stile pixel-art semplificato",
+  "runtime_clone_source": "public/data/characters/ken_ref.json",
+  "runtime_clone_contract": {
+    "total_source_png": 121,
+    "clip_count": 24,
+    "copy_frame_counts": true,
+    "copy_frame_durations": true,
+    "copy_contact_frames": true,
+    "copy_reference_speeds": true,
+    "copy_relative_root_motion": true,
+    "copy_runtime_scale": 1.0,
+    "clips": {
+      "idle": 6,
+      "walk": 8,
+      "run": 6,
+      "brake": 2,
+      "jump": 5,
+      "land": 3,
+      "air_attack": 6,
+      "air_punch": 6,
+      "punch_left": 4,
+      "punch_right": 5,
+      "muay_elbow": 5,
+      "combo_finisher": 6,
+      "kick_front": 5,
+      "kick_right": 5,
+      "kick_finisher": 6,
+      "block": 1,
+      "grab": 4,
+      "grab_strike": 4,
+      "throw": 8,
+      "super": 10,
+      "hit": 2,
+      "knockdown": 3,
+      "getup": 8,
+      "dead_reuses_knockdown": 3
+    }
+  },
+  "identity_master": "approved/MERCO_ARCADE_MASTER_V1_CHROMA.png",
+  "raster_contract": {
+    "runtime_canvas": [640, 420],
+    "feet_pivot": [320, 400],
+    "visual_height": 290,
+    "runtime_scale": 1.0,
+    "facing": "right",
+    "palette_lock": true,
+    "identity_lock": true
+  },
+  "approved_keyframes": {
+    "walk_right_contact": "approved/keyframes/MERCO_ARCADE_WALK_RIGHT_CONTACT_APPROVED_CHROMA.png",
+    "punch_right_impact": "approved/keyframes/MERCO_ARCADE_PUNCH_RIGHT_IMPACT_APPROVED_CHROMA.png"
+  },
+  "mugen_reference": {
+    "air": "Ken.air",
+    "sprite_archive": "Ken.sff",
+    "tick_rate": 60,
+    "rule": "Preservare ordine, offset relativi e durata AIR; ridurre frame solo dopo confronto visivo, mai inventare duplicati"
+  },
+  "clips": {
+    "idle_breath": {
+      "air_action": 0,
+      "role": "guardia e respiro",
+      "runtime_input": "nessuno",
+      "loop": true
+    },
+    "walk": {
+      "air_action": 20,
+      "role": "camminata laterale completa",
+      "runtime_input": "frecce",
+      "loop": true,
+      "required_phases": ["right_contact", "right_down", "right_pass", "right_up", "left_contact", "left_down", "left_pass", "left_up"]
+    },
+    "run": {
+      "air_action": 100,
+      "role": "corsa laterale",
+      "runtime_input": "doppia direzione",
+      "loop": true
+    },
+    "jump_vertical_flip": {
+      "air_action": 41,
+      "role": "salto da fermo con capriola",
+      "runtime_input": "K senza direzione",
+      "runtime_physics": "parabola verticale Palermo Streets; posa sincronizzata alla quota normalizzata"
+    },
+    "jump_forward": {
+      "air_action": 42,
+      "role": "salto in avanzamento",
+      "runtime_input": "direzione + K"
+    },
+    "jump_back": {
+      "air_action": 43,
+      "role": "salto indietro",
+      "runtime_input": "indietro + K"
+    },
+    "flying_kick": {
+      "air_action": 630,
+      "role": "calcio volante",
+      "runtime_input": "J durante il salto",
+      "contact_policy": "usare il primo frame AIR con Clsn1 pienamente estesa"
+    },
+    "combo_hit_1": {
+      "air_action": 200,
+      "role": "PA - pugno rapido",
+      "runtime_input": "J, primo colpo"
+    },
+    "combo_hit_2": {
+      "air_action": 210,
+      "role": "PB - diretto",
+      "runtime_input": "J, secondo colpo"
+    },
+    "combo_hit_3": {
+      "air_action": 220,
+      "role": "PA - colpo pesante",
+      "runtime_input": "J, terzo colpo"
+    },
+    "combo_hit_4": {
+      "air_action": 250,
+      "role": "CA - calcio finale con lancio",
+      "runtime_input": "J, quarto colpo",
+      "knockdown": true
+    },
+    "grab_acquire": {
+      "air_action": 800,
+      "role": "aggancio e presa",
+      "runtime_input": "avanti addosso + J oppure avanti dopo il primo colpo"
+    },
+    "grab_strike": {
+      "air_action": 220,
+      "role": "colpo ravvicinato durante presa",
+      "runtime_input": "J durante presa"
+    },
+    "throw": {
+      "air_action": 810,
+      "role": "presa e lancio lontano",
+      "runtime_input": "K durante presa",
+      "target_motion": "parabola arcade Palermo Streets"
+    },
+    "special_rotating_kick": {
+      "air_action": 1200,
+      "role": "calcio rotante speciale",
+      "runtime_input": "variante futura"
+    },
+    "special_uppercut": {
+      "air_action": 1100,
+      "role": "uppercut infuocato",
+      "runtime_input": "variante futura"
+    },
+    "super_advancing": {
+      "air_action": 3000,
+      "role": "super combo in avanzamento",
+      "runtime_input": "J+K",
+      "multi_target": true,
+      "invulnerable": true
+    },
+    "super_flame_uppercut": {
+      "air_action": 3100,
+      "role": "super uppercut infuocato",
+      "runtime_input": "selezione super futura",
+      "multi_target": true
+    },
+    "super_kick_barrage": {
+      "air_action": 3200,
+      "role": "raffica di calci super",
+      "runtime_input": "selezione super futura",
+      "multi_target": true
+    },
+    "hit_reactions": {
+      "air_actions": [5000, 5010, 5020, 5030],
+      "role": "reazioni direzionali al colpo"
+    },
+    "knockdown": {
+      "air_actions": [5100, 5110],
+      "role": "caduta e posa a terra",
+      "scale": 1.0
+    },
+    "getup": {
+      "air_action": 5120,
+      "role": "rialzata completa",
+      "scale": 1.0,
+      "continuity": "primo frame pixel-identico all'ultimo knockdown"
+    }
+  },
+  "production_order": [
+    "walk",
+    "idle_breath",
+    "jump_vertical_flip",
+    "flying_kick",
+    "combo_hit_1",
+    "combo_hit_2",
+    "combo_hit_3",
+    "combo_hit_4",
+    "grab_acquire",
+    "grab_strike",
+    "throw",
+    "super_advancing",
+    "special_uppercut",
+    "special_rotating_kick",
+    "hit_reactions",
+    "knockdown",
+    "getup"
+  ],
+  "approval_gate": "Ogni clip HQ viene costruita da keyframe Ken di riferimento, confrontata con il master e i riferimenti HQ Merco, approvata e solo dopo normalizzata e integrata. Vietata la generazione massiva non verificata.",
+  "first_production_gate": {
+    "clip": "idle",
+    "frames": 6,
+    "goal": "respiro/guardia HQ con silhouette e timing Ken",
+    "then": "walk HQ 8 frame con biomeccanica Ken e identita Merco bloccata"
+  }
+}

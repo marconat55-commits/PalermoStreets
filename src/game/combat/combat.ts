@@ -47,6 +47,7 @@ export function resolvePlayerAttack(player: Player, enemies: Enemy[]): CombatEve
     player.registerHit(enemy.actorId, attack.damage);
     const hb = enemy.hurtbox;
     events.push({
+      targetActorId: enemy.actorId,
       position: { x: hb.x + hb.width / 2, y: hb.y + hb.height / 2 },
       damage: attack.damage,
       heavy: attack.knockdown ?? false,

@@ -26,7 +26,8 @@ export class Hud {
     style: new TextStyle({ fontFamily: 'Arial, sans-serif', fontSize: 15, fontWeight: '700', fill: 0xffe8cd }),
   });
 
-  constructor() {
+  constructor(playerDisplayName = 'MARCO') {
+    this.playerName.text = playerDisplayName.toUpperCase();
     this.root.addChild(this.bars, this.playerName, this.rightInfo, this.superReady, this.combo, this.bossLabel);
     this.playerName.position.set(35, 3);
     this.rightInfo.anchor.set(1, 0);

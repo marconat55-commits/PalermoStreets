@@ -70,7 +70,7 @@ for (const id of index.characters) {
     if (!exists(animationTemplatePath)) fail(`${id}: animation_template mancante: ${animationTemplatePath}`);
     else {
       animationTemplate = read(animationTemplatePath);
-      if (animationTemplate.schema !== 1 || animationTemplate.role !== 'player') fail(`${id}: animation_template non valido`);
+      if (animationTemplate.schema !== 1 || animationTemplate.role !== profile.role) fail(`${id}: animation_template non valido`);
       const templateCanvas = animationTemplate.raster?.canvas;
       if (!Array.isArray(templateCanvas) || templateCanvas[0] !== canvas?.[0] || templateCanvas[1] !== canvas?.[1]) fail(`${id}: canvas diverso dal template`);
       if (animationTemplate.raster?.baseline_y !== profile.factory?.baseline_y) fail(`${id}: baseline diversa dal template`);

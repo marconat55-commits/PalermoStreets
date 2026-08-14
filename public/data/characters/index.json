@@ -3,7 +3,10 @@
   "characters": [
     "marco",
     "merco",
-    "talebano"
+    "ken_ref",
+    "talebano",
+    "haggar_ref",
+    "aiori_ref"
   ],
   "default_player": "marco",
   "default_enemy": "talebano"

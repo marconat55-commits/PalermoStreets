@@ -1,0 +1,87 @@
+{
+  "schema": 1,
+  "id": "merco_hq_ken_clone_v2",
+  "role": "player",
+  "purpose": "Contratto Merco HQ: core arcade ereditato da Marco, idle respiratorio a sei fasi e moveset Ken temporaneo in progressiva sostituzione",
+  "raster": {
+    "canvas": [640, 420],
+    "baseline_y": 400,
+    "scale_mode": "baked",
+    "uniform_runtime_scale_only": true
+  },
+  "required_clips": [
+    "idle", "walk", "run", "brake", "jump", "jump_forward", "land",
+    "air_attack", "air_punch", "punch_left", "punch_right", "combo_finisher",
+    "kick_front", "kick_right", "kick_finisher", "block", "grab",
+    "grab_strike", "throw", "super", "hit", "knockdown", "getup", "dead"
+  ],
+  "locomotion": {
+    "idle": {
+      "frames": 6,
+      "loop": true,
+      "phases": ["neutral", "early_inhale", "late_inhale", "breath_peak", "early_exhale", "late_exhale"]
+    },
+    "walk": {
+      "frames": 8,
+      "loop": true,
+      "phases": ["right_contact", "right_down", "right_pass", "right_up", "left_contact", "left_down", "left_pass", "left_up"]
+    },
+    "run": {
+      "frames": 8,
+      "loop": true,
+      "phases": ["right_contact", "right_compress", "right_drive", "flight_a", "left_contact", "left_compress", "left_drive", "flight_b"]
+    },
+    "brake": {
+      "frames": 4,
+      "loop": false,
+      "phases": ["run_exit", "plant", "compression", "guard"]
+    },
+    "jump": {
+      "frames": 9,
+      "loop": false,
+      "phases": ["launch", "rise", "tuck", "compression", "apex", "open", "descent_tuck", "descent_open", "landing_ready"]
+    },
+    "jump_forward": {
+      "frames": 8,
+      "loop": false,
+      "phases": ["launch", "rotation_entry", "forward_tuck", "inverted_tuck", "return_inverted", "return_tuck", "descent_open", "landing_ready"]
+    },
+    "land": {
+      "frames": 2,
+      "loop": false,
+      "phases": ["contact_guard", "compression"]
+    }
+  },
+  "qa": {
+    "upright_grounded_clips": ["idle", "walk"],
+    "upright_grounded_prefixes": ["idle_variant_"],
+    "unique_motion_clips": ["walk", "run", "brake", "jump_forward", "land"],
+    "unique_motion_prefixes": ["idle_variant_"],
+    "distinct_motion_clips": ["walk", "run", "brake", "jump_forward", "land"],
+    "distinct_motion_prefixes": ["idle_variant_"],
+    "min_silhouette_distance": 0.025,
+    "min_silhouette_distance_by_clip": {
+      "idle_variant_1": 0.008,
+      "walk": 0.015,
+      "run": 0.012,
+      "brake": 0.010,
+      "jump": 0.010,
+      "jump_forward": 0.010,
+      "land": 0.010
+    },
+    "max_visual_height_error_px": 6,
+    "max_visual_height_error_px_by_clip": {},
+    "max_bottom_opaque_run_px": 23,
+    "max_bottom_opaque_ratio": 0.24,
+    "max_loop_centroid_step": 0.18,
+    "apparent_area_reference_clip": "idle",
+    "apparent_area_ratio_by_clip": {
+      "walk": [0.96, 1.02],
+      "run": [0.84, 0.92],
+      "air_attack": [0.72, 0.93],
+      "grab": [0.94, 1.02],
+      "grab_strike": [1.02, 1.10],
+      "throw": [1.01, 1.09]
+    }
+  }
+}

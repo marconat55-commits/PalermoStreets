@@ -1,0 +1,177 @@
+{
+  "schema": 1,
+  "id": "haggar_ref",
+  "display_name": "HAGGAR REF",
+  "role": "enemy",
+  "height_cm": 202,
+  "body_type": "wrestler massiccio",
+  "visual_height": 300,
+  "assets": {
+    "master_root": "assets/characters/haggar_ref",
+    "animation_root": "assets/characters/haggar_ref_anim",
+    "texture_atlas": "assets/characters/haggar_ref_anim/atlas/atlas.json"
+  },
+  "identity": {
+    "fighting_style": "MUGEN motion reference adattato al belt-scroller",
+    "canon": "PROTOTIPO TECNICO PRIVATO da materiale fornito dall'utente; non distribuibile commercialmente"
+  },
+  "gameplay": {
+    "enemy": {
+      "health": 108,
+      "aggression": 0.96,
+      "move_speed_scale": 0.82,
+      "damage_scale": 1.16,
+      "attack_speed_scale": 0.88,
+      "heavy_chance": 0.46,
+      "cooldown_scale": 1.08,
+      "collision_scale": 1.13,
+      "dodge_chance": 0.0,
+      "dodge_cooldown": 0.0,
+      "label": "HAGGAR REF"
+    }
+  },
+  "factory": {
+    "recipe": "enemy_reference_v1",
+    "animation_template": "data/character_templates/enemy_reference_v1.json",
+    "animation_canvas": [
+      640,
+      420
+    ],
+    "baseline_y": 400,
+    "content_bottom_y": 400,
+    "scale_mode": "baked",
+    "attack_slots": 2,
+    "dodge_slots": 0
+  },
+  "animations": {
+    "idle": {
+      "folder": "idle",
+      "frames": 6,
+      "durations": [
+        0.1333,
+        0.1333,
+        0.1333,
+        0.1333,
+        0.1333,
+        0.1333
+      ],
+      "visual_scales": [
+        1.0
+      ],
+      "loop": true,
+      "source_facing": 1
+    },
+    "walk": {
+      "folder": "walk",
+      "frames": 8,
+      "durations": [
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1
+      ],
+      "visual_scales": [
+        1.0
+      ],
+      "loop": true,
+      "source_facing": 1,
+      "reference_speed": 118
+    },
+    "attack": {
+      "folder": "attack",
+      "frames": 6,
+      "durations": [
+        0.05,
+        0.0333,
+        0.05,
+        0.0833,
+        0.0667,
+        0.05
+      ],
+      "visual_scales": [
+        1.0
+      ],
+      "loop": false,
+      "source_facing": 1,
+      "contact_frame": 4
+    },
+    "hit": {
+      "folder": "hit",
+      "frames": 2,
+      "durations": [
+        0.0667,
+        0.0667
+      ],
+      "visual_scales": [
+        1.0
+      ],
+      "loop": false,
+      "source_facing": 1
+    },
+    "heavy": {
+      "folder": "heavy",
+      "frames": 7,
+      "durations": [
+        0.0833,
+        0.05,
+        0.0333,
+        0.0667,
+        0.1333,
+        0.0667,
+        0.0667
+      ],
+      "visual_scales": [
+        1.0
+      ],
+      "loop": false,
+      "source_facing": 1,
+      "contact_frame": 4
+    },
+    "knockdown": {
+      "folder": "fall",
+      "frames": 2,
+      "durations": [
+        0.05,
+        0.0333
+      ],
+      "visual_scales": [
+        1.0
+      ],
+      "loop": false,
+      "source_facing": 1
+    },
+    "dead": {
+      "folder": "fall",
+      "frames": 2,
+      "durations": [
+        0.05,
+        9.0
+      ],
+      "visual_scales": [
+        1.0
+      ],
+      "loop": false,
+      "source_facing": 1
+    },
+    "getup": {
+      "folder": "getup",
+      "frames": 5,
+      "durations": [
+        0.0333,
+        0.0667,
+        0.0667,
+        0.0667,
+        0.05
+      ],
+      "visual_scales": [
+        1.0
+      ],
+      "loop": false,
+      "source_facing": 1
+    }
+  }
+}

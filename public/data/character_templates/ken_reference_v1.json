@@ -1,0 +1,38 @@
+{
+  "schema": 1,
+  "id": "ken_reference_v1",
+  "role": "player",
+  "purpose": "Prototipo tecnico privato MUGEN: verifica della conversione automatica AIR/SFF nel runtime PixiJS",
+  "raster": {
+    "canvas": [640, 420],
+    "baseline_y": 400,
+    "scale_mode": "baked",
+    "uniform_runtime_scale_only": true
+  },
+  "required_clips": [
+    "idle", "walk", "run", "brake", "jump", "land",
+    "air_attack", "air_punch", "punch_left", "punch_right", "combo_finisher",
+    "kick_front", "kick_right", "kick_finisher", "block", "grab",
+    "grab_strike", "throw", "super", "hit", "knockdown", "getup", "dead"
+  ],
+  "locomotion": {
+    "idle": { "frames": 6, "loop": true, "phases": ["breath_1", "breath_2", "breath_3", "breath_4", "breath_5", "breath_6"] },
+    "walk": { "frames": 8, "loop": true, "phases": ["contact_r", "down_r", "pass_r", "up_r", "contact_l", "down_l", "pass_l", "up_l"] },
+    "run": { "frames": 6, "loop": true, "phases": ["contact_r", "drive_r", "flight_r", "contact_l", "drive_l", "flight_l"] },
+    "brake": { "frames": 2, "loop": false, "phases": ["plant", "guard"] },
+    "jump": { "frames": 5, "loop": false, "phases": ["rise", "open", "apex", "tuck", "descent"] },
+    "land": { "frames": 3, "loop": false, "phases": ["contact", "compression", "guard"] }
+  },
+  "qa": {
+    "upright_grounded_clips": ["idle"],
+    "unique_motion_clips": ["idle", "walk", "brake", "jump"],
+    "distinct_motion_clips": ["idle", "walk", "brake", "jump"],
+    "min_silhouette_distance": 0.004,
+    "max_visual_height_error_px": 6,
+    "max_bottom_opaque_run_px": 80,
+    "max_bottom_opaque_ratio": 0.8,
+    "max_loop_centroid_step": 0.42,
+    "max_top_opaque_run_px": 80,
+    "ground_body_width_ratio": [0.92, 1.16]
+  }
+}

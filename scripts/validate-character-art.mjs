@@ -192,6 +192,7 @@ for (const id of index.characters) {
   const maxVisualHeightError = qa.max_visual_height_error_px ?? 6;
   const maxBottomOpaqueRun = qa.max_bottom_opaque_run_px ?? 23;
   const maxBottomOpaqueRatio = qa.max_bottom_opaque_ratio ?? 0.24;
+  const maxTopOpaqueRun = qa.max_top_opaque_run_px ?? 24;
   const maxLoopCentroidStep = qa.max_loop_centroid_step ?? 0.42;
   const decoded = new Map();
   const medianVisibleAreaByClip = new Map();
@@ -230,7 +231,7 @@ for (const id of index.characters) {
       if (art.bounds[0] <= 1 || art.bounds[1] <= 1 || art.bounds[0] + art.bounds[2] >= 639) {
         fail(`${id}/${clipName}/${frameName}: contenuto troppo vicino al bordo del canvas`);
       }
-      if (art.topRun >= 24 && art.topRatio >= 0.12) {
+      if (art.topRun >= maxTopOpaqueRun && art.topRatio >= 0.12) {
         fail(`${id}/${clipName}/${frameName}: probabile taglio orizzontale superiore (${art.topRun}px)`);
       }
       if (uprightGrounded) {
@@ -320,7 +321,8 @@ for (const id of index.characters) {
       fail(`${id}: fall/getup devono mantenere scala runtime 1.0`);
     }
     const groundRatio = fallArt.bounds[2] * fallScale / profile.visual_height;
-    if (groundRatio < 0.92 || groundRatio > 1.10) fail(`${id}: corpo a terra sproporzionato (${groundRatio.toFixed(2)}x)`);
+    const [minimumGroundRatio, maximumGroundRatio] = qa.ground_body_width_ratio ?? [0.92, 1.10];
+    if (groundRatio < minimumGroundRatio || groundRatio > maximumGroundRatio) fail(`${id}: corpo a terra sproporzionato (${groundRatio.toFixed(2)}x)`);
   }
 }
 

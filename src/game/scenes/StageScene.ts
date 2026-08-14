@@ -14,6 +14,12 @@ import { cameraTargetForPlayer, resolveCameraBounds, smoothCamera, type Horizont
 import { resolveArcadeAction, resolveGrabAction } from '../input/arcadeControls';
 import { SPIN_SPECIAL } from '../combat/attacks';
 import { resolveWalkBand } from '../stage/walkBand';
+import {
+  COMBO_GRAB_RANGE,
+  COMBO_GRAB_WINDOW_SECONDS,
+  isForwardHeld,
+  selectGrabCandidate,
+} from '../combat/grabAssist';
 
 function authoredLayers(module: ModuleData): BackgroundLayerData[] {
   const enabled = module.background_layers?.filter((layer) => layer.enabled !== false);
@@ -34,7 +40,7 @@ export class StageScene implements Scene {
   private readonly enemyHud = new EnemyHudLayer();
   private readonly effects = new EffectsLayer();
   private readonly screen = new Container();
-  private readonly hud = new Hud();
+  private readonly hud: Hud;
   private readonly messagePanel = new Graphics();
   private readonly messageText = new Text({
     text: '',
@@ -123,6 +129,8 @@ export class StageScene implements Scene {
   private cameraBounds: HorizontalCameraBounds = { min: 0, max: 0 };
   private shakeOffset: Vec2 = { x: 0, y: 0 };
   private specialFxTimer = 0;
+  private comboGrabTargetId: number | null = null;
+  private comboGrabTimer = 0;
 
   static async create(
     catalog: AssetCatalog,
@@ -151,6 +159,8 @@ export class StageScene implements Scene {
     defaultEnemyId: string,
   ) {
     this.catalog = catalog;
+    const playerProfile = this.catalog.getProfile(playerId);
+    this.hud = new Hud(playerProfile.display_name);
     this.defaultEnemyId = defaultEnemyId;
     this.modules = stageData.modules;
     this.backgroundTextures = backgrounds;
@@ -208,7 +218,6 @@ export class StageScene implements Scene {
     this.overlaySubtitle.anchor.set(0.5);
     this.overlaySubtitle.position.set(640, 378);
 
-    const playerProfile = this.catalog.getProfile(playerId);
     const tuning = playerProfile.gameplay.player ?? {};
     this.player = new Player(
       this.catalog.getBank(playerId),
@@ -403,6 +412,8 @@ export class StageScene implements Scene {
       heavy_chance: d.heavy_chance ?? 0.13,
       cooldown_scale: d.cooldown_scale ?? 1,
       collision_scale: d.collision_scale ?? 1,
+      dodge_chance: d.dodge_chance ?? 0,
+      dodge_cooldown: d.dodge_cooldown ?? 2.6,
       label: d.label ?? profile.display_name,
     };
   }
@@ -430,6 +441,8 @@ export class StageScene implements Scene {
         heavyChance: wave.heavy_chance ?? defaults.heavy_chance,
         cooldownScale: wave.cooldown_scale ?? defaults.cooldown_scale,
         collisionScale: wave.collision_scale ?? defaults.collision_scale,
+        dodgeChance: wave.dodge_chance ?? defaults.dodge_chance,
+        dodgeCooldown: wave.dodge_cooldown ?? defaults.dodge_cooldown,
       });
       enemy.setPlayfieldBounds(45, this.worldWidth - 45, this.playfieldTop, this.playfieldBottom);
       enemy.setPlayfieldProfile((worldX) => resolveWalkBand(
@@ -496,21 +509,21 @@ export class StageScene implements Scene {
     }
   }
 
-  private tryStartGrab(): boolean {
+  private tryStartGrab(preferredActorId: number | null = null, comboAssist = false): boolean {
     if (!this.player.canStartGrab) return false;
-    const target = this.enemies
-      .filter((enemy) => enemy.canBeGrabbed)
-      .filter((enemy) => Math.abs(enemy.position.x - this.player.position.x) <= 108)
-      .filter((enemy) => Math.abs(enemy.position.y - this.player.position.y) <= 48)
-      .sort((a, b) => {
-        const frontA = (a.position.x - this.player.position.x) * this.player.facing >= -12 ? 0 : 1;
-        const frontB = (b.position.x - this.player.position.x) * this.player.facing >= -12 ? 0 : 1;
-        if (frontA !== frontB) return frontA - frontB;
-        const distanceA = Math.abs(a.position.x - this.player.position.x) + Math.abs(a.position.y - this.player.position.y) * 1.6;
-        const distanceB = Math.abs(b.position.x - this.player.position.x) + Math.abs(b.position.y - this.player.position.y) * 1.6;
-        return distanceA - distanceB;
-      })[0];
-    return target ? this.player.beginGrab(target) : false;
+    const target = selectGrabCandidate(
+      this.player.position,
+      this.player.facing,
+      this.enemies,
+      comboAssist ? COMBO_GRAB_RANGE : undefined,
+      preferredActorId,
+    );
+    const started = target ? this.player.beginGrab(target) : false;
+    if (started) {
+      this.comboGrabTargetId = null;
+      this.comboGrabTimer = 0;
+    }
+    return started;
   }
 
   update(dt: number, input: Input): void {
@@ -520,6 +533,14 @@ export class StageScene implements Scene {
     if (!this.paused && !this.stageComplete && this.transitionPhase === null && this.stageIntroTimer <= 0) {
       const attackPressed = input.wasPressed('KeyJ');
       const jumpPressed = input.wasPressed('KeyK');
+      const forwardHeld = isForwardHeld(
+        this.player.facing,
+        input.isDown('KeyA'),
+        input.isDown('KeyD'),
+      );
+      if (forwardHeld && this.comboGrabTimer > 0 && this.comboGrabTargetId !== null) {
+        this.tryStartGrab(this.comboGrabTargetId, true);
+      }
       const action = resolveArcadeAction({
         attackPressed,
         jumpPressed,
@@ -533,7 +554,10 @@ export class StageScene implements Scene {
       else if (grabAction === 'strike') this.player.requestGrabStrike();
       else if (action === 'special') this.player.requestSpinSpecial();
       else {
-        if (action === 'jump') this.player.requestJump();
+        if (action === 'jump') {
+          const horizontalIntent = Number(input.isDown('KeyD')) - Number(input.isDown('KeyA'));
+          this.player.requestJump(horizontalIntent);
+        }
         if (action === 'attack') {
           if (this.player.isAirborne) this.player.requestAirKick();
           else if (!this.tryStartGrab()) this.player.requestArcadeAttack();
@@ -546,6 +570,8 @@ export class StageScene implements Scene {
       return;
     }
     this.elapsed += dt;
+    this.comboGrabTimer = Math.max(0, this.comboGrabTimer - dt);
+    if (this.comboGrabTimer <= 0) this.comboGrabTargetId = null;
     this.messageTimer = Math.max(0, this.messageTimer - dt);
     if (this.transitionPhase !== null) {
       this.updateTransition(dt);
@@ -628,6 +654,10 @@ export class StageScene implements Scene {
     }
 
     for (const event of resolvePlayerAttack(this.player, this.enemies)) {
+      if (!event.heavy && event.targetActorId !== undefined) {
+        this.comboGrabTargetId = event.targetActorId;
+        this.comboGrabTimer = COMBO_GRAB_WINDOW_SECONDS;
+      }
       this.hitStop = Math.max(this.hitStop, event.hitStop);
       this.screenShake = Math.max(this.screenShake, event.shake);
       this.effects.hitSpark(event.position, event.heavy);

@@ -30,6 +30,7 @@ export interface EnemyOptions {
   attackPattern?: EnemyAttackPattern;
   cooldownScale?: number;
   collisionScale?: number;
+  visualScale?: number;
   dodgeChance?: number;
   dodgeCooldown?: number;
 }
@@ -62,7 +63,7 @@ export class Enemy extends Actor {
   private attackSequence = 0;
 
   constructor(bank: AnimationBank, position: Vec2, options: EnemyOptions = {}) {
-    super(bank, position, options.health ?? 82);
+    super(bank, position, options.health ?? 82, options.visualScale ?? 1);
     this.characterId = options.characterId ?? 'talebano';
     this.aggression = options.aggression ?? 1;
     this.isBoss = options.boss ?? false;

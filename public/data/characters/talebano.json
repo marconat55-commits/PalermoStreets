@@ -5,7 +5,7 @@
   "role": "enemy",
   "height_cm": 183,
   "body_type": "sovrappeso con pancia prominente",
-  "visual_height": 305,
+  "visual_height": 318,
   "assets": {
     "master_root": "assets/characters/talebano",
     "animation_root": "assets/characters/talebano_anim",
@@ -27,7 +27,8 @@
       "attack_speed_scale": 0.92,
       "heavy_chance": 0.34,
       "cooldown_scale": 1.08,
-      "collision_scale": 1.06,
+      "collision_scale": 1.1,
+      "visual_scale": 1.045,
       "label": "TALEBANO"
     }
   },

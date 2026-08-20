@@ -24,6 +24,13 @@ test('ogni posa runtime mantiene scala 1 per ogni personaggio', () => {
   }
 });
 
+test('Talebano usa un solo fattore globale heavy senza zoom tra pose', () => {
+  const profile = readProfile('talebano');
+  assert.equal(profile.visual_height, 318);
+  assert.equal(profile.gameplay.enemy.visual_scale, 1.045);
+  assert.equal(profile.gameplay.enemy.collision_scale, 1.1);
+});
+
 test('le idle non applicano dissolvenze periodiche', () => {
   for (const id of index.characters) {
     const profile = readProfile(id);

@@ -586,6 +586,7 @@ export class StageScene implements Scene {
       attack_pattern: d.attack_pattern ?? 'weighted',
       cooldown_scale: d.cooldown_scale ?? 1,
       collision_scale: d.collision_scale ?? 1,
+      visual_scale: d.visual_scale ?? 1,
       dodge_chance: d.dodge_chance ?? 0,
       dodge_cooldown: d.dodge_cooldown ?? 2.6,
       label: d.label ?? profile.display_name,
@@ -616,6 +617,7 @@ export class StageScene implements Scene {
         attackPattern: wave.attack_pattern ?? defaults.attack_pattern,
         cooldownScale: wave.cooldown_scale ?? defaults.cooldown_scale,
         collisionScale: wave.collision_scale ?? defaults.collision_scale,
+        visualScale: defaults.visual_scale,
         dodgeChance: wave.dodge_chance ?? defaults.dodge_chance,
         dodgeCooldown: wave.dodge_cooldown ?? defaults.dodge_cooldown,
       });

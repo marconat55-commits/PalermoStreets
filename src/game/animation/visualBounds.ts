@@ -5,9 +5,9 @@ export interface HorizontalExtents {
   right: number;
 }
 
-export function horizontalExtents(frame: VisualFrame, flip: -1 | 1): HorizontalExtents {
+export function horizontalExtents(frame: VisualFrame, flip: -1 | 1, visualScale = 1): HorizontalExtents {
   const [boundsX, , boundsWidth] = frame.bounds;
-  const scale = frame.scale;
+  const scale = frame.scale * visualScale;
   const authoredLeft = (boundsX - frame.width / 2 + frame.offsetX) * scale;
   const authoredRight = (boundsX + boundsWidth - frame.width / 2 + frame.offsetX) * scale;
   if (flip === 1) return { left: authoredLeft, right: authoredRight };
@@ -21,8 +21,9 @@ export function clampFeetX(
   leftBoundary: number,
   rightBoundary: number,
   margin = 6,
+  visualScale = 1,
 ): number {
-  const extents = horizontalExtents(frame, flip);
+  const extents = horizontalExtents(frame, flip, visualScale);
   const minimum = leftBoundary + margin - extents.left;
   const maximum = rightBoundary - margin - extents.right;
   if (minimum > maximum) return (leftBoundary + rightBoundary) / 2;

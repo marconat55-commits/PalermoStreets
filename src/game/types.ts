@@ -56,6 +56,8 @@ export interface CharacterProfile {
       attack_pattern?: EnemyAttackPattern;
       cooldown_scale?: number;
       collision_scale?: number;
+      /** Uniform feet-anchored scale for the whole character, never per-frame. */
+      visual_scale?: number;
       /** Optional reactive evade used by agile enemy templates. */
       dodge_chance?: number;
       /** Minimum seconds between successful evades. */

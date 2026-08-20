@@ -25,6 +25,7 @@ export class Actor {
   velocity: Vec2 = { x: 0, y: 0 };
   maxHealth: number;
   health: number;
+  readonly visualScale: number;
   facing: -1 | 1 = 1;
   state = 'idle';
   stateElapsed = 0;
@@ -41,11 +42,12 @@ export class Actor {
   dead = false;
   removeReady = false;
 
-  constructor(bank: AnimationBank, position: Vec2, maxHealth: number) {
+  constructor(bank: AnimationBank, position: Vec2, maxHealth: number, visualScale = 1) {
     this.animator = new Animator(bank);
     this.position = { ...position };
     this.maxHealth = maxHealth;
     this.health = maxHealth;
+    this.visualScale = clamp(visualScale, 0.85, 1.15);
 
     this.root.sortableChildren = true;
     for (const [dx, dy] of [[-1, 0], [1, 0], [0, -1], [0, 1]] as const) {
@@ -162,6 +164,8 @@ export class Actor {
       flip,
       this.playfieldBounds.left,
       this.playfieldBounds.right,
+      6,
+      this.visualScale,
     );
     const profile = this.playfieldProfile?.(this.position.x);
     const top = profile ? Math.min(profile[0], profile[1]) : this.playfieldBounds.top;
@@ -181,7 +185,7 @@ export class Actor {
 
   visualHorizontalBounds(): { left: number; right: number } {
     const flip = this.facing === this.animator.sourceFacing ? 1 : -1;
-    const extents = horizontalExtents(this.animator.frame, flip);
+    const extents = horizontalExtents(this.animator.frame, flip, this.visualScale);
     return { left: this.position.x + extents.left, right: this.position.x + extents.right };
   }
 
@@ -217,9 +221,10 @@ export class Actor {
   visualTop(): number {
     const frame = this.animator.frame;
     const [, top, , height] = frame.bounds;
-    const canvasBottom = this.position.y - this.elevation + frame.offsetY;
-    const canvasTop = canvasBottom - frame.height * frame.scale;
-    return height > 0 ? canvasTop + top * frame.scale : canvasTop;
+    const scale = frame.scale * this.visualScale;
+    const canvasBottom = this.position.y - this.elevation + frame.offsetY * this.visualScale;
+    const canvasTop = canvasBottom - frame.height * scale;
+    return height > 0 ? canvasTop + top * scale : canvasTop;
   }
 
   syncVisual(forceTexture = false): void {
@@ -229,16 +234,18 @@ export class Actor {
       for (const outline of this.outlineSprites) outline.texture = frame.texture;
     }
     const flip = this.facing === this.animator.sourceFacing ? 1 : -1;
-    this.sprite.scale.set(flip * frame.scale, frame.scale);
-    this.sprite.x = frame.offsetX * frame.scale;
-    this.sprite.y = frame.offsetY;
+    const visualFrameScale = frame.scale * this.visualScale;
+    this.sprite.scale.set(flip * visualFrameScale, visualFrameScale);
+    this.sprite.x = frame.offsetX * visualFrameScale;
+    this.sprite.y = frame.offsetY * this.visualScale;
     this.sprite.tint = this.hitFlash > 0 ? 0xffa08e : 0xffffff;
     const transition = this.animator.transitionFrame;
     if (transition) {
       const transitionFlip = this.facing === this.animator.transitionSourceFacing ? 1 : -1;
       this.transitionSprite.texture = transition.texture;
-      this.transitionSprite.scale.set(transitionFlip * transition.scale, transition.scale);
-      this.transitionSprite.position.set(transition.offsetX * transition.scale, transition.offsetY);
+      const transitionScale = transition.scale * this.visualScale;
+      this.transitionSprite.scale.set(transitionFlip * transitionScale, transitionScale);
+      this.transitionSprite.position.set(transition.offsetX * transitionScale, transition.offsetY * this.visualScale);
       this.transitionSprite.alpha = this.animator.transitionAlpha;
       this.transitionSprite.tint = this.sprite.tint;
       this.transitionSprite.visible = true;
@@ -251,9 +258,9 @@ export class Actor {
       const outline = this.outlineSprites[i]!;
       const offsets: ReadonlyArray<readonly [number, number]> = [[-1, 0], [1, 0], [0, -1], [0, 1]];
       const [dx, dy] = offsets[i] ?? [0, 0];
-      outline.scale.set(flip * frame.scale, frame.scale);
-      outline.x = frame.offsetX * frame.scale + dx;
-      outline.y = frame.offsetY + dy;
+      outline.scale.set(flip * visualFrameScale, visualFrameScale);
+      outline.x = frame.offsetX * visualFrameScale + dx;
+      outline.y = frame.offsetY * this.visualScale + dy;
       outline.alpha = 0.58 * this.sprite.alpha;
     }
     this.root.alpha = this.alpha255 / 255;

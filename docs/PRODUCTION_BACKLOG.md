@@ -4,7 +4,7 @@ This file keeps stage and character production separate so an approved runtime c
 
 ## Stage modules
 
-- M01: `final_v1` approval candidate built from the existing 3840×1080 master. Three camera proofs are required before runtime integration.
+- M01: `final_v1` approved and integrated from the existing 3840×1080 master after three camera proofs.
 - Module unit: 2560×720 at runtime (two 1280×720 viewports). Longer stages are assembled by sequencing modules, not by loading one unbounded texture.
 - Every module owns its walk band, camera bounds, encounter triggers and optional FAR/MAIN/FOREGROUND layers.
 - Preload policy: current module plus next module. This is the template for later stages.

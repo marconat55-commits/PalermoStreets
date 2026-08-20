@@ -157,7 +157,7 @@ def main(project_root: Path) -> None:
     manifest = {
         "schema": 1,
         "id": "M01_final_layers_v1",
-        "status": "approval_candidate",
+        "status": "approved",
         "source_master": str(main_source_path.relative_to(project_root)).replace("\\", "/"),
         "far_master_source": str(far_source_path.relative_to(project_root)).replace("\\", "/"),
         "legacy_alpha_reference": str(alpha_reference_path.relative_to(project_root)).replace("\\", "/"),

@@ -22,8 +22,8 @@ const stage = JSON.parse(fs.readFileSync('public/data/stage1_zen.json', 'utf8'))
 test('each Zen module owns an authored walk band and every feet spawn stays inside it', () => {
   assert.ok(new Set(stage.modules.map((module) => module.playfield_y.join(':'))).size >= 3);
   for (const module of stage.modules) {
-    const integratedM02 = module.id === 'M02';
-    const integratedGeometry = module.id === 'M01' || integratedM02;
+    const integratedFinal = module.id === 'M01' || module.id === 'M02';
+    const integratedGeometry = integratedFinal;
     const expectedWorldWidth = integratedGeometry ? 2560 : 2944;
     const expectedCameraMax = expectedWorldWidth - 1280;
     const expectedLayerHeight = integratedGeometry ? 720 : 828;
@@ -50,9 +50,9 @@ test('each Zen module owns an authored walk band and every feet spawn stays insi
     const far = module.background_layers.find((layer) => layer.plane === 'far');
     const main = module.background_layers.find((layer) => layer.plane === 'main');
     assert.equal(far?.parallax, 0.22, `${module.id}: continuous Palermo skyline must use far parallax`);
-    if (integratedM02) {
-      assert.equal(far?.src, 'assets/backgrounds/stage1_zen/final_v1/M02/M02_FAR.png');
-      assert.equal(main?.src, 'assets/backgrounds/stage1_zen/final_v1/M02/M02_MAIN.png');
+    if (integratedFinal) {
+      assert.equal(far?.src, `assets/backgrounds/stage1_zen/final_v1/${module.id}/${module.id}_FAR.png`);
+      assert.equal(main?.src, `assets/backgrounds/stage1_zen/final_v1/${module.id}/${module.id}_MAIN.png`);
     } else {
       assert.equal(far?.src, 'assets/backgrounds/stage1_zen/long/ZEN_FAR_SKYLINE.png', `${module.id}: FAR must be continuous`);
       assert.ok(main?.src.endsWith(`${module.id}/MAIN_SKY_V3.png`), `${module.id}: MAIN must use the sky-only alpha cut`);
@@ -77,10 +77,10 @@ test('M01 and M02 keep actors on the foreground lane and away from portico thres
 
 test('background audit distinguishes approved art from rebuild placeholders', () => {
   const approved = stage.modules.filter((module) => module.art_status === 'approved');
-  assert.deepEqual(approved.map((module) => module.id), ['M02']);
-  assert.equal(approved[0]?.horizon_y, 300);
+  assert.deepEqual(approved.map((module) => module.id), ['M01', 'M02']);
+  assert.deepEqual(approved.map((module) => module.horizon_y), [315, 300]);
   for (const module of stage.modules) assert.equal(module.reference_actor_height, 290);
-  for (const module of stage.modules.filter((item) => item.id !== 'M02')) {
+  for (const module of stage.modules.filter((item) => item.id !== 'M01' && item.id !== 'M02')) {
     assert.equal(module.art_status, 'placeholder_rebuild_required', `${module.id}: status audit`);
   }
 });

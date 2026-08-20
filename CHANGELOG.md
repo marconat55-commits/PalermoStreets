@@ -42,3 +42,6 @@ Tutte le modifiche stabili di Palermo Streets vengono annotate qui.
 - Validazione dati, typecheck e build completati.
 - Aggiunti avvio e controllo semplificati per Windows.
 - Nessuna modifica ad asset PNG, gameplay, scala o timing.
+## 2026-08-20
+
+- Integrated the approved M01 FAR/MAIN/FOREGROUND package at native 2560×720 runtime scale, preserving its authored WALK 635–705 band and two-viewport camera contract.

@@ -33,12 +33,14 @@ test('M02 greybox uses exact exportable stage geometry', () => {
   }
 });
 
-test('M01 greybox locks street scale before any new art is generated', () => {
+test('M01 integration preserves the approved street scale', () => {
   const result = validateRepository(process.cwd());
   const module = result.manifests.get('stage.stage1_zen.M01');
   assert.ok(module);
-  assert.equal(module.status, 'greybox');
-  assert.equal(module.approval.art_direction_pending, true);
+  assert.equal(module.status, 'integrated');
+  assert.equal(module.approval.art_direction_pending, false);
+  assert.equal(module.art_candidate.status, 'approved');
+  assert.equal(module.art_candidate.runtime_integration, true);
   assert.deepEqual(module.geometry.runtime_size, [2560, 720]);
   assert.equal(module.geometry.horizon_runtime_y, 315);
   assert.equal(module.walk_band.top_runtime_y, 635);

@@ -4,19 +4,19 @@
   "id": "M01",
   "stage_id": "stage1_zen",
   "display_name": "Strada e cortile",
-  "status": "greybox",
+  "status": "integrated",
   "approval": {
-    "approved_on": null,
-    "scope": [],
-    "art_direction_pending": true
+    "approved_on": "2026-08-20",
+    "scope": ["master_geometry", "character_scale", "horizon", "walk_band", "camera_proofs"],
+    "art_direction_pending": false
   },
   "art_candidate": {
-    "status": "approval_candidate",
+    "status": "approved",
     "manifest": "art_source/stages/stage1_zen/M01/final_v1/M01_FINAL_LAYERS_MANIFEST.json",
-    "runtime_integration": false
+    "runtime_integration": true
   },
   "integration": {
-    "status": "legacy_placeholder",
+    "status": "integrated",
     "runtime_module_id": "M01"
   },
   "geometry": {

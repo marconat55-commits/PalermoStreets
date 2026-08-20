@@ -16,7 +16,7 @@
   "modules": [
     {
       "id": "M01",
-      "status": "greybox",
+      "status": "integrated",
       "runtime_module_id": "M01",
       "authoring_manifest": "content-src/stages/stage1_zen/modules/M01.module.json"
     },

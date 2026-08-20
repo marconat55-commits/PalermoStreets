@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "id": "M01_final_layers_v1",
-  "status": "approval_candidate",
+  "status": "approved",
   "source_master": "public/assets/backgrounds/stage1_zen/long/ZEN_LONG_01_STRADA_CORTILE.png",
   "far_master_source": "public/assets/backgrounds/stage1_zen/long/ZEN_FAR_SKYLINE.png",
   "legacy_alpha_reference": "public/assets/backgrounds/stage1_zen/layers_v2/M01/MAIN_SKY_V3.png",

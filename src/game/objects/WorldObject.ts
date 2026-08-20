@@ -54,6 +54,18 @@ export class WorldObject {
     this.sync();
   }
 
+  dropAt(position: Vec2, facing: -1 | 1): void {
+    this.state = 'ground';
+    this.position = { x: position.x + facing * 42, y: position.y };
+    this.elevation = 0;
+    this.velocity = { x: 0, y: 0 };
+    this.verticalVelocity = 0;
+    this.sprite.rotation = 0;
+    this.sprite.scale.set(this.definition.world_scale ?? 0.065);
+    this.root.visible = true;
+    this.sync();
+  }
+
   get hurtbox(): Rect {
     return { x: this.position.x - 44, y: this.position.y - 96, width: 88, height: 96 };
   }

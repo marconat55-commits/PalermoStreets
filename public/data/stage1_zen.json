@@ -10,16 +10,16 @@
       "reference_actor_height": 290,
       "background": "assets/backgrounds/stage1_zen/layers_v2/M01/MAIN_SKY_V3.png",
       "background_layers": [
-        { "src": "assets/backgrounds/stage1_zen/long/ZEN_FAR_SKYLINE.png", "parallax": 0.22, "plane": "far", "y": -108, "width": 2944, "height": 828 },
-        { "src": "assets/backgrounds/stage1_zen/layers_v2/M01/MAIN_SKY_V3.png", "parallax": 1.0, "plane": "main", "y": -108, "width": 2944, "height": 828 }
+        { "src": "assets/backgrounds/stage1_zen/long/ZEN_FAR_SKYLINE.png", "parallax": 0.22, "plane": "far", "y": 0, "width": 2560, "height": 720 },
+        { "src": "assets/backgrounds/stage1_zen/layers_v2/M01/MAIN_SKY_V3.png", "parallax": 1.0, "plane": "main", "y": 0, "width": 2560, "height": 720 }
       ],
-      "world_width": 2944,
-      "camera_bounds": [0, 1664],
-      "playfield_y": [660, 705],
-      "walk_top": [[0, 660], [2944, 660]],
-      "walk_bottom": [[0, 705], [2944, 705]],
+      "world_width": 2560,
+      "camera_bounds": [0, 1280],
+      "playfield_y": [635, 705],
+      "walk_top": [[0, 635], [2560, 635]],
+      "walk_bottom": [[0, 705], [2560, 705]],
       "entry": [147, 670],
-      "exit_x": 2887,
+      "exit_x": 2510,
       "heal": 12,
       "items": [
         { "item": "metal_pipe", "position": [405, 686] },

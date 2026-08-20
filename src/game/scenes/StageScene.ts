@@ -499,6 +499,18 @@ export class StageScene implements Scene {
     return false;
   }
 
+  private dropHeldItem(): boolean {
+    if (!this.heldObject) return false;
+    const dropped = this.heldObject;
+    dropped.dropAt(this.player.position, this.player.facing);
+    this.heldObject = null;
+    this.meleeSwingTimer = 0;
+    this.meleeStrikeResolved = true;
+    this.message = `${dropped.definition.display_name.toUpperCase()} — LASCIATO`;
+    this.messageTimer = 0.7;
+    return true;
+  }
+
   private resolveMeleeStrike(): void {
     if (!this.heldObject || this.heldObject.definition.kind !== 'melee') return;
     const enemy = this.enemies
@@ -696,6 +708,7 @@ export class StageScene implements Scene {
     if (!this.paused && !this.stageComplete && this.transitionPhase === null && this.stageIntroTimer <= 0) {
       const attackPressed = input.wasPressed('KeyJ');
       const jumpPressed = input.wasPressed('KeyK');
+      const dropPressed = attackPressed && input.isDown('KeyS') && this.dropHeldItem();
       const forwardHeld = isForwardHeld(
         this.player.facing,
         input.isDown('KeyA'),
@@ -705,7 +718,7 @@ export class StageScene implements Scene {
         this.tryStartGrab(this.comboGrabTargetId, true);
       }
       const action = resolveArcadeAction({
-        attackPressed,
+        attackPressed: attackPressed && !dropPressed,
         jumpPressed,
         attackHeld: input.isDown('KeyJ'),
         jumpHeld: input.isDown('KeyK'),

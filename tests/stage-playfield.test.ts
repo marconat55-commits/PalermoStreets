@@ -23,10 +23,11 @@ test('each Zen module owns an authored walk band and every feet spawn stays insi
   assert.ok(new Set(stage.modules.map((module) => module.playfield_y.join(':'))).size >= 3);
   for (const module of stage.modules) {
     const integratedM02 = module.id === 'M02';
-    const expectedWorldWidth = integratedM02 ? 2560 : 2944;
+    const integratedGeometry = module.id === 'M01' || integratedM02;
+    const expectedWorldWidth = integratedGeometry ? 2560 : 2944;
     const expectedCameraMax = expectedWorldWidth - 1280;
-    const expectedLayerHeight = integratedM02 ? 720 : 828;
-    const expectedLayerY = integratedM02 ? 0 : -108;
+    const expectedLayerHeight = integratedGeometry ? 720 : 828;
+    const expectedLayerY = integratedGeometry ? 0 : -108;
     const [top, bottom] = module.playfield_y;
     assert.ok(top >= 390 && top < bottom && bottom <= 710, `${module.id}: invalid WALK envelope`);
     assert.equal(module.walk_top[0]?.[0], 0, `${module.id}: WALK top must start at world X 0`);
@@ -62,7 +63,7 @@ test('each Zen module owns an authored walk band and every feet spawn stays insi
 test('M01 and M02 keep actors on the foreground lane and away from portico thresholds', () => {
   const m01 = stage.modules.find((module) => module.id === 'M01');
   const m02 = stage.modules.find((module) => module.id === 'M02');
-  assert.deepEqual(m01?.playfield_y, [660, 705]);
+  assert.deepEqual(m01?.playfield_y, [635, 705]);
   assert.deepEqual(m02?.playfield_y, [600, 705]);
   for (const module of [m01, m02]) {
     assert.ok(module);

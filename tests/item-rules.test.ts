@@ -42,6 +42,18 @@ test('il mattone passa da raccolto a lanciato e segue una parabola', () => {
   assert.ok(brick.elevation > 0);
 });
 
+test('un oggetto impugnato può essere lasciato nuovamente a terra', () => {
+  const brick = new WorldObject({
+    id: 'brick', display_name: 'Mattone', kind: 'throwable', asset: 'brick.png',
+    gameplay_status: 'prototype', world_scale: 0.025, held_scale: 0.023,
+  }, Texture.EMPTY, { x: 100, y: 680 });
+  brick.pickup();
+  brick.dropAt({ x: 180, y: 670 }, 1);
+  assert.equal(brick.state, 'ground');
+  assert.deepEqual(brick.position, { x: 222, y: 670 });
+  assert.equal(brick.elevation, 0);
+});
+
 test('il tubo impugnato compie un arco visibile durante il colpo', () => {
   const pipe = new WorldObject({
     id: 'metal_pipe', display_name: 'Tubo', kind: 'melee', asset: 'pipe.png',

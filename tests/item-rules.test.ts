@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import fs from 'node:fs';
 import test from 'node:test';
 import { isPickupKind, itemWithinRange, resolveItemInteraction } from '../src/game/objects/itemRules.ts';
 import { Texture } from 'pixi.js';
@@ -76,4 +77,16 @@ test('un contenitore distruttibile rispetta la durabilità e dichiara il drop', 
   assert.equal(bin.hitBreakable(), true);
   assert.equal(bin.state, 'spent');
   assert.equal(bin.definition.drop_item, 'arancina');
+});
+
+test('gli oggetti prototipo rispettano la scala dell actor canonico da 290px', () => {
+  const catalog = JSON.parse(fs.readFileSync('public/data/items/stage1_zen.json', 'utf8')) as {
+    items: Array<{ id: string; world_scale?: number; held_scale?: number }>;
+  };
+  const byId = new Map(catalog.items.map((item) => [item.id, item]));
+  assert.ok((byId.get('metal_pipe')?.world_scale ?? 0) >= 0.08);
+  assert.ok((byId.get('metal_pipe')?.held_scale ?? 0) >= 0.085);
+  assert.ok((byId.get('brick')?.world_scale ?? 0) >= 0.04);
+  assert.ok((byId.get('trash_bag')?.world_scale ?? 0) >= 0.085);
+  assert.ok((byId.get('trash_bin')?.world_scale ?? 0) >= 0.085);
 });

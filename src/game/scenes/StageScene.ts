@@ -24,6 +24,9 @@ import {
   selectGrabCandidate,
 } from '../combat/grabAssist';
 
+const MELEE_SWING_SECONDS = 0.28;
+const MELEE_IMPACT_SECONDS = 0.14;
+
 function authoredLayers(module: ModuleData): BackgroundLayerData[] {
   const enabled = module.background_layers?.filter((layer) => layer.enabled !== false);
   return enabled?.length
@@ -139,6 +142,7 @@ export class StageScene implements Scene {
   private worldObjects: WorldObject[] = [];
   private heldObject: WorldObject | null = null;
   private meleeStrikeTimer = 0;
+  private meleeSwingTimer = 0;
   private meleeStrikeResolved = true;
 
   static async create(
@@ -449,15 +453,21 @@ export class StageScene implements Scene {
       return true;
     }
     if (interaction === 'throw' && this.heldObject) {
+      const displayName = this.heldObject.definition.display_name.toUpperCase();
       this.heldObject.throwFrom(this.player.position, this.player.facing);
       this.heldObject = null;
       this.player.requestArcadeAttack();
+      this.message = `${displayName} — LANCIO`;
+      this.messageTimer = 0.7;
       return true;
     }
     if (interaction === 'melee' && this.heldObject) {
       this.player.requestArcadeAttack();
-      this.meleeStrikeTimer = 0.10;
+      this.meleeSwingTimer = MELEE_SWING_SECONDS;
+      this.meleeStrikeTimer = MELEE_IMPACT_SECONDS;
       this.meleeStrikeResolved = false;
+      this.message = `${this.heldObject.definition.display_name.toUpperCase()} — COLPO`;
+      this.messageTimer = 0.55;
       return true;
     }
     return false;
@@ -711,7 +721,13 @@ export class StageScene implements Scene {
     )[0];
     this.player.setAutoTarget(nearest?.position.x ?? null);
     this.player.update(dt, input, this.entryLock <= 0);
-    if (this.heldObject) this.heldObject.holdAt(this.player.position, this.player.facing);
+    if (this.heldObject) {
+      const useProgress = this.meleeSwingTimer > 0
+        ? 1 - this.meleeSwingTimer / MELEE_SWING_SECONDS
+        : 0;
+      this.heldObject.holdAt(this.player.position, this.player.facing, useProgress);
+    }
+    this.meleeSwingTimer = Math.max(0, this.meleeSwingTimer - dt);
     this.meleeStrikeTimer = Math.max(0, this.meleeStrikeTimer - dt);
     if (!this.meleeStrikeResolved && this.meleeStrikeTimer <= 0) {
       this.meleeStrikeResolved = true;

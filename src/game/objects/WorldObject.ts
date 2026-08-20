@@ -6,6 +6,7 @@ export type WorldObjectState = 'ground' | 'held' | 'thrown' | 'spent';
 export class WorldObject {
   readonly root = new Container();
   readonly sprite: Sprite;
+  readonly definition: StageItemDefinition;
   readonly hitActors = new Set<number>();
   state: WorldObjectState = 'ground';
   position: Vec2;
@@ -13,7 +14,8 @@ export class WorldObject {
   velocity: Vec2 = { x: 0, y: 0 };
   verticalVelocity = 0;
 
-  constructor(readonly definition: StageItemDefinition, texture: Texture, position: Vec2) {
+  constructor(definition: StageItemDefinition, texture: Texture, position: Vec2) {
+    this.definition = definition;
     this.position = { ...position };
     this.sprite = new Sprite(texture);
     this.sprite.anchor.set(0.5, 1);
@@ -29,9 +31,10 @@ export class WorldObject {
     this.sprite.scale.set(this.definition.held_scale ?? this.definition.world_scale ?? 0.065);
   }
 
-  holdAt(position: Vec2, facing: -1 | 1): void {
-    this.position = { x: position.x + facing * 34, y: position.y - 91 };
-    this.sprite.rotation = facing * (this.definition.held_angle ?? -0.72);
+  holdAt(position: Vec2, facing: -1 | 1, useProgress = 0): void {
+    const swing = Math.sin(Math.max(0, Math.min(1, useProgress)) * Math.PI) * 1.25;
+    this.position = { x: position.x + facing * (34 + swing * 18), y: position.y - 91 + swing * 9 };
+    this.sprite.rotation = facing * ((this.definition.held_angle ?? -0.72) + swing);
     this.sprite.scale.x = Math.abs(this.sprite.scale.x) * facing;
     this.sync();
     this.root.zIndex = position.y + 2;

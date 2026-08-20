@@ -166,6 +166,28 @@ export interface WeaponDefinition {
   dropOnHit?: boolean;
 }
 
+export type StageItemKind = 'melee' | 'throwable' | 'food' | 'breakable' | 'scenery';
+
+export interface StageItemDefinition {
+  id: string;
+  display_name: string;
+  kind: StageItemKind;
+  asset: string;
+  /** Source master is retained outside the runtime build for future reprocessing. */
+  source_master: string;
+  gameplay_status: 'prototype' | 'catalogued' | 'reference_only';
+  damage?: number;
+  healing?: number;
+  ammo?: number;
+  notes?: string[];
+}
+
+export interface StageItemCatalog {
+  schema: number;
+  stage_id: string;
+  items: StageItemDefinition[];
+}
+
 export interface EnemyMoveSet {
   characterId: string;
   attacks: string[];

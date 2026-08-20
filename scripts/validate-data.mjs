@@ -44,9 +44,25 @@ function walkFiles(directory) {
 
 const index = read('data/characters/index.json');
 const stage = read('data/stage1_zen.json');
+const itemCatalog = read('data/items/stage1_zen.json');
 const meta = read('data/generated/frame_meta.json');
 const ids = new Set(index.characters);
 const profiles = new Map();
+
+if (itemCatalog.schema !== 1) fail('catalogo oggetti: schema non supportato');
+if (itemCatalog.stage_id !== 'stage1_zen') fail('catalogo oggetti: stage_id non coerente');
+if (!Array.isArray(itemCatalog.items) || itemCatalog.items.length === 0) fail('catalogo oggetti vuoto');
+const itemIds = new Set();
+for (const item of itemCatalog.items ?? []) {
+  if (!item.id || itemIds.has(item.id)) fail(`catalogo oggetti: ID mancante o duplicato ${item.id ?? ''}`);
+  itemIds.add(item.id);
+  if (!['melee', 'throwable', 'food', 'breakable', 'scenery'].includes(item.kind)) fail(`${item.id}: kind non valido`);
+  if (!['prototype', 'catalogued', 'reference_only'].includes(item.gameplay_status)) fail(`${item.id}: gameplay_status non valido`);
+  if (!item.asset || !exists(item.asset)) fail(`${item.id}: asset runtime mancante ${item.asset ?? ''}`);
+  if (!item.source_master || !fs.existsSync(path.join(root, item.source_master))) fail(`${item.id}: master sorgente mancante ${item.source_master ?? ''}`);
+  if (item.damage !== undefined && (!Number.isFinite(item.damage) || item.damage < 0)) fail(`${item.id}: damage non valido`);
+  if (item.healing !== undefined && (!Number.isFinite(item.healing) || item.healing < 0)) fail(`${item.id}: healing non valido`);
+}
 
 if (!ids.has(index.default_player)) fail(`default_player non registrato: ${index.default_player}`);
 if (!ids.has(index.default_enemy)) fail(`default_enemy non registrato: ${index.default_enemy}`);

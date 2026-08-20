@@ -1,4 +1,4 @@
-import type { CharacterIndex, CharacterProfile, FrameMeta, StageData } from '../types';
+import type { CharacterIndex, CharacterProfile, FrameMeta, StageData, StageItemCatalog } from '../types';
 import { publicUrl } from './paths';
 import { mergeCharacterProfile, type CharacterProfileSource } from './characterProfiles';
 
@@ -22,6 +22,11 @@ export async function loadCharacterProfile(id: string, chain: string[] = []): Pr
 
 export async function loadStage1(): Promise<StageData> {
   return getJson<StageData>('data/stage1_zen.json');
+}
+
+/** Loads the object catalogue without enabling pickup/combat behaviour. */
+export async function loadStage1Items(): Promise<StageItemCatalog> {
+  return getJson<StageItemCatalog>('data/items/stage1_zen.json');
 }
 
 export async function loadFrameMeta(): Promise<Record<string, FrameMeta>> {

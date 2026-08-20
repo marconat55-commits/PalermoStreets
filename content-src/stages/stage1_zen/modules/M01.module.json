@@ -1,0 +1,80 @@
+{
+  "schema": 1,
+  "kind": "stage_module",
+  "id": "M01",
+  "stage_id": "stage1_zen",
+  "display_name": "Strada e cortile",
+  "status": "greybox",
+  "approval": {
+    "approved_on": null,
+    "scope": [],
+    "art_direction_pending": true
+  },
+  "art_candidate": {
+    "status": "not_started",
+    "runtime_integration": false
+  },
+  "integration": {
+    "status": "legacy_placeholder",
+    "runtime_module_id": "M01"
+  },
+  "geometry": {
+    "master_size": [3840, 1080],
+    "runtime_size": [2560, 720],
+    "viewport": [1280, 720],
+    "master_to_runtime_scale": 0.6666666666666666,
+    "screen_split_master_x": 1920,
+    "horizon_runtime_y": 315,
+    "camera_bounds_runtime": [0, 1280]
+  },
+  "walk_band": {
+    "top_runtime_y": 635,
+    "bottom_runtime_y": 705,
+    "entry_runtime": [128, 670],
+    "exit_runtime_x": 2510,
+    "blocked_rects_runtime": []
+  },
+  "layers": [
+    { "plane": "far", "parallax": 0.22, "required": true, "alpha": false },
+    { "plane": "main", "parallax": 1, "required": true, "alpha": true },
+    { "plane": "foreground", "parallax": 1.08, "required": false, "alpha": true }
+  ],
+  "final_layer_contract": {
+    "master_size": [3840, 1080],
+    "runtime_size": [2560, 720],
+    "deliverables": [
+      { "plane": "far", "file": "M01_FAR_MASTER.png", "alpha": false, "parallax": 0.22 },
+      { "plane": "main", "file": "M01_MAIN_MASTER.png", "alpha": true, "parallax": 1 },
+      { "plane": "foreground", "file": "M01_FOREGROUND_MASTER.png", "alpha": true, "parallax": 1.08, "optional": true }
+    ],
+    "acceptance": [
+      "La strada resta libera nell'intera fascia WALK 635-705.",
+      "Porte, portici e parapetti rispettano la sagoma attore da 290px.",
+      "Nessun bordo o alone è visibile tra FAR e MAIN.",
+      "Le camere X=0, X=640 e X=1280 devono essere approvate prima dell'integrazione."
+    ]
+  },
+  "reference_actors": [
+    { "id": "marco_start", "x_runtime": 300, "feet_y_runtime": 680, "height_runtime": 290 },
+    { "id": "marco_mid", "x_runtime": 1280, "feet_y_runtime": 680, "height_runtime": 290 },
+    { "id": "talebano_end", "x_runtime": 2240, "feet_y_runtime": 680, "height_runtime": 305 }
+  ],
+  "composition": {
+    "greybox_rects_master": [
+      { "x": 0, "y": 430, "width": 1360, "height": 523, "fill": "#57534e" },
+      { "x": 90, "y": 560, "width": 340, "height": 393, "fill": "#292524" },
+      { "x": 520, "y": 600, "width": 340, "height": 353, "fill": "#292524" },
+      { "x": 950, "y": 545, "width": 330, "height": 408, "fill": "#292524" },
+      { "x": 1510, "y": 600, "width": 720, "height": 353, "fill": "#78716c" },
+      { "x": 2380, "y": 455, "width": 1460, "height": 498, "fill": "#57534e" },
+      { "x": 2530, "y": 560, "width": 360, "height": 393, "fill": "#292524" },
+      { "x": 2990, "y": 600, "width": 360, "height": 353, "fill": "#292524" },
+      { "x": 3450, "y": 535, "width": 300, "height": 418, "fill": "#292524" }
+    ],
+    "notes": [
+      "La fascia 635-705 è esclusivamente strada/primo piano.",
+      "Il cortile centrale crea respiro ma non amplia la profondità calpestabile.",
+      "La silhouette di Monte Pellegrino resta sul FAR e non definisce collisioni."
+    ]
+  }
+}

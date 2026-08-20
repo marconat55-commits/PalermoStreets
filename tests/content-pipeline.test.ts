@@ -33,6 +33,19 @@ test('M02 greybox uses exact exportable stage geometry', () => {
   }
 });
 
+test('M01 greybox locks street scale before any new art is generated', () => {
+  const result = validateRepository(process.cwd());
+  const module = result.manifests.get('stage.stage1_zen.M01');
+  assert.ok(module);
+  assert.equal(module.status, 'greybox');
+  assert.equal(module.approval.art_direction_pending, true);
+  assert.deepEqual(module.geometry.runtime_size, [2560, 720]);
+  assert.equal(module.geometry.horizon_runtime_y, 315);
+  assert.equal(module.walk_band.top_runtime_y, 635);
+  assert.equal(module.walk_band.bottom_runtime_y, 705);
+  assert.deepEqual(module.reference_actors.map((actor: { height_runtime: number }) => actor.height_runtime), [290, 290, 305]);
+});
+
 test('the shared storyboard is captured without overriding current canon', () => {
   const result = validateRepository(process.cwd());
   const campaign = result.manifests.get('narrative.campaign');
@@ -53,4 +66,16 @@ test('M02 build is deterministic and includes three camera proofs', () => {
   }
   assert.match(first.get('production-preview/M02/M02_GREYBOX_MASTER.svg') ?? '', /WALK TOP 600px runtime/);
   assert.match(first.get('production-preview/M02/M02_GREYBOX_MASTER.svg') ?? '', /marco_start 290px/);
+});
+
+test('every authored module receives deterministic master, WALK and camera proofs', () => {
+  const result = validateRepository(process.cwd());
+  const outputs = renderBuildOutputs(process.cwd(), result);
+  for (const moduleId of ['M01', 'M02']) {
+    assert.ok(outputs.has(`production-preview/${moduleId}/${moduleId}_GREYBOX_MASTER.svg`));
+    assert.ok(outputs.has(`production-preview/${moduleId}/${moduleId}_WALK_MASK.svg`));
+    for (const cameraX of ['0000', '0640', '1280']) {
+      assert.ok(outputs.has(`production-preview/${moduleId}/${moduleId}_CAMERA_X${cameraX}.svg`));
+    }
+  }
 });

@@ -8,4 +8,4 @@ if (result.errors.length) {
   for (const error of result.errors) console.error(`- ${error}`);
   process.exit(1);
 }
-console.log('CONTENT BUILD PASS - catalogo, registry, walk mask e tre camere M02 rigenerati.');
+console.log('CONTENT BUILD PASS - catalogo, registry, greybox, walk mask e prove camera rigenerati.');

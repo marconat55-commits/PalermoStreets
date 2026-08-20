@@ -14,7 +14,12 @@
     "max_master_width": 4096
   },
   "modules": [
-    { "id": "M01", "status": "legacy_integrated", "runtime_module_id": "M01" },
+    {
+      "id": "M01",
+      "status": "greybox",
+      "runtime_module_id": "M01",
+      "authoring_manifest": "content-src/stages/stage1_zen/modules/M01.module.json"
+    },
     {
       "id": "M02",
       "status": "integrated",

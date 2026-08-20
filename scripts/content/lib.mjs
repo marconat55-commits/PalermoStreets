@@ -72,19 +72,25 @@ function sceneSvg(module, options = {}) {
     return `<line x1="0" y1="${y}" x2="${masterWidth}" y2="${y}"/>`;
   }).join('\n');
   const actorLayer = actors.map((actor) => actorSvg(actor, scale)).join('\n');
+  const customArchitecture = (module.composition?.greybox_rects_master ?? []).map((rect) =>
+    `<rect x="${rect.x}" y="${rect.y}" width="${rect.width}" height="${rect.height}" fill="${escapeXml(rect.fill ?? '#475569')}" opacity="${rect.opacity ?? 1}"/>`
+  ).join('\n');
+  const customArchitectureLayer = customArchitecture ? `  ${customArchitecture}\r\n` : '';
+  const legacyOpacity = customArchitecture ? 0 : 1;
   return `<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="${outputWidth}" height="${outputHeight}" viewBox="${viewX} 0 ${viewWidth} ${masterHeight}" role="img" aria-label="M02 deterministic greybox">
+<svg xmlns="http://www.w3.org/2000/svg" width="${outputWidth}" height="${outputHeight}" viewBox="${viewX} 0 ${viewWidth} ${masterHeight}" role="img" aria-label="${escapeXml(module.id)} deterministic greybox">
   <defs>
     <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#172554"/><stop offset="0.62" stop-color="#fb923c"/><stop offset="1" stop-color="#fed7aa"/></linearGradient>
     <linearGradient id="ground" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#78716c"/><stop offset="1" stop-color="#292524"/></linearGradient>
   </defs>
   <rect width="${masterWidth}" height="${masterHeight}" fill="url(#sky)"/>
   <path d="M0 ${horizon} L420 335 L760 392 L1110 270 L1460 390 L1870 245 L2320 360 L2740 230 L3210 350 L3550 275 L3840 365 L3840 540 L0 540Z" fill="#334155" opacity="0.9"/>
-  <g fill="#475569" opacity="0.92">
+  <g fill="#475569" opacity="${legacyOpacity * 0.92}">
     <rect x="0" y="390" width="340" height="190"/><rect x="365" y="420" width="300" height="160"/><rect x="700" y="370" width="420" height="210"/>
     <rect x="1160" y="410" width="330" height="170"/><rect x="1530" y="350" width="380" height="230"/><rect x="1950" y="400" width="320" height="180"/>
     <rect x="2310" y="365" width="410" height="215"/><rect x="2760" y="410" width="300" height="170"/><rect x="3100" y="345" width="390" height="235"/><rect x="3530" y="395" width="310" height="185"/>
   </g>
+  <g opacity="${legacyOpacity}">
   <rect x="0" y="540" width="1140" height="${walkTop - 540}" fill="#57534e"/>
   <rect x="0" y="540" width="1140" height="42" fill="#1c1917"/>
   <g fill="#1c1917"><rect x="110" y="600" width="260" height="${walkTop - 600}"/><rect x="440" y="600" width="260" height="${walkTop - 600}"/><rect x="770" y="600" width="260" height="${walkTop - 600}"/></g>
@@ -93,6 +99,8 @@ function sceneSvg(module, options = {}) {
   <rect x="2130" y="510" width="1710" height="42" fill="#1c1917"/>
   <g fill="#1c1917"><rect x="2240" y="610" width="350" height="${walkTop - 610}"/><rect x="2680" y="610" width="350" height="${walkTop - 610}"/><rect x="3120" y="610" width="350" height="${walkTop - 610}"/><rect x="3560" y="610" width="230" height="${walkTop - 610}"/></g>
   <g fill="#a8a29e"><rect x="2180" y="570" width="44" height="${walkTop - 570}"/><rect x="2600" y="570" width="44" height="${walkTop - 570}"/><rect x="3040" y="570" width="44" height="${walkTop - 570}"/><rect x="3480" y="570" width="44" height="${walkTop - 570}"/><rect x="3790" y="570" width="44" height="${walkTop - 570}"/></g>
+  </g>
+${customArchitectureLayer}
   <rect x="0" y="${walkTop}" width="${masterWidth}" height="${walkBottom - walkTop}" fill="url(#ground)"/>
   <rect x="0" y="${walkTop}" width="${masterWidth}" height="${walkBottom - walkTop}" fill="#22c55e" fill-opacity="0.18" stroke="#4ade80" stroke-width="6"/>
   <rect x="0" y="${walkBottom}" width="${masterWidth}" height="${masterHeight - walkBottom}" fill="#111827"/>
@@ -113,7 +121,7 @@ function walkMaskSvg(module) {
   const top = module.walk_band.top_runtime_y;
   const bottom = module.walk_band.bottom_runtime_y;
   return `<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" role="img" aria-label="M02 walk mask">
+<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" role="img" aria-label="${escapeXml(module.id)} walk mask">
   <rect width="${width}" height="${height}" fill="#000"/>
   <rect x="0" y="${top}" width="${width}" height="${bottom - top}" fill="#fff"/>
 </svg>
@@ -258,15 +266,13 @@ function catalogMarkdown(catalog, manifests) {
     '|---|---|---|---|',
   ];
   for (const entry of catalog.entries) lines.push(`| ${entry.id} | ${entry.kind} | ${entry.status} | \`${entry.manifest}\` |`);
-  lines.push('', '## Contratti globali', '', '- Viewport runtime: 1280x720', '- Canvas personaggi: 640x420; baseline Y=400', '- Scala personaggi runtime: 1.0', '- Master stage: 3840x1080 -> runtime 2560x720', '- Sorgenti portabili: JSON + PNG + BLEND/KRA; runtime PixiJS separato', '', '## Pilot M02', '', '- Il greybox non sostituisce ancora lo sfondo runtime.', '- Approvare prima scala, orizzonte, walk band e tre inquadrature camera.', '- Solo dopo l’approvazione si produce FAR/MAIN/FOREGROUND finale.');
+  lines.push('', '## Contratti globali', '', '- Viewport runtime: 1280x720', '- Canvas personaggi: 640x420; baseline Y=400', '- Scala personaggi runtime: 1.0', '- Master stage: 3840x1080 -> runtime 2560x720', '- Sorgenti portabili: JSON + PNG + BLEND/KRA; runtime PixiJS separato', '', '## Greybox moduli', '', '- Il greybox non sostituisce automaticamente lo sfondo runtime.', '- Approvare prima scala, orizzonte, walk band e tre inquadrature camera.', '- Solo dopo l’approvazione si produce FAR/MAIN/FOREGROUND finale.');
   return `${lines.join('\n')}\n`;
 }
 
 export function renderBuildOutputs(root, loaded = null) {
   const state = loaded ?? validateRepository(root);
   if (state.errors?.length) throw new Error(`Contenuti non validi:\n${state.errors.join('\n')}`);
-  const module = state.manifests.get('stage.stage1_zen.M02');
-  if (!module) throw new Error('Manifest M02 non caricato');
   const registry = {
     schema: 1,
     pipeline_version: state.catalog.pipeline_version,
@@ -281,20 +287,25 @@ export function renderBuildOutputs(root, loaded = null) {
   const outputs = new Map();
   outputs.set('production-preview/content_registry.json', `${JSON.stringify(registry, null, 2)}\n`);
   outputs.set('production-preview/CONTENT_CATALOG.md', catalogMarkdown(state.catalog, state.manifests));
-  outputs.set('production-preview/M02/M02_GREYBOX_MASTER.svg', sceneSvg(module));
-  outputs.set('production-preview/M02/M02_WALK_MASK.svg', walkMaskSvg(module));
-  const masterCameraWidth = 1280 / module.geometry.master_to_runtime_scale;
-  for (const cameraX of [0, 640, 1280]) {
-    outputs.set(
-      `production-preview/M02/M02_CAMERA_X${String(cameraX).padStart(4, '0')}.svg`,
-      sceneSvg(module, {
-        viewXMaster: cameraX / module.geometry.master_to_runtime_scale,
-        viewWidthMaster: masterCameraWidth,
-        outputWidth: 1280,
-        outputHeight: 720,
-        cameraLabel: `M02 CAMERA X=${cameraX} runtime`,
-      }),
-    );
+  const stageModules = [...state.manifests.entries()]
+    .filter(([, manifest]) => manifest.kind === 'stage_module')
+    .sort(([, a], [, b]) => a.id.localeCompare(b.id));
+  for (const [, module] of stageModules) {
+    outputs.set(`production-preview/${module.id}/${module.id}_GREYBOX_MASTER.svg`, sceneSvg(module));
+    outputs.set(`production-preview/${module.id}/${module.id}_WALK_MASK.svg`, walkMaskSvg(module));
+    const masterCameraWidth = 1280 / module.geometry.master_to_runtime_scale;
+    for (const cameraX of [0, 640, 1280]) {
+      outputs.set(
+        `production-preview/${module.id}/${module.id}_CAMERA_X${String(cameraX).padStart(4, '0')}.svg`,
+        sceneSvg(module, {
+          viewXMaster: cameraX / module.geometry.master_to_runtime_scale,
+          viewWidthMaster: masterCameraWidth,
+          outputWidth: 1280,
+          outputHeight: 720,
+          cameraLabel: `${module.id} CAMERA X=${cameraX} runtime`,
+        }),
+      );
+    }
   }
   return outputs;
 }

@@ -17,8 +17,8 @@ Pipeline: `1.0.0`
 - Master stage: 3840x1080 -> runtime 2560x720
 - Sorgenti portabili: JSON + PNG + BLEND/KRA; runtime PixiJS separato
 
-## Pilot M02
+## Greybox moduli
 
-- Il greybox non sostituisce ancora lo sfondo runtime.
+- Il greybox non sostituisce automaticamente lo sfondo runtime.
 - Approvare prima scala, orizzonte, walk band e tre inquadrature camera.
 - Solo dopo l’approvazione si produce FAR/MAIN/FOREGROUND finale.

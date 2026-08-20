@@ -198,6 +198,8 @@ export interface StageItemDefinition {
   held_scale?: number;
   held_angle?: number;
   throw_speed?: number;
+  durability?: number;
+  drop_item?: string;
   notes?: string[];
 }
 

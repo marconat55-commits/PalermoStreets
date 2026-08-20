@@ -16,7 +16,8 @@ import { SPIN_SPECIAL } from '../combat/attacks';
 import { resolveWalkBand, sampleWalkBand } from '../stage/walkBand';
 import { loadStage1Items } from '../data/loadData';
 import { WorldObject } from '../objects/WorldObject';
-import { itemWithinRange, resolveItemInteraction } from '../objects/itemRules';
+import { isPickupKind, itemWithinRange, resolveItemInteraction } from '../objects/itemRules';
+import { rectsIntersect } from '../../utils/math';
 import {
   COMBO_GRAB_RANGE,
   COMBO_GRAB_WINDOW_SECONDS,
@@ -144,6 +145,9 @@ export class StageScene implements Scene {
   private meleeStrikeTimer = 0;
   private meleeSwingTimer = 0;
   private meleeStrikeResolved = true;
+  private readonly breakableHits = new Set<WorldObject>();
+  private breakableAttack: Player['currentAttack'] = null;
+  private breakableAttackElapsed = 0;
 
   static async create(
     catalog: AssetCatalog,
@@ -157,6 +161,8 @@ export class StageScene implements Scene {
     for (const wave of firstModule.waves ?? []) firstCharacters.add(wave.character ?? defaultEnemyId);
     const itemCatalog = await loadStage1Items();
     const referencedItemIds = new Set(stageData.modules.flatMap((module) => (module.items ?? []).map((spawn) => spawn.item)));
+    const referencedDefinitions = itemCatalog.items.filter((item) => referencedItemIds.has(item.id));
+    for (const item of referencedDefinitions) if (item.drop_item) referencedItemIds.add(item.drop_item);
     const activeItems = itemCatalog.items.filter((item) => referencedItemIds.has(item.id));
     const [firstBackgrounds, , itemTextureList] = await Promise.all([
       Promise.all(authoredLayers(firstModule).map((layer) => catalog.loadBackground(layer.src))),
@@ -438,11 +444,31 @@ export class StageScene implements Scene {
 
   private nearestPickup(): WorldObject | null {
     return this.worldObjects
-      .filter((object) => object.state === 'ground' && itemWithinRange(this.player.position, object.position, 78, 42))
+      .filter((object) => object.state === 'ground'
+        && isPickupKind(object.definition.kind)
+        && itemWithinRange(this.player.position, object.position, 78, 42))
+      .sort((a, b) => Math.abs(a.position.x - this.player.position.x) - Math.abs(b.position.x - this.player.position.x))[0] ?? null;
+  }
+
+  private nearestFood(): WorldObject | null {
+    return this.worldObjects
+      .filter((object) => object.state === 'ground'
+        && object.definition.kind === 'food'
+        && itemWithinRange(this.player.position, object.position, 78, 42))
       .sort((a, b) => Math.abs(a.position.x - this.player.position.x) - Math.abs(b.position.x - this.player.position.x))[0] ?? null;
   }
 
   private useOrPickupItem(): boolean {
+    const food = this.heldObject ? null : this.nearestFood();
+    if (food) {
+      const healing = food.definition.healing ?? 0;
+      this.player.health = Math.min(this.player.maxHealth, this.player.health + healing);
+      food.state = 'spent';
+      food.root.visible = false;
+      this.message = `${food.definition.display_name.toUpperCase()} — +${healing} SALUTE`;
+      this.messageTimer = 0.9;
+      return true;
+    }
     const pickup = this.nearestPickup();
     const interaction = resolveItemInteraction(this.heldObject?.definition.kind ?? null, pickup !== null);
     if (interaction === 'pickup' && pickup) {
@@ -488,6 +514,40 @@ export class StageScene implements Scene {
     this.effects.damageText({ x: enemy.position.x, y: enemy.visualTop() + 55 }, damage, false);
     this.hitStop = Math.max(this.hitStop, 0.055);
     this.screenShake = Math.max(this.screenShake, 3.5);
+  }
+
+  private spawnItem(itemId: string, position: Vec2): void {
+    const definition = this.itemDefinitions.get(itemId);
+    const texture = this.itemTextures.get(itemId);
+    if (!definition || !texture) return;
+    const drop = new WorldObject(definition, texture, position);
+    this.worldObjects.push(drop);
+    this.actors.addChild(drop.root);
+  }
+
+  private resolveBreakableHits(): void {
+    const attackBox = this.player.activeAttackBox();
+    if (!attackBox) return;
+    if (this.breakableAttack !== this.player.currentAttack || this.player.attackElapsed < this.breakableAttackElapsed) {
+      this.breakableHits.clear();
+      this.breakableAttack = this.player.currentAttack;
+    }
+    this.breakableAttackElapsed = this.player.attackElapsed;
+    for (const object of this.worldObjects) {
+      if (object.definition.kind !== 'breakable' || object.state !== 'ground') continue;
+      if (this.breakableHits.has(object)) continue;
+      if (!rectsIntersect(attackBox, object.hurtbox)) continue;
+      this.breakableHits.add(object);
+      const destroyed = object.hitBreakable();
+      this.effects.hitSpark({ x: object.position.x, y: object.position.y - 55 }, destroyed);
+      this.hitStop = Math.max(this.hitStop, destroyed ? 0.07 : 0.035);
+      this.screenShake = Math.max(this.screenShake, destroyed ? 5 : 2);
+      if (destroyed && object.definition.drop_item) {
+        this.spawnItem(object.definition.drop_item, { ...object.position });
+        this.message = `${object.definition.display_name.toUpperCase()} ROTTO — OGGETTO RILASCIATO`;
+        this.messageTimer = 1.0;
+      }
+    }
   }
 
   private restart(): void {
@@ -799,6 +859,7 @@ export class StageScene implements Scene {
       this.effects.damageText(event.position, event.damage, event.heavy);
       if (this.player.currentAttack === SPIN_SPECIAL) this.effects.fireRush(event.position, this.player.facing, true);
     }
+    this.resolveBreakableHits();
     for (const enemy of this.enemies) {
       const event = resolveEnemyAttack(enemy, this.player);
       if (!event) continue;

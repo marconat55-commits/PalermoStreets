@@ -1,5 +1,5 @@
 import { Container, Sprite, type Texture } from 'pixi.js';
-import type { StageItemDefinition, Vec2 } from '../types';
+import type { Rect, StageItemDefinition, Vec2 } from '../types';
 
 export type WorldObjectState = 'ground' | 'held' | 'thrown' | 'spent';
 
@@ -13,9 +13,11 @@ export class WorldObject {
   elevation = 0;
   velocity: Vec2 = { x: 0, y: 0 };
   verticalVelocity = 0;
+  durability: number;
 
   constructor(definition: StageItemDefinition, texture: Texture, position: Vec2) {
     this.definition = definition;
+    this.durability = definition.durability ?? 1;
     this.position = { ...position };
     this.sprite = new Sprite(texture);
     this.sprite.anchor.set(0.5, 1);
@@ -50,6 +52,19 @@ export class WorldObject {
     this.sprite.scale.x = Math.abs(this.sprite.scale.x);
     this.hitActors.clear();
     this.sync();
+  }
+
+  get hurtbox(): Rect {
+    return { x: this.position.x - 44, y: this.position.y - 96, width: 88, height: 96 };
+  }
+
+  hitBreakable(damage = 1): boolean {
+    if (this.definition.kind !== 'breakable' || this.state !== 'ground') return false;
+    this.durability -= damage;
+    if (this.durability > 0) return false;
+    this.state = 'spent';
+    this.root.visible = false;
+    return true;
   }
 
   update(dt: number): void {

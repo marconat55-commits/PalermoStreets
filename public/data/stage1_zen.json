@@ -23,7 +23,9 @@
       "heal": 12,
       "items": [
         { "item": "metal_pipe", "position": [405, 686] },
-        { "item": "brick", "position": [610, 681] }
+        { "item": "brick", "position": [610, 681] },
+        { "item": "trash_bag", "position": [1180, 688] },
+        { "item": "trash_bin", "position": [1580, 690] }
       ],
       "waves": [
         {

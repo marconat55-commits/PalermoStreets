@@ -2,6 +2,10 @@ import type { StageItemKind, Vec2 } from '../types';
 
 export type ItemInteraction = 'pickup' | 'melee' | 'throw' | null;
 
+export function isPickupKind(kind: StageItemKind): boolean {
+  return kind === 'melee' || kind === 'throwable';
+}
+
 export function resolveItemInteraction(heldKind: StageItemKind | null, nearbyPickup: boolean): ItemInteraction {
   if (heldKind === 'melee') return 'melee';
   if (heldKind === 'throwable') return 'throw';

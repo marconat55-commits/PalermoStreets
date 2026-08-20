@@ -94,13 +94,13 @@
     },
     "punch_left": {
       "folder": "punch_left",
-      "frames": 3,
-      "source_frames": 3,
-      "frame_sequence": [1, 2, 3],
-      "durations": [0.08, 0.12, 0.1],
+      "frames": 4,
+      "source_frames": 4,
+      "frame_sequence": [1, 2, 3, 4],
+      "durations": [0.05, 0.0333, 0.0333, 0.0333],
       "visual_scales": [1.0],
       "source_facing": 1,
-      "contact_frame": 2
+      "contact_frame": 3
     },
     "punch_right": {
       "folder": "punch_right",

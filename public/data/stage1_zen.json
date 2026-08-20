@@ -19,6 +19,10 @@
       "entry": [147, 670],
       "exit_x": 2887,
       "heal": 12,
+      "items": [
+        { "item": "metal_pipe", "position": [405, 686] },
+        { "item": "brick", "position": [610, 681] }
+      ],
       "waves": [
         {
           "trigger_x": 299,

@@ -134,7 +134,14 @@ export interface ModuleData {
   walk_bottom?: Array<[number, number]>;
   /** Optional [worldX, screenYOffset] samples for ramps, rises and descents. */
   ground_profile?: Array<[number, number]>;
+  /** Data-driven objects placed in world space for this module. */
+  items?: StageItemSpawn[];
   waves: WaveData[];
+}
+
+export interface StageItemSpawn {
+  item: string;
+  position: [number, number];
 }
 
 export type PlayerSlot = 1 | 2 | 3 | 4;
@@ -179,6 +186,10 @@ export interface StageItemDefinition {
   damage?: number;
   healing?: number;
   ammo?: number;
+  world_scale?: number;
+  held_scale?: number;
+  held_angle?: number;
+  throw_speed?: number;
   notes?: string[];
 }
 

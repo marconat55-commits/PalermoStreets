@@ -2,7 +2,7 @@ import { Container, Graphics, Sprite, Text, TextStyle, type Texture } from 'pixi
 import type { Scene } from './Scene';
 import type { Input } from '../input/Input';
 import type { AssetCatalog } from '../assets/AssetCatalog';
-import type { BackgroundLayerData, CharacterProfile, ModuleData, StageData, Vec2, WaveData } from '../types';
+import type { BackgroundLayerData, CharacterProfile, ModuleData, StageData, StageItemCatalog, StageItemDefinition, Vec2, WaveData } from '../types';
 import { Player } from '../entities/Player';
 import { Enemy } from '../entities/Enemy';
 import { EffectsLayer } from '../effects/EffectsLayer';
@@ -14,6 +14,9 @@ import { cameraTargetForPlayer, resolveCameraBounds, smoothCamera, type Horizont
 import { resolveArcadeAction, resolveGrabAction } from '../input/arcadeControls';
 import { SPIN_SPECIAL } from '../combat/attacks';
 import { resolveWalkBand } from '../stage/walkBand';
+import { loadStage1Items } from '../data/loadData';
+import { WorldObject } from '../objects/WorldObject';
+import { itemWithinRange, resolveItemInteraction } from '../objects/itemRules';
 import {
   COMBO_GRAB_RANGE,
   COMBO_GRAB_WINDOW_SECONDS,
@@ -131,6 +134,12 @@ export class StageScene implements Scene {
   private specialFxTimer = 0;
   private comboGrabTargetId: number | null = null;
   private comboGrabTimer = 0;
+  private readonly itemDefinitions: Map<string, StageItemDefinition>;
+  private readonly itemTextures: Map<string, Texture>;
+  private worldObjects: WorldObject[] = [];
+  private heldObject: WorldObject | null = null;
+  private meleeStrikeTimer = 0;
+  private meleeStrikeResolved = true;
 
   static async create(
     catalog: AssetCatalog,
@@ -142,13 +151,25 @@ export class StageScene implements Scene {
     if (!firstModule) throw new Error('Stage senza moduli');
     const firstCharacters = new Set<string>([playerId]);
     for (const wave of firstModule.waves ?? []) firstCharacters.add(wave.character ?? defaultEnemyId);
-    const [firstBackgrounds] = await Promise.all([
+    const itemCatalog = await loadStage1Items();
+    const referencedItemIds = new Set(stageData.modules.flatMap((module) => (module.items ?? []).map((spawn) => spawn.item)));
+    const activeItems = itemCatalog.items.filter((item) => referencedItemIds.has(item.id));
+    const [firstBackgrounds, , itemTextureList] = await Promise.all([
       Promise.all(authoredLayers(firstModule).map((layer) => catalog.loadBackground(layer.src))),
       Promise.all([...firstCharacters].map((id) => catalog.ensureCharacter(id))),
+      Promise.all(activeItems.map((item) => catalog.loadBackground(item.asset))),
     ]);
     const backgrounds = Array<Texture[] | null>(stageData.modules.length).fill(null);
     backgrounds[0] = firstBackgrounds;
-    return new StageScene(catalog, stageData, backgrounds, playerId, defaultEnemyId);
+    return new StageScene(
+      catalog,
+      stageData,
+      backgrounds,
+      playerId,
+      defaultEnemyId,
+      itemCatalog,
+      new Map(activeItems.map((item, index) => [item.id, itemTextureList[index]!])),
+    );
   }
 
   private constructor(
@@ -157,6 +178,8 @@ export class StageScene implements Scene {
     backgrounds: Array<Texture[] | null>,
     playerId: string,
     defaultEnemyId: string,
+    itemCatalog: StageItemCatalog,
+    itemTextures: Map<string, Texture>,
   ) {
     this.catalog = catalog;
     const playerProfile = this.catalog.getProfile(playerId);
@@ -164,6 +187,8 @@ export class StageScene implements Scene {
     this.defaultEnemyId = defaultEnemyId;
     this.modules = stageData.modules;
     this.backgroundTextures = backgrounds;
+    this.itemDefinitions = new Map(itemCatalog.items.map((item) => [item.id, item]));
+    this.itemTextures = itemTextures;
     this.actors.sortableChildren = true;
     this.world.sortableChildren = true;
     this.root.sortableChildren = true;
@@ -378,6 +403,7 @@ export class StageScene implements Scene {
       this.player.fury = 0;
     }
     this.player.syncVisual(true);
+    this.spawnModuleItems();
     this.updateCamera(1);
 
     if (index === 0 && !preservePlayer && !this.stageIntroShown) {
@@ -387,6 +413,71 @@ export class StageScene implements Scene {
 
     this.message = `${this.currentModule.id} — ${this.currentModule.name.toUpperCase()}`;
     this.messageTimer = 2;
+  }
+
+  private spawnModuleItems(): void {
+    for (const object of this.worldObjects) object.destroy();
+    this.worldObjects = [];
+    this.heldObject = null;
+    for (const spawn of this.currentModule.items ?? []) {
+      const definition = this.itemDefinitions.get(spawn.item);
+      const texture = this.itemTextures.get(spawn.item);
+      if (!definition || !texture) {
+        console.warn(`${this.currentModule.id}: oggetto non disponibile: ${spawn.item}`);
+        continue;
+      }
+      const object = new WorldObject(definition, texture, { x: spawn.position[0], y: spawn.position[1] });
+      this.worldObjects.push(object);
+      this.actors.addChild(object.root);
+    }
+  }
+
+  private nearestPickup(): WorldObject | null {
+    return this.worldObjects
+      .filter((object) => object.state === 'ground' && itemWithinRange(this.player.position, object.position, 78, 42))
+      .sort((a, b) => Math.abs(a.position.x - this.player.position.x) - Math.abs(b.position.x - this.player.position.x))[0] ?? null;
+  }
+
+  private useOrPickupItem(): boolean {
+    const pickup = this.nearestPickup();
+    const interaction = resolveItemInteraction(this.heldObject?.definition.kind ?? null, pickup !== null);
+    if (interaction === 'pickup' && pickup) {
+      this.heldObject = pickup;
+      pickup.pickup();
+      this.message = `${pickup.definition.display_name.toUpperCase()} — J USA`;
+      this.messageTimer = 1.1;
+      return true;
+    }
+    if (interaction === 'throw' && this.heldObject) {
+      this.heldObject.throwFrom(this.player.position, this.player.facing);
+      this.heldObject = null;
+      this.player.requestArcadeAttack();
+      return true;
+    }
+    if (interaction === 'melee' && this.heldObject) {
+      this.player.requestArcadeAttack();
+      this.meleeStrikeTimer = 0.10;
+      this.meleeStrikeResolved = false;
+      return true;
+    }
+    return false;
+  }
+
+  private resolveMeleeStrike(): void {
+    if (!this.heldObject || this.heldObject.definition.kind !== 'melee') return;
+    const enemy = this.enemies
+      .filter((target) => !target.dead
+        && (target.position.x - this.player.position.x) * this.player.facing >= -12
+        && itemWithinRange(this.player.position, target.position, 150, 48))
+      .sort((a, b) => Math.abs(a.position.x - this.player.position.x) - Math.abs(b.position.x - this.player.position.x))[0];
+    if (!enemy) return;
+    const damage = this.heldObject.definition.damage ?? 12;
+    const result = enemy.receiveHit(damage, { x: this.player.facing * 310, y: 0 });
+    if (!result.accepted) return;
+    this.effects.hitSpark({ x: enemy.position.x, y: enemy.visualTop() + 75 }, false);
+    this.effects.damageText({ x: enemy.position.x, y: enemy.visualTop() + 55 }, damage, false);
+    this.hitStop = Math.max(this.hitStop, 0.055);
+    this.screenShake = Math.max(this.screenShake, 3.5);
   }
 
   private restart(): void {
@@ -560,7 +651,7 @@ export class StageScene implements Scene {
         }
         if (action === 'attack') {
           if (this.player.isAirborne) this.player.requestAirKick();
-          else if (!this.tryStartGrab()) this.player.requestArcadeAttack();
+          else if (!this.useOrPickupItem() && !this.tryStartGrab()) this.player.requestArcadeAttack();
         }
       }
     }
@@ -618,6 +709,32 @@ export class StageScene implements Scene {
     )[0];
     this.player.setAutoTarget(nearest?.position.x ?? null);
     this.player.update(dt, input, this.entryLock <= 0);
+    if (this.heldObject) this.heldObject.holdAt(this.player.position, this.player.facing);
+    this.meleeStrikeTimer = Math.max(0, this.meleeStrikeTimer - dt);
+    if (!this.meleeStrikeResolved && this.meleeStrikeTimer <= 0) {
+      this.meleeStrikeResolved = true;
+      this.resolveMeleeStrike();
+    }
+    for (const object of this.worldObjects) {
+      object.update(dt);
+      if (object.state !== 'thrown') continue;
+      for (const enemy of this.enemies) {
+        if (enemy.dead || object.hitActors.has(enemy.actorId)) continue;
+        if (!itemWithinRange(object.position, enemy.position, 58, 44) || object.elevation > 135) continue;
+        const damage = object.definition.damage ?? 10;
+        const direction = Math.sign(object.velocity.x) || this.player.facing;
+        const result = enemy.receiveHit(damage, { x: direction * 440, y: 0 }, true, 330);
+        if (!result.accepted) continue;
+        object.hitActors.add(enemy.actorId);
+        object.state = 'spent';
+        object.root.visible = false;
+        this.effects.hitSpark({ x: enemy.position.x, y: enemy.visualTop() + 70 }, true);
+        this.effects.damageText({ x: enemy.position.x, y: enemy.visualTop() + 50 }, damage, true);
+        this.hitStop = Math.max(this.hitStop, 0.085);
+        this.screenShake = Math.max(this.screenShake, 6);
+        break;
+      }
+    }
     if (this.player.isSpinSpecialActive) {
       this.specialFxTimer -= dt;
       if (this.specialFxTimer <= 0) {

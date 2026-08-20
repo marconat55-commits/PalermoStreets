@@ -1,0 +1,75 @@
+import { Container, Sprite, type Texture } from 'pixi.js';
+import type { StageItemDefinition, Vec2 } from '../types';
+
+export type WorldObjectState = 'ground' | 'held' | 'thrown' | 'spent';
+
+export class WorldObject {
+  readonly root = new Container();
+  readonly sprite: Sprite;
+  readonly hitActors = new Set<number>();
+  state: WorldObjectState = 'ground';
+  position: Vec2;
+  elevation = 0;
+  velocity: Vec2 = { x: 0, y: 0 };
+  verticalVelocity = 0;
+
+  constructor(readonly definition: StageItemDefinition, texture: Texture, position: Vec2) {
+    this.position = { ...position };
+    this.sprite = new Sprite(texture);
+    this.sprite.anchor.set(0.5, 1);
+    this.sprite.scale.set(definition.world_scale ?? 0.065);
+    this.root.addChild(this.sprite);
+    this.sync();
+  }
+
+  pickup(): void {
+    this.state = 'held';
+    this.velocity = { x: 0, y: 0 };
+    this.elevation = 0;
+    this.sprite.scale.set(this.definition.held_scale ?? this.definition.world_scale ?? 0.065);
+  }
+
+  holdAt(position: Vec2, facing: -1 | 1): void {
+    this.position = { x: position.x + facing * 34, y: position.y - 91 };
+    this.sprite.rotation = facing * (this.definition.held_angle ?? -0.72);
+    this.sprite.scale.x = Math.abs(this.sprite.scale.x) * facing;
+    this.sync();
+    this.root.zIndex = position.y + 2;
+  }
+
+  throwFrom(position: Vec2, facing: -1 | 1): void {
+    this.state = 'thrown';
+    this.position = { x: position.x + facing * 38, y: position.y - 12 };
+    this.elevation = 86;
+    this.velocity = { x: facing * (this.definition.throw_speed ?? 610), y: 0 };
+    this.verticalVelocity = 250;
+    this.sprite.rotation = 0;
+    this.sprite.scale.x = Math.abs(this.sprite.scale.x);
+    this.hitActors.clear();
+    this.sync();
+  }
+
+  update(dt: number): void {
+    if (this.state !== 'thrown') return;
+    this.position.x += this.velocity.x * dt;
+    this.position.y += this.velocity.y * dt;
+    this.elevation += this.verticalVelocity * dt;
+    this.verticalVelocity -= 760 * dt;
+    this.sprite.rotation += Math.sign(this.velocity.x) * 9 * dt;
+    if (this.elevation <= 0 && this.verticalVelocity < 0) {
+      this.elevation = 0;
+      this.state = 'spent';
+      this.root.visible = false;
+    }
+    this.sync();
+  }
+
+  private sync(): void {
+    this.root.position.set(this.position.x, this.position.y - this.elevation);
+    this.root.zIndex = this.position.y;
+  }
+
+  destroy(): void {
+    this.root.destroy({ children: true });
+  }
+}

@@ -2,6 +2,7 @@ import type { Texture } from 'pixi.js';
 
 export type Vec2 = { x: number; y: number };
 export type Rect = { x: number; y: number; width: number; height: number };
+export type EnemyAttackPattern = 'weighted' | 'alternate' | 'single';
 
 export interface AnimationJson {
   folder: string;
@@ -51,6 +52,8 @@ export interface CharacterProfile {
       damage_scale?: number;
       attack_speed_scale?: number;
       heavy_chance?: number;
+      /** Selection policy for one-slot, alternating two-slot, or weighted enemies. */
+      attack_pattern?: EnemyAttackPattern;
       cooldown_scale?: number;
       collision_scale?: number;
       /** Optional reactive evade used by agile enemy templates. */
@@ -90,6 +93,7 @@ export interface WaveData {
   damage_scale?: number;
   attack_speed_scale?: number;
   heavy_chance?: number;
+  attack_pattern?: EnemyAttackPattern;
   cooldown_scale?: number;
   collision_scale?: number;
   dodge_chance?: number;

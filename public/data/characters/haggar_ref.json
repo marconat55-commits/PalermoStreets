@@ -23,6 +23,7 @@
       "damage_scale": 1.16,
       "attack_speed_scale": 0.88,
       "heavy_chance": 0.46,
+      "attack_pattern": "alternate",
       "cooldown_scale": 1.08,
       "collision_scale": 1.13,
       "dodge_chance": 0.0,

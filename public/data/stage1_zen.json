@@ -81,15 +81,11 @@
       "waves": [
         {
           "trigger_x": 414,
-          "health": 64,
-          "aggression": 1.02,
+          "health": 68,
+          "aggression": 1.04,
           "spawns": [[966, 600]],
-          "character": "talebano",
-          "name": "TALEBANO",
-          "move_speed_scale": 0.9,
-          "damage_scale": 1.02,
-          "attack_speed_scale": 0.94,
-          "heavy_chance": 0.3
+          "character": "aiori_ref",
+          "name": "AIORI REF"
         }
       ]
     },

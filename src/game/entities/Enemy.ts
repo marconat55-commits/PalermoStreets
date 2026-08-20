@@ -1,8 +1,9 @@
 import { Actor, type HitResult } from './Actor';
-import type { AnimationBank, AttackData, Rect, Vec2 } from '../types';
+import type { AnimationBank, AttackData, EnemyAttackPattern, Rect, Vec2 } from '../types';
 import { ENEMY_ATTACK, ENEMY_HEAVY, attackTotal } from '../combat/attacks';
 import { clamp, lengthSq, normalize, randomRange, sub } from '../../utils/math';
 import { locomotionPlaybackRate, selectLocomotionClip } from '../animation/locomotion';
+import { selectEnemyAttackSlot } from '../combat/enemyAttackPattern';
 
 function scaledAttack(base: AttackData, damageScale: number, speedScale: number): AttackData {
   const speed = clamp(speedScale, 0.55, 1.8);
@@ -26,6 +27,7 @@ export interface EnemyOptions {
   damageScale?: number;
   attackSpeedScale?: number;
   heavyChance?: number;
+  attackPattern?: EnemyAttackPattern;
   cooldownScale?: number;
   collisionScale?: number;
   dodgeChance?: number;
@@ -42,6 +44,7 @@ export class Enemy extends Actor {
   readonly cooldownScale: number;
   readonly collisionScale: number;
   readonly heavyChance: number;
+  readonly attackPattern: EnemyAttackPattern;
   readonly lightAttack: AttackData;
   readonly heavyAttack: AttackData;
   readonly dodgeChance: number;
@@ -56,6 +59,7 @@ export class Enemy extends Actor {
   spawnElapsed = 0;
   grabbedBy: Actor | null = null;
   dodgeCooldown = 0;
+  private attackSequence = 0;
 
   constructor(bank: AnimationBank, position: Vec2, options: EnemyOptions = {}) {
     super(bank, position, options.health ?? 82);
@@ -68,6 +72,7 @@ export class Enemy extends Actor {
     this.cooldownScale = clamp(options.cooldownScale ?? 1, 0.55, 1.80);
     this.collisionScale = clamp(options.collisionScale ?? 1, 0.75, 1.35);
     this.heavyChance = clamp((options.heavyChance ?? 0.13) + (this.isBoss ? 0.11 : 0), 0, 0.8);
+    this.attackPattern = options.attackPattern ?? 'weighted';
     this.lightAttack = scaledAttack(ENEMY_ATTACK, options.damageScale ?? 1, options.attackSpeedScale ?? 1);
     this.heavyAttack = scaledAttack(ENEMY_HEAVY, options.damageScale ?? 1, options.attackSpeedScale ?? 1);
     this.dodgeChance = clamp(options.dodgeChance ?? 0, 0, 0.8);
@@ -267,7 +272,9 @@ export class Enemy extends Actor {
 
     if (mayAttack && playerVulnerable && correctSide && this.attackCooldown <= 0 && distanceX <= (this.isBoss ? 118 : 108) && distanceY <= 46) {
       const chance = clamp(this.heavyChance * this.aggression, 0, 0.85);
-      this.startAttack(Math.random() < chance ? this.heavyAttack : this.lightAttack, player);
+      const selection = selectEnemyAttackSlot(this.attackPattern, this.attackSequence, chance);
+      this.attackSequence = selection.nextSequence;
+      this.startAttack(selection.slot === 'heavy' ? this.heavyAttack : this.lightAttack, player);
       this.clampToPlayfield(); this.syncVisual(); return;
     }
 

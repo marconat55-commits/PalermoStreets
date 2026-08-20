@@ -43,7 +43,7 @@ test('M01 greybox locks street scale before any new art is generated', () => {
   assert.equal(module.geometry.horizon_runtime_y, 315);
   assert.equal(module.walk_band.top_runtime_y, 635);
   assert.equal(module.walk_band.bottom_runtime_y, 705);
-  assert.deepEqual(module.reference_actors.map((actor: { height_runtime: number }) => actor.height_runtime), [290, 290, 305]);
+  assert.deepEqual(module.reference_actors.map((actor: { height_runtime: number }) => actor.height_runtime), [290, 290, 318]);
 });
 
 test('the shared storyboard is captured without overriding current canon', () => {

@@ -1,0 +1,74 @@
+{
+  "schema": 1,
+  "id": "M01_final_layers_v1",
+  "status": "approval_candidate",
+  "source_master": "public/assets/backgrounds/stage1_zen/long/ZEN_LONG_01_STRADA_CORTILE.png",
+  "far_master_source": "public/assets/backgrounds/stage1_zen/long/ZEN_FAR_SKYLINE.png",
+  "legacy_alpha_reference": "public/assets/backgrounds/stage1_zen/layers_v2/M01/MAIN_SKY_V3.png",
+  "mask_strategy": {
+    "type": "authored_silhouette_softened",
+    "runtime_blur_px": 1.25,
+    "far_color_match": "mean_std_per_rgb_channel_against_source_sky",
+    "reason": "Preserves all architecture while removing hard or cut sky edges."
+  },
+  "master_size": [
+    3840,
+    1080
+  ],
+  "runtime_size": [
+    2560,
+    720
+  ],
+  "module_length_viewports": 2,
+  "walk_band": [
+    635,
+    705
+  ],
+  "horizon_y": 315,
+  "camera_proofs": [
+    0,
+    640,
+    1280
+  ],
+  "parallax": {
+    "far": 0.22,
+    "main": 1.0,
+    "foreground": 1.08
+  },
+  "foreground_policy": "transparent_placeholder_disabled_until_authored",
+  "runtime_main_alpha": {
+    "transparent_pixels": 118787,
+    "opaque_pixels": 1717605,
+    "partial_pixels": 6808
+  },
+  "files": {
+    "masters": {
+      "far": "art_source/stages/stage1_zen/M01/final_v1/M01_FAR_MASTER.png",
+      "main": "art_source/stages/stage1_zen/M01/final_v1/M01_MAIN_MASTER.png",
+      "foreground": "art_source/stages/stage1_zen/M01/final_v1/M01_FOREGROUND_MASTER.png"
+    },
+    "runtime_candidates": {
+      "far": "art_source/stages/stage1_zen/M01/final_v1/runtime/M01_FAR.png",
+      "main": "art_source/stages/stage1_zen/M01/final_v1/runtime/M01_MAIN.png",
+      "foreground": "art_source/stages/stage1_zen/M01/final_v1/runtime/M01_FOREGROUND.png"
+    },
+    "previews": [
+      "production-preview/M01/final_v1/M01_CAMERA_X0000.png",
+      "production-preview/M01/final_v1/M01_CAMERA_X0640.png",
+      "production-preview/M01/final_v1/M01_CAMERA_X1280.png"
+    ],
+    "contact_sheet": "production-preview/M01/final_v1/M01_APPROVAL_CONTACT_SHEET.jpg"
+  },
+  "sha256": {
+    "art_source/stages/stage1_zen/M01/final_v1/M01_FAR_MASTER.png": "b6ef381e04946e463fa347aeb4a992fc0b0b8d17e5759af3afb35edbbe96bc67",
+    "art_source/stages/stage1_zen/M01/final_v1/M01_MAIN_MASTER.png": "859631345e53aaf0a7fb38ea8a0a5b3bd706feaa108290f5a3ef2f58094b0171",
+    "art_source/stages/stage1_zen/M01/final_v1/M01_FOREGROUND_MASTER.png": "ef2bc07cd6154ac90d866f5fa2f560995b3bdf65633e5251a4abcc4c7dbdd6aa",
+    "art_source/stages/stage1_zen/M01/final_v1/runtime/M01_FAR.png": "de4a448d41bde5ed41df096071709d8e3f45cfab38edcc43a2911556f3410898",
+    "art_source/stages/stage1_zen/M01/final_v1/runtime/M01_MAIN.png": "594fd0dbcc2df86fa3c2c618744741156878945a8e8ee67358594f563d261d90",
+    "art_source/stages/stage1_zen/M01/final_v1/runtime/M01_FOREGROUND.png": "27062e8ae0d7ebda1ff68e8b5d45545d82cc45908b4284d3dc52f5b481bf6283",
+    "production-preview/M01/final_v1/M01_CAMERA_X0000.png": "f5314a5a931f40a3e1cf6d10d23e76d206cce52b51602c98272d38e869ae4cb3",
+    "production-preview/M01/final_v1/M01_CAMERA_X0640.png": "5edf8b4c3930ffb09c70572df3d3e4213968fba9edd1f4fd0d5a1dc505caa9bb",
+    "production-preview/M01/final_v1/M01_CAMERA_X1280.png": "c3db121e261880f87859005b69a1e183813167a1c8aeda737d4df26b369cfd12",
+    "production-preview/M01/final_v1/M01_APPROVAL_CONTACT_SHEET.jpg": "6b3e166b420cc6e9695ff16405f81dc441782737a62d53e75a80ec854ba1e91d"
+  }
+}

@@ -11,7 +11,8 @@
     "art_direction_pending": true
   },
   "art_candidate": {
-    "status": "not_started",
+    "status": "approval_candidate",
+    "manifest": "art_source/stages/stage1_zen/M01/final_v1/M01_FINAL_LAYERS_MANIFEST.json",
     "runtime_integration": false
   },
   "integration": {
@@ -57,7 +58,7 @@
   "reference_actors": [
     { "id": "marco_start", "x_runtime": 300, "feet_y_runtime": 680, "height_runtime": 290 },
     { "id": "marco_mid", "x_runtime": 1280, "feet_y_runtime": 680, "height_runtime": 290 },
-    { "id": "talebano_end", "x_runtime": 2240, "feet_y_runtime": 680, "height_runtime": 305 }
+    { "id": "talebano_end", "x_runtime": 2240, "feet_y_runtime": 680, "height_runtime": 318 }
   ],
   "composition": {
     "greybox_rects_master": [

@@ -75,10 +75,10 @@
 <path d="M 1920 693.75 L 1920 837.3 M 1920 711.75 L 1850.4 793.8 M 1920 711.75 L 1989.6 785.1 M 1920 837.3 L 1863.45 1020 M 1920 837.3 L 1985.25 1020"/>
 </g>
 <text x="1948" y="609" fill="#22d3ee" font-family="Arial,sans-serif" font-size="24" font-weight="700">marco_mid 290px</text>
-<g aria-label="talebano_end" fill="none" stroke="#f97316" stroke-width="20.5875" stroke-linecap="round" stroke-linejoin="round">
-<circle cx="3360" cy="603.675" r="41.175" fill="#f97316" fill-opacity="0.22"/>
-<path d="M 3360 676.875 L 3360 827.8499999999999 M 3360 694.875 L 3286.8 782.1 M 3360 694.875 L 3433.2 772.95 M 3360 827.8499999999999 L 3300.525 1020 M 3360 827.8499999999999 L 3428.625 1020"/>
+<g aria-label="talebano_end" fill="none" stroke="#f97316" stroke-width="21.465" stroke-linecap="round" stroke-linejoin="round">
+<circle cx="3360" cy="585.93" r="42.93" fill="#f97316" fill-opacity="0.22"/>
+<path d="M 3360 662.25 L 3360 819.66 M 3360 680.25 L 3283.68 771.96 M 3360 680.25 L 3436.32 762.4200000000001 M 3360 819.66 L 3297.99 1020 M 3360 819.66 L 3431.55 1020"/>
 </g>
-<text x="3388" y="586.5" fill="#f97316" font-family="Arial,sans-serif" font-size="24" font-weight="700">talebano_end 305px</text>
+<text x="3388" y="567" fill="#f97316" font-family="Arial,sans-serif" font-size="24" font-weight="700">talebano_end 318px</text>
 <text x="1956" y="62" fill="#fff" font-family="Arial,sans-serif" font-size="30" font-weight="700">M01 CAMERA X=1280 runtime</text>
 </svg>

@@ -76,3 +76,6 @@ Un contenuto e completato soltanto quando:
 ## Portabilita
 
 Il catalogo, i manifest, gli asset e le sorgenti artistiche sono indipendenti dall'engine. Combat, AI e scene restano codice PixiJS/TypeScript e non sono automaticamente trasferibili a un altro motore; questa separazione evita pero di perdere il lavoro sui contenuti.
+### Scalable stage length
+
+The production unit is a 2560×720 runtime module (two 1280×720 viewports) backed by a 3840×1080 master. A longer stage is a sequence of these modules with current-plus-next preloading. Each module keeps independent camera bounds, walk band and encounter triggers, so later stages can grow without mega-textures or hardcoded geometry.

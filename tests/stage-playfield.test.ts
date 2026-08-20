@@ -4,6 +4,9 @@ import test from 'node:test';
 
 interface Module {
   id: string;
+  art_status: 'approved' | 'placeholder_rebuild_required';
+  reference_actor_height: number;
+  horizon_y?: number;
   playfield_y: [number, number];
   walk_top: Array<[number, number]>;
   walk_bottom: Array<[number, number]>;
@@ -68,5 +71,15 @@ test('M01 and M02 keep actors on the foreground lane and away from portico thres
         assert.ok(feetY >= module.playfield_y[0], `${module.id}: spawn enters the portico depth`);
       }
     }
+  }
+});
+
+test('background audit distinguishes approved art from rebuild placeholders', () => {
+  const approved = stage.modules.filter((module) => module.art_status === 'approved');
+  assert.deepEqual(approved.map((module) => module.id), ['M02']);
+  assert.equal(approved[0]?.horizon_y, 300);
+  for (const module of stage.modules) assert.equal(module.reference_actor_height, 290);
+  for (const module of stage.modules.filter((item) => item.id !== 'M02')) {
+    assert.equal(module.art_status, 'placeholder_rebuild_required', `${module.id}: status audit`);
   }
 });

@@ -13,7 +13,7 @@ import { preventCrossings, resolveEnemyAttack, resolvePlayerAttack, separateActo
 import { cameraTargetForPlayer, resolveCameraBounds, smoothCamera, type HorizontalCameraBounds } from '../stage/camera';
 import { resolveArcadeAction, resolveGrabAction } from '../input/arcadeControls';
 import { SPIN_SPECIAL } from '../combat/attacks';
-import { resolveWalkBand } from '../stage/walkBand';
+import { resolveWalkBand, sampleWalkBand } from '../stage/walkBand';
 import { loadStage1Items } from '../data/loadData';
 import { WorldObject } from '../objects/WorldObject';
 import { itemWithinRange, resolveItemInteraction } from '../objects/itemRules';
@@ -918,8 +918,21 @@ export class StageScene implements Scene {
 
   private drawDebug(): void {
     const g = this.debug;
-    g.rect(45, this.playfieldTop, this.worldWidth - 90, this.playfieldBottom - this.playfieldTop)
-      .stroke({ color: 0x28ff6e, width: 2 });
+    const walkBand = sampleWalkBand(
+      this.currentModule,
+      this.worldWidth,
+      [this.playfieldTop, this.playfieldBottom],
+      48,
+    );
+    const polygon = [
+      ...walkBand.map(({ x, top }) => ({ x, y: top })),
+      ...[...walkBand].reverse().map(({ x, bottom }) => ({ x, y: bottom })),
+    ];
+    g.poly(polygon).fill({ color: 0x28ff6e, alpha: 0.12 }).stroke({ color: 0x28ff6e, width: 2, alpha: 0.95 });
+    if (this.currentModule.horizon_y !== undefined) {
+      g.moveTo(0, this.currentModule.horizon_y).lineTo(this.worldWidth, this.currentModule.horizon_y)
+        .stroke({ color: 0xff45d7, width: 2, alpha: 0.85 });
+    }
     for (const actor of [this.player, ...this.enemies]) {
       const hb = actor.hurtbox;
       g.rect(hb.x, hb.y, hb.width, hb.height).stroke({ color: 0x50d2ff, width: 2 });

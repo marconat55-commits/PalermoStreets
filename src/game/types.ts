@@ -120,6 +120,10 @@ export interface BackgroundLayerData {
 export interface ModuleData {
   id: string;
   name: string;
+  /** Art approval is separate from runtime/playability status. */
+  art_status?: 'approved' | 'placeholder_rebuild_required';
+  reference_actor_height?: number;
+  horizon_y?: number;
   background: string;
   /** Ordered authored layers. `background` remains the backwards-compatible main fallback. */
   background_layers?: BackgroundLayerData[];

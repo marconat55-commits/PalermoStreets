@@ -24,3 +24,26 @@ export function resolveWalkBand(module: ModuleData, worldX: number, fallback: [n
   const bottom = interpolateWalkProfile(module.walk_bottom, worldX, fallback[1]);
   return top <= bottom ? [top, bottom] : fallback;
 }
+
+export interface WalkBandPoint {
+  x: number;
+  top: number;
+  bottom: number;
+}
+
+export function sampleWalkBand(
+  module: ModuleData,
+  worldWidth: number,
+  fallback: [number, number],
+  step = 64,
+): WalkBandPoint[] {
+  const safeStep = Math.max(1, step);
+  const points: WalkBandPoint[] = [];
+  for (let x = 0; x < worldWidth; x += safeStep) {
+    const [top, bottom] = resolveWalkBand(module, x, fallback);
+    points.push({ x, top, bottom });
+  }
+  const [top, bottom] = resolveWalkBand(module, worldWidth, fallback);
+  points.push({ x: worldWidth, top, bottom });
+  return points;
+}

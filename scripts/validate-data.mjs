@@ -207,6 +207,15 @@ for (const key of Object.keys(meta)) if (!expectedMeta.has(key)) fail(`Metadata 
 
 for (const module of stage.modules ?? []) {
   if (!exists(module.background)) fail(`${module.id}: background mancante ${module.background}`);
+  if (!['approved', 'placeholder_rebuild_required'].includes(module.art_status)) {
+    fail(`${module.id}: art_status mancante o non valido`);
+  }
+  if (!Number.isFinite(module.reference_actor_height) || module.reference_actor_height <= 0) {
+    fail(`${module.id}: reference_actor_height non valido`);
+  }
+  if (module.art_status === 'approved' && !Number.isFinite(module.horizon_y)) {
+    fail(`${module.id}: un modulo approvato deve dichiarare horizon_y`);
+  }
   const worldWidth = module.world_width ?? 1280;
   if (!Number.isFinite(worldWidth) || worldWidth < 1280) fail(`${module.id}: world_width non valido`);
   if (module.camera_bounds) {

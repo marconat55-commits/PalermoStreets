@@ -17,6 +17,8 @@
 4. Registrare l'ID in `public/data/characters/index.json`.
 5. Eseguire `npm run assets:manifests` e `npm run check`.
 
+Il percorso automatizzato è `npm run character:import -- --spec <spec.json> --check-only`. Il gate controlla integralmente la consegna prima di scrivere. Rimuovendo `--check-only`, copia i frame senza alterarli, registra il profilo e richiama i generatori lossless di metadata e atlas. La sovrascrittura di un ID esistente è vietata.
+
 ## Aggiungere uno stage
 
 1. Creare JSON stage e catalogo oggetti dedicato.

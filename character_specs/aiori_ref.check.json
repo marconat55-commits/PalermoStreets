@@ -1,0 +1,6 @@
+{
+  "schema": 1,
+  "id": "aiori_ref",
+  "profile_source": "public/data/characters/aiori_ref.json",
+  "source_root": "public/assets/characters/aiori_ref_anim"
+}

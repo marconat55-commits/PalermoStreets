@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsc -b && vite build && node scripts/prune-production-assets.mjs && node scripts/validate-production-assets.mjs",
     "typecheck": "tsc -b --pretty false",
     "preview": "vite preview",
     "check": "npm run content:check && npm run validate:data && npm run validate:art && npm run test && npm run typecheck && npm run build",
@@ -14,6 +14,7 @@
     "content:scaffold": "node scripts/content/scaffold-content.mjs",
     "assets:manifests": "node scripts/build-character-metadata.mjs",
     "audit:assets": "node scripts/audit-asset-duplicates.mjs",
+    "validate:production": "node scripts/validate-production-assets.mjs",
     "validate:data": "node scripts/validate-data.mjs",
     "validate:art": "node scripts/validate-character-art.mjs",
     "test": "node --experimental-strip-types --test"

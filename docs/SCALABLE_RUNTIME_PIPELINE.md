@@ -6,7 +6,7 @@
 - `public/data/characters/index.json` registra il roster tecnico.
 - Ogni profilo personaggio punta al proprio atlas e al proprio `frame_meta` locale.
 - `npm run assets:manifests` rigenera deterministicamente i metadata locali dal metadata globale di migrazione.
-- In produzione i frame devono esistere nell'atlas. Il fallback ai PNG sciolti è consentito soltanto durante lo sviluppo.
+- In produzione i frame devono esistere nell'atlas. Il packaging rimuove da `dist` i PNG sciolti delle animazioni; il fallback resta disponibile soltanto nel progetto di sviluppo.
 - StageScene precarica il modulo successivo e rilascia gli sfondi del modulo precedente; alla distruzione rilascia sfondi, oggetti ed enemy bank.
 
 ## Aggiungere un personaggio
@@ -38,4 +38,4 @@
 
 Il file globale `public/data/generated/frame_meta.json` rimane temporaneamente la sorgente di build. Quando tutti gli strumenti scriveranno direttamente metadata locali, potrà essere rimosso insieme al fallback `legacy_frame_meta`.
 
-I PNG singoli restano per ora sotto `public` perché validatori e strumenti QA li ispezionano. Il passaggio finale atlas-only richiederà di spostare i frame sorgente in `art_source` e aggiornare i validatori; non deve essere fatto tramite cancellazione manuale.
+I PNG singoli restano sotto `public` perché validatori e strumenti QA li ispezionano, ma `npm run build` li esclude automaticamente da `dist`. La distribuzione è quindi atlas-only senza perdere le sorgenti o il fallback locale.

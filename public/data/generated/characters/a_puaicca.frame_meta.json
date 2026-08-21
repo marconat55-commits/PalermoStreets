@@ -1,0 +1,321 @@
+{
+  "/assets/characters/a_puaicca_anim/idle/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      231,
+      100,
+      178,
+      300
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/a_puaicca_anim/idle/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      233,
+      101,
+      173,
+      299
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/a_puaicca_anim/idle/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      227,
+      99,
+      186,
+      301
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/a_puaicca_anim/idle/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      229,
+      99,
+      181,
+      301
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/a_puaicca_anim/idle/05.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      230,
+      99,
+      179,
+      301
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/a_puaicca_anim/walk/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      254,
+      100,
+      131,
+      300
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/a_puaicca_anim/walk/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      247,
+      101,
+      145,
+      299
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/a_puaicca_anim/walk/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      232,
+      101,
+      175,
+      299
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/a_puaicca_anim/walk/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      243,
+      96,
+      154,
+      304
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/a_puaicca_anim/walk/05.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      248,
+      99,
+      144,
+      301
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/a_puaicca_anim/attack/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      233,
+      100,
+      173,
+      300
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/a_puaicca_anim/attack/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      232,
+      103,
+      176,
+      297
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/a_puaicca_anim/attack/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      234,
+      100,
+      171,
+      300
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/a_puaicca_anim/attack/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      230,
+      103,
+      180,
+      297
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/a_puaicca_anim/attack/05.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      232,
+      103,
+      175,
+      297
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/a_puaicca_anim/attack/06.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      233,
+      104,
+      173,
+      296
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/a_puaicca_anim/hit/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      231,
+      100,
+      177,
+      300
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/a_puaicca_anim/hit/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      214,
+      125,
+      212,
+      275
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/a_puaicca_anim/hit/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      233,
+      105,
+      173,
+      295
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/a_puaicca_anim/fall/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      214,
+      100,
+      211,
+      300
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/a_puaicca_anim/fall/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      195,
+      170,
+      249,
+      230
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/a_puaicca_anim/fall/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      195,
+      208,
+      250,
+      192
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/a_puaicca_anim/fall/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      192,
+      243,
+      256,
+      157
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/a_puaicca_anim/fall/05.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      192,
+      303,
+      255,
+      97
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/a_puaicca_anim/getup/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      192,
+      303,
+      255,
+      97
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/a_puaicca_anim/getup/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      209,
+      258,
+      221,
+      142
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/a_puaicca_anim/getup/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      223,
+      16,
+      193,
+      384
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/a_puaicca_anim/getup/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      224,
+      16,
+      192,
+      384
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/a_puaicca_anim/getup/05.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      235,
+      100,
+      170,
+      300
+    ],
+    "offsetY": 20
+  }
+}

@@ -37,6 +37,14 @@
           "spawns": [[874, 675]],
           "character": "talebano",
           "name": "TALEBANO"
+        },
+        {
+          "trigger_x": 1180,
+          "health": 76,
+          "aggression": 0.92,
+          "spawns": [[1510, 682]],
+          "character": "a_puaicca",
+          "name": "A PUAICCA"
         }
       ]
     },

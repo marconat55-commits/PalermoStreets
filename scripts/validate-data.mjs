@@ -149,10 +149,18 @@ for (const id of index.characters) {
   for (const [name, spec] of Object.entries(profile.animations)) {
     if (!Number.isInteger(spec.frames) || spec.frames < 1) fail(`${id}/${name}: frames non valido`);
     const sourceFrames = spec.source_frames ?? spec.frames;
-    if (!Number.isInteger(sourceFrames) || sourceFrames < spec.frames) fail(`${id}/${name}: source_frames non valido`);
+    const pingpong = spec.playback_mode === 'pingpong';
+    if (!Number.isInteger(sourceFrames) || sourceFrames < 1 || (!pingpong && sourceFrames < spec.frames)) fail(`${id}/${name}: source_frames non valido`);
     const frameSequence = spec.frame_sequence ?? Array.from({ length: spec.frames }, (_, indexValue) => indexValue + 1);
     if (!Array.isArray(frameSequence) || frameSequence.length !== spec.frames) fail(`${id}/${name}: frame_sequence deve avere ${spec.frames} valori`);
-    if (new Set(frameSequence).size !== frameSequence.length) fail(`${id}/${name}: frame_sequence contiene pose duplicate`);
+    if (!pingpong && new Set(frameSequence).size !== frameSequence.length) fail(`${id}/${name}: frame_sequence contiene pose duplicate`);
+    if (pingpong) {
+      const expected = [
+        ...Array.from({ length: sourceFrames }, (_, indexValue) => indexValue + 1),
+        ...Array.from({ length: Math.max(0, sourceFrames - 2) }, (_, indexValue) => sourceFrames - 1 - indexValue),
+      ];
+      if (JSON.stringify(frameSequence) !== JSON.stringify(expected)) fail(`${id}/${name}: sequenza pingpong non canonica`);
+    }
     if (frameSequence.some((value) => !Number.isInteger(value) || value < 1 || value > sourceFrames)) fail(`${id}/${name}: frame_sequence fuori range 1-${sourceFrames}`);
     if (!Array.isArray(spec.durations) || ![1, spec.frames].includes(spec.durations.length)) fail(`${id}/${name}: durations deve avere 1 o ${spec.frames} valori`);
     if ((spec.durations ?? []).some((value) => !Number.isFinite(value) || value <= 0)) fail(`${id}/${name}: durata non positiva`);

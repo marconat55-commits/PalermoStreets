@@ -12,6 +12,8 @@ export interface AnimationJson {
   source_frames?: number;
   /** One-based authored frame indexes selected by the runtime, in playback order. */
   frame_sequence?: number[];
+  /** Explicitly permits a symmetric repeated source sequence without duplicated PNG files. */
+  playback_mode?: 'forward' | 'pingpong';
   durations: number[];
   /** Optional per-frame display scale. Use this only to preserve perceived body size across foreshortened poses. */
   visual_scales?: number[];

@@ -25,13 +25,13 @@
     "dead": "knockdown"
   },
   "minimum_unique_frames": {
-    "idle": 4,
-    "walk": 6,
-    "attack": 4,
+    "idle": 5,
+    "walk": 5,
+    "attack": 6,
     "hit": 3,
     "knockdown": 5,
     "getup": 5,
-    "total": 27
+    "total": 29
   },
   "qa": {
     "max_top_opaque_run_px": 48,

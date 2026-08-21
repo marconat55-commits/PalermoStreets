@@ -58,26 +58,11 @@ Questi percorsi sono rigenerabili o appartengono a esperimenti abbandonati. La c
 
 Non cancellare l'intera `character_factory/`: contiene master, fogli sorgente, preview e QA che possono ancora servire.
 
-## Barbetta e Pizzetto
+## Barbetta e Pizzetto — rimozione completata
 
-Barbetta non è caricato dal runtime e il canone lo vieta già. Rimane solo questo master storico:
+Il 2026-08-21 Barbetta e Pizzetto sono stati rimossi definitivamente da master, manifest e lavorazioni `character_factory`. Nessun loro asset rimane nel runtime.
 
-- `art_source/stage1_zen/characters_master/original/U_BARBETTA_EA11_MASTER.png`
-
-Per eliminarlo definitivamente occorre anche rimuovere la voce `barbetta` da:
-
-- `art_source/stage1_zen/characters_master/master_manifest.json`
-
-Va invece mantenuta la regola di esclusione in `content-src/narrative/campaign.content.json` e il relativo test: impedisce che il personaggio rientri accidentalmente nel roster.
-
-Pizzetto è già escluso dal canone, ma il manifest lo definisce ancora `archetype_candidate`: è una contraddizione. Se la decisione definitiva è eliminarlo, i percorsi sono:
-
-- `art_source/stage1_zen/characters_master/original/PINO_U_PIZZETTU_MASTER.png`;
-- `art_source/stage1_zen/characters_master/transparent/PINO_U_PIZZETTU_MASTER.png`;
-- voce `pizzetto` in `art_source/stage1_zen/characters_master/master_manifest.json`;
-- `character_factory/incoming/piero_u_pizzetto_quality_v2/`.
-
-Anche in questo caso la regola di esclusione narrativa va conservata.
+Resta intenzionalmente la regola di esclusione in `content-src/narrative/campaign.content.json`, insieme al relativo test, per impedirne la reintroduzione accidentale.
 
 ## Non eliminare ancora
 
@@ -155,4 +140,3 @@ I personaggi MUGEN commerciali devono restare riferimenti di timing e movimento,
 4. Rendere atlas-only il runtime e spostare i frame sciolti fuori da `public`.
 5. Aggiungere QA automatica e un template di importazione unico.
 6. Solo dopo, produrre in serie nemici, oggetti e nuovi stage.
-

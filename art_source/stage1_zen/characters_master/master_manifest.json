@@ -7,14 +7,12 @@
     { "id": "a_puaicca", "master": "A_PUAICCA_MASTER.png", "status": "candidate_enemy" },
     { "id": "barbaccia", "master": "BARBACCIA_MASTER.png", "status": "candidate_enemy" },
     { "id": "barbiere_npc", "master": "BARBIERE_NPC_MASTER.png", "status": "background_npc" },
-    { "id": "pizzetto", "master": "PINO_U_PIZZETTU_MASTER.png", "status": "archetype_candidate", "notes": ["Nuovo master; nessuna riattivazione del vecchio pack Pizzetto"] },
     { "id": "sciaron", "master": "SCIARON_MASTER.png", "status": "candidate_enemy", "notes": ["Posa telefono non neutra: richiede master combat prima dell'animazione"] },
     { "id": "u_50ino", "master": "U_50INO_MASTER.png", "status": "compound_candidate", "notes": ["Separare pilota e motorino in entità/layer distinti"] },
     { "id": "u_muraturi", "master": "U_MURATURI_MASTER.png", "status": "candidate_enemy" },
     { "id": "u_pacco", "master": "U_PACCO_MASTER.png", "status": "candidate_enemy" },
     { "id": "u_scafazzatu", "master": "U_SCAFAZZATU_MASTER.png", "status": "candidate_enemy" },
     { "id": "u_tappo", "master": "U_TAPPO_MASTER.png", "status": "candidate_enemy" },
-    { "id": "u_tignusu", "master": "U_TIGNUSU_MASTER.png", "status": "candidate_enemy" },
-    { "id": "barbetta", "master": "U_BARBETTA_EA11_MASTER.png", "status": "excluded", "notes": ["Conservato solo come sorgente storica; vietato nel roster e nel runtime"] }
+    { "id": "u_tignusu", "master": "U_TIGNUSU_MASTER.png", "status": "candidate_enemy" }
   ]
 }

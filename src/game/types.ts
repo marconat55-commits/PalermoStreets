@@ -198,6 +198,8 @@ export interface StageItemDefinition {
   ammo?: number;
   world_scale?: number;
   held_scale?: number;
+  /** Per-asset visual correction applied after the shared 1.5 actor-relative scale. */
+  visual_scale_multiplier?: number;
   held_angle?: number;
   throw_speed?: number;
   durability?: number;

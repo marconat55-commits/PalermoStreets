@@ -82,7 +82,7 @@ test('un contenitore distruttibile rispetta la durabilità e dichiara il drop', 
 test('gli oggetti prototipo rispettano la scala dell actor canonico da 290px', () => {
   assert.equal(ITEM_VISUAL_SCALE, 1.5);
   const catalog = JSON.parse(fs.readFileSync('public/data/items/stage1_zen.json', 'utf8')) as {
-    items: Array<{ id: string; world_scale?: number; held_scale?: number }>;
+    items: Array<{ id: string; world_scale?: number; held_scale?: number; visual_scale_multiplier?: number }>;
   };
   const byId = new Map(catalog.items.map((item) => [item.id, item]));
   assert.ok((byId.get('metal_pipe')?.world_scale ?? 0) >= 0.08);
@@ -90,4 +90,8 @@ test('gli oggetti prototipo rispettano la scala dell actor canonico da 290px', (
   assert.ok((byId.get('brick')?.world_scale ?? 0) >= 0.04);
   assert.ok((byId.get('trash_bag')?.world_scale ?? 0) >= 0.085);
   assert.ok((byId.get('trash_bin')?.world_scale ?? 0) >= 0.085);
+  assert.equal(byId.get('metal_pipe')?.visual_scale_multiplier, 1.25);
+  assert.equal(byId.get('wood_bat')?.visual_scale_multiplier, 1.25);
+  assert.equal(byId.get('trash_bag')?.visual_scale_multiplier, 1.5);
+  assert.equal(byId.get('trash_bin')?.visual_scale_multiplier, 1.5);
 });

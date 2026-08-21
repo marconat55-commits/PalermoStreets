@@ -29,7 +29,7 @@
     "camera_bounds_runtime": [0, 1280]
   },
   "walk_band": {
-    "top_runtime_y": 635,
+    "top_runtime_y": 665,
     "bottom_runtime_y": 705,
     "entry_runtime": [128, 670],
     "exit_runtime_x": 2510,
@@ -49,7 +49,7 @@
       { "plane": "foreground", "file": "M01_FOREGROUND_MASTER.png", "alpha": true, "parallax": 1.08, "optional": true }
     ],
     "acceptance": [
-      "La strada resta libera nell'intera fascia WALK 635-705.",
+      "La carreggiata resta libera nell'intera fascia WALK 665-705; il marciapiede non è calpestabile.",
       "Porte, portici e parapetti rispettano la sagoma attore da 290px.",
       "Nessun bordo o alone è visibile tra FAR e MAIN.",
       "Le camere X=0, X=640 e X=1280 devono essere approvate prima dell'integrazione."
@@ -73,7 +73,7 @@
       { "x": 3450, "y": 535, "width": 300, "height": 418, "fill": "#292524" }
     ],
     "notes": [
-      "La fascia 635-705 è esclusivamente strada/primo piano.",
+      "La fascia 665-705 è esclusivamente carreggiata/primo piano.",
       "Il cortile centrale crea respiro ma non amplia la profondità calpestabile.",
       "La silhouette di Monte Pellegrino resta sul FAR e non definisce collisioni."
     ]

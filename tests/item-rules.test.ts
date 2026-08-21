@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import test from 'node:test';
 import { isPickupKind, itemWithinRange, resolveItemInteraction } from '../src/game/objects/itemRules.ts';
 import { Texture } from 'pixi.js';
-import { WorldObject } from '../src/game/objects/WorldObject.ts';
+import { ITEM_VISUAL_SCALE, WorldObject } from '../src/game/objects/WorldObject.ts';
 
 test('J raccoglie un oggetto vicino quando le mani sono libere', () => {
   assert.equal(resolveItemInteraction(null, true), 'pickup');
@@ -80,6 +80,7 @@ test('un contenitore distruttibile rispetta la durabilità e dichiara il drop', 
 });
 
 test('gli oggetti prototipo rispettano la scala dell actor canonico da 290px', () => {
+  assert.equal(ITEM_VISUAL_SCALE, 1.5);
   const catalog = JSON.parse(fs.readFileSync('public/data/items/stage1_zen.json', 'utf8')) as {
     items: Array<{ id: string; world_scale?: number; held_scale?: number }>;
   };

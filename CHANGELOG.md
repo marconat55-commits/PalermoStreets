@@ -44,4 +44,5 @@ Tutte le modifiche stabili di Palermo Streets vengono annotate qui.
 - Nessuna modifica ad asset PNG, gameplay, scala o timing.
 ## 2026-08-20
 
+- Recalibrated M01 to a 110% bottom-anchored display scale, restricted WALK to the carriageway at Y 665–705, and enlarged every world/held object by 50% without changing gameplay ranges.
 - Integrated the approved M01 FAR/MAIN/FOREGROUND package at native 2560×720 runtime scale, preserving its authored WALK 635–705 band and two-viewport camera contract.

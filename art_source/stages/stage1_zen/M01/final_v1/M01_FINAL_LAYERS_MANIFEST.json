@@ -21,9 +21,15 @@
   ],
   "module_length_viewports": 2,
   "walk_band": [
-    635,
+    665,
     705
   ],
+  "runtime_display_transform": {
+    "x": -128,
+    "y": -72,
+    "width": 2816,
+    "height": 792
+  },
   "horizon_y": 315,
   "camera_proofs": [
     0,

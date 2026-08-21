@@ -3,6 +3,13 @@ import type { Rect, StageItemDefinition, Vec2 } from '../types';
 
 export type WorldObjectState = 'ground' | 'held' | 'thrown' | 'spent';
 
+/** Visual-only multiplier: authored item sizes were too small beside a 290px actor. */
+export const ITEM_VISUAL_SCALE = 1.5;
+
+function visualScale(scale: number | undefined): number {
+  return (scale ?? 0.065) * ITEM_VISUAL_SCALE;
+}
+
 export class WorldObject {
   readonly root = new Container();
   readonly sprite: Sprite;
@@ -21,7 +28,7 @@ export class WorldObject {
     this.position = { ...position };
     this.sprite = new Sprite(texture);
     this.sprite.anchor.set(0.5, 1);
-    this.sprite.scale.set(definition.world_scale ?? 0.065);
+    this.sprite.scale.set(visualScale(definition.world_scale));
     this.root.addChild(this.sprite);
     this.sync();
   }
@@ -30,7 +37,7 @@ export class WorldObject {
     this.state = 'held';
     this.velocity = { x: 0, y: 0 };
     this.elevation = 0;
-    this.sprite.scale.set(this.definition.held_scale ?? this.definition.world_scale ?? 0.065);
+    this.sprite.scale.set(visualScale(this.definition.held_scale ?? this.definition.world_scale));
   }
 
   holdAt(position: Vec2, facing: -1 | 1, useProgress = 0): void {
@@ -61,7 +68,7 @@ export class WorldObject {
     this.velocity = { x: 0, y: 0 };
     this.verticalVelocity = 0;
     this.sprite.rotation = 0;
-    this.sprite.scale.set(this.definition.world_scale ?? 0.065);
+    this.sprite.scale.set(visualScale(this.definition.world_scale));
     this.root.visible = true;
     this.sync();
   }

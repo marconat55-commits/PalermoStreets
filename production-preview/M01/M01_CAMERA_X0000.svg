@@ -12,14 +12,14 @@
     <rect x="2310" y="365" width="410" height="215"/><rect x="2760" y="410" width="300" height="170"/><rect x="3100" y="345" width="390" height="235"/><rect x="3530" y="395" width="310" height="185"/>
   </g>
   <g opacity="0">
-  <rect x="0" y="540" width="1140" height="412.5" fill="#57534e"/>
+  <rect x="0" y="540" width="1140" height="457.5" fill="#57534e"/>
   <rect x="0" y="540" width="1140" height="42" fill="#1c1917"/>
-  <g fill="#1c1917"><rect x="110" y="600" width="260" height="352.5"/><rect x="440" y="600" width="260" height="352.5"/><rect x="770" y="600" width="260" height="352.5"/></g>
-  <g fill="#a8a29e"><rect x="80" y="580" width="38" height="372.5"/><rect x="370" y="580" width="38" height="372.5"/><rect x="700" y="580" width="38" height="372.5"/><rect x="1030" y="580" width="42" height="372.5"/></g>
-  <rect x="2130" y="510" width="1710" height="442.5" fill="#57534e"/>
+  <g fill="#1c1917"><rect x="110" y="600" width="260" height="397.5"/><rect x="440" y="600" width="260" height="397.5"/><rect x="770" y="600" width="260" height="397.5"/></g>
+  <g fill="#a8a29e"><rect x="80" y="580" width="38" height="417.5"/><rect x="370" y="580" width="38" height="417.5"/><rect x="700" y="580" width="38" height="417.5"/><rect x="1030" y="580" width="42" height="417.5"/></g>
+  <rect x="2130" y="510" width="1710" height="487.5" fill="#57534e"/>
   <rect x="2130" y="510" width="1710" height="42" fill="#1c1917"/>
-  <g fill="#1c1917"><rect x="2240" y="610" width="350" height="342.5"/><rect x="2680" y="610" width="350" height="342.5"/><rect x="3120" y="610" width="350" height="342.5"/><rect x="3560" y="610" width="230" height="342.5"/></g>
-  <g fill="#a8a29e"><rect x="2180" y="570" width="44" height="382.5"/><rect x="2600" y="570" width="44" height="382.5"/><rect x="3040" y="570" width="44" height="382.5"/><rect x="3480" y="570" width="44" height="382.5"/><rect x="3790" y="570" width="44" height="382.5"/></g>
+  <g fill="#1c1917"><rect x="2240" y="610" width="350" height="387.5"/><rect x="2680" y="610" width="350" height="387.5"/><rect x="3120" y="610" width="350" height="387.5"/><rect x="3560" y="610" width="230" height="387.5"/></g>
+  <g fill="#a8a29e"><rect x="2180" y="570" width="44" height="427.5"/><rect x="2600" y="570" width="44" height="427.5"/><rect x="3040" y="570" width="44" height="427.5"/><rect x="3480" y="570" width="44" height="427.5"/><rect x="3790" y="570" width="44" height="427.5"/></g>
   </g>
   <rect x="0" y="430" width="1360" height="523" fill="#57534e" opacity="1"/>
 <rect x="90" y="560" width="340" height="393" fill="#292524" opacity="1"/>
@@ -31,8 +31,8 @@
 <rect x="2990" y="600" width="360" height="353" fill="#292524" opacity="1"/>
 <rect x="3450" y="535" width="300" height="418" fill="#292524" opacity="1"/>
 
-  <rect x="0" y="952.5" width="3840" height="105" fill="url(#ground)"/>
-  <rect x="0" y="952.5" width="3840" height="105" fill="#22c55e" fill-opacity="0.18" stroke="#4ade80" stroke-width="6"/>
+  <rect x="0" y="997.5" width="3840" height="60" fill="url(#ground)"/>
+  <rect x="0" y="997.5" width="3840" height="60" fill="#22c55e" fill-opacity="0.18" stroke="#4ade80" stroke-width="6"/>
   <rect x="0" y="1057.5" width="3840" height="22.5" fill="#111827"/>
   <g stroke="#ffffff" stroke-opacity="0.13" stroke-width="2"><line x1="0" y1="0" x2="0" y2="1080"/>
 <line x1="240" y1="0" x2="240" y2="1080"/>
@@ -62,7 +62,7 @@
 <line x1="0" y1="1080" x2="3840" y2="1080"/></g>
   <line x1="0" y1="472.5" x2="3840" y2="472.5" stroke="#facc15" stroke-width="5" stroke-dasharray="30 18"/>
   <line x1="1920" y1="0" x2="1920" y2="1080" stroke="#f43f5e" stroke-width="8" stroke-dasharray="32 16"/>
-  <text x="34" y="932.5" fill="#86efac" font-family="Arial,sans-serif" font-size="26" font-weight="700">WALK TOP 635px runtime</text>
+  <text x="34" y="977.5" fill="#86efac" font-family="Arial,sans-serif" font-size="26" font-weight="700">WALK TOP 665px runtime</text>
   <text x="34" y="1039.5" fill="#86efac" font-family="Arial,sans-serif" font-size="26" font-weight="700">WALK BOTTOM 705px runtime</text>
   <text x="1948" y="104" fill="#fb7185" font-family="Arial,sans-serif" font-size="28" font-weight="700">SCREEN 2 / camera max</text>
   <g aria-label="marco_start" fill="none" stroke="#22d3ee" stroke-width="19.575" stroke-linecap="round" stroke-linejoin="round">

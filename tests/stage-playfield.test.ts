@@ -26,8 +26,10 @@ test('each Zen module owns an authored walk band and every feet spawn stays insi
     const integratedGeometry = integratedFinal;
     const expectedWorldWidth = integratedGeometry ? 2560 : 2944;
     const expectedCameraMax = expectedWorldWidth - 1280;
-    const expectedLayerHeight = integratedGeometry ? 720 : 828;
-    const expectedLayerY = integratedGeometry ? 0 : -108;
+    const m01DisplayScale = module.id === 'M01';
+    const expectedLayerHeight = m01DisplayScale ? 792 : integratedGeometry ? 720 : 828;
+    const expectedLayerY = m01DisplayScale ? -72 : integratedGeometry ? 0 : -108;
+    const expectedLayerWidth = m01DisplayScale ? 2816 : expectedWorldWidth;
     const [top, bottom] = module.playfield_y;
     assert.ok(top >= 390 && top < bottom && bottom <= 710, `${module.id}: invalid WALK envelope`);
     assert.equal(module.walk_top[0]?.[0], 0, `${module.id}: WALK top must start at world X 0`);
@@ -43,7 +45,7 @@ test('each Zen module owns an authored walk band and every feet spawn stays insi
       }
     }
     for (const layer of module.background_layers) {
-      assert.equal(layer.width, expectedWorldWidth, `${module.id}: layer width not authored to its world`);
+      assert.equal(layer.width, expectedLayerWidth, `${module.id}: unexpected display width`);
       assert.equal(layer.height, expectedLayerHeight, `${module.id}: unexpected layer height`);
       assert.equal(layer.y, expectedLayerY, `${module.id}: unexpected layer Y`);
     }
@@ -63,7 +65,7 @@ test('each Zen module owns an authored walk band and every feet spawn stays insi
 test('M01 and M02 keep actors on the foreground lane and away from portico thresholds', () => {
   const m01 = stage.modules.find((module) => module.id === 'M01');
   const m02 = stage.modules.find((module) => module.id === 'M02');
-  assert.deepEqual(m01?.playfield_y, [635, 705]);
+  assert.deepEqual(m01?.playfield_y, [665, 705]);
   assert.deepEqual(m02?.playfield_y, [600, 705]);
   for (const module of [m01, m02]) {
     assert.ok(module);

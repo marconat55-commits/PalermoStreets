@@ -14,7 +14,7 @@ from PIL import Image, ImageDraw, ImageFilter, ImageFont, ImageStat
 MASTER_SIZE = (3840, 1080)
 RUNTIME_SIZE = (2560, 720)
 VIEWPORT_SIZE = (1280, 720)
-WALK_TOP = 635
+WALK_TOP = 665
 WALK_BOTTOM = 705
 HORIZON_Y = 315
 FAR_PARALLAX = 0.22
@@ -80,7 +80,7 @@ def overlay(image: Image.Image) -> Image.Image:
     draw.line((0, WALK_TOP, 1280, WALK_TOP), fill=(74, 222, 128, 255), width=3)
     draw.line((0, WALK_BOTTOM, 1280, WALK_BOTTOM), fill=(74, 222, 128, 255), width=3)
     draw.line((0, HORIZON_Y, 1280, HORIZON_Y), fill=(250, 204, 21, 220), width=2)
-    draw.text((18, WALK_TOP + 8), "WALK 635-705", font=font(18), fill=(220, 252, 231, 255))
+    draw.text((18, WALK_TOP + 8), "WALK 665-705", font=font(18), fill=(220, 252, 231, 255))
     return result
 
 
@@ -170,6 +170,7 @@ def main(project_root: Path) -> None:
         "master_size": list(MASTER_SIZE),
         "runtime_size": list(RUNTIME_SIZE),
         "module_length_viewports": 2,
+        "runtime_display_transform": {"x": -128, "y": -72, "width": 2816, "height": 792},
         "walk_band": [WALK_TOP, WALK_BOTTOM],
         "horizon_y": HORIZON_Y,
         "camera_proofs": list(CAMERAS),

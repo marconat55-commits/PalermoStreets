@@ -11,14 +11,14 @@
       "horizon_y": 315,
       "background": "assets/backgrounds/stage1_zen/final_v1/M01/M01_MAIN.png",
       "background_layers": [
-        { "src": "assets/backgrounds/stage1_zen/final_v1/M01/M01_FAR.png", "parallax": 0.22, "plane": "far", "y": 0, "width": 2560, "height": 720 },
-        { "src": "assets/backgrounds/stage1_zen/final_v1/M01/M01_MAIN.png", "parallax": 1.0, "plane": "main", "y": 0, "width": 2560, "height": 720 },
-        { "src": "assets/backgrounds/stage1_zen/final_v1/M01/M01_FOREGROUND.png", "parallax": 1.08, "plane": "foreground", "enabled": false, "y": 0, "width": 2560, "height": 720 }
+        { "src": "assets/backgrounds/stage1_zen/final_v1/M01/M01_FAR.png", "parallax": 0.22, "plane": "far", "x": -128, "y": -72, "width": 2816, "height": 792 },
+        { "src": "assets/backgrounds/stage1_zen/final_v1/M01/M01_MAIN.png", "parallax": 1.0, "plane": "main", "x": -128, "y": -72, "width": 2816, "height": 792 },
+        { "src": "assets/backgrounds/stage1_zen/final_v1/M01/M01_FOREGROUND.png", "parallax": 1.08, "plane": "foreground", "enabled": false, "x": -128, "y": -72, "width": 2816, "height": 792 }
       ],
       "world_width": 2560,
       "camera_bounds": [0, 1280],
-      "playfield_y": [635, 705],
-      "walk_top": [[0, 635], [2560, 635]],
+      "playfield_y": [665, 705],
+      "walk_top": [[0, 665], [2560, 665]],
       "walk_bottom": [[0, 705], [2560, 705]],
       "entry": [147, 670],
       "exit_x": 2510,

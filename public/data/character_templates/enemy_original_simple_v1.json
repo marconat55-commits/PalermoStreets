@@ -1,0 +1,41 @@
+{
+  "schema": 1,
+  "id": "enemy_original_simple_v1",
+  "role": "enemy",
+  "purpose": "Contratto compatto per un nemico comune originale con un solo attacco.",
+  "description": "Definisce scala, baseline, clip minime e controlli richiesti prima dell'integrazione nel runtime.",
+  "raster": {
+    "canvas": [640, 420],
+    "baseline_y": 400,
+    "scale_mode": "baked",
+    "uniform_runtime_scale_only": true
+  },
+  "required_clips": [
+    "idle",
+    "walk",
+    "attack",
+    "heavy",
+    "hit",
+    "knockdown",
+    "getup",
+    "dead"
+  ],
+  "reuse_policy": {
+    "heavy": "attack",
+    "dead": "knockdown"
+  },
+  "minimum_unique_frames": {
+    "idle": 4,
+    "walk": 6,
+    "attack": 4,
+    "hit": 3,
+    "knockdown": 5,
+    "getup": 5,
+    "total": 27
+  },
+  "qa": {
+    "max_top_opaque_run_px": 48,
+    "ground_body_width_ratio": [0.75, 1.3],
+    "max_loop_centroid_step": 0.48
+  }
+}

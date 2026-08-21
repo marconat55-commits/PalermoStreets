@@ -5,9 +5,14 @@ export type WorldObjectState = 'ground' | 'held' | 'thrown' | 'spent';
 
 /** Visual-only multiplier: authored item sizes were too small beside a 290px actor. */
 export const ITEM_VISUAL_SCALE = 1.5;
+export const ITEM_SIZE_REDUCTION = 0.9;
 
-function visualScale(scale: number | undefined, multiplier = 1): number {
-  return (scale ?? 0.065) * ITEM_VISUAL_SCALE * multiplier;
+export function itemSizeMultiplier(itemId: string): number {
+  return itemId === 'arancina' ? 1 : ITEM_SIZE_REDUCTION;
+}
+
+function visualScale(itemId: string, scale: number | undefined, multiplier = 1): number {
+  return (scale ?? 0.065) * ITEM_VISUAL_SCALE * multiplier * itemSizeMultiplier(itemId);
 }
 
 export class WorldObject {
@@ -28,7 +33,7 @@ export class WorldObject {
     this.position = { ...position };
     this.sprite = new Sprite(texture);
     this.sprite.anchor.set(0.5, 1);
-    this.sprite.scale.set(visualScale(definition.world_scale, definition.visual_scale_multiplier));
+    this.sprite.scale.set(visualScale(definition.id, definition.world_scale, definition.visual_scale_multiplier));
     this.root.addChild(this.sprite);
     this.sync();
   }
@@ -38,6 +43,7 @@ export class WorldObject {
     this.velocity = { x: 0, y: 0 };
     this.elevation = 0;
     this.sprite.scale.set(visualScale(
+      this.definition.id,
       this.definition.held_scale ?? this.definition.world_scale,
       this.definition.visual_scale_multiplier,
     ));
@@ -55,9 +61,9 @@ export class WorldObject {
   throwFrom(position: Vec2, facing: -1 | 1): void {
     this.state = 'thrown';
     this.position = { x: position.x + facing * 38, y: position.y - 12 };
-    this.elevation = 86;
+    this.elevation = this.definition.throw_elevation ?? 86;
     this.velocity = { x: facing * (this.definition.throw_speed ?? 610), y: 0 };
-    this.verticalVelocity = 250;
+    this.verticalVelocity = this.definition.throw_vertical_speed ?? 250;
     this.sprite.rotation = 0;
     this.sprite.scale.x = Math.abs(this.sprite.scale.x);
     this.hitActors.clear();
@@ -71,7 +77,11 @@ export class WorldObject {
     this.velocity = { x: 0, y: 0 };
     this.verticalVelocity = 0;
     this.sprite.rotation = 0;
-    this.sprite.scale.set(visualScale(this.definition.world_scale, this.definition.visual_scale_multiplier));
+    this.sprite.scale.set(visualScale(
+      this.definition.id,
+      this.definition.world_scale,
+      this.definition.visual_scale_multiplier,
+    ));
     this.root.visible = true;
     this.sync();
   }
@@ -94,7 +104,7 @@ export class WorldObject {
     this.position.x += this.velocity.x * dt;
     this.position.y += this.velocity.y * dt;
     this.elevation += this.verticalVelocity * dt;
-    this.verticalVelocity -= 760 * dt;
+    this.verticalVelocity -= (this.definition.throw_gravity ?? 760) * dt;
     this.sprite.rotation += Math.sign(this.velocity.x) * 9 * dt;
     if (this.elevation <= 0 && this.verticalVelocity < 0) {
       this.elevation = 0;

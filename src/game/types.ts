@@ -219,6 +219,12 @@ export interface StageItemDefinition {
   visual_scale_multiplier?: number;
   held_angle?: number;
   throw_speed?: number;
+  /** Initial height above the walk plane for a thrown object. */
+  throw_elevation?: number;
+  /** Initial upward speed; lower values create a flatter throw. */
+  throw_vertical_speed?: number;
+  /** Downward acceleration applied while airborne. */
+  throw_gravity?: number;
   durability?: number;
   drop_item?: string;
   notes?: string[];

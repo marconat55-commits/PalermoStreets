@@ -3,7 +3,12 @@ import fs from 'node:fs';
 import test from 'node:test';
 import { isPickupKind, itemWithinRange, resolveItemInteraction } from '../src/game/objects/itemRules.ts';
 import { Texture } from 'pixi.js';
-import { ITEM_VISUAL_SCALE, WorldObject } from '../src/game/objects/WorldObject.ts';
+import {
+  ITEM_SIZE_REDUCTION,
+  ITEM_VISUAL_SCALE,
+  WorldObject,
+  itemSizeMultiplier,
+} from '../src/game/objects/WorldObject.ts';
 
 test('J raccoglie un oggetto vicino quando le mani sono libere', () => {
   assert.equal(resolveItemInteraction(null, true), 'pickup');
@@ -41,6 +46,24 @@ test('il mattone passa da raccolto a lanciato e segue una parabola', () => {
   brick.update(0.1);
   assert.ok(brick.position.x > startX);
   assert.ok(brick.elevation > 0);
+});
+
+test('il mattone usa il lancio teso e aggressivo definito dal catalogo', () => {
+  const catalog = JSON.parse(fs.readFileSync('public/data/items/stage1_zen.json', 'utf8')) as {
+    items: Array<{
+      id: string;
+      throw_speed?: number;
+      throw_elevation?: number;
+      throw_vertical_speed?: number;
+      throw_gravity?: number;
+    }>;
+  };
+  const brickDefinition = catalog.items.find((item) => item.id === 'brick');
+  assert.ok(brickDefinition);
+  assert.equal(brickDefinition.throw_speed, 900);
+  assert.equal(brickDefinition.throw_elevation, 70);
+  assert.equal(brickDefinition.throw_vertical_speed, 90);
+  assert.equal(brickDefinition.throw_gravity, 520);
 });
 
 test('un oggetto impugnato può essere lasciato nuovamente a terra', () => {
@@ -94,4 +117,11 @@ test('gli oggetti prototipo rispettano la scala dell actor canonico da 290px', (
   assert.equal(byId.get('wood_bat')?.visual_scale_multiplier, 1.25);
   assert.equal(byId.get('trash_bag')?.visual_scale_multiplier, 1.5);
   assert.equal(byId.get('trash_bin')?.visual_scale_multiplier, 1.5);
+});
+
+test('tutti gli oggetti sono ridotti del 10% tranne l arancina', () => {
+  assert.equal(ITEM_SIZE_REDUCTION, 0.9);
+  assert.equal(itemSizeMultiplier('metal_pipe'), 0.9);
+  assert.equal(itemSizeMultiplier('trash_bin'), 0.9);
+  assert.equal(itemSizeMultiplier('arancina'), 1);
 });

@@ -1,0 +1,442 @@
+{
+  "/assets/characters/aiori_ref_anim/idle/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      216,
+      118,
+      205,
+      282
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/aiori_ref_anim/idle/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      216,
+      113,
+      205,
+      287
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/aiori_ref_anim/idle/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      216,
+      110,
+      205,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/aiori_ref_anim/idle/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      216,
+      110,
+      205,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/aiori_ref_anim/idle/05.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      216,
+      113,
+      211,
+      287
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/aiori_ref_anim/idle/06.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      216,
+      118,
+      205,
+      282
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/aiori_ref_anim/walk/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      219,
+      123,
+      203,
+      277
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/aiori_ref_anim/walk/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      216,
+      123,
+      203,
+      277
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/aiori_ref_anim/walk/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      243,
+      121,
+      172,
+      279
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/aiori_ref_anim/walk/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      252,
+      121,
+      159,
+      279
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/aiori_ref_anim/walk/05.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      243,
+      123,
+      164,
+      277
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/aiori_ref_anim/walk/06.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      246,
+      123,
+      172,
+      277
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/aiori_ref_anim/walk/07.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      276,
+      121,
+      140,
+      279
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/aiori_ref_anim/walk/08.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      238,
+      121,
+      197,
+      279
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/aiori_ref_anim/attack/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      213,
+      154,
+      164,
+      246
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/aiori_ref_anim/attack/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      178,
+      148,
+      277,
+      252
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/aiori_ref_anim/attack/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      189,
+      162,
+      298,
+      238
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/aiori_ref_anim/attack/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      208,
+      134,
+      282,
+      266
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/aiori_ref_anim/attack/05.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      213,
+      80,
+      255,
+      320
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/aiori_ref_anim/attack/06.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      224,
+      82,
+      255,
+      318
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/aiori_ref_anim/attack/07.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      213,
+      113,
+      208,
+      287
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/aiori_ref_anim/hit/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      213,
+      115,
+      208,
+      285
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/aiori_ref_anim/dodge/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      213,
+      129,
+      208,
+      271
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/aiori_ref_anim/dodge/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      210,
+      156,
+      285,
+      244
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/aiori_ref_anim/dodge/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      180,
+      203,
+      298,
+      197
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/aiori_ref_anim/dodge/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      153,
+      228,
+      320,
+      172
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/aiori_ref_anim/dodge/05.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      150,
+      230,
+      318,
+      170
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/aiori_ref_anim/dodge/06.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      167,
+      217,
+      304,
+      183
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/aiori_ref_anim/dodge/07.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      189,
+      159,
+      255,
+      241
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/aiori_ref_anim/dodge/08.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      213,
+      129,
+      208,
+      271
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/aiori_ref_anim/dodge/09.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      213,
+      113,
+      208,
+      287
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/aiori_ref_anim/fall/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      216,
+      175,
+      216,
+      225
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/aiori_ref_anim/fall/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      180,
+      299,
+      337,
+      101
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/aiori_ref_anim/getup/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      180,
+      299,
+      337,
+      101
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/aiori_ref_anim/getup/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      145,
+      282,
+      350,
+      118
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/aiori_ref_anim/getup/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      142,
+      280,
+      348,
+      120
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/aiori_ref_anim/getup/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      142,
+      252,
+      293,
+      148
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/aiori_ref_anim/getup/05.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      221,
+      219,
+      200,
+      181
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/aiori_ref_anim/getup/06.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      243,
+      200,
+      178,
+      200
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/aiori_ref_anim/getup/07.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      230,
+      148,
+      192,
+      252
+    ],
+    "offsetY": 20
+  }
+}

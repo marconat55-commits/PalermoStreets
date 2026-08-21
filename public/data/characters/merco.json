@@ -6,7 +6,8 @@
   "assets": {
     "master_root": "assets/characters/merco",
     "animation_root": "assets/characters/merco_anim",
-    "texture_atlas": "assets/characters/merco_anim/atlas/atlas.json"
+    "texture_atlas": "assets/characters/merco_anim/atlas/atlas.json",
+    "frame_meta": "data/generated/characters/merco.frame_meta.json"
   },
   "identity": {
     "outfit": "camicia bianca aperta con maniche arrotolate, cintura marrone, jeans blu leggermente strappati e scarpe da tennis nere e bianche",

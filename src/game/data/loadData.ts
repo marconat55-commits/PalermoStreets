@@ -1,4 +1,4 @@
-import type { CharacterIndex, CharacterProfile, FrameMeta, StageData, StageItemCatalog } from '../types';
+import type { CharacterIndex, CharacterProfile, FrameMeta, RuntimeManifest, RuntimeStageEntry, StageData, StageItemCatalog } from '../types';
 import { publicUrl } from './paths';
 import { mergeCharacterProfile, type CharacterProfileSource } from './characterProfiles';
 
@@ -20,15 +20,29 @@ export async function loadCharacterProfile(id: string, chain: string[] = []): Pr
   return mergeCharacterProfile(base, source);
 }
 
-export async function loadStage1(): Promise<StageData> {
-  return getJson<StageData>('data/stage1_zen.json');
+export async function loadRuntimeManifest(): Promise<RuntimeManifest> {
+  return getJson<RuntimeManifest>('data/runtime.json');
 }
 
-/** Loads the object catalogue without enabling pickup/combat behaviour. */
-export async function loadStage1Items(): Promise<StageItemCatalog> {
-  return getJson<StageItemCatalog>('data/items/stage1_zen.json');
+export function getStageEntry(manifest: RuntimeManifest, id = manifest.default_stage): RuntimeStageEntry {
+  const entry = manifest.stages.find((stage) => stage.id === id);
+  if (!entry) throw new Error(`Stage non registrato: ${id}`);
+  return entry;
 }
 
-export async function loadFrameMeta(): Promise<Record<string, FrameMeta>> {
-  return getJson<Record<string, FrameMeta>>('data/generated/frame_meta.json');
+export async function loadStage(entry: RuntimeStageEntry): Promise<StageData> {
+  return getJson<StageData>(entry.data);
+}
+
+/** Loads an optional stage object catalogue. */
+export async function loadStageItems(entry: RuntimeStageEntry): Promise<StageItemCatalog> {
+  if (!entry.items) return { schema: 1, stage_id: entry.id, items: [] };
+  return getJson<StageItemCatalog>(entry.items);
+}
+
+export async function loadCharacterFrameMeta(
+  profile: CharacterProfile,
+  legacyPath = 'data/generated/frame_meta.json',
+): Promise<Record<string, FrameMeta>> {
+  return getJson<Record<string, FrameMeta>>(profile.assets.frame_meta ?? legacyPath);
 }

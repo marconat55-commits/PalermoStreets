@@ -46,10 +46,11 @@ export class AssetCatalog {
   private readonly banks = new Map<string, AnimationBank>();
   private readonly pendingBanks = new Map<string, Promise<AnimationBank>>();
   private readonly profiles = new Map<string, CharacterProfile>();
-  private readonly frameMeta: Record<string, FrameMeta>;
+  private readonly frameMeta = new Map<string, Record<string, FrameMeta>>();
+  private readonly loadFrameMeta: (profile: CharacterProfile) => Promise<Record<string, FrameMeta>>;
 
-  constructor(frameMeta: Record<string, FrameMeta>) {
-    this.frameMeta = frameMeta;
+  constructor(loadFrameMeta: (profile: CharacterProfile) => Promise<Record<string, FrameMeta>>) {
+    this.loadFrameMeta = loadFrameMeta;
   }
 
   registerProfile(profile: CharacterProfile): void {
@@ -86,6 +87,10 @@ export class AssetCatalog {
     return Assets.load<Texture>(publicUrl(path));
   }
 
+  async unloadAsset(path: string): Promise<void> {
+    await Assets.unload(publicUrl(path));
+  }
+
   private async loadAtlas(profile: CharacterProfile): Promise<Map<string, Texture> | null> {
     const atlasPath = profile.assets.texture_atlas;
     if (!atlasPath) return null;
@@ -117,7 +122,11 @@ export class AssetCatalog {
     const cached = this.banks.get(profile.id);
     if (cached) return cached;
 
-    const atlas = await this.loadAtlas(profile);
+    const [atlas, frameMeta] = await Promise.all([
+      this.loadAtlas(profile),
+      this.loadFrameMeta(profile),
+    ]);
+    this.frameMeta.set(profile.id, frameMeta);
     const clips = new Map<string, AnimationClip>();
     for (const [name, spec] of Object.entries(profile.animations)) {
       const durations = expandedValues(spec.frames, spec.durations, 0.1, 'Durate');
@@ -128,9 +137,13 @@ export class AssetCatalog {
         const sourceFrame = frameSequence[i] ?? i + 1;
         const filename = `${spec.folder}/${frameName(sourceFrame)}`;
         const rel = `${profile.assets.animation_root}/${filename}`;
-        const texture = atlas?.get(filename) ?? await Assets.load<Texture>(publicUrl(rel));
+        const atlasTexture = atlas?.get(filename);
+        if (!atlasTexture && import.meta.env.PROD) {
+          throw new Error(`${profile.id}/${filename}: frame assente dall'atlas production`);
+        }
+        const texture = atlasTexture ?? await Assets.load<Texture>(publicUrl(rel));
         const key = `/${rel}`;
-        const meta = this.frameMeta[key] ?? {
+        const meta = frameMeta[key] ?? {
           width: texture.width,
           height: texture.height,
           bounds: [0, 0, texture.width, texture.height] as [number, number, number, number],
@@ -160,5 +173,26 @@ export class AssetCatalog {
     const bank = { clips } satisfies AnimationBank;
     this.banks.set(profile.id, bank);
     return bank;
+  }
+
+  releaseCharacter(id: string): void {
+    const profile = this.profiles.get(id);
+    if (!profile || !this.banks.has(id)) return;
+    this.banks.delete(id);
+    this.frameMeta.delete(id);
+    if (profile.assets.texture_atlas) {
+      // Atlas pages remain owned by Pixi Assets and can be reloaded on demand.
+      void this.unloadAtlasPages(profile).catch((error) => console.warn(`${id}: unload atlas fallito`, error));
+    }
+  }
+
+  private async unloadAtlasPages(profile: CharacterProfile): Promise<void> {
+    const atlasPath = profile.assets.texture_atlas;
+    if (!atlasPath) return;
+    const response = await fetch(publicUrl(atlasPath));
+    if (!response.ok) return;
+    const manifest = await response.json() as AtlasManifest;
+    const root = relativeRoot(atlasPath);
+    await Promise.all(manifest.pages.map((page) => Assets.unload(publicUrl(`${root}${page.file}`))));
   }
 }

@@ -1,0 +1,12 @@
+{
+  "schema": 1,
+  "default_stage": "stage1_zen",
+  "legacy_frame_meta": "data/generated/frame_meta.json",
+  "stages": [
+    {
+      "id": "stage1_zen",
+      "data": "data/stage1_zen.json",
+      "items": "data/items/stage1_zen.json"
+    }
+  ]
+}

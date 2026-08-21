@@ -43,8 +43,19 @@ function walkFiles(directory) {
 }
 
 const index = read('data/characters/index.json');
-const stage = read('data/stage1_zen.json');
-const itemCatalog = read('data/items/stage1_zen.json');
+const runtime = read('data/runtime.json');
+if (runtime.schema !== 1 || !Array.isArray(runtime.stages) || runtime.stages.length === 0) fail('runtime registry non valido');
+const stageIds = new Set();
+for (const entry of runtime.stages ?? []) {
+  if (!entry.id || stageIds.has(entry.id)) fail(`runtime registry: stage duplicato ${entry.id ?? ''}`);
+  stageIds.add(entry.id);
+  if (!entry.data || !exists(entry.data)) fail(`${entry.id}: stage data mancante ${entry.data ?? ''}`);
+  if (entry.items && !exists(entry.items)) fail(`${entry.id}: item catalog mancante ${entry.items}`);
+}
+if (!stageIds.has(runtime.default_stage)) fail(`runtime registry: default_stage non registrato ${runtime.default_stage}`);
+const defaultStageEntry = runtime.stages.find((entry) => entry.id === runtime.default_stage);
+const stage = read(defaultStageEntry.data);
+const itemCatalog = defaultStageEntry.items ? read(defaultStageEntry.items) : { schema: 1, stage_id: defaultStageEntry.id, items: [] };
 const meta = read('data/generated/frame_meta.json');
 const ids = new Set(index.characters);
 const profiles = new Map();
@@ -123,6 +134,16 @@ for (const id of index.characters) {
       if (!exists(`${atlasRoot}/${page.file}`)) fail(`${id}: pagina atlas mancante: ${page.file}`);
       if (!(page.width > 0 && page.height > 0 && page.width <= 2048 && page.height <= 2048)) fail(`${id}: dimensioni pagina atlas non valide: ${page.file}`);
     }
+  }
+
+  const localMetaPath = profile.assets.frame_meta;
+  if (!localMetaPath || !exists(localMetaPath)) fail(`${id}: frame_meta locale mancante`);
+  else {
+    const localMeta = read(localMetaPath);
+    const prefix = `/${profile.assets.animation_root}/`;
+    const expectedLocalKeys = Object.keys(meta).filter((key) => key.startsWith(prefix)).sort();
+    const actualLocalKeys = Object.keys(localMeta).sort();
+    if (JSON.stringify(actualLocalKeys) !== JSON.stringify(expectedLocalKeys)) fail(`${id}: frame_meta locale non sincronizzato`);
   }
 
   for (const [name, spec] of Object.entries(profile.animations)) {

@@ -1,13 +1,13 @@
 import { Application, Assets, Texture } from 'pixi.js';
 import { LOGICAL_HEIGHT, LOGICAL_WIDTH } from './config';
 import { Input } from './input/Input';
-import { loadCharacterIndex, loadCharacterProfile, loadFrameMeta, loadStage1 } from './data/loadData';
+import { getStageEntry, loadCharacterFrameMeta, loadCharacterIndex, loadCharacterProfile, loadRuntimeManifest, loadStage } from './data/loadData';
 import { AssetCatalog } from './assets/AssetCatalog';
 import { TitleScene } from './scenes/TitleScene';
 import { CharacterSelectScene } from './scenes/CharacterSelectScene';
 import { StageScene } from './scenes/StageScene';
 import type { Scene } from './scenes/Scene';
-import type { CharacterProfile, StageData } from './types';
+import type { CharacterProfile, RuntimeStageEntry, StageData } from './types';
 import { publicUrl } from './data/paths';
 
 export class Game {
@@ -18,6 +18,7 @@ export class Game {
   private characterSelectScene: CharacterSelectScene | null = null;
   private catalog!: AssetCatalog;
   private stageData!: StageData;
+  private stageEntry!: RuntimeStageEntry;
   private defaultPlayerId = 'marco';
   private defaultEnemyId = 'talebano';
   private titleBackground!: Texture;
@@ -43,17 +44,17 @@ export class Game {
     this.resizeCanvas();
     window.addEventListener('resize', () => this.resizeCanvas());
 
-    const [frameMeta, index, stageData, titleBackground] = await Promise.all([
-      loadFrameMeta(),
+    const [runtime, index, titleBackground] = await Promise.all([
+      loadRuntimeManifest(),
       loadCharacterIndex(),
-      loadStage1(),
       Assets.load<Texture>(publicUrl('assets/ui/title/palermo_night.png')),
     ]);
+    this.stageEntry = getStageEntry(runtime);
+    this.stageData = await loadStage(this.stageEntry);
     this.titleBackground = titleBackground;
-    this.stageData = stageData;
     this.defaultPlayerId = index.default_player;
     this.defaultEnemyId = index.default_enemy;
-    this.catalog = new AssetCatalog(frameMeta);
+    this.catalog = new AssetCatalog((profile) => loadCharacterFrameMeta(profile, runtime.legacy_frame_meta));
     const profiles = await Promise.all(index.characters.map((id) => loadCharacterProfile(id)));
     for (const profile of profiles) this.catalog.registerProfile(profile);
     this.playerProfiles = profiles.filter((profile) => profile.role === 'player');
@@ -135,6 +136,7 @@ export class Game {
       const stage = await StageScene.create(
         this.catalog,
         this.stageData,
+        this.stageEntry,
         playerId,
         this.defaultEnemyId,
       );

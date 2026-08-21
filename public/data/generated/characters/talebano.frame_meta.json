@@ -1,0 +1,486 @@
+{
+  "/assets/characters/talebano_anim/attack/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      144,
+      95,
+      230,
+      305
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/talebano_anim/attack/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      73,
+      96,
+      305,
+      304
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/talebano_anim/attack/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      111,
+      112,
+      305,
+      288
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/talebano_anim/attack/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      140,
+      95,
+      236,
+      305
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/talebano_anim/fall/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      206,
+      95,
+      228,
+      305
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/talebano_anim/fall/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      168,
+      109,
+      305,
+      291
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/talebano_anim/fall/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      163,
+      152,
+      314,
+      248
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/talebano_anim/fall/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      142,
+      272,
+      356,
+      128
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/talebano_anim/fall/05.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      132,
+      290,
+      375,
+      110
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/talebano_anim/getup/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      132,
+      290,
+      375,
+      110
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/talebano_anim/getup/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      142,
+      220,
+      356,
+      180
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/talebano_anim/getup/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      203,
+      141,
+      234,
+      259
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/talebano_anim/getup/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      205,
+      149,
+      230,
+      251
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/talebano_anim/getup/05.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      218,
+      101,
+      204,
+      299
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/talebano_anim/heavy/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      259,
+      95,
+      202,
+      305
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/talebano_anim/heavy/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      179,
+      95,
+      192,
+      305
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/talebano_anim/heavy/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      122,
+      95,
+      305,
+      305
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/talebano_anim/heavy/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      209,
+      95,
+      194,
+      305
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/talebano_anim/heavy/05.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      263,
+      95,
+      190,
+      305
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/talebano_anim/hit/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      142,
+      95,
+      240,
+      305
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/talebano_anim/hit/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      260,
+      95,
+      304,
+      305
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/talebano_anim/hit/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      141,
+      95,
+      241,
+      305
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/talebano_anim/idle/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      274,
+      95,
+      208,
+      305
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/talebano_anim/idle/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      159,
+      95,
+      195,
+      305
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/talebano_anim/idle/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      287,
+      95,
+      200,
+      305
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/talebano_anim/idle/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      274,
+      95,
+      209,
+      305
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/talebano_anim/walk/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      250,
+      94,
+      140,
+      306
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/talebano_anim/walk/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      242,
+      95,
+      156,
+      305
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/talebano_anim/walk/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      240,
+      95,
+      161,
+      305
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/talebano_anim/walk/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      248,
+      95,
+      143,
+      305
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/talebano_anim/walk/05.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      250,
+      97,
+      139,
+      303
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/talebano_anim/walk/06.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      254,
+      98,
+      133,
+      302
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/talebano_anim/walk_down/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      261,
+      95,
+      169,
+      305
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/talebano_anim/walk_down/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      222,
+      95,
+      165,
+      305
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/talebano_anim/walk_down/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      221,
+      95,
+      170,
+      305
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/talebano_anim/walk_down/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      224,
+      95,
+      170,
+      305
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/talebano_anim/walk_down/05.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      223,
+      95,
+      164,
+      305
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/talebano_anim/walk_down/06.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      221,
+      95,
+      172,
+      305
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/talebano_anim/walk_up/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      237,
+      95,
+      158,
+      305
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/talebano_anim/walk_up/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      227,
+      95,
+      173,
+      305
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/talebano_anim/walk_up/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      231,
+      95,
+      162,
+      305
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/talebano_anim/walk_up/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      229,
+      95,
+      156,
+      305
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/talebano_anim/walk_up/05.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      248,
+      95,
+      158,
+      305
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/talebano_anim/walk_up/06.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      229,
+      95,
+      163,
+      305
+    ],
+    "offsetY": 20
+  }
+}

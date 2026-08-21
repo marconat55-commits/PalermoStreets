@@ -1,0 +1,398 @@
+{
+  "/assets/characters/haggar_ref_anim/idle/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      219,
+      100,
+      229,
+      300
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/haggar_ref_anim/idle/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      220,
+      98,
+      231,
+      302
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/haggar_ref_anim/idle/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      217,
+      90,
+      244,
+      310
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/haggar_ref_anim/idle/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      212,
+      88,
+      252,
+      312
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/haggar_ref_anim/idle/05.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      219,
+      93,
+      239,
+      307
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/haggar_ref_anim/idle/06.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      220,
+      98,
+      231,
+      302
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/haggar_ref_anim/walk/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      222,
+      98,
+      217,
+      302
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/haggar_ref_anim/walk/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      250,
+      113,
+      179,
+      287
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/haggar_ref_anim/walk/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      275,
+      107,
+      146,
+      293
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/haggar_ref_anim/walk/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      227,
+      107,
+      230,
+      293
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/haggar_ref_anim/walk/05.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      222,
+      98,
+      230,
+      302
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/haggar_ref_anim/walk/06.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      250,
+      93,
+      184,
+      307
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/haggar_ref_anim/walk/07.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      275,
+      90,
+      147,
+      310
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/haggar_ref_anim/walk/08.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      232,
+      95,
+      210,
+      305
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/haggar_ref_anim/attack/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      214,
+      118,
+      186,
+      282
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/haggar_ref_anim/attack/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      249,
+      125,
+      201,
+      275
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/haggar_ref_anim/attack/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      273,
+      103,
+      264,
+      297
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/haggar_ref_anim/attack/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      270,
+      108,
+      260,
+      292
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/haggar_ref_anim/attack/05.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      249,
+      125,
+      201,
+      275
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/haggar_ref_anim/attack/06.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      237,
+      113,
+      211,
+      287
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/haggar_ref_anim/hit/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      184,
+      111,
+      216,
+      289
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/haggar_ref_anim/hit/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      169,
+      136,
+      209,
+      264
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/haggar_ref_anim/heavy/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      174,
+      93,
+      219,
+      307
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/haggar_ref_anim/heavy/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      157,
+      100,
+      252,
+      300
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/haggar_ref_anim/heavy/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      136,
+      113,
+      340,
+      287
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/haggar_ref_anim/heavy/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      124,
+      123,
+      382,
+      277
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/haggar_ref_anim/heavy/05.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      126,
+      136,
+      378,
+      264
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/haggar_ref_anim/heavy/06.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      136,
+      113,
+      340,
+      287
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/haggar_ref_anim/heavy/07.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      156,
+      101,
+      295,
+      299
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/haggar_ref_anim/fall/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      199,
+      279,
+      353,
+      121
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/haggar_ref_anim/fall/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      179,
+      304,
+      370,
+      96
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/haggar_ref_anim/getup/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      179,
+      304,
+      370,
+      96
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/haggar_ref_anim/getup/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      199,
+      279,
+      353,
+      121
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/haggar_ref_anim/getup/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      237,
+      197,
+      189,
+      203
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/haggar_ref_anim/getup/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      254,
+      194,
+      166,
+      206
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/haggar_ref_anim/getup/05.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      242,
+      133,
+      161,
+      267
+    ],
+    "offsetY": 20
+  }
+}

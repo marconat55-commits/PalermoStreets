@@ -1,0 +1,1300 @@
+{
+  "/assets/characters/ken_ref_anim/idle/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      240,
+      110,
+      160,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/idle/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      238,
+      110,
+      163,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/idle/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      240,
+      110,
+      160,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/idle/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      242,
+      110,
+      156,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/idle/05.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      242,
+      110,
+      156,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/idle/06.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      241,
+      110,
+      158,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/walk/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      252,
+      110,
+      136,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/walk/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      252,
+      110,
+      135,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/walk/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      252,
+      110,
+      137,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/walk/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      240,
+      110,
+      160,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/walk/05.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      241,
+      110,
+      158,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/walk/06.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      230,
+      110,
+      179,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/walk/07.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      241,
+      110,
+      158,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/walk/08.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      248,
+      110,
+      143,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/run/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      206,
+      110,
+      227,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/run/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      226,
+      110,
+      189,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/run/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      216,
+      110,
+      207,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/run/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      184,
+      110,
+      273,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/run/05.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      186,
+      110,
+      269,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/run/06.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      184,
+      110,
+      273,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/brake/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      234,
+      110,
+      172,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/brake/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      186,
+      110,
+      267,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/jump/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      261,
+      85,
+      166,
+      321
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/jump/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      219,
+      127,
+      197,
+      172
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/jump/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      258,
+      90,
+      152,
+      186
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/jump/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      244,
+      121,
+      214,
+      149
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/jump/05.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      255,
+      59,
+      144,
+      352
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/land/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      234,
+      110,
+      172,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/land/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      217,
+      110,
+      206,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/land/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      234,
+      110,
+      172,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/air_attack/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      247,
+      96,
+      155,
+      296
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/air_attack/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      230,
+      59,
+      194,
+      329
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/air_attack/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      236,
+      68,
+      200,
+      324
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/air_attack/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      236,
+      96,
+      242,
+      296
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/air_attack/05.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      247,
+      96,
+      155,
+      296
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/air_attack/06.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      255,
+      59,
+      144,
+      327
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/air_punch/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      272,
+      90,
+      144,
+      248
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/air_punch/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      261,
+      96,
+      186,
+      239
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/air_punch/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      261,
+      96,
+      186,
+      239
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/air_punch/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      261,
+      96,
+      186,
+      239
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/air_punch/05.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      261,
+      96,
+      186,
+      239
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/air_punch/06.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      255,
+      59,
+      144,
+      327
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/punch_left/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      222,
+      110,
+      196,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/punch_left/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      185,
+      110,
+      270,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/punch_left/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      222,
+      110,
+      196,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/punch_left/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      236,
+      110,
+      169,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/punch_right/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      222,
+      110,
+      196,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/punch_right/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      180,
+      110,
+      279,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/punch_right/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      192,
+      110,
+      256,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/punch_right/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      220,
+      110,
+      199,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/punch_right/05.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      236,
+      110,
+      169,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/muay_elbow/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      194,
+      110,
+      252,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/muay_elbow/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      180,
+      110,
+      281,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/muay_elbow/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      194,
+      110,
+      252,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/muay_elbow/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      200,
+      110,
+      239,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/muay_elbow/05.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      238,
+      110,
+      163,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/combo_finisher/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      229,
+      110,
+      182,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/combo_finisher/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      234,
+      110,
+      172,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/combo_finisher/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      184,
+      110,
+      273,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/combo_finisher/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      233,
+      110,
+      174,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/combo_finisher/05.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      240,
+      110,
+      159,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/combo_finisher/06.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      241,
+      110,
+      158,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/kick_front/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      210,
+      110,
+      220,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/kick_front/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      187,
+      110,
+      266,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/kick_front/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      196,
+      110,
+      248,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/kick_front/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      209,
+      110,
+      222,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/kick_front/05.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      238,
+      110,
+      163,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/kick_right/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      247,
+      110,
+      146,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/kick_right/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      230,
+      110,
+      180,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/kick_right/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      183,
+      110,
+      274,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/kick_right/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      230,
+      110,
+      180,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/kick_right/05.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      247,
+      110,
+      146,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/kick_finisher/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      229,
+      110,
+      182,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/kick_finisher/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      234,
+      110,
+      172,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/kick_finisher/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      184,
+      110,
+      273,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/kick_finisher/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      233,
+      110,
+      174,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/kick_finisher/05.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      240,
+      110,
+      159,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/kick_finisher/06.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      241,
+      110,
+      158,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/block/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      232,
+      110,
+      175,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/grab/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      236,
+      110,
+      169,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/grab/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      219,
+      110,
+      202,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/grab/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      201,
+      110,
+      238,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/grab/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      233,
+      110,
+      174,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/grab_strike/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      194,
+      110,
+      252,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/grab_strike/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      170,
+      110,
+      301,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/grab_strike/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      200,
+      110,
+      239,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/grab_strike/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      238,
+      110,
+      163,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/throw/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      238,
+      135,
+      217,
+      276
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/throw/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      292,
+      130,
+      169,
+      282
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/throw/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      264,
+      130,
+      155,
+      282
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/throw/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      252,
+      133,
+      177,
+      279
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/throw/05.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      281,
+      161,
+      206,
+      251
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/throw/06.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      289,
+      197,
+      183,
+      214
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/throw/07.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      286,
+      203,
+      191,
+      208
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/throw/08.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      244,
+      135,
+      166,
+      276
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/super/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      241,
+      149,
+      177,
+      259
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/super/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      252,
+      118,
+      194,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/super/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      258,
+      6,
+      146,
+      383
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/super/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      241,
+      180,
+      186,
+      228
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/super/05.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      278,
+      4,
+      144,
+      405
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/super/06.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      258,
+      6,
+      146,
+      383
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/super/07.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      247,
+      96,
+      166,
+      315
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/super/08.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      252,
+      118,
+      194,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/super/09.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      289,
+      4,
+      113,
+      383
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/super/10.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      261,
+      11,
+      149,
+      383
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/hit/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      250,
+      121,
+      160,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/hit/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      221,
+      118,
+      191,
+      293
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/fall/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      210,
+      223,
+      217,
+      180
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/fall/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      185,
+      268,
+      315,
+      141
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/fall/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      182,
+      286,
+      327,
+      130
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/getup/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      182,
+      286,
+      327,
+      130
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/getup/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      182,
+      251,
+      267,
+      160
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/getup/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      224,
+      188,
+      155,
+      228
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/getup/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      213,
+      73,
+      158,
+      343
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/getup/05.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      188,
+      140,
+      183,
+      276
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/getup/06.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      210,
+      186,
+      169,
+      175
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/getup/07.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      258,
+      197,
+      152,
+      214
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/ken_ref_anim/getup/08.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      252,
+      144,
+      158,
+      267
+    ],
+    "offsetY": 20
+  }
+}

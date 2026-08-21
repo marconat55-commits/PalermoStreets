@@ -37,6 +37,8 @@ export interface CharacterProfile {
     master_root: string;
     animation_root: string;
     texture_atlas?: string;
+    /** Character-local runtime metadata. Falls back to the legacy global file during migration. */
+    frame_meta?: string;
   };
   identity: Record<string, unknown>;
   gameplay: {
@@ -82,6 +84,19 @@ export interface CharacterIndex {
   characters: string[];
   default_player: string;
   default_enemy: string;
+}
+
+export interface RuntimeStageEntry {
+  id: string;
+  data: string;
+  items?: string;
+}
+
+export interface RuntimeManifest {
+  schema: number;
+  default_stage: string;
+  stages: RuntimeStageEntry[];
+  legacy_frame_meta?: string;
 }
 
 export interface WaveData {

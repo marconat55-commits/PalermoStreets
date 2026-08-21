@@ -9,7 +9,8 @@
   "assets": {
     "master_root": "assets/characters/talebano",
     "animation_root": "assets/characters/talebano_anim",
-    "texture_atlas": "assets/characters/talebano_anim/atlas/atlas.json"
+    "texture_atlas": "assets/characters/talebano_anim/atlas/atlas.json",
+    "frame_meta": "data/generated/characters/talebano.frame_meta.json"
   },
   "identity": {
     "outfit": "canotta bianca aderente, pantaloni tuta adidas blu, scarpe da tennis bianche",

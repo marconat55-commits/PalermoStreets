@@ -9,7 +9,8 @@
   "assets": {
     "master_root": "assets/characters/ken_ref",
     "animation_root": "assets/characters/ken_ref_anim",
-    "texture_atlas": "assets/characters/ken_ref_anim/atlas/atlas.json"
+    "texture_atlas": "assets/characters/ken_ref_anim/atlas/atlas.json",
+    "frame_meta": "data/generated/characters/ken_ref.frame_meta.json"
   },
   "identity": {
     "fighting_style": "Ansatsuken arcade adattato al belt-scroller",

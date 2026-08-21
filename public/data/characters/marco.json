@@ -9,7 +9,8 @@
   "assets": {
     "master_root": "assets/characters/marco",
     "animation_root": "assets/characters/marco_anim",
-    "texture_atlas": "assets/characters/marco_anim/atlas/atlas.json"
+    "texture_atlas": "assets/characters/marco_anim/atlas/atlas.json",
+    "frame_meta": "data/generated/characters/marco.frame_meta.json"
   },
   "identity": {
     "outfit": "camicia bianca aperta con maniche arrotolate, pantaloni bianchi larghi, fascia rossa in vita e scarpe in pelle marrone",

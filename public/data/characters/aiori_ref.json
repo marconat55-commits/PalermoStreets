@@ -9,7 +9,8 @@
   "assets": {
     "master_root": "assets/characters/aiori_ref",
     "animation_root": "assets/characters/aiori_ref_anim",
-    "texture_atlas": "assets/characters/aiori_ref_anim/atlas/atlas.json"
+    "texture_atlas": "assets/characters/aiori_ref_anim/atlas/atlas.json",
+    "frame_meta": "data/generated/characters/aiori_ref.frame_meta.json"
   },
   "identity": {
     "fighting_style": "MUGEN motion reference adattato al belt-scroller",

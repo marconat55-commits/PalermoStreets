@@ -1,0 +1,1982 @@
+{
+  "/assets/characters/marco_anim/air_attack/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      222,
+      101,
+      197,
+      299
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/air_attack/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      254,
+      99,
+      131,
+      301
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/air_attack/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      238,
+      95,
+      163,
+      305
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/air_attack/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      240,
+      137,
+      159,
+      263
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/block/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      227,
+      112,
+      186,
+      288
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/block/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      226,
+      112,
+      188,
+      288
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/block/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      225,
+      113,
+      190,
+      287
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/brake/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      191,
+      140,
+      258,
+      260
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/brake/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      197,
+      123,
+      245,
+      277
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/brake/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      195,
+      137,
+      250,
+      263
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/brake/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      182,
+      131,
+      276,
+      269
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/combo_finisher/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      217,
+      110,
+      206,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/combo_finisher/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      226,
+      110,
+      189,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/combo_finisher/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      244,
+      110,
+      152,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/combo_finisher/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      172,
+      110,
+      295,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/fall/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      224,
+      155,
+      193,
+      245
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/fall/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      207,
+      185,
+      226,
+      215
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/fall/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      193,
+      225,
+      254,
+      175
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/fall/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      186,
+      246,
+      269,
+      154
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/fall/05.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      184,
+      245,
+      272,
+      155
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/getup/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      178,
+      329,
+      284,
+      71
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/getup/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      192,
+      272,
+      257,
+      128
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/getup/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      196,
+      252,
+      249,
+      148
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/getup/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      212,
+      223,
+      216,
+      177
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/getup/05.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      234,
+      195,
+      171,
+      205
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/grab/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      241,
+      112,
+      158,
+      288
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/grab/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      219,
+      127,
+      203,
+      273
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/grab/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      208,
+      114,
+      224,
+      286
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/grab_strike/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      222,
+      101,
+      197,
+      299
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/grab_strike/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      254,
+      99,
+      131,
+      301
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/grab_strike/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      238,
+      95,
+      163,
+      305
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/grab_strike/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      215,
+      110,
+      210,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/hit/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      222,
+      119,
+      196,
+      281
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/hit/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      234,
+      134,
+      172,
+      266
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/hit/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      232,
+      152,
+      177,
+      248
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/idle/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      218,
+      110,
+      205,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/jump/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      225,
+      110,
+      191,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/jump/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      237,
+      135,
+      167,
+      265
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/jump/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      240,
+      198,
+      160,
+      202
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/jump/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      236,
+      122,
+      168,
+      278
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/jump/05.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      236,
+      123,
+      168,
+      277
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/kick_right/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      238,
+      111,
+      164,
+      289
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/kick_right/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      227,
+      121,
+      185,
+      279
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/kick_right/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      253,
+      117,
+      134,
+      283
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/kick_right/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      187,
+      119,
+      266,
+      281
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/kick_right/05.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      250,
+      117,
+      141,
+      283
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/punch_left/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      218,
+      110,
+      205,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/punch_left/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      218,
+      110,
+      205,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/punch_left/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      198,
+      110,
+      244,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/punch_left/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      214,
+      110,
+      213,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/punch_right/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      214,
+      110,
+      213,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/punch_right/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      194,
+      110,
+      253,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/punch_right/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      218,
+      110,
+      204,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/punch_right/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      218,
+      110,
+      205,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/run/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      227,
+      150,
+      186,
+      250
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/run/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      221,
+      150,
+      199,
+      250
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/run/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      217,
+      149,
+      206,
+      251
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/run/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      221,
+      150,
+      197,
+      250
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/run/05.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      215,
+      157,
+      210,
+      243
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/run/06.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      215,
+      156,
+      211,
+      244
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/run/07.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      215,
+      162,
+      211,
+      238
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/run/08.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      225,
+      154,
+      190,
+      246
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/super/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      200,
+      110,
+      241,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/super/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      168,
+      110,
+      305,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/super/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      163,
+      110,
+      314,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/super/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      183,
+      110,
+      274,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/super/05.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      202,
+      110,
+      237,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/throw/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      225,
+      115,
+      190,
+      285
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/throw/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      198,
+      166,
+      243,
+      234
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/throw/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      197,
+      144,
+      247,
+      256
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/throw/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      196,
+      142,
+      247,
+      258
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/walk/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      243,
+      111,
+      154,
+      289
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/walk/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      243,
+      112,
+      154,
+      288
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/walk/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      243,
+      112,
+      153,
+      288
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/walk/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      243,
+      111,
+      155,
+      289
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/walk/05.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      245,
+      113,
+      150,
+      287
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/walk/06.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      243,
+      113,
+      153,
+      287
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/walk/07.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      235,
+      114,
+      171,
+      286
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/walk/08.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      241,
+      114,
+      158,
+      286
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/air_attack/05.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      164,
+      218,
+      312,
+      182
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/air_attack/06.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      216,
+      110,
+      208,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/combo_finisher/05.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      226,
+      110,
+      189,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/kick_right/06.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      237,
+      113,
+      166,
+      287
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/throw/05.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      181,
+      155,
+      278,
+      245
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/air_punch/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      202,
+      129,
+      237,
+      271
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/air_punch/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      158,
+      126,
+      325,
+      274
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/air_punch/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      155,
+      144,
+      330,
+      256
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/air_punch/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      216,
+      125,
+      207,
+      275
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/air_punch/05.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      188,
+      96,
+      264,
+      304
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/air_punch/06.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      238,
+      177,
+      164,
+      223
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/kick_front/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      218,
+      110,
+      205,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/kick_front/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      217,
+      110,
+      206,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/kick_front/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      226,
+      110,
+      189,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/kick_front/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      208,
+      110,
+      225,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/kick_front/05.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      226,
+      110,
+      189,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/kick_front/06.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      218,
+      110,
+      205,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/idle_variant_1/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      242,
+      111,
+      156,
+      289
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/idle_variant_1/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      241,
+      113,
+      157,
+      287
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/idle_variant_1/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      241,
+      113,
+      159,
+      287
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/idle_variant_1/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      241,
+      113,
+      158,
+      287
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/idle_variant_1/05.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      240,
+      112,
+      160,
+      288
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/idle_variant_1/06.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      242,
+      112,
+      156,
+      288
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/idle_variant_1/07.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      242,
+      112,
+      156,
+      288
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/land/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      234,
+      222,
+      171,
+      178
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/land/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      240,
+      226,
+      160,
+      174
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/land/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      234,
+      171,
+      173,
+      229
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/land/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      222,
+      135,
+      196,
+      265
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/fall/06.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      177,
+      298,
+      285,
+      102
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/fall/07.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      176,
+      306,
+      288,
+      94
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/fall/08.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      178,
+      329,
+      284,
+      71
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/getup/06.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      246,
+      145,
+      147,
+      255
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/getup/07.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      230,
+      113,
+      180,
+      287
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/getup/08.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      231,
+      108,
+      178,
+      292
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/idle_variant_1/08.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      242,
+      113,
+      157,
+      287
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/air_punch/07.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      151,
+      155,
+      338,
+      245
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/air_punch/08.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      196,
+      110,
+      247,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/combo_finisher/06.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      218,
+      110,
+      205,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/kick_finisher/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      240,
+      109,
+      160,
+      291
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/kick_finisher/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      215,
+      137,
+      209,
+      263
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/kick_finisher/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      249,
+      133,
+      142,
+      267
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/kick_finisher/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      180,
+      131,
+      280,
+      269
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/kick_finisher/05.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      245,
+      127,
+      149,
+      273
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/kick_finisher/06.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      242,
+      115,
+      156,
+      285
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/throw/06.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      184,
+      155,
+      272,
+      245
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/muay_elbow/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      201,
+      101,
+      238,
+      299
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/muay_elbow/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      214,
+      112,
+      213,
+      288
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/muay_elbow/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      215,
+      110,
+      210,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/muay_elbow/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      215,
+      110,
+      210,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/idle_variant_1/09.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      242,
+      112,
+      156,
+      288
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/idle_variant_1/10.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      241,
+      113,
+      157,
+      287
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/idle_variant_1/11.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      242,
+      111,
+      156,
+      289
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/idle_variant_1/12.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      242,
+      112,
+      156,
+      288
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/brake/05.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      218,
+      125,
+      204,
+      275
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/brake/06.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      217,
+      112,
+      205,
+      288
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/land/05.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      234,
+      110,
+      172,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/land/06.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      236,
+      111,
+      169,
+      289
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/block/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      230,
+      112,
+      179,
+      288
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/grab/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      219,
+      113,
+      201,
+      287
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/throw/07.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      183,
+      136,
+      274,
+      264
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/throw/08.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      229,
+      111,
+      183,
+      289
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/hit/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      230,
+      109,
+      179,
+      291
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/walk_up/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      240,
+      104,
+      160,
+      296
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/walk_up/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      239,
+      117,
+      161,
+      283
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/walk_up/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      241,
+      112,
+      158,
+      288
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/walk_up/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      239,
+      103,
+      162,
+      297
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/walk_up/05.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      239,
+      103,
+      161,
+      297
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/walk_up/06.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      241,
+      114,
+      159,
+      286
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/walk_up/07.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      242,
+      112,
+      156,
+      288
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/walk_up/08.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      239,
+      115,
+      163,
+      285
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/walk_down/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      241,
+      111,
+      158,
+      289
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/walk_down/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      247,
+      126,
+      147,
+      274
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/walk_down/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      247,
+      113,
+      146,
+      287
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/walk_down/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      245,
+      111,
+      149,
+      289
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/walk_down/05.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      241,
+      112,
+      159,
+      288
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/walk_down/06.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      247,
+      122,
+      146,
+      278
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/walk_down/07.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      243,
+      112,
+      154,
+      288
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/walk_down/08.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      243,
+      112,
+      154,
+      288
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/run_up/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      225,
+      136,
+      190,
+      264
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/run_up/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      245,
+      168,
+      150,
+      232
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/run_up/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      229,
+      141,
+      182,
+      259
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/run_up/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      227,
+      163,
+      185,
+      237
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/run_up/05.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      234,
+      138,
+      172,
+      262
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/run_up/06.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      245,
+      166,
+      151,
+      234
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/run_up/07.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      232,
+      139,
+      176,
+      261
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/run_up/08.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      227,
+      177,
+      185,
+      223
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/run_down/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      238,
+      138,
+      164,
+      262
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/run_down/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      243,
+      153,
+      154,
+      247
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/run_down/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      239,
+      159,
+      161,
+      241
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/run_down/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      239,
+      149,
+      161,
+      251
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/run_down/05.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      249,
+      142,
+      143,
+      258
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/run_down/06.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      243,
+      171,
+      153,
+      229
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/run_down/07.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      242,
+      151,
+      156,
+      249
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/run_down/08.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      244,
+      157,
+      152,
+      243
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/dodge/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      206,
+      164,
+      229,
+      236
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/dodge/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      192,
+      199,
+      257,
+      201
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/dodge/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      230,
+      144,
+      179,
+      256
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/dodge/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      230,
+      109,
+      179,
+      291
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/idle_legacy/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      217,
+      109,
+      206,
+      291
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/idle_legacy/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      217,
+      108,
+      206,
+      292
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/marco_anim/idle_legacy/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      217,
+      109,
+      206,
+      291
+    ],
+    "offsetY": 20
+  }
+}

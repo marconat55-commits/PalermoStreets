@@ -12,6 +12,8 @@
     "content:check": "node scripts/content/check-content.mjs",
     "content:build": "node scripts/content/build-content.mjs",
     "content:scaffold": "node scripts/content/scaffold-content.mjs",
+    "assets:manifests": "node scripts/build-character-metadata.mjs",
+    "audit:assets": "node scripts/audit-asset-duplicates.mjs",
     "validate:data": "node scripts/validate-data.mjs",
     "validate:art": "node scripts/validate-character-art.mjs",
     "test": "node --experimental-strip-types --test"

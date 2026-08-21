@@ -2,7 +2,7 @@ import { Container, Graphics, Sprite, Text, TextStyle, type Texture } from 'pixi
 import type { Scene } from './Scene';
 import type { Input } from '../input/Input';
 import type { AssetCatalog } from '../assets/AssetCatalog';
-import type { BackgroundLayerData, CharacterProfile, ModuleData, StageData, StageItemCatalog, StageItemDefinition, Vec2, WaveData } from '../types';
+import type { BackgroundLayerData, CharacterProfile, ModuleData, RuntimeStageEntry, StageData, StageItemCatalog, StageItemDefinition, Vec2, WaveData } from '../types';
 import { Player } from '../entities/Player';
 import { Enemy } from '../entities/Enemy';
 import { EffectsLayer } from '../effects/EffectsLayer';
@@ -14,7 +14,7 @@ import { cameraTargetForPlayer, resolveCameraBounds, smoothCamera, type Horizont
 import { resolveArcadeAction, resolveGrabAction } from '../input/arcadeControls';
 import { SPIN_SPECIAL } from '../combat/attacks';
 import { resolveWalkBand, sampleWalkBand } from '../stage/walkBand';
-import { loadStage1Items } from '../data/loadData';
+import { loadStageItems } from '../data/loadData';
 import { WorldObject } from '../objects/WorldObject';
 import { isPickupKind, itemWithinRange, resolveItemInteraction } from '../objects/itemRules';
 import { rectsIntersect } from '../../utils/math';
@@ -91,6 +91,8 @@ export class StageScene implements Scene {
   private readonly backgroundTextures: Array<Texture[] | null>;
   private readonly catalog: AssetCatalog;
   private readonly defaultEnemyId: string;
+  private readonly playerId: string;
+  private readonly loadedCharacterIds = new Set<string>();
   private readonly moduleLoads = new Map<number, Promise<void>>();
   readonly player: Player;
   private enemies: Enemy[] = [];
@@ -152,6 +154,7 @@ export class StageScene implements Scene {
   static async create(
     catalog: AssetCatalog,
     stageData: StageData,
+    stageEntry: RuntimeStageEntry,
     playerId: string,
     defaultEnemyId: string,
   ): Promise<StageScene> {
@@ -159,7 +162,7 @@ export class StageScene implements Scene {
     if (!firstModule) throw new Error('Stage senza moduli');
     const firstCharacters = new Set<string>([playerId]);
     for (const wave of firstModule.waves ?? []) firstCharacters.add(wave.character ?? defaultEnemyId);
-    const itemCatalog = await loadStage1Items();
+    const itemCatalog = await loadStageItems(stageEntry);
     const referencedItemIds = new Set(stageData.modules.flatMap((module) => (module.items ?? []).map((spawn) => spawn.item)));
     const referencedDefinitions = itemCatalog.items.filter((item) => referencedItemIds.has(item.id));
     for (const item of referencedDefinitions) if (item.drop_item) referencedItemIds.add(item.drop_item);
@@ -195,6 +198,11 @@ export class StageScene implements Scene {
     const playerProfile = this.catalog.getProfile(playerId);
     this.hud = new Hud(playerProfile.display_name);
     this.defaultEnemyId = defaultEnemyId;
+    this.playerId = playerId;
+    this.loadedCharacterIds.add(playerId);
+    for (const module of stageData.modules) {
+      for (const wave of module.waves ?? []) this.loadedCharacterIds.add(wave.character ?? defaultEnemyId);
+    }
     this.modules = stageData.modules;
     this.backgroundTextures = backgrounds;
     this.itemDefinitions = new Map(itemCatalog.items.map((item) => [item.id, item]));
@@ -355,6 +363,7 @@ export class StageScene implements Scene {
   }
 
   private enterModule(index: number, preservePlayer: boolean): void {
+    const previousIndex = this.moduleIndex;
     this.moduleIndex = index;
     this.checkpointModule = index;
     this.currentModule = this.modules[index]!;
@@ -366,6 +375,7 @@ export class StageScene implements Scene {
     this.cameraX = this.cameraBounds.min;
     this.shakeOffset = { x: 0, y: 0 };
     this.configureBackgroundLayers(this.currentModule, backgrounds);
+    if (preservePlayer && previousIndex !== index) this.releaseModuleAssets(previousIndex);
     this.waveData = this.currentModule.waves ?? [];
     this.waveIndex = -1;
     this.nextWaveTimer = 0.70;
@@ -423,6 +433,19 @@ export class StageScene implements Scene {
 
     this.message = `${this.currentModule.id} — ${this.currentModule.name.toUpperCase()}`;
     this.messageTimer = 2;
+  }
+
+  private releaseModuleAssets(index: number): void {
+    const module = this.modules[index];
+    if (!module) return;
+    const retained = new Set(authoredLayers(this.currentModule).map((layer) => layer.src));
+    this.backgroundTextures[index] = null;
+    for (const layer of authoredLayers(module)) {
+      if (retained.has(layer.src)) continue;
+      void this.catalog.unloadAsset(layer.src).catch((error) => {
+        console.warn(`${module.id}: unload background fallito`, error);
+      });
+    }
   }
 
   private spawnModuleItems(): void {
@@ -1044,5 +1067,10 @@ export class StageScene implements Scene {
     for (const enemy of this.enemies) enemy.destroy();
     this.player.destroy();
     this.root.destroy({ children: true });
+    const assetPaths = new Set<string>();
+    for (const module of this.modules) for (const layer of authoredLayers(module)) assetPaths.add(layer.src);
+    for (const item of this.itemDefinitions.values()) assetPaths.add(item.asset);
+    for (const path of assetPaths) void this.catalog.unloadAsset(path).catch(() => undefined);
+    for (const id of this.loadedCharacterIds) if (id !== this.playerId) this.catalog.releaseCharacter(id);
   }
 }

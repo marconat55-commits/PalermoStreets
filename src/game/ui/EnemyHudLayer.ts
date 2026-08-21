@@ -1,21 +1,24 @@
-import { Container, Graphics, Text, TextStyle } from 'pixi.js';
+import { Container, Graphics, Sprite } from 'pixi.js';
 import type { Enemy } from '../entities/Enemy';
 
-interface LabelEntry {
-  label: Text;
+interface EnemyHudEntry {
+  root: Container;
+  portrait: Sprite;
+  mask: Graphics;
 }
 
+const PANEL_WIDTH = 146;
+const PANEL_HEIGHT = 48;
+const PORTRAIT_SIZE = 42;
+const PANEL_GAP = 8;
+const RIGHT_EDGE = 1240;
+const TOP = 48;
+
+/** Screen-space enemy energy panels. No world-space labels are rendered above actors. */
 export class EnemyHudLayer {
   readonly root = new Container();
   private readonly graphics = new Graphics();
-  private readonly labels = new Map<number, LabelEntry>();
-  private readonly labelStyle = new TextStyle({
-    fontFamily: 'Arial, sans-serif',
-    fontSize: 13,
-    fontWeight: '800',
-    fill: 0xffe5ac,
-    stroke: { color: 0x120c0c, width: 3 },
-  });
+  private readonly entries = new Map<number, EnemyHudEntry>();
 
   constructor() {
     this.root.zIndex = 10000;
@@ -24,57 +27,65 @@ export class EnemyHudLayer {
 
   update(enemies: Enemy[]): void {
     this.graphics.clear();
-    const live = enemies.filter((enemy) => !enemy.dead && enemy.alpha255 >= 120).sort((a, b) => b.position.y - a.position.y || b.actorId - a.actorId);
-    const occupied: Array<{ x: number; y: number; width: number; height: number }> = [];
+    const live = enemies
+      .filter((enemy) => !enemy.dead && enemy.alpha255 >= 120 && !enemy.isBoss)
+      .sort((a, b) => a.actorId - b.actorId);
     const seen = new Set<number>();
 
-    for (const enemy of live) {
+    for (let index = 0; index < live.length; index += 1) {
+      const enemy = live[index]!;
       seen.add(enemy.actorId);
-      let entry = this.labels.get(enemy.actorId);
+      const panelX = RIGHT_EDGE - PANEL_WIDTH - index * (PANEL_WIDTH + PANEL_GAP);
+      const panelY = TOP;
+      let entry = this.entries.get(enemy.actorId);
       if (!entry) {
-        const label = new Text({ text: enemy.displayName.toUpperCase(), style: this.labelStyle });
-        label.anchor.set(0.5, 1);
-        this.root.addChild(label);
-        entry = { label };
-        this.labels.set(enemy.actorId, entry);
+        entry = this.createEntry(enemy);
+        this.entries.set(enemy.actorId, entry);
       }
-      entry.label.visible = true;
-      const ratio = Math.max(0, Math.min(1, enemy.health / Math.max(1, enemy.maxHealth)));
-      const width = enemy.isBoss ? 112 : 88;
-      const height = enemy.isBoss ? 9 : 7;
-      const centerX = Math.round(enemy.position.x);
-      let barY = enemy.visualTop() - 10;
-      const labelHeight = entry.label.height;
-      const panelWidth = Math.max(width + 8, entry.label.width + 8);
-      const panelHeight = labelHeight + height + 9;
-      let panel = { x: centerX - panelWidth / 2, y: barY - labelHeight - 6, width: panelWidth, height: panelHeight };
-      const intersects = (a: typeof panel, b: typeof panel): boolean => a.x < b.x + b.width + 4 && a.x + a.width + 4 > b.x && a.y < b.y + b.height + 3 && a.y + a.height + 3 > b.y;
-      while (occupied.some((other) => intersects(panel, other))) {
-        barY -= 18;
-        panel = { x: centerX - panelWidth / 2, y: barY - labelHeight - 6, width: panelWidth, height: panelHeight };
-      }
-      occupied.push(panel);
+      entry.root.visible = true;
+      entry.root.position.set(panelX, panelY);
 
-      this.graphics.roundRect(panel.x, panel.y, panel.width, panel.height, 3).fill({ color: 0x0a080a, alpha: 0.62 });
-      const boxX = centerX - width / 2;
-      this.graphics.roundRect(boxX, barY, width, height, 2).fill(0x120d0e).stroke({ color: 0xf5d38b, width: 1 });
-      this.graphics.roundRect(boxX + 2, barY + 2, width - 4, Math.max(1, height - 4), 1).fill(0x411b19);
-      const innerWidth = Math.max(0, (width - 4) * ratio);
-      if (innerWidth > 0) {
-        this.graphics.roundRect(boxX + 2, barY + 2, innerWidth, Math.max(1, height - 4), 1).fill(enemy.isBoss ? 0xbe2a22 : 0xda4526);
-      }
-      entry.label.position.set(centerX, barY - 2);
+      const ratio = Math.max(0, Math.min(1, enemy.health / Math.max(1, enemy.maxHealth)));
+      this.graphics.roundRect(panelX, panelY, PANEL_WIDTH, PANEL_HEIGHT, 5)
+        .fill({ color: 0x09080b, alpha: 0.84 })
+        .stroke({ color: 0xe0b966, width: 1.5 });
+      this.graphics.rect(panelX + 50, panelY + 15, 88, 17).fill(0x281719);
+      this.graphics.rect(panelX + 52, panelY + 17, 84, 13).fill(0x4a1d1b);
+      if (ratio > 0) this.graphics.rect(panelX + 52, panelY + 17, 84 * ratio, 13).fill(0xd64128);
+      this.graphics.rect(panelX + 52, panelY + 34, 84, 2).fill({ color: 0xf4c86d, alpha: 0.55 });
     }
 
-    for (const [id, entry] of this.labels) {
-      if (!seen.has(id)) entry.label.visible = false;
+    for (const [id, entry] of this.entries) {
+      if (!seen.has(id)) entry.root.visible = false;
     }
   }
 
   removeActor(actorId: number): void {
-    const entry = this.labels.get(actorId);
+    const entry = this.entries.get(actorId);
     if (!entry) return;
-    entry.label.destroy();
-    this.labels.delete(actorId);
+    entry.root.destroy({ children: true });
+    this.entries.delete(actorId);
+  }
+
+  private createEntry(enemy: Enemy): EnemyHudEntry {
+    const root = new Container();
+    const mask = new Graphics().roundRect(3, 3, PORTRAIT_SIZE, PORTRAIT_SIZE, 4).fill(0xffffff);
+    const frame = enemy.animator.bank.clips.get('idle')?.frames[0] ?? enemy.animator.frame;
+    const portrait = new Sprite(frame.texture);
+    const [left, top, right, bottom] = frame.bounds;
+    const visibleHeight = Math.max(1, bottom - top);
+    const headHeight = Math.max(1, visibleHeight * 0.30);
+    const scale = PORTRAIT_SIZE / headHeight;
+    const headCenterX = (left + right) / 2;
+    portrait.anchor.set(0.5, 1);
+    portrait.scale.set(scale);
+    portrait.position.set(
+      3 + PORTRAIT_SIZE / 2 - (headCenterX - frame.width / 2) * scale,
+      3 - (top - frame.height) * scale,
+    );
+    portrait.mask = mask;
+    root.addChild(portrait, mask);
+    this.root.addChild(root);
+    return { root, portrait, mask };
   }
 }

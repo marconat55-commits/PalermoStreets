@@ -229,7 +229,7 @@ export class StageScene implements Scene {
     this.effects.root.zIndex = 9000;
 
     this.debug.zIndex = 9500;
-    this.world.addChild(this.ground, this.actors, this.warningGraphics, this.effects.root, this.enemyHud.root, this.debug);
+    this.world.addChild(this.ground, this.actors, this.warningGraphics, this.effects.root, this.debug);
     this.root.addChild(this.backgroundLayers, this.world, this.foregroundLayers, this.screen);
 
     this.stageCardPanel
@@ -249,7 +249,7 @@ export class StageScene implements Scene {
     this.stageCard.visible = false;
 
     this.screen.addChild(
-      this.grade, this.hud.root, this.exitGraphics, this.messagePanel, this.messageText, this.clearText,
+      this.grade, this.hud.root, this.enemyHud.root, this.exitGraphics, this.messagePanel, this.messageText, this.clearText,
       this.overlay, this.overlayTitle, this.overlaySubtitle, this.fade, this.stageCard,
     );
     this.messageText.anchor.set(0.5);

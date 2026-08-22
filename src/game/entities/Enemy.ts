@@ -33,6 +33,7 @@ export interface EnemyOptions {
   visualScale?: number;
   dodgeChance?: number;
   dodgeCooldown?: number;
+  spawnFadeSeconds?: number;
 }
 
 export class Enemy extends Actor {
@@ -50,6 +51,7 @@ export class Enemy extends Actor {
   readonly heavyAttack: AttackData;
   readonly dodgeChance: number;
   readonly dodgeCooldownDuration: number;
+  readonly spawnFadeSeconds: number;
   currentAttack: AttackData | null = null;
   attackElapsed = 0;
   attackHitPlayer = false;
@@ -78,9 +80,10 @@ export class Enemy extends Actor {
     this.heavyAttack = scaledAttack(ENEMY_HEAVY, options.damageScale ?? 1, options.attackSpeedScale ?? 1);
     this.dodgeChance = clamp(options.dodgeChance ?? 0, 0, 0.8);
     this.dodgeCooldownDuration = clamp(options.dodgeCooldown ?? 2.6, 0.4, 12);
+    this.spawnFadeSeconds = clamp(options.spawnFadeSeconds ?? (this.isBoss ? 0.44 : 0.30), 0, 2);
     this.attackCooldown = randomRange(0.82, 1.22) * this.cooldownScale;
-    this.alpha255 = 0;
-    this.beginState('spawn', 'idle');
+    this.alpha255 = this.spawnFadeSeconds === 0 ? 255 : 0;
+    this.beginState(this.spawnFadeSeconds === 0 ? 'idle' : 'spawn', 'idle');
   }
 
   override receiveHit(damage: number, knockback: Vec2, knockdown = false, launchVelocity = 0): HitResult {
@@ -198,7 +201,7 @@ export class Enemy extends Actor {
 
     if (this.state === 'spawn') {
       this.spawnElapsed += dt;
-      const duration = this.isBoss ? 0.44 : 0.30;
+      const duration = this.spawnFadeSeconds;
       this.alpha255 = Math.min(255, Math.round(255 * this.spawnElapsed / duration));
       if (this.spawnElapsed >= duration) {
         this.beginState('idle', 'idle');

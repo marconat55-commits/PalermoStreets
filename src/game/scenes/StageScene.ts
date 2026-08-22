@@ -615,6 +615,7 @@ export class StageScene implements Scene {
       visual_scale: d.visual_scale ?? 1,
       dodge_chance: d.dodge_chance ?? 0,
       dodge_cooldown: d.dodge_cooldown ?? 2.6,
+      spawn_fade_seconds: d.spawn_fade_seconds ?? (profile.role === 'boss' ? 0.44 : 0.30),
       label: d.label ?? profile.display_name,
     };
   }
@@ -646,6 +647,7 @@ export class StageScene implements Scene {
         visualScale: defaults.visual_scale,
         dodgeChance: wave.dodge_chance ?? defaults.dodge_chance,
         dodgeCooldown: wave.dodge_cooldown ?? defaults.dodge_cooldown,
+        spawnFadeSeconds: defaults.spawn_fade_seconds,
       });
       enemy.setPlayfieldBounds(45, this.worldWidth - 45, this.playfieldTop, this.playfieldBottom);
       enemy.setPlayfieldProfile((worldX) => resolveWalkBand(

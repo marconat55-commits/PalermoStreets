@@ -66,6 +66,8 @@ export interface CharacterProfile {
       dodge_chance?: number;
       /** Minimum seconds between successful evades. */
       dodge_cooldown?: number;
+      /** Optional entrance fade duration. Zero renders the enemy fully opaque immediately. */
+      spawn_fade_seconds?: number;
       label?: string;
     };
   };

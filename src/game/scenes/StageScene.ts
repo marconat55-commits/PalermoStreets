@@ -15,6 +15,7 @@ import { resolveArcadeAction, resolveGrabAction } from '../input/arcadeControls'
 import { SPIN_SPECIAL } from '../combat/attacks';
 import { resolveWalkBand, sampleWalkBand } from '../stage/walkBand';
 import { loadStageItems } from '../data/loadData';
+import { collectModuleItems } from '../stage/moduleItems';
 import { WorldObject } from '../objects/WorldObject';
 import { isPickupKind, itemWithinRange, resolveItemInteraction } from '../objects/itemRules';
 import { rectsIntersect } from '../../utils/math';
@@ -164,10 +165,7 @@ export class StageScene implements Scene {
     const firstCharacters = new Set<string>([playerId]);
     for (const wave of firstModule.waves ?? []) firstCharacters.add(wave.character ?? defaultEnemyId);
     const itemCatalog = await loadStageItems(stageEntry);
-    const referencedItemIds = new Set(stageData.modules.flatMap((module) => (module.items ?? []).map((spawn) => spawn.item)));
-    const referencedDefinitions = itemCatalog.items.filter((item) => referencedItemIds.has(item.id));
-    for (const item of referencedDefinitions) if (item.drop_item) referencedItemIds.add(item.drop_item);
-    const activeItems = itemCatalog.items.filter((item) => referencedItemIds.has(item.id));
+    const activeItems = collectModuleItems(firstModule, itemCatalog.items);
     const [firstBackgrounds, , itemTextureList] = await Promise.all([
       Promise.all(authoredLayers(firstModule).map((layer) => catalog.loadBackground(layer.src))),
       Promise.all([...firstCharacters].map((id) => catalog.ensureCharacter(id))),
@@ -284,11 +282,14 @@ export class StageScene implements Scene {
     if (!module) return Promise.reject(new Error(`Modulo non valido: ${index}`));
     const characterIds = new Set<string>();
     for (const wave of module.waves ?? []) characterIds.add(wave.character ?? this.defaultEnemyId);
+    const activeItems = collectModuleItems(module, [...this.itemDefinitions.values()]);
     const loading = Promise.all([
       Promise.all(authoredLayers(module).map((layer) => this.catalog.loadBackground(layer.src))),
       Promise.all([...characterIds].map((id) => this.catalog.ensureCharacter(id))),
-    ]).then(([backgrounds]) => {
+      Promise.all(activeItems.map((item) => this.catalog.loadBackground(item.asset))),
+    ]).then(([backgrounds, , itemTextures]) => {
       this.backgroundTextures[index] = backgrounds;
+      activeItems.forEach((item, itemIndex) => this.itemTextures.set(item.id, itemTextures[itemIndex]!));
     }).finally(() => {
       this.moduleLoads.delete(index);
     });

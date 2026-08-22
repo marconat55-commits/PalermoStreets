@@ -1,7 +1,7 @@
 import { Application, Assets, Texture } from 'pixi.js';
 import { LOGICAL_HEIGHT, LOGICAL_WIDTH } from './config';
 import { Input } from './input/Input';
-import { getStageEntry, loadCharacterFrameMeta, loadCharacterIndex, loadCharacterProfile, loadRuntimeManifest, loadStage } from './data/loadData';
+import { getStageEntry, loadCharacterFrameMeta, loadCharacterIndex, loadCharacterProfile, loadRuntimeManifest, loadStage, loadStageItems } from './data/loadData';
 import { AssetCatalog } from './assets/AssetCatalog';
 import { TitleScene } from './scenes/TitleScene';
 import { CharacterSelectScene } from './scenes/CharacterSelectScene';
@@ -10,6 +10,7 @@ import type { Scene } from './scenes/Scene';
 import type { CharacterProfile, RuntimeStageEntry, StageData } from './types';
 import { publicUrl } from './data/paths';
 import { resolveStartModuleIndex } from './stage/debugStart';
+import { collectModuleItems } from './stage/moduleItems';
 
 export class Game {
   readonly app = new Application();
@@ -164,7 +165,7 @@ export class Game {
     this.characterSelectScene?.setLoadingProgress(progress);
   }
 
-  private preloadInitialStage(): Promise<void> {
+  private async preloadInitialStage(): Promise<void> {
     if (this.initialStagePreload) return this.initialStagePreload;
     const firstModule = this.stageData.modules[this.startModuleIndex];
     if (!firstModule) return Promise.reject(new Error('Stage senza moduli'));
@@ -176,9 +177,12 @@ export class Game {
     for (const wave of firstModule.waves ?? []) {
       characterIds.add(wave.character ?? this.defaultEnemyId);
     }
+    const itemCatalog = await loadStageItems(this.stageEntry);
+    const moduleItems = collectModuleItems(firstModule, itemCatalog.items);
     const tasks: Array<Promise<unknown>> = [
       ...backgroundPaths.map((path) => this.catalog.loadBackground(path)),
       ...[...characterIds].map((id) => this.catalog.ensureCharacter(id)),
+      ...moduleItems.map((item) => this.catalog.loadBackground(item.asset)),
     ];
     this.initialStageLoadCompleted = 0;
     this.initialStageLoadTotal = tasks.length;

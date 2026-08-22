@@ -11,8 +11,8 @@ export function itemSizeMultiplier(itemId: string): number {
   return itemId === 'arancina' ? 1 : ITEM_SIZE_REDUCTION;
 }
 
-function visualScale(itemId: string, scale: number | undefined, multiplier = 1): number {
-  return (scale ?? 0.065) * ITEM_VISUAL_SCALE * multiplier * itemSizeMultiplier(itemId);
+function visualScale(itemId: string, scale: number | undefined, multiplier = 1, compensation = 1): number {
+  return (scale ?? 0.065) * ITEM_VISUAL_SCALE * multiplier * itemSizeMultiplier(itemId) * compensation;
 }
 
 export class WorldObject {
@@ -33,7 +33,7 @@ export class WorldObject {
     this.position = { ...position };
     this.sprite = new Sprite(texture);
     this.sprite.anchor.set(0.5, 1);
-    this.sprite.scale.set(visualScale(definition.id, definition.world_scale, definition.visual_scale_multiplier));
+    this.sprite.scale.set(visualScale(definition.id, definition.world_scale, definition.visual_scale_multiplier, definition.runtime_scale_compensation));
     this.root.addChild(this.sprite);
     this.sync();
   }
@@ -46,6 +46,7 @@ export class WorldObject {
       this.definition.id,
       this.definition.held_scale ?? this.definition.world_scale,
       this.definition.visual_scale_multiplier,
+      this.definition.runtime_scale_compensation,
     ));
   }
 
@@ -81,6 +82,7 @@ export class WorldObject {
       this.definition.id,
       this.definition.world_scale,
       this.definition.visual_scale_multiplier,
+      this.definition.runtime_scale_compensation,
     ));
     this.root.visible = true;
     this.sync();

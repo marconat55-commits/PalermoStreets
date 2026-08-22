@@ -219,6 +219,8 @@ export interface StageItemDefinition {
   held_scale?: number;
   /** Per-asset visual correction applied after the shared 1.5 actor-relative scale. */
   visual_scale_multiplier?: number;
+  /** Restores authored screen size after deterministic runtime texture downscaling. */
+  runtime_scale_compensation?: number;
   held_angle?: number;
   throw_speed?: number;
   /** Initial height above the walk plane for a thrown object. */

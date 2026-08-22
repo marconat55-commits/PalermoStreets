@@ -27,9 +27,9 @@
       "phases": ["right_contact", "right_down", "right_pass", "right_up", "left_contact", "left_down", "left_pass", "left_up"]
     },
     "run": {
-      "frames": 8,
+      "frames": 6,
       "loop": true,
-      "phases": ["right_contact", "right_compress", "right_drive", "flight_a", "left_contact", "left_compress", "left_drive", "flight_b"]
+      "phases": ["guard_start", "first_gather", "compression", "drive", "long_stride", "return_drive"]
     },
     "brake": {
       "frames": 4,

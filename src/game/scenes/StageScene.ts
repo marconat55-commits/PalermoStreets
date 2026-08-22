@@ -274,7 +274,7 @@ export class StageScene implements Scene {
     this.messageText.anchor.set(0.5);
     this.messageText.position.set(640, 122);
     this.clearText.anchor.set(0.5);
-    this.clearText.position.set(640, 119);
+    this.clearText.position.set(640, 98);
     this.overlayTitle.anchor.set(0.5);
     this.overlayTitle.position.set(640, 320);
     this.overlaySubtitle.anchor.set(0.5);

@@ -2,7 +2,7 @@ import { Container, Graphics, Sprite, Text, TextStyle, Texture } from 'pixi.js';
 import type { Input } from '../input/Input';
 import type { Scene } from './Scene';
 
-const DISPLAY_FONT = 'Impact, Haettenschweiler, Arial Black, sans-serif';
+const DISPLAY_FONT = 'Bangers, Impact, Arial Black, sans-serif';
 const UI_FONT = 'Arial Black, Arial, sans-serif';
 
 function centeredText(text: string, style: TextStyle, x: number, y: number): Text {
@@ -20,7 +20,7 @@ function logoLayer(text: string, size: number, fill: number, stroke: number, str
     fontStyle: 'italic',
     fill,
     stroke: { color: stroke, width: strokeWidth },
-    letterSpacing: 2,
+    letterSpacing: 5,
   }), x, y);
   value.skew.x = -0.08;
   return value;
@@ -44,11 +44,11 @@ export class TitleScene implements Scene {
     this.root.addChild(background);
 
     const grade = new Graphics();
-    grade.rect(0, 0, 1280, 720).fill({ color: 0x120400, alpha: 0.18 });
-    grade.rect(0, 0, 1280, 88).fill({ color: 0x000000, alpha: 0.64 });
-    grade.rect(0, 628, 1280, 92).fill({ color: 0x000000, alpha: 0.70 });
-    grade.rect(0, 0, 180, 720).fill({ color: 0x000000, alpha: 0.38 });
-    grade.rect(1100, 0, 180, 720).fill({ color: 0x000000, alpha: 0.38 });
+    grade.rect(0, 0, 1280, 720).fill({ color: 0xff8a25, alpha: 0.055 });
+    grade.rect(0, 0, 1280, 88).fill({ color: 0x000000, alpha: 0.47 });
+    grade.rect(0, 628, 1280, 92).fill({ color: 0x000000, alpha: 0.52 });
+    grade.rect(0, 0, 180, 720).fill({ color: 0x000000, alpha: 0.24 });
+    grade.rect(1100, 0, 180, 720).fill({ color: 0x000000, alpha: 0.24 });
     this.root.addChild(grade);
     this.root.addChild(this.lightning);
 
@@ -76,18 +76,17 @@ export class TitleScene implements Scene {
     this.root.addChild(slash);
     this.root.addChild(centeredText('SCHIAFFI, CALCI E SENTIMENTI', new TextStyle({
       fontFamily: DISPLAY_FONT, fontSize: 37, fontWeight: '900', fontStyle: 'italic', fill: 0xfff0d2,
-      stroke: { color: 0x1c0500, width: 7 }, letterSpacing: 2,
+      stroke: { color: 0x1c0500, width: 7 }, letterSpacing: 4,
     }), 640, 423));
 
-    this.promptPlate.roundRect(394, 505, 492, 96, 14)
-      .fill({ color: 0x170602, alpha: 0.92 })
-      .stroke({ color: 0xff3c0d, width: 10, alpha: 0.34 });
-    this.promptPlate.roundRect(403, 514, 474, 78, 10)
+    this.promptPlate.moveTo(386, 520).lineTo(414, 498).lineTo(894, 498).lineTo(874, 608).lineTo(394, 608).closePath()
+      .fill({ color: 0x170602, alpha: 0.94 }).stroke({ color: 0x5f0a04, width: 10 });
+    this.promptPlate.moveTo(402, 522).lineTo(420, 508).lineTo(879, 508).lineTo(862, 596).lineTo(405, 596).closePath()
       .stroke({ color: 0xffa312, width: 4 });
     this.root.addChild(this.promptPlate);
     this.prompt = centeredText('PREMI INVIO', new TextStyle({
       fontFamily: DISPLAY_FONT, fontSize: 48, fontWeight: '900', fontStyle: 'italic', fill: 0xffc22b,
-      stroke: { color: 0x641000, width: 6 }, letterSpacing: 3,
+      stroke: { color: 0x641000, width: 6 }, letterSpacing: 5,
     }), 640, 553);
     this.root.addChild(this.prompt);
 
@@ -104,7 +103,7 @@ export class TitleScene implements Scene {
     this.loadingGroup.addChild(loadingShade);
     this.loadingGroup.addChild(centeredText('CARICAMENTO', new TextStyle({
       fontFamily: DISPLAY_FONT, fontSize: 46, fontWeight: '900', fontStyle: 'italic', fill: 0xffc127,
-      stroke: { color: 0x5b0800, width: 6 }, letterSpacing: 3,
+      stroke: { color: 0x5b0800, width: 6 }, letterSpacing: 5,
     }), 640, 330));
     this.loadingGroup.addChild(centeredText('SCALDANDO I MUSCOLI. E LE PANELLE.', new TextStyle({
       fontFamily: UI_FONT, fontSize: 16, fontWeight: '700', fill: 0xf2d9b5, letterSpacing: 2,

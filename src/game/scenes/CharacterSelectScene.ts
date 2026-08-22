@@ -4,7 +4,7 @@ import { publicUrl } from '../data/paths';
 import type { CharacterProfile } from '../types';
 import type { Scene } from './Scene';
 
-const DISPLAY_FONT = 'Impact, Haettenschweiler, Arial Black, sans-serif';
+const DISPLAY_FONT = 'Bangers, Impact, Arial Black, sans-serif';
 const UI_FONT = 'Arial Black, Arial, sans-serif';
 const SLOTS = [[690, 300], [955, 300], [690, 468], [955, 468]] as const;
 
@@ -55,8 +55,9 @@ export class CharacterSelectScene implements Scene {
     background.height = 720;
     this.root.addChild(background);
     const grade = new Graphics();
-    grade.rect(0, 0, 1280, 720).fill({ color: 0x050100, alpha: 0.7 });
-    grade.moveTo(0, 0).lineTo(885, 0).lineTo(690, 720).lineTo(0, 720).closePath().fill({ color: 0x120300, alpha: 0.72 });
+    grade.rect(0, 0, 1280, 720).fill({ color: 0x120200, alpha: 0.48 });
+    grade.rect(0, 0, 1280, 720).fill({ color: 0xff7b20, alpha: 0.04 });
+    grade.moveTo(0, 0).lineTo(885, 0).lineTo(690, 720).lineTo(0, 720).closePath().fill({ color: 0x120300, alpha: 0.54 });
     this.root.addChild(grade);
     const electricAccents = new Graphics();
     electricAccents.moveTo(18, 118).lineTo(205, 142).lineTo(160, 160).lineTo(338, 184).stroke({ color: 0x35dbe8, width: 5, alpha: 0.85 });
@@ -67,7 +68,7 @@ export class CharacterSelectScene implements Scene {
     header.moveTo(0, 0).lineTo(1045, 0).lineTo(976, 96).lineTo(0, 96).closePath().fill(0x140502);
     header.moveTo(0, 88).lineTo(990, 88).lineTo(974, 102).lineTo(0, 102).closePath().fill(0xd92812);
     this.root.addChild(header);
-    this.root.addChild(label('SCEGLI CU AVI A PIGGHIARI I CAZZOTTI', new TextStyle({ fontFamily: DISPLAY_FONT, fontSize: 44, fontStyle: 'italic', fontWeight: '900', fill: 0xffdf94, stroke: { color: 0x641000, width: 7 } }), 40, 48));
+    this.root.addChild(label('SCEGLI CU AVI A PIGGHIARI VASTUNATE', new TextStyle({ fontFamily: DISPLAY_FONT, fontSize: 48, fontStyle: 'italic', fontWeight: '900', fill: 0xffdf94, stroke: { color: 0x641000, width: 7 }, letterSpacing: 3 }), 40, 48));
     this.root.addChild(label('PLAYER 1', new TextStyle({ fontFamily: UI_FONT, fontSize: 20, fontWeight: '900', fill: 0xffb11b }), 1134, 43, 0.5));
 
     const portraitPlate = new Graphics();
@@ -84,14 +85,15 @@ export class CharacterSelectScene implements Scene {
     const nameBand = new Graphics();
     nameBand.moveTo(55, 493).lineTo(629, 457).lineTo(646, 563).lineTo(89, 603).closePath().fill({ color: 0x090100, alpha: 0.95 });
     this.root.addChild(nameBand);
-    this.nameLarge = label('', new TextStyle({ fontFamily: DISPLAY_FONT, fontSize: 76, fontStyle: 'italic', fontWeight: '900', fill: 0xffc025, stroke: { color: 0x661006, width: 8 } }), 120, 518);
+    this.nameLarge = label('', new TextStyle({ fontFamily: DISPLAY_FONT, fontSize: 76, fontStyle: 'italic', fontWeight: '900', fill: 0xffc025, stroke: { color: 0x661006, width: 8 }, letterSpacing: 4 }), 120, 518);
     this.subtitle = label('', new TextStyle({ fontFamily: UI_FONT, fontSize: 14, fontWeight: '900', fill: 0xffe0a3, letterSpacing: 4 }), 138, 568);
     this.root.addChild(this.nameLarge, this.subtitle);
 
     const statPanel = new Graphics();
-    statPanel.roundRect(690, 124, 520, 164, 10).fill({ color: 0x0d0302, alpha: 0.92 }).stroke({ color: 0xff9e12, width: 3 });
+    statPanel.moveTo(690, 138).lineTo(706, 124).lineTo(1210, 124).lineTo(1210, 274).lineTo(1196, 288).lineTo(690, 288).closePath()
+      .fill({ color: 0x0d0302, alpha: 0.92 }).stroke({ color: 0xff9e12, width: 3 });
     this.root.addChild(statPanel);
-    this.nameStats = label('', new TextStyle({ fontFamily: DISPLAY_FONT, fontSize: 43, fontStyle: 'italic', fontWeight: '900', fill: 0xffdf9e, stroke: { color: 0x5e0d05, width: 5 } }), 730, 164);
+    this.nameStats = label('', new TextStyle({ fontFamily: DISPLAY_FONT, fontSize: 43, fontStyle: 'italic', fontWeight: '900', fill: 0xffdf9e, stroke: { color: 0x5e0d05, width: 5 }, letterSpacing: 3 }), 730, 164);
     this.root.addChild(this.nameStats);
     for (const [row, text] of [[0, 'FORZA'], [1, 'VELOCITÀ'], [2, 'TECNICA']] as const) {
       this.root.addChild(label(text, new TextStyle({ fontFamily: UI_FONT, fontSize: 13, fill: 0xe8cda7 }), 733, 207 + row * 26));
@@ -102,7 +104,8 @@ export class CharacterSelectScene implements Scene {
       const [x, y] = SLOTS[index]!;
       const profile = profiles[index];
       const slot = new Graphics();
-      slot.roundRect(x, y, 242, 143, 8).fill({ color: profile ? 0x571008 : 0x090405, alpha: 0.96 }).stroke({ color: profile ? 0xffa315 : 0x5b382a, width: profile ? 4 : 2 });
+      slot.moveTo(x, y + 10).lineTo(x + 10, y).lineTo(x + 242, y).lineTo(x + 242, y + 133).lineTo(x + 232, y + 143).lineTo(x, y + 143).closePath()
+        .fill({ color: profile ? 0x571008 : 0x090405, alpha: 0.96 }).stroke({ color: profile ? 0xffa315 : 0x5b382a, width: profile ? 4 : 2 });
       this.root.addChild(slot);
       if (profile) {
         const thumb = new Sprite(portraits[index] ?? Texture.EMPTY);
@@ -110,7 +113,7 @@ export class CharacterSelectScene implements Scene {
         thumb.width = 88;
         thumb.height = 88;
         this.root.addChild(thumb);
-        this.root.addChild(label(profile.display_name, new TextStyle({ fontFamily: DISPLAY_FONT, fontSize: 31, fontWeight: '900', fontStyle: 'italic', fill: 0xffe0a0 }), x + 106, y + 48));
+        this.root.addChild(label(profile.display_name, new TextStyle({ fontFamily: DISPLAY_FONT, fontSize: 31, fontWeight: '900', fontStyle: 'italic', fill: 0xffe0a0, letterSpacing: 2 }), x + 106, y + 48));
         this.root.addChild(label(profile.selection?.prototype ? 'PROTOTIPO' : 'PRONTO', new TextStyle({ fontFamily: UI_FONT, fontSize: 12, fontWeight: '900', fill: 0xffe06b }), x + 121, y + 121, 0.5));
       } else {
         this.root.addChild(label('?', new TextStyle({ fontFamily: DISPLAY_FONT, fontSize: 58, fontWeight: '900', fill: 0x634332 }), x + 121, y + 54, 0.5));
@@ -119,7 +122,8 @@ export class CharacterSelectScene implements Scene {
     }
     this.root.addChild(this.selectionFrame);
     const promptPlate = new Graphics();
-    promptPlate.roundRect(688, 642, 520, 52, 9).fill({ color: 0x0c0302, alpha: 0.95 }).stroke({ color: 0xff9f13, width: 3 });
+    promptPlate.moveTo(688, 652).lineTo(698, 642).lineTo(1208, 642).lineTo(1198, 694).lineTo(688, 694).closePath()
+      .fill({ color: 0x0c0302, alpha: 0.95 }).stroke({ color: 0xff9f13, width: 3 });
     this.root.addChild(promptPlate);
     this.confirmPrompt = label('WASD  SCEGLI     INVIO  CONFERMA', new TextStyle({ fontFamily: UI_FONT, fontSize: 15, fontWeight: '900', fill: 0xffe2ad }), 948, 668, 0.5);
     this.root.addChild(this.confirmPrompt);
@@ -128,7 +132,7 @@ export class CharacterSelectScene implements Scene {
     loadingShade.rect(0, 0, 1280, 720).fill({ color: 0x030100, alpha: 0.84 });
     loadingShade.roundRect(388, 286, 504, 148, 14).fill(0x160604).stroke({ color: 0xffa315, width: 4 });
     this.loadingGroup.addChild(loadingShade);
-    this.loadingGroup.addChild(label('PICCIOTTO IN PREPARAZIONE', new TextStyle({ fontFamily: DISPLAY_FONT, fontSize: 39, fontWeight: '900', fontStyle: 'italic', fill: 0xffdf9e, stroke: { color: 0x641000, width: 5 } }), 640, 330, 0.5));
+    this.loadingGroup.addChild(label('PICCIOTTO IN PREPARAZIONE', new TextStyle({ fontFamily: DISPLAY_FONT, fontSize: 39, fontWeight: '900', fontStyle: 'italic', fill: 0xffdf9e, stroke: { color: 0x641000, width: 5 }, letterSpacing: 3 }), 640, 330, 0.5));
     this.loadingJoke = label('CONTANDO I DENTI...', new TextStyle({ fontFamily: UI_FONT, fontSize: 14, fontWeight: '900', fill: 0x50dce7, letterSpacing: 2 }), 640, 363, 0.5);
     const track = new Graphics();
     track.roundRect(470, 392, 340, 12, 6).fill(0x3b160c);

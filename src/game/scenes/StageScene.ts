@@ -40,6 +40,7 @@ export class StageScene implements Scene {
   readonly root = new Container();
   private readonly backgroundLayers = new Container();
   private readonly foregroundLayers = new Container();
+  private readonly backgroundLift = new Graphics();
   private readonly world = new Container();
   private readonly grade = new Graphics();
   private readonly ground = new Graphics();
@@ -215,6 +216,7 @@ export class StageScene implements Scene {
     this.backgroundLayers.sortableChildren = true;
     this.foregroundLayers.sortableChildren = true;
     this.backgroundLayers.zIndex = -1000;
+    this.backgroundLift.zIndex = -500;
     this.world.zIndex = 0;
     this.foregroundLayers.zIndex = 1000;
     this.screen.zIndex = 2000;
@@ -232,7 +234,8 @@ export class StageScene implements Scene {
 
     this.debug.zIndex = 9500;
     this.world.addChild(this.ground, this.actors, this.warningGraphics, this.effects.root, this.debug);
-    this.root.addChild(this.backgroundLayers, this.world, this.foregroundLayers, this.screen);
+    this.backgroundLift.rect(0, 0, LOGICAL_WIDTH, LOGICAL_HEIGHT).fill({ color: 0xfff0d4, alpha: 0.035 });
+    this.root.addChild(this.backgroundLayers, this.backgroundLift, this.world, this.foregroundLayers, this.screen);
 
     this.stageCardPanel
       .rect(0, 0, LOGICAL_WIDTH, 198).fill({ color: 0x050915, alpha: 0.92 })

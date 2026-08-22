@@ -3,6 +3,7 @@ import { Game } from './game/Game';
 import { RigLab } from './riglab/RigLab';
 
 async function bootstrap(): Promise<void> {
+  await document.fonts.load('64px Bangers');
   const host = document.querySelector<HTMLElement>('#app');
   if (!host) throw new Error('Elemento #app non trovato');
   if (new URLSearchParams(window.location.search).has('riglab')) {

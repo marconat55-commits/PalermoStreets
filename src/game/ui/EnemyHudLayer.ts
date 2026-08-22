@@ -62,13 +62,16 @@ export class EnemyHudLayer {
       entry.root.position.set(panelX, panelY);
 
       const ratio = Math.max(0, Math.min(1, enemy.health / Math.max(1, enemy.maxHealth)));
-      this.graphics.roundRect(panelX, panelY, PANEL_WIDTH, PANEL_HEIGHT, 5)
-        .fill({ color: 0x09080b, alpha: 0.84 })
-        .stroke({ color: 0xe0b966, width: 1.5 });
-      this.graphics.rect(panelX + 50, panelY + 15, 88, 17).fill(0x281719);
-      this.graphics.rect(panelX + 52, panelY + 17, 84, 13).fill(0x4a1d1b);
-      if (ratio > 0) this.graphics.rect(panelX + 52, panelY + 17, 84 * ratio, 13).fill(0xd64128);
-      this.graphics.rect(panelX + 52, panelY + 34, 84, 2).fill({ color: 0xf4c86d, alpha: 0.55 });
+      this.graphics.moveTo(panelX, panelY + 7).lineTo(panelX + 7, panelY).lineTo(panelX + PANEL_WIDTH, panelY)
+        .lineTo(panelX + PANEL_WIDTH - 7, panelY + PANEL_HEIGHT).lineTo(panelX, panelY + PANEL_HEIGHT).closePath()
+        .fill({ color: 0x09080b, alpha: 0.88 }).stroke({ color: 0xe0a947, width: 1.5 });
+      this.graphics.rect(panelX + 49, panelY + 13, 90, 20).fill(0x251419);
+      this.graphics.rect(panelX + 52, panelY + 16, 84, 14).fill(0x4a1d1b);
+      if (ratio > 0) {
+        this.graphics.rect(panelX + 52, panelY + 16, 84 * ratio, 14).fill(0xd64128);
+        this.graphics.rect(panelX + 52, panelY + 16, 84 * ratio, 4).fill({ color: 0xff7855, alpha: 0.75 });
+      }
+      this.graphics.rect(panelX + 52, panelY + 35, 84, 2).fill({ color: 0xf4c86d, alpha: 0.62 });
     }
 
     for (const [id, entry] of this.entries) {

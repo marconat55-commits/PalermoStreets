@@ -22,18 +22,21 @@ export class EffectsLayer {
 
   hitSpark(position: Vec2, heavy: boolean): void {
     const g = new Graphics();
-    const radius = heavy ? 19 : 13;
-    g.circle(0, 0, radius).fill({ color: heavy ? 0xffb134 : 0xffe0a0, alpha: 0.85 });
+    const radius = heavy ? 22 : 14;
+    const rayCount = heavy ? 12 : 8;
+    g.circle(0, 0, radius * 1.35).stroke({ color: 0xff6c22, width: heavy ? 5 : 3, alpha: 0.78 });
+    g.circle(0, 0, radius).fill({ color: heavy ? 0xffa51f : 0xffe0a0, alpha: 0.88 });
     g.circle(0, 0, radius * 0.48).fill({ color: 0xffffff, alpha: 0.95 });
-    for (let i = 0; i < 8; i += 1) {
-      const angle = (Math.PI * 2 * i) / 8;
+    for (let i = 0; i < rayCount; i += 1) {
+      const angle = (Math.PI * 2 * i) / rayCount;
       g.moveTo(Math.cos(angle) * radius * 0.8, Math.sin(angle) * radius * 0.8)
-        .lineTo(Math.cos(angle) * radius * 1.8, Math.sin(angle) * radius * 1.8)
+        .lineTo(Math.cos(angle) * radius * (heavy ? 2.15 : 1.8), Math.sin(angle) * radius * (heavy ? 2.15 : 1.8))
         .stroke({ color: 0xffd05a, width: heavy ? 4 : 3, alpha: 0.9 });
     }
     g.position.set(position.x, position.y);
     this.root.addChild(g);
-    this.effects.push({ root: g, life: 0.16, total: 0.16 });
+    const life = heavy ? 0.19 : 0.15;
+    this.effects.push({ root: g, life, total: life });
   }
 
   damageText(position: Vec2, damage: number, heavy: boolean): void {

@@ -48,6 +48,7 @@ export class StageScene implements Scene {
   private readonly enemyHud = new EnemyHudLayer();
   private readonly effects = new EffectsLayer();
   private readonly screen = new Container();
+  private readonly impactFlash = new Graphics();
   private readonly hud: Hud;
   private readonly messagePanel = new Graphics();
   private readonly messageText = new Text({
@@ -111,6 +112,8 @@ export class StageScene implements Scene {
 
   private hitStop = 0;
   private screenShake = 0;
+  private impactFlashTimer = 0;
+  private impactFlashStrength = 0;
   private enemyAttackLock = 0;
   private message = '';
   private messageTimer = 0;
@@ -247,7 +250,7 @@ export class StageScene implements Scene {
     this.stageCard.visible = false;
 
     this.screen.addChild(
-      this.hud.root, this.enemyHud.root, this.exitGraphics, this.messagePanel, this.messageText, this.clearText,
+      this.impactFlash, this.hud.root, this.enemyHud.root, this.exitGraphics, this.messagePanel, this.messageText, this.clearText,
       this.overlay, this.overlayTitle, this.overlaySubtitle, this.fade, this.stageCard,
     );
     this.messageText.anchor.set(0.5);
@@ -550,6 +553,12 @@ export class StageScene implements Scene {
     this.effects.damageText({ x: enemy.position.x, y: enemy.visualTop() + 55 }, damage, false);
     this.hitStop = Math.max(this.hitStop, 0.055);
     this.screenShake = Math.max(this.screenShake, 3.5);
+    this.triggerImpactFlash(false);
+  }
+
+  private triggerImpactFlash(heavy: boolean): void {
+    this.impactFlashTimer = Math.max(this.impactFlashTimer, heavy ? 0.075 : 0.04);
+    this.impactFlashStrength = Math.max(this.impactFlashStrength, heavy ? 0.10 : 0.038);
   }
 
   private spawnItem(itemId: string, position: Vec2): void {
@@ -578,6 +587,7 @@ export class StageScene implements Scene {
       this.effects.hitSpark({ x: object.position.x, y: object.position.y - 55 }, destroyed);
       this.hitStop = Math.max(this.hitStop, destroyed ? 0.07 : 0.035);
       this.screenShake = Math.max(this.screenShake, destroyed ? 5 : 2);
+      this.triggerImpactFlash(destroyed);
       if (destroyed && object.definition.drop_item) {
         this.spawnItem(object.definition.drop_item, { ...object.position });
         this.message = `${object.definition.display_name.toUpperCase()} ROTTO — OGGETTO RILASCIATO`;
@@ -774,6 +784,8 @@ export class StageScene implements Scene {
       return;
     }
     this.elapsed += dt;
+    this.impactFlashTimer = Math.max(0, this.impactFlashTimer - dt);
+    if (this.impactFlashTimer <= 0) this.impactFlashStrength = 0;
     this.comboGrabTimer = Math.max(0, this.comboGrabTimer - dt);
     if (this.comboGrabTimer <= 0) this.comboGrabTargetId = null;
     this.messageTimer = Math.max(0, this.messageTimer - dt);
@@ -851,6 +863,7 @@ export class StageScene implements Scene {
         this.effects.damageText({ x: enemy.position.x, y: enemy.visualTop() + 50 }, damage, true);
         this.hitStop = Math.max(this.hitStop, 0.085);
         this.screenShake = Math.max(this.screenShake, 6);
+        this.triggerImpactFlash(true);
         break;
       }
     }
@@ -898,6 +911,7 @@ export class StageScene implements Scene {
       this.screenShake = Math.max(this.screenShake, event.shake);
       this.effects.hitSpark(event.position, event.heavy);
       this.effects.damageText(event.position, event.damage, event.heavy);
+      this.triggerImpactFlash(event.heavy);
       if (this.player.currentAttack === SPIN_SPECIAL) this.effects.fireRush(event.position, this.player.facing, true);
     }
     this.resolveBreakableHits();
@@ -908,6 +922,7 @@ export class StageScene implements Scene {
       this.screenShake = Math.max(this.screenShake, event.shake);
       this.effects.hitSpark(event.position, event.heavy);
       this.effects.damageText(event.position, event.damage, event.heavy);
+      this.triggerImpactFlash(event.heavy);
       this.enemyAttackLock = Math.max(this.enemyAttackLock, 0.48);
     }
 
@@ -991,6 +1006,13 @@ export class StageScene implements Scene {
 
     this.enemyHud.update(this.enemies);
     this.hud.update(this.player, this.enemies, this.moduleIndex, this.currentModule.id, this.waveIndex, this.waveData.length, this.modules.length);
+
+    this.impactFlash.clear();
+    if (this.impactFlashTimer > 0 && !showingStageIntro) {
+      const fadeRatio = Math.min(1, this.impactFlashTimer / 0.04);
+      this.impactFlash.rect(0, 0, LOGICAL_WIDTH, LOGICAL_HEIGHT)
+        .fill({ color: 0xffe2a0, alpha: this.impactFlashStrength * fadeRatio });
+    }
 
     this.exitGraphics.clear();
     this.clearText.visible = false;

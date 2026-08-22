@@ -157,8 +157,9 @@ export class StageScene implements Scene {
     stageEntry: RuntimeStageEntry,
     playerId: string,
     defaultEnemyId: string,
+    startModuleIndex = 0,
   ): Promise<StageScene> {
-    const firstModule = stageData.modules[0];
+    const firstModule = stageData.modules[startModuleIndex];
     if (!firstModule) throw new Error('Stage senza moduli');
     const firstCharacters = new Set<string>([playerId]);
     for (const wave of firstModule.waves ?? []) firstCharacters.add(wave.character ?? defaultEnemyId);
@@ -173,7 +174,7 @@ export class StageScene implements Scene {
       Promise.all(activeItems.map((item) => catalog.loadBackground(item.asset))),
     ]);
     const backgrounds = Array<Texture[] | null>(stageData.modules.length).fill(null);
-    backgrounds[0] = firstBackgrounds;
+    backgrounds[startModuleIndex] = firstBackgrounds;
     return new StageScene(
       catalog,
       stageData,
@@ -182,6 +183,7 @@ export class StageScene implements Scene {
       defaultEnemyId,
       itemCatalog,
       new Map(activeItems.map((item, index) => [item.id, itemTextureList[index]!])),
+      startModuleIndex,
     );
   }
 
@@ -193,6 +195,7 @@ export class StageScene implements Scene {
     defaultEnemyId: string,
     itemCatalog: StageItemCatalog,
     itemTextures: Map<string, Texture>,
+    startModuleIndex: number,
   ) {
     this.catalog = catalog;
     const playerProfile = this.catalog.getProfile(playerId);
@@ -270,7 +273,7 @@ export class StageScene implements Scene {
       tuning.depth_speed ?? 205,
     );
     this.actors.addChild(this.player.root);
-    this.enterModule(0, false);
+    this.enterModule(startModuleIndex, false);
   }
 
   private ensureModuleLoaded(index: number): Promise<void> {

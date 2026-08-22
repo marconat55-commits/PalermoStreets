@@ -9,6 +9,7 @@ import { StageScene } from './scenes/StageScene';
 import type { Scene } from './scenes/Scene';
 import type { CharacterProfile, RuntimeStageEntry, StageData } from './types';
 import { publicUrl } from './data/paths';
+import { resolveStartModuleIndex } from './stage/debugStart';
 
 export class Game {
   readonly app = new Application();
@@ -28,6 +29,7 @@ export class Game {
   private initialStageLoadCompleted = 0;
   private initialStageLoadTotal = 0;
   private playerProfiles: CharacterProfile[] = [];
+  private startModuleIndex = 0;
 
   async init(host: HTMLElement): Promise<void> {
     await this.app.init({
@@ -51,6 +53,7 @@ export class Game {
     ]);
     this.stageEntry = getStageEntry(runtime);
     this.stageData = await loadStage(this.stageEntry);
+    this.startModuleIndex = resolveStartModuleIndex(window.location.search, this.stageData.modules);
     this.titleBackground = titleBackground;
     this.defaultPlayerId = index.default_player;
     this.defaultEnemyId = index.default_enemy;
@@ -139,6 +142,7 @@ export class Game {
         this.stageEntry,
         playerId,
         this.defaultEnemyId,
+        this.startModuleIndex,
       );
       selection.destroy();
       this.app.stage.removeChildren();
@@ -162,7 +166,7 @@ export class Game {
 
   private preloadInitialStage(): Promise<void> {
     if (this.initialStagePreload) return this.initialStagePreload;
-    const firstModule = this.stageData.modules[0];
+    const firstModule = this.stageData.modules[this.startModuleIndex];
     if (!firstModule) return Promise.reject(new Error('Stage senza moduli'));
     const enabledLayers = firstModule.background_layers?.filter((layer) => layer.enabled !== false);
     const backgroundPaths = enabledLayers?.length

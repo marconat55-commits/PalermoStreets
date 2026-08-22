@@ -42,7 +42,6 @@ export class StageScene implements Scene {
   private readonly foregroundLayers = new Container();
   private readonly backgroundLift = new Graphics();
   private readonly world = new Container();
-  private readonly grade = new Graphics();
   private readonly ground = new Graphics();
   private readonly actors = new Container();
   private readonly warningGraphics = new Graphics();
@@ -221,12 +220,6 @@ export class StageScene implements Scene {
     this.foregroundLayers.zIndex = 1000;
     this.screen.zIndex = 2000;
 
-    this.grade
-      .rect(0, 0, LOGICAL_WIDTH, 120).fill({ color: 0x000000, alpha: 0.16 })
-      .rect(0, LOGICAL_HEIGHT - 58, LOGICAL_WIDTH, 58).fill({ color: 0x000000, alpha: 0.11 })
-      .rect(0, 0, 32, LOGICAL_HEIGHT).fill({ color: 0x000000, alpha: 0.11 })
-      .rect(LOGICAL_WIDTH - 32, 0, 32, LOGICAL_HEIGHT).fill({ color: 0x000000, alpha: 0.11 });
-    this.grade.zIndex = -900;
     this.ground.zIndex = 0;
     this.actors.zIndex = 10;
     this.warningGraphics.zIndex = 8500;
@@ -254,7 +247,7 @@ export class StageScene implements Scene {
     this.stageCard.visible = false;
 
     this.screen.addChild(
-      this.grade, this.hud.root, this.enemyHud.root, this.exitGraphics, this.messagePanel, this.messageText, this.clearText,
+      this.hud.root, this.enemyHud.root, this.exitGraphics, this.messagePanel, this.messageText, this.clearText,
       this.overlay, this.overlayTitle, this.overlaySubtitle, this.fade, this.stageCard,
     );
     this.messageText.anchor.set(0.5);

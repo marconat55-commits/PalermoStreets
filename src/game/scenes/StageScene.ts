@@ -28,6 +28,13 @@ import {
 
 const MELEE_SWING_SECONDS = 0.28;
 const MELEE_IMPACT_SECONDS = 0.14;
+const COMBAT_BANTER = [
+  'CHISTA ERA SULU PI SCALDARIMI!',
+  'CU È U PROSSIMU?',
+  'PICCIOTTI, FACEMU PIANU... FORSE.',
+  'A VASTUNATA ARRIVAU ESPRESSA!',
+  'NUN MI SGUALCITI A CAMMISA!',
+] as const;
 
 function authoredLayers(module: ModuleData): BackgroundLayerData[] {
   const enabled = module.background_layers?.filter((layer) => layer.enabled !== false);
@@ -45,6 +52,12 @@ export class StageScene implements Scene {
   private readonly ground = new Graphics();
   private readonly actors = new Container();
   private readonly warningGraphics = new Graphics();
+  private readonly pickupHint = new Container();
+  private readonly pickupHintGraphics = new Graphics();
+  private readonly pickupHintText = new Text({
+    text: 'J',
+    style: new TextStyle({ fontFamily: 'Bangers, Arial Black, Arial, sans-serif', fontSize: 20, fill: 0xfff3bd, stroke: { color: 0x401014, width: 3 }, letterSpacing: 1 }),
+  });
   private readonly enemyHud = new EnemyHudLayer();
   private readonly effects = new EffectsLayer();
   private readonly screen = new Container();
@@ -57,7 +70,7 @@ export class StageScene implements Scene {
   });
   private readonly clearText = new Text({
     text: '',
-    style: new TextStyle({ fontFamily: 'Arial, sans-serif', fontSize: 22, fontWeight: '700', fill: 0xffeeb2 }),
+    style: new TextStyle({ fontFamily: 'Bangers, Arial Black, Arial, sans-serif', fontSize: 25, fill: 0xffefb0, stroke: { color: 0x4b1016, width: 4 }, letterSpacing: 2 }),
   });
   private readonly exitGraphics = new Graphics();
   private readonly overlay = new Graphics();
@@ -117,6 +130,7 @@ export class StageScene implements Scene {
   private enemyAttackLock = 0;
   private message = '';
   private messageTimer = 0;
+  private combatBanterTimer = 7.5;
   private stageComplete = false;
   private paused = false;
   private debugDraw = false;
@@ -226,10 +240,14 @@ export class StageScene implements Scene {
     this.ground.zIndex = 0;
     this.actors.zIndex = 10;
     this.warningGraphics.zIndex = 8500;
+    this.pickupHint.zIndex = 8600;
     this.effects.root.zIndex = 9000;
 
     this.debug.zIndex = 9500;
-    this.world.addChild(this.ground, this.actors, this.warningGraphics, this.effects.root, this.debug);
+    this.pickupHintText.anchor.set(0.5);
+    this.pickupHint.addChild(this.pickupHintGraphics, this.pickupHintText);
+    this.pickupHint.visible = false;
+    this.world.addChild(this.ground, this.actors, this.warningGraphics, this.pickupHint, this.effects.root, this.debug);
     this.backgroundLift.rect(0, 0, LOGICAL_WIDTH, LOGICAL_HEIGHT).fill({ color: 0xfff0d4, alpha: 0.035 });
     this.root.addChild(this.backgroundLayers, this.backgroundLift, this.world, this.foregroundLayers, this.screen);
 
@@ -826,6 +844,16 @@ export class StageScene implements Scene {
     for (const actor of [this.player, ...this.enemies]) previous.set(actor.actorId, { ...actor.position });
 
     const liveBefore = this.enemies.filter((enemy) => !enemy.dead && enemy.state !== 'spawn');
+    if (liveBefore.length > 0 && this.messageTimer <= 0) {
+      this.combatBanterTimer -= dt;
+      if (this.combatBanterTimer <= 0) {
+        this.message = COMBAT_BANTER[Math.floor(Math.random() * COMBAT_BANTER.length)]!;
+        this.messageTimer = 1.35;
+        this.combatBanterTimer = 9 + Math.random() * 5;
+      }
+    } else if (liveBefore.length === 0) {
+      this.combatBanterTimer = Math.max(this.combatBanterTimer, 5.5);
+    }
     const combatReady = liveBefore.filter((enemy) => !['hit', 'knockdown', 'getup'].includes(enemy.state));
     const targetPool = combatReady.length ? combatReady : liveBefore;
     const nearest = [...targetPool].sort((a, b) =>
@@ -1007,6 +1035,17 @@ export class StageScene implements Scene {
     this.enemyHud.update(this.enemies);
     this.hud.update(this.player, this.enemies, this.moduleIndex, this.currentModule.id, this.waveIndex, this.waveData.length, this.modules.length);
 
+    const pickupTarget = this.heldObject ? null : (this.nearestFood() ?? this.nearestPickup());
+    this.pickupHint.visible = pickupTarget !== null && !showingStageIntro && !this.paused;
+    this.pickupHintGraphics.clear();
+    if (pickupTarget) {
+      const bob = Math.sin(this.elapsed * 6) * 4;
+      this.pickupHint.position.set(pickupTarget.position.x, pickupTarget.position.y - 112 + bob);
+      this.pickupHintGraphics.circle(0, 0, 19).fill({ color: 0x130b12, alpha: 0.88 }).stroke({ color: 0xffc12d, width: 3 });
+      this.pickupHintGraphics.moveTo(-7, 24).lineTo(0, 33).lineTo(7, 24).closePath().fill(0xffc12d);
+      this.pickupHintText.position.set(0, 0);
+    }
+
     this.impactFlash.clear();
     if (this.impactFlashTimer > 0 && !showingStageIntro) {
       const fadeRatio = Math.min(1, this.impactFlashTimer / 0.04);
@@ -1017,11 +1056,20 @@ export class StageScene implements Scene {
     this.exitGraphics.clear();
     this.clearText.visible = false;
     if (this.moduleClear && this.transitionPhase === null) {
-      const pulse = 185 + 55 * Math.abs(Math.sin(this.elapsed * 4.2));
+      const pulse = 0.72 + 0.28 * Math.abs(Math.sin(this.elapsed * 4.8));
       const x = Math.min(1255, Math.round(this.exitX - this.cameraX + 34));
-      this.exitGraphics.moveTo(x - 42, 530).lineTo(x, 555).lineTo(x - 42, 580).closePath().fill({ color: (Math.round(pulse) << 8) + 0xff0000 + 45 });
+      const nudge = Math.sin(this.elapsed * 8) * 5;
+      this.exitGraphics.moveTo(402, 82).lineTo(416, 70).lineTo(878, 70).lineTo(864, 126).lineTo(402, 126).closePath()
+        .fill({ color: 0x100a12, alpha: 0.80 }).stroke({ color: 0xffb62a, width: 2.5, alpha: 0.9 });
+      for (let chevron = 0; chevron < 2; chevron += 1) {
+        const tip = x - chevron * 22 + nudge;
+        this.exitGraphics.moveTo(tip - 34, 532).lineTo(tip, 555).lineTo(tip - 34, 578)
+          .lineTo(tip - 23, 555).closePath().fill({ color: 0xffb82a, alpha: Math.max(0.42, pulse - chevron * 0.18) });
+      }
       this.clearText.visible = this.messageTimer <= 0;
-      this.clearText.text = this.moduleIndex === this.modules.length - 1 ? 'TETTO LIBERO — VAI A DESTRA' : 'AREA LIBERA — VAI A DESTRA';
+      this.clearText.text = this.moduleIndex === this.modules.length - 1
+        ? 'TETTO LIBERO — AMUNÌ, A DESTRA!'
+        : 'AREA LIBERA — AMUNÌ, A DESTRA!';
     }
 
     this.messagePanel.clear();

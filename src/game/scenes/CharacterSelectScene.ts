@@ -7,6 +7,14 @@ import type { Scene } from './Scene';
 const DISPLAY_FONT = 'Bangers, Impact, Arial Black, sans-serif';
 const UI_FONT = 'Arial Black, Arial, sans-serif';
 const SLOTS = [[690, 300], [955, 300], [690, 468], [955, 468]] as const;
+const LOADING_JOKES = [
+  'CONTANDO I DENTI...',
+  'RISCALDANDO LE PANELLE...',
+  'PETTINANDO I BAFFI...',
+  'CERCANDO U PARCHEGGIO...',
+  'STRINGENDO I LACCI...',
+  'QUASI PRONTI. FORSE.',
+] as const;
 
 function label(text: string, style: TextStyle, x: number, y: number, anchorX = 0): Text {
   const value = new Text({ text, style });
@@ -21,6 +29,7 @@ export class CharacterSelectScene implements Scene {
   private elapsed = 0;
   private loading = false;
   private loadProgress = 0;
+  private loadingJokeOffset = 0;
   private selectedIndex = 0;
   private readonly selectionFrame = new Graphics();
   private readonly confirmPrompt: Text;
@@ -162,18 +171,21 @@ export class CharacterSelectScene implements Scene {
     this.selectionFrame.clear().roundRect(x - 8, y - 8, 258, 159, 11).stroke({ color: 0xffedb3, width: 4 });
   }
 
-  setLoading(value: boolean): void { this.loading = value; this.loadingGroup.visible = value; this.confirmPrompt.visible = !value; this.drawLoadProgress(); }
+  setLoading(value: boolean): void {
+    this.loading = value;
+    this.loadingGroup.visible = value;
+    this.confirmPrompt.visible = !value;
+    if (value) this.loadingJokeOffset = Math.floor(Math.random() * LOADING_JOKES.length);
+    this.drawLoadProgress();
+  }
   setLoadingProgress(value: number): void { this.loadProgress = Math.max(0, Math.min(1, value)); this.drawLoadProgress(); }
   private drawLoadProgress(): void {
     const width = 340 * this.loadProgress;
     this.loadingBar.clear();
     if (width > 0) this.loadingBar.roundRect(470, 392, width, 12, 6).fill(0xffa315);
     this.loadingPercent.text = `CARICAMENTO ${Math.round(this.loadProgress * 100)}%`;
-    this.loadingJoke.text = this.loadProgress < 0.34
-      ? 'CONTANDO I DENTI...'
-      : this.loadProgress < 0.72
-        ? 'RISCALDANDO LE PANELLE...'
-        : 'QUASI PRONTI. FORSE.';
+    const phase = this.loadProgress < 0.34 ? 0 : this.loadProgress < 0.72 ? 1 : 2;
+    this.loadingJoke.text = LOADING_JOKES[(this.loadingJokeOffset + phase) % LOADING_JOKES.length]!;
   }
 
   update(dt: number, input: Input): void {

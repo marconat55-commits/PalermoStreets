@@ -27,6 +27,7 @@ export class CharacterSelectScene implements Scene {
   private readonly loadingGroup = new Container();
   private readonly loadingBar = new Graphics();
   private readonly loadingPercent: Text;
+  private readonly loadingJoke: Text;
   private readonly portrait: Sprite;
   private readonly nameLarge: Text;
   private readonly nameStats: Text;
@@ -57,12 +58,16 @@ export class CharacterSelectScene implements Scene {
     grade.rect(0, 0, 1280, 720).fill({ color: 0x050100, alpha: 0.7 });
     grade.moveTo(0, 0).lineTo(885, 0).lineTo(690, 720).lineTo(0, 720).closePath().fill({ color: 0x120300, alpha: 0.72 });
     this.root.addChild(grade);
+    const electricAccents = new Graphics();
+    electricAccents.moveTo(18, 118).lineTo(205, 142).lineTo(160, 160).lineTo(338, 184).stroke({ color: 0x35dbe8, width: 5, alpha: 0.85 });
+    electricAccents.moveTo(1250, 108).lineTo(1112, 151).lineTo(1160, 178).lineTo(1038, 214).stroke({ color: 0xffa315, width: 5, alpha: 0.9 });
+    this.root.addChild(electricAccents);
 
     const header = new Graphics();
     header.moveTo(0, 0).lineTo(1045, 0).lineTo(976, 96).lineTo(0, 96).closePath().fill(0x140502);
     header.moveTo(0, 88).lineTo(990, 88).lineTo(974, 102).lineTo(0, 102).closePath().fill(0xd92812);
     this.root.addChild(header);
-    this.root.addChild(label('SCEGLI IL TUO COMBATTENTE', new TextStyle({ fontFamily: DISPLAY_FONT, fontSize: 52, fontStyle: 'italic', fontWeight: '900', fill: 0xffdf94, stroke: { color: 0x641000, width: 7 } }), 40, 48));
+    this.root.addChild(label('SCEGLI CU AVI A PIGGHIARI I CAZZOTTI', new TextStyle({ fontFamily: DISPLAY_FONT, fontSize: 44, fontStyle: 'italic', fontWeight: '900', fill: 0xffdf94, stroke: { color: 0x641000, width: 7 } }), 40, 48));
     this.root.addChild(label('PLAYER 1', new TextStyle({ fontFamily: UI_FONT, fontSize: 20, fontWeight: '900', fill: 0xffb11b }), 1134, 43, 0.5));
 
     const portraitPlate = new Graphics();
@@ -123,11 +128,12 @@ export class CharacterSelectScene implements Scene {
     loadingShade.rect(0, 0, 1280, 720).fill({ color: 0x030100, alpha: 0.84 });
     loadingShade.roundRect(388, 286, 504, 148, 14).fill(0x160604).stroke({ color: 0xffa315, width: 4 });
     this.loadingGroup.addChild(loadingShade);
-    this.loadingGroup.addChild(label('COMBATTENTE PRONTO', new TextStyle({ fontFamily: DISPLAY_FONT, fontSize: 43, fontWeight: '900', fontStyle: 'italic', fill: 0xffdf9e }), 640, 337, 0.5));
+    this.loadingGroup.addChild(label('PICCIOTTO IN PREPARAZIONE', new TextStyle({ fontFamily: DISPLAY_FONT, fontSize: 39, fontWeight: '900', fontStyle: 'italic', fill: 0xffdf9e, stroke: { color: 0x641000, width: 5 } }), 640, 330, 0.5));
+    this.loadingJoke = label('CONTANDO I DENTI...', new TextStyle({ fontFamily: UI_FONT, fontSize: 14, fontWeight: '900', fill: 0x50dce7, letterSpacing: 2 }), 640, 363, 0.5);
     const track = new Graphics();
     track.roundRect(470, 392, 340, 12, 6).fill(0x3b160c);
     this.loadingPercent = label('CARICAMENTO 0%', new TextStyle({ fontFamily: UI_FONT, fontSize: 13, fontWeight: '900', fill: 0xffd980 }), 640, 418, 0.5);
-    this.loadingGroup.addChild(track, this.loadingBar, this.loadingPercent);
+    this.loadingGroup.addChild(this.loadingJoke, track, this.loadingBar, this.loadingPercent);
     this.loadingGroup.visible = false;
     this.root.addChild(this.loadingGroup);
     this.refreshSelection();
@@ -159,6 +165,11 @@ export class CharacterSelectScene implements Scene {
     this.loadingBar.clear();
     if (width > 0) this.loadingBar.roundRect(470, 392, width, 12, 6).fill(0xffa315);
     this.loadingPercent.text = `CARICAMENTO ${Math.round(this.loadProgress * 100)}%`;
+    this.loadingJoke.text = this.loadProgress < 0.34
+      ? 'CONTANDO I DENTI...'
+      : this.loadProgress < 0.72
+        ? 'RISCALDANDO LE PANELLE...'
+        : 'QUASI PRONTI. FORSE.';
   }
 
   update(dt: number, input: Input): void {

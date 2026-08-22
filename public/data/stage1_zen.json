@@ -2,6 +2,7 @@
   "schema": 4,
   "build_scope": "stage1_zen_layered_scroll_v1",
   "stage_name": "STAGE 1 — ZEN",
+  "stage_subtitle": "A' VARBA E' SACRA",
   "modules": [
     {
       "id": "M01",

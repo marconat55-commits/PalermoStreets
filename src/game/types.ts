@@ -249,6 +249,7 @@ export interface StageData {
   schema: number;
   build_scope: string;
   stage_name: string;
+  stage_subtitle?: string;
   modules: ModuleData[];
 }
 

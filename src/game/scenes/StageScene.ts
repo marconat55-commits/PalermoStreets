@@ -84,7 +84,7 @@ export class StageScene implements Scene {
     }),
   });
   private readonly stageCardSubtitle = new Text({
-    text: 'PALERMO — NO WAY BACK',
+    text: '',
     style: new TextStyle({ fontFamily: 'Arial Black, Arial, sans-serif', fontSize: 16, fontWeight: '900', fill: 0xf5f7ff, letterSpacing: 4 }),
   });
 
@@ -208,6 +208,7 @@ export class StageScene implements Scene {
     this.backgroundTextures = backgrounds;
     this.itemDefinitions = new Map(itemCatalog.items.map((item) => [item.id, item]));
     this.itemTextures = itemTextures;
+    this.stageCardSubtitle.text = stageData.stage_subtitle ?? '';
     this.actors.sortableChildren = true;
     this.world.sortableChildren = true;
     this.root.sortableChildren = true;

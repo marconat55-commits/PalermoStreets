@@ -33,6 +33,7 @@ export class TitleScene implements Scene {
   private loading = false;
   private readonly prompt: Text;
   private readonly promptPlate = new Graphics();
+  private readonly lightning = new Graphics();
   private readonly loadingGroup = new Container();
   private readonly loadingBar = new Graphics();
 
@@ -49,6 +50,7 @@ export class TitleScene implements Scene {
     grade.rect(0, 0, 180, 720).fill({ color: 0x000000, alpha: 0.38 });
     grade.rect(1100, 0, 180, 720).fill({ color: 0x000000, alpha: 0.38 });
     this.root.addChild(grade);
+    this.root.addChild(this.lightning);
 
     const crest = new Graphics();
     crest.moveTo(640, 62).lineTo(910, 112).lineTo(820, 132).lineTo(640, 100)
@@ -60,9 +62,9 @@ export class TitleScene implements Scene {
       stroke: { color: 0x250600, width: 4 },
     }), 640, 93));
 
-    this.root.addChild(logoLayer('MINCHIA', 142, 0x160300, 0x160300, 18, 653, 226));
-    this.root.addChild(logoLayer('MINCHIA', 142, 0xffc126, 0x5b0800, 10, 640, 212));
-    this.root.addChild(logoLayer('FIGHTERS', 154, 0x140200, 0x140200, 20, 655, 356));
+    this.root.addChild(logoLayer('MINCHIA', 142, 0x070000, 0x070000, 22, 656, 230));
+    this.root.addChild(logoLayer('MINCHIA', 142, 0xffc126, 0x7b0b00, 11, 640, 210));
+    this.root.addChild(logoLayer('FIGHTERS', 154, 0x070000, 0x070000, 24, 658, 360));
     const fighters = logoLayer('FIGHTERS', 154, 0xf02a12, 0x641000, 11, 640, 340);
     fighters.scale.x = 1.08;
     this.root.addChild(fighters);
@@ -104,7 +106,7 @@ export class TitleScene implements Scene {
       fontFamily: DISPLAY_FONT, fontSize: 46, fontWeight: '900', fontStyle: 'italic', fill: 0xffc127,
       stroke: { color: 0x5b0800, width: 6 }, letterSpacing: 3,
     }), 640, 330));
-    this.loadingGroup.addChild(centeredText('PREPARAZIONE DELLO ZEN...', new TextStyle({
+    this.loadingGroup.addChild(centeredText('SCALDANDO I MUSCOLI. E LE PANELLE.', new TextStyle({
       fontFamily: UI_FONT, fontSize: 16, fontWeight: '700', fill: 0xf2d9b5, letterSpacing: 2,
     }), 640, 378));
     const track = new Graphics();
@@ -123,6 +125,7 @@ export class TitleScene implements Scene {
 
   update(dt: number, input: Input): void {
     this.elapsed += dt;
+    this.drawLightning();
     if (this.loading) {
       const progress = (this.elapsed * 0.72) % 1;
       this.loadingBar.clear().roundRect(470 + progress * 244, 402, 96, 12, 6).fill(0xff9d16);
@@ -132,6 +135,22 @@ export class TitleScene implements Scene {
     this.prompt.alpha = pulse;
     this.promptPlate.alpha = 0.84 + 0.16 * pulse;
     if (input.wasPressed('Enter', 'NumpadEnter')) this.startRequested = true;
+  }
+
+  private drawLightning(): void {
+    const flash = Math.max(0, Math.sin(this.elapsed * 2.6) - 0.82) / 0.18;
+    this.lightning.clear();
+    if (flash <= 0) return;
+    const drawBolt = (points: Array<[number, number]>): void => {
+      this.lightning.moveTo(points[0]![0], points[0]![1]);
+      for (let index = 1; index < points.length; index += 1) this.lightning.lineTo(points[index]![0], points[index]![1]);
+      this.lightning.stroke({ color: 0xffffff, width: 3, alpha: flash });
+      this.lightning.moveTo(points[0]![0], points[0]![1]);
+      for (let index = 1; index < points.length; index += 1) this.lightning.lineTo(points[index]![0], points[index]![1]);
+      this.lightning.stroke({ color: 0x38dce8, width: 10, alpha: flash * 0.22 });
+    };
+    drawBolt([[80, 80], [176, 148], [130, 185], [268, 254], [218, 300]]);
+    drawBolt([[1200, 72], [1100, 145], [1152, 184], [1025, 252], [1074, 302]]);
   }
 
   destroy(): void {

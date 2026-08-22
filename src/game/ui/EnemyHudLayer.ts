@@ -14,6 +14,22 @@ const PANEL_GAP = 8;
 const RIGHT_EDGE = 1240;
 const TOP = 48;
 
+export function portraitTransform(
+  bounds: [number, number, number, number],
+  frameWidth: number,
+  frameHeight: number,
+): { x: number; y: number; scale: number } {
+  const [left, top, width, height] = bounds;
+  const headHeight = Math.max(1, height * 0.30);
+  const scale = PORTRAIT_SIZE / headHeight;
+  const headCenterX = left + width / 2;
+  return {
+    x: 3 + PORTRAIT_SIZE / 2 - (headCenterX - frameWidth / 2) * scale,
+    y: 3 - (top - frameHeight) * scale,
+    scale,
+  };
+}
+
 /** Screen-space enemy energy panels. No world-space labels are rendered above actors. */
 export class EnemyHudLayer {
   readonly root = new Container();
@@ -72,17 +88,10 @@ export class EnemyHudLayer {
     const mask = new Graphics().roundRect(3, 3, PORTRAIT_SIZE, PORTRAIT_SIZE, 4).fill(0xffffff);
     const frame = enemy.animator.bank.clips.get('idle')?.frames[0] ?? enemy.animator.frame;
     const portrait = new Sprite(frame.texture);
-    const [left, top, right, bottom] = frame.bounds;
-    const visibleHeight = Math.max(1, bottom - top);
-    const headHeight = Math.max(1, visibleHeight * 0.30);
-    const scale = PORTRAIT_SIZE / headHeight;
-    const headCenterX = (left + right) / 2;
+    const transform = portraitTransform(frame.bounds, frame.width, frame.height);
     portrait.anchor.set(0.5, 1);
-    portrait.scale.set(scale);
-    portrait.position.set(
-      3 + PORTRAIT_SIZE / 2 - (headCenterX - frame.width / 2) * scale,
-      3 - (top - frame.height) * scale,
-    );
+    portrait.scale.set(transform.scale);
+    portrait.position.set(transform.x, transform.y);
     portrait.mask = mask;
     root.addChild(portrait, mask);
     this.root.addChild(root);

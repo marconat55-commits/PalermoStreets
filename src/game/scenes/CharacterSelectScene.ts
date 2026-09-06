@@ -6,7 +6,9 @@ import type { Scene } from './Scene';
 
 const DISPLAY_FONT = 'Bangers, Impact, Arial Black, sans-serif';
 const UI_FONT = 'Arial Black, Arial, sans-serif';
-const SLOTS = [[690, 300], [955, 300], [690, 468], [955, 468]] as const;
+const SLOTS = [[680, 300], [860, 300], [1040, 300], [680, 468], [860, 468], [1040, 468]] as const;
+const SLOT_WIDTH = 170;
+const SLOT_HEIGHT = 143;
 const LOADING_JOKES = [
   'CONTANDO I DENTI...',
   'RISCALDANDO LE PANELLE...',
@@ -43,7 +45,7 @@ export class CharacterSelectScene implements Scene {
   private readonly subtitle: Text;
   private readonly statPips = new Graphics();
 
-  static async create(profiles: CharacterProfile[], initialId: string): Promise<CharacterSelectScene> {
+  static async create(profiles: Array<Pick<CharacterProfile, 'id' | 'display_name' | 'selection'>>, initialId: string): Promise<CharacterSelectScene> {
     const portraitPaths = profiles.map((profile) => profile.selection?.portrait ?? 'assets/ui/character_select/marco_portrait.png');
     const [portraits, background] = await Promise.all([
       Promise.all(portraitPaths.map((path) => Assets.load<Texture>(publicUrl(path)))),
@@ -53,7 +55,7 @@ export class CharacterSelectScene implements Scene {
   }
 
   private constructor(
-    private readonly profiles: CharacterProfile[],
+    private readonly profiles: Array<Pick<CharacterProfile, 'id' | 'display_name' | 'selection'>>,
     private readonly portraits: Texture[],
     backgroundTexture: Texture,
     initialId: string,
@@ -113,7 +115,7 @@ export class CharacterSelectScene implements Scene {
       const [x, y] = SLOTS[index]!;
       const profile = profiles[index];
       const slot = new Graphics();
-      slot.moveTo(x, y + 10).lineTo(x + 10, y).lineTo(x + 242, y).lineTo(x + 242, y + 133).lineTo(x + 232, y + 143).lineTo(x, y + 143).closePath()
+      slot.moveTo(x, y + 10).lineTo(x + 10, y).lineTo(x + SLOT_WIDTH, y).lineTo(x + SLOT_WIDTH, y + 133).lineTo(x + SLOT_WIDTH - 10, y + SLOT_HEIGHT).lineTo(x, y + SLOT_HEIGHT).closePath()
         .fill({ color: profile ? 0x571008 : 0x090405, alpha: 0.96 }).stroke({ color: profile ? 0xffa315 : 0x5b382a, width: profile ? 4 : 2 });
       this.root.addChild(slot);
       if (profile) {
@@ -122,11 +124,14 @@ export class CharacterSelectScene implements Scene {
         thumb.width = 88;
         thumb.height = 88;
         this.root.addChild(thumb);
-        this.root.addChild(label(profile.display_name, new TextStyle({ fontFamily: DISPLAY_FONT, fontSize: 31, fontWeight: '900', fontStyle: 'italic', fill: 0xffe0a0, letterSpacing: 2 }), x + 106, y + 48));
-        this.root.addChild(label(profile.selection?.prototype ? 'PROTOTIPO' : 'PRONTO', new TextStyle({ fontFamily: UI_FONT, fontSize: 12, fontWeight: '900', fill: 0xffe06b }), x + 121, y + 121, 0.5));
+        const slotName = label(profile.display_name, new TextStyle({ fontFamily: DISPLAY_FONT, fontSize: 22, fontWeight: '900', fontStyle: 'italic', fill: 0xffe0a0, letterSpacing: 1 }), x + 100, y + 48);
+        slotName.scale.set(Math.min(1, 62 / slotName.width));
+        this.root.addChild(slotName);
+        const status = profile.selection?.available === false ? 'IN PREPARAZIONE' : profile.selection?.prototype ? 'PROTOTIPO' : 'PRONTO';
+        this.root.addChild(label(status, new TextStyle({ fontFamily: UI_FONT, fontSize: 10, fontWeight: '900', fill: 0xffe06b }), x + SLOT_WIDTH / 2, y + 121, 0.5));
       } else {
-        this.root.addChild(label('?', new TextStyle({ fontFamily: DISPLAY_FONT, fontSize: 58, fontWeight: '900', fill: 0x634332 }), x + 121, y + 54, 0.5));
-        this.root.addChild(label('SLOT VUOTO', new TextStyle({ fontFamily: UI_FONT, fontSize: 12, fill: 0x83614e }), x + 121, y + 120, 0.5));
+        this.root.addChild(label('?', new TextStyle({ fontFamily: DISPLAY_FONT, fontSize: 58, fontWeight: '900', fill: 0x634332 }), x + SLOT_WIDTH / 2, y + 54, 0.5));
+        this.root.addChild(label('SLOT VUOTO', new TextStyle({ fontFamily: UI_FONT, fontSize: 11, fill: 0x83614e }), x + SLOT_WIDTH / 2, y + 120, 0.5));
       }
     }
     this.root.addChild(this.selectionFrame);
@@ -154,6 +159,10 @@ export class CharacterSelectScene implements Scene {
 
   get selectedCharacterId(): string { return this.profiles[this.selectedIndex]?.id ?? 'marco'; }
 
+  private get selectedCharacterAvailable(): boolean {
+    return this.profiles[this.selectedIndex]?.selection?.available !== false;
+  }
+
   private refreshSelection(): void {
     const profile = this.profiles[this.selectedIndex];
     if (!profile) return;
@@ -161,14 +170,19 @@ export class CharacterSelectScene implements Scene {
     this.nameLarge.text = profile.display_name;
     this.nameStats.text = profile.display_name;
     this.subtitle.text = profile.selection?.subtitle ?? '';
-    const stats = profile.selection?.stats ?? { strength: 3, speed: 3, technique: 3 };
+    this.subtitle.scale.set(1);
+    this.subtitle.scale.set(Math.min(1, 455 / this.subtitle.width));
+    this.confirmPrompt.text = this.selectedCharacterAvailable
+      ? 'WASD  SCEGLI     INVIO  CONFERMA'
+      : 'ANIMAZIONI IN PREPARAZIONE';
+    const stats = profile.selection?.stats ?? { strength: 0, speed: 0, technique: 0 };
     const amounts = [stats.strength, stats.speed, stats.technique];
     this.statPips.clear();
     for (let row = 0; row < 3; row += 1) for (let pip = 0; pip < 5; pip += 1) {
       this.statPips.roundRect(844 + pip * 59, 199 + row * 26, 47, 12, 5).fill(pip < (amounts[row] ?? 0) ? 0xffa316 : 0x39201a);
     }
     const [x, y] = SLOTS[this.selectedIndex] ?? SLOTS[0];
-    this.selectionFrame.clear().roundRect(x - 8, y - 8, 258, 159, 11).stroke({ color: 0xffedb3, width: 4 });
+    this.selectionFrame.clear().roundRect(x - 6, y - 6, SLOT_WIDTH + 12, SLOT_HEIGHT + 12, 11).stroke({ color: 0xffedb3, width: 4 });
   }
 
   setLoading(value: boolean): void {
@@ -196,10 +210,10 @@ export class CharacterSelectScene implements Scene {
     const previous = this.selectedIndex;
     if (input.wasPressed('KeyD')) this.selectedIndex = Math.min(this.profiles.length - 1, this.selectedIndex + 1);
     if (input.wasPressed('KeyA')) this.selectedIndex = Math.max(0, this.selectedIndex - 1);
-    if (input.wasPressed('KeyS')) this.selectedIndex = Math.min(this.profiles.length - 1, this.selectedIndex + 2);
-    if (input.wasPressed('KeyW')) this.selectedIndex = Math.max(0, this.selectedIndex - 2);
+    if (input.wasPressed('KeyS')) this.selectedIndex = Math.min(this.profiles.length - 1, this.selectedIndex + 3);
+    if (input.wasPressed('KeyW')) this.selectedIndex = Math.max(0, this.selectedIndex - 3);
     if (previous !== this.selectedIndex) this.refreshSelection();
-    if (input.wasPressed('Enter', 'NumpadEnter')) this.confirmRequested = true;
+    if (input.wasPressed('Enter', 'NumpadEnter') && this.selectedCharacterAvailable) this.confirmRequested = true;
   }
 
   destroy(): void { this.root.destroy({ children: true }); }

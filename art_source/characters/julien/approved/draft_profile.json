@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "id": "julien",
+  "extends": "marco",
+  "display_name": "JULIEN",
+  "identity": {
+    "canon": "Master protagonista approvato; animazioni e personalità runtime da definire prima dell'attivazione."
+  },
+  "selection": {
+    "portrait": "assets/ui/character_select/julien_portrait.png",
+    "subtitle": "PISU MASSIMU — IN PREPARAZIONE",
+    "stats": { "strength": 3, "speed": 3, "technique": 3 },
+    "prototype": true,
+    "available": false
+  }
+}

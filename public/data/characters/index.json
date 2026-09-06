@@ -9,6 +9,10 @@
     "aiori_ref",
     "a_puaicca"
   ],
+  "upcoming_players": [
+    { "id": "leandra", "display_name": "LEANDRA", "selection": { "portrait": "assets/ui/character_select/leandra_portrait.png", "subtitle": "MASTER APPROVATO — MOSSE IN ARRIVO", "available": false } },
+    { "id": "julien", "display_name": "JULIEN", "selection": { "portrait": "assets/ui/character_select/julien_portrait.png", "subtitle": "MASTER APPROVATO — MOSSE IN ARRIVO", "available": false } }
+  ],
   "default_player": "marco",
   "default_enemy": "talebano"
 }

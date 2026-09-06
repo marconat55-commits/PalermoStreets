@@ -29,7 +29,7 @@ export class Game {
   private initialStagePreload: Promise<void> | null = null;
   private initialStageLoadCompleted = 0;
   private initialStageLoadTotal = 0;
-  private playerProfiles: CharacterProfile[] = [];
+  private playerProfiles: Array<Pick<CharacterProfile, 'id' | 'display_name' | 'selection'>> = [];
   private startModuleIndex = 0;
 
   async init(host: HTMLElement): Promise<void> {
@@ -62,6 +62,7 @@ export class Game {
     const profiles = await Promise.all(index.characters.map((id) => loadCharacterProfile(id)));
     for (const profile of profiles) this.catalog.registerProfile(profile);
     this.playerProfiles = profiles.filter((profile) => profile.role === 'player');
+    this.playerProfiles.push(...(index.upcoming_players ?? []).map(profile => ({ ...profile, selection: { ...profile.selection, available: false } })));
 
     void this.preloadInitialStage().catch((error) => {
       console.error('Precaricamento stage iniziale fallito', error);

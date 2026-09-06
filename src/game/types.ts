@@ -80,10 +80,13 @@ export interface CharacterProfile {
     subtitle?: string;
     stats?: { strength: number; speed: number; technique: number };
     prototype?: boolean;
+    /** Visible in the roster, but cannot start a stage until its runtime pack exists. */
+    available?: boolean;
   };
 }
 
 export interface CharacterIndex {
+  upcoming_players?: Array<Pick<CharacterProfile, 'id' | 'display_name' | 'selection'>>;
   schema: number;
   characters: string[];
   default_player: string;

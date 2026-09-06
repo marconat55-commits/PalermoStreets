@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "id": "leandra",
+  "extends": "marco",
+  "display_name": "LEANDRA",
+  "identity": {
+    "canon": "Master protagonista approvato; animazioni e personalità runtime da definire prima dell'attivazione."
+  },
+  "selection": {
+    "portrait": "assets/ui/character_select/leandra_portrait.png",
+    "subtitle": "PICCIOTTA TOSTA — IN PREPARAZIONE",
+    "stats": { "strength": 3, "speed": 3, "technique": 3 },
+    "prototype": true,
+    "available": false
+  }
+}

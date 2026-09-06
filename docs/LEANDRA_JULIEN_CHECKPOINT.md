@@ -6,8 +6,20 @@ Registrazione in characters/index.json tramite upcoming_players: solo presentazi
 non carica animazioni o metadata di Marco. Invio non avvia il gioco su questi slot.
 Griglia 3x2; movimento W/S di tre celle. Nomi e sottotitoli adattati al riquadro.
 
-Da definire con l'autore: personalità e battute, forza/velocità/tecnica,
-stile di combattimento. Le barre vuote indicano statistiche ancora non assegnate.
+Personalità canoniche confermate dall'autore:
+- Leandra: dolce, simpatica, sarcastica, buona e corretta.
+- Julien: gigante bonaccione in stile Bud Spencer, predilezione per l'alcool.
+
+Frasi di selezione integrate:
+- Leandra: TI VOGLIO BENE. MA NON ESAGERARE.
+- Julien: PRIMA FACCIAMO PACE. POI UN BRINDISI.
+
+Proposte per il futuro combattimento/caricamento, non ancora attive:
+- Leandra: SCUSA, MA TE LA SEI CERCATA.; UNO ALLA VOLTA, PER FAVORE.; LA PAZIENZA È FINITA. L'EDUCAZIONE NO.
+- Julien: PIANO PICCIOTTO, MI FAI VERSARE TUTTO.; UN ABBRACCIO O DUE SCHIAFFI?; IL PROSSIMO GIRO LO OFFRI TU.
+
+Da definire: forza/velocità/tecnica e stile di combattimento.
+Le barre vuote indicano statistiche ancora non assegnate.
 I draft_profile.json archiviati sono precedenti bozze non utilizzate dal runtime:
 non promuoverli in produzione, poiché ereditano Marco e contengono valori provvisori.
 

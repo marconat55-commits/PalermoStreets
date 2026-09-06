@@ -33,6 +33,8 @@ export class CharacterSelectScene implements Scene {
   private loadProgress = 0;
   private loadingJokeOffset = 0;
   private selectedIndex = 0;
+  private selectionDwell = 0;
+  private selectionPreloadRequested = false;
   private readonly selectionFrame = new Graphics();
   private readonly confirmPrompt: Text;
   private readonly loadingGroup = new Container();
@@ -45,13 +47,17 @@ export class CharacterSelectScene implements Scene {
   private readonly subtitle: Text;
   private readonly statPips = new Graphics();
 
-  static async create(profiles: Array<Pick<CharacterProfile, 'id' | 'display_name' | 'selection'>>, initialId: string): Promise<CharacterSelectScene> {
+  static async create(
+    profiles: Array<Pick<CharacterProfile, 'id' | 'display_name' | 'selection'>>,
+    initialId: string,
+    requestCharacterPreload?: (id: string) => void,
+  ): Promise<CharacterSelectScene> {
     const portraitPaths = profiles.map((profile) => profile.selection?.portrait ?? 'assets/ui/character_select/marco_portrait.png');
     const [portraits, background] = await Promise.all([
       Promise.all(portraitPaths.map((path) => Assets.load<Texture>(publicUrl(path)))),
       Assets.load<Texture>(publicUrl('assets/ui/title/palermo_night.png')),
     ]);
-    return new CharacterSelectScene(profiles, portraits, background, initialId);
+    return new CharacterSelectScene(profiles, portraits, background, initialId, requestCharacterPreload);
   }
 
   private constructor(
@@ -59,6 +65,7 @@ export class CharacterSelectScene implements Scene {
     private readonly portraits: Texture[],
     backgroundTexture: Texture,
     initialId: string,
+    private readonly requestCharacterPreload?: (id: string) => void,
   ) {
     this.selectedIndex = Math.max(0, profiles.findIndex((profile) => profile.id === initialId));
     const background = new Sprite(backgroundTexture);
@@ -155,6 +162,7 @@ export class CharacterSelectScene implements Scene {
     this.loadingGroup.visible = false;
     this.root.addChild(this.loadingGroup);
     this.refreshSelection();
+    this.requestSelectedCharacterPreload();
   }
 
   get selectedCharacterId(): string { return this.profiles[this.selectedIndex]?.id ?? 'marco'; }
@@ -185,6 +193,12 @@ export class CharacterSelectScene implements Scene {
     this.selectionFrame.clear().roundRect(x - 6, y - 6, SLOT_WIDTH + 12, SLOT_HEIGHT + 12, 11).stroke({ color: 0xffedb3, width: 4 });
   }
 
+  private requestSelectedCharacterPreload(): void {
+    if (!this.selectedCharacterAvailable || this.selectionPreloadRequested) return;
+    this.selectionPreloadRequested = true;
+    this.requestCharacterPreload?.(this.selectedCharacterId);
+  }
+
   setLoading(value: boolean): void {
     this.loading = value;
     this.loadingGroup.visible = value;
@@ -212,7 +226,14 @@ export class CharacterSelectScene implements Scene {
     if (input.wasPressed('KeyA')) this.selectedIndex = Math.max(0, this.selectedIndex - 1);
     if (input.wasPressed('KeyS')) this.selectedIndex = Math.min(this.profiles.length - 1, this.selectedIndex + 3);
     if (input.wasPressed('KeyW')) this.selectedIndex = Math.max(0, this.selectedIndex - 3);
-    if (previous !== this.selectedIndex) this.refreshSelection();
+    if (previous !== this.selectedIndex) {
+      this.selectionDwell = 0;
+      this.selectionPreloadRequested = false;
+      this.refreshSelection();
+    } else if (!this.selectionPreloadRequested) {
+      this.selectionDwell += dt;
+      if (this.selectionDwell >= 0.18) this.requestSelectedCharacterPreload();
+    }
     if (input.wasPressed('Enter', 'NumpadEnter') && this.selectedCharacterAvailable) this.confirmRequested = true;
   }
 

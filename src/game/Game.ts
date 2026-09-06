@@ -107,7 +107,11 @@ export class Game {
     this.openingCharacterSelect = true;
     title.setLoading(true);
     try {
-      const selection = await CharacterSelectScene.create(this.playerProfiles, this.defaultPlayerId);
+      const selection = await CharacterSelectScene.create(
+        this.playerProfiles,
+        this.defaultPlayerId,
+        (id) => { void this.catalog.ensureCharacter(id).catch((error) => console.warn(`${id}: precaricamento fallito`, error)); },
+      );
       if (this.titleScene !== title) {
         selection.destroy();
         return;
@@ -174,7 +178,7 @@ export class Game {
     const backgroundPaths = enabledLayers?.length
       ? enabledLayers.map((layer) => layer.src)
       : [firstModule.background];
-    const characterIds = new Set<string>([this.defaultPlayerId]);
+    const characterIds = new Set<string>();
     for (const wave of firstModule.waves ?? []) {
       characterIds.add(wave.character ?? this.defaultEnemyId);
     }

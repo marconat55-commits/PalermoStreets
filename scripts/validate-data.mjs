@@ -70,6 +70,9 @@ for (const item of itemCatalog.items ?? []) {
   if (!['melee', 'throwable', 'food', 'breakable', 'scenery'].includes(item.kind)) fail(`${item.id}: kind non valido`);
   if (!['prototype', 'catalogued', 'reference_only'].includes(item.gameplay_status)) fail(`${item.id}: gameplay_status non valido`);
   if (!item.asset || !exists(item.asset)) fail(`${item.id}: asset runtime mancante ${item.asset ?? ''}`);
+  for (const field of ['damaged_asset', 'broken_asset', 'debris_asset']) {
+    if (item[field] !== undefined && !exists(item[field])) fail(`${item.id}: ${field} mancante ${item[field]}`);
+  }
   if (!item.source_master || !fs.existsSync(path.join(root, item.source_master))) fail(`${item.id}: master sorgente mancante ${item.source_master ?? ''}`);
   if (item.damage !== undefined && (!Number.isFinite(item.damage) || item.damage < 0)) fail(`${item.id}: damage non valido`);
   if (item.healing !== undefined && (!Number.isFinite(item.healing) || item.healing < 0)) fail(`${item.id}: healing non valido`);

@@ -102,6 +102,23 @@ test('un contenitore distruttibile rispetta la durabilità e dichiara il drop', 
   assert.equal(bin.definition.drop_item, 'arancina');
 });
 
+test('un contenitore usa gli stati grafici approvati prima di sparire', () => {
+  const intact = Texture.WHITE;
+  const damaged = Texture.EMPTY;
+  const broken = Texture.WHITE;
+  const bin = new WorldObject({
+    id: 'trash_bin', display_name: 'Bidone', kind: 'breakable', asset: 'bin.png',
+    gameplay_status: 'prototype', durability: 2,
+  }, intact, { x: 0, y: 0 }, { damaged, broken });
+  assert.equal(bin.hitBreakable(), false);
+  assert.equal(bin.sprite.texture, damaged);
+  assert.equal(bin.hitBreakable(), true);
+  assert.equal(bin.sprite.texture, broken);
+  assert.equal(bin.root.visible, true);
+  bin.update(1.1);
+  assert.equal(bin.root.visible, false);
+});
+
 test('gli oggetti prototipo rispettano la scala dell actor canonico da 290px', () => {
   assert.equal(ITEM_VISUAL_SCALE, 1.5);
   const catalog = JSON.parse(fs.readFileSync('public/data/items/stage1_zen.json', 'utf8')) as {

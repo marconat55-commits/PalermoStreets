@@ -209,6 +209,9 @@ export interface StageItemDefinition {
   display_name: string;
   kind: StageItemKind;
   asset: string;
+  damaged_asset?: string;
+  broken_asset?: string;
+  debris_asset?: string;
   /** Source master is retained outside the runtime build for future reprocessing. */
   source_master: string;
   gameplay_status: 'prototype' | 'catalogued' | 'reference_only';

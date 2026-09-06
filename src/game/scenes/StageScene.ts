@@ -43,6 +43,11 @@ function authoredLayers(module: ModuleData): BackgroundLayerData[] {
     : [{ src: module.background, parallax: 1, plane: 'main' }];
 }
 
+function itemAssetPaths(item: StageItemDefinition): string[] {
+  return [item.asset, item.damaged_asset, item.broken_asset, item.debris_asset]
+    .filter((path): path is string => Boolean(path));
+}
+
 export class StageScene implements Scene {
   readonly root = new Container();
   private readonly backgroundLayers = new Container();
@@ -183,10 +188,11 @@ export class StageScene implements Scene {
     for (const wave of firstModule.waves ?? []) firstCharacters.add(wave.character ?? defaultEnemyId);
     const itemCatalog = await loadStageItems(stageEntry);
     const activeItems = collectModuleItems(firstModule, itemCatalog.items);
+    const firstItemAssets = [...new Set(activeItems.flatMap(itemAssetPaths))];
     const [firstBackgrounds, , itemTextureList] = await Promise.all([
       Promise.all(authoredLayers(firstModule).map((layer) => catalog.loadBackground(layer.src))),
       Promise.all([...firstCharacters].map((id) => catalog.ensureCharacter(id))),
-      Promise.all(activeItems.map((item) => catalog.loadBackground(item.asset))),
+      Promise.all(firstItemAssets.map((asset) => catalog.loadBackground(asset))),
     ]);
     const backgrounds = Array<Texture[] | null>(stageData.modules.length).fill(null);
     backgrounds[startModuleIndex] = firstBackgrounds;
@@ -197,7 +203,7 @@ export class StageScene implements Scene {
       playerId,
       defaultEnemyId,
       itemCatalog,
-      new Map(activeItems.map((item, index) => [item.id, itemTextureList[index]!])),
+      new Map(firstItemAssets.map((asset, index) => [asset, itemTextureList[index]!])),
       startModuleIndex,
     );
   }
@@ -301,13 +307,14 @@ export class StageScene implements Scene {
     const characterIds = new Set<string>();
     for (const wave of module.waves ?? []) characterIds.add(wave.character ?? this.defaultEnemyId);
     const activeItems = collectModuleItems(module, [...this.itemDefinitions.values()]);
+    const activeItemAssets = [...new Set(activeItems.flatMap(itemAssetPaths))];
     const loading = Promise.all([
       Promise.all(authoredLayers(module).map((layer) => this.catalog.loadBackground(layer.src))),
       Promise.all([...characterIds].map((id) => this.catalog.ensureCharacter(id))),
-      Promise.all(activeItems.map((item) => this.catalog.loadBackground(item.asset))),
+      Promise.all(activeItemAssets.map((asset) => this.catalog.loadBackground(asset))),
     ]).then(([backgrounds, , itemTextures]) => {
       this.backgroundTextures[index] = backgrounds;
-      activeItems.forEach((item, itemIndex) => this.itemTextures.set(item.id, itemTextures[itemIndex]!));
+      activeItemAssets.forEach((asset, itemIndex) => this.itemTextures.set(asset, itemTextures[itemIndex]!));
     }).finally(() => {
       this.moduleLoads.delete(index);
     });
@@ -476,12 +483,16 @@ export class StageScene implements Scene {
     this.heldObject = null;
     for (const spawn of this.currentModule.items ?? []) {
       const definition = this.itemDefinitions.get(spawn.item);
-      const texture = this.itemTextures.get(spawn.item);
+      const texture = definition ? this.itemTextures.get(definition.asset) : undefined;
       if (!definition || !texture) {
         console.warn(`${this.currentModule.id}: oggetto non disponibile: ${spawn.item}`);
         continue;
       }
-      const object = new WorldObject(definition, texture, { x: spawn.position[0], y: spawn.position[1] });
+      const object = new WorldObject(definition, texture, { x: spawn.position[0], y: spawn.position[1] }, {
+        damaged: definition.damaged_asset ? this.itemTextures.get(definition.damaged_asset) : undefined,
+        broken: definition.broken_asset ? this.itemTextures.get(definition.broken_asset) : undefined,
+        debris: definition.debris_asset ? this.itemTextures.get(definition.debris_asset) : undefined,
+      });
       this.worldObjects.push(object);
       this.actors.addChild(object.root);
     }
@@ -581,9 +592,13 @@ export class StageScene implements Scene {
 
   private spawnItem(itemId: string, position: Vec2): void {
     const definition = this.itemDefinitions.get(itemId);
-    const texture = this.itemTextures.get(itemId);
+    const texture = definition ? this.itemTextures.get(definition.asset) : undefined;
     if (!definition || !texture) return;
-    const drop = new WorldObject(definition, texture, position);
+    const drop = new WorldObject(definition, texture, position, {
+      damaged: definition.damaged_asset ? this.itemTextures.get(definition.damaged_asset) : undefined,
+      broken: definition.broken_asset ? this.itemTextures.get(definition.broken_asset) : undefined,
+      debris: definition.debris_asset ? this.itemTextures.get(definition.debris_asset) : undefined,
+    });
     this.worldObjects.push(drop);
     this.actors.addChild(drop.root);
   }

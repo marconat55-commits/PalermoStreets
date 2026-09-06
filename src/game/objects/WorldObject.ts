@@ -3,6 +3,12 @@ import type { Rect, StageItemDefinition, Vec2 } from '../types';
 
 export type WorldObjectState = 'ground' | 'held' | 'thrown' | 'spent';
 
+export interface WorldObjectTextures {
+  damaged?: Texture;
+  broken?: Texture;
+  debris?: Texture;
+}
+
 /** Visual-only multiplier: authored item sizes were too small beside a 290px actor. */
 export const ITEM_VISUAL_SCALE = 1.5;
 export const ITEM_SIZE_REDUCTION = 0.9;
@@ -26,11 +32,15 @@ export class WorldObject {
   velocity: Vec2 = { x: 0, y: 0 };
   verticalVelocity = 0;
   durability: number;
+  private readonly textures: WorldObjectTextures;
+  private breakTimer = 0;
+  private debrisShown = false;
 
-  constructor(definition: StageItemDefinition, texture: Texture, position: Vec2) {
+  constructor(definition: StageItemDefinition, texture: Texture, position: Vec2, textures: WorldObjectTextures = {}) {
     this.definition = definition;
     this.durability = definition.durability ?? 1;
     this.position = { ...position };
+    this.textures = textures;
     this.sprite = new Sprite(texture);
     this.sprite.anchor.set(0.5, 1);
     this.sprite.scale.set(visualScale(definition.id, definition.world_scale, definition.visual_scale_multiplier, definition.runtime_scale_compensation));
@@ -95,13 +105,31 @@ export class WorldObject {
   hitBreakable(damage = 1): boolean {
     if (this.definition.kind !== 'breakable' || this.state !== 'ground') return false;
     this.durability -= damage;
-    if (this.durability > 0) return false;
+    if (this.durability > 0) {
+      if (this.textures.damaged) this.sprite.texture = this.textures.damaged;
+      return false;
+    }
     this.state = 'spent';
-    this.root.visible = false;
+    if (this.textures.broken) {
+      this.sprite.texture = this.textures.broken;
+      this.breakTimer = this.textures.debris ? 0.72 : 1.0;
+      this.root.visible = true;
+    } else {
+      this.root.visible = false;
+    }
     return true;
   }
 
   update(dt: number): void {
+    if (this.state === 'spent' && this.breakTimer > 0) {
+      this.breakTimer = Math.max(0, this.breakTimer - dt);
+      if (this.textures.debris && !this.debrisShown && this.breakTimer <= 0.42) {
+        this.sprite.texture = this.textures.debris;
+        this.debrisShown = true;
+      }
+      if (this.breakTimer <= 0) this.root.visible = false;
+      return;
+    }
     if (this.state !== 'thrown') return;
     this.position.x += this.velocity.x * dt;
     this.position.y += this.velocity.y * dt;

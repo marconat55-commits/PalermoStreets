@@ -149,6 +149,7 @@ for (const id of index.characters) {
     if (JSON.stringify(actualLocalKeys) !== JSON.stringify(expectedLocalKeys)) fail(`${id}: frame_meta locale non sincronizzato`);
   }
 
+  const activeAtlasFrames = new Set();
   for (const [name, spec] of Object.entries(profile.animations)) {
     if (!Number.isInteger(spec.frames) || spec.frames < 1) fail(`${id}/${name}: frames non valido`);
     const sourceFrames = spec.source_frames ?? spec.frames;
@@ -182,6 +183,7 @@ for (const id of index.characters) {
 
     for (let frame = 1; frame <= sourceFrames; frame += 1) {
       const filename = `${spec.folder}/${frameName(frame)}`;
+      activeAtlasFrames.add(filename);
       const relative = `${profile.assets.animation_root}/${filename}`;
       const metaKey = `/${relative}`;
       expectedPng.add(relative);
@@ -216,8 +218,10 @@ for (const id of index.characters) {
       expectedMeta.add(metaKey);
       if (!exists(relative)) fail(`${id}/${name}: asset archivio mancante ${relative}`);
       if (!meta[metaKey]) fail(`${id}/${name}: metadata archivio mancante ${metaKey}`);
-      if (atlas && !atlas.frames?.[filename]) fail(`${id}/${name}: frame archivio assente dall'atlas: ${filename}`);
     }
+  }
+  for (const filename of Object.keys(atlas?.frames ?? {})) {
+    if (!activeAtlasFrames.has(filename)) fail(`${id}: frame non-runtime presente nell'atlas: ${filename}`);
   }
 
   const knockdownScales = profile.animations.knockdown.visual_scales ?? [1];

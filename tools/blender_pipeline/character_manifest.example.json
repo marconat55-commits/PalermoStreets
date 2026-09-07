@@ -12,6 +12,10 @@
     "runtime_height": 420,
     "visual_height": 290,
     "baseline_y": 400,
+    "scale_reference": {
+      "clip": "idle",
+      "frame": 1
+    },
     "samples": 32
   },
   "clips": {

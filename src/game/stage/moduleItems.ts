@@ -1,5 +1,10 @@
 import type { ModuleData, StageItemDefinition } from '../types';
 
+export function itemAssetPaths(item: StageItemDefinition): string[] {
+  return [item.asset, item.damaged_asset, item.broken_asset, item.debris_asset]
+    .filter((path): path is string => Boolean(path));
+}
+
 export function collectModuleItems(
   module: ModuleData,
   definitions: StageItemDefinition[],
@@ -16,4 +21,12 @@ export function collectModuleItems(
     if (item.drop_item) pending.push(item.drop_item);
   }
   return [...collected.values()];
+}
+
+export function collectModuleItemAssets(
+  module: ModuleData,
+  definitions: StageItemDefinition[],
+): string[] {
+  const paths = collectModuleItems(module, definitions).flatMap(itemAssetPaths);
+  return [...new Set(paths)];
 }

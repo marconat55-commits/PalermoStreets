@@ -59,7 +59,9 @@ def resolve_profile(public: Path, character_id: str, chain: tuple[str, ...] = ()
 def collect_cells(public: Path, profile: dict) -> list[Cell]:
     root = public / profile["assets"]["animation_root"]
     unique: dict[str, Path] = {}
-    specs = list(profile["animations"].values()) + list(profile.get("archived_animations", {}).values())
+    # Production atlases contain runtime clips only. Archived frames remain as
+    # loose QA/source material and must not consume download or GPU memory.
+    specs = list(profile["animations"].values())
     for spec in specs:
         source_frames = spec.get("source_frames", spec["frames"])
         for index in range(1, source_frames + 1):

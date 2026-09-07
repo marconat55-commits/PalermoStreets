@@ -15,7 +15,7 @@ import { resolveArcadeAction, resolveGrabAction } from '../input/arcadeControls'
 import { SPIN_SPECIAL } from '../combat/attacks';
 import { resolveWalkBand, sampleWalkBand } from '../stage/walkBand';
 import { loadStageItems } from '../data/loadData';
-import { collectModuleItems } from '../stage/moduleItems';
+import { collectModuleItemAssets } from '../stage/moduleItems';
 import { WorldObject } from '../objects/WorldObject';
 import { isPickupKind, itemWithinRange, resolveItemInteraction } from '../objects/itemRules';
 import { rectsIntersect } from '../../utils/math';
@@ -41,11 +41,6 @@ function authoredLayers(module: ModuleData): BackgroundLayerData[] {
   return enabled?.length
     ? enabled
     : [{ src: module.background, parallax: 1, plane: 'main' }];
-}
-
-function itemAssetPaths(item: StageItemDefinition): string[] {
-  return [item.asset, item.damaged_asset, item.broken_asset, item.debris_asset]
-    .filter((path): path is string => Boolean(path));
 }
 
 export class StageScene implements Scene {
@@ -187,8 +182,7 @@ export class StageScene implements Scene {
     const firstCharacters = new Set<string>([playerId]);
     for (const wave of firstModule.waves ?? []) firstCharacters.add(wave.character ?? defaultEnemyId);
     const itemCatalog = await loadStageItems(stageEntry);
-    const activeItems = collectModuleItems(firstModule, itemCatalog.items);
-    const firstItemAssets = [...new Set(activeItems.flatMap(itemAssetPaths))];
+    const firstItemAssets = collectModuleItemAssets(firstModule, itemCatalog.items);
     const [firstBackgrounds, , itemTextureList] = await Promise.all([
       Promise.all(authoredLayers(firstModule).map((layer) => catalog.loadBackground(layer.src))),
       Promise.all([...firstCharacters].map((id) => catalog.ensureCharacter(id))),
@@ -306,8 +300,7 @@ export class StageScene implements Scene {
     if (!module) return Promise.reject(new Error(`Modulo non valido: ${index}`));
     const characterIds = new Set<string>();
     for (const wave of module.waves ?? []) characterIds.add(wave.character ?? this.defaultEnemyId);
-    const activeItems = collectModuleItems(module, [...this.itemDefinitions.values()]);
-    const activeItemAssets = [...new Set(activeItems.flatMap(itemAssetPaths))];
+    const activeItemAssets = collectModuleItemAssets(module, [...this.itemDefinitions.values()]);
     const loading = Promise.all([
       Promise.all(authoredLayers(module).map((layer) => this.catalog.loadBackground(layer.src))),
       Promise.all([...characterIds].map((id) => this.catalog.ensureCharacter(id))),
@@ -1159,6 +1152,6 @@ export class StageScene implements Scene {
     for (const module of this.modules) for (const layer of authoredLayers(module)) assetPaths.add(layer.src);
     for (const item of this.itemDefinitions.values()) assetPaths.add(item.asset);
     for (const path of assetPaths) void this.catalog.unloadAsset(path).catch(() => undefined);
-    for (const id of this.loadedCharacterIds) if (id !== this.playerId) this.catalog.releaseCharacter(id);
+    for (const id of this.loadedCharacterIds) this.catalog.releaseCharacter(id);
   }
 }

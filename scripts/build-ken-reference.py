@@ -137,15 +137,11 @@ def render_frame(frame: AirFrame, info: SpriteInfo, source_path: Path, grounded:
     canvas = Image.new("RGBA", CANVAS)
     canvas.alpha_composite(source, (x, y))
 
-    if grounded:
-        bounds = canvas.getchannel("A").getbbox()
-        if bounds:
-            left, top, right, bottom = bounds
-            crop = canvas.crop(bounds)
-            ratio = TARGET_HEIGHT / max(1, bottom - top)
-            crop = crop.resize((max(1, round(crop.width * ratio)), TARGET_HEIGHT), Image.Resampling.NEAREST)
-            canvas = Image.new("RGBA", CANVAS)
-            canvas.alpha_composite(crop, (round(PIVOT[0] - crop.width / 2), PIVOT[1] - TARGET_HEIGHT))
+    # TARGET_HEIGHT / 103 is the single canonical Ken scale. Do not normalize
+    # grounded sprites from their individual visible bounds: crouches, landing
+    # poses and wide attacks would otherwise grow relative to the idle master.
+    # `grounded` is retained in the recipe API as semantic metadata only.
+    _ = grounded
     return canvas
 
 

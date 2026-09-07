@@ -6,7 +6,8 @@ Questa pipeline rende scalabile la produzione grafica senza sostituire PixiJS. B
 
 - azioni Blender -> sequenze PNG trasparenti;
 - camera ortografica e scala sorgente fisse;
-- ritaglio deterministico;
+- scala unica derivata dalla posa master, senza zoom per-frame;
+- ritaglio e allineamento deterministici rispetto al root della posa master;
 - canvas runtime 640x420;
 - altezza visiva baked e baseline piedi Y=400;
 - nomi e cartelle clip deterministici;
@@ -23,6 +24,11 @@ Atlanti, metadata e validazione finale restano affidati agli script già present
 - un'azione Blender per ogni clip elencata nel manifest;
 - modello con proporzioni, volto, costume e materiali già approvati;
 - piedi e root motion coerenti. Il modello non deve avanzare fuori dalla camera: lo spostamento gameplay resta in PixiJS.
+
+Nel manifest, `render.scale_reference` identifica la posa eretta usata una sola
+volta per calcolare scala e root. Di norma è `idle/01`. Tutte le altre pose
+mantengono quel fattore: una posa raccolta, un atterraggio o una caduta non
+vengono più ingranditi in base al proprio rettangolo visibile.
 
 ## Primo avvio
 

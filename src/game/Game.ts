@@ -10,7 +10,7 @@ import type { Scene } from './scenes/Scene';
 import type { CharacterProfile, RuntimeStageEntry, StageData } from './types';
 import { publicUrl } from './data/paths';
 import { resolveStartModuleIndex } from './stage/debugStart';
-import { collectModuleItems } from './stage/moduleItems';
+import { collectModuleItemAssets } from './stage/moduleItems';
 
 export class Game {
   readonly app = new Application();
@@ -29,6 +29,8 @@ export class Game {
   private initialStagePreload: Promise<void> | null = null;
   private initialStageLoadCompleted = 0;
   private initialStageLoadTotal = 0;
+  private selectionRequestedCharacterId: string | null = null;
+  private selectionCachedCharacterId: string | null = null;
   private playerProfiles: Array<Pick<CharacterProfile, 'id' | 'display_name' | 'selection'>> = [];
   private startModuleIndex = 0;
 
@@ -40,7 +42,9 @@ export class Game {
       antialias: true,
       autoDensity: true,
       resolution: Math.min(window.devicePixelRatio || 1, 2),
-      preference: ['webgpu', 'webgl'],
+      // PixiJS currently recommends WebGL for production; WebGPU remains an
+      // opt-in experiment until browser implementations converge.
+      preference: 'webgl',
     });
     host.appendChild(this.app.canvas);
     this.app.stage.sortableChildren = true;
@@ -93,6 +97,7 @@ export class Game {
 
   private showTitle(): void {
     this.startingStage = false;
+    this.clearSelectionCharacterCache();
     this.scene?.destroy();
     this.app.stage.removeChildren();
     this.titleScene = new TitleScene(this.titleBackground);
@@ -110,7 +115,7 @@ export class Game {
       const selection = await CharacterSelectScene.create(
         this.playerProfiles,
         this.defaultPlayerId,
-        (id) => { void this.catalog.ensureCharacter(id).catch((error) => console.warn(`${id}: precaricamento fallito`, error)); },
+        (id) => this.requestSelectionCharacter(id),
       );
       if (this.titleScene !== title) {
         selection.destroy();
@@ -142,6 +147,7 @@ export class Game {
       await this.preloadInitialStage();
       const playerId = selection.selectedCharacterId;
       await this.catalog.ensureCharacter(playerId);
+      this.transferSelectionCharacter(playerId);
       const stage = await StageScene.create(
         this.catalog,
         this.stageData,
@@ -170,6 +176,33 @@ export class Game {
     this.characterSelectScene?.setLoadingProgress(progress);
   }
 
+  private requestSelectionCharacter(id: string): void {
+    this.selectionRequestedCharacterId = id;
+    void this.catalog.ensureCharacter(id).then(() => {
+      if (this.selectionRequestedCharacterId !== id) {
+        if (this.selectionCachedCharacterId !== id) this.catalog.releaseCharacter(id);
+        return;
+      }
+      const previous = this.selectionCachedCharacterId;
+      this.selectionCachedCharacterId = id;
+      if (previous && previous !== id) this.catalog.releaseCharacter(previous);
+    }).catch((error) => console.warn(`${id}: precaricamento fallito`, error));
+  }
+
+  private transferSelectionCharacter(id: string): void {
+    this.selectionRequestedCharacterId = null;
+    const previous = this.selectionCachedCharacterId;
+    this.selectionCachedCharacterId = null;
+    if (previous && previous !== id) this.catalog.releaseCharacter(previous);
+  }
+
+  private clearSelectionCharacterCache(): void {
+    this.selectionRequestedCharacterId = null;
+    const retained = this.selectionCachedCharacterId;
+    this.selectionCachedCharacterId = null;
+    if (retained) this.catalog.releaseCharacter(retained);
+  }
+
   private async preloadInitialStage(): Promise<void> {
     if (this.initialStagePreload) return this.initialStagePreload;
     const firstModule = this.stageData.modules[this.startModuleIndex];
@@ -183,11 +216,11 @@ export class Game {
       characterIds.add(wave.character ?? this.defaultEnemyId);
     }
     const itemCatalog = await loadStageItems(this.stageEntry);
-    const moduleItems = collectModuleItems(firstModule, itemCatalog.items);
+    const itemAssets = collectModuleItemAssets(firstModule, itemCatalog.items);
     const tasks: Array<Promise<unknown>> = [
       ...backgroundPaths.map((path) => this.catalog.loadBackground(path)),
       ...[...characterIds].map((id) => this.catalog.ensureCharacter(id)),
-      ...moduleItems.map((item) => this.catalog.loadBackground(item.asset)),
+      ...itemAssets.map((path) => this.catalog.loadBackground(path)),
     ];
     this.initialStageLoadCompleted = 0;
     this.initialStageLoadTotal = tasks.length;

@@ -40,4 +40,4 @@ Il percorso automatizzato è `npm run character:import -- --spec <spec.json> --c
 
 Il file globale `public/data/generated/frame_meta.json` rimane temporaneamente la sorgente di build. Quando tutti gli strumenti scriveranno direttamente metadata locali, potrà essere rimosso insieme al fallback `legacy_frame_meta`.
 
-I PNG singoli restano sotto `public` perché validatori e strumenti QA li ispezionano, ma `npm run build` li esclude automaticamente da `dist`. La distribuzione è quindi atlas-only senza perdere le sorgenti o il fallback locale.
+I PNG singoli restano sotto `public` perché validatori e strumenti QA li ispezionano, ma `npm run build` li esclude automaticamente da `dist`. Gli atlas includono soltanto `animations`; le `archived_animations` restano disponibili per QA ma non vengono caricate o distribuite. La distribuzione è quindi atlas-only senza perdere le sorgenti o il fallback locale.

@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { collectModuleItemAssets, collectModuleItems } from '../src/game/stage/moduleItems.ts';
+import { collectModuleItemAssets, collectModuleItems, collectModulePrimaryItemAssets } from '../src/game/stage/moduleItems.ts';
 import type { ModuleData, StageItemDefinition } from '../src/game/types.ts';
 
 const definition = (id: string, drop_item?: string): StageItemDefinition => ({
@@ -27,6 +27,19 @@ test('module preload includes every visual state and deduplicates shared assets'
     'bin.png',
     'bin-damaged.png',
     'shared-debris.png',
+    'brick.png',
+  ]);
+});
+
+test('initial module preload includes only immediately visible item assets', () => {
+  const module = { id: 'M01', background: 'm01.png', waves: [], items: [{ item: 'bin', position: [10, 20] }] } as ModuleData;
+  const bin = {
+    ...definition('bin', 'brick'),
+    damaged_asset: 'bin-damaged.png',
+    broken_asset: 'bin-broken.png',
+  };
+  assert.deepEqual(collectModulePrimaryItemAssets(module, [bin, definition('brick')]), [
+    'bin.png',
     'brick.png',
   ]);
 });

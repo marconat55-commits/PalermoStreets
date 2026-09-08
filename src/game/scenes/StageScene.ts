@@ -15,7 +15,7 @@ import { resolveArcadeAction, resolveGrabAction } from '../input/arcadeControls'
 import { SPIN_SPECIAL } from '../combat/attacks';
 import { resolveWalkBand, sampleWalkBand } from '../stage/walkBand';
 import { loadStageItems } from '../data/loadData';
-import { collectModuleItemAssets } from '../stage/moduleItems';
+import { collectModuleItemAssets, collectModulePrimaryItemAssets } from '../stage/moduleItems';
 import { WorldObject } from '../objects/WorldObject';
 import { isPickupKind, itemWithinRange, resolveItemInteraction } from '../objects/itemRules';
 import { rectsIntersect } from '../../utils/math';
@@ -117,6 +117,7 @@ export class StageScene implements Scene {
   private waveData: WaveData[] = [];
   private waveIndex = -1;
   private nextWaveTimer = 0.70;
+  private waveLoadPending = false;
   private moduleClear = false;
   private clearTimer = 0;
   private exitX = EXIT_X;
@@ -180,9 +181,10 @@ export class StageScene implements Scene {
     const firstModule = stageData.modules[startModuleIndex];
     if (!firstModule) throw new Error('Stage senza moduli');
     const firstCharacters = new Set<string>([playerId]);
-    for (const wave of firstModule.waves ?? []) firstCharacters.add(wave.character ?? defaultEnemyId);
+    const firstWave = firstModule.waves?.[0];
+    if (firstWave) firstCharacters.add(firstWave.character ?? defaultEnemyId);
     const itemCatalog = await loadStageItems(stageEntry);
-    const firstItemAssets = collectModuleItemAssets(firstModule, itemCatalog.items);
+    const firstItemAssets = collectModulePrimaryItemAssets(firstModule, itemCatalog.items);
     const [firstBackgrounds, , itemTextureList] = await Promise.all([
       Promise.all(authoredLayers(firstModule).map((layer) => catalog.loadBackground(layer.src))),
       Promise.all([...firstCharacters].map((id) => catalog.ensureCharacter(id))),
@@ -190,7 +192,7 @@ export class StageScene implements Scene {
     ]);
     const backgrounds = Array<Texture[] | null>(stageData.modules.length).fill(null);
     backgrounds[startModuleIndex] = firstBackgrounds;
-    return new StageScene(
+    const scene = new StageScene(
       catalog,
       stageData,
       backgrounds,
@@ -200,6 +202,8 @@ export class StageScene implements Scene {
       new Map(firstItemAssets.map((asset, index) => [asset, itemTextureList[index]!])),
       startModuleIndex,
     );
+    scene.preloadCurrentModuleExtras(startModuleIndex);
+    return scene;
   }
 
   private constructor(
@@ -315,6 +319,29 @@ export class StageScene implements Scene {
     return loading;
   }
 
+  private preloadCurrentModuleExtras(index: number): void {
+    const module = this.modules[index];
+    if (!module) return;
+    const characterIds = new Set<string>();
+    for (const wave of module.waves ?? []) characterIds.add(wave.character ?? this.defaultEnemyId);
+    const itemAssets = collectModuleItemAssets(module, [...this.itemDefinitions.values()])
+      .filter((asset) => !this.itemTextures.has(asset));
+    void Promise.all([
+      Promise.all([...characterIds].map((id) => this.catalog.ensureCharacter(id))),
+      Promise.all(itemAssets.map((asset) => this.catalog.loadBackground(asset))),
+    ]).then(([, textures]) => {
+      itemAssets.forEach((asset, itemIndex) => this.itemTextures.set(asset, textures[itemIndex]!));
+      if (this.moduleIndex !== index) return;
+      for (const object of this.worldObjects) {
+        object.setSupplementalTextures({
+          damaged: object.definition.damaged_asset ? this.itemTextures.get(object.definition.damaged_asset) : undefined,
+          broken: object.definition.broken_asset ? this.itemTextures.get(object.definition.broken_asset) : undefined,
+          debris: object.definition.debris_asset ? this.itemTextures.get(object.definition.debris_asset) : undefined,
+        });
+      }
+    }).catch((error) => console.warn(`${module.id}: preload risorse secondarie fallito`, error));
+  }
+
   private preloadNextModule(): void {
     if (this.preloadTriggeredForModule === this.moduleIndex) return;
     this.preloadTriggeredForModule = this.moduleIndex;
@@ -401,6 +428,7 @@ export class StageScene implements Scene {
     this.waveData = this.currentModule.waves ?? [];
     this.waveIndex = -1;
     this.nextWaveTimer = 0.70;
+    this.waveLoadPending = false;
     this.moduleClear = false;
     this.clearTimer = 0;
     this.exitX = this.currentModule.exit_x ?? EXIT_X;
@@ -703,6 +731,25 @@ export class StageScene implements Scene {
     }
   }
 
+  private requestNextWaveSpawn(): void {
+    if (this.waveLoadPending) return;
+    const targetWaveIndex = this.waveIndex + 1;
+    const wave = this.waveData[targetWaveIndex];
+    if (!wave) return;
+    const moduleIndex = this.moduleIndex;
+    const characterId = wave.character ?? this.defaultEnemyId;
+    this.waveLoadPending = true;
+    void this.catalog.ensureCharacter(characterId).then(() => {
+      if (this.moduleIndex === moduleIndex && this.waveIndex + 1 === targetWaveIndex) this.spawnNextWave();
+    }).catch((error) => {
+      console.error(`${characterId}: caricamento nemico fallito`, error);
+      this.message = 'NEMICO PERSO PER STRADA — ASPETTA UN SECUNNU';
+      this.messageTimer = 1.8;
+    }).finally(() => {
+      this.waveLoadPending = false;
+    });
+  }
+
   private startTransition(): void {
     if (this.transitionPhase !== null) return;
     this.transitionPhase = 'out';
@@ -983,7 +1030,7 @@ export class StageScene implements Scene {
       if (triggerReached) {
         this.nextWaveTimer -= dt;
         if (this.nextWaveTimer <= 0) {
-          this.spawnNextWave();
+          this.requestNextWaveSpawn();
           this.nextWaveTimer = 0.82;
         }
       } else {

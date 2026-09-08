@@ -30,3 +30,11 @@ export function collectModuleItemAssets(
   const paths = collectModuleItems(module, definitions).flatMap(itemAssetPaths);
   return [...new Set(paths)];
 }
+
+/** Assets required to draw the module immediately. Damage/break variants stream in afterwards. */
+export function collectModulePrimaryItemAssets(
+  module: ModuleData,
+  definitions: StageItemDefinition[],
+): string[] {
+  return [...new Set(collectModuleItems(module, definitions).map((item) => item.asset))];
+}

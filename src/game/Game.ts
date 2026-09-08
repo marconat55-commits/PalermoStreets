@@ -10,7 +10,7 @@ import type { Scene } from './scenes/Scene';
 import type { CharacterProfile, RuntimeStageEntry, StageData } from './types';
 import { publicUrl } from './data/paths';
 import { resolveStartModuleIndex } from './stage/debugStart';
-import { collectModuleItemAssets } from './stage/moduleItems';
+import { collectModulePrimaryItemAssets } from './stage/moduleItems';
 
 export class Game {
   readonly app = new Application();
@@ -211,12 +211,12 @@ export class Game {
     const backgroundPaths = enabledLayers?.length
       ? enabledLayers.map((layer) => layer.src)
       : [firstModule.background];
-    const characterIds = new Set<string>();
-    for (const wave of firstModule.waves ?? []) {
-      characterIds.add(wave.character ?? this.defaultEnemyId);
-    }
+    const firstWave = firstModule.waves?.[0];
+    const characterIds = new Set<string>([
+      firstWave?.character ?? this.defaultEnemyId,
+    ]);
     const itemCatalog = await loadStageItems(this.stageEntry);
-    const itemAssets = collectModuleItemAssets(firstModule, itemCatalog.items);
+    const itemAssets = collectModulePrimaryItemAssets(firstModule, itemCatalog.items);
     const tasks: Array<Promise<unknown>> = [
       ...backgroundPaths.map((path) => this.catalog.loadBackground(path)),
       ...[...characterIds].map((id) => this.catalog.ensureCharacter(id)),

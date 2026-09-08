@@ -32,7 +32,7 @@ export class WorldObject {
   velocity: Vec2 = { x: 0, y: 0 };
   verticalVelocity = 0;
   durability: number;
-  private readonly textures: WorldObjectTextures;
+  private textures: WorldObjectTextures;
   private breakTimer = 0;
   private debrisShown = false;
 
@@ -46,6 +46,10 @@ export class WorldObject {
     this.sprite.scale.set(visualScale(definition.id, definition.world_scale, definition.visual_scale_multiplier, definition.runtime_scale_compensation));
     this.root.addChild(this.sprite);
     this.sync();
+  }
+
+  setSupplementalTextures(textures: WorldObjectTextures): void {
+    this.textures = { ...this.textures, ...textures };
   }
 
   pickup(): void {

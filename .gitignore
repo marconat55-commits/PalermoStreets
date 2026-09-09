@@ -1,6 +1,7 @@
 node_modules/
 .tools/
 dist/
+build/
 .vite/
 *.log
 .DS_Store
@@ -21,3 +22,6 @@ character_factory/**/video_pilot/**/*.mov
 character_factory/**/video_pilot/**/*.mkv
 character_factory/**/video_pilot/**/*.avi
 character_factory/**/video_pilot/**/*.webm
+
+# Local disaster-recovery transfer set; the same archives live in the GitHub draft release.
+recovery-transfer/

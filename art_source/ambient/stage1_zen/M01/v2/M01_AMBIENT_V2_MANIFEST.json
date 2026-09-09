@@ -1,7 +1,9 @@
 {
   "schema": 1,
   "id": "M01_ambient_v2",
-  "status": "integrated",
+  "status": "superseded",
+  "superseded_by": "M01_ambient_v3",
+  "historical_runtime_commit": "1647c3a",
   "created_on": "2026-09-09",
   "generator": "OpenAI built-in image generation",
   "direction": "Periferia popolare dura e vissuta: espressioni guardinghe, superfici sporche, ferro ossidato, legno riparato e tessuti scoloriti. Hand-painted 1990s arcade beat-em-up sprites with transparent background.",

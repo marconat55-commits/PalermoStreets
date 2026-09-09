@@ -37,6 +37,7 @@ test('M01 teaches one-on-one combat before a restrained depth pincer', () => {
 test('M01 excludes held weapons until dedicated player poses exist', () => {
   const m01 = stage.modules.find((module) => module.id === 'M01');
   assert.ok(m01);
-  assert.deepEqual(m01.items.map((item) => item.item), ['trash_bin']);
-  assert.ok(m01.items[0]!.position[0] > m01.waves[1]!.trigger_x && m01.items[0]!.position[0] < m01.exit_x);
+  assert.deepEqual(m01.items.map((item) => item.item), ['trash_bag', 'trash_bin']);
+  assert.ok(m01.items[0]!.position[0] < m01.waves[1]!.trigger_x);
+  assert.ok(m01.items[1]!.position[0] > m01.waves[1]!.trigger_x && m01.items[1]!.position[0] < m01.exit_x);
 });

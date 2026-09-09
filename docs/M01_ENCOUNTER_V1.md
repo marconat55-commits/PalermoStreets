@@ -8,7 +8,7 @@ M01 introduce il combattimento senza diventare una stanza vuota o una prova di r
 
 1. Il tratto iniziale e libero da armi finche i protagonisti non dispongono di pose dedicate per presa e utilizzo.
 2. A `X=299` entra un Talebano singolo a `X=874, Y=675`. Questo insegna distanza, combo e presa senza pressione multipla.
-3. Dopo il primo KO, il tratto fino a `X=1320` crea una breve pausa.
+3. Dopo il primo KO, il tratto fino a `X=1320` crea una breve pausa e presenta il sacco distruttibile.
 4. La seconda ondata dispone due A' Puaicca a `X=1180, Y=600` e `X=1820, Y=690`: uno dietro e uno davanti al giocatore, separati anche in profondita.
 5. Il bidone distruttibile a `X=1580` resta nella seconda arena e rilascia soltanto l'arancina curativa.
 6. Dopo i tre KO, l'uscita a `X=2510` porta a M02.
@@ -21,3 +21,4 @@ M01 introduce il combattimento senza diventare una stanza vuota o una prova di r
 - Salute e aggressivita della seconda ondata restano sotto i valori della precedente prova singola, per evitare attacchi simultanei oppressivi.
 - I trigger devono lasciare almeno 800 px fra l'introduzione e la tenaglia.
 - Bastoni, spranghe, tubi, mazze e lanciabili impugnabili restano fuori da M01 finche le pose dei protagonisti non sono approvate.
+- Il sacco puo rilasciare mattone, arancina, cannolo o teglia di anelletti; il mattone resta l'unica eccezione sperimentale per il lancio.

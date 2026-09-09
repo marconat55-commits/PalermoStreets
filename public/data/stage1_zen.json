@@ -59,6 +59,7 @@
       "exit_x": 2510,
       "heal": 12,
       "items": [
+        { "item": "trash_bag", "position": [1180, 688] },
         { "item": "trash_bin", "position": [1580, 690] }
       ],
       "waves": [

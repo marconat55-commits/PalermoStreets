@@ -260,6 +260,8 @@ export interface StageItemDefinition {
   throw_gravity?: number;
   durability?: number;
   drop_item?: string;
+  /** Uniform random drop pool used by breakables; legacy drop_item remains supported. */
+  drop_items?: string[];
   notes?: string[];
 }
 

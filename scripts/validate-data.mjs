@@ -77,6 +77,11 @@ for (const item of itemCatalog.items ?? []) {
   if (item.damage !== undefined && (!Number.isFinite(item.damage) || item.damage < 0)) fail(`${item.id}: damage non valido`);
   if (item.healing !== undefined && (!Number.isFinite(item.healing) || item.healing < 0)) fail(`${item.id}: healing non valido`);
 }
+for (const item of itemCatalog.items ?? []) {
+  const drops = item.drop_items ?? (item.drop_item ? [item.drop_item] : []);
+  if (!Array.isArray(drops) || new Set(drops).size !== drops.length) fail(`${item.id}: pool drop non valido o duplicato`);
+  for (const drop of drops) if (!itemIds.has(drop)) fail(`${item.id}: drop sconosciuto ${drop}`);
+}
 
 if (!ids.has(index.default_player)) fail(`default_player non registrato: ${index.default_player}`);
 if (!ids.has(index.default_enemy)) fail(`default_enemy non registrato: ${index.default_enemy}`);

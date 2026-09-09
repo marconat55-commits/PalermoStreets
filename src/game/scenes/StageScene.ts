@@ -17,7 +17,7 @@ import { resolveWalkBand, sampleWalkBand } from '../stage/walkBand';
 import { StageAmbientLayer } from '../stage/StageAmbientLayer';
 import { collectAmbientAssets } from '../stage/ambientAssets';
 import { loadStageItems } from '../data/loadData';
-import { collectModuleItemAssets, collectModulePrimaryItemAssets } from '../stage/moduleItems';
+import { collectModuleItemAssets, collectModulePrimaryItemAssets, selectDropItem } from '../stage/moduleItems';
 import { WorldObject } from '../objects/WorldObject';
 import { isPickupKind, itemWithinRange, resolveItemInteraction } from '../objects/itemRules';
 import { rectsIntersect } from '../../utils/math';
@@ -664,8 +664,9 @@ export class StageScene implements Scene {
       this.hitStop = Math.max(this.hitStop, destroyed ? 0.07 : 0.035);
       this.screenShake = Math.max(this.screenShake, destroyed ? 5 : 2);
       this.triggerImpactFlash(destroyed);
-      if (destroyed && object.definition.drop_item) {
-        this.spawnItem(object.definition.drop_item, { ...object.position });
+      const dropItem = destroyed ? selectDropItem(object.definition) : undefined;
+      if (dropItem) {
+        this.spawnItem(dropItem, { ...object.position });
         this.message = `${object.definition.display_name.toUpperCase()} ROTTO — OGGETTO RILASCIATO`;
         this.messageTimer = 1.0;
       }

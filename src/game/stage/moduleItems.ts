@@ -19,8 +19,16 @@ export function collectModuleItems(
     if (!item) continue;
     collected.set(id, item);
     if (item.drop_item) pending.push(item.drop_item);
+    pending.push(...(item.drop_items ?? []));
   }
   return [...collected.values()];
+}
+
+export function selectDropItem(item: StageItemDefinition, random = Math.random): string | undefined {
+  const pool = item.drop_items?.length ? item.drop_items : (item.drop_item ? [item.drop_item] : []);
+  if (!pool.length) return undefined;
+  const index = Math.min(pool.length - 1, Math.floor(Math.max(0, random()) * pool.length));
+  return pool[index];
 }
 
 export function collectModuleItemAssets(

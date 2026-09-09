@@ -53,8 +53,9 @@ test('each Zen module owns an authored walk band and every feet spawn stays insi
     const main = module.background_layers.find((layer) => layer.plane === 'main');
     assert.equal(far?.parallax, 0.22, `${module.id}: continuous Palermo skyline must use far parallax`);
     if (integratedFinal) {
-      assert.equal(far?.src, `assets/backgrounds/stage1_zen/final_v1/${module.id}/${module.id}_FAR.png`);
-      assert.equal(main?.src, `assets/backgrounds/stage1_zen/final_v1/${module.id}/${module.id}_MAIN.png`);
+      const version = module.id === 'M01' ? 'final_v2' : 'final_v1';
+      assert.equal(far?.src, `assets/backgrounds/stage1_zen/${version}/${module.id}/${module.id}_FAR.png`);
+      assert.equal(main?.src, `assets/backgrounds/stage1_zen/${version}/${module.id}/${module.id}_MAIN.png`);
     } else {
       assert.equal(far?.src, 'assets/backgrounds/stage1_zen/long/ZEN_FAR_SKYLINE.png', `${module.id}: FAR must be continuous`);
       assert.ok(main?.src.endsWith(`${module.id}/MAIN_SKY_V3.png`), `${module.id}: MAIN must use the sky-only alpha cut`);

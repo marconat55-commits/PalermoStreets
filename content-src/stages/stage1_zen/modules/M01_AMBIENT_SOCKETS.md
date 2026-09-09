@@ -6,14 +6,16 @@ Un personaggio di facciata entra nel runtime soltanto dopo che lo stage espone u
 
 ## BALCONY_RESIDENT_01
 
-- Stato: `art_required`.
+- Stato: `integrated_v1`.
 - Destinazione: balcone reale della facciata sinistra, scelto prima di posizionare la figura.
 - MAIN: apertura interna vuota e coerente con la luce della stanza.
 - FOREGROUND: ringhiera e bordo del balcone su alpha separato.
 - Contratto: il pivot coincide con il bordo interno della ringhiera.
 - Scala: derivata dall'altezza del vano, senza correzioni arbitrarie nel runtime.
 - Prova obbligatoria: dettaglio ravvicinato dei quattro frame e tre camere M01.
-- Attore previsto: `m01_signora_balcone`, attualmente disattivato.
+- Attore: `m01_signora_balcone`.
+- Anchor runtime: `[574, 214]`.
+- Layer runtime: MAIN e FOREGROUND condividono parallasse `1.0`, impedendo slittamenti della ringhiera.
 
 ## STREET_VENDOR_01
 

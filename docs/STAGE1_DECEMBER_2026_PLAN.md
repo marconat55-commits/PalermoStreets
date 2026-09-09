@@ -47,6 +47,7 @@ Gate finale: lo Stage 1 e completabile, presentabile e reinstallabile su una sec
 - M01-M04: fasce WALK sottoposte ad audit visivo e corrette.
 - M01-M04: la prova degli stormi procedurali e stata scartata; configurazione, tipi e renderer rimossi.
 - M01: venditore con bancarella deteriorata integrato come ciclo sprite non interattivo. La precedente prova della signora e stata respinta per mancanza di un alloggio architettonico nello stage.
-- M01: venditore approvato e attivo. La signora e stata rimossa dal runtime finche il fondale non possiede un alloggio ambientale con vano, anchor e ringhiera di occlusione separata. Gli stormi e il relativo renderer sono stati eliminati.
+- M01: venditore approvato e attivo. Per la signora e stato costruito `BALCONY_RESIDENT_01`: vano aperto nel MAIN, anchor misurato e ringhiera su FOREGROUND con parallasse identico. Gli stormi e il relativo renderer sono stati eliminati.
+- Stage ZEN: M01-M04 non chiudono la sequenza. Sono previsti ulteriori moduli stradali, in numero da approvare, prima del climax separato sul tetto; tutti riusano lo stesso contratto produttivo del pilot.
 - Sistema di audit: overlay dei layer reali, poligono WALK e sagome in scala disponibile in `tools/audit-stage-walk-bands.py`.
 - Prossimo incremento: prova visiva completa di M01 e, dopo il gate, riuso del contratto `sprite_loop` per bambini che giocano nel campetto M03.

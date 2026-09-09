@@ -15,6 +15,7 @@
     "manifest": "art_source/stages/stage1_zen/M01/final_v1/M01_FINAL_LAYERS_MANIFEST.json",
     "runtime_integration": true
   },
+  "ambient_socket_manifest": "art_source/stages/stage1_zen/M01/ambient_socket_v1/M01_BALCONY_SOCKET_V1_MANIFEST.json",
   "integration": {
     "status": "integrated",
     "runtime_module_id": "M01"
@@ -38,9 +39,17 @@
   "layers": [
     { "plane": "far", "parallax": 0.22, "required": true, "alpha": false },
     { "plane": "main", "parallax": 1, "required": true, "alpha": true },
-    { "plane": "foreground", "parallax": 1.08, "required": false, "alpha": true }
+    { "plane": "foreground", "parallax": 1, "required": true, "alpha": true }
   ],
   "ambient_actors": [
+    {
+      "id": "m01_signora_balcone",
+      "placement_runtime": [574, 214],
+      "display_size": [70, 64],
+      "plane": "between_main_and_foreground",
+      "socket": "BALCONY_RESIDENT_01",
+      "interactive": false
+    },
     {
       "id": "m01_venditore_frutta",
       "placement_runtime": [1120, 592],

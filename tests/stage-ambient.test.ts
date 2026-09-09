@@ -27,11 +27,11 @@ test('Stage 1 no longer renders procedural bird flocks', () => {
   }
 });
 
-test('M01 keeps only the approved vendor active until a balcony socket exists', () => {
+test('M01 activates the balcony resident only inside the authored socket', () => {
   const m01 = stage.modules.find((module) => module.id === 'M01');
   assert.ok(m01);
   const loops = (m01.ambient ?? []).filter((actor): actor is SpriteLoopSpec => actor.kind === 'sprite_loop');
-  assert.deepEqual(loops.map((loop) => loop.id), ['m01_venditore_frutta']);
+  assert.deepEqual(loops.map((loop) => loop.id), ['m01_signora_balcone', 'm01_venditore_frutta']);
   for (const loop of loops) {
     assert.equal(loop.frames.length, 4);
     assert.equal(loop.frame_durations.length, loop.frames.length);
@@ -39,8 +39,11 @@ test('M01 keeps only the approved vendor active until a balcony socket exists', 
     assert.ok(loop.size[0] > 0 && loop.size[1] > 0);
     for (const frame of loop.frames) assert.ok(fs.existsSync(`public/${frame}`), `${loop.id}: missing ${frame}`);
   }
-  assert.equal(collectAmbientAssets(m01).length, 4);
-  const vendor = loops[0]!;
+  assert.equal(collectAmbientAssets(m01).length, 8);
+  const balcony = loops[0]!;
+  const vendor = loops[1]!;
+  assert.deepEqual(balcony.position, [574, 214]);
+  assert.deepEqual(balcony.size, [70, 64]);
   assert.ok(vendor.size[1] >= 0.65 * 290 && vendor.size[1] <= 0.75 * 290, 'vendor must match the rear sidewalk scale');
 });
 

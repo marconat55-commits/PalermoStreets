@@ -29,6 +29,12 @@
     { "id": "M03", "status": "legacy_integrated", "runtime_module_id": "M03" },
     { "id": "M04", "status": "legacy_integrated", "runtime_module_id": "M04" }
   ],
+  "expansion": {
+    "additional_street_modules_after_M04": "planned_count_tbd",
+    "reuse_module_contract": true,
+    "rooftop_follows_street_modules": true,
+    "rule": "Ogni nuovo modulo deve avere manifest, tre layer, walk band, camere, encounter e alloggi ambientali prima dell'integrazione."
+  },
   "boss_rooftop": {
     "status": "existing_out_of_scope",
     "note": "Il tetto resta separato dal pilot dei quattro moduli stradali."

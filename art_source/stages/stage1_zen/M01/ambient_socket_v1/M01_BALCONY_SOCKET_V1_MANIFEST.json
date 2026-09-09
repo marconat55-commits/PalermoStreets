@@ -1,0 +1,22 @@
+{
+  "schema": 1,
+  "id": "M01_balcony_socket_v1",
+  "status": "integrated",
+  "created_on": "2026-09-09",
+  "generator": "OpenAI built-in image generation",
+  "build_script": "tools/build-m01-balcony-socket.ps1",
+  "contract": {
+    "socket": "BALCONY_RESIDENT_01",
+    "actor_anchor_runtime": [574, 214],
+    "actor_size_runtime": [70, 64],
+    "main_parallax": 1.0,
+    "foreground_parallax": 1.0,
+    "occlusion": "original railing pixels copied to transparent foreground"
+  },
+  "files": {
+    "concept": { "path": "art_source/stages/stage1_zen/M01/ambient_socket_v1/concept/BALCONY_RESIDENT_01_opening.png", "bytes": 1787800, "sha256": "3ec4520f6e7edb74e369f3a36fdbd508ab354d3d38e85550e7ed67c15be614c1" },
+    "far": { "path": "public/assets/backgrounds/stage1_zen/final_v2/M01/M01_FAR.png", "bytes": 3022531, "sha256": "de4a448d41bde5ed41df096071709d8e3f45cfab38edcc43a2911556f3410898" },
+    "main": { "path": "public/assets/backgrounds/stage1_zen/final_v2/M01/M01_MAIN.png", "bytes": 4860762, "sha256": "ef12e46a95ab368e0fa37c5619a27171c6cddd9dc48e11b1d38a6491d2e8f5fd" },
+    "foreground": { "path": "public/assets/backgrounds/stage1_zen/final_v2/M01/M01_FOREGROUND.png", "bytes": 37327, "sha256": "55003a2fd1d79dd24aff8de6180e1a39de74b10c70d12fb71ced27a59d39a365" }
+  }
+}

@@ -18,9 +18,12 @@
       ],
       "world_width": 2560,
       "camera_bounds": [0, 1280],
-      "playfield_y": [665, 705],
-      "walk_top": [[0, 665], [2560, 665]],
+      "playfield_y": [635, 705],
+      "walk_top": [[0, 635], [2560, 635]],
       "walk_bottom": [[0, 705], [2560, 705]],
+      "ambient": [
+        { "id": "m01_birds", "kind": "bird_flock", "bounds": [380, 92, 1760, 125], "count": 6, "speed": 31, "parallax": 0.34, "color": 3024945, "scale": 0.9, "interactive": false }
+      ],
       "entry": [147, 670],
       "exit_x": 2510,
       "heal": 12,
@@ -63,9 +66,12 @@
       ],
       "world_width": 2560,
       "camera_bounds": [0, 1280],
-      "playfield_y": [600, 705],
-      "walk_top": [[0, 600], [2560, 600]],
+      "playfield_y": [515, 705],
+      "walk_top": [[0, 515], [2560, 515]],
       "walk_bottom": [[0, 705], [2560, 705]],
+      "ambient": [
+        { "id": "m02_birds", "kind": "bird_flock", "bounds": [520, 78, 1650, 115], "count": 5, "speed": 28, "parallax": 0.31, "color": 2696748, "scale": 0.82, "interactive": false }
+      ],
       "entry": [128, 610],
       "exit_x": 2510,
       "heal": 20,
@@ -92,9 +98,12 @@
       ],
       "world_width": 2944,
       "camera_bounds": [0, 1664],
-      "playfield_y": [524, 705],
-      "walk_top": [[0, 524], [2944, 524]],
+      "playfield_y": [475, 705],
+      "walk_top": [[0, 475], [2944, 475]],
       "walk_bottom": [[0, 705], [2944, 705]],
+      "ambient": [
+        { "id": "m03_birds", "kind": "bird_flock", "bounds": [260, 72, 2310, 145], "count": 8, "speed": 36, "parallax": 0.28, "color": 2433319, "scale": 0.88, "interactive": false }
+      ],
       "entry": [147, 590],
       "exit_x": 2887,
       "heal": 12,
@@ -124,6 +133,9 @@
       "playfield_y": [510, 705],
       "walk_top": [[0, 510], [2944, 510]],
       "walk_bottom": [[0, 705], [2944, 705]],
+      "ambient": [
+        { "id": "m04_birds", "kind": "bird_flock", "bounds": [720, 82, 1650, 130], "count": 6, "speed": 33, "parallax": 0.30, "color": 2565166, "scale": 0.86, "interactive": false }
+      ],
       "entry": [147, 610],
       "exit_x": 2887,
       "heal": 16,

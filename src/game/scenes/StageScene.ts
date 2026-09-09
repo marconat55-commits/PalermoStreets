@@ -14,6 +14,7 @@ import { cameraTargetForPlayer, resolveCameraBounds, smoothCamera, type Horizont
 import { resolveArcadeAction, resolveGrabAction } from '../input/arcadeControls';
 import { SPIN_SPECIAL } from '../combat/attacks';
 import { resolveWalkBand, sampleWalkBand } from '../stage/walkBand';
+import { StageAmbientLayer } from '../stage/StageAmbientLayer';
 import { loadStageItems } from '../data/loadData';
 import { collectModuleItemAssets, collectModulePrimaryItemAssets } from '../stage/moduleItems';
 import { WorldObject } from '../objects/WorldObject';
@@ -48,6 +49,7 @@ export class StageScene implements Scene {
   private readonly backgroundLayers = new Container();
   private readonly foregroundLayers = new Container();
   private readonly backgroundLift = new Graphics();
+  private readonly ambientLayer = new StageAmbientLayer();
   private readonly world = new Container();
   private readonly ground = new Graphics();
   private readonly actors = new Container();
@@ -236,6 +238,7 @@ export class StageScene implements Scene {
     this.backgroundLayers.sortableChildren = true;
     this.foregroundLayers.sortableChildren = true;
     this.backgroundLayers.zIndex = -1000;
+    this.ambientLayer.root.zIndex = -750;
     this.backgroundLift.zIndex = -500;
     this.world.zIndex = 0;
     this.foregroundLayers.zIndex = 1000;
@@ -253,7 +256,7 @@ export class StageScene implements Scene {
     this.pickupHint.visible = false;
     this.world.addChild(this.ground, this.actors, this.warningGraphics, this.pickupHint, this.effects.root, this.debug);
     this.backgroundLift.rect(0, 0, LOGICAL_WIDTH, LOGICAL_HEIGHT).fill({ color: 0xfff0d4, alpha: 0.035 });
-    this.root.addChild(this.backgroundLayers, this.backgroundLift, this.world, this.foregroundLayers, this.screen);
+    this.root.addChild(this.backgroundLayers, this.ambientLayer.root, this.backgroundLift, this.world, this.foregroundLayers, this.screen);
 
     this.stageCardPanel
       .rect(0, 0, LOGICAL_WIDTH, 198).fill({ color: 0x050915, alpha: 0.92 })
@@ -424,6 +427,7 @@ export class StageScene implements Scene {
     this.cameraX = this.cameraBounds.min;
     this.shakeOffset = { x: 0, y: 0 };
     this.configureBackgroundLayers(this.currentModule, backgrounds);
+    this.ambientLayer.configure(this.currentModule.ambient ?? []);
     if (preservePlayer && previousIndex !== index) this.releaseModuleAssets(previousIndex);
     this.waveData = this.currentModule.waves ?? [];
     this.waveIndex = -1;
@@ -1050,6 +1054,7 @@ export class StageScene implements Scene {
 
   private updateVisualLayers(dt: number): void {
     this.updateCamera(dt);
+    this.ambientLayer.update(this.paused ? 0 : dt, this.cameraX, this.shakeOffset);
     const introProgress = 3.2 - this.stageIntroTimer;
     const showingStageIntro = this.stageIntroTimer > 0;
     this.stageCard.visible = showingStageIntro && !this.paused;
@@ -1194,6 +1199,7 @@ export class StageScene implements Scene {
   destroy(): void {
     for (const enemy of this.enemies) enemy.destroy();
     this.player.destroy();
+    this.ambientLayer.destroy();
     this.root.destroy({ children: true });
     const assetPaths = new Set<string>();
     for (const module of this.modules) for (const layer of authoredLayers(module)) assetPaths.add(layer.src);

@@ -141,6 +141,21 @@ export interface BackgroundLayerData {
   reveal_polygons?: Array<Array<[number, number]>>;
 }
 
+export interface AmbientActorData {
+  id: string;
+  kind: 'bird_flock';
+  enabled?: boolean;
+  /** World-space area in which the flock loops: [x, y, width, height]. */
+  bounds: [number, number, number, number];
+  count: number;
+  speed: number;
+  /** Camera response: 0 is screen-fixed, 1 follows the gameplay plane. */
+  parallax: number;
+  color?: number;
+  scale?: number;
+  interactive?: false;
+}
+
 export interface ModuleData {
   id: string;
   name: string;
@@ -151,6 +166,8 @@ export interface ModuleData {
   background: string;
   /** Ordered authored layers. `background` remains the backwards-compatible main fallback. */
   background_layers?: BackgroundLayerData[];
+  /** Lightweight non-interactive atmosphere rendered outside combat sorting. */
+  ambient?: AmbientActorData[];
   entry?: [number, number];
   exit_x?: number;
   heal?: number;

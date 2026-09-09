@@ -15,6 +15,7 @@ import { resolveArcadeAction, resolveGrabAction } from '../input/arcadeControls'
 import { SPIN_SPECIAL } from '../combat/attacks';
 import { resolveWalkBand, sampleWalkBand } from '../stage/walkBand';
 import { StageAmbientLayer } from '../stage/StageAmbientLayer';
+import { collectAmbientAssets } from '../stage/ambientAssets';
 import { loadStageItems } from '../data/loadData';
 import { collectModuleItemAssets, collectModulePrimaryItemAssets } from '../stage/moduleItems';
 import { WorldObject } from '../objects/WorldObject';
@@ -106,6 +107,7 @@ export class StageScene implements Scene {
 
   private readonly modules: ModuleData[];
   private readonly backgroundTextures: Array<Texture[] | null>;
+  private readonly ambientTextures: Array<Map<string, Texture> | null>;
   private readonly catalog: AssetCatalog;
   private readonly defaultEnemyId: string;
   private readonly playerId: string;
@@ -187,17 +189,22 @@ export class StageScene implements Scene {
     if (firstWave) firstCharacters.add(firstWave.character ?? defaultEnemyId);
     const itemCatalog = await loadStageItems(stageEntry);
     const firstItemAssets = collectModulePrimaryItemAssets(firstModule, itemCatalog.items);
-    const [firstBackgrounds, , itemTextureList] = await Promise.all([
+    const firstAmbientAssets = collectAmbientAssets(firstModule);
+    const [firstBackgrounds, , itemTextureList, ambientTextureList] = await Promise.all([
       Promise.all(authoredLayers(firstModule).map((layer) => catalog.loadBackground(layer.src))),
       Promise.all([...firstCharacters].map((id) => catalog.ensureCharacter(id))),
       Promise.all(firstItemAssets.map((asset) => catalog.loadBackground(asset))),
+      Promise.all(firstAmbientAssets.map((asset) => catalog.loadBackground(asset))),
     ]);
     const backgrounds = Array<Texture[] | null>(stageData.modules.length).fill(null);
     backgrounds[startModuleIndex] = firstBackgrounds;
+    const ambientTextures = Array<Map<string, Texture> | null>(stageData.modules.length).fill(null);
+    ambientTextures[startModuleIndex] = new Map(firstAmbientAssets.map((asset, index) => [asset, ambientTextureList[index]!]));
     const scene = new StageScene(
       catalog,
       stageData,
       backgrounds,
+      ambientTextures,
       playerId,
       defaultEnemyId,
       itemCatalog,
@@ -212,6 +219,7 @@ export class StageScene implements Scene {
     catalog: AssetCatalog,
     stageData: StageData,
     backgrounds: Array<Texture[] | null>,
+    ambientTextures: Array<Map<string, Texture> | null>,
     playerId: string,
     defaultEnemyId: string,
     itemCatalog: StageItemCatalog,
@@ -229,6 +237,7 @@ export class StageScene implements Scene {
     }
     this.modules = stageData.modules;
     this.backgroundTextures = backgrounds;
+    this.ambientTextures = ambientTextures;
     this.itemDefinitions = new Map(itemCatalog.items.map((item) => [item.id, item]));
     this.itemTextures = itemTextures;
     this.stageCardSubtitle.text = stageData.stage_subtitle ?? '';
@@ -308,12 +317,15 @@ export class StageScene implements Scene {
     const characterIds = new Set<string>();
     for (const wave of module.waves ?? []) characterIds.add(wave.character ?? this.defaultEnemyId);
     const activeItemAssets = collectModuleItemAssets(module, [...this.itemDefinitions.values()]);
+    const ambientAssets = collectAmbientAssets(module);
     const loading = Promise.all([
       Promise.all(authoredLayers(module).map((layer) => this.catalog.loadBackground(layer.src))),
       Promise.all([...characterIds].map((id) => this.catalog.ensureCharacter(id))),
       Promise.all(activeItemAssets.map((asset) => this.catalog.loadBackground(asset))),
-    ]).then(([backgrounds, , itemTextures]) => {
+      Promise.all(ambientAssets.map((asset) => this.catalog.loadBackground(asset))),
+    ]).then(([backgrounds, , itemTextures, ambientTextureList]) => {
       this.backgroundTextures[index] = backgrounds;
+      this.ambientTextures[index] = new Map(ambientAssets.map((asset, assetIndex) => [asset, ambientTextureList[assetIndex]!]));
       activeItemAssets.forEach((asset, itemIndex) => this.itemTextures.set(asset, itemTextures[itemIndex]!));
     }).finally(() => {
       this.moduleLoads.delete(index);
@@ -427,7 +439,7 @@ export class StageScene implements Scene {
     this.cameraX = this.cameraBounds.min;
     this.shakeOffset = { x: 0, y: 0 };
     this.configureBackgroundLayers(this.currentModule, backgrounds);
-    this.ambientLayer.configure(this.currentModule.ambient ?? []);
+    this.ambientLayer.configure(this.currentModule.ambient ?? [], this.ambientTextures[index] ?? new Map());
     if (preservePlayer && previousIndex !== index) this.releaseModuleAssets(previousIndex);
     this.waveData = this.currentModule.waves ?? [];
     this.waveIndex = -1;
@@ -493,12 +505,18 @@ export class StageScene implements Scene {
     const module = this.modules[index];
     if (!module) return;
     const retained = new Set(authoredLayers(this.currentModule).map((layer) => layer.src));
+    const retainedAmbient = new Set(collectAmbientAssets(this.currentModule));
     this.backgroundTextures[index] = null;
+    this.ambientTextures[index] = null;
     for (const layer of authoredLayers(module)) {
       if (retained.has(layer.src)) continue;
       void this.catalog.unloadAsset(layer.src).catch((error) => {
         console.warn(`${module.id}: unload background fallito`, error);
       });
+    }
+    for (const path of collectAmbientAssets(module)) {
+      if (retainedAmbient.has(path)) continue;
+      void this.catalog.unloadAsset(path).catch((error) => console.warn(`${module.id}: unload ambient fallito`, error));
     }
   }
 
@@ -1203,6 +1221,7 @@ export class StageScene implements Scene {
     this.root.destroy({ children: true });
     const assetPaths = new Set<string>();
     for (const module of this.modules) for (const layer of authoredLayers(module)) assetPaths.add(layer.src);
+    for (const module of this.modules) for (const path of collectAmbientAssets(module)) assetPaths.add(path);
     for (const item of this.itemDefinitions.values()) assetPaths.add(item.asset);
     for (const path of assetPaths) void this.catalog.unloadAsset(path).catch(() => undefined);
     for (const id of this.loadedCharacterIds) this.catalog.releaseCharacter(id);

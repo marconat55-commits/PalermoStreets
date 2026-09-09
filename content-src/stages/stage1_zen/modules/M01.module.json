@@ -40,6 +40,22 @@
     { "plane": "main", "parallax": 1, "required": true, "alpha": true },
     { "plane": "foreground", "parallax": 1.08, "required": false, "alpha": true }
   ],
+  "ambient_actors": [
+    {
+      "id": "m01_signora_balcone",
+      "placement_runtime": [350, 150],
+      "display_size": [112, 126],
+      "plane": "main_overlay",
+      "interactive": false
+    },
+    {
+      "id": "m01_venditore_frutta",
+      "placement_runtime": [1120, 592],
+      "display_size": [260, 191],
+      "plane": "main_overlay",
+      "interactive": false
+    }
+  ],
   "final_layer_contract": {
     "master_size": [3840, 1080],
     "runtime_size": [2560, 720],

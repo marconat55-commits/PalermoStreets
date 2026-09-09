@@ -279,6 +279,28 @@ for (const module of stage.modules ?? []) {
       }
     }
   }
+  const ambientIds = new Set();
+  for (const actor of module.ambient ?? []) {
+    if (!actor?.id || ambientIds.has(actor.id)) fail(`${module.id}: id ambientale mancante o duplicato ${actor?.id ?? ''}`);
+    ambientIds.add(actor?.id);
+    if (actor?.interactive !== false) fail(`${module.id}/${actor?.id}: gli attori ambientali devono essere non interattivi`);
+    if (!Number.isFinite(actor?.parallax) || actor.parallax < 0 || actor.parallax > 1.2) fail(`${module.id}/${actor?.id}: parallax non valido`);
+    if (actor?.kind === 'bird_flock') {
+      if (!Array.isArray(actor.bounds) || actor.bounds.length !== 4 || !actor.bounds.every(Number.isFinite)) fail(`${module.id}/${actor.id}: bounds stormo non validi`);
+      if (!Number.isInteger(actor.count) || actor.count < 1 || !Number.isFinite(actor.speed) || actor.speed <= 0) fail(`${module.id}/${actor.id}: configurazione stormo non valida`);
+    } else if (actor?.kind === 'sprite_loop') {
+      if (!Array.isArray(actor.frames) || actor.frames.length < 2) fail(`${module.id}/${actor.id}: loop senza frame sufficienti`);
+      for (const frame of actor.frames ?? []) if (!exists(frame)) fail(`${module.id}/${actor.id}: frame mancante ${frame}`);
+      if (!Array.isArray(actor.frame_durations) || actor.frame_durations.length !== actor.frames?.length
+        || !actor.frame_durations.every((duration) => Number.isFinite(duration) && duration >= 0.05)) {
+        fail(`${module.id}/${actor.id}: durate frame non valide`);
+      }
+      if (!Array.isArray(actor.position) || actor.position.length !== 2 || !actor.position.every(Number.isFinite)) fail(`${module.id}/${actor.id}: posizione non valida`);
+      if (!Array.isArray(actor.size) || actor.size.length !== 2 || !actor.size.every((value) => Number.isFinite(value) && value > 0)) fail(`${module.id}/${actor.id}: dimensione non valida`);
+    } else {
+      fail(`${module.id}/${actor?.id}: tipo ambientale non supportato ${actor?.kind ?? ''}`);
+    }
+  }
   const farLayer = (module.background_layers ?? []).find((layer) => layer.plane === 'far');
   const mainLayer = (module.background_layers ?? []).find((layer) => layer.plane === 'main');
   if (farLayer && mainLayer && exists(mainLayer.src) && pngColorType(mainLayer.src) === 2 && !farLayer.reveal_polygons?.length) {

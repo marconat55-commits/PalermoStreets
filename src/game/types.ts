@@ -141,7 +141,7 @@ export interface BackgroundLayerData {
   reveal_polygons?: Array<Array<[number, number]>>;
 }
 
-export interface AmbientActorData {
+export interface BirdFlockAmbientActorData {
   id: string;
   kind: 'bird_flock';
   enabled?: boolean;
@@ -155,6 +155,25 @@ export interface AmbientActorData {
   scale?: number;
   interactive?: false;
 }
+
+export interface SpriteLoopAmbientActorData {
+  id: string;
+  kind: 'sprite_loop';
+  enabled?: boolean;
+  frames: string[];
+  /** World-space anchor point. */
+  position: [number, number];
+  /** Display size in logical pixels. */
+  size: [number, number];
+  anchor?: [number, number];
+  /** Per-frame durations in seconds; one value per frame. */
+  frame_durations: number[];
+  parallax: number;
+  alpha?: number;
+  interactive?: false;
+}
+
+export type AmbientActorData = BirdFlockAmbientActorData | SpriteLoopAmbientActorData;
 
 export interface ModuleData {
   id: string;

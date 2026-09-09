@@ -8,6 +8,8 @@ Pipeline: `1.0.0`
 | character.marco | character | integrated | `content-src/characters/marco.content.json` |
 | character.talebano | character | integrated | `content-src/characters/talebano.content.json` |
 | stage.stage1_zen | stage | pilot | `content-src/stages/stage1_zen/stage1_zen.content.json` |
+| ambient.m01_signora_balcone | ambient_actor | integrated | `content-src/ambient/m01_signora_balcone.content.json` |
+| ambient.m01_venditore_frutta | ambient_actor | integrated | `content-src/ambient/m01_venditore_frutta.content.json` |
 
 ## Contratti globali
 

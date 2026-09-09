@@ -1,0 +1,21 @@
+{
+  "schema": 1,
+  "kind": "ambient_actor",
+  "id": "m01_signora_balcone",
+  "display_name": "Signora al balcone",
+  "status": "integrated",
+  "stage_module": "M01",
+  "placement": {
+    "plane": "main_overlay",
+    "depth_sort": false,
+    "interactive": false
+  },
+  "contracts": {
+    "pivot": "bottom_center",
+    "runtime_size": [112, 126],
+    "loop_required": true,
+    "frames": 4
+  },
+  "source_sheet": "art_source/ambient/stage1_zen/M01/v1/source_sheets/signora_balcone_sheet.png",
+  "runtime_directory": "public/assets/ambient/stage1_zen/M01/signora_balcone"
+}

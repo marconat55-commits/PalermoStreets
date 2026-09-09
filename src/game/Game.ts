@@ -11,6 +11,7 @@ import type { CharacterProfile, RuntimeStageEntry, StageData } from './types';
 import { publicUrl } from './data/paths';
 import { resolveStartModuleIndex } from './stage/debugStart';
 import { collectModulePrimaryItemAssets } from './stage/moduleItems';
+import { collectAmbientAssets } from './stage/ambientAssets';
 
 export class Game {
   readonly app = new Application();
@@ -217,10 +218,12 @@ export class Game {
     ]);
     const itemCatalog = await loadStageItems(this.stageEntry);
     const itemAssets = collectModulePrimaryItemAssets(firstModule, itemCatalog.items);
+    const ambientAssets = collectAmbientAssets(firstModule);
     const tasks: Array<Promise<unknown>> = [
       ...backgroundPaths.map((path) => this.catalog.loadBackground(path)),
       ...[...characterIds].map((id) => this.catalog.ensureCharacter(id)),
       ...itemAssets.map((path) => this.catalog.loadBackground(path)),
+      ...ambientAssets.map((path) => this.catalog.loadBackground(path)),
     ];
     this.initialStageLoadCompleted = 0;
     this.initialStageLoadTotal = tasks.length;

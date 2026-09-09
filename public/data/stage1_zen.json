@@ -22,7 +22,39 @@
       "walk_top": [[0, 635], [2560, 635]],
       "walk_bottom": [[0, 705], [2560, 705]],
       "ambient": [
-        { "id": "m01_birds", "kind": "bird_flock", "bounds": [380, 92, 1760, 125], "count": 6, "speed": 31, "parallax": 0.34, "color": 3024945, "scale": 0.9, "interactive": false }
+        { "id": "m01_birds", "kind": "bird_flock", "bounds": [380, 92, 1760, 125], "count": 6, "speed": 31, "parallax": 0.34, "color": 3024945, "scale": 0.9, "interactive": false },
+        {
+          "id": "m01_signora_balcone",
+          "kind": "sprite_loop",
+          "frames": [
+            "assets/ambient/stage1_zen/M01/signora_balcone/idle_01.png",
+            "assets/ambient/stage1_zen/M01/signora_balcone/idle_02.png",
+            "assets/ambient/stage1_zen/M01/signora_balcone/idle_03.png",
+            "assets/ambient/stage1_zen/M01/signora_balcone/idle_04.png"
+          ],
+          "position": [350, 150],
+          "size": [112, 126],
+          "anchor": [0.5, 1],
+          "frame_durations": [2.4, 0.8, 1.1, 2.0],
+          "parallax": 1.0,
+          "interactive": false
+        },
+        {
+          "id": "m01_venditore_frutta",
+          "kind": "sprite_loop",
+          "frames": [
+            "assets/ambient/stage1_zen/M01/venditore_frutta/idle_01.png",
+            "assets/ambient/stage1_zen/M01/venditore_frutta/idle_02.png",
+            "assets/ambient/stage1_zen/M01/venditore_frutta/idle_03.png",
+            "assets/ambient/stage1_zen/M01/venditore_frutta/idle_04.png"
+          ],
+          "position": [1120, 592],
+          "size": [260, 191],
+          "anchor": [0.5, 1],
+          "frame_durations": [1.5, 1.2, 0.9, 1.4],
+          "parallax": 1.0,
+          "interactive": false
+        }
       ],
       "entry": [147, 670],
       "exit_x": 2510,

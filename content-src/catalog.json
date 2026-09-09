@@ -33,6 +33,18 @@
       "kind": "stage",
       "status": "pilot",
       "manifest": "content-src/stages/stage1_zen/stage1_zen.content.json"
+    },
+    {
+      "id": "ambient.m01_signora_balcone",
+      "kind": "ambient_actor",
+      "status": "integrated",
+      "manifest": "content-src/ambient/m01_signora_balcone.content.json"
+    },
+    {
+      "id": "ambient.m01_venditore_frutta",
+      "kind": "ambient_actor",
+      "status": "integrated",
+      "manifest": "content-src/ambient/m01_venditore_frutta.content.json"
     }
   ]
 }

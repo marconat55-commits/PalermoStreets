@@ -1,0 +1,21 @@
+{
+  "schema": 1,
+  "kind": "ambient_actor",
+  "id": "m01_venditore_frutta",
+  "display_name": "Venditore di frutta",
+  "status": "integrated",
+  "stage_module": "M01",
+  "placement": {
+    "plane": "main_overlay",
+    "depth_sort": false,
+    "interactive": false
+  },
+  "contracts": {
+    "pivot": "bottom_center",
+    "runtime_size": [260, 191],
+    "loop_required": true,
+    "frames": 4
+  },
+  "source_sheet": "art_source/ambient/stage1_zen/M01/v1/source_sheets/venditore_frutta_sheet.png",
+  "runtime_directory": "public/assets/ambient/stage1_zen/M01/venditore_frutta"
+}

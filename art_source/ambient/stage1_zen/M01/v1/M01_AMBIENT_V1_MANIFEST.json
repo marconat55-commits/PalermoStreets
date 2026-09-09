@@ -1,0 +1,43 @@
+{
+  "schema": 1,
+  "id": "M01_ambient_v1",
+  "created_on": "2026-09-09",
+  "generator": "OpenAI built-in image generation",
+  "direction": "Hand-painted 1990s arcade beat-em-up sprites, warm Palermo golden-hour light, transparent background, restrained civilian idle motion.",
+  "slicer": "tools/slice-ambient-sheet.ps1",
+  "camera_proof": {
+    "path": "production-preview/M01/final_v1/M01_AMBIENT_CAMERA_PROOF.jpg",
+    "bytes": 141433,
+    "sha256": "5f7961c19acf5b5df4b5f52adbd05c758fecb1d925bb4a16c6b174cfdb4f528f"
+  },
+  "actors": [
+    {
+      "id": "m01_signora_balcone",
+      "source": {
+        "path": "art_source/ambient/stage1_zen/M01/v1/source_sheets/signora_balcone_sheet.png",
+        "bytes": 1736730,
+        "sha256": "ce57e8e9f9e7008cd5d49ef0720db005f7a7137ba4eefe03703dc34d5e5f7ae8"
+      },
+      "runtime": [
+        { "path": "public/assets/ambient/stage1_zen/M01/signora_balcone/idle_01.png", "bytes": 46616, "sha256": "03320892a4be6518d4287c9bdf3e262ec60c6f8068dc39dda029457c1c516010" },
+        { "path": "public/assets/ambient/stage1_zen/M01/signora_balcone/idle_02.png", "bytes": 50089, "sha256": "53bd39b5072679b9ac8f24b3dd03ffc6817f8f2fc945fcccaf5384aa765d976d" },
+        { "path": "public/assets/ambient/stage1_zen/M01/signora_balcone/idle_03.png", "bytes": 49233, "sha256": "37967d9504de5e85ac5bcbf377c82fedbc8f0f21359197f2ea1954818dc92b0f" },
+        { "path": "public/assets/ambient/stage1_zen/M01/signora_balcone/idle_04.png", "bytes": 46857, "sha256": "79084d731b3fbe3e7d2074550fb1afdec24cb60659f0157b6fee4d45bf396105" }
+      ]
+    },
+    {
+      "id": "m01_venditore_frutta",
+      "source": {
+        "path": "art_source/ambient/stage1_zen/M01/v1/source_sheets/venditore_frutta_sheet.png",
+        "bytes": 2104769,
+        "sha256": "5ab867708315e1845bfcbdf3c71290a44d622e9adfcf33ca2686632bd4bc5cc1"
+      },
+      "runtime": [
+        { "path": "public/assets/ambient/stage1_zen/M01/venditore_frutta/idle_01.png", "bytes": 94996, "sha256": "e27eb44d997e869d6dcd68de004a50512aab3af572bf10097c37f48abd43a24f" },
+        { "path": "public/assets/ambient/stage1_zen/M01/venditore_frutta/idle_02.png", "bytes": 96105, "sha256": "e6ba9a618baab1bf7c9b7d8e9e7c018507f882009a31d5cba05784d512114461" },
+        { "path": "public/assets/ambient/stage1_zen/M01/venditore_frutta/idle_03.png", "bytes": 96477, "sha256": "15409bcaae02303631564f380f916d070eb095f051620657c610d9765db7af9e" },
+        { "path": "public/assets/ambient/stage1_zen/M01/venditore_frutta/idle_04.png", "bytes": 93893, "sha256": "649dc07d86677db2a99cf46999673544163b41cadab43570b4d175d6960da7bc" }
+      ]
+    }
+  ]
+}

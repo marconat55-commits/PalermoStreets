@@ -61,6 +61,8 @@ Il pilot M02 e descritto da `content-src/stages/stage1_zen/modules/M02.module.js
 
 La versione artistica M02 v1 approvata si trova in `art_source/stages/stage1_zen/M02/final_v1/`. E ricostruita deterministicamente dagli asset esistenti: skyline FAR color-matched, MAIN con finestra cielo alpha morbida e FOREGROUND trasparente/disattivato. Il manifest contiene gli SHA-256 di master, runtime e preview; `content:check` rileva file mancanti o modificati. M02 usa ora questi layer nel runtime a 2560x720, con camera 0-1280 e walk band 515-705. La fascia segue il piano pavimentato visibile e restituisce la profondità necessaria al combattimento; strutture verticali e futuri elementi ambientali devono restare fuori dal poligono dei piedi o dichiarare collisioni dedicate.
 
+Gli attori ambientali animati usano `kind: sprite_loop`. Ogni definizione dichiara frame, posizione, dimensione, pivot, durata di ciascun frame e parallasse. Il runtime precarica i PNG insieme allo stage, li anima su un piano dietro al combattimento e li rilascia al cambio di modulo. Il pilot M01 contiene `m01_signora_balcone` e `m01_venditore_frutta`; fonti, output e SHA-256 sono registrati in `art_source/ambient/stage1_zen/M01/v1/M01_AMBIENT_V1_MANIFEST.json`.
+
 ## Definition of done
 
 Un contenuto e completato soltanto quando:

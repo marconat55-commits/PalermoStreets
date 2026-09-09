@@ -32,7 +32,7 @@
             "assets/ambient/stage1_zen/M01/signora_balcone/idle_03.png",
             "assets/ambient/stage1_zen/M01/signora_balcone/idle_04.png"
           ],
-          "position": [350, 205],
+          "position": [350, 229],
           "size": [110, 128],
           "anchor": [0.5, 1],
           "frame_durations": [2.4, 0.8, 1.1, 2.0],

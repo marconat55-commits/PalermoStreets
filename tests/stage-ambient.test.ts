@@ -71,6 +71,7 @@ test('M01 has valid balcony and vendor loops outside the combat lane', () => {
   const balcony = loops[0]!;
   const vendor = loops[1]!;
   assert.deepEqual(balcony.motion_window, [26, 27, 57, 56]);
+  assert.deepEqual(balcony.position, [350, 229], 'balcony sill must align with the adjacent facade openings');
   assert.ok(balcony.size[1] >= 0.35 * 290 && balcony.size[1] <= 0.48 * 290, 'balcony module must match the recessed facade scale');
   assert.ok(vendor.size[1] >= 0.65 * 290 && vendor.size[1] <= 0.75 * 290, 'vendor must match the rear sidewalk scale');
 });

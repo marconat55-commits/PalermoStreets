@@ -43,7 +43,7 @@
   "ambient_actors": [
     {
       "id": "m01_signora_balcone",
-      "placement_runtime": [350, 205],
+      "placement_runtime": [350, 229],
       "display_size": [110, 128],
       "motion_window": [26, 27, 57, 56],
       "plane": "main_overlay",

@@ -5,6 +5,7 @@
   "display_name": "Signora al balcone",
   "status": "integrated",
   "stage_module": "M01",
+  "position_runtime": [350, 229],
   "placement": {
     "plane": "main_overlay",
     "depth_sort": false,

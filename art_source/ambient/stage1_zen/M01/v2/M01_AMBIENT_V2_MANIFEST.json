@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "id": "M01_ambient_v2",
+  "status": "integrated",
+  "created_on": "2026-09-09",
+  "generator": "OpenAI built-in image generation",
+  "direction": "Periferia popolare dura e vissuta: espressioni guardinghe, superfici sporche, ferro ossidato, legno riparato e tessuti scoloriti. Hand-painted 1990s arcade beat-em-up sprites with transparent background.",
+  "processing": ["tools/remove-checkerboard-background.ps1", "tools/slice-ambient-sheet.ps1"],
+  "camera_proof": {
+    "path": "production-preview/M01/final_v1/M01_AMBIENT_CAMERA_PROOF.jpg",
+    "bytes": 141370,
+    "sha256": "8f8b38a0ea17e4e560e1d96851593ea52bb0502354e3578001bdb751870f20cb"
+  },
+  "actors": [
+    {
+      "id": "m01_signora_balcone",
+      "source": { "path": "art_source/ambient/stage1_zen/M01/v2/source_sheets/signora_balcone_sheet.png", "bytes": 3694747, "sha256": "c68fdb5081d36b0b87bb269f268507df8fc0eaf16d51b81e323173fdbb106e94" },
+      "runtime": [
+        { "path": "public/assets/ambient/stage1_zen/M01/signora_balcone/idle_01.png", "bytes": 82846, "sha256": "9d3c67bb4a9fd52b73afd732e6cc5566723ebad464e22bd1287ebb85614e5695" },
+        { "path": "public/assets/ambient/stage1_zen/M01/signora_balcone/idle_02.png", "bytes": 82370, "sha256": "0b3906f641970f7406cc4a216a0698b3c0a132eb063291c93854c41cba5b10df" },
+        { "path": "public/assets/ambient/stage1_zen/M01/signora_balcone/idle_03.png", "bytes": 82929, "sha256": "dd942261d3d3d6487f799bec7565d17d17aac6a3bfec83134995579b357e23e5" },
+        { "path": "public/assets/ambient/stage1_zen/M01/signora_balcone/idle_04.png", "bytes": 82732, "sha256": "12d4e96216a1d9d5da489edfe88384a677c7ebfe7d8f44fb5678dbaab4232e1b" }
+      ]
+    },
+    {
+      "id": "m01_venditore_frutta",
+      "source": { "path": "art_source/ambient/stage1_zen/M01/v2/source_sheets/venditore_frutta_sheet.png", "bytes": 2338102, "sha256": "67a36ec0864be343db651acb4c26e7a5d8d2106358c13a391e453a3ba4074e0d" },
+      "runtime": [
+        { "path": "public/assets/ambient/stage1_zen/M01/venditore_frutta/idle_01.png", "bytes": 88951, "sha256": "591ee14aa6038336ce3c04c76d18504a67d127613c1059c90ccf7e5461cfc19f" },
+        { "path": "public/assets/ambient/stage1_zen/M01/venditore_frutta/idle_02.png", "bytes": 89499, "sha256": "b5803981aae01a17510d5e70d65277dca6dc47b1dec11720de91819ba7ad4b92" },
+        { "path": "public/assets/ambient/stage1_zen/M01/venditore_frutta/idle_03.png", "bytes": 87500, "sha256": "f49cfb39dcc2eb9e65660fd22b73fa53532c2a8755a6633f22df9dabb800a6bb" },
+        { "path": "public/assets/ambient/stage1_zen/M01/venditore_frutta/idle_04.png", "bytes": 88658, "sha256": "a2b30569f1b60149d64e87a0f0d700527a98bbc70d3d2a48f0ecc3ff66316eb0" }
+      ]
+    }
+  ]
+}

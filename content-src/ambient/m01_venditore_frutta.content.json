@@ -12,10 +12,10 @@
   },
   "contracts": {
     "pivot": "bottom_center",
-    "runtime_size": [260, 191],
+    "runtime_size": [280, 205],
     "loop_required": true,
     "frames": 4
   },
-  "source_sheet": "art_source/ambient/stage1_zen/M01/v1/source_sheets/venditore_frutta_sheet.png",
+  "source_sheet": "art_source/ambient/stage1_zen/M01/v2/source_sheets/venditore_frutta_sheet.png",
   "runtime_directory": "public/assets/ambient/stage1_zen/M01/venditore_frutta"
 }

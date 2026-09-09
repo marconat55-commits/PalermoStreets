@@ -46,6 +46,6 @@ Gate finale: lo Stage 1 e completabile, presentabile e reinstallabile su una sec
 
 - M01-M04: fasce WALK sottoposte ad audit visivo e corrette.
 - M01-M04: primo attore ambientale procedurale, stormi di uccelli, integrato e configurato per modulo.
-- M01: signora al balcone e venditore di frutta integrati come cicli sprite non interattivi, precaricati con il modulo.
+- M01: signora ancorata a un modulo architettonico completo e venditore con bancarella deteriorata integrati come cicli sprite non interattivi. Direzione visiva corretta verso una borgata più sporca, dura e vissuta.
 - Sistema di audit: overlay dei layer reali, poligono WALK e sagome in scala disponibile in `tools/audit-stage-walk-bands.py`.
 - Prossimo incremento: prova visiva completa di M01 e, dopo il gate, riuso del contratto `sprite_loop` per bambini che giocano nel campetto M03.

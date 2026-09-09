@@ -1,6 +1,9 @@
 {
   "schema": 1,
   "id": "M01_ambient_v1",
+  "status": "superseded",
+  "superseded_by": "M01_ambient_v2",
+  "historical_runtime_commit": "37f30e6",
   "created_on": "2026-09-09",
   "generator": "OpenAI built-in image generation",
   "direction": "Hand-painted 1990s arcade beat-em-up sprites, warm Palermo golden-hour light, transparent background, restrained civilian idle motion.",

@@ -290,7 +290,10 @@ for (const module of stage.modules ?? []) {
       if (!Number.isInteger(actor.count) || actor.count < 1 || !Number.isFinite(actor.speed) || actor.speed <= 0) fail(`${module.id}/${actor.id}: configurazione stormo non valida`);
     } else if (actor?.kind === 'sprite_loop') {
       if (!Array.isArray(actor.frames) || actor.frames.length < 2) fail(`${module.id}/${actor.id}: loop senza frame sufficienti`);
-      for (const frame of actor.frames ?? []) if (!exists(frame)) fail(`${module.id}/${actor.id}: frame mancante ${frame}`);
+      for (const frame of actor.frames ?? []) {
+        if (!exists(frame)) fail(`${module.id}/${actor.id}: frame mancante ${frame}`);
+        else if (![4, 6].includes(pngColorType(frame))) fail(`${module.id}/${actor.id}: frame senza canale alpha ${frame}`);
+      }
       if (!Array.isArray(actor.frame_durations) || actor.frame_durations.length !== actor.frames?.length
         || !actor.frame_durations.every((duration) => Number.isFinite(duration) && duration >= 0.05)) {
         fail(`${module.id}/${actor.id}: durate frame non valide`);

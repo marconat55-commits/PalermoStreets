@@ -12,10 +12,10 @@
   },
   "contracts": {
     "pivot": "bottom_center",
-    "runtime_size": [112, 126],
+    "runtime_size": [180, 210],
     "loop_required": true,
     "frames": 4
   },
-  "source_sheet": "art_source/ambient/stage1_zen/M01/v1/source_sheets/signora_balcone_sheet.png",
+  "source_sheet": "art_source/ambient/stage1_zen/M01/v2/source_sheets/signora_balcone_sheet.png",
   "runtime_directory": "public/assets/ambient/stage1_zen/M01/signora_balcone"
 }

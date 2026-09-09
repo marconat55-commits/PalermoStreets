@@ -3,17 +3,17 @@
   "kind": "ambient_actor",
   "id": "m01_signora_balcone",
   "display_name": "Signora al balcone",
-  "status": "integrated",
+  "status": "blocked_on_stage_socket",
   "stage_module": "M01",
-  "position_runtime": [520, 145],
+  "position_runtime": null,
   "placement": {
-    "plane": "main_overlay",
+    "plane": "reserved_balcony_socket",
     "depth_sort": false,
     "interactive": false
   },
   "contracts": {
     "pivot": "bottom_center",
-    "runtime_size": [70, 64],
+    "runtime_size": null,
     "loop_required": true,
     "frames": 4
   },

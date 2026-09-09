@@ -42,13 +42,6 @@
   ],
   "ambient_actors": [
     {
-      "id": "m01_signora_balcone",
-      "placement_runtime": [520, 145],
-      "display_size": [70, 64],
-      "plane": "main_overlay",
-      "interactive": false
-    },
-    {
       "id": "m01_venditore_frutta",
       "placement_runtime": [1120, 592],
       "display_size": [280, 205],

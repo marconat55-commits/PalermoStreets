@@ -1,15 +1,15 @@
 {
   "schema": 1,
   "id": "M01_ambient_v3",
-  "status": "integrated",
+  "status": "asset_ready_stage_socket_required",
   "created_on": "2026-09-09",
   "generator": "OpenAI built-in image generation",
-  "direction": "Figura isolata della signora dentro il balcone gia presente nel fondale M01; nessuna architettura aggiunta e nessuno stormo procedurale. Hand-painted 1990s arcade beat-em-up sprite with transparent background.",
+  "direction": "Figura isolata della signora conservata come sorgente, ma esclusa dal runtime finche M01 non dispone di un alloggio architettonico con occlusione. Nessuno stormo procedurale. Hand-painted 1990s arcade beat-em-up sprite with transparent background.",
   "processing": ["tools/slice-ambient-sheet.ps1"],
   "camera_proof": {
     "path": "production-preview/M01/final_v1/M01_AMBIENT_CAMERA_PROOF.jpg",
-    "bytes": 140410,
-    "sha256": "262630f1a8e8ade0c983d3338370b006e01209ebf7b9731e30ed83c3305dbaef"
+    "bytes": 143291,
+    "sha256": "af330a6f95a9d18237a96ef99123f945a20125043202c4808554b346348656b5"
   },
   "actors": [
     {

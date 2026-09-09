@@ -141,21 +141,6 @@ export interface BackgroundLayerData {
   reveal_polygons?: Array<Array<[number, number]>>;
 }
 
-export interface BirdFlockAmbientActorData {
-  id: string;
-  kind: 'bird_flock';
-  enabled?: boolean;
-  /** World-space area in which the flock loops: [x, y, width, height]. */
-  bounds: [number, number, number, number];
-  count: number;
-  speed: number;
-  /** Camera response: 0 is screen-fixed, 1 follows the gameplay plane. */
-  parallax: number;
-  color?: number;
-  scale?: number;
-  interactive?: false;
-}
-
 export interface SpriteLoopAmbientActorData {
   id: string;
   kind: 'sprite_loop';
@@ -175,7 +160,7 @@ export interface SpriteLoopAmbientActorData {
   interactive?: false;
 }
 
-export type AmbientActorData = BirdFlockAmbientActorData | SpriteLoopAmbientActorData;
+export type AmbientActorData = SpriteLoopAmbientActorData;
 
 export interface ModuleData {
   id: string;

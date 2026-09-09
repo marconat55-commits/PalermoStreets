@@ -23,22 +23,6 @@
       "walk_bottom": [[0, 705], [2560, 705]],
       "ambient": [
         {
-          "id": "m01_signora_balcone",
-          "kind": "sprite_loop",
-          "frames": [
-            "assets/ambient/stage1_zen/M01/signora_balcone/idle_01.png",
-            "assets/ambient/stage1_zen/M01/signora_balcone/idle_02.png",
-            "assets/ambient/stage1_zen/M01/signora_balcone/idle_03.png",
-            "assets/ambient/stage1_zen/M01/signora_balcone/idle_04.png"
-          ],
-          "position": [520, 145],
-          "size": [70, 64],
-          "anchor": [0.5, 1],
-          "frame_durations": [2.4, 0.8, 1.1, 2.0],
-          "parallax": 1.0,
-          "interactive": false
-        },
-        {
           "id": "m01_venditore_frutta",
           "kind": "sprite_loop",
           "frames": [

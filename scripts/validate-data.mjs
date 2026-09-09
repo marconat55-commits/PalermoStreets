@@ -285,10 +285,7 @@ for (const module of stage.modules ?? []) {
     ambientIds.add(actor?.id);
     if (actor?.interactive !== false) fail(`${module.id}/${actor?.id}: gli attori ambientali devono essere non interattivi`);
     if (!Number.isFinite(actor?.parallax) || actor.parallax < 0 || actor.parallax > 1.2) fail(`${module.id}/${actor?.id}: parallax non valido`);
-    if (actor?.kind === 'bird_flock') {
-      if (!Array.isArray(actor.bounds) || actor.bounds.length !== 4 || !actor.bounds.every(Number.isFinite)) fail(`${module.id}/${actor.id}: bounds stormo non validi`);
-      if (!Number.isInteger(actor.count) || actor.count < 1 || !Number.isFinite(actor.speed) || actor.speed <= 0) fail(`${module.id}/${actor.id}: configurazione stormo non valida`);
-    } else if (actor?.kind === 'sprite_loop') {
+    if (actor?.kind === 'sprite_loop') {
       if (!Array.isArray(actor.frames) || actor.frames.length < 2) fail(`${module.id}/${actor.id}: loop senza frame sufficienti`);
       for (const frame of actor.frames ?? []) {
         if (!exists(frame)) fail(`${module.id}/${actor.id}: frame mancante ${frame}`);

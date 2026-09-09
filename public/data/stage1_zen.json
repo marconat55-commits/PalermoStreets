@@ -59,9 +59,6 @@
       "exit_x": 2510,
       "heal": 12,
       "items": [
-        { "item": "metal_pipe", "position": [405, 686] },
-        { "item": "brick", "position": [610, 681] },
-        { "item": "trash_bag", "position": [1180, 688] },
         { "item": "trash_bin", "position": [1580, 690] }
       ],
       "waves": [
@@ -74,10 +71,10 @@
           "name": "TALEBANO"
         },
         {
-          "trigger_x": 1180,
-          "health": 76,
-          "aggression": 0.92,
-          "spawns": [[1510, 682]],
+          "trigger_x": 1320,
+          "health": 64,
+          "aggression": 0.82,
+          "spawns": [[1180, 600], [1820, 690]],
           "character": "a_puaicca",
           "name": "A PUAICCA"
         }

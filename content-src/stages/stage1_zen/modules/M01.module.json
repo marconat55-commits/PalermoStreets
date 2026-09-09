@@ -16,6 +16,15 @@
     "runtime_integration": true
   },
   "ambient_socket_manifest": "art_source/stages/stage1_zen/M01/ambient_socket_v1/M01_BALCONY_SOCKET_V1_MANIFEST.json",
+  "encounter_contract": {
+    "version": 1,
+    "role": "tutorial_then_depth_pincer",
+    "waves": 2,
+    "enemy_count": 3,
+    "characters": ["talebano", "a_puaicca"],
+    "boss": false,
+    "design_note": "Il primo avversario insegna il combattimento a mani nude; la seconda ondata usa due quote Y e ingressi sui lati opposti del giocatore. Le armi restano escluse finche non esistono pose dedicate."
+  },
   "integration": {
     "status": "integrated",
     "runtime_module_id": "M01"

@@ -26,6 +26,8 @@ non promuoverli in produzione, poiché ereditano Marco e contengono valori provv
 Prossima produzione: un ciclo/mossa alla volta, preview animata e approvazione,
 poi metadata/atlas e registrazione fra i personaggi runtime solo a pack valido.
 
+Decisione 2026-09-09: Julien è il primo pilot della pipeline video-guidata. Il test iniziale usa un solo pugno diretto di 1-2 secondi, estratto a 12 fps; nessun frame entra nel runtime prima del gate umano. Il manifest di preparazione è `content-src/drafts/characters/julien.content.json` e il comando è `npm run character:video-pilot`.
+
 Verifiche: suite completa 97 test; dati, arte, TypeScript e build passati.
 Browser: ritratti Leandra/Julien, navigazione e Invio bloccato verificati;
 nessun errore console. Nessuna modifica al combattimento.

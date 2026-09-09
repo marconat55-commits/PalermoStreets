@@ -1,0 +1,38 @@
+{
+  "schema": 1,
+  "kind": "character",
+  "id": "julien",
+  "display_name": "JULIEN",
+  "status": "draft",
+  "archetype": "player_heavy_v1",
+  "runtime_profile": null,
+  "source": {
+    "identity_lock": "art_source/characters/julien/approved/JULIEN_MASTER_3Q.png",
+    "identity_front": "art_source/characters/julien/approved/JULIEN_MASTER_FRONT.png",
+    "authoring_format": "video_guided_keyframes",
+    "license": "project_owned"
+  },
+  "contracts": {
+    "canvas": [640, 420],
+    "baseline_y": 400,
+    "runtime_scale": 1,
+    "visual_height": null,
+    "facing": "right"
+  },
+  "pilot": {
+    "motion": "direct_punch",
+    "driving_video_seconds": [1, 3],
+    "extraction_fps": 12,
+    "target_frames": [4, 6],
+    "integration": "blocked_until_human_approval"
+  },
+  "quality_gates": [
+    "identity_consistency",
+    "motion_readability",
+    "full_limb_integrity",
+    "alpha_edge_cleanliness",
+    "baseline_lock",
+    "runtime_scale_lock",
+    "animation_continuity"
+  ]
+}

@@ -22,7 +22,7 @@
       "walk_top": [[0, 635], [2560, 635]],
       "walk_bottom": [[0, 705], [2560, 705]],
       "ambient": [
-        { "id": "m01_birds", "kind": "bird_flock", "bounds": [380, 92, 1760, 125], "count": 6, "speed": 31, "parallax": 0.34, "color": 3024945, "scale": 0.9, "interactive": false },
+        { "id": "m01_birds", "kind": "bird_flock", "bounds": [380, 72, 1760, 118], "count": 5, "speed": 36, "parallax": 0.34, "color": 14210508, "scale": 1.45, "interactive": false },
         {
           "id": "m01_signora_balcone",
           "kind": "sprite_loop",
@@ -32,10 +32,11 @@
             "assets/ambient/stage1_zen/M01/signora_balcone/idle_03.png",
             "assets/ambient/stage1_zen/M01/signora_balcone/idle_04.png"
           ],
-          "position": [350, 265],
-          "size": [180, 210],
+          "position": [350, 205],
+          "size": [110, 128],
           "anchor": [0.5, 1],
           "frame_durations": [2.4, 0.8, 1.1, 2.0],
+          "motion_window": [26, 27, 57, 56],
           "parallax": 1.0,
           "interactive": false
         },
@@ -102,7 +103,7 @@
       "walk_top": [[0, 515], [2560, 515]],
       "walk_bottom": [[0, 705], [2560, 705]],
       "ambient": [
-        { "id": "m02_birds", "kind": "bird_flock", "bounds": [520, 78, 1650, 115], "count": 5, "speed": 28, "parallax": 0.31, "color": 2696748, "scale": 0.82, "interactive": false }
+        { "id": "m02_birds", "kind": "bird_flock", "bounds": [520, 68, 1650, 112], "count": 4, "speed": 34, "parallax": 0.31, "color": 14868438, "scale": 1.35, "interactive": false }
       ],
       "entry": [128, 610],
       "exit_x": 2510,
@@ -134,7 +135,7 @@
       "walk_top": [[0, 475], [2944, 475]],
       "walk_bottom": [[0, 705], [2944, 705]],
       "ambient": [
-        { "id": "m03_birds", "kind": "bird_flock", "bounds": [260, 72, 2310, 145], "count": 8, "speed": 36, "parallax": 0.28, "color": 2433319, "scale": 0.88, "interactive": false }
+        { "id": "m03_birds", "kind": "bird_flock", "bounds": [260, 58, 2310, 132], "count": 6, "speed": 42, "parallax": 0.28, "color": 13619145, "scale": 1.5, "interactive": false }
       ],
       "entry": [147, 590],
       "exit_x": 2887,
@@ -166,7 +167,7 @@
       "walk_top": [[0, 510], [2944, 510]],
       "walk_bottom": [[0, 705], [2944, 705]],
       "ambient": [
-        { "id": "m04_birds", "kind": "bird_flock", "bounds": [720, 82, 1650, 130], "count": 6, "speed": 33, "parallax": 0.30, "color": 2565166, "scale": 0.86, "interactive": false }
+        { "id": "m04_birds", "kind": "bird_flock", "bounds": [720, 66, 1650, 120], "count": 5, "speed": 38, "parallax": 0.30, "color": 14144714, "scale": 1.4, "interactive": false }
       ],
       "entry": [147, 610],
       "exit_x": 2887,

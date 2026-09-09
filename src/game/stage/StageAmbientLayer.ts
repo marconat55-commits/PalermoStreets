@@ -10,6 +10,7 @@ interface BirdInstance {
 }
 
 interface SpriteLoopInstance {
+  root: Container;
   sprite: Sprite;
   spec: SpriteLoopAmbientActorData;
   textures: Texture[];
@@ -24,10 +25,19 @@ function seedFromId(id: string, index: number): number {
 
 function birdGraphic(color: number, scale: number): Graphics {
   return new Graphics()
-    .moveTo(-11 * scale, 2 * scale)
-    .quadraticCurveTo(-6 * scale, -4 * scale, 0, 0)
-    .quadraticCurveTo(6 * scale, -4 * scale, 11 * scale, 2 * scale)
-    .stroke({ color, width: Math.max(1.2, 1.8 * scale), alpha: 0.86 });
+    .moveTo(-17 * scale, 3 * scale)
+    .quadraticCurveTo(-11 * scale, -7 * scale, -2 * scale, -1 * scale)
+    .lineTo(0, 1.5 * scale)
+    .lineTo(2 * scale, -1 * scale)
+    .quadraticCurveTo(11 * scale, -7 * scale, 17 * scale, 3 * scale)
+    .quadraticCurveTo(10 * scale, 0, 2 * scale, 3 * scale)
+    .lineTo(-2 * scale, 3 * scale)
+    .quadraticCurveTo(-10 * scale, 0, -17 * scale, 3 * scale)
+    .closePath()
+    .fill({ color, alpha: 0.94 })
+    .stroke({ color: 0x45423d, width: Math.max(0.9, 1.15 * scale), alpha: 0.82 })
+    .ellipse(0, 2.2 * scale, 4.2 * scale, 1.8 * scale)
+    .fill({ color: 0x5b5751, alpha: 0.9 });
 }
 
 export class StageAmbientLayer {
@@ -49,7 +59,7 @@ export class StageAmbientLayer {
           const scale = (spec.scale ?? 1) * (0.72 + stableUnit(seed + 11) * 0.48);
           const root = new Container();
           root.addChild(birdGraphic(spec.color ?? 0x28231f, scale));
-          root.alpha = 0.68 + stableUnit(seed + 19) * 0.25;
+          root.alpha = 0.82 + stableUnit(seed + 19) * 0.14;
           this.root.addChild(root);
           this.birds.push({ root, seed, spec });
         }
@@ -58,13 +68,30 @@ export class StageAmbientLayer {
       const textures = spec.frames.map((path) => textureMap.get(path));
       if (textures.some((texture) => !texture)) throw new Error(`${spec.id}: frame ambientale non caricato`);
       const sprite = new Sprite(textures[0]!);
-      sprite.anchor.set(...(spec.anchor ?? [0.5, 1]));
+      const anchor = spec.anchor ?? [0.5, 1];
+      sprite.anchor.set(...anchor);
       sprite.width = spec.size[0];
       sprite.height = spec.size[1];
       sprite.alpha = spec.alpha ?? 1;
-      this.root.addChild(sprite);
+      const root = new Container();
+      if (spec.motion_window) {
+        const shell = new Sprite(textures[0]!);
+        shell.anchor.set(...anchor);
+        shell.width = spec.size[0];
+        shell.height = spec.size[1];
+        shell.alpha = spec.alpha ?? 1;
+        const [x, y, width, height] = spec.motion_window;
+        const mask = new Graphics()
+          .rect(-anchor[0] * spec.size[0] + x, -anchor[1] * spec.size[1] + y, width, height)
+          .fill(0xffffff);
+        sprite.mask = mask;
+        root.addChild(shell, sprite, mask);
+      } else {
+        root.addChild(sprite);
+      }
+      this.root.addChild(root);
       const cycle = spec.frame_durations.reduce((sum, duration) => sum + Math.max(0.05, duration), 0);
-      this.spriteLoops.push({ sprite, spec, textures: textures as Texture[], phase: stableUnit(seedFromId(spec.id, 0)) * cycle });
+      this.spriteLoops.push({ root, sprite, spec, textures: textures as Texture[], phase: stableUnit(seedFromId(spec.id, 0)) * cycle });
     }
   }
 
@@ -82,7 +109,7 @@ export class StageAmbientLayer {
     for (const loop of this.spriteLoops) {
       const frameIndex = frameAtTime(loop.spec.frame_durations, this.elapsed + loop.phase);
       loop.sprite.texture = loop.textures[frameIndex] ?? loop.textures[0]!;
-      loop.sprite.position.set(
+      loop.root.position.set(
         loop.spec.position[0] - cameraX * loop.spec.parallax + shake.x * loop.spec.parallax,
         loop.spec.position[1] + shake.y * loop.spec.parallax,
       );

@@ -11,6 +11,7 @@ interface BirdSpec {
   count: number;
   speed: number;
   parallax: number;
+  scale: number;
   interactive: false;
 }
 
@@ -21,6 +22,7 @@ interface SpriteLoopSpec {
   position: [number, number];
   size: [number, number];
   frame_durations: number[];
+  motion_window?: [number, number, number, number];
   parallax: number;
   interactive: false;
 }
@@ -48,6 +50,7 @@ test('every Stage 1 module has a bounded non-interactive sky flock', () => {
       assert.ok(actor.count >= 3 && actor.count <= 10, `${actor.id}: restrained flock density`);
       assert.ok(actor.speed >= 20 && actor.speed <= 55, `${actor.id}: readable background speed`);
       assert.ok(actor.parallax >= 0.2 && actor.parallax <= 0.5, `${actor.id}: background parallax`);
+      assert.ok(actor.scale >= 1.2 && actor.scale <= 1.7, `${actor.id}: gull silhouette scale`);
     }
   }
 });
@@ -65,6 +68,11 @@ test('M01 has valid balcony and vendor loops outside the combat lane', () => {
     for (const frame of loop.frames) assert.ok(fs.existsSync(`public/${frame}`), `${loop.id}: missing ${frame}`);
   }
   assert.equal(collectAmbientAssets(m01).length, 8);
+  const balcony = loops[0]!;
+  const vendor = loops[1]!;
+  assert.deepEqual(balcony.motion_window, [26, 27, 57, 56]);
+  assert.ok(balcony.size[1] >= 0.35 * 290 && balcony.size[1] <= 0.48 * 290, 'balcony module must match the recessed facade scale');
+  assert.ok(vendor.size[1] >= 0.65 * 290 && vendor.size[1] <= 0.75 * 290, 'vendor must match the rear sidewalk scale');
 });
 
 test('sprite loop durations select stable frames and wrap', () => {

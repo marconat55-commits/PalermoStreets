@@ -168,6 +168,8 @@ export interface SpriteLoopAmbientActorData {
   anchor?: [number, number];
   /** Per-frame durations in seconds; one value per frame. */
   frame_durations: number[];
+  /** Optional fixed outer shell; only this local rectangle receives animated frames. */
+  motion_window?: [number, number, number, number];
   parallax: number;
   alpha?: number;
   interactive?: false;

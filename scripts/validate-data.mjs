@@ -300,6 +300,14 @@ for (const module of stage.modules ?? []) {
       }
       if (!Array.isArray(actor.position) || actor.position.length !== 2 || !actor.position.every(Number.isFinite)) fail(`${module.id}/${actor.id}: posizione non valida`);
       if (!Array.isArray(actor.size) || actor.size.length !== 2 || !actor.size.every((value) => Number.isFinite(value) && value > 0)) fail(`${module.id}/${actor.id}: dimensione non valida`);
+      if (actor.motion_window && (!Array.isArray(actor.motion_window) || actor.motion_window.length !== 4
+        || !actor.motion_window.every(Number.isFinite)
+        || actor.motion_window[0] < 0 || actor.motion_window[1] < 0
+        || actor.motion_window[2] <= 0 || actor.motion_window[3] <= 0
+        || actor.motion_window[0] + actor.motion_window[2] > actor.size?.[0]
+        || actor.motion_window[1] + actor.motion_window[3] > actor.size?.[1])) {
+        fail(`${module.id}/${actor.id}: finestra movimento non valida`);
+      }
     } else {
       fail(`${module.id}/${actor?.id}: tipo ambientale non supportato ${actor?.kind ?? ''}`);
     }

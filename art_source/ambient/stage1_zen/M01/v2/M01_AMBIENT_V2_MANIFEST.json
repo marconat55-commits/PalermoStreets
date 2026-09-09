@@ -8,8 +8,8 @@
   "processing": ["tools/remove-checkerboard-background.ps1", "tools/slice-ambient-sheet.ps1"],
   "camera_proof": {
     "path": "production-preview/M01/final_v1/M01_AMBIENT_CAMERA_PROOF.jpg",
-    "bytes": 141370,
-    "sha256": "8f8b38a0ea17e4e560e1d96851593ea52bb0502354e3578001bdb751870f20cb"
+    "bytes": 140809,
+    "sha256": "23cac6e179e6fb7e620f84b70ddfe750129151671d4a0b957a58952d1541dfc3"
   },
   "actors": [
     {

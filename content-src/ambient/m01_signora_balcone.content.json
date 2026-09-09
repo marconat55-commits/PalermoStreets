@@ -12,7 +12,8 @@
   },
   "contracts": {
     "pivot": "bottom_center",
-    "runtime_size": [180, 210],
+    "runtime_size": [110, 128],
+    "motion_window": [26, 27, 57, 56],
     "loop_required": true,
     "frames": 4
   },

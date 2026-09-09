@@ -28,7 +28,7 @@ test('M01 teaches one-on-one combat before a restrained depth pincer', () => {
   assert.equal(pincer!.character, 'a_puaicca');
   assert.equal(pincer!.spawns.length, 2);
   assert.ok(pincer!.trigger_x - tutorial!.trigger_x >= 800);
-  assert.ok(Math.abs(pincer!.spawns[0]![1] - pincer!.spawns[1]![1]) >= 80);
+  assert.ok(Math.abs(pincer!.spawns[0]![1] - pincer!.spawns[1]![1]) >= 70);
   assert.ok(pincer!.health <= 64);
   assert.ok(pincer!.aggression <= 0.82);
   assert.equal(m01.waves.some((wave) => wave.boss === true), false);

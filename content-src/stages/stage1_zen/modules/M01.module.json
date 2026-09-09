@@ -39,7 +39,7 @@
     "camera_bounds_runtime": [0, 1280]
   },
   "walk_band": {
-    "top_runtime_y": 570,
+    "top_runtime_y": 625,
     "bottom_runtime_y": 705,
     "entry_runtime": [128, 670],
     "exit_runtime_x": 2510,
@@ -76,7 +76,7 @@
       { "plane": "foreground", "file": "M01_FOREGROUND_MASTER.png", "alpha": true, "parallax": 1.08, "optional": true }
     ],
     "acceptance": [
-      "La fascia WALK segue la prospettiva: 605 ai bordi, 570 nel cortile centrale e 705 sul limite anteriore; marciapiedi e porticati restano esclusi.",
+      "La fascia WALK segue il bordo carreggiata indicato dal test in gioco: 625 a sinistra, discesa graduale fino a 640 a destra e 705 sul limite anteriore.",
       "Porte, portici e parapetti rispettano la sagoma attore da 290px.",
       "Nessun bordo o alone è visibile tra FAR e MAIN.",
       "Le camere X=0, X=640 e X=1280 devono essere approvate prima dell'integrazione."

@@ -18,8 +18,8 @@
       ],
       "world_width": 2560,
       "camera_bounds": [0, 1280],
-      "playfield_y": [625, 705],
-      "walk_top": [[0, 625], [640, 625], [1280, 630], [1920, 635], [2560, 640]],
+      "playfield_y": [635, 705],
+      "walk_top": [[0, 635], [640, 637], [1280, 640], [1920, 645], [2560, 650]],
       "walk_bottom": [[0, 705], [2560, 705]],
       "ambient": [
         {
@@ -75,7 +75,7 @@
           "trigger_x": 1320,
           "health": 64,
           "aggression": 0.82,
-          "spawns": [[1180, 630], [1820, 705]],
+          "spawns": [[1180, 640], [1820, 705]],
           "character": "a_puaicca",
           "name": "A PUAICCA"
         }

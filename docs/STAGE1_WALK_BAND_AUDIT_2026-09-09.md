@@ -8,7 +8,7 @@ L'overlay sui quattro MAIN effettivamente caricati mostrava fasce troppo basse r
 
 Le fasce runtime sono riallineate ai limiti già autorizzati nella calibrazione V3:
 
-- M01 strada/cortile: linea verde approvata `635 → 650`, con discesa prospettica graduale verso destra; limite anteriore `705` (55–70 px).
+- M01 strada/cortile: linea verde approvata `650 → 665`, con discesa prospettica graduale verso destra; limite anteriore `705` (40–55 px).
 - M02 cortile/porticato: `515–705` (190 px);
 - M03 campetto: `475–705` (230 px);
 - M04 ingresso: `510–705` (195 px, invariata).
@@ -19,7 +19,7 @@ M01 segue la linea indicata durante il test in gioco e resta interamente sulla c
 
 `tools/audit-stage-walk-bands.py` compone il MAIN con trasformazioni identiche al runtime, sovrappone area dei piedi e sagome attore da 290 px e genera `build/stage_walk_audit/stage1_walk_contact_sheet.jpg`. Richiede Pillow 11.3 o successivo; l'output è diagnostico e non modifica alcun PNG del gioco.
 
-I test bloccano la calibrazione verde tracciata sul fondale: M01 conserva 55–70 px e una lieve pendenza prospettica; M02–M04 almeno 190 px. La validazione geometrica continua a controllare ingressi, spawn, world width, camera e limiti 0–720.
+I test bloccano la calibrazione verde tracciata sul fondale: M01 conserva 40–55 px e una lieve pendenza prospettica; M02–M04 almeno 190 px. La validazione geometrica continua a controllare ingressi, spawn, world width, camera e limiti 0–720.
 
 ## Prossimo gate Stage 1
 

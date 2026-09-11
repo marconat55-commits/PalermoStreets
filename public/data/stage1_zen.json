@@ -18,8 +18,8 @@
       ],
       "world_width": 2560,
       "camera_bounds": [0, 1280],
-      "playfield_y": [635, 705],
-      "walk_top": [[0, 635], [640, 637], [1280, 640], [1920, 645], [2560, 650]],
+      "playfield_y": [650, 705],
+      "walk_top": [[0, 650], [640, 652], [1280, 655], [1920, 660], [2560, 665]],
       "walk_bottom": [[0, 705], [2560, 705]],
       "ambient": [
         {
@@ -55,7 +55,7 @@
           "interactive": false
         }
       ],
-      "entry": [147, 670],
+      "entry": [147, 680],
       "exit_x": 2510,
       "heal": 12,
       "items": [
@@ -75,7 +75,7 @@
           "trigger_x": 1320,
           "health": 64,
           "aggression": 0.82,
-          "spawns": [[1180, 640], [1820, 705]],
+          "spawns": [[1180, 660], [1820, 705]],
           "character": "a_puaicca",
           "name": "A PUAICCA"
         }

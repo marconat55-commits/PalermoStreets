@@ -68,13 +68,13 @@ test('Zen modules expose the authored Capcom-style depth lanes', () => {
   const m02 = stage.modules.find((module) => module.id === 'M02');
   const m03 = stage.modules.find((module) => module.id === 'M03');
   const m04 = stage.modules.find((module) => module.id === 'M04');
-  assert.deepEqual(m01?.playfield_y, [635, 705]);
+  assert.deepEqual(m01?.playfield_y, [650, 705]);
   assert.deepEqual(m02?.playfield_y, [515, 705]);
   assert.deepEqual(m03?.playfield_y, [475, 705]);
   assert.deepEqual(m04?.playfield_y, [510, 705]);
   assert.ok(m01 && m02 && m03 && m04);
-  assert.equal(m01.playfield_y[1] - m01.playfield_y[0], 70, 'M01 road lane must match the user-authored green line');
-  assert.deepEqual(m01.walk_top, [[0, 635], [640, 637], [1280, 640], [1920, 645], [2560, 650]]);
+  assert.equal(m01.playfield_y[1] - m01.playfield_y[0], 55, 'M01 road lane must match the user-authored green line');
+  assert.deepEqual(m01.walk_top, [[0, 650], [640, 652], [1280, 655], [1920, 660], [2560, 665]]);
   for (const module of [m02, m03, m04]) {
     assert.ok(module.playfield_y[1] - module.playfield_y[0] >= 190, `${module.id}: combat lane is too shallow`);
   }

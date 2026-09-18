@@ -32,6 +32,8 @@ Enemies may keep a smaller attack set, but must provide locomotion, hit, knockdo
 - `frame_blend` is not authored in character profiles. The Animator owns only a bounded 12-16 ms state raccord; it must never hide duplicated PNGs or replace missing key poses.
 - `frame_blend` is forbidden on `idle` and `idle_variant_N`; personality animation must use authored intermediate poses without periodic opacity flicker.
 
+The runtime cadence follows a compact CPS-era rule: six selected poses for walk/run, three for brake/land, and only the key anticipation-contact-recovery poses for one-shot actions. `source_frames` may remain larger, so art is preserved while the runtime and future production budget stay small. Timing and held contact frames create weight; extra in-betweens are not the default quality target.
+
 `data/character_templates/main_player_full_v2.json` defines the generation target for future protagonists: shared side-facing locomotion, one mandatory personality idle and complete combat/reaction coverage. Additional narrative idles are optional expansions after the core is approved.
 
 ## Runtime controller

@@ -22,19 +22,19 @@
       "phases": ["guard_static"]
     },
     "walk": {
-      "frames": 8,
+      "frames": 6,
       "loop": true,
-      "phases": ["right_contact", "right_down", "right_pass", "right_up", "left_contact", "left_down", "left_pass", "left_up"]
+      "phases": ["right_contact", "right_down", "right_pass", "left_contact", "left_down", "left_pass"]
     },
     "run": {
-      "frames": 8,
+      "frames": 6,
       "loop": true,
-      "phases": ["right_contact", "right_compress", "right_drive", "flight_a", "left_contact", "left_compress", "left_drive", "flight_b"]
+      "phases": ["right_contact", "right_drive", "flight_a", "left_contact", "left_drive", "flight_b"]
     },
     "brake": {
-      "frames": 4,
+      "frames": 3,
       "loop": false,
-      "phases": ["run_exit", "plant", "compression", "guard"]
+      "phases": ["run_exit", "plant_compression", "guard"]
     },
     "jump": {
       "frames": 5,
@@ -42,9 +42,9 @@
       "phases": ["rise", "tuck", "apex", "open", "descent"]
     },
     "land": {
-      "frames": 4,
+      "frames": 3,
       "loop": false,
-      "phases": ["contact", "compression", "half_rise", "idle"]
+      "phases": ["contact", "compression", "idle"]
     }
   },
   "qa": {

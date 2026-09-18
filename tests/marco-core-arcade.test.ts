@@ -9,8 +9,8 @@ test('Marco Core carica solo locomozione laterale e archivia le varianti ridonda
     assert.equal(marco.animations[clip], undefined, `${clip} non deve essere caricato`);
     assert.ok(marco.archived_animations[clip], `${clip} deve restare conservato`);
   }
-  assert.equal(marco.animations.walk.frames, 8);
-  assert.equal(marco.animations.run.frames, 8);
+  assert.equal(marco.animations.walk.frames, 6);
+  assert.equal(marco.animations.run.frames, 6);
   assert.equal(marco.animations.idle.frames, 1);
   assert.equal(marco.animations.idle_variant_1, undefined);
   assert.ok(marco.archived_animations.idle_variant_1);
@@ -29,7 +29,7 @@ test('ogni selezione runtime usa sorgenti unici e validi', () => {
 test('il budget runtime resta compatto senza ridurre caduta e rialzata', () => {
   const logicalFrames = Object.values(marco.animations as Record<string, { frames: number }>)
     .reduce((total, spec) => total + spec.frames, 0);
-  assert.equal(logicalFrames, 128);
+  assert.equal(logicalFrames, 122);
   assert.equal(marco.animations.jump.frames, 5);
   assert.deepEqual(marco.animations.jump.visual_scales, [1]);
   assert.equal(marco.animations.super.frames, 5);

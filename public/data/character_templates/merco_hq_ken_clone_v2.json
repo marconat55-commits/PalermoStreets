@@ -22,9 +22,9 @@
       "phases": ["neutral", "early_inhale", "late_inhale", "breath_peak", "early_exhale", "late_exhale"]
     },
     "walk": {
-      "frames": 8,
+      "frames": 6,
       "loop": true,
-      "phases": ["right_contact", "right_down", "right_pass", "right_up", "left_contact", "left_down", "left_pass", "left_up"]
+      "phases": ["right_contact", "right_down", "right_pass", "left_contact", "left_down", "left_pass"]
     },
     "run": {
       "frames": 6,
@@ -32,19 +32,19 @@
       "phases": ["guard_start", "first_gather", "compression", "drive", "long_stride", "return_drive"]
     },
     "brake": {
-      "frames": 4,
+      "frames": 3,
       "loop": false,
-      "phases": ["run_exit", "plant", "compression", "guard"]
+      "phases": ["run_exit", "plant_compression", "guard"]
     },
     "jump": {
-      "frames": 9,
+      "frames": 6,
       "loop": false,
-      "phases": ["launch", "rise", "tuck", "compression", "apex", "open", "descent_tuck", "descent_open", "landing_ready"]
+      "phases": ["launch", "rise", "compression", "apex", "descent", "landing_ready"]
     },
     "jump_forward": {
-      "frames": 8,
+      "frames": 6,
       "loop": false,
-      "phases": ["launch", "rotation_entry", "forward_tuck", "inverted_tuck", "return_inverted", "return_tuck", "descent_open", "landing_ready"]
+      "phases": ["launch", "rotation_entry", "forward_tuck", "inverted_return", "descent_open", "landing_ready"]
     },
     "land": {
       "frames": 2,

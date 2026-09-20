@@ -9,8 +9,8 @@
   "clips": {
     "idle": { "unique_frames": 4, "reference_clip": "idle", "reference_sequence": [1, 2, 4, 6], "durations": [0.18, 0.16, 0.18, 0.2], "loop": true },
     "walk": { "unique_frames": 6, "reference_clip": "walk", "reference_sequence": [1, 2, 4, 5, 6, 8], "durations": [0.14, 0.12, 0.14, 0.14, 0.12, 0.14], "loop": true },
-    "attack": { "unique_frames": 5, "reference_clip": "attack", "reference_sequence": [1, 2, 4, 5, 6], "durations": [0.13, 0.08, 0.1, 0.1, 0.18], "contact_frame": 3, "loop": false },
-    "heavy": { "unique_frames": 6, "reference_clip": "heavy", "reference_sequence": [1, 2, 3, 4, 5, 7], "durations": [0.16, 0.12, 0.09, 0.13, 0.15, 0.22], "contact_frame": 4, "loop": false },
+    "attack": { "unique_frames": 3, "reference_clip": "attack", "reference_sequence": [1, 4, 6], "durations": [0.17, 0.09, 0.22], "contact_frame": 2, "loop": false },
+    "heavy": { "unique_frames": 4, "reference_clip": "heavy", "reference_sequence": [1, 2, 4, 7], "durations": [0.2, 0.13, 0.12, 0.25], "contact_frame": 3, "loop": false },
     "hit": { "unique_frames": 3, "reference_clip": "hit", "reference_sequence": [1, 2], "durations": [0.07, 0.1, 0.15], "loop": false },
     "knockdown": { "unique_frames": 5, "reference_clip": "knockdown", "reference_sequence": [1, 2], "durations": [0.08, 0.1, 0.14, 0.18, 0.3], "loop": false },
     "getup": { "unique_frames": 5, "reference_clip": "getup", "reference_sequence": [1, 2, 3, 4, 5], "durations": [0.15, 0.13, 0.12, 0.1, 0.13], "loop": false },

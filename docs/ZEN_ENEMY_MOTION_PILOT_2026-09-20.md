@@ -1,5 +1,7 @@
 # Zen enemy motion pilot — 2026-09-20
 
+The five user-supplied Cadillacs and Dinosaurs MUGEN archives were audited separately in `docs/CADILLACS_CHARACTER_REFERENCE_AUDIT_2026-09-20.md`. That review supports the compact locomotion budget and prioritizes distinct silhouettes over extra near-duplicate frames; these fan conversions are references, not original Capcom timing data or distributable Palermo Streets art.
+
 The first two original-enemy drafts are now grounded in the approved character bundle:
 
 | Original enemy | Motion reference | Function | Draft |

@@ -10,7 +10,7 @@ from __future__ import annotations
 import argparse
 from pathlib import Path
 
-from PIL import Image
+from PIL import Image, ImageDraw
 
 CANVAS = (640, 420)
 BASELINE_Y = 400
@@ -18,7 +18,12 @@ ALPHA_CUTOFF = 16
 POSE_NAMES = ("guard_open", "guard_closed", "walk_contact", "walk_pass")
 
 
-def prepare(sheet_path: Path, output_dir: Path, visual_height: int) -> None:
+def opaque_area(image: Image.Image) -> int:
+    return sum(1 for value in image.getchannel("A").get_flattened_data() if value >= 128)
+
+
+def prepare(sheet_path: Path, output_dir: Path, visual_height: int,
+            reference_path: Path | None = None) -> None:
     sheet = Image.open(sheet_path).convert("RGBA")
     cell_w, cell_h = sheet.width // 2, sheet.height // 2
     cells = [
@@ -40,6 +45,11 @@ def prepare(sheet_path: Path, output_dir: Path, visual_height: int) -> None:
     scale = visual_height / reference_height
     output_dir.mkdir(parents=True, exist_ok=True)
 
+    reference = Image.open(reference_path).convert("RGBA") if reference_path else None
+    if reference and reference.size != CANVAS:
+        raise ValueError("The comparison frame must be 640x420")
+    reference_area = opaque_area(reference) if reference else 0
+
     for name, cell, box in zip(POSE_NAMES, cells, boxes, strict=True):
         assert box is not None
         crop = cell.crop(box)
@@ -56,7 +66,21 @@ def prepare(sheet_path: Path, output_dir: Path, visual_height: int) -> None:
             raise ValueError(f"{name}: sprite exceeds the safe canvas margins")
         frame.alpha_composite(sprite, (left, top))
         frame.save(output_dir / f"{name}.png")
-        print(f"{name}: {size[0]}x{size[1]}, left={left}, bottom={top + size[1]}")
+        ratio = opaque_area(frame) / reference_area if reference_area else None
+        if ratio is not None and not 1.75 <= ratio <= 2.35:
+            raise ValueError(f"{name}: mass ratio {ratio:.2f} outside heavy-enemy pilot range")
+        print(f"{name}: {size[0]}x{size[1]}, left={left}, bottom={top + size[1]}"
+              + (f", mass ratio={ratio:.2f}x" if ratio is not None else ""))
+
+        if reference is not None and name == "guard_open":
+            proof = Image.new("RGBA", (1280, 420), "#24232a")
+            proof.alpha_composite(reference, (0, 0))
+            proof.alpha_composite(frame, (640, 0))
+            draw = ImageDraw.Draw(proof)
+            draw.line((0, BASELINE_Y, 1280, BASELINE_Y), fill="#efbd62", width=2)
+            draw.text((20, 20), "MERCO - runtime idle", fill="white")
+            draw.text((660, 20), f"BARBACCIA - guard / mass {ratio:.2f}x", fill="white")
+            proof.convert("RGB").save(output_dir / "scale_vs_merco.png")
 
 
 if __name__ == "__main__":
@@ -64,5 +88,7 @@ if __name__ == "__main__":
     parser.add_argument("sheet", type=Path)
     parser.add_argument("output_dir", type=Path)
     parser.add_argument("--visual-height", type=int, default=318)
+    parser.add_argument("--reference", type=Path,
+                        help="Optional 640x420 Merco frame for mass-ratio QA and comparison proof")
     args = parser.parse_args()
-    prepare(args.sheet, args.output_dir, args.visual_height)
+    prepare(args.sheet, args.output_dir, args.visual_height, args.reference)

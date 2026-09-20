@@ -1,0 +1,24 @@
+{
+  "schema": 1,
+  "kind": "character",
+  "id": "pino_u_pizzettu",
+  "display_name": "PINO U PIZZETTU",
+  "status": "draft",
+  "archetype": "enemy_agile_original_v1",
+  "runtime_profile": "public/data/characters/pino_u_pizzettu.json",
+  "source": {
+    "identity_lock": "art_source/stage1_zen/approved_bundle_2026_09_06/transparent/CHARACTERS/PINO_U_PIZZETTU/PINO_U_PIZZETTU_MASTER_3Q.png",
+    "front_master": "art_source/stage1_zen/approved_bundle_2026_09_06/transparent/CHARACTERS/PINO_U_PIZZETTU/PINO_U_PIZZETTU_MASTER_FRONT.png",
+    "authoring_format": "blender_or_krita",
+    "license": "project_owned"
+  },
+  "contracts": {
+    "canvas": [640, 420],
+    "baseline_y": 400,
+    "runtime_scale": 1,
+    "visual_height": 282,
+    "facing": "right"
+  },
+  "motion_blueprint": "content-src/character_motion_archetypes/enemy_agile_original_v1.json",
+  "quality_gates": ["identity_consistency", "full_limb_integrity", "alpha_edge_cleanliness", "baseline_lock", "runtime_scale_lock", "animation_continuity", "fall_getup_pixel_match"]
+}

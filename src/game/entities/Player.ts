@@ -20,6 +20,7 @@ import { locomotionPlaybackRate, resolveCombatFacing, selectLocomotionClip } fro
 import { shouldStartRunBrake } from '../animation/movementTransitions';
 import { updateRunGesture as advanceRunGesture } from '../animation/runGesture';
 import { nextIdleVariant, orderedIdleVariants } from '../animation/idleVariants';
+import { comboChainTime } from '../combat/chainTiming';
 import { selectJumpClip } from '../animation/jumpAnimation';
 import type { Enemy } from './Enemy';
 
@@ -399,6 +400,12 @@ export class Player extends Actor {
     }
     if (this.state === 'attack' && this.currentAttack) {
       this.attackElapsed += dt;
+      if (this.queuedAttack && this.attackElapsed >= comboChainTime(this.currentAttack)) {
+        const queued = this.queuedAttack;
+        this.comboStep += 1;
+        this.startAttack(queued);
+        this.clampToPlayfield(); this.syncVisual(); return;
+      }
       if (this.currentAttack === SUPER) {
         if (this.attackElapsed >= 0.18) this.position.x += this.facing * 245 * dt;
       } else if (this.currentAttack === SPIN_SPECIAL) {

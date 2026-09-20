@@ -7,7 +7,7 @@ export class Input {
       const code = event.code;
       if (!this.held.has(code)) this.pressed.add(code);
       this.held.add(code);
-      if (['KeyA', 'KeyD', 'KeyW', 'KeyS', 'Space'].includes(code)) {
+      if (['KeyA', 'KeyD', 'KeyW', 'KeyS', 'ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Space'].includes(code)) {
         event.preventDefault();
       }
     });
@@ -19,14 +19,24 @@ export class Input {
   }
 
   isDown(...codes: string[]): boolean {
-    return codes.some((code) => this.held.has(code));
+    return codes.some((code) => this.held.has(code) || this.held.has(movementAlias(code)));
   }
 
   wasPressed(...codes: string[]): boolean {
-    return codes.some((code) => this.pressed.has(code));
+    return codes.some((code) => this.pressed.has(code) || this.pressed.has(movementAlias(code)));
   }
 
   endFrame(): void {
     this.pressed.clear();
+  }
+}
+
+export function movementAlias(code: string): string {
+  switch (code) {
+    case 'KeyA': return 'ArrowLeft';
+    case 'KeyD': return 'ArrowRight';
+    case 'KeyW': return 'ArrowUp';
+    case 'KeyS': return 'ArrowDown';
+    default: return code;
   }
 }

@@ -24,7 +24,8 @@ def opaque_area(image: Image.Image) -> int:
 
 def prepare(sheet_path: Path, output_dir: Path, visual_height: int,
             reference_path: Path | None = None, columns: int = 2, rows: int = 2,
-            pose_names: tuple[str, ...] = POSE_NAMES) -> None:
+            pose_names: tuple[str, ...] = POSE_NAMES, mass_min: float = 1.75,
+            mass_max: float = 2.35) -> None:
     sheet = Image.open(sheet_path).convert("RGBA")
     if len(pose_names) != columns * rows:
         raise ValueError("Pose-name count must match columns x rows")
@@ -70,7 +71,7 @@ def prepare(sheet_path: Path, output_dir: Path, visual_height: int,
         frame.alpha_composite(sprite, (left, top))
         frame.save(output_dir / f"{name}.png")
         ratio = opaque_area(frame) / reference_area if reference_area else None
-        if ratio is not None and not 1.75 <= ratio <= 2.35:
+        if ratio is not None and not mass_min <= ratio <= mass_max:
             raise ValueError(f"{name}: mass ratio {ratio:.2f} outside heavy-enemy pilot range")
         print(f"{name}: {size[0]}x{size[1]}, left={left}, bottom={top + size[1]}"
               + (f", mass ratio={ratio:.2f}x" if ratio is not None else ""))
@@ -96,6 +97,8 @@ if __name__ == "__main__":
     parser.add_argument("--columns", type=int, default=2)
     parser.add_argument("--rows", type=int, default=2)
     parser.add_argument("--pose-names", nargs="+", default=list(POSE_NAMES))
+    parser.add_argument("--mass-min", type=float, default=1.75)
+    parser.add_argument("--mass-max", type=float, default=2.35)
     args = parser.parse_args()
     prepare(args.sheet, args.output_dir, args.visual_height, args.reference,
-            args.columns, args.rows, tuple(args.pose_names))
+            args.columns, args.rows, tuple(args.pose_names), args.mass_min, args.mass_max)

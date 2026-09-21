@@ -5,7 +5,13 @@
   "canvas": [640, 420],
   "feet_baseline_y": 400,
   "reference_character": "merco",
-  "visible_mass_ratio_range": [2.07, 2.27],
+  "visible_mass_ratio_range": [2.07, 2.43],
+  "idle": [
+    { "frame": "idle_frames_v1/inhale.png", "duration_ms": 190 },
+    { "frame": "idle_frames_v1/rise.png", "duration_ms": 180 },
+    { "frame": "idle_frames_v1/settle.png", "duration_ms": 210 },
+    { "frame": "idle_frames_v1/adjust.png", "duration_ms": 180 }
+  ],
   "walk": [
     { "frame": "walk_frames_v1/contact_right.png", "duration_ms": 145 },
     { "frame": "walk_frames_v1/pass_right.png", "duration_ms": 125 },
@@ -13,5 +19,10 @@
     { "frame": "walk_frames_v1/settle.png", "duration_ms": 135 },
     { "frame": "walk_frames_v1/pass_left.png", "duration_ms": 125 },
     { "frame": "walk_frames_v1/return_contact.png", "duration_ms": 145 }
+  ],
+  "quick_attack": [
+    { "frame": "quick_attack_frames_v1/anticipation.png", "duration_ms": 120 },
+    { "frame": "quick_attack_frames_v1/contact.png", "duration_ms": 100, "contact": true },
+    { "frame": "quick_attack_frames_v1/recovery.png", "duration_ms": 190 }
   ]
 }

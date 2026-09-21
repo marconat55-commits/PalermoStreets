@@ -4,6 +4,6 @@ Barbaccia is the first review character for the simplified arcade rendering dire
 
 The style uses crisp dark contours, clustered cel shading, a restrained warm palette and simplified surface detail. Character identity, clothing and relative body mass remain locked. Runtime preparation keeps the existing 640×420 transparent canvas, feet at Y=400 and uniform scale on both axes.
 
-The six-pose Barbaccia walk currently spans 2.07–2.27 times Merco's visible idle area. The local `?barbacciaWalkPilot` viewer loads these review frames on M01 without registering the character in waves. Space pauses the cycle; the left and right arrow keys inspect individual poses.
+The review pack contains a four-pose heavy idle, six-pose walk and three-pose quick attack with one explicit contact frame. It spans 2.07–2.43 times Merco's visible idle area; the upper value belongs to the extended attack silhouette. The local `?barbacciaWalkPilot` viewer loads these review frames on M01 without registering the character in waves. Keys 1–3 select idle, walk and attack; Space pauses the cycle; the left and right arrow keys inspect individual poses.
 
 Convert other characters gradually only after this pilot is accepted in motion. Each conversion needs one approved guard master before animation production, then a six-pose walk and compact attacks using the budgets in `docs/CADILLACS_CHARACTER_REFERENCE_AUDIT_2026-09-20.md`.

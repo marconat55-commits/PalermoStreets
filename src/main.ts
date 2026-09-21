@@ -6,14 +6,7 @@ async function bootstrap(): Promise<void> {
   await document.fonts.load('64px Bangers');
   const host = document.querySelector<HTMLElement>('#app');
   if (!host) throw new Error('Elemento #app non trovato');
-  const params = new URLSearchParams(window.location.search);
-  if (import.meta.env.DEV && params.has('barbacciaWalkPilot')) {
-    const { BarbacciaWalkPilot } = await import('./pilots/BarbacciaWalkPilot');
-    const pilot = new BarbacciaWalkPilot();
-    await pilot.init(host);
-    return;
-  }
-  if (params.has('riglab')) {
+  if (new URLSearchParams(window.location.search).has('riglab')) {
     const rigLab = new RigLab();
     await rigLab.init(host);
     return;

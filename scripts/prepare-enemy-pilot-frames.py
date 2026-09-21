@@ -23,8 +23,7 @@ def opaque_area(image: Image.Image) -> int:
 
 
 def prepare(sheet_path: Path, output_dir: Path, visual_height: int,
-            reference_path: Path | None = None,
-            pose_names: tuple[str, str, str, str] = POSE_NAMES) -> None:
+            reference_path: Path | None = None) -> None:
     sheet = Image.open(sheet_path).convert("RGBA")
     cell_w, cell_h = sheet.width // 2, sheet.height // 2
     cells = [
@@ -51,7 +50,7 @@ def prepare(sheet_path: Path, output_dir: Path, visual_height: int,
         raise ValueError("The comparison frame must be 640x420")
     reference_area = opaque_area(reference) if reference else 0
 
-    for name, cell, box in zip(pose_names, cells, boxes, strict=True):
+    for name, cell, box in zip(POSE_NAMES, cells, boxes, strict=True):
         assert box is not None
         crop = cell.crop(box)
         alpha = crop.getchannel("A").point(
@@ -68,8 +67,7 @@ def prepare(sheet_path: Path, output_dir: Path, visual_height: int,
         frame.alpha_composite(sprite, (left, top))
         frame.save(output_dir / f"{name}.png")
         ratio = opaque_area(frame) / reference_area if reference_area else None
-        minimum_ratio = 1.75 if name == "guard_open" else 1.55
-        if ratio is not None and not minimum_ratio <= ratio <= 2.35:
+        if ratio is not None and not 1.75 <= ratio <= 2.35:
             raise ValueError(f"{name}: mass ratio {ratio:.2f} outside heavy-enemy pilot range")
         print(f"{name}: {size[0]}x{size[1]}, left={left}, bottom={top + size[1]}"
               + (f", mass ratio={ratio:.2f}x" if ratio is not None else ""))
@@ -92,8 +90,5 @@ if __name__ == "__main__":
     parser.add_argument("--visual-height", type=int, default=318)
     parser.add_argument("--reference", type=Path,
                         help="Optional 640x420 Merco frame for mass-ratio QA and comparison proof")
-    parser.add_argument("--pose-names", nargs=4, default=POSE_NAMES,
-                        help="Names of the four quadrants in reading order")
     args = parser.parse_args()
-    prepare(args.sheet, args.output_dir, args.visual_height, args.reference,
-            tuple(args.pose_names))
+    prepare(args.sheet, args.output_dir, args.visual_height, args.reference)

@@ -1,0 +1,17 @@
+{
+  "character": "barbaccia",
+  "style": "arcade_v1",
+  "status": "art_review_only",
+  "canvas": [640, 420],
+  "feet_baseline_y": 400,
+  "reference_character": "merco",
+  "visible_mass_ratio_range": [2.07, 2.27],
+  "walk": [
+    { "frame": "walk_frames_v1/contact_right.png", "duration_ms": 145 },
+    { "frame": "walk_frames_v1/pass_right.png", "duration_ms": 125 },
+    { "frame": "walk_frames_v1/contact_left.png", "duration_ms": 145 },
+    { "frame": "walk_frames_v1/settle.png", "duration_ms": 135 },
+    { "frame": "walk_frames_v1/pass_left.png", "duration_ms": 125 },
+    { "frame": "walk_frames_v1/return_contact.png", "duration_ms": 145 }
+  ]
+}

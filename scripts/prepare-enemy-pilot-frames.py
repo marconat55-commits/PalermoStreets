@@ -23,15 +23,18 @@ def opaque_area(image: Image.Image) -> int:
 
 
 def prepare(sheet_path: Path, output_dir: Path, visual_height: int,
-            reference_path: Path | None = None) -> None:
+            reference_path: Path | None = None, columns: int = 2, rows: int = 2,
+            pose_names: tuple[str, ...] = POSE_NAMES) -> None:
     sheet = Image.open(sheet_path).convert("RGBA")
-    cell_w, cell_h = sheet.width // 2, sheet.height // 2
+    if len(pose_names) != columns * rows:
+        raise ValueError("Pose-name count must match columns x rows")
+    cell_w, cell_h = sheet.width // columns, sheet.height // rows
     cells = [
         sheet.crop((x * cell_w, y * cell_h,
-                    sheet.width if x else cell_w,
-                    sheet.height if y else cell_h))
-        for y in range(2)
-        for x in range(2)
+                    sheet.width if x == columns - 1 else (x + 1) * cell_w,
+                    sheet.height if y == rows - 1 else (y + 1) * cell_h))
+        for y in range(rows)
+        for x in range(columns)
     ]
     boxes = [
         cell.getchannel("A").point(lambda value: 255 if value >= ALPHA_CUTOFF else 0).getbbox()
@@ -50,7 +53,7 @@ def prepare(sheet_path: Path, output_dir: Path, visual_height: int,
         raise ValueError("The comparison frame must be 640x420")
     reference_area = opaque_area(reference) if reference else 0
 
-    for name, cell, box in zip(POSE_NAMES, cells, boxes, strict=True):
+    for name, cell, box in zip(pose_names, cells, boxes, strict=True):
         assert box is not None
         crop = cell.crop(box)
         alpha = crop.getchannel("A").point(
@@ -90,5 +93,9 @@ if __name__ == "__main__":
     parser.add_argument("--visual-height", type=int, default=318)
     parser.add_argument("--reference", type=Path,
                         help="Optional 640x420 Merco frame for mass-ratio QA and comparison proof")
+    parser.add_argument("--columns", type=int, default=2)
+    parser.add_argument("--rows", type=int, default=2)
+    parser.add_argument("--pose-names", nargs="+", default=list(POSE_NAMES))
     args = parser.parse_args()
-    prepare(args.sheet, args.output_dir, args.visual_height, args.reference)
+    prepare(args.sheet, args.output_dir, args.visual_height, args.reference,
+            args.columns, args.rows, tuple(args.pose_names))

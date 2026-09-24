@@ -30,6 +30,7 @@ export class Game {
   private initialStagePreload: Promise<void> | null = null;
   private initialStageLoadCompleted = 0;
   private initialStageLoadTotal = 0;
+  private selectedPlayerLoaded = false;
   private selectionRequestedCharacterId: string | null = null;
   private selectionCachedCharacterId: string | null = null;
   private playerProfiles: Array<Pick<CharacterProfile, 'id' | 'display_name' | 'selection'>> = [];
@@ -142,12 +143,18 @@ export class Game {
     if (!this.characterSelectScene || this.startingStage) return;
     this.startingStage = true;
     const selection = this.characterSelectScene;
+    const playerId = selection.selectedCharacterId;
+    this.selectedPlayerLoaded = false;
     selection.setLoading(true);
     this.updateInitialStageLoadProgress();
     try {
-      await this.preloadInitialStage();
-      const playerId = selection.selectedCharacterId;
-      await this.catalog.ensureCharacter(playerId);
+      await Promise.all([
+        this.preloadInitialStage(),
+        this.catalog.ensureCharacter(playerId).then(() => {
+          this.selectedPlayerLoaded = true;
+          this.updateInitialStageLoadProgress();
+        }),
+      ]);
       this.transferSelectionCharacter(playerId);
       const stage = await StageScene.create(
         this.catalog,
@@ -171,8 +178,10 @@ export class Game {
   }
 
   private updateInitialStageLoadProgress(): void {
-    const progress = this.initialStageLoadTotal > 0
-      ? this.initialStageLoadCompleted / this.initialStageLoadTotal
+    const total = this.initialStageLoadTotal + (this.startingStage ? 1 : 0);
+    const completed = this.initialStageLoadCompleted + (this.startingStage && this.selectedPlayerLoaded ? 1 : 0);
+    const progress = total > 0
+      ? completed / total
       : 0;
     this.characterSelectScene?.setLoadingProgress(progress);
   }

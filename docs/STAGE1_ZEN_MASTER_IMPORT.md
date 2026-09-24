@@ -15,7 +15,6 @@
 ## Eccezioni QA
 
 - `LEANDRA_CARD_MASTER.png` e `LEANDRA_SELECT_PORTRAIT.png` non hanno un chroma uniforme affidabile: restano reference originali e non sono considerate copie runtime approvate.
-- `U_50INO_MASTER.png` contiene personaggio e motorino nello stesso master: dovranno essere separati prima del runtime.
 - Gli oggetti con grafica commerciale/parodica (`beer_bottle`, `pepis_can`, `cola_can`) sono segnalati per una revisione legale/grafica prima del crowdfunding pubblico.
 
 ## Prossimo gate

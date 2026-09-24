@@ -1,0 +1,1266 @@
+{
+  "scope": "Repository corrente; non include allegati remoti non importati. Nessuna cancellazione.",
+  "items": [
+    {
+      "path": "art_source/stage1_zen/characters_master/original/A_PUAICCA_MASTER.png",
+      "character": "a_puaicca",
+      "status": "Riferimento approvato secondo master_manifest; versione storica",
+      "category": "identità",
+      "id": "M001",
+      "sha256": "8162022113aa7ab7eef02fa023a1527729896aa7bdda04264557dbad555ae7eb",
+      "size": [
+        1024,
+        1536
+      ],
+      "pixel_hash": "9d7f1c163d2ee8d2da60e67ff109e0c1e5518731c9fe394fa03e516e29c11301"
+    },
+    {
+      "path": "art_source/stage1_zen/characters_master/transparent/A_PUAICCA_MASTER.png",
+      "character": "a_puaicca",
+      "status": "Riferimento approvato secondo master_manifest; versione storica",
+      "category": "identità",
+      "id": "M002",
+      "sha256": "7e29bdde25de67db588e970e05d3070c306bd4e89566e108da24f2f7b1542895",
+      "size": [
+        1024,
+        1536
+      ],
+      "pixel_hash": "b4951e1aad66a87acbc1edaf464f4aef283fd21dc43c1dc0f55c8f11b4c8fa4f"
+    },
+    {
+      "path": "public/assets/characters/a_puaicca_anim/idle/01.png",
+      "character": "a_puaicca",
+      "status": "Campione runtime attuale; non prova di approvazione master",
+      "category": "runtime",
+      "id": "M003",
+      "sha256": "ec7006af9ecc7a89a931f63c9260978ae757a35a9e88df5e7f381f291f530b96",
+      "size": [
+        640,
+        420
+      ],
+      "pixel_hash": "f4ca0666eafe8cc803fe36317b85f02b2da5ae2cc11c27aa7d3bb0c904b740c8"
+    },
+    {
+      "path": "public/assets/characters/aiori_ref_anim/idle/01.png",
+      "character": "aiori_ref",
+      "status": "Reference MUGEN, non personaggio originale",
+      "category": "runtime",
+      "id": "M004",
+      "sha256": "a27c000aec58962bfc7938e6c17012d12d98a068cc97a6d162691f99ea05dd21",
+      "size": [
+        640,
+        420
+      ],
+      "pixel_hash": "40d400100a409ee0d0f8b9e993063be5330219a5137b6127f0148da97ece1020"
+    },
+    {
+      "path": "art_source/stage1_zen/barbaccia_arcade_v1/BARBACCIA_ARCADE_MASTER_GUARD_V1.png",
+      "character": "barbaccia",
+      "status": "SUPERATO: direzione arcade scartata dall’utente",
+      "category": "esperimento",
+      "id": "M005",
+      "sha256": "05fb984a4eb053125cc4de6d4c20582330ba406ea699cb3633f8fb0d74e18e05",
+      "size": [
+        1182,
+        1330
+      ],
+      "pixel_hash": "034da2410179c9223fb5e0b3c65a1bdf34374ac64a5bb772188c4f3fbf4adf80"
+    },
+    {
+      "path": "art_source/stage1_zen/enemy_motion_pilots_2026_09_20/BARBACCIA_GUARD_WALK_PILOT.png",
+      "character": "barbaccia",
+      "status": "Pilot sperimentale: ciclo non approvato",
+      "category": "esperimento",
+      "id": "M006",
+      "sha256": "f0c0fe0ee093ca2b6df838fc790fb5476176238cb6450f5291565cb3dc3f23a0",
+      "size": [
+        1226,
+        1283
+      ],
+      "pixel_hash": "bea7198109f505a6f1efbe1fe6f89c25cd9744ff967edc729c493c0cb8231074"
+    },
+    {
+      "path": "art_source/stage1_zen/approved_bundle_2026_09_06/original/CHARACTERS/BARBACCIA/BARBACCIA_MASTER_3Q.png",
+      "character": "barbaccia",
+      "status": "Bundle denominato approved 06/09; versione da confrontare",
+      "category": "identità",
+      "id": "M007",
+      "sha256": "88f84d9f42e97eef9c85180656d47e396a03d832b7dff442d7454e357dcfcdfe",
+      "size": [
+        1024,
+        1536
+      ],
+      "pixel_hash": "0852b852706d6a84121aaa201fd38de08c21b88ac087a8ec3f380fc230a3387a"
+    },
+    {
+      "path": "art_source/stage1_zen/approved_bundle_2026_09_06/original/CHARACTERS/BARBACCIA/BARBACCIA_MASTER_FRONT.png",
+      "character": "barbaccia",
+      "status": "Bundle denominato approved 06/09; versione da confrontare",
+      "category": "identità",
+      "id": "M008",
+      "sha256": "7e1b9caf6255b73b5ba551b56b1faa5e87012298fa8ca8b2fd4b922928730256",
+      "size": [
+        1024,
+        1536
+      ],
+      "pixel_hash": "c66405a3aa56dd6060e3dc7bff9ec298d210a96936109567294a69ee2f5a677e"
+    },
+    {
+      "path": "art_source/stage1_zen/approved_bundle_2026_09_06/original/CHARACTERS/BARBACCIA/BARBACCIA_PORTRAIT.png",
+      "character": "barbaccia",
+      "status": "Bundle denominato approved 06/09; versione da confrontare",
+      "category": "identità",
+      "id": "M009",
+      "sha256": "5567613c9da5d1cdd25a44572fcf0e80b6e7050842dac3ad2bc9be8f4556490d",
+      "size": [
+        1254,
+        1254
+      ],
+      "pixel_hash": "39ee13317c82f3d51d11c01df0706d90ec01a725bc8ce42bc29ff316271ee5b2"
+    },
+    {
+      "path": "art_source/stage1_zen/approved_bundle_2026_09_06/transparent/CHARACTERS/BARBACCIA/BARBACCIA_MASTER_3Q.png",
+      "character": "barbaccia",
+      "status": "Bundle denominato approved 06/09; versione da confrontare",
+      "category": "identità",
+      "id": "M010",
+      "sha256": "885af0934a0d3021d15218fcf0b76b7530658c606e821f2d803ff76098fbd851",
+      "size": [
+        1024,
+        1536
+      ],
+      "pixel_hash": "e776eb98b386723f9f4778661535a5f5108b196893591b1506bb2486f28b6144"
+    },
+    {
+      "path": "art_source/stage1_zen/approved_bundle_2026_09_06/transparent/CHARACTERS/BARBACCIA/BARBACCIA_MASTER_FRONT.png",
+      "character": "barbaccia",
+      "status": "Bundle denominato approved 06/09; versione da confrontare",
+      "category": "identità",
+      "id": "M011",
+      "sha256": "bab3ee91f93033ed02455cc9e77af6bc840ac3f5a6051ef48dd9229f80c9273f",
+      "size": [
+        1024,
+        1536
+      ],
+      "pixel_hash": "7763321ea8765985d79707e5c5b10069ff57f356b1e996cbcfb6a59ba193f891"
+    },
+    {
+      "path": "art_source/stage1_zen/approved_bundle_2026_09_06/transparent/CHARACTERS/BARBACCIA/BARBACCIA_PORTRAIT.png",
+      "character": "barbaccia",
+      "status": "Bundle denominato approved 06/09; versione da confrontare",
+      "category": "identità",
+      "id": "M012",
+      "sha256": "9c29cb83a1cc4030cbd4df39a6057197f4e7a9a9f94474f4b71f6feb3d4ca402",
+      "size": [
+        1254,
+        1254
+      ],
+      "pixel_hash": "ee8ddaa9c828a6d1a6a9b9865b94ce1c54e25c2e694a9170742f5ea7debedb20"
+    },
+    {
+      "path": "art_source/stage1_zen/barbaccia_hd_master/BARBACCIA_HD_USER_MASTER.png",
+      "character": "barbaccia",
+      "status": "CONFERMATO: scelta esplicita utente 24/09, riferimento corrente",
+      "category": "identità",
+      "id": "M013",
+      "sha256": "60cfff8149c1645e9379237420d98e6c75cf0baf975786be581c25f4c384419b",
+      "size": [
+        1548,
+        1016
+      ],
+      "pixel_hash": "85854090ef5e1392dd7c4cc1947c1e8b070e373d3e8984095045d5b86d9bd5c9"
+    },
+    {
+      "path": "art_source/stage1_zen/characters_master/original/BARBACCIA_MASTER.png",
+      "character": "barbaccia",
+      "status": "Riferimento approvato secondo master_manifest; versione storica",
+      "category": "identità",
+      "id": "M014",
+      "sha256": "88f84d9f42e97eef9c85180656d47e396a03d832b7dff442d7454e357dcfcdfe",
+      "size": [
+        1024,
+        1536
+      ],
+      "pixel_hash": "0852b852706d6a84121aaa201fd38de08c21b88ac087a8ec3f380fc230a3387a"
+    },
+    {
+      "path": "art_source/stage1_zen/characters_master/transparent/BARBACCIA_MASTER.png",
+      "character": "barbaccia",
+      "status": "Riferimento approvato secondo master_manifest; versione storica",
+      "category": "identità",
+      "id": "M015",
+      "sha256": "885af0934a0d3021d15218fcf0b76b7530658c606e821f2d803ff76098fbd851",
+      "size": [
+        1024,
+        1536
+      ],
+      "pixel_hash": "e776eb98b386723f9f4778661535a5f5108b196893591b1506bb2486f28b6144"
+    },
+    {
+      "path": "art_source/stage1_zen/characters_master/original/BARBIERE_NPC_MASTER.png",
+      "character": "barbiere_npc",
+      "status": "Riferimento approvato secondo master_manifest; versione storica",
+      "category": "identità",
+      "id": "M016",
+      "sha256": "e9a41d5875cfc5150f9d3136956c2652aa161296c5ce5c6ce4097a51107df191",
+      "size": [
+        1024,
+        1536
+      ],
+      "pixel_hash": "f91bc0eea0a34d109c664d96bb20dfc791aef59d482fc9c56af3cea35d59cc1a"
+    },
+    {
+      "path": "art_source/stage1_zen/characters_master/transparent/BARBIERE_NPC_MASTER.png",
+      "character": "barbiere_npc",
+      "status": "Riferimento approvato secondo master_manifest; versione storica",
+      "category": "identità",
+      "id": "M017",
+      "sha256": "934417a2d0f39606542d3bf2e105e407fe4b877894ce004b675f23457bfa22f8",
+      "size": [
+        1024,
+        1536
+      ],
+      "pixel_hash": "0be39ce79099393e4ae7d1638cc488e9e6d9f373319342f57251f65bf05d2b3b"
+    },
+    {
+      "path": "public/assets/characters/haggar_ref_anim/idle/01.png",
+      "character": "haggar_ref",
+      "status": "Reference MUGEN, non personaggio originale",
+      "category": "runtime",
+      "id": "M018",
+      "sha256": "f4a36b453f2c89af029929500bd26f12a735b301a0b6a4a4e04d99886c7075c8",
+      "size": [
+        640,
+        420
+      ],
+      "pixel_hash": "2cd38610226fe66a7974b629deb364aedc0bc513132be4bb66022cd9a01e10e1"
+    },
+    {
+      "path": "art_source/characters/julien/approved/JULIEN_MASTER_3Q.png",
+      "character": "julien",
+      "status": "Approvazione indicata nel nome/cartella; da riconciliare",
+      "category": "identità",
+      "id": "M019",
+      "sha256": "ab0c79846d00cda1b65280397fab9907652a433cc862a76f524921415d37ecea",
+      "size": [
+        1024,
+        1536
+      ],
+      "pixel_hash": "321123cfd7a366537d4f2a125dac1a31e1673799a2bb313edd2fc46d426cff80"
+    },
+    {
+      "path": "art_source/characters/julien/approved/JULIEN_MASTER_FRONT.png",
+      "character": "julien",
+      "status": "Approvazione indicata nel nome/cartella; da riconciliare",
+      "category": "identità",
+      "id": "M020",
+      "sha256": "241e6eca9868862510c0adda928733bad8b20c3332a5fb08fb7d2cfbb0bb8af3",
+      "size": [
+        1024,
+        1536
+      ],
+      "pixel_hash": "88a21a157462e1ece91fe73e017a2a015d37ecd1bc722d363b202cdbdea75f6d"
+    },
+    {
+      "path": "art_source/characters/julien/approved/JULIEN_PORTRAIT.png",
+      "character": "julien",
+      "status": "Approvazione indicata nel nome/cartella; da riconciliare",
+      "category": "identità",
+      "id": "M021",
+      "sha256": "3b0bd921be71eca87045a1bd36fdb5e1b8542020c7f0124de10ee23d6f2683c9",
+      "size": [
+        1024,
+        1536
+      ],
+      "pixel_hash": "bc6003531046a059fe2cda7833fb88bef9370e9184da1ddbfe9398e0a657a7f0"
+    },
+    {
+      "path": "public/assets/characters/ken_ref_anim/idle/01.png",
+      "character": "ken_ref",
+      "status": "Reference MUGEN, non personaggio originale",
+      "category": "runtime",
+      "id": "M022",
+      "sha256": "09c82b55a4b44178a8585b3330fa9732e6e19a5e3a55b69db8e3230a5732f9b0",
+      "size": [
+        640,
+        420
+      ],
+      "pixel_hash": "304b14983c04087efe3d0c14d00c2eaed53182a7b38fedccbcfc760a7910da93"
+    },
+    {
+      "path": "art_source/characters/leandra/approved/LEANDRA_MASTER_3Q.png",
+      "character": "leandra",
+      "status": "Approvazione indicata nel nome/cartella; da riconciliare",
+      "category": "identità",
+      "id": "M023",
+      "sha256": "6f825a90986f074247cdc6b5579ad2b5fd9a7fd252538214080c8c833991d2cd",
+      "size": [
+        1024,
+        1536
+      ],
+      "pixel_hash": "dba407c008dc3b677cf62eb6abcd3b825bd20cda1a452a6ede9b8524ec4bcc06"
+    },
+    {
+      "path": "art_source/characters/leandra/approved/LEANDRA_MASTER_FRONT.png",
+      "character": "leandra",
+      "status": "Approvazione indicata nel nome/cartella; da riconciliare",
+      "category": "identità",
+      "id": "M024",
+      "sha256": "e4e1cd42d64d51bb05d06a5be7e79caa4d75f9b7e1785554e95737be990d269d",
+      "size": [
+        1024,
+        1536
+      ],
+      "pixel_hash": "434b6990118f21702ec7b2aca91ec9b180d11eaa20a3a0b3d162fddbf1041a59"
+    },
+    {
+      "path": "art_source/characters/leandra/approved/LEANDRA_PORTRAIT.png",
+      "character": "leandra",
+      "status": "Approvazione indicata nel nome/cartella; da riconciliare",
+      "category": "identità",
+      "id": "M025",
+      "sha256": "b528ce25c96afeaa0e9fdec12247d360db058185fab0801ad6e987dfdcd1c840",
+      "size": [
+        1086,
+        1448
+      ],
+      "pixel_hash": "4e0bd47c3cf2acdb508b3f28b938924541e8b22094e9550df65ed8b5c52fcb3d"
+    },
+    {
+      "path": "art_source/stage1_zen/characters_master/original/LEANDRA_CARD_MASTER.png",
+      "character": "leandra",
+      "status": "Riferimento approvato secondo master_manifest; versione storica",
+      "category": "identità",
+      "id": "M026",
+      "sha256": "cdc4965c10bae0811f0f3e955c78208f48ccd262b6f56019dfd2b3c26cc0897b",
+      "size": [
+        1055,
+        1491
+      ],
+      "pixel_hash": "9fda8fe6c4234718bf09295d09ab66315faf3251fcbb888c501a222dcb660710"
+    },
+    {
+      "path": "art_source/stage1_zen/characters_master/original/LEANDRA_MASTER.png",
+      "character": "leandra",
+      "status": "Riferimento approvato secondo master_manifest; versione storica",
+      "category": "identità",
+      "id": "M027",
+      "sha256": "84fc3a0965a9aed572996db6fdfebb72702216d6fd0298824df5ced722836b18",
+      "size": [
+        1024,
+        1536
+      ],
+      "pixel_hash": "5aea69834e9375814bf44cd412552d8c7869e04d33a6c5c2ea72784f341046f7"
+    },
+    {
+      "path": "art_source/stage1_zen/characters_master/original/LEANDRA_SELECT_PORTRAIT.png",
+      "character": "leandra",
+      "status": "Riferimento approvato secondo master_manifest; versione storica",
+      "category": "identità",
+      "id": "M028",
+      "sha256": "0a6b076fcd6c168ee9f649bd7d3dd190750b51c03de8379f4c0237a06a292545",
+      "size": [
+        1122,
+        1402
+      ],
+      "pixel_hash": "30610d1d9461617bf9f28bf71971d3d03aad8859e0fec41ab37c518af6a9a101"
+    },
+    {
+      "path": "art_source/stage1_zen/characters_master/transparent/LEANDRA_MASTER.png",
+      "character": "leandra",
+      "status": "Riferimento approvato secondo master_manifest; versione storica",
+      "category": "identità",
+      "id": "M029",
+      "sha256": "ed7ba0201db450eed3040bcbb6e86b49bb92d217a6504da38ae72a8b485a2126",
+      "size": [
+        1024,
+        1536
+      ],
+      "pixel_hash": "0198ad68e55d00d7232d9b7550f5c867a7324294205091b89c328c0d3b0d1c6c"
+    },
+    {
+      "path": "art_source/characters/marco/MARCO_MASTER_APPROVED.png",
+      "character": "marco",
+      "status": "Approvazione indicata nel nome/cartella; da riconciliare",
+      "category": "identità",
+      "id": "M030",
+      "sha256": "a42bd6d0dc4454fab698ada63e98010d62e0be0d1a19b984ba3de3af6c39030f",
+      "size": [
+        1024,
+        1536
+      ],
+      "pixel_hash": "e7b7fb006b255ccad43716c89b015267c73d0c8a9ab296c3aff3f3b4f3a5dec2"
+    },
+    {
+      "path": "public/assets/characters/marco_anim/idle/01.png",
+      "character": "marco",
+      "status": "Campione runtime attuale; non prova di approvazione master",
+      "category": "runtime",
+      "id": "M031",
+      "sha256": "c6c0bda6f3d3fe463e60f41c3aca79478b4287c44ba7787db1883cdc1de663ff",
+      "size": [
+        640,
+        420
+      ],
+      "pixel_hash": "747b6851057b86010a145435a6ceab081681ff0ed13a151f72579ce8a3dcd254"
+    },
+    {
+      "path": "art_source/characters/merco/approved/MERCO_MASTER_APPROVED_CHROMA.png",
+      "character": "merco",
+      "status": "Approvazione indicata nel nome/cartella; da riconciliare",
+      "category": "identità",
+      "id": "M032",
+      "sha256": "47aed4d6eb1b68aa570a30dc1330d4bd54f5d9ecb02900c5793cf5168d802314",
+      "size": [
+        1024,
+        1536
+      ],
+      "pixel_hash": "536b5dd23cd1c4b0c0d14a989935478e215e6f940d0ca0e366d3009d7c585500"
+    },
+    {
+      "path": "art_source/characters/merco_arcade/approved/MERCO_ARCADE_MASTER_V1_CHROMA.png",
+      "character": "merco",
+      "status": "Variante arcade: non equiparare al master HD",
+      "category": "identità",
+      "id": "M033",
+      "sha256": "7e832018a8c5e6566257dc790a698a09d0d81274c4df11af5afb9c0e523fab29",
+      "size": [
+        1024,
+        1536
+      ],
+      "pixel_hash": "5af4ada578fd24afe3edb9b88ccff8ca43a2ffed2bc991b157e8fe20aeb9d8e3"
+    },
+    {
+      "path": "art_source/characters/merco/approved/keyframes/MERCO_CLINCH_KNEE_IMPACT_APPROVED_CHROMA.png",
+      "character": "merco",
+      "status": "Approvazione indicata nel nome/cartella; da riconciliare",
+      "category": "posa",
+      "id": "M034",
+      "sha256": "8fc4f330fe6658d0aed09235cb243b2053c69618c3ab042ac2f5cb39a2e4276e",
+      "size": [
+        1024,
+        1536
+      ],
+      "pixel_hash": "08ceed1a29de92233e1f0e8aca48c1bcc6a3d37a0e04672fcf43fb2f1cfacc36"
+    },
+    {
+      "path": "art_source/characters/merco/approved/keyframes/MERCO_ELBOW_IMPACT_APPROVED_CHROMA.png",
+      "character": "merco",
+      "status": "Approvazione indicata nel nome/cartella; da riconciliare",
+      "category": "posa",
+      "id": "M035",
+      "sha256": "c37cfdffc7ba17f503a639b9b3bdea2b3ef79f52fb6f5954650c21a50566d791",
+      "size": [
+        1024,
+        1536
+      ],
+      "pixel_hash": "69eb8edeea803fa90a871afeaf459fcc98ecedf3563bf3cd62655b61956dce39"
+    },
+    {
+      "path": "art_source/characters/merco/approved/keyframes/MERCO_FLYING_KICK_IMPACT_APPROVED_CHROMA.png",
+      "character": "merco",
+      "status": "Approvazione indicata nel nome/cartella; da riconciliare",
+      "category": "posa",
+      "id": "M036",
+      "sha256": "6d10e7a5cd5e349005fb1cefa861ff84ba751390da3a401cf3816344d344e610",
+      "size": [
+        1024,
+        1536
+      ],
+      "pixel_hash": "a84f192556d205aebb483134b3d3adcf681456f095a5385c955375cda8c8f667"
+    },
+    {
+      "path": "art_source/characters/merco/approved/keyframes/MERCO_GRAB_START_APPROVED_CHROMA.png",
+      "character": "merco",
+      "status": "Approvazione indicata nel nome/cartella; da riconciliare",
+      "category": "posa",
+      "id": "M037",
+      "sha256": "bbdc185c88ba8d4d89db778d2dea74236f0562f7646b06bfb59fe9198c8a12d6",
+      "size": [
+        1024,
+        1536
+      ],
+      "pixel_hash": "03ee9804feaa576c9a7fd5807bbab699d201efd00de728a3adbe36c1ef4ecced"
+    },
+    {
+      "path": "art_source/characters/merco/approved/keyframes/MERCO_LONG_KICK_RECOVERY_APPROVED_CHROMA.png",
+      "character": "merco",
+      "status": "Approvazione indicata nel nome/cartella; da riconciliare",
+      "category": "posa",
+      "id": "M038",
+      "sha256": "6214ce6219f17cae54ba31568d788c910292daeb3956194d3861a57be9401938",
+      "size": [
+        1024,
+        1536
+      ],
+      "pixel_hash": "7c174a93b260236ccdf75c8afd8c5523d5ed692054369b413c253a34c6a1f646"
+    },
+    {
+      "path": "art_source/characters/merco/approved/keyframes/MERCO_LONG_KICK_STARTUP_APPROVED_CHROMA.png",
+      "character": "merco",
+      "status": "Approvazione indicata nel nome/cartella; da riconciliare",
+      "category": "posa",
+      "id": "M039",
+      "sha256": "5d273876b5d94bc1f5876d130fd751704311d49cc90cce707b8a8e13d19d0fad",
+      "size": [
+        1024,
+        1536
+      ],
+      "pixel_hash": "8f4fd6b13c192678fcbd27191b8319bb8ca8bb33e65acd1662c287282223c270"
+    },
+    {
+      "path": "art_source/characters/merco/approved/keyframes/MERCO_THROW_LOAD_APPROVED_CHROMA.png",
+      "character": "merco",
+      "status": "Approvazione indicata nel nome/cartella; da riconciliare",
+      "category": "posa",
+      "id": "M040",
+      "sha256": "62f1d6c21cb69b2427cfc5fe90e61c2c34a9e9a8eb777687060cfbdc9e4a3618",
+      "size": [
+        1024,
+        1536
+      ],
+      "pixel_hash": "08e0157255b6141e0b9ebb114e09e1a4ee2c048397efdf7a5feb40cce28f864b"
+    },
+    {
+      "path": "art_source/characters/merco/approved/keyframes/MERCO_THROW_RELEASE_APPROVED_CHROMA.png",
+      "character": "merco",
+      "status": "Approvazione indicata nel nome/cartella; da riconciliare",
+      "category": "posa",
+      "id": "M041",
+      "sha256": "2f5a826f80ac1a59970e4ae132c9756b56b2eeefc6c11e665a7f49a78a410f0b",
+      "size": [
+        1024,
+        1536
+      ],
+      "pixel_hash": "a6e2a9d8f209ee17d57cd2a353271b5a7da698ad6c2e089b2f8b61c94f07a517"
+    },
+    {
+      "path": "art_source/characters/merco/approved/keyframes/MERCO_WALK_01_APPROVED_CHROMA.png",
+      "character": "merco",
+      "status": "Approvazione indicata nel nome/cartella; da riconciliare",
+      "category": "posa",
+      "id": "M042",
+      "sha256": "398e7d7530b0ad84cda3b8b0821f60fc4a3a6db7e42828626617400a3e29bc76",
+      "size": [
+        766,
+        1024
+      ],
+      "pixel_hash": "45e55745d718bfda314c17c8213ec5022c925bfb5dc6af67a22f747b83fc86c1"
+    },
+    {
+      "path": "art_source/characters/merco/approved/keyframes/MERCO_WALK_05_APPROVED_CHROMA.png",
+      "character": "merco",
+      "status": "Approvazione indicata nel nome/cartella; da riconciliare",
+      "category": "posa",
+      "id": "M043",
+      "sha256": "e32a0962215f599d21bc099284e0406628f1193d4ef2530a4a08a486e4c9a6dc",
+      "size": [
+        1024,
+        1536
+      ],
+      "pixel_hash": "75a25618a49440d88e700c731b9564d2c130fdb3eed4393702b511ee796b1835"
+    },
+    {
+      "path": "art_source/characters/merco_arcade/approved/keyframes/MERCO_ARCADE_COMBAT_SHUFFLE_COMPACT_APPROVED_CHROMA.png",
+      "character": "merco",
+      "status": "Variante arcade: non equiparare al master HD",
+      "category": "posa",
+      "id": "M044",
+      "sha256": "b0cadd7427bea378e72461bb054de23f2ea596d7ff731a5aecb267fb416d4622",
+      "size": [
+        1024,
+        1536
+      ],
+      "pixel_hash": "19768b2bb5361d3a495fb66aba8de424f2cdcccf9024b8b2224ea6e90ef35bbc"
+    },
+    {
+      "path": "art_source/characters/merco_arcade/approved/keyframes/MERCO_ARCADE_COMBAT_SHUFFLE_LEAD_LEFT_APPROVED_CHROMA.png",
+      "character": "merco",
+      "status": "Variante arcade: non equiparare al master HD",
+      "category": "posa",
+      "id": "M045",
+      "sha256": "d363a18c23f53316170073fe9c519d4d47dd8949a30259925cdc38ce982b6bd8",
+      "size": [
+        1024,
+        1536
+      ],
+      "pixel_hash": "055543162ad2568b7c04f4fd018e27ca55c7fc8f62280c8175ef4cf5a4308c0c"
+    },
+    {
+      "path": "art_source/characters/merco_arcade/approved/keyframes/MERCO_ARCADE_PUNCH_RIGHT_IMPACT_APPROVED_CHROMA.png",
+      "character": "merco",
+      "status": "Variante arcade: non equiparare al master HD",
+      "category": "posa",
+      "id": "M046",
+      "sha256": "f78e88db7a90dc490495345e7d9a4665511b21fe4fd7759c41c6d94a2e335e8f",
+      "size": [
+        1024,
+        1536
+      ],
+      "pixel_hash": "1184f73234f7a0db2621e33fe44e1e1ac339c4e4f3939a0b714af2c8e527643b"
+    },
+    {
+      "path": "art_source/characters/merco_arcade/approved/keyframes/MERCO_ARCADE_WALK_RIGHT_CONTACT_APPROVED_CHROMA.png",
+      "character": "merco",
+      "status": "Variante arcade: non equiparare al master HD",
+      "category": "posa",
+      "id": "M047",
+      "sha256": "b182270a48c3d6658301aa7d4aee3294d0309fdf51245683c643293153b2a41f",
+      "size": [
+        1024,
+        1536
+      ],
+      "pixel_hash": "4e975ed4247021a711f5906499ffa6a362cccf9fcc666ed5bae52eca86c6ed63"
+    },
+    {
+      "path": "public/assets/characters/merco_anim/idle/01.png",
+      "character": "merco",
+      "status": "Campione runtime attuale; non prova di approvazione master",
+      "category": "runtime",
+      "id": "M048",
+      "sha256": "db5698923be040e495821720e095c815570ef37a2bc91cb027141dd7895966d7",
+      "size": [
+        640,
+        420
+      ],
+      "pixel_hash": "b8ba2f186290722bfa1d69a07055bcf691d01286a44431eebaef8296a53ed151"
+    },
+    {
+      "path": "art_source/stage1_zen/approved_bundle_2026_09_06/original/CHARACTERS/PINO_FACCI_LORDA/PINO_FACCI_LORDA_MASTER_3Q.png",
+      "character": "pino_facci_lorda",
+      "status": "Bundle denominato approved 06/09; versione da confrontare",
+      "category": "identità",
+      "id": "M049",
+      "sha256": "6eff0b247488f3624d6e62dbf824af40443c8db5f1599cd51a58cde46cc3e199",
+      "size": [
+        1024,
+        1536
+      ],
+      "pixel_hash": "3adaae2b7886c40634758063e474f0c4f0edec2367b8e013f2dd2401a9641992"
+    },
+    {
+      "path": "art_source/stage1_zen/approved_bundle_2026_09_06/original/CHARACTERS/PINO_FACCI_LORDA/PINO_FACCI_LORDA_MASTER_FRONT.png",
+      "character": "pino_facci_lorda",
+      "status": "Bundle denominato approved 06/09; versione da confrontare",
+      "category": "identità",
+      "id": "M050",
+      "sha256": "f6c2fe038afe147eb6ab0eab6cedccafaa2691cc7bdc3bc8df638088c77883a2",
+      "size": [
+        1086,
+        1448
+      ],
+      "pixel_hash": "ea48ce9dce3b4ff7dfbd9cb5c35094c86acfef106c2b40b41918c7cddb51210d"
+    },
+    {
+      "path": "art_source/stage1_zen/approved_bundle_2026_09_06/original/CHARACTERS/PINO_FACCI_LORDA/PINO_FACCI_LORDA_PORTRAIT.png",
+      "character": "pino_facci_lorda",
+      "status": "Bundle denominato approved 06/09; versione da confrontare",
+      "category": "identità",
+      "id": "M051",
+      "sha256": "ac39da4186eb7d0647ebd9493577e3b33d41d558dae231b0e9d6474aa358d66e",
+      "size": [
+        1254,
+        1254
+      ],
+      "pixel_hash": "b51eec0c85088a478c71028a153208350faaa05d75b8dbe302c814bd89598259"
+    },
+    {
+      "path": "art_source/stage1_zen/approved_bundle_2026_09_06/transparent/CHARACTERS/PINO_FACCI_LORDA/PINO_FACCI_LORDA_MASTER_3Q.png",
+      "character": "pino_facci_lorda",
+      "status": "Bundle denominato approved 06/09; versione da confrontare",
+      "category": "identità",
+      "id": "M052",
+      "sha256": "8f366ab4defe3e38dd835db8540152bbd81c85764d42e54216420b0d49c65054",
+      "size": [
+        1024,
+        1536
+      ],
+      "pixel_hash": "6e45c703101f9ccf7cf0e691ca0f6223879d563092b1b4407df8b3e9fcddd1e0"
+    },
+    {
+      "path": "art_source/stage1_zen/approved_bundle_2026_09_06/transparent/CHARACTERS/PINO_FACCI_LORDA/PINO_FACCI_LORDA_MASTER_FRONT.png",
+      "character": "pino_facci_lorda",
+      "status": "Bundle denominato approved 06/09; versione da confrontare",
+      "category": "identità",
+      "id": "M053",
+      "sha256": "0a30b4a0989ed06c9440b1048506e2a86734f5f3f6cc4173ca7cef01781c5d6a",
+      "size": [
+        1086,
+        1448
+      ],
+      "pixel_hash": "9c7d2e623970de62f0e6dc0c285de5fab2b16b48c8e31192e056aee3f2a922e5"
+    },
+    {
+      "path": "art_source/stage1_zen/approved_bundle_2026_09_06/transparent/CHARACTERS/PINO_FACCI_LORDA/PINO_FACCI_LORDA_PORTRAIT.png",
+      "character": "pino_facci_lorda",
+      "status": "Bundle denominato approved 06/09; versione da confrontare",
+      "category": "identità",
+      "id": "M054",
+      "sha256": "c2d706b3535ba2c9d8d5e71397d009a05ce4b857b51b513db18fe4fb9729ade2",
+      "size": [
+        1254,
+        1254
+      ],
+      "pixel_hash": "a097ab9b9339e7f33d7575da56cbea262aef9974d4765e1fb8abb2991f0202f3"
+    },
+    {
+      "path": "art_source/stage1_zen/enemy_motion_pilots_2026_09_20/PINO_U_PIZZETTU_GUARD_WALK_PILOT.png",
+      "character": "pino_u_pizzettu",
+      "status": "Pilot sperimentale: ciclo non approvato",
+      "category": "esperimento",
+      "id": "M055",
+      "sha256": "81a49073f9f5691f37dff0c3383f6fe01558ce22e3658a9bedd2331be095b80e",
+      "size": [
+        1222,
+        1287
+      ],
+      "pixel_hash": "65a1672135e8db204f7478d0d3fcd40d421bc2334e28c57df7ff4c08b59140a6"
+    },
+    {
+      "path": "art_source/stage1_zen/enemy_motion_pilots_2026_09_20/PINO_U_PIZZETTU_GUARD_WALK_PILOT_V2.png",
+      "character": "pino_u_pizzettu",
+      "status": "Pilot sperimentale: ciclo non approvato",
+      "category": "esperimento",
+      "id": "M056",
+      "sha256": "338c4893c7ddae2fd96970c8a86f6a179b6f10f31c2d9dad2785d2d872b051fc",
+      "size": [
+        1222,
+        1287
+      ],
+      "pixel_hash": "6013a2b9d4fe30f06f1f278a3bd933fe4ae87cbbe03707cea81744dfbcb74b50"
+    },
+    {
+      "path": "art_source/stage1_zen/approved_bundle_2026_09_06/original/CHARACTERS/PINO_U_PIZZETTU/PINO_U_PIZZETTU_MASTER_3Q.png",
+      "character": "pino_u_pizzettu",
+      "status": "Bundle denominato approved 06/09; versione da confrontare",
+      "category": "identità",
+      "id": "M057",
+      "sha256": "c3862dd6fc4953ce8c6f53376c8626d45809723083e6c5f6bbaadcbdb38f307b",
+      "size": [
+        1024,
+        1536
+      ],
+      "pixel_hash": "a4025603b00d11775567588ee52b81484da9d28586342c87f188802b3c83b262"
+    },
+    {
+      "path": "art_source/stage1_zen/approved_bundle_2026_09_06/original/CHARACTERS/PINO_U_PIZZETTU/PINO_U_PIZZETTU_MASTER_FRONT.png",
+      "character": "pino_u_pizzettu",
+      "status": "Bundle denominato approved 06/09; versione da confrontare",
+      "category": "identità",
+      "id": "M058",
+      "sha256": "145088ae425f8a1798d011cd4663f7440a8a4f540109d2651efd68401ff2ff77",
+      "size": [
+        1122,
+        1402
+      ],
+      "pixel_hash": "21b076c74c62347b83246a20067a83f61cc56a564a6fefb700e6499e33c9d231"
+    },
+    {
+      "path": "art_source/stage1_zen/approved_bundle_2026_09_06/original/CHARACTERS/PINO_U_PIZZETTU/PINO_U_PIZZETTU_PORTRAIT.png",
+      "character": "pino_u_pizzettu",
+      "status": "Bundle denominato approved 06/09; versione da confrontare",
+      "category": "identità",
+      "id": "M059",
+      "sha256": "b87f0f3ba637ec2981ea7909d4a0a46347420f645ce0946cb8646f7ef25ade28",
+      "size": [
+        1254,
+        1254
+      ],
+      "pixel_hash": "0aa711e3c844381ff17e193de1d7d08384655ceaac26f7b710d59558041b521d"
+    },
+    {
+      "path": "art_source/stage1_zen/approved_bundle_2026_09_06/transparent/CHARACTERS/PINO_U_PIZZETTU/PINO_U_PIZZETTU_MASTER_3Q.png",
+      "character": "pino_u_pizzettu",
+      "status": "Bundle denominato approved 06/09; versione da confrontare",
+      "category": "identità",
+      "id": "M060",
+      "sha256": "224a4f1d42e22ec42943aa16dc9a26dd66815d6873a56534c52f05daad7cd5bf",
+      "size": [
+        1024,
+        1536
+      ],
+      "pixel_hash": "5f66100310cf134009e45c6daf1c248dc72502042523324a6e13e49a57f9146c"
+    },
+    {
+      "path": "art_source/stage1_zen/approved_bundle_2026_09_06/transparent/CHARACTERS/PINO_U_PIZZETTU/PINO_U_PIZZETTU_MASTER_FRONT.png",
+      "character": "pino_u_pizzettu",
+      "status": "Bundle denominato approved 06/09; versione da confrontare",
+      "category": "identità",
+      "id": "M061",
+      "sha256": "00fd4294683c5f5bb6d5e06754e8daadcc59fd12d0dece6b5e68719d231a86ba",
+      "size": [
+        1122,
+        1402
+      ],
+      "pixel_hash": "e4c8cba2a299edee301d56ef49c3ebab54c565ef3d83a30b11f80bcaf609e6e7"
+    },
+    {
+      "path": "art_source/stage1_zen/approved_bundle_2026_09_06/transparent/CHARACTERS/PINO_U_PIZZETTU/PINO_U_PIZZETTU_PORTRAIT.png",
+      "character": "pino_u_pizzettu",
+      "status": "Bundle denominato approved 06/09; versione da confrontare",
+      "category": "identità",
+      "id": "M062",
+      "sha256": "1d610eb40c024a7298c30b7e0338866c85cb13167e3028fe3b1a9ca2f03e2164",
+      "size": [
+        1254,
+        1254
+      ],
+      "pixel_hash": "9bbbdb6159099772df7dfde3346f3c0421bed5a5a767c685d29e06de8b25e509"
+    },
+    {
+      "path": "art_source/stage1_zen/approved_bundle_2026_09_06/original/CHARACTERS/SCIARON/SCIARON_IDLE.png",
+      "character": "sciaron",
+      "status": "Bundle denominato approved 06/09; versione da confrontare",
+      "category": "identità",
+      "id": "M063",
+      "sha256": "744ac467a8cec095a5792c1ea731ea550e5d180c64bdae4aa99776989a006fd6",
+      "size": [
+        1024,
+        1536
+      ],
+      "pixel_hash": "a18b7968371ec840e4a01071f9ebb5ce3036d01e29bb4d640cb69159fcc9aa3d"
+    },
+    {
+      "path": "art_source/stage1_zen/approved_bundle_2026_09_06/original/CHARACTERS/SCIARON/SCIARON_MASTER_3Q.png",
+      "character": "sciaron",
+      "status": "Bundle denominato approved 06/09; versione da confrontare",
+      "category": "identità",
+      "id": "M064",
+      "sha256": "5153730e4295f9a6340d9f7be4aea80cb6f10af6d78a5d90f643c2d0361f2fec",
+      "size": [
+        1024,
+        1536
+      ],
+      "pixel_hash": "03da09c220dac578f7600196bbd81393b094dec21b44fc9f72abe4c48cfb6b2d"
+    },
+    {
+      "path": "art_source/stage1_zen/approved_bundle_2026_09_06/original/CHARACTERS/SCIARON/SCIARON_MASTER_FRONT.png",
+      "character": "sciaron",
+      "status": "Bundle denominato approved 06/09; versione da confrontare",
+      "category": "identità",
+      "id": "M065",
+      "sha256": "023b0287fa67f7ac025755aa62a12dd8a5ebbf6f821cb8097aff2e5c379e215f",
+      "size": [
+        1024,
+        1536
+      ],
+      "pixel_hash": "923445d07f32f475c5f19d9c017d3b408c859205833d7d0a79bbd28eb549ed54"
+    },
+    {
+      "path": "art_source/stage1_zen/approved_bundle_2026_09_06/transparent/CHARACTERS/SCIARON/SCIARON_IDLE.png",
+      "character": "sciaron",
+      "status": "Bundle denominato approved 06/09; versione da confrontare",
+      "category": "identità",
+      "id": "M066",
+      "sha256": "b624fe848b100542f5414a83636872ace403b6fb3245e56376c6a624e744acfd",
+      "size": [
+        1024,
+        1536
+      ],
+      "pixel_hash": "5feb150a2ec024561ce83392902564128e00363c9575cae9819bbd49c81bb11a"
+    },
+    {
+      "path": "art_source/stage1_zen/approved_bundle_2026_09_06/transparent/CHARACTERS/SCIARON/SCIARON_MASTER_3Q.png",
+      "character": "sciaron",
+      "status": "Bundle denominato approved 06/09; versione da confrontare",
+      "category": "identità",
+      "id": "M067",
+      "sha256": "077f65a70fba0c5b00744050d6998a94957310e682afa4ddf39b22e0237a0652",
+      "size": [
+        1024,
+        1536
+      ],
+      "pixel_hash": "e448bb52830a742c4276c72f4f3d8896be31bcdab944dd5327149a9c8f9fa2af"
+    },
+    {
+      "path": "art_source/stage1_zen/approved_bundle_2026_09_06/transparent/CHARACTERS/SCIARON/SCIARON_MASTER_FRONT.png",
+      "character": "sciaron",
+      "status": "Bundle denominato approved 06/09; versione da confrontare",
+      "category": "identità",
+      "id": "M068",
+      "sha256": "cafcf06c0899c67c45e4d0b187d080fc841e9970c2b475950fba9b1cd697f9d4",
+      "size": [
+        1024,
+        1536
+      ],
+      "pixel_hash": "0273e6c83158bb6388cc69a1dec7a8151bf7d81ce472cc514af0818ed5674d33"
+    },
+    {
+      "path": "art_source/stage1_zen/characters_master/original/SCIARON_MASTER.png",
+      "character": "sciaron",
+      "status": "Riferimento approvato secondo master_manifest; versione storica",
+      "category": "identità",
+      "id": "M069",
+      "sha256": "023b0287fa67f7ac025755aa62a12dd8a5ebbf6f821cb8097aff2e5c379e215f",
+      "size": [
+        1024,
+        1536
+      ],
+      "pixel_hash": "923445d07f32f475c5f19d9c017d3b408c859205833d7d0a79bbd28eb549ed54"
+    },
+    {
+      "path": "art_source/stage1_zen/characters_master/transparent/SCIARON_MASTER.png",
+      "character": "sciaron",
+      "status": "Riferimento approvato secondo master_manifest; versione storica",
+      "category": "identità",
+      "id": "M070",
+      "sha256": "cafcf06c0899c67c45e4d0b187d080fc841e9970c2b475950fba9b1cd697f9d4",
+      "size": [
+        1024,
+        1536
+      ],
+      "pixel_hash": "0273e6c83158bb6388cc69a1dec7a8151bf7d81ce472cc514af0818ed5674d33"
+    },
+    {
+      "path": "public/assets/characters/talebano_anim/idle/01.png",
+      "character": "talebano",
+      "status": "Campione runtime attuale; non prova di approvazione master",
+      "category": "runtime",
+      "id": "M071",
+      "sha256": "f6da63320ed721e5d0ad3cd804a22fbef04965fbdbe7944e179661e620e7c557",
+      "size": [
+        640,
+        420
+      ],
+      "pixel_hash": "0b46c709933dfc0339db8b9b4abedba3cce25131d1269cc153b9412eaa0e5840"
+    },
+    {
+      "path": "art_source/stage1_zen/characters_master/original/U_MURATURI_MASTER.png",
+      "character": "u_muraturi",
+      "status": "Riferimento approvato secondo master_manifest; versione storica",
+      "category": "identità",
+      "id": "M074",
+      "sha256": "85962f31e1378c6af9bee7257b46c822a84fe9c1a96d9f90c46123ccf3ab5b99",
+      "size": [
+        1024,
+        1536
+      ],
+      "pixel_hash": "5c7aecf5264743fd74ae2cce06997f8b1530503220d6ed9ce02e5f6995f0feeb"
+    },
+    {
+      "path": "art_source/stage1_zen/characters_master/transparent/U_MURATURI_MASTER.png",
+      "character": "u_muraturi",
+      "status": "Riferimento approvato secondo master_manifest; versione storica",
+      "category": "identità",
+      "id": "M075",
+      "sha256": "493522267a70b20af016ce4d50094e0539372b9e6c2288f27ea2960033011ace",
+      "size": [
+        1024,
+        1536
+      ],
+      "pixel_hash": "1cb40515124daefd092d1d797456a4d587130197a1ffcd5ef3e546d8837cc6f8"
+    },
+    {
+      "path": "art_source/stage1_zen/characters_master/original/U_PACCO_MASTER.png",
+      "character": "u_pacco",
+      "status": "Riferimento approvato secondo master_manifest; versione storica",
+      "category": "identità",
+      "id": "M076",
+      "sha256": "3ac849fc70e160b57d98179e5bb60308a179a7dbbd5576226518086adaf15d6c",
+      "size": [
+        1024,
+        1536
+      ],
+      "pixel_hash": "a112530d38146c181f406b4769538b3a6a94ac49395150ee1dca9bb3a4e9b4a9"
+    },
+    {
+      "path": "art_source/stage1_zen/characters_master/transparent/U_PACCO_MASTER.png",
+      "character": "u_pacco",
+      "status": "Riferimento approvato secondo master_manifest; versione storica",
+      "category": "identità",
+      "id": "M077",
+      "sha256": "cf872bcb33a43c0f108e0e09c02c83fa6e427ecdb773431b6a3912d50e68fdb3",
+      "size": [
+        1024,
+        1536
+      ],
+      "pixel_hash": "f1ab7ac76b1ea09b70e1e017299a78e79baed91090599510caafe9f34cbbb2e9"
+    },
+    {
+      "path": "art_source/stage1_zen/approved_bundle_2026_09_06/original/CHARACTERS/U_SCAFAZZATU/U_SCAFAZZATU_MASTER_3Q.png",
+      "character": "u_scafazzatu",
+      "status": "Bundle denominato approved 06/09; versione da confrontare",
+      "category": "identità",
+      "id": "M078",
+      "sha256": "a5743a015003cf95afc73f4c23accf5c3fae4faca688170e5b62490af3a87491",
+      "size": [
+        1024,
+        1536
+      ],
+      "pixel_hash": "afb6d81e300b421d7f4d03c038315e4e0c17b70adca9400b3b7661ddcfdb3246"
+    },
+    {
+      "path": "art_source/stage1_zen/approved_bundle_2026_09_06/original/CHARACTERS/U_SCAFAZZATU/U_SCAFAZZATU_MASTER_FRONT.png",
+      "character": "u_scafazzatu",
+      "status": "Bundle denominato approved 06/09; versione da confrontare",
+      "category": "identità",
+      "id": "M079",
+      "sha256": "671db2c180b85bea780e614577635724b922b52af35416de27a4822dcd37f4ea",
+      "size": [
+        1086,
+        1448
+      ],
+      "pixel_hash": "aa994623c7cf61fb7e4ca0aee42d7a2da4a36b0e30a2b339ce8fefdcc284aa2a"
+    },
+    {
+      "path": "art_source/stage1_zen/approved_bundle_2026_09_06/original/CHARACTERS/U_SCAFAZZATU/U_SCAFAZZATU_PORTRAIT.png",
+      "character": "u_scafazzatu",
+      "status": "Bundle denominato approved 06/09; versione da confrontare",
+      "category": "identità",
+      "id": "M080",
+      "sha256": "662fe8fcf9229d388357bafe21734caa6089a7cb7c33cadd9349e549f5b9e5c4",
+      "size": [
+        1254,
+        1254
+      ],
+      "pixel_hash": "17cc8eacd9b83a41ae69237b9e6a5c32a38ff51f1dca363be2a4d975233fcf9c"
+    },
+    {
+      "path": "art_source/stage1_zen/approved_bundle_2026_09_06/transparent/CHARACTERS/U_SCAFAZZATU/U_SCAFAZZATU_MASTER_3Q.png",
+      "character": "u_scafazzatu",
+      "status": "Bundle denominato approved 06/09; versione da confrontare",
+      "category": "identità",
+      "id": "M081",
+      "sha256": "d6fe3266d3d4c9f9861c5ac4b4b1f812bd76a56d2f4a0706bb77420a2f8842bd",
+      "size": [
+        1024,
+        1536
+      ],
+      "pixel_hash": "502e310c811058b81eebc046603e6808d4195bf1bc1616f6674111c1e2532d83"
+    },
+    {
+      "path": "art_source/stage1_zen/approved_bundle_2026_09_06/transparent/CHARACTERS/U_SCAFAZZATU/U_SCAFAZZATU_MASTER_FRONT.png",
+      "character": "u_scafazzatu",
+      "status": "Bundle denominato approved 06/09; versione da confrontare",
+      "category": "identità",
+      "id": "M082",
+      "sha256": "8cd32948d354be8e6db2db01aa52a8c427e3367ab9c4e3671d10bba8a6aa3d6d",
+      "size": [
+        1086,
+        1448
+      ],
+      "pixel_hash": "aaee765c35f0414c98281a2881edf80af97d9d03078ece796e9e235531c148b5"
+    },
+    {
+      "path": "art_source/stage1_zen/approved_bundle_2026_09_06/transparent/CHARACTERS/U_SCAFAZZATU/U_SCAFAZZATU_PORTRAIT.png",
+      "character": "u_scafazzatu",
+      "status": "Bundle denominato approved 06/09; versione da confrontare",
+      "category": "identità",
+      "id": "M083",
+      "sha256": "1e7514bcf392b87cf59053d33ef3dd8842e224e51e4c84876006cbba43bbde86",
+      "size": [
+        1254,
+        1254
+      ],
+      "pixel_hash": "56ab743648b905aedfff6be228113a7eb791d8bb3363447ce337b7fda2ecbe04"
+    },
+    {
+      "path": "art_source/stage1_zen/characters_master/original/U_SCAFAZZATU_MASTER.png",
+      "character": "u_scafazzatu",
+      "status": "Riferimento approvato secondo master_manifest; versione storica",
+      "category": "identità",
+      "id": "M084",
+      "sha256": "a5743a015003cf95afc73f4c23accf5c3fae4faca688170e5b62490af3a87491",
+      "size": [
+        1024,
+        1536
+      ],
+      "pixel_hash": "afb6d81e300b421d7f4d03c038315e4e0c17b70adca9400b3b7661ddcfdb3246"
+    },
+    {
+      "path": "art_source/stage1_zen/characters_master/transparent/U_SCAFAZZATU_MASTER.png",
+      "character": "u_scafazzatu",
+      "status": "Riferimento approvato secondo master_manifest; versione storica",
+      "category": "identità",
+      "id": "M085",
+      "sha256": "d6fe3266d3d4c9f9861c5ac4b4b1f812bd76a56d2f4a0706bb77420a2f8842bd",
+      "size": [
+        1024,
+        1536
+      ],
+      "pixel_hash": "502e310c811058b81eebc046603e6808d4195bf1bc1616f6674111c1e2532d83"
+    },
+    {
+      "path": "art_source/stage1_zen/characters_master/original/U_TAPPO_MASTER.png",
+      "character": "u_tappo",
+      "status": "Riferimento approvato secondo master_manifest; versione storica",
+      "category": "identità",
+      "id": "M086",
+      "sha256": "b8297790409a9a6ae527e46ec28132054b4ae839fe69b4c86f332cee9231642a",
+      "size": [
+        1024,
+        1536
+      ],
+      "pixel_hash": "2ca4ef76e91ac9f445e4f0628ac35bd49f566aef16b2549ca61b190aaacd22b4"
+    },
+    {
+      "path": "art_source/stage1_zen/characters_master/transparent/U_TAPPO_MASTER.png",
+      "character": "u_tappo",
+      "status": "Riferimento approvato secondo master_manifest; versione storica",
+      "category": "identità",
+      "id": "M087",
+      "sha256": "56ca155f182472916bb1c57704d720b8e3ad301528268218afde45686a7017ac",
+      "size": [
+        1024,
+        1536
+      ],
+      "pixel_hash": "2ce12ad39c1c4b56fad8072f7d47255c6110c1eac1e7bf1ad709c7d58685c974"
+    },
+    {
+      "path": "art_source/stage1_zen/approved_bundle_2026_09_06/original/CHARACTERS/U_TIGNUSU/U_TIGNUSU_MASTER_3Q.png",
+      "character": "u_tignusu",
+      "status": "Bundle denominato approved 06/09; versione da confrontare",
+      "category": "identità",
+      "id": "M088",
+      "sha256": "94597376e39a246ef6d56685fb9319b7e0f2ec0f06537ce46eeef29541bf1581",
+      "size": [
+        1086,
+        1448
+      ],
+      "pixel_hash": "b037d6387a94083a5eb86b1aa1dac1d6997c6c70879d8bab189c3ba80e919a31"
+    },
+    {
+      "path": "art_source/stage1_zen/approved_bundle_2026_09_06/original/CHARACTERS/U_TIGNUSU/U_TIGNUSU_MASTER_FRONT.png",
+      "character": "u_tignusu",
+      "status": "Bundle denominato approved 06/09; versione da confrontare",
+      "category": "identità",
+      "id": "M089",
+      "sha256": "dd998b875ad6601223db2c0d1fc8b00c8e3f34e97c4ccbf3b454cf7e762695a0",
+      "size": [
+        1024,
+        1536
+      ],
+      "pixel_hash": "e3a345a6e155211addbd681f22a7b5ebb8122e35048e80f5ecc92bad4ea62a3a"
+    },
+    {
+      "path": "art_source/stage1_zen/approved_bundle_2026_09_06/original/CHARACTERS/U_TIGNUSU/U_TIGNUSU_PORTRAIT.png",
+      "character": "u_tignusu",
+      "status": "Bundle denominato approved 06/09; versione da confrontare",
+      "category": "identità",
+      "id": "M090",
+      "sha256": "e03aab1bfe0b4b9dfeca9c15d9f498c37c18d329fd0859fa0eca114702935c14",
+      "size": [
+        1254,
+        1254
+      ],
+      "pixel_hash": "5f125e7e648d51adc47504173d3fbe1c58937008b4f13a3d29c120f15b418f06"
+    },
+    {
+      "path": "art_source/stage1_zen/approved_bundle_2026_09_06/transparent/CHARACTERS/U_TIGNUSU/U_TIGNUSU_MASTER_3Q.png",
+      "character": "u_tignusu",
+      "status": "Bundle denominato approved 06/09; versione da confrontare",
+      "category": "identità",
+      "id": "M091",
+      "sha256": "58e9d9d74752bc932e3372a65a26e4ee9a2c85f06a623fe18f7c8979de2b40bd",
+      "size": [
+        1086,
+        1448
+      ],
+      "pixel_hash": "ebdb2a04aba92587a59d781014f262cd7b9cf7a5926ecb1fa2309bf51999d418"
+    },
+    {
+      "path": "art_source/stage1_zen/approved_bundle_2026_09_06/transparent/CHARACTERS/U_TIGNUSU/U_TIGNUSU_MASTER_FRONT.png",
+      "character": "u_tignusu",
+      "status": "Bundle denominato approved 06/09; versione da confrontare",
+      "category": "identità",
+      "id": "M092",
+      "sha256": "88e1e746c0ac88b8b288fde9c9b2642eb8ad2bd9afe5c36fc10eba1cd53d42e3",
+      "size": [
+        1024,
+        1536
+      ],
+      "pixel_hash": "42bd2895726c73ef978f24ff453c7be04e838dd0d0ab49e8ee479956046c3f27"
+    },
+    {
+      "path": "art_source/stage1_zen/approved_bundle_2026_09_06/transparent/CHARACTERS/U_TIGNUSU/U_TIGNUSU_PORTRAIT.png",
+      "character": "u_tignusu",
+      "status": "Bundle denominato approved 06/09; versione da confrontare",
+      "category": "identità",
+      "id": "M093",
+      "sha256": "c9fe2f3ca8205ab580ae2e8c6584e0a30546601908f4f170d33dbdc9cdf6189d",
+      "size": [
+        1254,
+        1254
+      ],
+      "pixel_hash": "af55e0c6cecb4231662e82b2cec80e559232f52a2e013ff2aae97b1dd9cb826d"
+    },
+    {
+      "path": "art_source/stage1_zen/characters_master/original/U_TIGNUSU_MASTER.png",
+      "character": "u_tignusu",
+      "status": "Riferimento approvato secondo master_manifest; versione storica",
+      "category": "identità",
+      "id": "M094",
+      "sha256": "dc63280de7d2d03fd9644e67a54fd588fd7ca2cd531c9c46476cbe67ead731b4",
+      "size": [
+        1024,
+        1536
+      ],
+      "pixel_hash": "f7267753c78631d7f0f441e96adf6034e4f4becf2ef33e64bfdf877cd5640397"
+    },
+    {
+      "path": "art_source/stage1_zen/characters_master/transparent/U_TIGNUSU_MASTER.png",
+      "character": "u_tignusu",
+      "status": "Riferimento approvato secondo master_manifest; versione storica",
+      "category": "identità",
+      "id": "M095",
+      "sha256": "4d6f94cd1231ef1c0a6cff6cbf6d4315a94d4525583ad02693c4a9df8facccde",
+      "size": [
+        1024,
+        1536
+      ],
+      "pixel_hash": "69c4f7775a9802fa0c953fe94e6187a5d4a0367542e473879e6784d23efedcbb"
+    }
+  ],
+  "byte_duplicates": [
+    [
+      "M007",
+      "M014"
+    ],
+    [
+      "M010",
+      "M015"
+    ],
+    [
+      "M065",
+      "M069"
+    ],
+    [
+      "M068",
+      "M070"
+    ],
+    [
+      "M078",
+      "M084"
+    ],
+    [
+      "M081",
+      "M085"
+    ]
+  ],
+  "pixel_duplicates": [
+    [
+      "M007",
+      "M014"
+    ],
+    [
+      "M010",
+      "M015"
+    ],
+    [
+      "M065",
+      "M069"
+    ],
+    [
+      "M068",
+      "M070"
+    ],
+    [
+      "M078",
+      "M084"
+    ],
+    [
+      "M081",
+      "M085"
+    ]
+  ]
+}

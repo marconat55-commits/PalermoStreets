@@ -45,6 +45,8 @@ function relativeRoot(path: string): string {
 export class AssetCatalog {
   private readonly banks = new Map<string, AnimationBank>();
   private readonly pendingBanks = new Map<string, Promise<AnimationBank>>();
+  private readonly releasingBanks = new Map<string, Promise<void>>();
+  private readonly releasingAssets = new Map<string, Promise<void>>();
   private readonly profiles = new Map<string, CharacterProfile>();
   private readonly frameMeta = new Map<string, Record<string, FrameMeta>>();
   private readonly loadFrameMeta: (profile: CharacterProfile) => Promise<Record<string, FrameMeta>>;
@@ -70,6 +72,7 @@ export class AssetCatalog {
   }
 
   async ensureCharacter(id: string): Promise<AnimationBank> {
+    await this.releasingBanks.get(id);
     const cached = this.banks.get(id);
     if (cached) return cached;
     const pending = this.pendingBanks.get(id);
@@ -84,11 +87,17 @@ export class AssetCatalog {
   }
 
   async loadBackground(path: string): Promise<Texture> {
+    await this.releasingAssets.get(path);
     return Assets.load<Texture>(publicUrl(path));
   }
 
   async unloadAsset(path: string): Promise<void> {
-    await Assets.unload(publicUrl(path));
+    const existing = this.releasingAssets.get(path);
+    if (existing) return existing;
+    const pending = Assets.unload(publicUrl(path));
+    this.releasingAssets.set(path, pending);
+    try { await pending; }
+    finally { this.releasingAssets.delete(path); }
   }
 
   private async loadAtlas(profile: CharacterProfile): Promise<Map<string, Texture> | null> {
@@ -182,7 +191,10 @@ export class AssetCatalog {
     this.frameMeta.delete(id);
     if (profile.assets.texture_atlas) {
       // Atlas pages remain owned by Pixi Assets and can be reloaded on demand.
-      void this.unloadAtlasPages(profile).catch((error) => console.warn(`${id}: unload atlas fallito`, error));
+      const release = this.unloadAtlasPages(profile)
+        .catch((error) => console.warn(`${id}: unload atlas fallito`, error))
+        .finally(() => { this.releasingBanks.delete(id); });
+      this.releasingBanks.set(id, release);
     }
   }
 

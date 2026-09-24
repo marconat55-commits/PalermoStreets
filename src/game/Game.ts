@@ -31,6 +31,7 @@ export class Game {
   private initialStageLoadCompleted = 0;
   private initialStageLoadTotal = 0;
   private selectedPlayerLoaded = false;
+  private stageCreation: Promise<void> = Promise.resolve();
   private selectionRequestedCharacterId: string | null = null;
   private selectionCachedCharacterId: string | null = null;
   private playerProfiles: Array<Pick<CharacterProfile, 'id' | 'display_name' | 'selection'>> = [];
@@ -98,6 +99,11 @@ export class Game {
   }
 
   private showTitle(): void {
+    if (this.scene instanceof StageScene) {
+      this.initialStagePreload = null;
+      this.initialStageLoadCompleted = 0;
+      this.initialStageLoadTotal = 0;
+    }
     this.startingStage = false;
     this.clearSelectionCharacterCache();
     this.scene?.destroy();
@@ -114,6 +120,8 @@ export class Game {
     this.openingCharacterSelect = true;
     title.setLoading(true);
     try {
+      await this.stageCreation;
+      if (this.titleScene !== title) return;
       const selection = await CharacterSelectScene.create(
         this.playerProfiles,
         this.defaultPlayerId,
@@ -144,6 +152,8 @@ export class Game {
     this.startingStage = true;
     const selection = this.characterSelectScene;
     const playerId = selection.selectedCharacterId;
+    let finishCreation!: () => void;
+    this.stageCreation = new Promise<void>((resolve) => { finishCreation = resolve; });
     this.selectedPlayerLoaded = false;
     selection.setLoading(true);
     this.updateInitialStageLoadProgress();
@@ -151,10 +161,12 @@ export class Game {
       await Promise.all([
         this.preloadInitialStage(),
         this.catalog.ensureCharacter(playerId).then(() => {
+          if (this.characterSelectScene !== selection) return;
           this.selectedPlayerLoaded = true;
           this.updateInitialStageLoadProgress();
         }),
       ]);
+      if (this.characterSelectScene !== selection) return;
       this.transferSelectionCharacter(playerId);
       const stage = await StageScene.create(
         this.catalog,
@@ -164,6 +176,13 @@ export class Game {
         this.defaultEnemyId,
         this.startModuleIndex,
       );
+      if (this.characterSelectScene !== selection) {
+        stage.destroy();
+        this.initialStagePreload = null;
+        this.initialStageLoadCompleted = 0;
+        this.initialStageLoadTotal = 0;
+        return;
+      }
       selection.destroy();
       this.app.stage.removeChildren();
       this.characterSelectScene = null;
@@ -171,16 +190,19 @@ export class Game {
       this.app.stage.addChild(stage.root);
     } catch (error) {
       console.error('Avvio stage fallito', error);
+      if (this.characterSelectScene !== selection) return;
       this.startingStage = false;
       selection.confirmRequested = false;
       selection.setLoading(false);
+    } finally {
+      finishCreation();
     }
   }
 
   private updateInitialStageLoadProgress(): void {
     const total = this.initialStageLoadTotal + (this.startingStage ? 1 : 0);
     const completed = this.initialStageLoadCompleted + (this.startingStage && this.selectedPlayerLoaded ? 1 : 0);
-    const progress = total > 0
+    const progress = this.initialStageLoadTotal > 0 && total > 0
       ? completed / total
       : 0;
     this.characterSelectScene?.setLoadingProgress(progress);
@@ -215,6 +237,14 @@ export class Game {
 
   private async preloadInitialStage(): Promise<void> {
     if (this.initialStagePreload) return this.initialStagePreload;
+    this.initialStagePreload = this.loadInitialStageResources().catch((error: unknown) => {
+      this.initialStagePreload = null;
+      throw error;
+    });
+    return this.initialStagePreload;
+  }
+
+  private async loadInitialStageResources(): Promise<void> {
     const firstModule = this.stageData.modules[this.startModuleIndex];
     if (!firstModule) return Promise.reject(new Error('Stage senza moduli'));
     const enabledLayers = firstModule.background_layers?.filter((layer) => layer.enabled !== false);
@@ -237,15 +267,11 @@ export class Game {
     this.initialStageLoadCompleted = 0;
     this.initialStageLoadTotal = tasks.length;
     this.updateInitialStageLoadProgress();
-    this.initialStagePreload = Promise.all(tasks.map(async (task) => {
+    await Promise.all(tasks.map(async (task) => {
       await task;
       this.initialStageLoadCompleted += 1;
       this.updateInitialStageLoadProgress();
-    })).then(() => undefined).catch((error: unknown) => {
-      this.initialStagePreload = null;
-      throw error;
-    });
-    return this.initialStagePreload;
+    }));
   }
 
   private resizeCanvas(): void {

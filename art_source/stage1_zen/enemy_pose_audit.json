@@ -1,0 +1,463 @@
+{
+  "schema": 1,
+  "inventory": [
+    {
+      "path": "art_source/stage1_zen/approved_bundle_2026_09_06/original/CHARACTERS/BARBACCIA/BARBACCIA_MASTER_3Q.png",
+      "status": "identity_master",
+      "bytes": 2201460,
+      "sha256": "88f84d9f42e97eef9c85180656d47e396a03d832b7dff442d7454e357dcfcdfe"
+    },
+    {
+      "path": "art_source/stage1_zen/approved_bundle_2026_09_06/original/CHARACTERS/BARBACCIA/BARBACCIA_MASTER_FRONT.png",
+      "status": "identity_master",
+      "bytes": 2040744,
+      "sha256": "7e1b9caf6255b73b5ba551b56b1faa5e87012298fa8ca8b2fd4b922928730256"
+    },
+    {
+      "path": "art_source/stage1_zen/approved_bundle_2026_09_06/original/CHARACTERS/BARBACCIA/BARBACCIA_PORTRAIT.png",
+      "status": "identity_master",
+      "bytes": 2340601,
+      "sha256": "5567613c9da5d1cdd25a44572fcf0e80b6e7050842dac3ad2bc9be8f4556490d"
+    },
+    {
+      "path": "art_source/stage1_zen/approved_bundle_2026_09_06/original/CHARACTERS/PINO_U_PIZZETTU/PINO_U_PIZZETTU_MASTER_3Q.png",
+      "status": "identity_master",
+      "bytes": 1686389,
+      "sha256": "c3862dd6fc4953ce8c6f53376c8626d45809723083e6c5f6bbaadcbdb38f307b"
+    },
+    {
+      "path": "art_source/stage1_zen/approved_bundle_2026_09_06/original/CHARACTERS/PINO_U_PIZZETTU/PINO_U_PIZZETTU_MASTER_FRONT.png",
+      "status": "identity_master",
+      "bytes": 1576360,
+      "sha256": "145088ae425f8a1798d011cd4663f7440a8a4f540109d2651efd68401ff2ff77"
+    },
+    {
+      "path": "art_source/stage1_zen/approved_bundle_2026_09_06/original/CHARACTERS/PINO_U_PIZZETTU/PINO_U_PIZZETTU_PORTRAIT.png",
+      "status": "identity_master",
+      "bytes": 2789257,
+      "sha256": "b87f0f3ba637ec2981ea7909d4a0a46347420f645ce0946cb8646f7ef25ade28"
+    },
+    {
+      "path": "art_source/stage1_zen/approved_bundle_2026_09_06/transparent/CHARACTERS/BARBACCIA/BARBACCIA_MASTER_3Q.png",
+      "status": "identity_master",
+      "bytes": 1193104,
+      "sha256": "885af0934a0d3021d15218fcf0b76b7530658c606e821f2d803ff76098fbd851"
+    },
+    {
+      "path": "art_source/stage1_zen/approved_bundle_2026_09_06/transparent/CHARACTERS/BARBACCIA/BARBACCIA_MASTER_FRONT.png",
+      "status": "identity_master",
+      "bytes": 1103430,
+      "sha256": "bab3ee91f93033ed02455cc9e77af6bc840ac3f5a6051ef48dd9229f80c9273f"
+    },
+    {
+      "path": "art_source/stage1_zen/approved_bundle_2026_09_06/transparent/CHARACTERS/BARBACCIA/BARBACCIA_PORTRAIT.png",
+      "status": "identity_master",
+      "bytes": 2251529,
+      "sha256": "9c29cb83a1cc4030cbd4df39a6057197f4e7a9a9f94474f4b71f6feb3d4ca402"
+    },
+    {
+      "path": "art_source/stage1_zen/approved_bundle_2026_09_06/transparent/CHARACTERS/PINO_U_PIZZETTU/PINO_U_PIZZETTU_MASTER_3Q.png",
+      "status": "identity_master",
+      "bytes": 850746,
+      "sha256": "224a4f1d42e22ec42943aa16dc9a26dd66815d6873a56534c52f05daad7cd5bf"
+    },
+    {
+      "path": "art_source/stage1_zen/approved_bundle_2026_09_06/transparent/CHARACTERS/PINO_U_PIZZETTU/PINO_U_PIZZETTU_MASTER_FRONT.png",
+      "status": "identity_master",
+      "bytes": 901187,
+      "sha256": "00fd4294683c5f5bb6d5e06754e8daadcc59fd12d0dece6b5e68719d231a86ba"
+    },
+    {
+      "path": "art_source/stage1_zen/approved_bundle_2026_09_06/transparent/CHARACTERS/PINO_U_PIZZETTU/PINO_U_PIZZETTU_PORTRAIT.png",
+      "status": "identity_master",
+      "bytes": 2096783,
+      "sha256": "1d610eb40c024a7298c30b7e0338866c85cb13167e3028fe3b1a9ca2f03e2164"
+    },
+    {
+      "path": "art_source/stage1_zen/barbaccia_arcade_v1/BARBACCIA_ARCADE_IDLE_SHEET_V1.png",
+      "status": "experimental",
+      "bytes": 1615198,
+      "sha256": "f635422fdcd854f9cafcbeed8c76e0e2375547d1df62ebe9ed6f2b21eb6a5c17"
+    },
+    {
+      "path": "art_source/stage1_zen/barbaccia_arcade_v1/BARBACCIA_ARCADE_MASTER_GUARD_V1.png",
+      "status": "experimental",
+      "bytes": 1183966,
+      "sha256": "05fb984a4eb053125cc4de6d4c20582330ba406ea699cb3633f8fb0d74e18e05"
+    },
+    {
+      "path": "art_source/stage1_zen/barbaccia_arcade_v1/BARBACCIA_ARCADE_QUICK_ATTACK_SHEET_V1.png",
+      "status": "experimental",
+      "bytes": 1429250,
+      "sha256": "cbe97deaf4a3c273f83934210b0fd4b42a319aaa89a193c1cc28a870aa7c531b"
+    },
+    {
+      "path": "art_source/stage1_zen/barbaccia_arcade_v1/BARBACCIA_ARCADE_WALK_SHEET_V1.png",
+      "status": "experimental",
+      "bytes": 2223128,
+      "sha256": "c225682964f15959a17519ef39ffbcecc06e56beda6847adf4b4b0743972f4a2"
+    },
+    {
+      "path": "art_source/stage1_zen/barbaccia_arcade_v1/idle_frames_v1/adjust.png",
+      "status": "experimental",
+      "bytes": 124138,
+      "sha256": "7d5c14666a28ba243b7e14b6440bf061a60eb59eeac8aea2080d0c68d0663860"
+    },
+    {
+      "path": "art_source/stage1_zen/barbaccia_arcade_v1/idle_frames_v1/inhale.png",
+      "status": "experimental",
+      "bytes": 126519,
+      "sha256": "1ed062795fb8deca636da882c725bba7f6d787e16ee1d01c274ca0fe473f942e"
+    },
+    {
+      "path": "art_source/stage1_zen/barbaccia_arcade_v1/idle_frames_v1/rise.png",
+      "status": "experimental",
+      "bytes": 126516,
+      "sha256": "e8f9cbd1dff1913d8c7b3d936de495bc9335214cabab75c22bcb9a606d0ef4de"
+    },
+    {
+      "path": "art_source/stage1_zen/barbaccia_arcade_v1/idle_frames_v1/settle.png",
+      "status": "experimental",
+      "bytes": 124537,
+      "sha256": "a544106ffde88c3b35bbe9ca4cfa86ba7a2c85a9de21a7c38e43f5781945fd47"
+    },
+    {
+      "path": "art_source/stage1_zen/barbaccia_arcade_v1/quick_attack_frames_v1/anticipation.png",
+      "status": "experimental",
+      "bytes": 129822,
+      "sha256": "a5f58b440a189c7168157b7922a290e36c8cd6ec0b9c653dd45d4590628ddf24"
+    },
+    {
+      "path": "art_source/stage1_zen/barbaccia_arcade_v1/quick_attack_frames_v1/contact.png",
+      "status": "experimental",
+      "bytes": 135654,
+      "sha256": "f66dc929caa6a3af0d0eb9540501bec360fdb06a9bb1812f6cd24738fe44d858"
+    },
+    {
+      "path": "art_source/stage1_zen/barbaccia_arcade_v1/quick_attack_frames_v1/recovery.png",
+      "status": "experimental",
+      "bytes": 124672,
+      "sha256": "dcc52b4f5fdcf78d8855901637e13d73f1e10014fce88c08166a31b7056f88ea"
+    },
+    {
+      "path": "art_source/stage1_zen/barbaccia_arcade_v1/walk_candidates_v2/pass_support_near.png",
+      "status": "experimental",
+      "bytes": 110570,
+      "sha256": "078936aa8689dc2c9d95b08ce8ebfc494373052ab0c5c7365f3025c991d21099"
+    },
+    {
+      "path": "art_source/stage1_zen/barbaccia_arcade_v1/walk_frames_v1/contact_left.png",
+      "status": "experimental",
+      "bytes": 127659,
+      "sha256": "81304b79f445d36408743d18b1e478779a3a8e16f6de77d4e2ffce8652ae0010"
+    },
+    {
+      "path": "art_source/stage1_zen/barbaccia_arcade_v1/walk_frames_v1/contact_right.png",
+      "status": "experimental",
+      "bytes": 124423,
+      "sha256": "f2db7841e948563016bf12b6f9ab8ad7a38d8996564cf631dcddd7c3b3948a50"
+    },
+    {
+      "path": "art_source/stage1_zen/barbaccia_arcade_v1/walk_frames_v1/pass_left.png",
+      "status": "experimental",
+      "bytes": 124466,
+      "sha256": "7372c96d0d40f987652a5bf2883ac7cc3abb3d90573f2cb8b836aafd6bb4655d"
+    },
+    {
+      "path": "art_source/stage1_zen/barbaccia_arcade_v1/walk_frames_v1/pass_right.png",
+      "status": "experimental",
+      "bytes": 119877,
+      "sha256": "71b8f5ad9237caa8dd02a0dfad1064eff7481c4db9738f6b2d80b48e2a3e58e8"
+    },
+    {
+      "path": "art_source/stage1_zen/barbaccia_arcade_v1/walk_frames_v1/return_contact.png",
+      "status": "experimental",
+      "bytes": 121053,
+      "sha256": "eb4fc915c5a1439c28bb4a1742b187598363edfe2f653708b3401dc0e14605ea"
+    },
+    {
+      "path": "art_source/stage1_zen/barbaccia_arcade_v1/walk_frames_v1/settle.png",
+      "status": "experimental",
+      "bytes": 128721,
+      "sha256": "3593edb359ad8f14eae7eb518b16499ca22ec61cfe46dccaeda91b7210c1e59b"
+    },
+    {
+      "path": "art_source/stage1_zen/barbaccia_arcade_v1/WALK_OPPOSITE_STEP_REJECTED.png",
+      "status": "experimental",
+      "bytes": 573983,
+      "sha256": "c1e1389f8ad5b16d92de5e840552ae38c947a427f5a3da3ffd980401f1892adc"
+    },
+    {
+      "path": "art_source/stage1_zen/barbaccia_arcade_v1/WALK_PASS_SUPPORT_NEAR_V2.png",
+      "status": "experimental",
+      "bytes": 513242,
+      "sha256": "1589d7ae9f3b6b1b882cf8cbb88c114ebcc806b3c07ab747f514b9e76f9c430b"
+    },
+    {
+      "path": "art_source/stage1_zen/characters_master/original/BARBACCIA_MASTER.png",
+      "status": "experimental",
+      "bytes": 2201460,
+      "sha256": "88f84d9f42e97eef9c85180656d47e396a03d832b7dff442d7454e357dcfcdfe"
+    },
+    {
+      "path": "art_source/stage1_zen/characters_master/transparent/BARBACCIA_MASTER.png",
+      "status": "experimental",
+      "bytes": 1193104,
+      "sha256": "885af0934a0d3021d15218fcf0b76b7530658c606e821f2d803ff76098fbd851"
+    },
+    {
+      "path": "art_source/stage1_zen/enemy_motion_pilots_2026_09_20/barbaccia_frame_candidates_v1/guard_closed.png",
+      "status": "experimental",
+      "bytes": 112163,
+      "sha256": "31b5bac651ec6eb6e244c98ee5dc388970c907454f3148f98d23472e5c285568"
+    },
+    {
+      "path": "art_source/stage1_zen/enemy_motion_pilots_2026_09_20/barbaccia_frame_candidates_v1/guard_open.png",
+      "status": "experimental",
+      "bytes": 129858,
+      "sha256": "e0d32bb8847b6a4c97e14abf7d5feae2a1f43354253aff613b1112a6189f6688"
+    },
+    {
+      "path": "art_source/stage1_zen/enemy_motion_pilots_2026_09_20/barbaccia_frame_candidates_v1/scale_vs_merco.png",
+      "status": "experimental",
+      "bytes": 165790,
+      "sha256": "0fb9e68732cef33a9a16ee2bacae0a5e5bae2f29cd3d3164666a80046edfbc43"
+    },
+    {
+      "path": "art_source/stage1_zen/enemy_motion_pilots_2026_09_20/barbaccia_frame_candidates_v1/walk_contact.png",
+      "status": "experimental",
+      "bytes": 111583,
+      "sha256": "e8eb8a90a787cbe45e158269773f9fb084c4c9c9a24b28301f87db93d070b416"
+    },
+    {
+      "path": "art_source/stage1_zen/enemy_motion_pilots_2026_09_20/barbaccia_frame_candidates_v1/walk_pass.png",
+      "status": "experimental",
+      "bytes": 112539,
+      "sha256": "a1699d2f95e47cbddadd89f2e2414b97e6863833a1824050a650ae30d62112ce"
+    },
+    {
+      "path": "art_source/stage1_zen/enemy_motion_pilots_2026_09_20/BARBACCIA_GUARD_WALK_PILOT.png",
+      "status": "experimental",
+      "bytes": 1588280,
+      "sha256": "f0c0fe0ee093ca2b6df838fc790fb5476176238cb6450f5291565cb3dc3f23a0"
+    },
+    {
+      "path": "art_source/stage1_zen/enemy_motion_pilots_2026_09_20/PINO_U_PIZZETTU_GUARD_WALK_PILOT.png",
+      "status": "experimental",
+      "bytes": 1153345,
+      "sha256": "81a49073f9f5691f37dff0c3383f6fe01558ce22e3658a9bedd2331be095b80e"
+    },
+    {
+      "path": "art_source/stage1_zen/enemy_motion_pilots_2026_09_20/PINO_U_PIZZETTU_GUARD_WALK_PILOT_V2.png",
+      "status": "experimental",
+      "bytes": 1099497,
+      "sha256": "338c4893c7ddae2fd96970c8a86f6a179b6f10f31c2d9dad2785d2d872b051fc"
+    }
+  ],
+  "arcade_frames": [
+    {
+      "clip": "idle",
+      "path": "art_source/stage1_zen/barbaccia_arcade_v1/idle_frames_v1/inhale.png",
+      "size": [
+        640,
+        420
+      ],
+      "alpha_bounds": [
+        193,
+        85,
+        446,
+        400
+      ],
+      "pixel_sha256": "18b63a440cdc5f7fbacf3eda635474da7cdcc3b520207c024e719efb9d0dc06b"
+    },
+    {
+      "clip": "idle",
+      "path": "art_source/stage1_zen/barbaccia_arcade_v1/idle_frames_v1/rise.png",
+      "size": [
+        640,
+        420
+      ],
+      "alpha_bounds": [
+        194,
+        82,
+        446,
+        400
+      ],
+      "pixel_sha256": "1e8dd0f83e86f779fdb8d5e6a6cbe4a1e41abb2bf7679dd2d41261afa0d906d3"
+    },
+    {
+      "clip": "idle",
+      "path": "art_source/stage1_zen/barbaccia_arcade_v1/idle_frames_v1/settle.png",
+      "size": [
+        640,
+        420
+      ],
+      "alpha_bounds": [
+        194,
+        88,
+        446,
+        400
+      ],
+      "pixel_sha256": "dbc547722c38059618700f90225f728973f24314ba08ab1997061efc070ec8a0"
+    },
+    {
+      "clip": "idle",
+      "path": "art_source/stage1_zen/barbaccia_arcade_v1/idle_frames_v1/adjust.png",
+      "size": [
+        640,
+        420
+      ],
+      "alpha_bounds": [
+        194,
+        86,
+        446,
+        400
+      ],
+      "pixel_sha256": "2b00f40f9d0ea6f97181d15021ad4e8cfde37bcdaf6f6cc3f0c906eec938abac"
+    },
+    {
+      "clip": "walk",
+      "path": "art_source/stage1_zen/barbaccia_arcade_v1/walk_frames_v1/contact_right.png",
+      "size": [
+        640,
+        420
+      ],
+      "alpha_bounds": [
+        191,
+        82,
+        448,
+        400
+      ],
+      "pixel_sha256": "69c3f08098cca65f1a245e5650a9684aa30e5ddddbc1d6b3db49a50051c15872"
+    },
+    {
+      "clip": "walk",
+      "path": "art_source/stage1_zen/barbaccia_arcade_v1/walk_frames_v1/pass_right.png",
+      "size": [
+        640,
+        420
+      ],
+      "alpha_bounds": [
+        207,
+        82,
+        432,
+        400
+      ],
+      "pixel_sha256": "44ce77ba0b273e6999bbee2d380b3000ddcb5bdf086e09cd63a09cf024f03c75"
+    },
+    {
+      "clip": "walk",
+      "path": "art_source/stage1_zen/barbaccia_arcade_v1/walk_frames_v1/contact_left.png",
+      "size": [
+        640,
+        420
+      ],
+      "alpha_bounds": [
+        183,
+        84,
+        457,
+        400
+      ],
+      "pixel_sha256": "8741b5cb0afdc7fe26baed4ad23468db9214c7dcdbb4431403521f7167447877"
+    },
+    {
+      "clip": "walk",
+      "path": "art_source/stage1_zen/barbaccia_arcade_v1/walk_frames_v1/settle.png",
+      "size": [
+        640,
+        420
+      ],
+      "alpha_bounds": [
+        193,
+        92,
+        446,
+        400
+      ],
+      "pixel_sha256": "8da92d13176c889a332ebdf77d12325bfb0509aba725aadc608b143c46e44f8f"
+    },
+    {
+      "clip": "walk",
+      "path": "art_source/stage1_zen/barbaccia_arcade_v1/walk_frames_v1/pass_left.png",
+      "size": [
+        640,
+        420
+      ],
+      "alpha_bounds": [
+        194,
+        88,
+        445,
+        400
+      ],
+      "pixel_sha256": "f4552f4888a5e4950cecfef0f1ace535620efa1565034dd582c1c314edac119c"
+    },
+    {
+      "clip": "walk",
+      "path": "art_source/stage1_zen/barbaccia_arcade_v1/walk_frames_v1/return_contact.png",
+      "size": [
+        640,
+        420
+      ],
+      "alpha_bounds": [
+        196,
+        87,
+        444,
+        400
+      ],
+      "pixel_sha256": "b035ca37ba853a692146e707634b63d4ecd0d3e541d934dafa3977aebd636782"
+    },
+    {
+      "clip": "quick_attack",
+      "path": "art_source/stage1_zen/barbaccia_arcade_v1/quick_attack_frames_v1/anticipation.png",
+      "size": [
+        640,
+        420
+      ],
+      "alpha_bounds": [
+        180,
+        97,
+        460,
+        400
+      ],
+      "pixel_sha256": "ae2e5dc3e748e5b0c97ce191afc5b79611447ada6ca1310d45a6a02bb34d74b6"
+    },
+    {
+      "clip": "quick_attack",
+      "path": "art_source/stage1_zen/barbaccia_arcade_v1/quick_attack_frames_v1/contact.png",
+      "size": [
+        640,
+        420
+      ],
+      "alpha_bounds": [
+        157,
+        97,
+        483,
+        400
+      ],
+      "pixel_sha256": "f605515f4f4edacac0b2258b73171fb144f169915abcfcfab8a7c15c952a825f"
+    },
+    {
+      "clip": "quick_attack",
+      "path": "art_source/stage1_zen/barbaccia_arcade_v1/quick_attack_frames_v1/recovery.png",
+      "size": [
+        640,
+        420
+      ],
+      "alpha_bounds": [
+        167,
+        96,
+        473,
+        400
+      ],
+      "pixel_sha256": "2f91e40c73686fdb5d86b3365ab58110ae395b78104fe23a1269af4b65942c04"
+    }
+  ],
+  "format_errors": [],
+  "unique_pixel_frames": 13,
+  "motion_approved": false,
+  "visual_findings": [
+    "Walk pass_right/pass_left require anatomical alternation review.",
+    "Attack-to-idle body size and foot placement need transition review.",
+    "Pino V2 has blue edge fringes and only four concept poses.",
+    "Pixel uniqueness and baseline checks do not certify animation quality."
+  ]
+}

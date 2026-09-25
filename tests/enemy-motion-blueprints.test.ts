@@ -21,7 +21,11 @@ for (const id of ['barbaccia', 'pino_u_pizzettu']) {
     assert.equal(draft.archetype, blueprint.id);
     assert.ok(fs.existsSync(draft.source.identity_lock));
     assert.ok(fs.existsSync(draft.source.front_master));
-    assert.match(draft.source.identity_lock, /approved_bundle_2026_09_06/);
+    if (id === 'barbaccia') {
+      assert.equal(draft.source.identity_lock, 'art_source/stage1_zen/barbaccia_hd_master/BARBACCIA_HD_USER_MASTER.png');
+    } else {
+      assert.match(draft.source.identity_lock, /approved_bundle_2026_09_06/);
+    }
     assert.equal(blueprint.reference_use, 'timing_and_pose_order_only');
     assert.equal(blueprint.runtime_art_policy, 'project_owned_original_only');
     assert.deepEqual(blueprint.canvas, [640, 420]);

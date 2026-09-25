@@ -392,6 +392,84 @@
       "pixel_hash": "e7b7fb006b255ccad43716c89b015267c73d0c8a9ab296c3aff3f3b4f3a5dec2"
     },
     {
+      "path": "art_source/characters/marco/chat_pose_review_2026_09_25/spin_01_source.png",
+      "character": "marco",
+      "status": "Sorgente chat: accepted_source_from_chat; NON runtime: raccordi da correggere",
+      "category": "posa spin",
+      "id": "M096",
+      "sha256": "f9de04a6d9fd2aa3fc65ff0606d4676275d63cbc1310e0d47a4491b560763bbf",
+      "size": [
+        1024,
+        1536
+      ],
+      "pixel_hash": "426f90e48b1083106ce59631bd9155f6b90d3d2ce5be48f94df10356d6e9253c"
+    },
+    {
+      "path": "art_source/characters/marco/chat_pose_review_2026_09_25/spin_02_source.png",
+      "character": "marco",
+      "status": "Sorgente chat: accepted_source_from_chat; NON runtime: raccordi da correggere",
+      "category": "posa spin",
+      "id": "M097",
+      "sha256": "98cba2b218c7c57641008d68b79263d30a38dff05ca15af93b996d769bc77849",
+      "size": [
+        1024,
+        1536
+      ],
+      "pixel_hash": "53c10db891030f06d44dcae3485bdd3e005ff33e0ac8669ca41d6bc9f21f8833"
+    },
+    {
+      "path": "art_source/characters/marco/chat_pose_review_2026_09_25/spin_03_source.png",
+      "character": "marco",
+      "status": "Sorgente chat: accepted_source_from_chat; NON runtime: raccordi da correggere",
+      "category": "posa spin",
+      "id": "M098",
+      "sha256": "86230b629db3808bf2130e1d8105535f08ebf8213b0d892228b9d30a41939f1c",
+      "size": [
+        1024,
+        1536
+      ],
+      "pixel_hash": "d2d8e7c8fa2e05c2b1ff8558e16b7d7aeaf6887645ef79b94f900dc2e8cbc292"
+    },
+    {
+      "path": "art_source/characters/marco/chat_pose_review_2026_09_25/spin_04_approved_source.png",
+      "character": "marco",
+      "status": "Sorgente chat: accepted_source_from_chat; NON runtime: raccordi da correggere",
+      "category": "posa spin",
+      "id": "M099",
+      "sha256": "7b4191935849175fd2f7f7e26fea1d36c80c45163aa7634d7afac8c2f54d0c13",
+      "size": [
+        1024,
+        1536
+      ],
+      "pixel_hash": "73ce1a38717b7088949bc11bfcef62ed012d24f83f327eb4ea9ed3c657ebffcc"
+    },
+    {
+      "path": "art_source/characters/marco/chat_pose_review_2026_09_25/spin_05_candidate.png",
+      "character": "marco",
+      "status": "Sorgente chat: candidate_not_explicitly_approved; NON runtime: raccordi da correggere",
+      "category": "posa spin",
+      "id": "M100",
+      "sha256": "3a0622cf35f95cdd4149160cd1a8f2189a79b1b70a2afc92a67292275d91d118",
+      "size": [
+        1024,
+        1536
+      ],
+      "pixel_hash": "79fbc637f6efdfe67941b2c8269782d7f11f488db595dd9159415d59f997e1b7"
+    },
+    {
+      "path": "art_source/characters/marco/chat_pose_review_2026_09_25/spin_06_candidate.png",
+      "character": "marco",
+      "status": "Sorgente chat: candidate_not_explicitly_approved; NON runtime: raccordi da correggere",
+      "category": "posa spin",
+      "id": "M101",
+      "sha256": "26f34a9dcc5544fc19398a28c06d67cb9f75ddded9270e507507d72b5c3c7970",
+      "size": [
+        1024,
+        1536
+      ],
+      "pixel_hash": "9635f610e66343af05253ec362806118fd1ce26cda8361a06b8f845c4d6747e2"
+    },
+    {
       "path": "public/assets/characters/marco_anim/idle/01.png",
       "character": "marco",
       "status": "Campione runtime attuale; non prova di approvazione master",

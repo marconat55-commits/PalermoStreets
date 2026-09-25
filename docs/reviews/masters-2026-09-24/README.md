@@ -1,6 +1,6 @@
 # Revisione master — 24 settembre 2026
 
-Aprire index.html: 93 immagini, 16 identità originali/NPC e 3 reference MUGEN. Le miniature non rappresentano le scale nel gioco. Cliccare per vedere le sorgenti.
+Aprire index.html: 99 immagini, 16 identità originali/NPC e 3 reference MUGEN. Le miniature non rappresentano le scale nel gioco. Cliccare per vedere le sorgenti.
 
 ## Decisioni confermate
 

@@ -1,0 +1,46 @@
+{
+  "character": "marco",
+  "source_chat": "https://chatgpt.com/share/6ab6304a-cad0-83ed-a99a-5fbc4f7bf2f0",
+  "full_thread": "6ab51ebd-1970-83ed-8595-f67e56619ccc",
+  "imported_on": "2026-09-25",
+  "integration": "source_only",
+  "runtime_gate": "failed_motion_continuity_and_raster_contract",
+  "files": [
+    {
+      "file": "spin_01_source.png",
+      "sha256": "F9DE04A6D9FD2AA3FC65FF0606D4676275D63CBC1310E0D47A4491B560763BBF",
+      "status": "accepted_source_from_chat",
+      "runtime_ready": false
+    },
+    {
+      "file": "spin_02_source.png",
+      "sha256": "98CBA2B218C7C57641008D68B79263D30A38DFF05CA15AF93B996D769BC77849",
+      "status": "accepted_source_from_chat",
+      "runtime_ready": false
+    },
+    {
+      "file": "spin_03_source.png",
+      "sha256": "86230B629DB3808BF2130E1D8105535F08EBF8213B0D892228B9D30A41939F1C",
+      "status": "accepted_source_from_chat",
+      "runtime_ready": false
+    },
+    {
+      "file": "spin_04_approved_source.png",
+      "sha256": "7B4191935849175FD2F7F7E26FEA1D36C80C45163AA7634D7AFAC8C2F54D0C13",
+      "status": "accepted_source_from_chat",
+      "runtime_ready": false
+    },
+    {
+      "file": "spin_05_candidate.png",
+      "sha256": "3A0622CF35F95CDD4149160CD1A8F2189A79B1B70A2AFC92A67292275D91D118",
+      "status": "candidate_not_explicitly_approved",
+      "runtime_ready": false
+    },
+    {
+      "file": "spin_06_candidate.png",
+      "sha256": "26F34A9DCC5544FC19398A28C06D67CB9F75DDDED9270E507507D72B5C3C7970",
+      "status": "candidate_not_explicitly_approved",
+      "runtime_ready": false
+    }
+  ]
+}

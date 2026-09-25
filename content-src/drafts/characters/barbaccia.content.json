@@ -7,7 +7,7 @@
   "archetype": "enemy_heavy_original_v1",
   "runtime_profile": "public/data/characters/barbaccia.json",
   "source": {
-    "identity_lock": "art_source/stage1_zen/approved_bundle_2026_09_06/transparent/CHARACTERS/BARBACCIA/BARBACCIA_MASTER_3Q.png",
+    "identity_lock": "art_source/stage1_zen/barbaccia_hd_master/BARBACCIA_HD_USER_MASTER.png",
     "front_master": "art_source/stage1_zen/approved_bundle_2026_09_06/transparent/CHARACTERS/BARBACCIA/BARBACCIA_MASTER_FRONT.png",
     "authoring_format": "blender_or_krita",
     "license": "project_owned"

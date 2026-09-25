@@ -23,6 +23,10 @@ for p in sorted((ROOT/'art_source/characters').rglob('*.png')):
 for p in sorted((ROOT/'art_source/stage1_zen/characters_master').rglob('*.png')):
     name = p.stem.split('_MASTER')[0].split('_SELECT')[0].split('_CARD')[0].lower()
     add(p, name, 'Riferimento approvato secondo master_manifest; versione storica', 'identità')
+pose_review = ROOT/'art_source/characters/marco/chat_pose_review_2026_09_25'
+if (pose_review/'manifest.json').exists():
+    for row in json.loads((pose_review/'manifest.json').read_text(encoding='utf-8-sig'))['files']:
+        add(pose_review/row['file'], 'marco', 'Sorgente chat: ' + row['status'] + '; NON runtime: raccordi da correggere', 'posa spin')
 for p in sorted((ROOT/'art_source/stage1_zen/approved_bundle_2026_09_06').rglob('*.png')):
     if 'CHARACTERS' in p.parts:
         add(p, p.parent.name.lower(), 'Bundle denominato approved 06/09; versione da confrontare', 'identità')

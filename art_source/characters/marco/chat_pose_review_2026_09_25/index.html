@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="it"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Marco — revisione speciale rotante</title>
+<style>body{font:16px system-ui;background:#171d27;color:#f1f2f6;margin:24px}a{color:#9cdbff}button,select{font:inherit;padding:9px;margin:4px}#stage{display:flex;gap:24px;align-items:center;flex-wrap:wrap}#player{height:420px;width:280px;object-fit:contain;background:#303947}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}.grid img{width:100%;height:280px;object-fit:contain}figure{margin:0;background:#28313f;padding:10px}p{max-width:900px;line-height:1.5}.warn{color:#ffcf86}</style>
+<h1>Marco · speciale rotante</h1>
+<p class="warn">Sorgenti recuperate dalla chat, non animazione attiva nel gioco. Fondo verde e dimensioni originali conservati. La riproduzione serve a valutare la successione delle pose: non certifica scala, pivot o movimento finale.</p>
+<p>01–03: accettate nella conversazione e nel suo riepilogo. 04: approvazione esplicita. 05–06: due nuove pose dell'ultimo messaggio, ancora candidate.</p>
+<section id="stage"><img id="player" alt="Posa corrente"><div><h2 id="label"></h2><button id="play">Riproduci</button><button id="prev">Precedente</button><button id="next">Successiva</button><label>Velocità <select id="speed"><option value="1">Normale (ipotesi)</option><option value="0.5">Rallentata ×0,5</option><option value="0.25">Rallentata ×0,25</option></select></label><p>Durate di studio: 80 / 80 / 140 / 80 / 100 / 140 ms, poi pausa di 700 ms. Non sono tempi già validati per il gameplay.</p><p><a href="../MARCO_MASTER_APPROVED.png">Confronta il master di Marco</a></p></div></section>
+<h2>Confronto fotogrammi</h2><section class="grid" id="grid"></section>
+<script>
+const files=['spin_01_source.png','spin_02_source.png','spin_03_source.png','spin_04_approved_source.png','spin_05_candidate.png','spin_06_candidate.png'];
+const names=['01 · caricamento','02 · ginocchio','03 · impatto','04 · prosecuzione approvata','05 · rientro candidato','06 · guardia candidata'];
+const durations=[80,80,140,80,100,140];
+let frame=0,playing=false,timer;
+const player=document.querySelector('#player'),label=document.querySelector('#label'),play=document.querySelector('#play'),speed=document.querySelector('#speed');
+function show(){player.src=files[frame];label.textContent=names[frame];}
+function stop(){playing=false;clearTimeout(timer);play.textContent='Riproduci';}
+function tick(){show();timer=setTimeout(()=>{frame=(frame+1)%6;tick()},(durations[frame]+(frame===5?700:0))/Number(speed.value));}
+play.onclick=()=>{if(playing)stop();else{playing=true;play.textContent='Pausa';tick();}};
+document.querySelector('#prev').onclick=()=>{stop();frame=(frame+5)%6;show();};
+document.querySelector('#next').onclick=()=>{stop();frame=(frame+1)%6;show();};
+files.forEach((src,i)=>{const fig=document.createElement('figure'),a=document.createElement('a'),img=document.createElement('img'),caption=document.createElement('figcaption');a.href=src;img.src=src;img.alt=names[i];caption.textContent=names[i];a.append(img);fig.append(a,caption);document.querySelector('#grid').append(fig);});
+show();
+</script></html>

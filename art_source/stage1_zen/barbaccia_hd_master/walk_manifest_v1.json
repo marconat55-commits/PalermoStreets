@@ -1,0 +1,64 @@
+{
+  "schema": 1,
+  "status": "art_review_only",
+  "identity_master": "BARBACCIA_HD_USER_MASTER.png",
+  "canvas": [
+    640,
+    420
+  ],
+  "feet_y": 400,
+  "durations_ms": [
+    165,
+    125,
+    165,
+    125
+  ],
+  "visible_area_vs_merco": [
+    2.19,
+    2.0,
+    2.36,
+    1.95
+  ],
+  "frames": [
+    {
+      "file": "walk_frames_v1/01_contact_right.png",
+      "bounds": [
+        170,
+        84,
+        470,
+        400
+      ],
+      "opaque_pixels": 44783
+    },
+    {
+      "file": "walk_frames_v1/02_pass_left.png",
+      "bounds": [
+        192,
+        84,
+        448,
+        400
+      ],
+      "opaque_pixels": 40866
+    },
+    {
+      "file": "walk_frames_v1/03_contact_left.png",
+      "bounds": [
+        161,
+        84,
+        479,
+        400
+      ],
+      "opaque_pixels": 48273
+    },
+    {
+      "file": "walk_frames_v1/04_pass_right.png",
+      "bounds": [
+        200,
+        84,
+        439,
+        400
+      ],
+      "opaque_pixels": 39816
+    }
+  ]
+}

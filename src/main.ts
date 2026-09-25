@@ -7,7 +7,7 @@ async function bootstrap(): Promise<void> {
   const host = document.querySelector<HTMLElement>('#app');
   if (!host) throw new Error('Elemento #app non trovato');
   const params = new URLSearchParams(window.location.search);
-  if (import.meta.env.DEV && params.has('barbacciaWalkPilot')) {
+  if (import.meta.env.DEV && (params.has('barbacciaWalkPilot') || params.has('barbacciaHdWalkPilot'))) {
     const { BarbacciaWalkPilot } = await import('./pilots/BarbacciaWalkPilot');
     const pilot = new BarbacciaWalkPilot();
     await pilot.init(host);

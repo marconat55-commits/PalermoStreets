@@ -4,6 +4,7 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
+    "predev": "node scripts/sync-before-dev.mjs",
     "dev": "vite",
     "build": "tsc -b && vite build && node scripts/prune-production-assets.mjs && node scripts/validate-production-assets.mjs",
     "typecheck": "tsc -b --pretty false",

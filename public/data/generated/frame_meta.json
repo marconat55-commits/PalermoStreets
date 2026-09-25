@@ -2951,10 +2951,10 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      214,
-      133,
-      213,
-      267
+      231,
+      111,
+      179,
+      290
     ],
     "offsetY": 20
   },
@@ -2962,10 +2962,10 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      218,
-      131,
-      205,
-      269
+      214,
+      133,
+      213,
+      267
     ],
     "offsetY": 20
   },
@@ -6849,6 +6849,28 @@
       100,
       170,
       300
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/merco_anim/punch_right/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      222,
+      131,
+      197,
+      269
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/merco_anim/punch_right/05.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      232,
+      111,
+      177,
+      290
     ],
     "offsetY": 20
   }

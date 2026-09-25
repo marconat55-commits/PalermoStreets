@@ -19,6 +19,8 @@ test('Merco eredita il core di Marco e sostituisce soltanto le clip approvate', 
   assert.equal(merco.animations.land.frames, 2);
   assert.equal(merco.animations.air_attack.frames, 5);
   assert.equal(merco.animations.air_attack.contact_frame, 3);
+  assert.equal(merco.animations.punch_right.frames, 5);
+  assert.equal(merco.animations.punch_right.contact_frame, 3);
   assert.equal(merco.animations.grab.frames, 1);
   assert.equal(merco.animations.grab_strike.frames, 3);
   assert.equal(merco.animations.throw.frames, 3);

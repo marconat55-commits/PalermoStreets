@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "build_scope": "stage1_zen_layered_scroll_v1",
+  "build_scope": "stage1_zen_m01_demo_v1",
   "stage_name": "STAGE 1 — ZEN",
   "stage_subtitle": "A' VARBA E' SACRA",
   "modules": [
@@ -59,8 +59,11 @@
       "exit_x": 2510,
       "heal": 12,
       "items": [
-        { "item": "trash_bag", "position": [1180, 688] },
-        { "item": "trash_bin", "position": [1580, 690] }
+        { "item": "trash_bag", "position": [1080, 690], "group": "m01_market" },
+        { "item": "trash_bin", "position": [1195, 692], "group": "m01_market" },
+        { "item": "trash_bin", "position": [1780, 690], "group": "m01_courtyard" },
+        { "item": "trash_bag", "position": [1890, 692], "group": "m01_courtyard" },
+        { "item": "trash_bin", "position": [2000, 690], "group": "m01_courtyard" }
       ],
       "waves": [
         {
@@ -72,106 +75,28 @@
           "name": "TALEBANO"
         },
         {
-          "trigger_x": 1320,
-          "health": 64,
-          "aggression": 0.82,
-          "spawns": [[1180, 660], [1820, 705]],
+          "trigger_x": 950,
+          "health": 44,
+          "aggression": 0.72,
+          "spawns": [[1300, 680], [1450, 702]],
           "character": "a_puaicca",
           "name": "A PUAICCA"
-        }
-      ]
-    },
-    {
-      "id": "M02",
-      "name": "Porticato e garage",
-      "art_status": "approved",
-      "reference_actor_height": 290,
-      "horizon_y": 300,
-      "background": "assets/backgrounds/stage1_zen/final_v1/M02/M02_MAIN.png",
-      "background_layers": [
-        { "src": "assets/backgrounds/stage1_zen/final_v1/M02/M02_FAR.png", "parallax": 0.22, "plane": "far", "y": 0, "width": 2560, "height": 720 },
-        { "src": "assets/backgrounds/stage1_zen/final_v1/M02/M02_MAIN.png", "parallax": 1.0, "plane": "main", "y": 0, "width": 2560, "height": 720 },
-        { "src": "assets/backgrounds/stage1_zen/final_v1/M02/M02_FOREGROUND.png", "parallax": 1.08, "plane": "foreground", "enabled": false, "y": 0, "width": 2560, "height": 720 }
-      ],
-      "world_width": 2560,
-      "camera_bounds": [0, 1280],
-      "playfield_y": [515, 705],
-      "walk_top": [[0, 515], [2560, 515]],
-      "walk_bottom": [[0, 705], [2560, 705]],
-      "entry": [128, 610],
-      "exit_x": 2510,
-      "heal": 20,
-      "waves": [
+        },
         {
-          "trigger_x": 250,
-          "health": 58,
-          "aggression": 0.94,
-          "spawns": [[760, 635]],
-          "character": "haggar_ref",
-          "name": "HAGGAR REF"
-        }
-      ]
-    },
-    {
-      "id": "M03",
-      "name": "Campetto",
-      "art_status": "placeholder_rebuild_required",
-      "reference_actor_height": 290,
-      "background": "assets/backgrounds/stage1_zen/layers_v2/M03/MAIN_SKY_V3.png",
-      "background_layers": [
-        { "src": "assets/backgrounds/stage1_zen/long/ZEN_FAR_SKYLINE.png", "parallax": 0.22, "plane": "far", "y": -108, "width": 2944, "height": 828 },
-        { "src": "assets/backgrounds/stage1_zen/layers_v2/M03/MAIN_SKY_V3.png", "parallax": 1.0, "plane": "main", "y": -108, "width": 2944, "height": 828 }
-      ],
-      "world_width": 2944,
-      "camera_bounds": [0, 1664],
-      "playfield_y": [475, 705],
-      "walk_top": [[0, 475], [2944, 475]],
-      "walk_bottom": [[0, 705], [2944, 705]],
-      "entry": [147, 590],
-      "exit_x": 2887,
-      "heal": 12,
-      "waves": [
-        {
-          "trigger_x": 414,
-          "health": 68,
-          "aggression": 1.04,
-          "spawns": [[966, 600]],
-          "character": "aiori_ref",
-          "name": "AIORI REF"
-        }
-      ]
-    },
-    {
-      "id": "M04",
-      "name": "Ingresso del palazzo",
-      "art_status": "placeholder_rebuild_required",
-      "reference_actor_height": 290,
-      "background": "assets/backgrounds/stage1_zen/layers_v2/M04/MAIN_SKY_V3.png",
-      "background_layers": [
-        { "src": "assets/backgrounds/stage1_zen/long/ZEN_FAR_SKYLINE.png", "parallax": 0.22, "plane": "far", "y": -108, "width": 2944, "height": 828 },
-        { "src": "assets/backgrounds/stage1_zen/layers_v2/M04/MAIN_SKY_V3.png", "parallax": 1.0, "plane": "main", "y": -108, "width": 2944, "height": 828 }
-      ],
-      "world_width": 2944,
-      "camera_bounds": [0, 1664],
-      "playfield_y": [510, 705],
-      "walk_top": [[0, 510], [2944, 510]],
-      "walk_bottom": [[0, 705], [2944, 705]],
-      "entry": [147, 610],
-      "exit_x": 2887,
-      "heal": 16,
-      "waves": [
-        {
-          "trigger_x": 414,
-          "health": 96,
-          "aggression": 1.18,
-          "spawns": [[966, 620]],
+          "trigger_x": 1480,
+          "health": 36,
+          "aggression": 0.68,
+          "spawns": [[1680, 680], [1830, 702], [1970, 675]],
           "character": "talebano",
-          "name": "TALEBANO FINALE",
-          "damage_scale": 1.12,
-          "attack_speed_scale": 0.94,
-          "heavy_chance": 0.37,
-          "cooldown_scale": 1.02,
-          "collision_scale": 1.08
+          "name": "TALEBANO"
+        },
+        {
+          "trigger_x": 2070,
+          "health": 40,
+          "aggression": 0.7,
+          "spawns": [[2150, 680], [2290, 702], [2430, 675]],
+          "character": "a_puaicca",
+          "name": "A PUAICCA"
         }
       ]
     }

@@ -179,7 +179,9 @@ export function validateRepository(root, { verifyOutputs = false } = {}) {
         const runtime = readJson(root, manifest.runtime_profile);
         const runtimeIds = new Set((runtime.modules ?? []).map((module) => module.id));
         for (const module of manifest.modules ?? []) {
-          if (!runtimeIds.has(module.runtime_module_id)) fail(`${entry.id}/${module.id}: modulo runtime mancante`);
+          if (module.status === 'integrated' && !runtimeIds.has(module.runtime_module_id)) {
+            fail(`${entry.id}/${module.id}: modulo runtime mancante`);
+          }
           if (module.authoring_manifest) {
             if (!isSafeRelative(module.authoring_manifest) || !fs.existsSync(path.join(root, module.authoring_manifest))) {
               fail(`${entry.id}/${module.id}: authoring_manifest mancante`);

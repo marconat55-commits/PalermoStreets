@@ -6,7 +6,7 @@ const stage = JSON.parse(fs.readFileSync('public/data/stage1_zen.json', 'utf8'))
   modules: Array<{
     id: string;
     exit_x: number;
-    items: Array<{ item: string; position: [number, number] }>;
+    items: Array<{ item: string; position: [number, number]; group?: string }>;
     waves: Array<{
       trigger_x: number;
       health: number;
@@ -18,26 +18,32 @@ const stage = JSON.parse(fs.readFileSync('public/data/stage1_zen.json', 'utf8'))
   }>;
 };
 
-test('M01 teaches one-on-one combat before a restrained depth pincer', () => {
+test('M01 distribuisce nove nemici in quattro ondate progressive', () => {
   const m01 = stage.modules.find((module) => module.id === 'M01');
   assert.ok(m01);
-  assert.equal(m01.waves.length, 2);
-  const [tutorial, pincer] = m01.waves;
-  assert.equal(tutorial!.character, 'talebano');
-  assert.equal(tutorial!.spawns.length, 1);
-  assert.equal(pincer!.character, 'a_puaicca');
-  assert.equal(pincer!.spawns.length, 2);
-  assert.ok(pincer!.trigger_x - tutorial!.trigger_x >= 800);
-  assert.ok(Math.abs(pincer!.spawns[0]![1] - pincer!.spawns[1]![1]) >= 45);
-  assert.ok(pincer!.health <= 64);
-  assert.ok(pincer!.aggression <= 0.82);
-  assert.equal(m01.waves.some((wave) => wave.boss === true), false);
+  assert.deepEqual(stage.modules.map((module) => module.id), ['M01']);
+  assert.deepEqual(m01.waves.map((wave) => wave.character), ['talebano', 'a_puaicca', 'talebano', 'a_puaicca']);
+  assert.deepEqual(m01.waves.map((wave) => wave.spawns.length), [1, 2, 3, 3]);
+  assert.equal(m01.waves.reduce((count, wave) => count + wave.spawns.length, 0), 9);
+  assert.ok(m01.waves.every((wave, index) => wave.trigger_x < m01.exit_x && (index === 0 || wave.trigger_x > m01.waves[index - 1]!.trigger_x)));
+  assert.ok(m01.waves.every((wave) => wave.health <= 64 && wave.aggression <= 0.84 && !wave.boss));
 });
 
-test('M01 excludes held weapons until dedicated player poses exist', () => {
+test('M01 raggruppa sacchi e bidoni e rilascia soltanto cibo', () => {
   const m01 = stage.modules.find((module) => module.id === 'M01');
   assert.ok(m01);
-  assert.deepEqual(m01.items.map((item) => item.item), ['trash_bag', 'trash_bin']);
-  assert.ok(m01.items[0]!.position[0] < m01.waves[1]!.trigger_x);
-  assert.ok(m01.items[1]!.position[0] > m01.waves[1]!.trigger_x && m01.items[1]!.position[0] < m01.exit_x);
+  assert.deepEqual(m01.items.map((item) => item.item), ['trash_bag', 'trash_bin', 'trash_bin', 'trash_bag', 'trash_bin']);
+  const groups = Map.groupBy(m01.items, (item) => item.group);
+  assert.equal(groups.get('m01_market')?.length, 2);
+  assert.equal(groups.get('m01_courtyard')?.length, 3);
+  assert.ok(m01.items.every((item) => item.position[0] < m01.exit_x));
+  const catalog = JSON.parse(fs.readFileSync('public/data/items/stage1_zen.json', 'utf8')) as {
+    items: Array<{ id: string; kind: string; drop_item?: string; drop_items?: string[] }>;
+  };
+  const byId = new Map(catalog.items.map((item) => [item.id, item]));
+  for (const item of m01.items) {
+    assert.equal(byId.get(item.item)?.kind, 'breakable');
+    const drops = byId.get(item.item)?.drop_items ?? [byId.get(item.item)?.drop_item];
+    assert.ok(drops.every((drop) => drop && byId.get(drop)?.kind === 'food'));
+  }
 });

@@ -19,17 +19,14 @@ interface Module {
 
 const stage = JSON.parse(fs.readFileSync('public/data/stage1_zen.json', 'utf8')) as { modules: Module[] };
 
-test('each Zen module owns an authored walk band and every feet spawn stays inside it', () => {
-  assert.ok(new Set(stage.modules.map((module) => module.playfield_y.join(':'))).size >= 3);
+test('M01 conserva la walk band approvata e gli spawn restano al suo interno', () => {
+  assert.deepEqual(stage.modules.map((module) => module.id), ['M01']);
   for (const module of stage.modules) {
-    const integratedFinal = module.id === 'M01' || module.id === 'M02';
-    const integratedGeometry = integratedFinal;
-    const expectedWorldWidth = integratedGeometry ? 2560 : 2944;
+    const expectedWorldWidth = 2560;
     const expectedCameraMax = expectedWorldWidth - 1280;
-    const m01DisplayScale = module.id === 'M01';
-    const expectedLayerHeight = m01DisplayScale ? 792 : integratedGeometry ? 720 : 828;
-    const expectedLayerY = m01DisplayScale ? -72 : integratedGeometry ? 0 : -108;
-    const expectedLayerWidth = m01DisplayScale ? 2816 : expectedWorldWidth;
+    const expectedLayerHeight = 792;
+    const expectedLayerY = -72;
+    const expectedLayerWidth = 2816;
     const [top, bottom] = module.playfield_y;
     assert.ok(top >= 390 && top < bottom && bottom <= 710, `${module.id}: invalid WALK envelope`);
     assert.equal(module.walk_top[0]?.[0], 0, `${module.id}: WALK top must start at world X 0`);
@@ -52,47 +49,29 @@ test('each Zen module owns an authored walk band and every feet spawn stays insi
     const far = module.background_layers.find((layer) => layer.plane === 'far');
     const main = module.background_layers.find((layer) => layer.plane === 'main');
     assert.equal(far?.parallax, 0.22, `${module.id}: continuous Palermo skyline must use far parallax`);
-    if (integratedFinal) {
-      const version = module.id === 'M01' ? 'final_v2' : 'final_v1';
-      assert.equal(far?.src, `assets/backgrounds/stage1_zen/${version}/${module.id}/${module.id}_FAR.png`);
-      assert.equal(main?.src, `assets/backgrounds/stage1_zen/${version}/${module.id}/${module.id}_MAIN.png`);
-    } else {
-      assert.equal(far?.src, 'assets/backgrounds/stage1_zen/long/ZEN_FAR_SKYLINE.png', `${module.id}: FAR must be continuous`);
-      assert.ok(main?.src.endsWith(`${module.id}/MAIN_SKY_V3.png`), `${module.id}: MAIN must use the sky-only alpha cut`);
-    }
+    assert.equal(far?.src, 'assets/backgrounds/stage1_zen/final_v2/M01/M01_FAR.png');
+    assert.equal(main?.src, 'assets/backgrounds/stage1_zen/final_v2/M01/M01_MAIN.png');
   }
 });
 
-test('Zen modules expose the authored Capcom-style depth lanes', () => {
+test('M01 conserva la walkline verde impostata dall utente', () => {
   const m01 = stage.modules.find((module) => module.id === 'M01');
-  const m02 = stage.modules.find((module) => module.id === 'M02');
-  const m03 = stage.modules.find((module) => module.id === 'M03');
-  const m04 = stage.modules.find((module) => module.id === 'M04');
   assert.deepEqual(m01?.playfield_y, [650, 705]);
-  assert.deepEqual(m02?.playfield_y, [515, 705]);
-  assert.deepEqual(m03?.playfield_y, [475, 705]);
-  assert.deepEqual(m04?.playfield_y, [510, 705]);
-  assert.ok(m01 && m02 && m03 && m04);
+  assert.ok(m01);
   assert.equal(m01.playfield_y[1] - m01.playfield_y[0], 55, 'M01 road lane must match the user-authored green line');
   assert.deepEqual(m01.walk_top, [[0, 650], [640, 652], [1280, 655], [1920, 660], [2560, 665]]);
-  for (const module of [m02, m03, m04]) {
-    assert.ok(module.playfield_y[1] - module.playfield_y[0] >= 190, `${module.id}: combat lane is too shallow`);
-  }
-  for (const module of [m01, m02]) {
-    for (const wave of module.waves) {
-      for (const [, feetY] of wave.spawns) {
-        assert.ok(feetY >= module.playfield_y[0], `${module.id}: spawn outside the authored ground plane`);
-      }
+  for (const wave of m01.waves) {
+    for (const [, feetY] of wave.spawns) {
+      assert.ok(feetY >= m01.playfield_y[0], 'spawn outside the authored ground plane');
     }
   }
 });
 
-test('background audit distinguishes approved art from rebuild placeholders', () => {
+test('il modulo giocabile usa lo sfondo approvato; gli altri sono archiviati', () => {
   const approved = stage.modules.filter((module) => module.art_status === 'approved');
-  assert.deepEqual(approved.map((module) => module.id), ['M01', 'M02']);
-  assert.deepEqual(approved.map((module) => module.horizon_y), [315, 300]);
+  assert.deepEqual(approved.map((module) => module.id), ['M01']);
+  assert.deepEqual(approved.map((module) => module.horizon_y), [315]);
   for (const module of stage.modules) assert.equal(module.reference_actor_height, 290);
-  for (const module of stage.modules.filter((item) => item.id !== 'M01' && item.id !== 'M02')) {
-    assert.equal(module.art_status, 'placeholder_rebuild_required', `${module.id}: status audit`);
-  }
+  const archived = JSON.parse(fs.readFileSync('art_source/stages/stage1_zen/stage1_zen_runtime_legacy_M01_M04_2026-09-26.json', 'utf8')) as { modules: Module[] };
+  assert.deepEqual(archived.modules.map((module) => module.id), ['M01', 'M02', 'M03', 'M04']);
 });

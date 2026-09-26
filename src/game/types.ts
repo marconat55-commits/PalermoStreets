@@ -197,6 +197,8 @@ export interface ModuleData {
 export interface StageItemSpawn {
   item: string;
   position: [number, number];
+  /** Nearby breakables sharing one encounter and one reward. */
+  group?: string;
 }
 
 export type PlayerSlot = 1 | 2 | 3 | 4;

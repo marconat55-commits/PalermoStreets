@@ -1,4 +1,4 @@
-import { Container, Sprite, type Texture } from 'pixi.js';
+import { Container, Graphics, Sprite, type Texture } from 'pixi.js';
 import type { Rect, StageItemDefinition, Vec2 } from '../types';
 
 export type WorldObjectState = 'ground' | 'held' | 'thrown' | 'spent';
@@ -25,6 +25,7 @@ export class WorldObject {
   readonly root = new Container();
   readonly sprite: Sprite;
   readonly definition: StageItemDefinition;
+  readonly groupId: string | null;
   readonly hitActors = new Set<number>();
   state: WorldObjectState = 'ground';
   position: Vec2;
@@ -35,9 +36,12 @@ export class WorldObject {
   private textures: WorldObjectTextures;
   private breakTimer = 0;
   private debrisShown = false;
+  private readonly sparkle = new Graphics();
+  private sparkleTime = 0;
 
-  constructor(definition: StageItemDefinition, texture: Texture, position: Vec2, textures: WorldObjectTextures = {}) {
+  constructor(definition: StageItemDefinition, texture: Texture, position: Vec2, textures: WorldObjectTextures = {}, groupId: string | null = null) {
     this.definition = definition;
+    this.groupId = groupId;
     this.durability = definition.durability ?? 1;
     this.position = { ...position };
     this.textures = textures;
@@ -45,6 +49,7 @@ export class WorldObject {
     this.sprite.anchor.set(0.5, 1);
     this.sprite.scale.set(visualScale(definition.id, definition.world_scale, definition.visual_scale_multiplier, definition.runtime_scale_compensation));
     this.root.addChild(this.sprite);
+    if (definition.kind === 'food') this.root.addChild(this.sparkle);
     this.sync();
   }
 
@@ -125,6 +130,19 @@ export class WorldObject {
   }
 
   update(dt: number): void {
+    if (this.definition.kind === 'food' && this.state === 'ground') {
+      this.sparkleTime = (this.sparkleTime + dt) % 3.6;
+      this.sparkle.clear();
+      if (this.sparkleTime < 0.5) {
+        const opacity = Math.sin(Math.PI * this.sparkleTime / 0.5);
+        for (const [x, y, radius] of [[-14, -49, 8], [11, -63, 5]] as const) {
+          this.sparkle.moveTo(x - radius, y).lineTo(x + radius, y)
+            .moveTo(x, y - radius).lineTo(x, y + radius)
+            .stroke({ color: 0xffe38b, width: 2.5, alpha: opacity });
+          this.sparkle.circle(x, y, 2).fill({ color: 0xffffff, alpha: opacity });
+        }
+      }
+    }
     if (this.state === 'spent' && this.breakTimer > 0) {
       this.breakTimer = Math.max(0, this.breakTimer - dt);
       if (this.textures.debris && !this.debrisShown && this.breakTimer <= 0.42) {

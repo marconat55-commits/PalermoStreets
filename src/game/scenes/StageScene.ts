@@ -55,12 +55,6 @@ export class StageScene implements Scene {
   private readonly ground = new Graphics();
   private readonly actors = new Container();
   private readonly warningGraphics = new Graphics();
-  private readonly pickupHint = new Container();
-  private readonly pickupHintGraphics = new Graphics();
-  private readonly pickupHintText = new Text({
-    text: 'J',
-    style: new TextStyle({ fontFamily: 'Bangers, Arial Black, Arial, sans-serif', fontSize: 20, fill: 0xfff3bd, stroke: { color: 0x401014, width: 3 }, letterSpacing: 1 }),
-  });
   private readonly enemyHud = new EnemyHudLayer();
   private readonly effects = new EffectsLayer();
   private readonly screen = new Container();
@@ -171,6 +165,7 @@ export class StageScene implements Scene {
   private meleeSwingTimer = 0;
   private meleeStrikeResolved = true;
   private readonly breakableHits = new Set<WorldObject>();
+  private readonly completedBreakableGroups = new Set<string>();
   private breakableAttack: Player['currentAttack'] = null;
   private breakableAttackElapsed = 0;
 
@@ -256,14 +251,10 @@ export class StageScene implements Scene {
     this.ground.zIndex = 0;
     this.actors.zIndex = 10;
     this.warningGraphics.zIndex = 8500;
-    this.pickupHint.zIndex = 8600;
     this.effects.root.zIndex = 9000;
 
     this.debug.zIndex = 9500;
-    this.pickupHintText.anchor.set(0.5);
-    this.pickupHint.addChild(this.pickupHintGraphics, this.pickupHintText);
-    this.pickupHint.visible = false;
-    this.world.addChild(this.ground, this.actors, this.warningGraphics, this.pickupHint, this.effects.root, this.debug);
+    this.world.addChild(this.ground, this.actors, this.warningGraphics, this.effects.root, this.debug);
     this.backgroundLift.rect(0, 0, LOGICAL_WIDTH, LOGICAL_HEIGHT).fill({ color: 0xfff0d4, alpha: 0.035 });
     this.root.addChild(this.backgroundLayers, this.ambientLayer.root, this.backgroundLift, this.world, this.foregroundLayers, this.screen);
 
@@ -523,6 +514,8 @@ export class StageScene implements Scene {
   private spawnModuleItems(): void {
     for (const object of this.worldObjects) object.destroy();
     this.worldObjects = [];
+    this.breakableHits.clear();
+    this.completedBreakableGroups.clear();
     this.heldObject = null;
     for (const spawn of this.currentModule.items ?? []) {
       const definition = this.itemDefinitions.get(spawn.item);
@@ -535,7 +528,7 @@ export class StageScene implements Scene {
         damaged: definition.damaged_asset ? this.itemTextures.get(definition.damaged_asset) : undefined,
         broken: definition.broken_asset ? this.itemTextures.get(definition.broken_asset) : undefined,
         debris: definition.debris_asset ? this.itemTextures.get(definition.debris_asset) : undefined,
-      });
+      }, spawn.group ?? null);
       this.worldObjects.push(object);
       this.actors.addChild(object.root);
     }
@@ -658,17 +651,30 @@ export class StageScene implements Scene {
       if (object.definition.kind !== 'breakable' || object.state !== 'ground') continue;
       if (this.breakableHits.has(object)) continue;
       if (!rectsIntersect(attackBox, object.hurtbox)) continue;
-      this.breakableHits.add(object);
-      const destroyed = object.hitBreakable();
-      this.effects.hitSpark({ x: object.position.x, y: object.position.y - 55 }, destroyed);
-      this.hitStop = Math.max(this.hitStop, destroyed ? 0.07 : 0.035);
-      this.screenShake = Math.max(this.screenShake, destroyed ? 5 : 2);
-      this.triggerImpactFlash(destroyed);
-      const dropItem = destroyed ? selectDropItem(object.definition) : undefined;
-      if (dropItem) {
-        this.spawnItem(dropItem, { ...object.position });
-        this.message = `${object.definition.display_name.toUpperCase()} ROTTO — OGGETTO RILASCIATO`;
-        this.messageTimer = 1.0;
+      const members = object.groupId
+        ? this.worldObjects.filter((candidate) => candidate.groupId === object.groupId && candidate.definition.kind === 'breakable')
+        : [object];
+      for (const member of members) {
+        if (member.state !== 'ground' || this.breakableHits.has(member)) continue;
+        this.breakableHits.add(member);
+        const destroyed = member.hitBreakable();
+        this.effects.hitSpark({ x: member.position.x, y: member.position.y - 55 }, destroyed);
+        this.hitStop = Math.max(this.hitStop, destroyed ? 0.07 : 0.035);
+        this.screenShake = Math.max(this.screenShake, destroyed ? 5 : 2);
+        this.triggerImpactFlash(destroyed);
+      }
+      const groupFinished = members.every((member) => member.state === 'spent');
+      if (groupFinished && (!object.groupId || !this.completedBreakableGroups.has(object.groupId))) {
+        if (object.groupId) this.completedBreakableGroups.add(object.groupId);
+        const rewardSource = members.find((member) => member.definition.id === 'trash_bag') ?? members[0]!;
+        const dropItem = selectDropItem(rewardSource.definition);
+        if (dropItem) {
+          const centerX = members.reduce((sum, member) => sum + member.position.x, 0) / members.length;
+          const groundY = Math.max(...members.map((member) => member.position.y));
+          this.spawnItem(dropItem, { x: centerX, y: groundY });
+          this.message = `${members.length > 1 ? 'GRUPPO' : object.definition.display_name.toUpperCase()} ROTTO — CIBO RILASCIATO`;
+          this.messageTimer = 1.0;
+        }
       }
     }
   }
@@ -1114,17 +1120,6 @@ export class StageScene implements Scene {
     this.enemyHud.update(this.enemies);
     this.hud.update(this.player, this.enemies, this.moduleIndex, this.currentModule.id, this.waveIndex, this.waveData.length, this.modules.length);
 
-    const pickupTarget = this.heldObject ? null : (this.nearestFood() ?? this.nearestPickup());
-    this.pickupHint.visible = pickupTarget !== null && !showingStageIntro && !this.paused;
-    this.pickupHintGraphics.clear();
-    if (pickupTarget) {
-      const bob = Math.sin(this.elapsed * 6) * 4;
-      this.pickupHint.position.set(pickupTarget.position.x, pickupTarget.position.y - 112 + bob);
-      this.pickupHintGraphics.circle(0, 0, 19).fill({ color: 0x130b12, alpha: 0.88 }).stroke({ color: 0xffc12d, width: 3 });
-      this.pickupHintGraphics.moveTo(-7, 24).lineTo(0, 33).lineTo(7, 24).closePath().fill(0xffc12d);
-      this.pickupHintText.position.set(0, 0);
-    }
-
     this.impactFlash.clear();
     if (this.impactFlashTimer > 0 && !showingStageIntro) {
       const fadeRatio = Math.min(1, this.impactFlashTimer / 0.04);
@@ -1147,7 +1142,7 @@ export class StageScene implements Scene {
       }
       this.clearText.visible = this.messageTimer <= 0;
       this.clearText.text = this.moduleIndex === this.modules.length - 1
-        ? 'TETTO LIBERO — AMUNÌ, A DESTRA!'
+        ? 'M01 LIBERO — AMUNÌ, A DESTRA!'
         : 'AREA LIBERA — AMUNÌ, A DESTRA!';
     }
 
@@ -1167,7 +1162,7 @@ export class StageScene implements Scene {
     this.overlaySubtitle.visible = false;
     if (this.paused) this.showCenterOverlay('PAUSA', 'PREMI P PER CONTINUARE');
     else if (this.player.dead) this.showCenterOverlay('MARCO È A TERRA', 'PREMI R — RIPARTI DAL CHECKPOINT');
-    else if (this.stageComplete) this.showCenterOverlay('STAGE 1 COMPLETATO', 'ZEN — BOSS PROVVISORIO SCONFITTO');
+    else if (this.stageComplete) this.showCenterOverlay('M01 COMPLETATO', 'DEMO ZEN — ALTRI MODULI IN LAVORAZIONE');
 
     this.fade.clear();
     if (this.transitionPhase !== null && this.transitionAlpha > 0) {

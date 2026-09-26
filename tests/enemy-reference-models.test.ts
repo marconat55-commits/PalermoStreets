@@ -40,9 +40,9 @@ test('enemy model clips keep scale locked and legal frame counts', () => {
   }
 });
 
-test('Stage 1 espone i tre archetipi in moduli consecutivi', () => {
+test('la demo M01 usa soltanto i due nemici approvati', () => {
   const stage = JSON.parse(fs.readFileSync(path.join(root, 'public/data/stage1_zen.json'), 'utf8'));
-  assert.equal(stage.modules[0].waves[0].character, 'talebano');
-  assert.equal(stage.modules[1].waves[0].character, 'haggar_ref');
-  assert.equal(stage.modules[2].waves[0].character, 'aiori_ref');
+  assert.deepEqual(stage.modules.map((module: { id: string }) => module.id), ['M01']);
+  assert.deepEqual(stage.modules[0].waves.map((wave: { character: string }) => wave.character),
+    ['talebano', 'a_puaicca', 'talebano', 'a_puaicca']);
 });

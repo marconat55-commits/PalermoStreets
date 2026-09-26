@@ -112,6 +112,9 @@ export class Game {
     this.characterSelectScene = null;
     this.scene = this.titleScene;
     this.app.stage.addChild(this.titleScene.root);
+    // The default fighter is normally confirmed within a few seconds. Loading
+    // its atlas behind the title removes that work from the post-selection wait.
+    this.requestSelectionCharacter(this.defaultPlayerId);
   }
 
   private async showCharacterSelect(): Promise<void> {

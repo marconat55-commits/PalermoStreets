@@ -76,6 +76,15 @@ test('returning from a stage invalidates completed resource progress', () => {
   assert.equal(f.game.initialStageLoadCompleted, 0);
 });
 
+test('the title preloads the default fighter before character confirmation', async () => {
+  const f = fixture();
+  const requested = [];
+  f.game.catalog.ensureCharacter = async id => { requested.push(id); };
+  f.game.showTitle();
+  await Promise.resolve();
+  assert.deepEqual(requested, ['marco']);
+});
+
 test('a new initial preload is shared even while the item catalog is pending', async () => {
   const f = fixture();
   delete f.game.preloadInitialStage;

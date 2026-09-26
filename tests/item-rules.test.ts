@@ -130,6 +130,7 @@ test('gli oggetti prototipo rispettano la scala dell actor canonico da 290px', (
   assert.ok((byId.get('brick')?.world_scale ?? 0) >= 0.04);
   assert.equal(byId.get('trash_bag')?.world_scale, 0.072);
   assert.equal(byId.get('trash_bin')?.world_scale, 0.081);
+  assert.equal(byId.get('cannolo')?.world_scale, 0.05525);
   assert.equal(byId.get('metal_pipe')?.visual_scale_multiplier, 1.25);
   assert.equal(byId.get('wood_bat')?.visual_scale_multiplier, 1.25);
   assert.equal(byId.get('trash_bag')?.visual_scale_multiplier, 1.5);

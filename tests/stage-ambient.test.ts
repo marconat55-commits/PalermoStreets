@@ -42,9 +42,10 @@ test('M01 activates the balcony resident only inside the authored socket', () =>
   assert.equal(collectAmbientAssets(m01).length, 8);
   const balcony = loops[0]!;
   const vendor = loops[1]!;
-  assert.deepEqual(balcony.position, [574, 214]);
-  assert.deepEqual(balcony.size, [70, 64]);
-  assert.ok(vendor.size[1] >= 0.65 * 290 && vendor.size[1] <= 0.75 * 290, 'vendor must match the rear sidewalk scale');
+  assert.deepEqual(balcony.position, [503, 170]);
+  assert.deepEqual(balcony.size, [77, 70]);
+  assert.deepEqual(vendor.position, [1104, 586]);
+  assert.deepEqual(vendor.size, [308, 226]);
 });
 
 test('sprite loop durations select stable frames and wrap', () => {

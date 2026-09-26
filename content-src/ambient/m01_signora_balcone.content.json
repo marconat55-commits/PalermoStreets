@@ -5,7 +5,7 @@
   "display_name": "Signora al balcone",
   "status": "integrated",
   "stage_module": "M01",
-  "position_runtime": [574, 214],
+  "position_runtime": [503, 170],
   "placement": {
     "plane": "between_main_and_foreground",
     "depth_sort": false,
@@ -13,7 +13,7 @@
   },
   "contracts": {
     "pivot": "bottom_center",
-    "runtime_size": [70, 64],
+    "runtime_size": [77, 70],
     "loop_required": true,
     "frames": 4
   },

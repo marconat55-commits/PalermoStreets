@@ -14,7 +14,7 @@ interface Module {
   waves: Array<{ spawns: Array<[number, number]> }>;
   world_width: number;
   camera_bounds: [number, number];
-  background_layers: Array<{ src: string; plane: string; parallax: number; enabled?: boolean; y?: number; width?: number; height?: number }>;
+  background_layers: Array<{ src: string; plane: string; parallax: number; enabled?: boolean; x?: number; y?: number; width?: number; height?: number }>;
 }
 
 const stage = JSON.parse(fs.readFileSync('public/data/stage1_zen.json', 'utf8')) as { modules: Module[] };
@@ -24,9 +24,9 @@ test('M01 conserva la walk band approvata e gli spawn restano al suo interno', (
   for (const module of stage.modules) {
     const expectedWorldWidth = 2560;
     const expectedCameraMax = expectedWorldWidth - 1280;
-    const expectedLayerHeight = 792;
-    const expectedLayerY = -72;
-    const expectedLayerWidth = 2816;
+    const expectedLayerHeight = 871;
+    const expectedLayerY = -144;
+    const expectedLayerWidth = 3098;
     const [top, bottom] = module.playfield_y;
     assert.ok(top >= 390 && top < bottom && bottom <= 710, `${module.id}: invalid WALK envelope`);
     assert.equal(module.walk_top[0]?.[0], 0, `${module.id}: WALK top must start at world X 0`);
@@ -42,6 +42,7 @@ test('M01 conserva la walk band approvata e gli spawn restano al suo interno', (
       }
     }
     for (const layer of module.background_layers) {
+      assert.equal(layer.x, -269, `${module.id}: unexpected layer X`);
       assert.equal(layer.width, expectedLayerWidth, `${module.id}: unexpected display width`);
       assert.equal(layer.height, expectedLayerHeight, `${module.id}: unexpected layer height`);
       assert.equal(layer.y, expectedLayerY, `${module.id}: unexpected layer Y`);

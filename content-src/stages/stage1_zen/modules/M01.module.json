@@ -15,6 +15,13 @@
     "manifest": "art_source/stages/stage1_zen/M01/final_v1/M01_FINAL_LAYERS_MANIFEST.json",
     "runtime_integration": true
   },
+  "runtime_display_transform": {
+    "x": -269,
+    "y": -144,
+    "width": 3098,
+    "height": 871,
+    "scale_reference": "1.1x rispetto al transform del master approvato; pivot mondo [1280, 650]"
+  },
   "ambient_socket_manifest": "art_source/stages/stage1_zen/M01/ambient_socket_v1/M01_BALCONY_SOCKET_V1_MANIFEST.json",
   "encounter_contract": {
     "version": 1,
@@ -53,16 +60,16 @@
   "ambient_actors": [
     {
       "id": "m01_signora_balcone",
-      "placement_runtime": [574, 214],
-      "display_size": [70, 64],
+      "placement_runtime": [503, 170],
+      "display_size": [77, 70],
       "plane": "between_main_and_foreground",
       "socket": "BALCONY_RESIDENT_01",
       "interactive": false
     },
     {
       "id": "m01_venditore_frutta",
-      "placement_runtime": [1120, 592],
-      "display_size": [280, 205],
+      "placement_runtime": [1104, 586],
+      "display_size": [308, 226],
       "plane": "main_overlay",
       "interactive": false
     }

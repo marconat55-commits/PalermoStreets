@@ -12,9 +12,9 @@
       "horizon_y": 315,
       "background": "assets/backgrounds/stage1_zen/final_v2/M01/M01_MAIN.png",
       "background_layers": [
-        { "src": "assets/backgrounds/stage1_zen/final_v2/M01/M01_FAR.png", "parallax": 0.22, "plane": "far", "x": -128, "y": -72, "width": 2816, "height": 792 },
-        { "src": "assets/backgrounds/stage1_zen/final_v2/M01/M01_MAIN.png", "parallax": 1.0, "plane": "main", "x": -128, "y": -72, "width": 2816, "height": 792 },
-        { "src": "assets/backgrounds/stage1_zen/final_v2/M01/M01_FOREGROUND.png", "parallax": 1.0, "plane": "foreground", "enabled": true, "x": -128, "y": -72, "width": 2816, "height": 792 }
+        { "src": "assets/backgrounds/stage1_zen/final_v2/M01/M01_FAR.png", "parallax": 0.22, "plane": "far", "x": -269, "y": -144, "width": 3098, "height": 871 },
+        { "src": "assets/backgrounds/stage1_zen/final_v2/M01/M01_MAIN.png", "parallax": 1.0, "plane": "main", "x": -269, "y": -144, "width": 3098, "height": 871 },
+        { "src": "assets/backgrounds/stage1_zen/final_v2/M01/M01_FOREGROUND.png", "parallax": 1.0, "plane": "foreground", "enabled": true, "x": -269, "y": -144, "width": 3098, "height": 871 }
       ],
       "world_width": 2560,
       "camera_bounds": [0, 1280],
@@ -31,8 +31,8 @@
             "assets/ambient/stage1_zen/M01/signora_balcone/idle_03.png",
             "assets/ambient/stage1_zen/M01/signora_balcone/idle_04.png"
           ],
-          "position": [574, 214],
-          "size": [70, 64],
+          "position": [503, 170],
+          "size": [77, 70],
           "anchor": [0.5, 1],
           "frame_durations": [2.4, 0.8, 1.1, 2.0],
           "parallax": 1.0,
@@ -47,8 +47,8 @@
             "assets/ambient/stage1_zen/M01/venditore_frutta/idle_03.png",
             "assets/ambient/stage1_zen/M01/venditore_frutta/idle_04.png"
           ],
-          "position": [1120, 592],
-          "size": [280, 205],
+          "position": [1104, 586],
+          "size": [308, 226],
           "anchor": [0.5, 1],
           "frame_durations": [1.5, 1.2, 0.9, 1.4],
           "parallax": 1.0,

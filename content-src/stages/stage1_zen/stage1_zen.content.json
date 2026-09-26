@@ -22,20 +22,21 @@
     },
     {
       "id": "M02",
-      "status": "archived_rebuild",
+      "status": "integrated",
+      "runtime_module_id": "M02",
       "authoring_manifest": "content-src/stages/stage1_zen/modules/M02.module.json"
     },
     { "id": "M03", "status": "archived_rebuild" },
     { "id": "M04", "status": "archived_rebuild" }
   ],
   "expansion": {
-    "additional_street_modules_after_M01": "planned_count_tbd",
+    "additional_street_modules_after_M02": "planned_count_tbd",
     "reuse_module_contract": true,
     "rooftop_follows_street_modules": true,
     "rule": "Ogni nuovo modulo deve avere manifest, tre layer, walk band, camere, encounter e alloggi ambientali prima dell'integrazione."
   },
   "boss_rooftop": {
     "status": "existing_out_of_scope",
-    "note": "Il tetto resta separato dalla demo M01 fino alla ricostruzione dei moduli successivi."
+    "note": "Il tetto resta separato dalla demo M01-M02 fino alla ricostruzione dei moduli successivi."
   }
 }

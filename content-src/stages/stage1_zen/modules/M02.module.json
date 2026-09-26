@@ -10,6 +10,25 @@
     "scope": ["master_geometry", "character_scale", "horizon", "walk_band", "camera_proofs"],
     "art_direction_pending": false
   },
+  "runtime_extension": {
+    "version": 1,
+    "method": "two_segments_second_mirrored",
+    "world_width": 5120,
+    "viewport_count": 4,
+    "camera_bounds_runtime": [0, 3840],
+    "walk_band_runtime": [600, 705],
+    "entry_runtime": [128, 675],
+    "exit_runtime_x": 5070,
+    "design_note": "Il master approvato non viene deformato: la seconda metà specchiata prolunga il porticato e chiude il modulo con un secondo affaccio aperto."
+  },
+  "encounter_contract": {
+    "version": 1,
+    "waves": 6,
+    "enemy_count": 14,
+    "characters": ["talebano", "a_puaicca"],
+    "entry_rule": "Ogni ondata entra camminando oltre i bordi della camera; da due nemici in su alterna destra e sinistra con distanze sfalsate.",
+    "boss": false
+  },
   "art_candidate": {
     "status": "approved",
     "manifest": "art_source/stages/stage1_zen/M02/final_v1/M02_FINAL_LAYERS_MANIFEST.json",

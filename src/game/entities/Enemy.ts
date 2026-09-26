@@ -62,6 +62,7 @@ export class Enemy extends Actor {
   spawnElapsed = 0;
   grabbedBy: Actor | null = null;
   dodgeCooldown = 0;
+  private spawnEntryTargetX: number | null = null;
   private attackSequence = 0;
 
   constructor(bank: AnimationBank, position: Vec2, options: EnemyOptions = {}) {
@@ -84,6 +85,17 @@ export class Enemy extends Actor {
     this.attackCooldown = randomRange(0.82, 1.22) * this.cooldownScale;
     this.alpha255 = this.spawnFadeSeconds === 0 ? 255 : 0;
     this.beginState(this.spawnFadeSeconds === 0 ? 'idle' : 'spawn', 'idle');
+  }
+
+  beginSideEntry(spawnX: number, targetX: number): void {
+    this.position.x = spawnX;
+    this.spawnEntryTargetX = targetX;
+    this.spawnElapsed = 0;
+    this.alpha255 = 255;
+    this.facing = targetX >= spawnX ? 1 : -1;
+    this.beginState('spawn', 'walk');
+    this.animator.setPlaybackRate(1.05 * this.moveSpeedScale);
+    this.syncVisual();
   }
 
   override receiveHit(damage: number, knockback: Vec2, knockdown = false, launchVelocity = 0): HitResult {
@@ -201,6 +213,21 @@ export class Enemy extends Actor {
 
     if (this.state === 'spawn') {
       this.spawnElapsed += dt;
+      if (this.spawnEntryTargetX !== null) {
+        const deltaX = this.spawnEntryTargetX - this.position.x;
+        const step = 225 * this.moveSpeedScale * dt;
+        if (Math.abs(deltaX) <= step) {
+          this.position.x = this.spawnEntryTargetX;
+          this.spawnEntryTargetX = null;
+          this.beginState('idle', 'idle');
+          this.invulnerable = 0.10;
+        } else {
+          this.position.x += Math.sign(deltaX) * step;
+          this.facing = deltaX > 0 ? 1 : -1;
+        }
+        this.syncVisual();
+        return;
+      }
       const duration = this.spawnFadeSeconds;
       this.alpha255 = Math.min(255, Math.round(255 * this.spawnElapsed / duration));
       if (this.spawnElapsed >= duration) {

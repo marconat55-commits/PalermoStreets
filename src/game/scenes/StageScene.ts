@@ -16,6 +16,7 @@ import { SPIN_SPECIAL } from '../combat/attacks';
 import { resolveWalkBand, sampleWalkBand } from '../stage/walkBand';
 import { StageAmbientLayer } from '../stage/StageAmbientLayer';
 import { collectAmbientAssets } from '../stage/ambientAssets';
+import { resolveWaveEntry } from '../stage/waveEntry';
 import { loadStageItems } from '../data/loadData';
 import { collectModuleItemAssets, collectModulePrimaryItemAssets, selectDropItem } from '../stage/moduleItems';
 import { WorldObject } from '../objects/WorldObject';
@@ -379,6 +380,7 @@ export class StageScene implements Scene {
       sprite.anchor.set(0, 0);
       sprite.width = layer.width ?? this.worldWidth;
       sprite.height = layer.height ?? LOGICAL_HEIGHT;
+      if (layer.flip_x) sprite.scale.x *= -1;
       // Opaque MAIN art cannot reveal a layer behind it. A masked FAR layer is therefore
       // composited above MAIN, but only inside its conservative open-sky polygons.
       sprite.zIndex = layer.reveal_polygons?.length ? layers.length + index : index;
@@ -746,6 +748,8 @@ export class StageScene implements Scene {
         worldX,
         [this.playfieldTop, this.playfieldBottom],
       ));
+      const entry = resolveWaveEntry(index, this.cameraX, LOGICAL_WIDTH);
+      enemy.beginSideEntry(entry.spawnX, entry.targetX);
       this.enemies.push(enemy);
       this.actors.addChild(enemy.root);
     }
@@ -1142,7 +1146,7 @@ export class StageScene implements Scene {
       }
       this.clearText.visible = this.messageTimer <= 0;
       this.clearText.text = this.moduleIndex === this.modules.length - 1
-        ? 'M01 LIBERO — AMUNÌ, A DESTRA!'
+        ? `${this.currentModule.id} LIBERO — AMUNÌ, A DESTRA!`
         : 'AREA LIBERA — AMUNÌ, A DESTRA!';
     }
 
@@ -1162,7 +1166,7 @@ export class StageScene implements Scene {
     this.overlaySubtitle.visible = false;
     if (this.paused) this.showCenterOverlay('PAUSA', 'PREMI P PER CONTINUARE');
     else if (this.player.dead) this.showCenterOverlay('MARCO È A TERRA', 'PREMI R — RIPARTI DAL CHECKPOINT');
-    else if (this.stageComplete) this.showCenterOverlay('M01 COMPLETATO', 'DEMO ZEN — ALTRI MODULI IN LAVORAZIONE');
+    else if (this.stageComplete) this.showCenterOverlay(`${this.currentModule.id} COMPLETATO`, 'DEMO ZEN — ALTRI MODULI IN LAVORAZIONE');
 
     this.fade.clear();
     if (this.transitionPhase !== null && this.transitionAlpha > 0) {

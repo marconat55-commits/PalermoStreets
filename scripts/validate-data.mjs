@@ -274,6 +274,7 @@ for (const module of stage.modules ?? []) {
   for (const [layerIndex, layer] of (module.background_layers ?? []).entries()) {
     if (!layer?.src || !exists(layer.src)) fail(`${module.id}: layer ${layerIndex + 1} mancante ${layer?.src ?? ''}`);
     if (!Number.isFinite(layer?.parallax) || layer.parallax < 0) fail(`${module.id}: parallax layer ${layerIndex + 1} non valido`);
+    if (layer.flip_x !== undefined && typeof layer.flip_x !== 'boolean') fail(`${module.id}: flip_x layer ${layerIndex + 1} non valido`);
     for (const [polygonIndex, polygon] of (layer.reveal_polygons ?? []).entries()) {
       if (!Array.isArray(polygon) || polygon.length < 3) fail(`${module.id}: reveal polygon ${polygonIndex + 1} incompleto`);
       for (const point of polygon ?? []) {

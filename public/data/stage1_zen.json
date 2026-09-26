@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "build_scope": "stage1_zen_m01_demo_v1",
+  "build_scope": "stage1_zen_m01_m02_demo_v1",
   "stage_name": "STAGE 1 — ZEN",
   "stage_subtitle": "A' VARBA E' SACRA",
   "modules": [
@@ -98,6 +98,45 @@
           "character": "a_puaicca",
           "name": "A PUAICCA"
         }
+      ]
+    },
+    {
+      "id": "M02",
+      "name": "Porticato e garage lungo",
+      "art_status": "approved",
+      "reference_actor_height": 290,
+      "horizon_y": 300,
+      "background": "assets/backgrounds/stage1_zen/final_v1/M02/M02_MAIN.png",
+      "background_layers": [
+        { "src": "assets/backgrounds/stage1_zen/final_v1/M02/M02_FAR.png", "parallax": 0.22, "plane": "far", "x": 0, "y": 0, "width": 2560, "height": 720 },
+        { "src": "assets/backgrounds/stage1_zen/final_v1/M02/M02_FAR.png", "parallax": 0.22, "plane": "far", "x": 5120, "y": 0, "width": 2560, "height": 720, "flip_x": true },
+        { "src": "assets/backgrounds/stage1_zen/final_v1/M02/M02_MAIN.png", "parallax": 1.0, "plane": "main", "x": 0, "y": 0, "width": 2560, "height": 720 },
+        { "src": "assets/backgrounds/stage1_zen/final_v1/M02/M02_MAIN.png", "parallax": 1.0, "plane": "main", "x": 5120, "y": 0, "width": 2560, "height": 720, "flip_x": true },
+        { "src": "assets/backgrounds/stage1_zen/final_v1/M02/M02_FOREGROUND.png", "parallax": 1.08, "plane": "foreground", "enabled": false, "x": 0, "y": 0, "width": 2560, "height": 720 },
+        { "src": "assets/backgrounds/stage1_zen/final_v1/M02/M02_FOREGROUND.png", "parallax": 1.08, "plane": "foreground", "enabled": false, "x": 5120, "y": 0, "width": 2560, "height": 720, "flip_x": true }
+      ],
+      "world_width": 5120,
+      "camera_bounds": [0, 3840],
+      "playfield_y": [600, 705],
+      "walk_top": [[0, 600], [5120, 600]],
+      "walk_bottom": [[0, 705], [5120, 705]],
+      "entry": [128, 675],
+      "exit_x": 5070,
+      "heal": 16,
+      "items": [
+        { "item": "trash_bag", "position": [1340, 690], "group": "m02_portico" },
+        { "item": "trash_bin", "position": [1455, 692], "group": "m02_portico" },
+        { "item": "trash_bin", "position": [3260, 690], "group": "m02_garage" },
+        { "item": "trash_bag", "position": [3370, 692], "group": "m02_garage" },
+        { "item": "trash_bin", "position": [3480, 690], "group": "m02_garage" }
+      ],
+      "waves": [
+        { "trigger_x": 300, "health": 44, "aggression": 0.72, "spawns": [[760, 650]], "character": "a_puaicca", "name": "A PUAICCA" },
+        { "trigger_x": 1050, "health": 48, "aggression": 0.76, "spawns": [[1280, 630], [1420, 690]], "character": "talebano", "name": "TALEBANO" },
+        { "trigger_x": 1800, "health": 42, "aggression": 0.74, "spawns": [[2050, 620], [2180, 660], [2310, 700]], "character": "a_puaicca", "name": "A PUAICCA" },
+        { "trigger_x": 2550, "health": 50, "aggression": 0.80, "spawns": [[2780, 640], [2920, 695]], "character": "talebano", "name": "TALEBANO" },
+        { "trigger_x": 3300, "health": 44, "aggression": 0.78, "spawns": [[3560, 620], [3700, 660], [3840, 700]], "character": "a_puaicca", "name": "A PUAICCA" },
+        { "trigger_x": 4200, "health": 52, "aggression": 0.84, "spawns": [[4470, 625], [4620, 665], [4770, 700]], "character": "talebano", "name": "TALEBANO" }
       ]
     }
   ],

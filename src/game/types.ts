@@ -137,6 +137,8 @@ export interface BackgroundLayerData {
   y?: number;
   width?: number;
   height?: number;
+  /** Mirrors a repeated stage segment around its authored X position. */
+  flip_x?: boolean;
   /** Main-world polygons where this layer is visible through an otherwise opaque layer above it. */
   reveal_polygons?: Array<Array<[number, number]>>;
 }

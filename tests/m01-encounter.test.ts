@@ -21,7 +21,7 @@ const stage = JSON.parse(fs.readFileSync('public/data/stage1_zen.json', 'utf8'))
 test('M01 distribuisce nove nemici in quattro ondate progressive', () => {
   const m01 = stage.modules.find((module) => module.id === 'M01');
   assert.ok(m01);
-  assert.deepEqual(stage.modules.map((module) => module.id), ['M01']);
+  assert.deepEqual(stage.modules.map((module) => module.id), ['M01', 'M02']);
   assert.deepEqual(m01.waves.map((wave) => wave.character), ['talebano', 'a_puaicca', 'talebano', 'a_puaicca']);
   assert.deepEqual(m01.waves.map((wave) => wave.spawns.length), [1, 2, 3, 3]);
   assert.equal(m01.waves.reduce((count, wave) => count + wave.spawns.length, 0), 9);

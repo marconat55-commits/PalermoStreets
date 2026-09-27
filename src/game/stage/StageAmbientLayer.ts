@@ -21,22 +21,21 @@ function createSpeechBubble(text: string): Container {
     .lineTo(width / 2 - 16, height / 2)
     .lineTo(-width / 2, height / 2)
     .closePath()
-    .fill({ color: 0x160d13, alpha: 0.96 })
-    .stroke({ color: 0xffb82a, width: 4 })
+    .fill({ color: 0xffffff, alpha: 0.98 })
+    .stroke({ color: 0x080808, width: 5 })
     .moveTo(-54, height / 2 - 1)
     .lineTo(-35, height / 2 + 19)
     .lineTo(-18, height / 2 - 1)
     .closePath()
-    .fill({ color: 0x160d13, alpha: 0.96 })
-    .stroke({ color: 0xffb82a, width: 4 })
+    .fill({ color: 0xffffff, alpha: 0.98 })
+    .stroke({ color: 0x080808, width: 5 })
     .moveTo(-width / 2 + 19, -height / 2 + 8)
     .lineTo(-width / 2 + 8, height / 2 - 8)
-    .stroke({ color: 0xb5262f, width: 7 });
+    .stroke({ color: 0x080808, width: 7 });
   const label = new Text({
     text,
     style: {
-      fill: 0xffefbd,
-      stroke: { color: 0x52111c, width: 3 },
+      fill: 0x080808,
       fontFamily: 'Bangers, Arial Black, Arial, sans-serif',
       fontSize: 18,
       fontWeight: '900',

@@ -157,6 +157,8 @@ export interface SpriteLoopAmbientActorData {
   frame_durations: number[];
   /** Optional fixed outer shell; only this local rectangle receives animated frames. */
   motion_window?: [number, number, number, number];
+  /** Local display-space rectangles hidden from every frame without rewriting source art. */
+  hidden_regions?: Array<[number, number, number, number]>;
   parallax: number;
   alpha?: number;
   /** Optional soft ground shadow drawn behind the ambient actor. */

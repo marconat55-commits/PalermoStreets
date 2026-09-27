@@ -25,9 +25,9 @@ function createSpeechBubble(text: string): Container {
     .closePath()
     .fill({ color: 0xffffff, alpha: 0.98 })
     .stroke({ color: 0x111111, width: 2.5 })
-    .moveTo(-width * 0.31, height * 0.38)
-    .quadraticCurveTo(-width * 0.36, height * 0.68, -width * 0.46, height * 0.82)
-    .quadraticCurveTo(-width * 0.32, height * 0.72, -width * 0.2, height * 0.43)
+    .moveTo(-45, height * 0.38)
+    .quadraticCurveTo(-30, height * 0.68, -18, height * 0.88)
+    .quadraticCurveTo(-11, height * 0.67, 2, height * 0.4)
     .closePath()
     .fill({ color: 0xffffff, alpha: 0.98 })
     .stroke({ color: 0x111111, width: 2.5 });
@@ -100,6 +100,23 @@ export class StageAmbientLayer {
         root.addChild(shell, sprite, mask);
       } else {
         root.addChild(sprite);
+      }
+      if (spec.hidden_regions?.length) {
+        const mask = new Graphics();
+        const left = -anchor[0] * spec.size[0];
+        const top = -anchor[1] * spec.size[1];
+        const regions = [...spec.hidden_regions].sort((a, b) => a[1] - b[1]);
+        let cursorY = 0;
+        for (const [x, y, width, height] of regions) {
+          if (y > cursorY) mask.rect(left, top + cursorY, spec.size[0], y - cursorY);
+          mask.rect(left, top + y, x, height);
+          mask.rect(left + x + width, top + y, spec.size[0] - x - width, height);
+          cursorY = Math.max(cursorY, y + height);
+        }
+        if (cursorY < spec.size[1]) mask.rect(left, top + cursorY, spec.size[0], spec.size[1] - cursorY);
+        mask.fill(0xffffff);
+        sprite.mask = mask;
+        root.addChild(mask);
       }
       const speechBubble = spec.speech ? createSpeechBubble(spec.speech.text) : null;
       if (speechBubble && spec.speech) {

@@ -131,6 +131,7 @@
           "size": [249, 249],
           "anchor": [0.5, 1],
           "frame_durations": [1.75, 0.75],
+          "hidden_regions": [[156, 9, 20, 29]],
           "parallax": 1.0,
           "shadow": { "width": 122, "height": 22, "offset": [0, -3], "alpha": 0.28 },
           "interactive": false

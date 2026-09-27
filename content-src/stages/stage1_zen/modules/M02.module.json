@@ -12,14 +12,14 @@
   },
   "runtime_extension": {
     "version": 1,
-    "method": "two_segments_second_mirrored",
+    "method": "single_long_composite_with_blended_transition",
     "world_width": 5120,
     "viewport_count": 4,
     "camera_bounds_runtime": [0, 3840],
-    "walk_band_runtime": [600, 705],
+    "walk_band_runtime": [650, 705],
     "entry_runtime": [128, 675],
     "exit_runtime_x": 5070,
-    "design_note": "Il master approvato non viene deformato: la seconda metà specchiata prolunga il porticato e chiude il modulo con un secondo affaccio aperto."
+    "design_note": "Un fondale runtime lungo unisce il master approvato a una variante dedicata del porticato con una breve fusione centrale: cielo continuo, garage e dettagli ambientali differenti senza stacco verticale."
   },
   "encounter_contract": {
     "version": 1,

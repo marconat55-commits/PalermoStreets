@@ -18,24 +18,25 @@ const stage = JSON.parse(fs.readFileSync('public/data/stage1_zen.json', 'utf8'))
   }>;
 };
 
-test('M01 distribuisce nove nemici in quattro ondate progressive', () => {
+test('M01 usa due ondate brevi per raggiungere rapidamente M02', () => {
   const m01 = stage.modules.find((module) => module.id === 'M01');
   assert.ok(m01);
   assert.deepEqual(stage.modules.map((module) => module.id), ['M01', 'M02']);
-  assert.deepEqual(m01.waves.map((wave) => wave.character), ['talebano', 'a_puaicca', 'talebano', 'a_puaicca']);
-  assert.deepEqual(m01.waves.map((wave) => wave.spawns.length), [1, 2, 3, 3]);
-  assert.equal(m01.waves.reduce((count, wave) => count + wave.spawns.length, 0), 9);
+  assert.deepEqual(m01.waves.map((wave) => wave.character), ['talebano', 'a_puaicca']);
+  assert.deepEqual(m01.waves.map((wave) => wave.spawns.length), [1, 2]);
+  assert.equal(m01.waves.reduce((count, wave) => count + wave.spawns.length, 0), 3);
   assert.ok(m01.waves.every((wave, index) => wave.trigger_x < m01.exit_x && (index === 0 || wave.trigger_x > m01.waves[index - 1]!.trigger_x)));
   assert.ok(m01.waves.every((wave) => wave.health <= 64 && wave.aggression <= 0.84 && !wave.boss));
 });
 
-test('M01 raggruppa sacchi e bidoni e rilascia soltanto cibo', () => {
+test('M01 conserva un solo piccolo gruppo di sacchi e bidoni alla fine e rilascia soltanto cibo', () => {
   const m01 = stage.modules.find((module) => module.id === 'M01');
   assert.ok(m01);
-  assert.deepEqual(m01.items.map((item) => item.item), ['trash_bag', 'trash_bin', 'trash_bin', 'trash_bag', 'trash_bin']);
+  assert.deepEqual(m01.items.map((item) => item.item), ['trash_bag', 'trash_bin']);
   const groups = Map.groupBy(m01.items, (item) => item.group);
-  assert.equal(groups.get('m01_market')?.length, 2);
-  assert.equal(groups.get('m01_courtyard')?.length, 3);
+  assert.equal(groups.size, 1);
+  assert.equal(groups.get('m01_exit')?.length, 2);
+  assert.ok(m01.items.every((item) => item.position[0] >= 2200));
   assert.ok(m01.items.every((item) => item.position[0] < m01.exit_x));
   const catalog = JSON.parse(fs.readFileSync('public/data/items/stage1_zen.json', 'utf8')) as {
     items: Array<{ id: string; kind: string; drop_item?: string; drop_items?: string[] }>;

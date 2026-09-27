@@ -482,7 +482,6 @@ export class Player extends Actor {
     this.position.y += move.y * depthSpeed * dt;
     const moving = lengthSq(move) > 0.01;
     if (moving) this.facing = resolveCombatFacing(this.facing, move);
-    else this.faceAutoTarget();
     const directionalClip = selectLocomotionClip(move, this.animator.name, (name) => this.animator.bank.clips.has(name));
     const movementAnimation = running && this.animator.bank.clips.has('run') ? 'run' : directionalClip;
     const preservesStride = ['walk', 'run'].includes(this.animator.name);

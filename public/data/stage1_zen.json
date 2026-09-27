@@ -59,11 +59,8 @@
       "exit_x": 2510,
       "heal": 12,
       "items": [
-        { "item": "trash_bag", "position": [1080, 690], "group": "m01_market" },
-        { "item": "trash_bin", "position": [1195, 692], "group": "m01_market" },
-        { "item": "trash_bin", "position": [1780, 690], "group": "m01_courtyard" },
-        { "item": "trash_bag", "position": [1890, 692], "group": "m01_courtyard" },
-        { "item": "trash_bin", "position": [2000, 690], "group": "m01_courtyard" }
+        { "item": "trash_bag", "position": [2250, 692], "group": "m01_exit" },
+        { "item": "trash_bin", "position": [2365, 692], "group": "m01_exit" }
       ],
       "waves": [
         {
@@ -81,22 +78,6 @@
           "spawns": [[1300, 680], [1450, 702]],
           "character": "a_puaicca",
           "name": "A PUAICCA"
-        },
-        {
-          "trigger_x": 1480,
-          "health": 36,
-          "aggression": 0.68,
-          "spawns": [[1680, 680], [1830, 702], [1970, 675]],
-          "character": "talebano",
-          "name": "TALEBANO"
-        },
-        {
-          "trigger_x": 2070,
-          "health": 40,
-          "aggression": 0.7,
-          "spawns": [[2150, 680], [2290, 702], [2430, 675]],
-          "character": "a_puaicca",
-          "name": "A PUAICCA"
         }
       ]
     },
@@ -109,16 +90,12 @@
       "background": "assets/backgrounds/stage1_zen/final_v1/M02/M02_MAIN.png",
       "background_layers": [
         { "src": "assets/backgrounds/stage1_zen/final_v1/M02/M02_FAR.png", "parallax": 0.22, "plane": "far", "x": 0, "y": 0, "width": 2560, "height": 720 },
-        { "src": "assets/backgrounds/stage1_zen/final_v1/M02/M02_FAR.png", "parallax": 0.22, "plane": "far", "x": 5120, "y": 0, "width": 2560, "height": 720, "flip_x": true },
-        { "src": "assets/backgrounds/stage1_zen/final_v1/M02/M02_MAIN.png", "parallax": 1.0, "plane": "main", "x": 0, "y": 0, "width": 2560, "height": 720 },
-        { "src": "assets/backgrounds/stage1_zen/final_v1/M02/M02_MAIN.png", "parallax": 1.0, "plane": "main", "x": 5120, "y": 0, "width": 2560, "height": 720, "flip_x": true },
-        { "src": "assets/backgrounds/stage1_zen/final_v1/M02/M02_FOREGROUND.png", "parallax": 1.08, "plane": "foreground", "enabled": false, "x": 0, "y": 0, "width": 2560, "height": 720 },
-        { "src": "assets/backgrounds/stage1_zen/final_v1/M02/M02_FOREGROUND.png", "parallax": 1.08, "plane": "foreground", "enabled": false, "x": 5120, "y": 0, "width": 2560, "height": 720, "flip_x": true }
+        { "src": "assets/backgrounds/stage1_zen/final_v2/M02/M02_MAIN_LONG.png", "parallax": 1.0, "plane": "main", "x": 0, "y": 0, "width": 5120, "height": 720 }
       ],
       "world_width": 5120,
       "camera_bounds": [0, 3840],
-      "playfield_y": [600, 705],
-      "walk_top": [[0, 600], [5120, 600]],
+      "playfield_y": [650, 705],
+      "walk_top": [[0, 650], [2560, 655], [5120, 660]],
       "walk_bottom": [[0, 705], [5120, 705]],
       "entry": [128, 675],
       "exit_x": 5070,
@@ -131,12 +108,12 @@
         { "item": "trash_bin", "position": [3480, 690], "group": "m02_garage" }
       ],
       "waves": [
-        { "trigger_x": 300, "health": 44, "aggression": 0.72, "spawns": [[760, 650]], "character": "a_puaicca", "name": "A PUAICCA" },
-        { "trigger_x": 1050, "health": 48, "aggression": 0.76, "spawns": [[1280, 630], [1420, 690]], "character": "talebano", "name": "TALEBANO" },
-        { "trigger_x": 1800, "health": 42, "aggression": 0.74, "spawns": [[2050, 620], [2180, 660], [2310, 700]], "character": "a_puaicca", "name": "A PUAICCA" },
-        { "trigger_x": 2550, "health": 50, "aggression": 0.80, "spawns": [[2780, 640], [2920, 695]], "character": "talebano", "name": "TALEBANO" },
-        { "trigger_x": 3300, "health": 44, "aggression": 0.78, "spawns": [[3560, 620], [3700, 660], [3840, 700]], "character": "a_puaicca", "name": "A PUAICCA" },
-        { "trigger_x": 4200, "health": 52, "aggression": 0.84, "spawns": [[4470, 625], [4620, 665], [4770, 700]], "character": "talebano", "name": "TALEBANO" }
+        { "trigger_x": 300, "health": 44, "aggression": 0.72, "spawns": [[760, 660]], "character": "a_puaicca", "name": "A PUAICCA" },
+        { "trigger_x": 1050, "health": 48, "aggression": 0.76, "spawns": [[1280, 655], [1420, 690]], "character": "talebano", "name": "TALEBANO" },
+        { "trigger_x": 1800, "health": 42, "aggression": 0.74, "spawns": [[2050, 655], [2180, 675], [2310, 700]], "character": "a_puaicca", "name": "A PUAICCA" },
+        { "trigger_x": 2550, "health": 50, "aggression": 0.80, "spawns": [[2780, 660], [2920, 695]], "character": "talebano", "name": "TALEBANO" },
+        { "trigger_x": 3300, "health": 44, "aggression": 0.78, "spawns": [[3560, 665], [3700, 680], [3840, 700]], "character": "a_puaicca", "name": "A PUAICCA" },
+        { "trigger_x": 4200, "health": 52, "aggression": 0.84, "spawns": [[4470, 665], [4620, 685], [4770, 700]], "character": "talebano", "name": "TALEBANO" }
       ]
     }
   ],

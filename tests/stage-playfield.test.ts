@@ -51,12 +51,13 @@ test('i moduli Zen coprono la propria lunghezza e tengono gli spawn nella walk b
       assert.equal(far?.src, 'assets/backgrounds/stage1_zen/final_v2/M01/M01_FAR.png');
       assert.equal(main?.src, 'assets/backgrounds/stage1_zen/final_v2/M01/M01_MAIN.png');
     } else {
-      assert.equal(module.background_layers.length, 6);
-      assert.equal(module.background_layers.filter((layer) => layer.flip_x).length, 3);
-      assert.ok(module.background_layers.every((layer) => layer.width === 2560 && layer.height === 720));
-      assert.deepEqual(module.background_layers.filter((layer) => layer.plane === 'main').map((layer) => layer.x), [0, 5120]);
+      assert.equal(module.background_layers.length, 2);
+      assert.equal(module.background_layers.filter((layer) => layer.flip_x).length, 0);
+      assert.ok(module.background_layers.every((layer) => layer.height === 720));
+      assert.deepEqual(module.background_layers.filter((layer) => layer.plane === 'main').map((layer) => layer.x), [0]);
+      assert.equal(main?.width, 5120);
+      assert.equal(main?.src, 'assets/backgrounds/stage1_zen/final_v2/M02/M02_MAIN_LONG.png');
       assert.equal(far?.src, 'assets/backgrounds/stage1_zen/final_v1/M02/M02_FAR.png');
-      assert.equal(main?.src, 'assets/backgrounds/stage1_zen/final_v1/M02/M02_MAIN.png');
     }
   }
 });
@@ -79,8 +80,8 @@ test('M02 è lungo quattro schermate e usa il piano pavimentato approvato', () =
   assert.ok(m02);
   assert.equal(m02.world_width, 5120);
   assert.deepEqual(m02.camera_bounds, [0, 3840]);
-  assert.deepEqual(m02.playfield_y, [600, 705]);
-  assert.deepEqual(m02.walk_top, [[0, 600], [5120, 600]]);
+  assert.deepEqual(m02.playfield_y, [650, 705]);
+  assert.deepEqual(m02.walk_top, [[0, 650], [2560, 655], [5120, 660]]);
   assert.equal(m02.world_width, 2 * stage.modules[0]!.world_width);
 });
 

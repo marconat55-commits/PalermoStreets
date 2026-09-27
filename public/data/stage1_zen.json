@@ -106,7 +106,7 @@
             "assets/ambient/stage1_zen/M01/franco_gioia/idle_02.png"
           ],
           "position": [710, 615],
-          "size": [254, 254],
+          "size": [267, 267],
           "anchor": [0.5, 1],
           "frame_durations": [1.55, 0.8],
           "parallax": 1.0,
@@ -128,7 +128,7 @@
             "assets/ambient/stage1_zen/M01/duracell/idle_02.png"
           ],
           "position": [480, 617],
-          "size": [249, 249],
+          "size": [261, 261],
           "anchor": [0.5, 1],
           "frame_durations": [1.75, 0.75],
           "hidden_regions": [[156, 9, 20, 29]],
@@ -144,11 +144,11 @@
             "assets/ambient/stage1_zen/M02/meccanico_work/idle_02.png"
           ],
           "position": [1810, 525],
-          "size": [156, 156],
+          "size": [151, 151],
           "anchor": [0.5, 1],
           "frame_durations": [1.8, 1.0],
           "parallax": 1.0,
-          "shadow": { "width": 71, "height": 12, "offset": [0, -1], "alpha": 0.25 },
+          "shadow": { "width": 69, "height": 12, "offset": [0, -1], "alpha": 0.25 },
           "interactive": false
         }
       ],

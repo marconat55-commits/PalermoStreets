@@ -143,12 +143,12 @@
             "assets/ambient/stage1_zen/M02/meccanico_work/idle_01.png",
             "assets/ambient/stage1_zen/M02/meccanico_work/idle_02.png"
           ],
-          "position": [1810, 590],
-          "size": [136, 136],
+          "position": [1810, 525],
+          "size": [156, 156],
           "anchor": [0.5, 1],
           "frame_durations": [1.8, 1.0],
           "parallax": 1.0,
-          "shadow": { "width": 62, "height": 10, "offset": [0, -1], "alpha": 0.27 },
+          "shadow": { "width": 71, "height": 12, "offset": [0, -1], "alpha": 0.25 },
           "interactive": false
         }
       ],

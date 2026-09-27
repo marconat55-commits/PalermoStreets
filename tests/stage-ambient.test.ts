@@ -59,9 +59,9 @@ test('Franco Gioia and Duracell are enlarged at the start of M02', () => {
   const franco = loops[0]!;
   const duracell = loops[1]!;
   assert.deepEqual(franco.position, [480, 615]);
-  assert.deepEqual(franco.size, [231, 231]);
+  assert.deepEqual(franco.size, [254, 254]);
   assert.deepEqual(duracell.position, [730, 617]);
-  assert.deepEqual(duracell.size, [226, 226]);
+  assert.deepEqual(duracell.size, [249, 249]);
   assert.equal(collectAmbientAssets(m02).length, 4);
   for (const loop of loops) {
     assert.ok(loop.position[0] < 800, `${loop.id}: actor must remain near the start of M02`);

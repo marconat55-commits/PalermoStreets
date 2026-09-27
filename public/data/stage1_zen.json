@@ -53,40 +53,6 @@
           "frame_durations": [1.5, 1.2, 0.9, 1.4],
           "parallax": 1.0,
           "interactive": false
-        },
-        {
-          "id": "m01_franco_gioia",
-          "kind": "sprite_loop",
-          "frames": [
-            "assets/ambient/stage1_zen/M01/franco_gioia/idle_01.png",
-            "assets/ambient/stage1_zen/M01/franco_gioia/idle_02.png"
-          ],
-          "position": [1985, 610],
-          "size": [148, 148],
-          "anchor": [0.5, 1],
-          "frame_durations": [1.55, 0.8],
-          "parallax": 1.0,
-          "speech": {
-            "text": "HAHAHA Cuinnuti ca siti!!!",
-            "interval": 5,
-            "duration": 2.6,
-            "offset": [18, -192]
-          },
-          "interactive": false
-        },
-        {
-          "id": "m01_duracell",
-          "kind": "sprite_loop",
-          "frames": [
-            "assets/ambient/stage1_zen/M01/duracell/idle_01.png",
-            "assets/ambient/stage1_zen/M01/duracell/idle_02.png"
-          ],
-          "position": [2150, 612],
-          "size": [145, 145],
-          "anchor": [0.5, 1],
-          "frame_durations": [1.75, 0.75],
-          "parallax": 1.0,
-          "interactive": false
         }
       ],
       "entry": [147, 680],
@@ -131,6 +97,42 @@
       "playfield_y": [650, 705],
       "walk_top": [[0, 650], [2560, 655], [5120, 660]],
       "walk_bottom": [[0, 705], [5120, 705]],
+      "ambient": [
+        {
+          "id": "m02_franco_gioia",
+          "kind": "sprite_loop",
+          "frames": [
+            "assets/ambient/stage1_zen/M01/franco_gioia/idle_01.png",
+            "assets/ambient/stage1_zen/M01/franco_gioia/idle_02.png"
+          ],
+          "position": [470, 615],
+          "size": [185, 185],
+          "anchor": [0.5, 1],
+          "frame_durations": [1.55, 0.8],
+          "parallax": 1.0,
+          "speech": {
+            "text": "HAHAHA Cuinnuti ca siti!!!",
+            "interval": 5,
+            "duration": 2.6,
+            "offset": [22, -229]
+          },
+          "interactive": false
+        },
+        {
+          "id": "m02_duracell",
+          "kind": "sprite_loop",
+          "frames": [
+            "assets/ambient/stage1_zen/M01/duracell/idle_01.png",
+            "assets/ambient/stage1_zen/M01/duracell/idle_02.png"
+          ],
+          "position": [670, 617],
+          "size": [181, 181],
+          "anchor": [0.5, 1],
+          "frame_durations": [1.75, 0.75],
+          "parallax": 1.0,
+          "interactive": false
+        }
+      ],
       "entry": [128, 675],
       "exit_x": 5070,
       "heal": 16,

@@ -34,20 +34,22 @@ test('M01 keeps the balcony lady and fruit vendor behind the WALK lane', () => {
   const m01 = stage.modules.find((module) => module.id === 'M01');
   assert.ok(m01);
   const loops = (m01.ambient ?? []).filter((actor): actor is SpriteLoopSpec => actor.kind === 'sprite_loop');
-  assert.deepEqual(loops.map((loop) => loop.id), [
+  const actors = loops.filter((loop) => !loop.id.includes('_prop_'));
+  assert.deepEqual(actors.map((loop) => loop.id), [
     'm01_signora_balcone',
     'm01_venditore_frutta',
   ]);
   for (const loop of loops) {
-    assert.ok(loop.frames.length === 2 || loop.frames.length === 4);
+    assert.ok([1, 2, 4].includes(loop.frames.length));
     assert.equal(loop.frame_durations.length, loop.frames.length);
     assert.ok(loop.position[1] < 635, `${loop.id}: ambient actor must stay behind the WALK lane`);
     assert.ok(loop.size[0] > 0 && loop.size[1] > 0);
     for (const frame of loop.frames) assert.ok(fs.existsSync(`public/${frame}`), `${loop.id}: missing ${frame}`);
   }
-  assert.equal(collectAmbientAssets(m01).length, 8);
-  const balcony = loops[0]!;
-  const vendor = loops[1]!;
+  assert.equal(collectAmbientAssets(m01).length, 10);
+  assert.equal(loops.filter((loop) => loop.id.includes('_prop_')).length, 4);
+  const balcony = actors[0]!;
+  const vendor = actors[1]!;
   assert.deepEqual(balcony.position, [503, 170]);
   assert.deepEqual(balcony.size, [77, 70]);
   assert.deepEqual(vendor.position, [1104, 586]);
@@ -58,9 +60,10 @@ test('Franco Gioia and Duracell are enlarged at the start of M02', () => {
   const m02 = stage.modules.find((module) => module.id === 'M02');
   assert.ok(m02);
   const loops = (m02.ambient ?? []).filter((actor): actor is SpriteLoopSpec => actor.kind === 'sprite_loop');
-  assert.deepEqual(loops.map((loop) => loop.id), ['m02_franco_gioia', 'm02_duracell', 'm02_meccanico']);
-  const franco = loops[0]!;
-  const duracell = loops[1]!;
+  const actors = loops.filter((loop) => !loop.id.includes('_prop_'));
+  assert.deepEqual(actors.map((loop) => loop.id), ['m02_franco_gioia', 'm02_duracell', 'm02_meccanico']);
+  const franco = actors[0]!;
+  const duracell = actors[1]!;
   assert.deepEqual(franco.position, [710, 615]);
   assert.deepEqual(franco.size, [267, 267]);
   assert.equal(franco.speech?.text, 'HAHAHA CUINNUTI CA SITI!!!');
@@ -70,12 +73,13 @@ test('Franco Gioia and Duracell are enlarged at the start of M02', () => {
   assert.deepEqual(duracell.hidden_regions, [[156, 9, 20, 29]]);
   assert.deepEqual(franco.shadow, { width: 126, height: 23, offset: [0, -3], alpha: 0.28 });
   assert.deepEqual(duracell.shadow, { width: 122, height: 22, offset: [0, -3], alpha: 0.28 });
-  const mechanic = loops[2]!;
+  const mechanic = actors[2]!;
   assert.deepEqual(mechanic.position, [1810, 525]);
   assert.deepEqual(mechanic.size, [151, 151]);
-  assert.equal(collectAmbientAssets(m02).length, 6);
+  assert.equal(collectAmbientAssets(m02).length, 8);
+  assert.equal(loops.filter((loop) => loop.id.includes('_prop_')).length, 4);
   for (const loop of loops) {
-    if (loop.id !== 'm02_meccanico') assert.ok(loop.position[0] < 800, `${loop.id}: actor must remain near the start of M02`);
+    if (!loop.id.includes('_prop_') && loop.id !== 'm02_meccanico') assert.ok(loop.position[0] < 800, `${loop.id}: actor must remain near the start of M02`);
     assert.ok(loop.position[1] < 635, `${loop.id}: ambient actor must stay behind the WALK lane`);
     for (const frame of loop.frames) assert.ok(fs.existsSync(`public/${frame}`), `${loop.id}: missing ${frame}`);
   }

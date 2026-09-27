@@ -91,6 +91,7 @@ export class StageAmbientLayer {
       if (speechBubble && spec.speech) {
         const offset = spec.speech.offset ?? [0, -spec.size[1] - 42];
         speechBubble.position.set(offset[0], offset[1]);
+        speechBubble.scale.set(spec.speech.scale ?? 1);
         root.addChild(speechBubble);
       }
       this.root.addChild(root);

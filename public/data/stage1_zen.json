@@ -105,8 +105,8 @@
             "assets/ambient/stage1_zen/M01/franco_gioia/idle_01.png",
             "assets/ambient/stage1_zen/M01/franco_gioia/idle_02.png"
           ],
-          "position": [470, 615],
-          "size": [185, 185],
+          "position": [480, 615],
+          "size": [231, 231],
           "anchor": [0.5, 1],
           "frame_durations": [1.55, 0.8],
           "parallax": 1.0,
@@ -114,7 +114,8 @@
             "text": "HAHAHA Cuinnuti ca siti!!!",
             "interval": 5,
             "duration": 2.6,
-            "offset": [22, -229]
+            "offset": [28, -286],
+            "scale": 1.25
           },
           "interactive": false
         },
@@ -125,8 +126,8 @@
             "assets/ambient/stage1_zen/M01/duracell/idle_01.png",
             "assets/ambient/stage1_zen/M01/duracell/idle_02.png"
           ],
-          "position": [670, 617],
-          "size": [181, 181],
+          "position": [730, 617],
+          "size": [226, 226],
           "anchor": [0.5, 1],
           "frame_durations": [1.75, 0.75],
           "parallax": 1.0,

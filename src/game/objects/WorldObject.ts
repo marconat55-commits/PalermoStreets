@@ -21,6 +21,22 @@ function visualScale(itemId: string, scale: number | undefined, multiplier = 1, 
   return (scale ?? 0.065) * ITEM_VISUAL_SCALE * multiplier * itemSizeMultiplier(itemId) * compensation;
 }
 
+function drawTwinkle(graphics: Graphics, x: number, y: number, radius: number, alpha: number): void {
+  const inner = radius * 0.28;
+  graphics
+    .moveTo(x, y - radius)
+    .lineTo(x + inner, y - inner)
+    .lineTo(x + radius, y)
+    .lineTo(x + inner, y + inner)
+    .lineTo(x, y + radius)
+    .lineTo(x - inner, y + inner)
+    .lineTo(x - radius, y)
+    .lineTo(x - inner, y - inner)
+    .closePath()
+    .fill({ color: 0xffffff, alpha })
+    .stroke({ color: 0xffd45c, width: Math.max(1.5, radius * 0.16), alpha: alpha * 0.9 });
+}
+
 export class WorldObject {
   readonly root = new Container();
   readonly sprite: Sprite;
@@ -133,23 +149,21 @@ export class WorldObject {
     this.sparkle.clear();
     if (this.definition.kind === 'food' && this.state === 'ground') {
       this.sparkleTime = (this.sparkleTime + dt) % 3;
-      const sweepDuration = 0.72;
-      if (this.sparkleTime < sweepDuration) {
-        const progress = this.sparkleTime / sweepDuration;
-        const opacity = Math.sin(Math.PI * progress);
+      const sparkleDuration = 0.9;
+      if (this.sparkleTime < sparkleDuration) {
+        const progress = this.sparkleTime / sparkleDuration;
         const width = Math.max(34, this.sprite.width);
         const height = Math.max(34, this.sprite.height);
-        const x = -width * 0.68 + width * 1.36 * progress;
-        const centerY = -height * 0.5;
-        const ray = Math.max(13, height * 0.42);
-        const stroke = Math.max(5, Math.min(10, width * 0.16));
-        this.sparkle.moveTo(x - ray * 0.42, centerY + ray)
-          .lineTo(x + ray * 0.42, centerY - ray)
-          .stroke({ color: 0xffd45c, width: stroke + 5, alpha: opacity * 0.34 });
-        this.sparkle.moveTo(x - ray * 0.42, centerY + ray)
-          .lineTo(x + ray * 0.42, centerY - ray)
-          .stroke({ color: 0xffffff, width: stroke, alpha: opacity * 0.92 });
-        this.sparkle.circle(x, centerY, stroke * 0.62).fill({ color: 0xffffff, alpha: opacity });
+        const points = [
+          { x: -width * 0.38, y: -height * 0.72, radius: Math.max(7, width * 0.12), phase: 0 },
+          { x: width * 0.36, y: -height * 0.47, radius: Math.max(6, width * 0.1), phase: 0.2 },
+          { x: width * 0.06, y: -height * 0.94, radius: Math.max(5, width * 0.08), phase: 0.4 },
+        ];
+        for (const point of points) {
+          const localProgress = Math.max(0, Math.min(1, (progress - point.phase) / 0.6));
+          const opacity = Math.sin(Math.PI * localProgress);
+          if (opacity > 0) drawTwinkle(this.sparkle, point.x, point.y, point.radius, opacity);
+        }
       }
     }
     if (this.state === 'spent' && this.breakTimer > 0) {

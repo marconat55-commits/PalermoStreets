@@ -167,6 +167,8 @@ export interface SpriteLoopAmbientActorData {
     duration: number;
     /** Local offset from the actor's feet anchor. */
     offset?: [number, number];
+    /** Uniform scale for the complete speech bubble. */
+    scale?: number;
   };
   interactive?: false;
 }

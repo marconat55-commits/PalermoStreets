@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "build_scope": "stage1_zen_m01_m02_demo_v1",
+  "build_scope": "stage1_zen_m01_m03_demo_v1",
   "stage_name": "STAGE 1 — ZEN",
   "stage_subtitle": "LA BARBA È SACRA",
   "modules": [
@@ -164,6 +164,33 @@
         { "trigger_x": 3300, "health": 44, "aggression": 0.78, "spawns": [[3560, 665], [3700, 680], [3840, 700]], "character": "a_puaicca", "name": "A PUAICCA" },
         { "trigger_x": 4200, "health": 52, "aggression": 0.84, "spawns": [[4470, 665], [4620, 685], [4770, 700]], "character": "talebano", "name": "TALEBANO" }
       ]
+    },
+    {
+      "id": "M03",
+      "name": "Campetto aperto",
+      "art_status": "placeholder_rebuild_required",
+      "reference_actor_height": 290,
+      "horizon_y": 300,
+      "background": "assets/backgrounds/stage1_zen/final_v1/M03/M03_S01_MAIN.png",
+      "background_layers": [
+        { "src": "assets/backgrounds/stage1_zen/final_v1/M03/M03_FAR.png", "parallax": 0.22, "plane": "far", "x": 0, "y": 0, "width": 2560, "height": 720 },
+        { "src": "assets/backgrounds/stage1_zen/final_v1/M03/M03_S01_MAIN.png", "parallax": 1.0, "plane": "main", "x": 0, "y": 0, "width": 1280, "height": 720 },
+        { "src": "assets/backgrounds/stage1_zen/final_v1/M03/M03_S02_MAIN.png", "parallax": 1.0, "plane": "main", "x": 1280, "y": 0, "width": 1280, "height": 720 },
+        { "src": "assets/backgrounds/stage1_zen/final_v1/M03/M03_S03_MAIN.png", "parallax": 1.0, "plane": "main", "x": 2560, "y": 0, "width": 1280, "height": 720 },
+        { "src": "assets/backgrounds/stage1_zen/final_v1/M03/M03_S04_MAIN.png", "parallax": 1.0, "plane": "main", "x": 3840, "y": 0, "width": 1280, "height": 720 },
+        { "src": "assets/backgrounds/stage1_zen/final_v1/M03/M03_S05_MAIN.png", "parallax": 1.0, "plane": "main", "x": 5120, "y": 0, "width": 1280, "height": 720 }
+      ],
+      "world_width": 6400,
+      "camera_bounds": [0, 5120],
+      "playfield_y": [475, 705],
+      "walk_top": [[0, 475], [3200, 485], [6400, 495]],
+      "walk_bottom": [[0, 705], [6400, 705]],
+      "ambient": [],
+      "entry": [147, 610],
+      "exit_x": 6350,
+      "heal": 16,
+      "items": [],
+      "waves": []
     }
   ],
   "character_system": "profile_registry_v1"

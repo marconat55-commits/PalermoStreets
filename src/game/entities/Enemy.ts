@@ -4,7 +4,7 @@ import { ENEMY_ATTACK, ENEMY_HEAVY, attackTotal } from '../combat/attacks';
 import { clamp, lengthSq, normalize, randomRange, sub } from '../../utils/math';
 import { locomotionPlaybackRate, selectLocomotionClip } from '../animation/locomotion';
 import { selectEnemyAttackSlot } from '../combat/enemyAttackPattern';
-import { WAVE_ENTRY_SPEED } from '../stage/waveEntry';
+import { constrainApproachX, WAVE_ENTRY_SPEED, type EncounterBounds } from '../stage/waveEntry';
 
 function scaledAttack(base: AttackData, damageScale: number, speedScale: number): AttackData {
   const speed = clamp(speedScale, 0.55, 1.8);
@@ -64,6 +64,7 @@ export class Enemy extends Actor {
   grabbedBy: Actor | null = null;
   dodgeCooldown = 0;
   private spawnEntryTargetX: number | null = null;
+  private encounterBounds: EncounterBounds | null = null;
   private attackSequence = 0;
 
   constructor(bank: AnimationBank, position: Vec2, options: EnemyOptions = {}) {
@@ -97,6 +98,10 @@ export class Enemy extends Actor {
     this.beginState('spawn', 'walk');
     this.animator.setPlaybackRate(1.05 * this.moveSpeedScale);
     this.syncVisual();
+  }
+
+  setEncounterBounds(bounds: EncounterBounds): void {
+    this.encounterBounds = bounds;
   }
 
   override receiveHit(damage: number, knockback: Vec2, knockdown = false, launchVelocity = 0): HitResult {
@@ -294,6 +299,10 @@ export class Enemy extends Actor {
       desiredX = player.position.x + side * distance;
       desiredY = player.position.y + laneSign * (50 + ring * 12);
       this.facing = player.position.x >= this.position.x ? 1 : -1;
+    }
+
+    if (this.encounterBounds) {
+      desiredX = constrainApproachX(this.position.x, player.position.x, desiredX, this.encounterBounds);
     }
 
     const toSlot = { x: desiredX - this.position.x, y: desiredY - this.position.y };

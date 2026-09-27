@@ -13,6 +13,16 @@ export interface EncounterBounds {
 
 export const WAVE_ENTRY_SPEED = 340;
 
+export function constrainApproachX(
+  currentX: number,
+  playerX: number,
+  desiredX: number,
+  bounds: EncounterBounds,
+): number {
+  const boundedX = Math.max(bounds.left, Math.min(bounds.right, desiredX));
+  return Math.abs(boundedX - playerX) > Math.abs(currentX - playerX) ? currentX : boundedX;
+}
+
 export function resolveEncounterBounds(
   cameraX: number,
   viewportWidth: number,

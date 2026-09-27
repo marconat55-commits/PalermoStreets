@@ -159,6 +159,13 @@ export interface SpriteLoopAmbientActorData {
   motion_window?: [number, number, number, number];
   parallax: number;
   alpha?: number;
+  /** Optional soft ground shadow drawn behind the ambient actor. */
+  shadow?: {
+    width: number;
+    height: number;
+    offset?: [number, number];
+    alpha?: number;
+  };
   speech?: {
     text: string;
     /** Seconds between appearances. */

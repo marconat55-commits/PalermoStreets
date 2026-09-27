@@ -2,7 +2,7 @@
   "schema": 4,
   "build_scope": "stage1_zen_m01_m02_demo_v1",
   "stage_name": "STAGE 1 — ZEN",
-  "stage_subtitle": "A' VARBA E' SACRA",
+  "stage_subtitle": "LA BARBA È SACRA",
   "modules": [
     {
       "id": "M01",
@@ -110,6 +110,7 @@
           "anchor": [0.5, 1],
           "frame_durations": [1.55, 0.8],
           "parallax": 1.0,
+          "shadow": { "width": 126, "height": 23, "offset": [0, -3], "alpha": 0.28 },
           "speech": {
             "text": "HAHAHA Cuinnuti ca siti!!!",
             "interval": 5,
@@ -131,6 +132,7 @@
           "anchor": [0.5, 1],
           "frame_durations": [1.75, 0.75],
           "parallax": 1.0,
+          "shadow": { "width": 122, "height": 22, "offset": [0, -3], "alpha": 0.28 },
           "interactive": false
         }
       ],

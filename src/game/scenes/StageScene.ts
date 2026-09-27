@@ -31,14 +31,6 @@ import {
 
 const MELEE_SWING_SECONDS = 0.28;
 const MELEE_IMPACT_SECONDS = 0.14;
-const COMBAT_BANTER = [
-  'CHISTA ERA SULU PI SCALDARIMI!',
-  'CU È U PROSSIMU?',
-  'PICCIOTTI, FACEMU PIANU... FORSE.',
-  'A VASTUNATA ARRIVAU ESPRESSA!',
-  'NUN MI SGUALCITI A CAMMISA!',
-] as const;
-
 function authoredLayers(module: ModuleData): BackgroundLayerData[] {
   const enabled = module.background_layers?.filter((layer) => layer.enabled !== false);
   return enabled?.length
@@ -130,7 +122,6 @@ export class StageScene implements Scene {
   private enemyAttackLock = 0;
   private message = '';
   private messageTimer = 0;
-  private combatBanterTimer = 7.5;
   private stageComplete = false;
   private paused = false;
   private debugDraw = false;
@@ -776,7 +767,7 @@ export class StageScene implements Scene {
       if (this.moduleIndex === moduleIndex && this.waveIndex + 1 === targetWaveIndex) this.spawnNextWave();
     }).catch((error) => {
       console.error(`${characterId}: caricamento nemico fallito`, error);
-      this.message = 'NEMICO PERSO PER STRADA — ASPETTA UN SECUNNU';
+      this.message = 'NEMICO FUORI PERCORSO — ATTENDI';
       this.messageTimer = 1.8;
     }).finally(() => {
       this.waveLoadPending = false;
@@ -932,16 +923,6 @@ export class StageScene implements Scene {
     for (const actor of [this.player, ...this.enemies]) previous.set(actor.actorId, { ...actor.position });
 
     const liveBefore = this.enemies.filter((enemy) => !enemy.dead && enemy.state !== 'spawn');
-    if (liveBefore.length > 0 && this.messageTimer <= 0) {
-      this.combatBanterTimer -= dt;
-      if (this.combatBanterTimer <= 0) {
-        this.message = COMBAT_BANTER[Math.floor(Math.random() * COMBAT_BANTER.length)]!;
-        this.messageTimer = 1.35;
-        this.combatBanterTimer = 9 + Math.random() * 5;
-      }
-    } else if (liveBefore.length === 0) {
-      this.combatBanterTimer = Math.max(this.combatBanterTimer, 5.5);
-    }
     const combatReady = liveBefore.filter((enemy) => !['hit', 'knockdown', 'getup'].includes(enemy.state));
     this.player.update(dt, input, this.entryLock <= 0);
     if (this.heldObject) {
@@ -1140,8 +1121,8 @@ export class StageScene implements Scene {
       }
       this.clearText.visible = this.messageTimer <= 0;
       this.clearText.text = this.moduleIndex === this.modules.length - 1
-        ? `${this.currentModule.id} LIBERO — AMUNÌ, A DESTRA!`
-        : 'AREA LIBERA — AMUNÌ, A DESTRA!';
+        ? `${this.currentModule.id} LIBERO — PROSEGUI A DESTRA!`
+        : 'AREA LIBERA — PROSEGUI A DESTRA!';
     }
 
     this.messagePanel.clear();

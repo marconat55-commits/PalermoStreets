@@ -12,6 +12,7 @@ interface SpriteLoopSpec {
   frame_durations: number[];
   motion_window?: [number, number, number, number];
   parallax: number;
+  shadow?: { width: number; height: number; offset?: [number, number]; alpha?: number };
   interactive: false;
 }
 
@@ -62,6 +63,8 @@ test('Franco Gioia and Duracell are enlarged at the start of M02', () => {
   assert.deepEqual(franco.size, [254, 254]);
   assert.deepEqual(duracell.position, [480, 617]);
   assert.deepEqual(duracell.size, [249, 249]);
+  assert.deepEqual(franco.shadow, { width: 126, height: 23, offset: [0, -3], alpha: 0.28 });
+  assert.deepEqual(duracell.shadow, { width: 122, height: 22, offset: [0, -3], alpha: 0.28 });
   assert.equal(collectAmbientAssets(m02).length, 4);
   for (const loop of loops) {
     assert.ok(loop.position[0] < 800, `${loop.id}: actor must remain near the start of M02`);

@@ -12,26 +12,36 @@ interface SpriteLoopInstance {
 }
 
 function createSpeechBubble(text: string): Container {
-  const width = 258;
-  const height = 58;
+  const width = 280;
+  const height = 66;
   const bubble = new Container();
   const shape = new Graphics()
-    .roundRect(-width / 2, -height / 2, width, height, 14)
-    .fill({ color: 0xfffdf3, alpha: 0.98 })
-    .stroke({ color: 0x17120f, width: 4 })
-    .moveTo(-26, height / 2 - 2)
-    .lineTo(-11, height / 2 + 18)
-    .lineTo(3, height / 2 - 2)
+    .moveTo(-width / 2 + 14, -height / 2)
+    .lineTo(width / 2, -height / 2)
+    .lineTo(width / 2 - 16, height / 2)
+    .lineTo(-width / 2, height / 2)
     .closePath()
-    .fill({ color: 0xfffdf3, alpha: 0.98 })
-    .stroke({ color: 0x17120f, width: 4 });
+    .fill({ color: 0x160d13, alpha: 0.96 })
+    .stroke({ color: 0xffb82a, width: 4 })
+    .moveTo(-54, height / 2 - 1)
+    .lineTo(-35, height / 2 + 19)
+    .lineTo(-18, height / 2 - 1)
+    .closePath()
+    .fill({ color: 0x160d13, alpha: 0.96 })
+    .stroke({ color: 0xffb82a, width: 4 })
+    .moveTo(-width / 2 + 19, -height / 2 + 8)
+    .lineTo(-width / 2 + 8, height / 2 - 8)
+    .stroke({ color: 0xb5262f, width: 7 });
   const label = new Text({
     text,
     style: {
-      fill: 0x17120f,
-      fontFamily: 'Arial',
-      fontSize: 15,
-      fontWeight: '800',
+      fill: 0xffefbd,
+      stroke: { color: 0x52111c, width: 3 },
+      fontFamily: 'Bangers, Arial Black, Arial, sans-serif',
+      fontSize: 18,
+      fontWeight: '900',
+      fontStyle: 'italic',
+      letterSpacing: 1.2,
       align: 'center',
     },
   });
@@ -72,6 +82,13 @@ export class StageAmbientLayer {
       sprite.height = spec.size[1];
       sprite.alpha = spec.alpha ?? 1;
       const root = new Container();
+      if (spec.shadow) {
+        const offset = spec.shadow.offset ?? [0, -2];
+        const shadow = new Graphics()
+          .ellipse(offset[0], offset[1], spec.shadow.width / 2, spec.shadow.height / 2)
+          .fill({ color: 0x120b08, alpha: spec.shadow.alpha ?? 0.3 });
+        root.addChild(shadow);
+      }
       if (spec.motion_window) {
         const shell = new Sprite(textures[0]!);
         shell.anchor.set(...anchor);

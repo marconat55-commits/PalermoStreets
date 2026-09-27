@@ -16,31 +16,23 @@ function createSpeechBubble(text: string): Container {
   const height = 66;
   const bubble = new Container();
   const shape = new Graphics()
-    .moveTo(-width / 2 + 14, -height / 2)
-    .lineTo(width / 2, -height / 2)
-    .lineTo(width / 2 - 16, height / 2)
-    .lineTo(-width / 2, height / 2)
+    .roundRect(-width / 2, -height / 2, width, height, 28)
+    .fill({ color: 0xffffff, alpha: 0.98 })
+    .stroke({ color: 0x111111, width: 2.5 })
+    .moveTo(-52, height / 2 - 3)
+    .quadraticCurveTo(-40, height / 2 + 10, -31, height / 2 + 20)
+    .quadraticCurveTo(-27, height / 2 + 6, -14, height / 2 - 3)
     .closePath()
     .fill({ color: 0xffffff, alpha: 0.98 })
-    .stroke({ color: 0x080808, width: 5 })
-    .moveTo(-54, height / 2 - 1)
-    .lineTo(-35, height / 2 + 19)
-    .lineTo(-18, height / 2 - 1)
-    .closePath()
-    .fill({ color: 0xffffff, alpha: 0.98 })
-    .stroke({ color: 0x080808, width: 5 })
-    .moveTo(-width / 2 + 19, -height / 2 + 8)
-    .lineTo(-width / 2 + 8, height / 2 - 8)
-    .stroke({ color: 0x080808, width: 7 });
+    .stroke({ color: 0x111111, width: 2.5 });
   const label = new Text({
     text,
     style: {
       fill: 0x080808,
-      fontFamily: 'Bangers, Arial Black, Arial, sans-serif',
-      fontSize: 18,
-      fontWeight: '900',
-      fontStyle: 'italic',
-      letterSpacing: 1.2,
+      fontFamily: 'Arial Rounded MT Bold, Arial, sans-serif',
+      fontSize: 17,
+      fontWeight: '700',
+      letterSpacing: 0.3,
       align: 'center',
     },
   });

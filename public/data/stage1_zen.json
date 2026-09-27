@@ -105,7 +105,7 @@
             "assets/ambient/stage1_zen/M01/franco_gioia/idle_01.png",
             "assets/ambient/stage1_zen/M01/franco_gioia/idle_02.png"
           ],
-          "position": [480, 615],
+          "position": [730, 615],
           "size": [254, 254],
           "anchor": [0.5, 1],
           "frame_durations": [1.55, 0.8],
@@ -126,7 +126,7 @@
             "assets/ambient/stage1_zen/M01/duracell/idle_01.png",
             "assets/ambient/stage1_zen/M01/duracell/idle_02.png"
           ],
-          "position": [730, 617],
+          "position": [480, 617],
           "size": [249, 249],
           "anchor": [0.5, 1],
           "frame_durations": [1.75, 0.75],

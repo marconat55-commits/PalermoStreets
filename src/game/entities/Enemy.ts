@@ -4,6 +4,7 @@ import { ENEMY_ATTACK, ENEMY_HEAVY, attackTotal } from '../combat/attacks';
 import { clamp, lengthSq, normalize, randomRange, sub } from '../../utils/math';
 import { locomotionPlaybackRate, selectLocomotionClip } from '../animation/locomotion';
 import { selectEnemyAttackSlot } from '../combat/enemyAttackPattern';
+import { approachTargetX } from '../combat/enemyApproach';
 import { WAVE_ENTRY_SPEED } from '../stage/waveEntry';
 
 function scaledAttack(base: AttackData, damageScale: number, speedScale: number): AttackData {
@@ -276,22 +277,21 @@ export class Enemy extends Actor {
     }
 
     const delta = sub(player.position, this.position);
-    if (this.engageSide === null) this.engageSide = this.position.x < player.position.x ? -1 : 1;
-    else if (Math.abs(delta.x) > 205) this.engageSide = this.position.x < player.position.x ? -1 : 1;
+    if (Math.abs(delta.x) > 1) this.engageSide = this.position.x < player.position.x ? -1 : 1;
+    else this.engageSide ??= 1;
 
     let desiredX: number;
     let desiredY: number;
     if (mayAttack) {
       const side = this.engageSide;
-      desiredX = player.position.x + side * (this.isBoss ? 96 : 91);
+      desiredX = approachTargetX(this.position.x, player.position.x, this.isBoss ? 96 : 91);
       desiredY = player.position.y + this.preferredDepthOffset * 0.28;
       this.facing = (-side) as -1 | 1;
     } else {
-      const side = supportRank % 2 === 0 ? -1 : 1;
       const ring = Math.floor(supportRank / 2);
-      const distance = 176 + ring * 62;
+      const distance = 148 + ring * 34;
       const laneSign = ring % 2 === 0 ? -1 : 1;
-      desiredX = player.position.x + side * distance;
+      desiredX = approachTargetX(this.position.x, player.position.x, distance);
       desiredY = player.position.y + laneSign * (50 + ring * 12);
       this.facing = player.position.x >= this.position.x ? 1 : -1;
     }

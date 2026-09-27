@@ -105,7 +105,7 @@
             "assets/ambient/stage1_zen/M01/franco_gioia/idle_01.png",
             "assets/ambient/stage1_zen/M01/franco_gioia/idle_02.png"
           ],
-          "position": [730, 615],
+          "position": [710, 615],
           "size": [254, 254],
           "anchor": [0.5, 1],
           "frame_durations": [1.55, 0.8],

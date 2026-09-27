@@ -59,7 +59,7 @@ test('Franco Gioia and Duracell are enlarged at the start of M02', () => {
   assert.deepEqual(loops.map((loop) => loop.id), ['m02_franco_gioia', 'm02_duracell']);
   const franco = loops[0]!;
   const duracell = loops[1]!;
-  assert.deepEqual(franco.position, [730, 615]);
+  assert.deepEqual(franco.position, [710, 615]);
   assert.deepEqual(franco.size, [254, 254]);
   assert.deepEqual(duracell.position, [480, 617]);
   assert.deepEqual(duracell.size, [249, 249]);

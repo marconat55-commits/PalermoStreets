@@ -16,12 +16,18 @@ function createSpeechBubble(text: string): Container {
   const height = 66;
   const bubble = new Container();
   const shape = new Graphics()
-    .roundRect(-width / 2, -height / 2, width, height, 28)
+    .moveTo(-width * 0.42, -height * 0.43)
+    .bezierCurveTo(-width * 0.22, -height * 0.59, width * 0.12, -height * 0.53, width * 0.34, -height * 0.42)
+    .bezierCurveTo(width * 0.48, -height * 0.31, width * 0.51, -height * 0.04, width * 0.47, height * 0.2)
+    .bezierCurveTo(width * 0.4, height * 0.48, width * 0.13, height * 0.53, -width * 0.12, height * 0.48)
+    .bezierCurveTo(-width * 0.36, height * 0.5, -width * 0.5, height * 0.3, -width * 0.49, height * 0.02)
+    .bezierCurveTo(-width * 0.51, -height * 0.18, -width * 0.48, -height * 0.34, -width * 0.42, -height * 0.43)
+    .closePath()
     .fill({ color: 0xffffff, alpha: 0.98 })
     .stroke({ color: 0x111111, width: 2.5 })
-    .moveTo(-52, height / 2 - 3)
-    .quadraticCurveTo(-40, height / 2 + 10, -31, height / 2 + 20)
-    .quadraticCurveTo(-27, height / 2 + 6, -14, height / 2 - 3)
+    .moveTo(-width * 0.31, height * 0.38)
+    .quadraticCurveTo(-width * 0.36, height * 0.68, -width * 0.46, height * 0.82)
+    .quadraticCurveTo(-width * 0.32, height * 0.72, -width * 0.2, height * 0.43)
     .closePath()
     .fill({ color: 0xffffff, alpha: 0.98 })
     .stroke({ color: 0x111111, width: 2.5 });

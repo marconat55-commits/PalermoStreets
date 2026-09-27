@@ -25,9 +25,9 @@ function createSpeechBubble(text: string): Container {
     .closePath()
     .fill({ color: 0xffffff, alpha: 0.98 })
     .stroke({ color: 0x111111, width: 2.5 })
-    .moveTo(-45, height * 0.38)
-    .quadraticCurveTo(-30, height * 0.68, -18, height * 0.88)
-    .quadraticCurveTo(-11, height * 0.67, 2, height * 0.4)
+    .moveTo(-27, height * 0.44)
+    .quadraticCurveTo(-23, height * 0.56, -18, height * 0.67)
+    .quadraticCurveTo(-15, height * 0.55, -10, height * 0.44)
     .closePath()
     .fill({ color: 0xffffff, alpha: 0.98 })
     .stroke({ color: 0x111111, width: 2.5 });

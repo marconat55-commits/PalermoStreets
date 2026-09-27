@@ -4,6 +4,7 @@ import { ENEMY_ATTACK, ENEMY_HEAVY, attackTotal } from '../combat/attacks';
 import { clamp, lengthSq, normalize, randomRange, sub } from '../../utils/math';
 import { locomotionPlaybackRate, selectLocomotionClip } from '../animation/locomotion';
 import { selectEnemyAttackSlot } from '../combat/enemyAttackPattern';
+import { WAVE_ENTRY_SPEED } from '../stage/waveEntry';
 
 function scaledAttack(base: AttackData, damageScale: number, speedScale: number): AttackData {
   const speed = clamp(speedScale, 0.55, 1.8);
@@ -215,7 +216,7 @@ export class Enemy extends Actor {
       this.spawnElapsed += dt;
       if (this.spawnEntryTargetX !== null) {
         const deltaX = this.spawnEntryTargetX - this.position.x;
-        const step = 225 * this.moveSpeedScale * dt;
+        const step = WAVE_ENTRY_SPEED * this.moveSpeedScale * dt;
         if (Math.abs(deltaX) <= step) {
           this.position.x = this.spawnEntryTargetX;
           this.spawnEntryTargetX = null;

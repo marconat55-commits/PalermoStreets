@@ -16,7 +16,7 @@ import { SPIN_SPECIAL } from '../combat/attacks';
 import { resolveWalkBand, sampleWalkBand } from '../stage/walkBand';
 import { StageAmbientLayer } from '../stage/StageAmbientLayer';
 import { collectAmbientAssets } from '../stage/ambientAssets';
-import { resolveWaveEntry } from '../stage/waveEntry';
+import { resolveEncounterBounds, resolveWaveEntry } from '../stage/waveEntry';
 import { loadStageItems } from '../data/loadData';
 import { collectModuleItemAssets, collectModulePrimaryItemAssets, selectDropItem } from '../stage/moduleItems';
 import { WorldObject } from '../objects/WorldObject';
@@ -109,6 +109,7 @@ export class StageScene implements Scene {
   private waveIndex = -1;
   private nextWaveTimer = 0.70;
   private waveLoadPending = false;
+  private encounterCameraX: number | null = null;
   private moduleClear = false;
   private clearTimer = 0;
   private exitX = EXIT_X;
@@ -399,7 +400,8 @@ export class StageScene implements Scene {
   }
 
   private updateCamera(dt: number): void {
-    const target = cameraTargetForPlayer(this.cameraX, this.player.position.x, LOGICAL_WIDTH, this.cameraBounds);
+    const target = this.encounterCameraX
+      ?? cameraTargetForPlayer(this.cameraX, this.player.position.x, LOGICAL_WIDTH, this.cameraBounds);
     this.cameraX = smoothCamera(this.cameraX, target, dt);
     if (Math.abs(this.cameraX - target) < 0.05) this.cameraX = target;
     this.world.position.set(-this.cameraX + this.shakeOffset.x, this.shakeOffset.y);
@@ -427,8 +429,9 @@ export class StageScene implements Scene {
     if (preservePlayer && previousIndex !== index) this.releaseModuleAssets(previousIndex);
     this.waveData = this.currentModule.waves ?? [];
     this.waveIndex = -1;
-    this.nextWaveTimer = 0.70;
+    this.nextWaveTimer = 0.08;
     this.waveLoadPending = false;
+    this.encounterCameraX = null;
     this.moduleClear = false;
     this.clearTimer = 0;
     this.exitX = this.currentModule.exit_x ?? EXIT_X;
@@ -708,6 +711,7 @@ export class StageScene implements Scene {
     this.waveIndex += 1;
     if (this.waveIndex >= this.waveData.length) return;
     const wave = this.waveData[this.waveIndex]!;
+    this.encounterCameraX ??= this.cameraX;
     const boss = wave.boss ?? false;
     const characterId = wave.character ?? this.defaultEnemyId;
     const profile = this.catalog.getProfile(characterId);
@@ -772,6 +776,12 @@ export class StageScene implements Scene {
     }).finally(() => {
       this.waveLoadPending = false;
     });
+  }
+
+  private enforceEncounterBounds(): void {
+    if (this.encounterCameraX === null) return;
+    const bounds = resolveEncounterBounds(this.encounterCameraX, LOGICAL_WIDTH, this.worldWidth);
+    this.player.position.x = Math.max(bounds.left, Math.min(bounds.right, this.player.position.x));
   }
 
   private startTransition(): void {
@@ -925,6 +935,7 @@ export class StageScene implements Scene {
     const liveBefore = this.enemies.filter((enemy) => !enemy.dead && enemy.state !== 'spawn');
     const combatReady = liveBefore.filter((enemy) => !['hit', 'knockdown', 'getup'].includes(enemy.state));
     this.player.update(dt, input, this.entryLock <= 0);
+    this.enforceEncounterBounds();
     if (this.heldObject) {
       const useProgress = this.meleeSwingTimer > 0
         ? 1 - this.meleeSwingTimer / MELEE_SWING_SECONDS
@@ -1020,6 +1031,7 @@ export class StageScene implements Scene {
     separateActors([this.player, ...this.enemies], this.player);
     preventCrossings(this.player, this.enemies, previous);
     separateActors([this.player, ...this.enemies], this.player);
+    this.enforceEncounterBounds();
     for (const actor of [this.player, ...this.enemies]) actor.syncVisual();
 
     const removed = this.enemies.filter((enemy) => enemy.removeReady);
@@ -1031,22 +1043,25 @@ export class StageScene implements Scene {
     this.effects.update(dt);
 
     const liveEnemies = this.enemies.filter((enemy) => !enemy.dead);
-    const anyEnemyObjects = this.enemies.length > 0;
-    if (!liveEnemies.length && !anyEnemyObjects && this.waveIndex < this.waveData.length - 1) {
+    if (!liveEnemies.length && this.waveIndex < this.waveData.length - 1) {
       const nextWave = this.waveData[this.waveIndex + 1];
       const triggerReached = this.player.position.x >= (nextWave?.trigger_x ?? 0);
       if (triggerReached) {
+        this.encounterCameraX ??= this.cameraX;
+        this.enforceEncounterBounds();
         this.nextWaveTimer -= dt;
         if (this.nextWaveTimer <= 0) {
           this.requestNextWaveSpawn();
-          this.nextWaveTimer = 0.82;
+          this.nextWaveTimer = 0.12;
         }
       } else {
-        this.nextWaveTimer = 0.18;
+        this.encounterCameraX = null;
+        this.nextWaveTimer = 0.08;
       }
-    } else if (!liveEnemies.length && !anyEnemyObjects && this.waveIndex === this.waveData.length - 1) {
+    } else if (!liveEnemies.length && this.waveIndex === this.waveData.length - 1) {
+      this.encounterCameraX = null;
       this.clearTimer += dt;
-      if (this.clearTimer > 0.38) this.moduleClear = true;
+      if (this.clearTimer > 0.25) this.moduleClear = true;
       if (this.moduleClear && this.player.visualHorizontalBounds().right >= this.exitX - EXIT_TRIGGER_TOLERANCE) this.startTransition();
     } else {
       this.clearTimer = 0;

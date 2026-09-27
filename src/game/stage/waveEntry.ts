@@ -6,6 +6,25 @@ export interface WaveEntryPosition {
   targetX: number;
 }
 
+export interface EncounterBounds {
+  left: number;
+  right: number;
+}
+
+export const WAVE_ENTRY_SPEED = 340;
+
+export function resolveEncounterBounds(
+  cameraX: number,
+  viewportWidth: number,
+  worldWidth: number,
+  padding = 48,
+): EncounterBounds {
+  return {
+    left: Math.max(0, cameraX + padding),
+    right: Math.min(worldWidth, cameraX + viewportWidth - padding),
+  };
+}
+
 /**
  * Places a wave beyond the visible camera edges. Larger waves alternate sides
  * and successive actors on the same side start farther away, avoiding a pile

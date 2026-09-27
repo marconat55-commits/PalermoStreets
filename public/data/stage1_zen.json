@@ -135,6 +135,21 @@
           "parallax": 1.0,
           "shadow": { "width": 122, "height": 22, "offset": [0, -3], "alpha": 0.28 },
           "interactive": false
+        },
+        {
+          "id": "m02_meccanico",
+          "kind": "sprite_loop",
+          "frames": [
+            "assets/ambient/stage1_zen/M02/meccanico_work/idle_01.png",
+            "assets/ambient/stage1_zen/M02/meccanico_work/idle_02.png"
+          ],
+          "position": [1810, 620],
+          "size": [340, 340],
+          "anchor": [0.5, 1],
+          "frame_durations": [1.8, 1.0],
+          "parallax": 1.0,
+          "shadow": { "width": 154, "height": 25, "offset": [0, -3], "alpha": 0.3 },
+          "interactive": false
         }
       ],
       "entry": [128, 675],

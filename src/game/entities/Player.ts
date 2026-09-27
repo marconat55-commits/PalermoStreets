@@ -49,7 +49,6 @@ export class Player extends Actor {
   nextArcadeIndex = 0;
   comboCounter = 0;
   comboDisplayTimer = 0;
-  autoTargetX: number | null = null;
   lastMove: Vec2 = { x: 1, y: 0 };
   grabbedTarget: Enemy | null = null;
 
@@ -102,16 +101,6 @@ export class Player extends Actor {
     return !this.dead && this.elevation <= 0 && ['idle', 'walk', 'run'].includes(this.state) && !this.grabbedTarget;
   }
 
-  setAutoTarget(targetX: number | null): void {
-    this.autoTargetX = targetX;
-  }
-
-  private faceAutoTarget(): void {
-    if (this.autoTargetX === null) return;
-    const delta = this.autoTargetX - this.position.x;
-    if (Math.abs(delta) > 3) this.facing = delta > 0 ? 1 : -1;
-  }
-
   private requestAttack(attack: AttackData, chainable = false, requestedCombo?: readonly AttackData[]): boolean {
     if (this.dead || this.elevation > 0 || ['hit', 'knockdown', 'getup', 'block', 'grab'].includes(this.state)) return false;
     if (this.state === 'attack') {
@@ -135,7 +124,6 @@ export class Player extends Actor {
     }
     this.comboStep = 0;
     this.clearRun();
-    this.faceAutoTarget();
     this.startAttack(attack);
     return true;
   }
@@ -252,8 +240,7 @@ export class Player extends Actor {
   beginGrab(target: Enemy): boolean {
     if (!this.canStartGrab || !target.beginGrabbed(this)) return false;
     this.grabbedTarget = target;
-    const direction = target.position.x >= this.position.x ? 1 : -1;
-    this.facing = direction;
+    const direction = this.facing;
     this.clearRun();
     this.position.x = target.position.x - direction * 52;
     this.position.y = target.position.y;

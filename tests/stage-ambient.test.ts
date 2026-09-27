@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import test from 'node:test';
-import { collectAmbientAssets, frameAtTime } from '../src/game/stage/ambientAssets.ts';
+import { ambientSpeechVisible, collectAmbientAssets, frameAtTime } from '../src/game/stage/ambientAssets.ts';
 
 interface SpriteLoopSpec {
   id: string;
@@ -66,4 +66,12 @@ test('sprite loop durations select stable frames and wrap', () => {
   assert.equal(frameAtTime(durations, 3.1), 2);
   assert.equal(frameAtTime(durations, 6.1), 0);
   assert.equal(frameAtTime(durations, -0.1), 3);
+});
+
+test('il fumetto di Franco appare dopo cinque secondi e resta visibile per la durata impostata', () => {
+  assert.equal(ambientSpeechVisible(4.99, 5, 2.6), false);
+  assert.equal(ambientSpeechVisible(5, 5, 2.6), true);
+  assert.equal(ambientSpeechVisible(7.59, 5, 2.6), true);
+  assert.equal(ambientSpeechVisible(7.61, 5, 2.6), false);
+  assert.equal(ambientSpeechVisible(10, 5, 2.6), true);
 });

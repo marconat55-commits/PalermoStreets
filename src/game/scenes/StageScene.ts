@@ -943,12 +943,6 @@ export class StageScene implements Scene {
       this.combatBanterTimer = Math.max(this.combatBanterTimer, 5.5);
     }
     const combatReady = liveBefore.filter((enemy) => !['hit', 'knockdown', 'getup'].includes(enemy.state));
-    const targetPool = combatReady.length ? combatReady : liveBefore;
-    const nearest = [...targetPool].sort((a, b) =>
-      (Math.abs(a.position.x - this.player.position.x) + Math.abs(a.position.y - this.player.position.y) * 1.35) -
-      (Math.abs(b.position.x - this.player.position.x) + Math.abs(b.position.y - this.player.position.y) * 1.35)
-    )[0];
-    this.player.setAutoTarget(nearest?.position.x ?? null);
     this.player.update(dt, input, this.entryLock <= 0);
     if (this.heldObject) {
       const useProgress = this.meleeSwingTimer > 0

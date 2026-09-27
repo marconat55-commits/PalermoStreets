@@ -66,6 +66,12 @@
           "anchor": [0.5, 1],
           "frame_durations": [1.55, 0.8],
           "parallax": 1.0,
+          "speech": {
+            "text": "HAHAHA Cuinnuti ca siti!!!",
+            "interval": 5,
+            "duration": 2.6,
+            "offset": [18, -192]
+          },
           "interactive": false
         },
         {

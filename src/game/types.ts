@@ -159,6 +159,15 @@ export interface SpriteLoopAmbientActorData {
   motion_window?: [number, number, number, number];
   parallax: number;
   alpha?: number;
+  speech?: {
+    text: string;
+    /** Seconds between appearances. */
+    interval: number;
+    /** Seconds the bubble remains visible. */
+    duration: number;
+    /** Local offset from the actor's feet anchor. */
+    offset?: [number, number];
+  };
   interactive?: false;
 }
 

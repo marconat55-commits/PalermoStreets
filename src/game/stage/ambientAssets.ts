@@ -20,3 +20,10 @@ export function frameAtTime(durations: number[], elapsed: number): number {
   }
   return safeDurations.length - 1;
 }
+
+export function ambientSpeechVisible(elapsed: number, interval: number, duration: number): boolean {
+  const safeInterval = Math.max(0.1, interval);
+  const safeDuration = Math.min(Math.max(0.1, duration), safeInterval);
+  if (elapsed < safeInterval) return false;
+  return elapsed % safeInterval < safeDuration;
+}

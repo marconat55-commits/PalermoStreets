@@ -1,6 +1,6 @@
-import { Container, Graphics, Sprite, type Texture } from 'pixi.js';
+import { Container, Graphics, Sprite, Text, type Texture } from 'pixi.js';
 import type { AmbientActorData, SpriteLoopAmbientActorData, Vec2 } from '../types';
-import { frameAtTime } from './ambientAssets';
+import { ambientSpeechVisible, frameAtTime } from './ambientAssets';
 
 interface SpriteLoopInstance {
   root: Container;
@@ -8,6 +8,37 @@ interface SpriteLoopInstance {
   spec: SpriteLoopAmbientActorData;
   textures: Texture[];
   phase: number;
+  speechBubble: Container | null;
+}
+
+function createSpeechBubble(text: string): Container {
+  const width = 258;
+  const height = 58;
+  const bubble = new Container();
+  const shape = new Graphics()
+    .roundRect(-width / 2, -height / 2, width, height, 14)
+    .fill({ color: 0xfffdf3, alpha: 0.98 })
+    .stroke({ color: 0x17120f, width: 4 })
+    .moveTo(-26, height / 2 - 2)
+    .lineTo(-11, height / 2 + 18)
+    .lineTo(3, height / 2 - 2)
+    .closePath()
+    .fill({ color: 0xfffdf3, alpha: 0.98 })
+    .stroke({ color: 0x17120f, width: 4 });
+  const label = new Text({
+    text,
+    style: {
+      fill: 0x17120f,
+      fontFamily: 'Arial',
+      fontSize: 15,
+      fontWeight: '800',
+      align: 'center',
+    },
+  });
+  label.anchor.set(0.5);
+  bubble.addChild(shape, label);
+  bubble.visible = false;
+  return bubble;
 }
 
 function seedFromId(id: string, index: number): number {
@@ -56,9 +87,15 @@ export class StageAmbientLayer {
       } else {
         root.addChild(sprite);
       }
+      const speechBubble = spec.speech ? createSpeechBubble(spec.speech.text) : null;
+      if (speechBubble && spec.speech) {
+        const offset = spec.speech.offset ?? [0, -spec.size[1] - 42];
+        speechBubble.position.set(offset[0], offset[1]);
+        root.addChild(speechBubble);
+      }
       this.root.addChild(root);
       const cycle = spec.frame_durations.reduce((sum, duration) => sum + Math.max(0.05, duration), 0);
-      this.spriteLoops.push({ root, sprite, spec, textures: textures as Texture[], phase: stableUnit(seedFromId(spec.id, 0)) * cycle });
+      this.spriteLoops.push({ root, sprite, spec, textures: textures as Texture[], phase: stableUnit(seedFromId(spec.id, 0)) * cycle, speechBubble });
     }
   }
 
@@ -67,6 +104,13 @@ export class StageAmbientLayer {
     for (const loop of this.spriteLoops) {
       const frameIndex = frameAtTime(loop.spec.frame_durations, this.elapsed + loop.phase);
       loop.sprite.texture = loop.textures[frameIndex] ?? loop.textures[0]!;
+      if (loop.speechBubble && loop.spec.speech) {
+        loop.speechBubble.visible = ambientSpeechVisible(
+          this.elapsed,
+          loop.spec.speech.interval,
+          loop.spec.speech.duration,
+        );
+      }
       loop.root.position.set(
         loop.spec.position[0] - cameraX * loop.spec.parallax + shake.x * loop.spec.parallax,
         loop.spec.position[1] + shake.y * loop.spec.parallax,

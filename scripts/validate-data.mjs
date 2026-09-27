@@ -311,6 +311,14 @@ for (const module of stage.modules ?? []) {
         || actor.motion_window[1] + actor.motion_window[3] > actor.size?.[1])) {
         fail(`${module.id}/${actor.id}: finestra movimento non valida`);
       }
+      if (actor.speech && (typeof actor.speech.text !== 'string' || actor.speech.text.trim().length === 0
+        || !Number.isFinite(actor.speech.interval) || actor.speech.interval <= 0
+        || !Number.isFinite(actor.speech.duration) || actor.speech.duration <= 0
+        || actor.speech.duration > actor.speech.interval
+        || (actor.speech.offset && (!Array.isArray(actor.speech.offset) || actor.speech.offset.length !== 2
+          || !actor.speech.offset.every(Number.isFinite))))) {
+        fail(`${module.id}/${actor.id}: fumetto ambientale non valido`);
+      }
     } else {
       fail(`${module.id}/${actor?.id}: tipo ambientale non supportato ${actor?.kind ?? ''}`);
     }

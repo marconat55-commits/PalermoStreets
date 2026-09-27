@@ -1,4 +1,4 @@
-import { existsSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
@@ -21,7 +21,18 @@ if (!existsSync(path.join(root, '.git'))) {
 }
 
 const active = git(['branch', '--show-current']);
-if (active.status !== 0 || active.stdout.trim() !== branch) {
+if (active.status !== 0) {
+  const headPath = path.join(root, '.git', 'HEAD');
+  const head = existsSync(headPath) ? readFileSync(headPath, 'utf8').trim() : '';
+  const localBranch = head.startsWith('ref: refs/heads/') ? head.slice('ref: refs/heads/'.length) : '';
+  if (localBranch === branch) {
+    console.warn(`Git non disponibile nel terminale: avvio la copia locale ${branch}.`);
+    process.exit(0);
+  }
+  console.error(`Impossibile verificare il ramo Git. Apri ${branch} prima di avviare il gioco.`);
+  process.exit(1);
+}
+if (active.stdout.trim() !== branch) {
   console.error(`Il gioco aggiornato è sul ramo ${branch}. Aprilo con: git switch ${branch}`);
   process.exit(1);
 }

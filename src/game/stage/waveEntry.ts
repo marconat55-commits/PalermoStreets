@@ -12,6 +12,7 @@ export interface EncounterBounds {
 }
 
 export const WAVE_ENTRY_SPEED = 340;
+export const WAVE_ENTRY_INSET = 220;
 
 export function resolveEncounterBounds(
   cameraX: number,
@@ -38,7 +39,9 @@ export function resolveWaveEntry(
   const side: WaveEntrySide = index % 2 === 0 ? 'right' : 'left';
   const sideOrder = Math.floor(index / 2);
   const outside = 105 + sideOrder * 82;
-  const inside = 74 + sideOrder * 38;
+  // Keep the feet target far enough from the camera edge for the complete
+  // 640x420 actor canvas. A shallow target can fight clampFeetX forever.
+  const inside = WAVE_ENTRY_INSET + sideOrder * 28;
   if (side === 'right') {
     return {
       side,

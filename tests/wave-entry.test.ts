@@ -1,6 +1,11 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { resolveEncounterBounds, resolveWaveEntry, WAVE_ENTRY_SPEED } from '../src/game/stage/waveEntry.ts';
+import {
+  resolveEncounterBounds,
+  resolveWaveEntry,
+  WAVE_ENTRY_INSET,
+  WAVE_ENTRY_SPEED,
+} from '../src/game/stage/waveEntry.ts';
 
 test('una singola entrata nasce oltre il lato destro della camera', () => {
   const entry = resolveWaveEntry(0, 640, 1280);
@@ -15,6 +20,7 @@ test('le ondate numerose alternano i lati e sfalsano gli ingressi', () => {
   assert.ok(entries[2]!.spawnX > entries[0]!.spawnX);
   assert.ok(entries[3]!.spawnX < entries[1]!.spawnX);
   assert.equal(new Set(entries.map((entry) => entry.targetX)).size, 4);
+  assert.ok(entries[1]!.targetX >= 900 + WAVE_ENTRY_INSET);
 });
 
 test('un incontro confina il giocatore nella camera e usa un ingresso rapido', () => {

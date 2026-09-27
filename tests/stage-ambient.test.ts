@@ -27,11 +27,15 @@ test('Stage 1 no longer renders procedural bird flocks', () => {
   }
 });
 
-test('M01 activates the balcony resident only inside the authored socket', () => {
+test('M01 keeps every approved ambient actor behind the WALK lane', () => {
   const m01 = stage.modules.find((module) => module.id === 'M01');
   assert.ok(m01);
   const loops = (m01.ambient ?? []).filter((actor): actor is SpriteLoopSpec => actor.kind === 'sprite_loop');
-  assert.deepEqual(loops.map((loop) => loop.id), ['m01_signora_balcone', 'm01_venditore_frutta']);
+  assert.deepEqual(loops.map((loop) => loop.id), [
+    'm01_signora_balcone',
+    'm01_venditore_frutta',
+    'm01_bambino_pallone',
+  ]);
   for (const loop of loops) {
     assert.equal(loop.frames.length, 4);
     assert.equal(loop.frame_durations.length, loop.frames.length);
@@ -39,13 +43,16 @@ test('M01 activates the balcony resident only inside the authored socket', () =>
     assert.ok(loop.size[0] > 0 && loop.size[1] > 0);
     for (const frame of loop.frames) assert.ok(fs.existsSync(`public/${frame}`), `${loop.id}: missing ${frame}`);
   }
-  assert.equal(collectAmbientAssets(m01).length, 8);
+  assert.equal(collectAmbientAssets(m01).length, 12);
   const balcony = loops[0]!;
   const vendor = loops[1]!;
+  const child = loops[2]!;
   assert.deepEqual(balcony.position, [503, 170]);
   assert.deepEqual(balcony.size, [77, 70]);
   assert.deepEqual(vendor.position, [1104, 586]);
   assert.deepEqual(vendor.size, [308, 226]);
+  assert.deepEqual(child.position, [790, 614]);
+  assert.deepEqual(child.size, [60, 160]);
 });
 
 test('sprite loop durations select stable frames and wrap', () => {

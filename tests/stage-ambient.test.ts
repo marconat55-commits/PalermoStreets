@@ -34,10 +34,11 @@ test('M01 keeps every approved ambient actor behind the WALK lane', () => {
   assert.deepEqual(loops.map((loop) => loop.id), [
     'm01_signora_balcone',
     'm01_venditore_frutta',
-    'm01_bambino_pallone',
+    'm01_franco_gioia',
+    'm01_duracell',
   ]);
   for (const loop of loops) {
-    assert.equal(loop.frames.length, 4);
+    assert.ok(loop.frames.length === 2 || loop.frames.length === 4);
     assert.equal(loop.frame_durations.length, loop.frames.length);
     assert.ok(loop.position[1] < 635, `${loop.id}: ambient actor must stay behind the WALK lane`);
     assert.ok(loop.size[0] > 0 && loop.size[1] > 0);
@@ -46,13 +47,16 @@ test('M01 keeps every approved ambient actor behind the WALK lane', () => {
   assert.equal(collectAmbientAssets(m01).length, 12);
   const balcony = loops[0]!;
   const vendor = loops[1]!;
-  const child = loops[2]!;
+  const franco = loops[2]!;
+  const duracell = loops[3]!;
   assert.deepEqual(balcony.position, [503, 170]);
   assert.deepEqual(balcony.size, [77, 70]);
   assert.deepEqual(vendor.position, [1104, 586]);
   assert.deepEqual(vendor.size, [308, 226]);
-  assert.deepEqual(child.position, [790, 614]);
-  assert.deepEqual(child.size, [60, 160]);
+  assert.deepEqual(franco.position, [1985, 610]);
+  assert.deepEqual(franco.size, [148, 148]);
+  assert.deepEqual(duracell.position, [2150, 612]);
+  assert.deepEqual(duracell.size, [145, 145]);
 });
 
 test('sprite loop durations select stable frames and wrap', () => {

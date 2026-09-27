@@ -55,18 +55,30 @@
           "interactive": false
         },
         {
-          "id": "m01_bambino_pallone",
+          "id": "m01_franco_gioia",
           "kind": "sprite_loop",
           "frames": [
-            "assets/ambient/stage1_zen/M01/bambino_pallone/idle_01.png",
-            "assets/ambient/stage1_zen/M01/bambino_pallone/idle_02.png",
-            "assets/ambient/stage1_zen/M01/bambino_pallone/idle_03.png",
-            "assets/ambient/stage1_zen/M01/bambino_pallone/idle_04.png"
+            "assets/ambient/stage1_zen/M01/franco_gioia/idle_01.png",
+            "assets/ambient/stage1_zen/M01/franco_gioia/idle_02.png"
           ],
-          "position": [790, 614],
-          "size": [60, 160],
+          "position": [1985, 610],
+          "size": [148, 148],
           "anchor": [0.5, 1],
-          "frame_durations": [0.8, 0.34, 0.48, 0.34],
+          "frame_durations": [1.55, 0.8],
+          "parallax": 1.0,
+          "interactive": false
+        },
+        {
+          "id": "m01_duracell",
+          "kind": "sprite_loop",
+          "frames": [
+            "assets/ambient/stage1_zen/M01/duracell/idle_01.png",
+            "assets/ambient/stage1_zen/M01/duracell/idle_02.png"
+          ],
+          "position": [2150, 612],
+          "size": [145, 145],
+          "anchor": [0.5, 1],
+          "frame_durations": [1.75, 0.75],
           "parallax": 1.0,
           "interactive": false
         }

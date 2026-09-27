@@ -130,17 +130,26 @@ export class WorldObject {
   }
 
   update(dt: number): void {
+    this.sparkle.clear();
     if (this.definition.kind === 'food' && this.state === 'ground') {
-      this.sparkleTime = (this.sparkleTime + dt) % 3.6;
-      this.sparkle.clear();
-      if (this.sparkleTime < 0.5) {
-        const opacity = Math.sin(Math.PI * this.sparkleTime / 0.5);
-        for (const [x, y, radius] of [[-14, -49, 8], [11, -63, 5]] as const) {
-          this.sparkle.moveTo(x - radius, y).lineTo(x + radius, y)
-            .moveTo(x, y - radius).lineTo(x, y + radius)
-            .stroke({ color: 0xffe38b, width: 2.5, alpha: opacity });
-          this.sparkle.circle(x, y, 2).fill({ color: 0xffffff, alpha: opacity });
-        }
+      this.sparkleTime = (this.sparkleTime + dt) % 3;
+      const sweepDuration = 0.72;
+      if (this.sparkleTime < sweepDuration) {
+        const progress = this.sparkleTime / sweepDuration;
+        const opacity = Math.sin(Math.PI * progress);
+        const width = Math.max(34, this.sprite.width);
+        const height = Math.max(34, this.sprite.height);
+        const x = -width * 0.68 + width * 1.36 * progress;
+        const centerY = -height * 0.5;
+        const ray = Math.max(13, height * 0.42);
+        const stroke = Math.max(5, Math.min(10, width * 0.16));
+        this.sparkle.moveTo(x - ray * 0.42, centerY + ray)
+          .lineTo(x + ray * 0.42, centerY - ray)
+          .stroke({ color: 0xffd45c, width: stroke + 5, alpha: opacity * 0.34 });
+        this.sparkle.moveTo(x - ray * 0.42, centerY + ray)
+          .lineTo(x + ray * 0.42, centerY - ray)
+          .stroke({ color: 0xffffff, width: stroke, alpha: opacity * 0.92 });
+        this.sparkle.circle(x, centerY, stroke * 0.62).fill({ color: 0xffffff, alpha: opacity });
       }
     }
     if (this.state === 'spent' && this.breakTimer > 0) {

@@ -53,54 +53,6 @@
           "frame_durations": [1.5, 1.2, 0.9, 1.4],
           "parallax": 1.0,
           "interactive": false
-        },
-        {
-          "id": "m01_prop_bidone_cancello",
-          "kind": "sprite_loop",
-          "frames": ["assets/items/stage1_zen/05_bidone_spazzatura.png", "assets/items/stage1_zen/05_bidone_spazzatura.png"],
-          "position": [295, 625],
-          "size": [54, 70],
-          "anchor": [0.5, 1],
-          "frame_durations": [60, 60],
-          "parallax": 1.0,
-          "alpha": 0.88,
-          "interactive": false
-        },
-        {
-          "id": "m01_prop_sacco_cancello",
-          "kind": "sprite_loop",
-          "frames": ["assets/items/stage1_zen/06_sacco_spazzatura_nero.png", "assets/items/stage1_zen/06_sacco_spazzatura_nero.png"],
-          "position": [343, 627],
-          "size": [48, 58],
-          "anchor": [0.5, 1],
-          "frame_durations": [60, 60],
-          "parallax": 1.0,
-          "alpha": 0.9,
-          "interactive": false
-        },
-        {
-          "id": "m01_prop_sacco_portico_a",
-          "kind": "sprite_loop",
-          "frames": ["assets/items/stage1_zen/06_sacco_spazzatura_nero.png", "assets/items/stage1_zen/06_sacco_spazzatura_nero.png"],
-          "position": [1845, 631],
-          "size": [53, 63],
-          "anchor": [0.5, 1],
-          "frame_durations": [60, 60],
-          "parallax": 1.0,
-          "alpha": 0.92,
-          "interactive": false
-        },
-        {
-          "id": "m01_prop_sacco_portico_b",
-          "kind": "sprite_loop",
-          "frames": ["assets/items/stage1_zen/06_sacco_spazzatura_nero.png", "assets/items/stage1_zen/06_sacco_spazzatura_nero.png"],
-          "position": [1884, 633],
-          "size": [43, 52],
-          "anchor": [0.5, 1],
-          "frame_durations": [60, 60],
-          "parallax": 1.0,
-          "alpha": 0.86,
-          "interactive": false
         }
       ],
       "entry": [147, 680],
@@ -191,54 +143,6 @@
           "frame_durations": [1.8, 1.0],
           "parallax": 1.0,
           "shadow": { "width": 69, "height": 12, "offset": [0, -1], "alpha": 0.25 },
-          "interactive": false
-        },
-        {
-          "id": "m02_prop_bidone_portico",
-          "kind": "sprite_loop",
-          "frames": ["assets/items/stage1_zen/05_bidone_spazzatura.png", "assets/items/stage1_zen/05_bidone_spazzatura.png"],
-          "position": [1055, 626],
-          "size": [57, 74],
-          "anchor": [0.5, 1],
-          "frame_durations": [60, 60],
-          "parallax": 1.0,
-          "alpha": 0.88,
-          "interactive": false
-        },
-        {
-          "id": "m02_prop_sacco_portico",
-          "kind": "sprite_loop",
-          "frames": ["assets/items/stage1_zen/06_sacco_spazzatura_nero.png", "assets/items/stage1_zen/06_sacco_spazzatura_nero.png"],
-          "position": [1110, 629],
-          "size": [49, 59],
-          "anchor": [0.5, 1],
-          "frame_durations": [60, 60],
-          "parallax": 1.0,
-          "alpha": 0.9,
-          "interactive": false
-        },
-        {
-          "id": "m02_prop_bidone_cortile",
-          "kind": "sprite_loop",
-          "frames": ["assets/items/stage1_zen/05_bidone_spazzatura.png", "assets/items/stage1_zen/05_bidone_spazzatura.png"],
-          "position": [2440, 632],
-          "size": [61, 79],
-          "anchor": [0.5, 1],
-          "frame_durations": [60, 60],
-          "parallax": 1.0,
-          "alpha": 0.9,
-          "interactive": false
-        },
-        {
-          "id": "m02_prop_sacco_cortile",
-          "kind": "sprite_loop",
-          "frames": ["assets/items/stage1_zen/06_sacco_spazzatura_nero.png", "assets/items/stage1_zen/06_sacco_spazzatura_nero.png"],
-          "position": [2502, 634],
-          "size": [54, 65],
-          "anchor": [0.5, 1],
-          "frame_durations": [60, 60],
-          "parallax": 1.0,
-          "alpha": 0.92,
           "interactive": false
         }
       ],

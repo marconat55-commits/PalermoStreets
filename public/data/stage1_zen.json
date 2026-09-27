@@ -65,19 +65,13 @@
       "waves": [
         {
           "trigger_x": 299,
-          "health": 52,
-          "aggression": 0.84,
-          "spawns": [[874, 675]],
-          "character": "talebano",
-          "name": "TALEBANO"
-        },
-        {
-          "trigger_x": 950,
-          "health": 44,
-          "aggression": 0.72,
-          "spawns": [[1300, 680], [1450, 702]],
-          "character": "a_puaicca",
-          "name": "A PUAICCA"
+          "health": 46,
+          "aggression": 0.78,
+          "spawns": [[874, 675], [930, 700], [1120, 682], [1280, 702], [1570, 675], [1850, 695], [2150, 685]],
+          "characters": ["talebano", "a_puaicca", "talebano", "a_puaicca", "talebano", "a_puaicca", "talebano"],
+          "name": "SGHERRI",
+          "batch_size": 2,
+          "lock_stage": false
         }
       ]
     },

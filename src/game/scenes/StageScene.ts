@@ -20,6 +20,10 @@ import { resolveEncounterBounds, resolveWaveEntry } from '../stage/waveEntry';
 import { loadStageItems } from '../data/loadData';
 import { collectModuleItemAssets, collectModulePrimaryItemAssets, selectDropItem } from '../stage/moduleItems';
 import { WorldObject } from '../objects/WorldObject';
+
+function waveCharacterIds(wave: WaveData, fallback: string): string[] {
+  return [...new Set(wave.characters?.length ? wave.characters : [wave.character ?? fallback])];
+}
 import { isPickupKind, itemWithinRange, resolveItemInteraction } from '../objects/itemRules';
 import { rectsIntersect } from '../../utils/math';
 import {
@@ -109,6 +113,8 @@ export class StageScene implements Scene {
   private waveIndex = -1;
   private nextWaveTimer = 0.70;
   private waveLoadPending = false;
+  private waveSpawnCursor = 0;
+  private reinforcementTimer = 0;
   private encounterCameraX: number | null = null;
   private moduleClear = false;
   private clearTimer = 0;
@@ -174,7 +180,9 @@ export class StageScene implements Scene {
     if (!firstModule) throw new Error('Stage senza moduli');
     const firstCharacters = new Set<string>([playerId]);
     const firstWave = firstModule.waves?.[0];
-    if (firstWave) firstCharacters.add(firstWave.character ?? defaultEnemyId);
+    if (firstWave) {
+      for (const characterId of waveCharacterIds(firstWave, defaultEnemyId)) firstCharacters.add(characterId);
+    }
     const itemCatalog = await loadStageItems(stageEntry);
     const firstItemAssets = collectModulePrimaryItemAssets(firstModule, itemCatalog.items);
     const firstAmbientAssets = collectAmbientAssets(firstModule);
@@ -221,7 +229,9 @@ export class StageScene implements Scene {
     this.playerId = playerId;
     this.loadedCharacterIds.add(playerId);
     for (const module of stageData.modules) {
-      for (const wave of module.waves ?? []) this.loadedCharacterIds.add(wave.character ?? defaultEnemyId);
+      for (const wave of module.waves ?? []) {
+        for (const characterId of waveCharacterIds(wave, defaultEnemyId)) this.loadedCharacterIds.add(characterId);
+      }
     }
     this.modules = stageData.modules;
     this.backgroundTextures = backgrounds;
@@ -299,7 +309,9 @@ export class StageScene implements Scene {
     const module = this.modules[index];
     if (!module) return Promise.reject(new Error(`Modulo non valido: ${index}`));
     const characterIds = new Set<string>();
-    for (const wave of module.waves ?? []) characterIds.add(wave.character ?? this.defaultEnemyId);
+    for (const wave of module.waves ?? []) {
+      for (const characterId of waveCharacterIds(wave, this.defaultEnemyId)) characterIds.add(characterId);
+    }
     const activeItemAssets = collectModuleItemAssets(module, [...this.itemDefinitions.values()]);
     const ambientAssets = collectAmbientAssets(module);
     const loading = Promise.all([
@@ -322,7 +334,9 @@ export class StageScene implements Scene {
     const module = this.modules[index];
     if (!module) return;
     const characterIds = new Set<string>();
-    for (const wave of module.waves ?? []) characterIds.add(wave.character ?? this.defaultEnemyId);
+    for (const wave of module.waves ?? []) {
+      for (const characterId of waveCharacterIds(wave, this.defaultEnemyId)) characterIds.add(characterId);
+    }
     const itemAssets = collectModuleItemAssets(module, [...this.itemDefinitions.values()])
       .filter((asset) => !this.itemTextures.has(asset));
     void Promise.all([
@@ -431,6 +445,8 @@ export class StageScene implements Scene {
     this.waveIndex = -1;
     this.nextWaveTimer = 0.08;
     this.waveLoadPending = false;
+    this.waveSpawnCursor = 0;
+    this.reinforcementTimer = 0;
     this.encounterCameraX = null;
     this.moduleClear = false;
     this.clearTimer = 0;
@@ -711,13 +727,33 @@ export class StageScene implements Scene {
     this.waveIndex += 1;
     if (this.waveIndex >= this.waveData.length) return;
     const wave = this.waveData[this.waveIndex]!;
-    this.encounterCameraX ??= this.cameraX;
+    if (wave.lock_stage !== false) this.encounterCameraX ??= this.cameraX;
+    this.waveSpawnCursor = 0;
+    this.spawnWaveBatch(wave);
+    this.reinforcementTimer = 0.45;
+    const firstCharacterId = wave.characters?.[0] ?? wave.character ?? this.defaultEnemyId;
+    const firstProfile = this.catalog.getProfile(firstCharacterId);
+    if (wave.boss ?? false) {
+      const bossName = (wave.name ?? firstProfile.display_name).toUpperCase();
+      this.message = `${bossName} — RESA DEI CONTI`;
+      this.messageTimer = 2.1;
+      this.screenShake = 5;
+    } else {
+      this.message = `ONDATA ${this.waveIndex + 1}/${this.waveData.length}`;
+      this.messageTimer = 1.05;
+    }
+  }
+
+  private spawnWaveBatch(wave: WaveData): void {
     const boss = wave.boss ?? false;
-    const characterId = wave.character ?? this.defaultEnemyId;
-    const profile = this.catalog.getProfile(characterId);
-    const defaults = this.enemyDefaults(profile);
-    for (let index = 0; index < wave.spawns.length; index += 1) {
+    const batchSize = Math.max(1, Math.min(wave.spawns.length, Math.floor(wave.batch_size ?? wave.spawns.length)));
+    const liveCount = this.enemies.filter((enemy) => !enemy.dead).length;
+    const end = Math.min(wave.spawns.length, this.waveSpawnCursor + Math.max(0, batchSize - liveCount));
+    for (let index = this.waveSpawnCursor; index < end; index += 1) {
       const spawn = wave.spawns[index]!;
+      const characterId = wave.characters?.[index] ?? wave.character ?? this.defaultEnemyId;
+      const profile = this.catalog.getProfile(characterId);
+      const defaults = this.enemyDefaults(profile);
       const enemy = new Enemy(this.catalog.getBank(characterId), { x: spawn[0], y: spawn[1] }, {
         health: wave.health ?? defaults.health,
         aggression: (wave.aggression ?? defaults.aggression) + index * 0.035,
@@ -748,15 +784,7 @@ export class StageScene implements Scene {
       this.enemies.push(enemy);
       this.actors.addChild(enemy.root);
     }
-    if (boss) {
-      const bossName = (wave.name ?? profile.display_name).toUpperCase();
-      this.message = `${bossName} — RESA DEI CONTI`;
-      this.messageTimer = 2.1;
-      this.screenShake = 5;
-    } else {
-      this.message = `ONDATA ${this.waveIndex + 1}/${this.waveData.length}`;
-      this.messageTimer = 1.05;
-    }
+    this.waveSpawnCursor = end;
   }
 
   private requestNextWaveSpawn(): void {
@@ -765,12 +793,12 @@ export class StageScene implements Scene {
     const wave = this.waveData[targetWaveIndex];
     if (!wave) return;
     const moduleIndex = this.moduleIndex;
-    const characterId = wave.character ?? this.defaultEnemyId;
     this.waveLoadPending = true;
-    void this.catalog.ensureCharacter(characterId).then(() => {
+    const characterIds = waveCharacterIds(wave, this.defaultEnemyId);
+    void Promise.all(characterIds.map((id) => this.catalog.ensureCharacter(id))).then(() => {
       if (this.moduleIndex === moduleIndex && this.waveIndex + 1 === targetWaveIndex) this.spawnNextWave();
     }).catch((error) => {
-      console.error(`${characterId}: caricamento nemico fallito`, error);
+      console.error(`${characterIds.join(', ')}: caricamento nemico fallito`, error);
       this.message = 'NEMICO FUORI PERCORSO — ATTENDI';
       this.messageTimer = 1.8;
     }).finally(() => {
@@ -1043,12 +1071,24 @@ export class StageScene implements Scene {
     this.effects.update(dt);
 
     const liveEnemies = this.enemies.filter((enemy) => !enemy.dead);
-    if (!liveEnemies.length && this.waveIndex < this.waveData.length - 1) {
+    const activeWave = this.waveData[this.waveIndex];
+    if (activeWave && this.waveSpawnCursor < activeWave.spawns.length) {
+      this.reinforcementTimer -= dt;
+      const batchSize = Math.max(1, Math.floor(activeWave.batch_size ?? activeWave.spawns.length));
+      if (liveEnemies.length < batchSize && this.reinforcementTimer <= 0) {
+        this.spawnWaveBatch(activeWave);
+        this.reinforcementTimer = 0.45;
+      }
+      this.clearTimer = 0;
+      this.moduleClear = false;
+    } else if (!liveEnemies.length && this.waveIndex < this.waveData.length - 1) {
       const nextWave = this.waveData[this.waveIndex + 1];
       const triggerReached = this.player.position.x >= (nextWave?.trigger_x ?? 0);
       if (triggerReached) {
-        this.encounterCameraX ??= this.cameraX;
-        this.enforceEncounterBounds();
+        if (nextWave?.lock_stage !== false) {
+          this.encounterCameraX ??= this.cameraX;
+          this.enforceEncounterBounds();
+        }
         this.nextWaveTimer -= dt;
         if (this.nextWaveTimer <= 0) {
           this.requestNextWaveSpawn();

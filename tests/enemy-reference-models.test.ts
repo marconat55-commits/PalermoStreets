@@ -43,8 +43,8 @@ test('enemy model clips keep scale locked and legal frame counts', () => {
 test('la demo M01-M02 usa soltanto i due nemici approvati', () => {
   const stage = JSON.parse(fs.readFileSync(path.join(root, 'public/data/stage1_zen.json'), 'utf8'));
   assert.deepEqual(stage.modules.map((module: { id: string }) => module.id), ['M01', 'M02']);
-  assert.deepEqual(stage.modules[0].waves.map((wave: { character: string }) => wave.character),
-    ['talebano', 'a_puaicca']);
-  assert.deepEqual(new Set(stage.modules.flatMap((module: { waves: Array<{ character: string }> }) =>
-    module.waves.map((wave) => wave.character))), new Set(['talebano', 'a_puaicca']));
+  const usedCharacters = stage.modules.flatMap((module: {
+    waves: Array<{ character?: string; characters?: string[] }>;
+  }) => module.waves.flatMap((wave) => wave.characters ?? [wave.character]));
+  assert.deepEqual(new Set(usedCharacters), new Set(['talebano', 'a_puaicca']));
 });

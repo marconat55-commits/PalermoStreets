@@ -13,18 +13,24 @@ const stage = JSON.parse(fs.readFileSync('public/data/stage1_zen.json', 'utf8'))
       aggression: number;
       spawns: Array<[number, number]>;
       character: string;
+      characters?: string[];
+      batch_size?: number;
+      lock_stage?: boolean;
       boss?: boolean;
     }>;
   }>;
 };
 
-test('M01 usa due ondate brevi per raggiungere rapidamente M02', () => {
+test('M01 resta libero e distribuisce una sola ondata di sette nemici a coppie', () => {
   const m01 = stage.modules.find((module) => module.id === 'M01');
   assert.ok(m01);
   assert.deepEqual(stage.modules.map((module) => module.id), ['M01', 'M02']);
-  assert.deepEqual(m01.waves.map((wave) => wave.character), ['talebano', 'a_puaicca']);
-  assert.deepEqual(m01.waves.map((wave) => wave.spawns.length), [1, 2]);
-  assert.equal(m01.waves.reduce((count, wave) => count + wave.spawns.length, 0), 3);
+  assert.equal(m01.waves.length, 1);
+  assert.equal(m01.waves[0]!.spawns.length, 7);
+  assert.equal(m01.waves[0]!.characters?.length, 7);
+  assert.deepEqual(new Set(m01.waves[0]!.characters), new Set(['talebano', 'a_puaicca']));
+  assert.equal(m01.waves[0]!.batch_size, 2);
+  assert.equal(m01.waves[0]!.lock_stage, false);
   assert.ok(m01.waves.every((wave, index) => wave.trigger_x < m01.exit_x && (index === 0 || wave.trigger_x > m01.waves[index - 1]!.trigger_x)));
   assert.ok(m01.waves.every((wave) => wave.health <= 64 && wave.aggression <= 0.84 && !wave.boss));
 });

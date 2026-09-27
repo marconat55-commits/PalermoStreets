@@ -331,6 +331,19 @@ for (const module of stage.modules ?? []) {
   for (const wave of module.waves ?? []) {
     const character = wave.character ?? index.default_enemy;
     if (!ids.has(character)) fail(`${module.id}: personaggio non registrato ${character}`);
+    if (wave.characters !== undefined) {
+      if (!Array.isArray(wave.characters) || wave.characters.length !== wave.spawns?.length) {
+        fail(`${module.id}: roster characters non allineato agli spawn`);
+      } else {
+        for (const waveCharacter of wave.characters) {
+          if (!ids.has(waveCharacter)) fail(`${module.id}: personaggio roster non registrato ${waveCharacter}`);
+        }
+      }
+    }
+    if (wave.batch_size !== undefined && (!Number.isInteger(wave.batch_size) || wave.batch_size < 1 || wave.batch_size > wave.spawns?.length)) {
+      fail(`${module.id}: batch_size non valido`);
+    }
+    if (wave.lock_stage !== undefined && typeof wave.lock_stage !== 'boolean') fail(`${module.id}: lock_stage non booleano`);
     if (!Array.isArray(wave.spawns) || wave.spawns.length === 0) fail(`${module.id}: wave senza spawn`);
     for (const spawn of wave.spawns ?? []) {
       if (!Array.isArray(spawn) || spawn.length !== 2 || !spawn.every(Number.isFinite)) fail(`${module.id}: coordinate spawn non valide`);

@@ -111,6 +111,8 @@ export interface WaveData {
   aggression?: number;
   spawns: [number, number][];
   character?: string;
+  /** Optional per-spawn roster; falls back to character when omitted. */
+  characters?: string[];
   name?: string;
   boss?: boolean;
   move_speed_scale?: number;
@@ -124,6 +126,10 @@ export interface WaveData {
   dodge_cooldown?: number;
   /** World-space X that unlocks this wave in a scrolling module. */
   trigger_x?: number;
+  /** Maximum number of living enemies released from this wave at once. */
+  batch_size?: number;
+  /** False keeps the camera and horizontal traversal free during the encounter. */
+  lock_stage?: boolean;
 }
 
 export interface BackgroundLayerData {

@@ -182,7 +182,7 @@ export class Enemy extends Actor {
     this.animator.fitDuration(attackTotal(attack));
   }
 
-  update(dt: number, player: Actor, allies: Enemy[], mayAttack: boolean, supportRank = 0): void {
+  update(dt: number, player: Actor, _allies: Enemy[], mayAttack: boolean, supportRank = 0): void {
     this.updateCommon(dt);
     this.attackCooldown = Math.max(0, this.attackCooldown - dt);
     this.dodgeCooldown = Math.max(0, this.dodgeCooldown - dt);
@@ -331,16 +331,6 @@ export class Enemy extends Actor {
         const actualSpeed = Math.hypot(direction.x * speedX, direction.y * speedY);
         const clip = this.animator.bank.clips.get(movementAnimation);
         this.animator.setPlaybackRate(locomotionPlaybackRate(actualSpeed, clip?.referenceSpeed));
-      }
-    }
-
-    for (const ally of allies) {
-      if (ally === this || ally.dead) continue;
-      const offset = sub(this.position, ally.position);
-      if (Math.abs(offset.y) < 40 && Math.abs(offset.x) < 90) {
-        let sign = offset.x >= 0 ? 1 : -1;
-        if (Math.abs(offset.x) < 1) sign = this.actorId > ally.actorId ? 1 : -1;
-        this.position.x += sign * (90 - Math.abs(offset.x)) * 0.20;
       }
     }
 

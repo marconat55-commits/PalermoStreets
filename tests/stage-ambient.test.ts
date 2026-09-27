@@ -68,8 +68,8 @@ test('Franco Gioia and Duracell are enlarged at the start of M02', () => {
   assert.deepEqual(franco.shadow, { width: 126, height: 23, offset: [0, -3], alpha: 0.28 });
   assert.deepEqual(duracell.shadow, { width: 122, height: 22, offset: [0, -3], alpha: 0.28 });
   const mechanic = loops[2]!;
-  assert.deepEqual(mechanic.position, [1810, 620]);
-  assert.deepEqual(mechanic.size, [340, 340]);
+  assert.deepEqual(mechanic.position, [1810, 590]);
+  assert.deepEqual(mechanic.size, [136, 136]);
   assert.equal(collectAmbientAssets(m02).length, 6);
   for (const loop of loops) {
     if (loop.id !== 'm02_meccanico') assert.ok(loop.position[0] < 800, `${loop.id}: actor must remain near the start of M02`);

@@ -173,16 +173,12 @@
       "horizon_y": 300,
       "background": "assets/backgrounds/stage1_zen/final_v1/M03/M03_S01_MAIN.png",
       "background_layers": [
-        { "src": "assets/backgrounds/stage1_zen/final_v1/M03/M03_FAR_CONTINUOUS.png", "parallax": 0.22, "plane": "far", "x": 0, "y": 0, "width": 2560, "height": 720 },
+        { "src": "assets/backgrounds/stage1_zen/final_v1/M03/M03_FAR.png", "parallax": 0.22, "plane": "far", "x": 0, "y": 0, "width": 2560, "height": 720 },
         { "src": "assets/backgrounds/stage1_zen/final_v1/M03/M03_S01_MAIN.png", "parallax": 1.0, "plane": "main", "x": 0, "y": 0, "width": 1280, "height": 720 },
         { "src": "assets/backgrounds/stage1_zen/final_v1/M03/M03_S02_MAIN.png", "parallax": 1.0, "plane": "main", "x": 1280, "y": 0, "width": 1280, "height": 720 },
         { "src": "assets/backgrounds/stage1_zen/final_v1/M03/M03_S03_MAIN.png", "parallax": 1.0, "plane": "main", "x": 2560, "y": 0, "width": 1280, "height": 720 },
         { "src": "assets/backgrounds/stage1_zen/final_v1/M03/M03_S04_MAIN.png", "parallax": 1.0, "plane": "main", "x": 3840, "y": 0, "width": 1280, "height": 720 },
-        { "src": "assets/backgrounds/stage1_zen/final_v1/M03/M03_S05_MAIN.png", "parallax": 1.0, "plane": "main", "x": 5120, "y": 0, "width": 1280, "height": 720 },
-        { "src": "assets/backgrounds/stage1_zen/final_v1/M03/M03_GATE_TRANSITION.png", "parallax": 1.0, "plane": "main", "x": 640, "y": 0, "width": 1280, "height": 720 },
-        { "src": "assets/backgrounds/stage1_zen/final_v1/M03/M03_GATE_TRANSITION.png", "parallax": 1.0, "plane": "main", "x": 1920, "y": 0, "width": 1280, "height": 720 },
-        { "src": "assets/backgrounds/stage1_zen/final_v1/M03/M03_GATE_TRANSITION.png", "parallax": 1.0, "plane": "main", "x": 3200, "y": 0, "width": 1280, "height": 720 },
-        { "src": "assets/backgrounds/stage1_zen/final_v1/M03/M03_GATE_TRANSITION.png", "parallax": 1.0, "plane": "main", "x": 4480, "y": 0, "width": 1280, "height": 720 }
+        { "src": "assets/backgrounds/stage1_zen/final_v1/M03/M03_S05_MAIN.png", "parallax": 1.0, "plane": "main", "x": 5120, "y": 0, "width": 1280, "height": 720 }
       ],
       "world_width": 6400,
       "camera_bounds": [0, 5120],

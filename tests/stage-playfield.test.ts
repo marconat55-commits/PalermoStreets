@@ -59,12 +59,12 @@ test('i moduli Zen coprono la propria lunghezza e tengono gli spawn nella walk b
       assert.equal(main?.src, 'assets/backgrounds/stage1_zen/final_v2/M02/M02_MAIN_LONG.png');
       assert.equal(far?.src, 'assets/backgrounds/stage1_zen/final_v1/M02/M02_FAR.png');
     } else {
-      assert.equal(module.background_layers.length, 10);
+      assert.equal(module.background_layers.length, 6);
       assert.ok(module.background_layers.every((layer) => layer.height === 720));
-      assert.deepEqual(module.background_layers.filter((layer) => layer.plane === 'main').map((layer) => layer.x), [0, 1280, 2560, 3840, 5120, 640, 1920, 3200, 4480]);
+      assert.deepEqual(module.background_layers.filter((layer) => layer.plane === 'main').map((layer) => layer.x), [0, 1280, 2560, 3840, 5120]);
       assert.ok(module.background_layers.filter((layer) => layer.plane === 'main').every((layer) => layer.width === 1280));
       assert.equal(main?.src, 'assets/backgrounds/stage1_zen/final_v1/M03/M03_S01_MAIN.png');
-      assert.equal(far?.src, 'assets/backgrounds/stage1_zen/final_v1/M03/M03_FAR_CONTINUOUS.png');
+      assert.equal(far?.src, 'assets/backgrounds/stage1_zen/final_v1/M03/M03_FAR.png');
     }
   }
 });
@@ -92,14 +92,13 @@ test('M02 è lungo quattro schermate e usa il piano pavimentato approvato', () =
   assert.equal(m02.world_width, 2 * stage.modules[0]!.world_width);
 });
 
-test('M03 raccorda cinque sezioni con un cielo continuo e quattro passaggi', () => {
+test('M03 usa cinque sezioni originali e un cielo FAR in parallasse', () => {
   const m03 = stage.modules.find((module) => module.id === 'M03');
   assert.ok(m03);
   assert.equal(m03.world_width, 6400);
   assert.deepEqual(m03.camera_bounds, [0, 5120]);
   assert.deepEqual(m03.playfield_y, [475, 705]);
-  assert.equal(m03.background_layers.filter((layer) => layer.src.includes('M03_S')).length, 5);
-  assert.equal(m03.background_layers.filter((layer) => layer.src.includes('GATE_TRANSITION')).length, 4);
+  assert.equal(m03.background_layers.filter((layer) => layer.plane === 'main').length, 5);
   assert.equal(m03.background_layers.find((layer) => layer.plane === 'far')?.parallax, 0.22);
   assert.equal(m03.waves.length, 0, 'il primo test visivo di M03 deve restare libero');
 });

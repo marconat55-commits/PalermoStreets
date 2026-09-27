@@ -716,7 +716,6 @@ export class StageScene implements Scene {
     const characterId = wave.character ?? this.defaultEnemyId;
     const profile = this.catalog.getProfile(characterId);
     const defaults = this.enemyDefaults(profile);
-    const encounterBounds = resolveEncounterBounds(this.encounterCameraX, LOGICAL_WIDTH, this.worldWidth);
     for (let index = 0; index < wave.spawns.length; index += 1) {
       const spawn = wave.spawns[index]!;
       const enemy = new Enemy(this.catalog.getBank(characterId), { x: spawn[0], y: spawn[1] }, {
@@ -744,8 +743,6 @@ export class StageScene implements Scene {
         worldX,
         [this.playfieldTop, this.playfieldBottom],
       ));
-      enemy.setPlayfieldBounds(encounterBounds.left, encounterBounds.right, this.playfieldTop, this.playfieldBottom);
-      enemy.setEncounterBounds(encounterBounds);
       const entry = resolveWaveEntry(index, this.cameraX, LOGICAL_WIDTH);
       enemy.beginSideEntry(entry.spawnX, entry.targetX);
       this.enemies.push(enemy);
@@ -1034,7 +1031,6 @@ export class StageScene implements Scene {
     separateActors([this.player, ...this.enemies], this.player);
     preventCrossings(this.player, this.enemies, previous);
     separateActors([this.player, ...this.enemies], this.player);
-    for (const enemy of this.enemies) enemy.clampToPlayfield();
     this.enforceEncounterBounds();
     for (const actor of [this.player, ...this.enemies]) actor.syncVisual();
 

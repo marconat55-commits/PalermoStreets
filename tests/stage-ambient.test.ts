@@ -90,10 +90,11 @@ test('sprite loop durations select stable frames and wrap', () => {
   assert.equal(frameAtTime(durations, -0.1), 3);
 });
 
-test('il fumetto di Franco appare dopo cinque secondi e resta visibile per la durata impostata', () => {
+test('il fumetto di Franco attende cinque secondi completi tra due apparizioni', () => {
   assert.equal(ambientSpeechVisible(4.99, 5, 2.6), false);
   assert.equal(ambientSpeechVisible(5, 5, 2.6), true);
   assert.equal(ambientSpeechVisible(7.59, 5, 2.6), true);
   assert.equal(ambientSpeechVisible(7.61, 5, 2.6), false);
-  assert.equal(ambientSpeechVisible(10, 5, 2.6), true);
+  assert.equal(ambientSpeechVisible(12.59, 5, 2.6), false);
+  assert.equal(ambientSpeechVisible(12.6, 5, 2.6), true);
 });

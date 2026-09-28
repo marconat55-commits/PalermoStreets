@@ -1,0 +1,17 @@
+{
+  "purpose": "M03 third seam-locked transition: deep underpass to service-yard",
+  "previous_panel": "M03_Z03_UNDERPASS_CONTINUATION_BASE.png",
+  "next_panel": "M03_Z04_SERVICE_YARD_CONTINUATION_BASE.png",
+  "exact_shared_pixels": {
+    "previous_bounds": [520, 0, 1280, 720],
+    "next_bounds": [0, 0, 760, 720],
+    "width": 760,
+    "rule": "The next panel starts with the exact final pixels of its predecessor."
+  },
+  "foreground_transition": {
+    "file": "M03_Z03_Z04_BRIDGE_PILLAR_FOREGROUND.png",
+    "placement_in_next_panel": [120, 0],
+    "purpose": "Foreground concrete pier hides the start of the fresh service-yard art while remaining behind character sprites."
+  },
+  "implementation": "Place this panel 520px after the prior origin; render shared pixels once; place foreground pillar at recorded placement."
+}

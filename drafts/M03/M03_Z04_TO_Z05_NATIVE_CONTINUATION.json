@@ -1,0 +1,13 @@
+{
+  "purpose": "M03 native extension within the service-yard source",
+  "previous_panel": "M03_Z04_SERVICE_YARD_CONTINUATION_BASE.png",
+  "next_panel": "M03_Z05_SERVICE_YARD_EXTENDED_BASE.png",
+  "exact_shared_pixels": { "previous_bounds": [520, 0, 1280, 720], "next_bounds": [0, 0, 760, 720], "width": 760 },
+  "native_source_continuity": {
+    "source": "M03_Z04_SERVICE_YARD_SOURCE.png",
+    "previous_fresh_bounds": [600, 110, 1120, 830],
+    "next_fresh_bounds": [1120, 110, 1640, 830],
+    "rule": "The source crop continues at the exact adjacent source coordinate, without an image handoff."
+  },
+  "implementation": "Place next panel 520px after prior origin and render shared pixels once."
+}

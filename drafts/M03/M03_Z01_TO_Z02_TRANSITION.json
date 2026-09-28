@@ -1,0 +1,9 @@
+{
+  "purpose": "M03 first transition candidate — open Zen piazzale to motorway underpass",
+  "source": "M03_Z01_Z02_OVERPASS_TRANSITION_MASTER.png",
+  "panel_a": { "file": "M03_Z01_PIAZZALE_TO_OVERPASS_PANEL_A.png", "source_bounds": [0, 110, 1280, 830] },
+  "panel_b": { "file": "M03_Z02_OVERPASS_ENTRY_PANEL_B.png", "source_bounds": [392, 110, 1672, 830] },
+  "shared_source_region": [392, 110, 1280, 830],
+  "shared_width_px": 888,
+  "guarantee": "Both panels are direct crops from the same source pixels. The game will render the shared region once, so there is no stitched-image seam."
+}

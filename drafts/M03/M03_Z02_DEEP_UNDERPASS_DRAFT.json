@@ -1,0 +1,6 @@
+{
+  "purpose": "M03 second environment source: deep motorway underpass",
+  "status": "draft for the next seam-locked transition",
+  "placement": "Follows M03_Z01_Z02_OVERPASS_TRANSITION_MASTER.png",
+  "transition_rule": "The final connection is to be hidden by a close concrete pillar / bridge structure and uses a shared rendered overlap, never a raw side-by-side image join."
+}

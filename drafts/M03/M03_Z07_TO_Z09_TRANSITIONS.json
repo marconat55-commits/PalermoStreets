@@ -1,0 +1,23 @@
+{
+  "purpose": "M03 final piazzale, two seam-locked 800px progressions",
+  "transitions": [
+    {
+      "previous": "M03_Z07_GATE_LANE_EXTENDED_BASE.png",
+      "next": "M03_Z08_FINAL_PIAZZALE_CONTINUATION_BASE.png",
+      "shared_width": 480,
+      "previous_bounds": [800, 0, 1280, 720],
+      "next_bounds": [0, 0, 480, 720],
+      "foreground": "M03_Z07_Z08_GATE_PIER_FOREGROUND.png",
+      "foreground_position_in_next": [-250, 0]
+    },
+    {
+      "previous": "M03_Z08_FINAL_PIAZZALE_CONTINUATION_BASE.png",
+      "next": "M03_Z09_FINAL_PIAZZALE_EXTENDED_BASE.png",
+      "shared_width": 480,
+      "previous_bounds": [800, 0, 1280, 720],
+      "next_bounds": [0, 0, 480, 720],
+      "source_continuity": "same exact adjacent source crop"
+    }
+  ],
+  "target_world_width": 6432
+}

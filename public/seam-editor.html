@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Palermo Streets — Editor raccordi</title>
+    <style>
+      :root { color-scheme: dark; font-family: Arial, sans-serif; background: #17130f; color: #fff4cf; }
+      body { margin: 0; padding: 28px 20px 44px; }
+      main { max-width: 1280px; margin: auto; }
+      h1 { margin: 0 0 8px; color: #ffc42d; font-size: clamp(25px, 4vw, 40px); font-style: italic; text-transform: uppercase; }
+      p { color: #e5d7ba; line-height: 1.45; margin: 0 0 18px; }
+      .stage { position: relative; border: 3px solid #a8741e; border-radius: 14px; overflow: hidden; background: #080604; box-shadow: 0 12px 34px #0008; }
+      canvas { display: block; width: 100%; aspect-ratio: 16 / 9; cursor: ew-resize; touch-action: none; }
+      .controls { display: grid; gap: 14px; margin-top: 20px; padding: 18px; border: 1px solid #6a4b1d; border-radius: 12px; background: #24170f; }
+      .control { display: grid; grid-template-columns: minmax(190px, 280px) 1fr auto; gap: 12px; align-items: center; }
+      label { font-weight: bold; color: #ffd45e; }
+      input { width: 100%; accent-color: #ffd11f; }
+      output { min-width: 72px; text-align: right; color: #fff; font-variant-numeric: tabular-nums; }
+      button { width: fit-content; padding: 10px 16px; border: 1px solid #f6bb26; border-radius: 7px; background: #4a210b; color: #fff4cf; font-weight: bold; cursor: pointer; }
+      .note { margin-top: 18px; padding: 14px; border-left: 4px solid #ffdc1f; background: #2a2013; }
+      .legend { display: flex; gap: 18px; margin: 12px 0; color: #f7e7bf; font-size: 14px; }
+      .chip { display: inline-flex; align-items: center; gap: 7px; }
+      .dot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; }
+      .left { background: #a5caeb; }
+      .right { background: #f29d21; }
+      .join { background: #fff315; }
+      @media (max-width: 680px) { .control { grid-template-columns: 1fr; gap: 6px; } output { text-align: left; } }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Editor del punto di fusione</h1>
+      <p>Trascina la linea gialla direttamente sull’immagine: a sinistra resta il pannello attuale, a destra compare la proposta. Usa il secondo cursore solo per allineare i pilastri del pannello destro.</p>
+      <div class="legend">
+        <span class="chip"><i class="dot left"></i>Pannello attuale</span>
+        <span class="chip"><i class="dot right"></i>Proposta</span>
+        <span class="chip"><i class="dot join"></i>Punto di fusione</span>
+      </div>
+      <div class="stage"><canvas id="preview" width="1280" height="720" aria-label="Anteprima di fusione trascinabile"></canvas></div>
+      <section class="controls">
+        <div class="control">
+          <label for="seam">Punto di fusione</label>
+          <input id="seam" type="range" min="100" max="1180" value="640" />
+          <output id="seamValue"></output>
+        </div>
+        <div class="control">
+          <label for="offset">Allineamento pannello destro</label>
+          <input id="offset" type="range" min="-360" max="360" value="0" />
+          <output id="offsetValue"></output>
+        </div>
+        <button id="reset" type="button">Ripristina anteprima</button>
+      </section>
+      <p class="note"><strong>Bozza visiva:</strong> il gioco non viene modificato. Quando hai scelto il punto, dimmi il valore “fusione” e “allineamento” mostrati qui e applicherò solo quel raccordo.</p>
+    </main>
+    <script>
+      const defaults = {
+        left: '/assets/backgrounds/stage1_zen/final_v3/M03/M03_MAIN_Z01_PIAZZALE_TO_OVERPASS.png',
+        right: '/assets/backgrounds/stage1_zen/drafts/M03/M03_PORTICO_CANDIDATE.png',
+      };
+      const params = new URLSearchParams(location.search);
+      const leftImage = new Image();
+      const rightImage = new Image();
+      leftImage.src = params.get('left') || defaults.left;
+      rightImage.src = params.get('right') || defaults.right;
+      const canvas = document.querySelector('#preview');
+      const ctx = canvas.getContext('2d');
+      const seamInput = document.querySelector('#seam');
+      const offsetInput = document.querySelector('#offset');
+      const seamValue = document.querySelector('#seamValue');
+      const offsetValue = document.querySelector('#offsetValue');
+      const state = { seam: 640, offset: 0, dragging: false };
+      const height = canvas.height;
+
+      function render() {
+        if (!leftImage.complete || !rightImage.complete || !leftImage.naturalWidth || !rightImage.naturalWidth) return;
+        const leftWidth = leftImage.naturalWidth * (height / leftImage.naturalHeight);
+        const rightWidth = rightImage.naturalWidth * (height / rightImage.naturalHeight);
+        const leftX = canvas.width - leftWidth;
+        ctx.clearRect(0, 0, canvas.width, height);
+        ctx.drawImage(leftImage, leftX, 0, leftWidth, height);
+        ctx.save();
+        ctx.beginPath();
+        ctx.rect(state.seam, 0, canvas.width - state.seam, height);
+        ctx.clip();
+        ctx.drawImage(rightImage, state.offset, 0, rightWidth, height);
+        ctx.restore();
+        ctx.fillStyle = '#fff315';
+        ctx.fillRect(state.seam - 2, 0, 4, height);
+        ctx.fillStyle = '#201305';
+        ctx.fillRect(state.seam - 54, 14, 108, 28);
+        ctx.fillStyle = '#fff315';
+        ctx.font = 'bold 15px Arial';
+        ctx.textAlign = 'center';
+        ctx.fillText('FUSIONE', state.seam, 34);
+      }
+
+      function update() {
+        state.seam = Number(seamInput.value);
+        state.offset = Number(offsetInput.value);
+        seamValue.textContent = `X ${state.seam}`;
+        offsetValue.textContent = `${state.offset > 0 ? '+' : ''}${state.offset} px`;
+        render();
+      }
+
+      function setSeamFromPointer(event) {
+        const bounds = canvas.getBoundingClientRect();
+        state.seam = Math.round(Math.max(100, Math.min(1180, (event.clientX - bounds.left) * canvas.width / bounds.width)));
+        seamInput.value = state.seam;
+        update();
+      }
+
+      canvas.addEventListener('pointerdown', (event) => { state.dragging = true; canvas.setPointerCapture(event.pointerId); setSeamFromPointer(event); });
+      canvas.addEventListener('pointermove', (event) => { if (state.dragging) setSeamFromPointer(event); });
+      canvas.addEventListener('pointerup', (event) => { state.dragging = false; canvas.releasePointerCapture(event.pointerId); });
+      seamInput.addEventListener('input', update);
+      offsetInput.addEventListener('input', update);
+      document.querySelector('#reset').addEventListener('click', () => { seamInput.value = '640'; offsetInput.value = '0'; update(); });
+      leftImage.addEventListener('load', render);
+      rightImage.addEventListener('load', render);
+      update();
+    </script>
+  </body>
+</html>

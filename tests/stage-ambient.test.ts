@@ -54,7 +54,7 @@ test('M01 keeps approved ambient actors and static props behind the WALK lane', 
   assert.deepEqual(balcony.size, [77, 70]);
   assert.deepEqual(vendor.position, [1104, 586]);
   assert.deepEqual(vendor.size, [308, 226]);
-  assert.deepEqual(loops.slice(2).map((loop) => loop.position), [[770, 628], [2135, 642]]);
+  assert.deepEqual(loops.slice(2).map((loop) => loop.position), [[770, 628], [2470, 642]]);
   assert.deepEqual(loops.slice(2).map((loop) => loop.size), [[223, 223], [164, 164]]);
 });
 

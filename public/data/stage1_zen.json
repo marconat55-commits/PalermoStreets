@@ -745,6 +745,67 @@
           "name": "TALEBANO"
         }
       ]
+    },
+    {
+      "id": "M03",
+      "name": "Campetto aperto",
+      "art_status": "placeholder_rebuild_required",
+      "reference_actor_height": 290,
+      "horizon_y": 300,
+      "background": "assets/backgrounds/stage1_zen/M03_SKY_FAR.png",
+      "background_layers": [
+        {
+          "src": "assets/backgrounds/stage1_zen/M03_SKY_FAR.png",
+          "parallax": 0.22,
+          "plane": "far",
+          "x": 0,
+          "y": 0,
+          "width": 6400,
+          "height": 720
+        }
+      ],
+      "world_width": 6400,
+      "camera_bounds": [
+        0,
+        5120
+      ],
+      "playfield_y": [
+        475,
+        705
+      ],
+      "walk_top": [
+        [
+          0,
+          475
+        ],
+        [
+          3200,
+          485
+        ],
+        [
+          6400,
+          495
+        ]
+      ],
+      "walk_bottom": [
+        [
+          0,
+          705
+        ],
+        [
+          6400,
+          705
+        ]
+      ],
+      "ambient": [],
+      "entry": [
+        147,
+        610
+      ],
+      "exit_x": 6350,
+      "heal": 16,
+      "items": [],
+      "waves": []
     }
   ],
   "character_system": "profile_registry_v1"

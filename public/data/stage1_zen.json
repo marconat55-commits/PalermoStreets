@@ -53,6 +53,48 @@
           "frame_durations": [1.5, 1.2, 0.9, 1.4],
           "parallax": 1.0,
           "interactive": false
+        },
+        {
+          "id": "m01_prop_vespa_blu",
+          "kind": "sprite_loop",
+          "frames": [
+            "assets/ambient/stage1_zen/M01/static_props/vespa_blu.png",
+            "assets/ambient/stage1_zen/M01/static_props/vespa_blu.png"
+          ],
+          "position": [325, 630],
+          "size": [248, 248],
+          "anchor": [0.5, 1],
+          "frame_durations": [60, 60],
+          "parallax": 1.0,
+          "interactive": false
+        },
+        {
+          "id": "m01_prop_sedia_plastica",
+          "kind": "sprite_loop",
+          "frames": [
+            "assets/ambient/stage1_zen/M01/static_props/sedia_plastica.png",
+            "assets/ambient/stage1_zen/M01/static_props/sedia_plastica.png"
+          ],
+          "position": [770, 628],
+          "size": [142, 142],
+          "anchor": [0.5, 1],
+          "frame_durations": [60, 60],
+          "parallax": 1.0,
+          "interactive": false
+        },
+        {
+          "id": "m01_prop_cassette_agrumi",
+          "kind": "sprite_loop",
+          "frames": [
+            "assets/ambient/stage1_zen/M01/static_props/cassette_agrumi.png",
+            "assets/ambient/stage1_zen/M01/static_props/cassette_agrumi.png"
+          ],
+          "position": [1450, 632],
+          "size": [164, 164],
+          "anchor": [0.5, 1],
+          "frame_durations": [60, 60],
+          "parallax": 1.0,
+          "interactive": false
         }
       ],
       "entry": [147, 680],

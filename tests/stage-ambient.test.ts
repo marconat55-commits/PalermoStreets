@@ -30,28 +30,33 @@ test('Stage 1 no longer renders procedural bird flocks', () => {
   }
 });
 
-test('M01 keeps the balcony lady and fruit vendor behind the WALK lane', () => {
+test('M01 keeps approved ambient actors and the first three static props behind the WALK lane', () => {
   const m01 = stage.modules.find((module) => module.id === 'M01');
   assert.ok(m01);
   const loops = (m01.ambient ?? []).filter((actor): actor is SpriteLoopSpec => actor.kind === 'sprite_loop');
   assert.deepEqual(loops.map((loop) => loop.id), [
     'm01_signora_balcone',
     'm01_venditore_frutta',
+    'm01_prop_vespa_blu',
+    'm01_prop_sedia_plastica',
+    'm01_prop_cassette_agrumi',
   ]);
   for (const loop of loops) {
-    assert.ok(loop.frames.length === 2 || loop.frames.length === 4);
+    assert.ok(loop.frames.length === 1 || loop.frames.length === 2 || loop.frames.length === 4);
     assert.equal(loop.frame_durations.length, loop.frames.length);
     assert.ok(loop.position[1] < 635, `${loop.id}: ambient actor must stay behind the WALK lane`);
     assert.ok(loop.size[0] > 0 && loop.size[1] > 0);
     for (const frame of loop.frames) assert.ok(fs.existsSync(`public/${frame}`), `${loop.id}: missing ${frame}`);
   }
-  assert.equal(collectAmbientAssets(m01).length, 8);
+  assert.equal(collectAmbientAssets(m01).length, 11);
   const balcony = loops[0]!;
   const vendor = loops[1]!;
   assert.deepEqual(balcony.position, [503, 170]);
   assert.deepEqual(balcony.size, [77, 70]);
   assert.deepEqual(vendor.position, [1104, 586]);
   assert.deepEqual(vendor.size, [308, 226]);
+  assert.deepEqual(loops.slice(2).map((loop) => loop.position), [[325, 630], [770, 628], [1450, 632]]);
+  assert.deepEqual(loops.slice(2).map((loop) => loop.size), [[248, 248], [142, 142], [164, 164]]);
 });
 
 test('Franco Gioia and Duracell are enlarged at the start of M02', () => {

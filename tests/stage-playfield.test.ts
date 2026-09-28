@@ -22,7 +22,7 @@ const stage = JSON.parse(fs.readFileSync('public/data/stage1_zen.json', 'utf8'))
 test('i moduli Zen coprono la propria lunghezza e tengono gli spawn nella walk band', () => {
   assert.deepEqual(stage.modules.map((module) => module.id), ['M01', 'M02', 'M03']);
   for (const module of stage.modules) {
-    const expectedWorldWidth = module.id === 'M01' ? 2560 : module.id === 'M02' ? 5120 : 1672;
+    const expectedWorldWidth = module.id === 'M01' ? 2560 : module.id === 'M02' ? 5120 : 2952;
     const expectedCameraMax = expectedWorldWidth - 1280;
     const [top, bottom] = module.playfield_y;
     assert.ok(top >= 390 && top < bottom && bottom <= 710, `${module.id}: invalid WALK envelope`);
@@ -59,11 +59,11 @@ test('i moduli Zen coprono la propria lunghezza e tengono gli spawn nella walk b
       assert.equal(main?.src, 'assets/backgrounds/stage1_zen/final_v2/M02/M02_MAIN_LONG.png');
       assert.equal(far?.src, 'assets/backgrounds/stage1_zen/final_v1/M02/M02_FAR.png');
     } else {
-      assert.equal(module.background_layers.length, 1);
+      assert.equal(module.background_layers.length, 2);
       assert.ok(module.background_layers.every((layer) => layer.height === 720));
       const mainArt = module.background_layers.filter((layer) => layer.plane === 'main' && layer.src.includes('/M03_MAIN_'));
-      assert.deepEqual(mainArt.map((layer) => layer.x), [0]);
-      assert.deepEqual(mainArt.map((layer) => layer.width), [1672]);
+      assert.deepEqual(mainArt.map((layer) => layer.x), [0, 1152]);
+      assert.deepEqual(mainArt.map((layer) => layer.width), [1672, 1800]);
       assert.equal(main?.src, 'assets/backgrounds/stage1_zen/final_v3/M03/M03_MAIN_Z01_PIAZZALE_TO_OVERPASS.png');
       assert.equal(far, undefined);
     }

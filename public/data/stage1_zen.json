@@ -762,12 +762,21 @@
           "y": 0,
           "width": 1672,
           "height": 720
+        },
+        {
+          "src": "assets/backgrounds/stage1_zen/final_v3/M03/M03_MAIN_Z02_UNDERPASS_FORECOURT.png",
+          "parallax": 1,
+          "plane": "main",
+          "x": 1152,
+          "y": 0,
+          "width": 1800,
+          "height": 720
         }
       ],
-      "world_width": 1672,
+      "world_width": 2952,
       "camera_bounds": [
         0,
-        392
+        1672
       ],
       "playfield_y": [
         650,
@@ -781,6 +790,10 @@
         [
           1672,
           652
+        ],
+        [
+          2952,
+          654
         ]
       ],
       "walk_bottom": [
@@ -789,7 +802,7 @@
           705
         ],
         [
-          1672,
+          2952,
           705
         ]
       ],
@@ -798,7 +811,7 @@
         147,
         680
       ],
-      "exit_x": 1602,
+      "exit_x": 2882,
       "heal": 16,
       "items": [],
       "waves": []

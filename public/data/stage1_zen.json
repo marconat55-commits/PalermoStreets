@@ -755,7 +755,7 @@
       "background": "assets/backgrounds/stage1_zen/final_v1/M03/M03_S01_MAIN.png",
       "background_layers": [
         {
-          "src": "assets/backgrounds/stage1_zen/final_v1/M03/M03_SKY_FAR.png",
+          "src": "assets/backgrounds/stage1_zen/final_v1/M03/M03_FAR.png",
           "parallax": 0.22,
           "plane": "far",
           "x": 0,
@@ -855,4 +855,3 @@
   ],
   "character_system": "profile_registry_v1"
 }
-

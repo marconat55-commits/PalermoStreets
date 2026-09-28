@@ -64,7 +64,7 @@ test('i moduli Zen coprono la propria lunghezza e tengono gli spawn nella walk b
       assert.deepEqual(module.background_layers.filter((layer) => layer.plane === 'main').map((layer) => layer.x), [0, 1280, 2560, 3840, 5120]);
       assert.ok(module.background_layers.filter((layer) => layer.plane === 'main').every((layer) => layer.width === 1280));
       assert.equal(main?.src, 'assets/backgrounds/stage1_zen/final_v1/M03/M03_S01_MAIN.png');
-      assert.equal(far?.src, 'assets/backgrounds/stage1_zen/final_v1/M03/M03_SKY_FAR.png');
+      assert.equal(far?.src, 'assets/backgrounds/stage1_zen/final_v1/M03/M03_FAR.png');
     }
   }
 });
@@ -111,4 +111,3 @@ test('il modulo giocabile usa lo sfondo approvato; gli altri sono archiviati', (
   const archived = JSON.parse(fs.readFileSync('art_source/stages/stage1_zen/stage1_zen_runtime_legacy_M01_M04_2026-09-26.json', 'utf8')) as { modules: Module[] };
   assert.deepEqual(archived.modules.map((module) => module.id), ['M01', 'M02', 'M03', 'M04']);
 });
-

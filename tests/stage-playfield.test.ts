@@ -20,7 +20,7 @@ interface Module {
 const stage = JSON.parse(fs.readFileSync('public/data/stage1_zen.json', 'utf8')) as { modules: Module[] };
 
 test('i moduli Zen coprono la propria lunghezza e tengono gli spawn nella walk band', () => {
-  assert.deepEqual(stage.modules.map((module) => module.id), ['M01', 'M02', 'M03']);
+  assert.deepEqual(stage.modules.map((module) => module.id), ['M01', 'M02']);
   for (const module of stage.modules) {
     const expectedWorldWidth = module.id === 'M01' ? 2560 : module.id === 'M02' ? 5120 : 6400;
     const expectedCameraMax = expectedWorldWidth - 1280;
@@ -92,17 +92,6 @@ test('M02 è lungo quattro schermate e usa il piano pavimentato approvato', () =
   assert.equal(m02.world_width, 2 * stage.modules[0]!.world_width);
 });
 
-test('M03 usa cinque sezioni originali e un cielo FAR in parallasse', () => {
-  const m03 = stage.modules.find((module) => module.id === 'M03');
-  assert.ok(m03);
-  assert.equal(m03.world_width, 6400);
-  assert.deepEqual(m03.camera_bounds, [0, 5120]);
-  assert.deepEqual(m03.playfield_y, [475, 705]);
-  assert.equal(m03.background_layers.filter((layer) => layer.plane === 'main').length, 5);
-  assert.equal(m03.background_layers.find((layer) => layer.plane === 'far')?.parallax, 0.22);
-  assert.equal(m03.waves.length, 0, 'il primo test visivo di M03 deve restare libero');
-});
-
 test('il modulo giocabile usa lo sfondo approvato; gli altri sono archiviati', () => {
   const approved = stage.modules.filter((module) => module.art_status === 'approved');
   assert.deepEqual(approved.map((module) => module.id), ['M01', 'M02']);
@@ -111,3 +100,4 @@ test('il modulo giocabile usa lo sfondo approvato; gli altri sono archiviati', (
   const archived = JSON.parse(fs.readFileSync('art_source/stages/stage1_zen/stage1_zen_runtime_legacy_M01_M04_2026-09-26.json', 'utf8')) as { modules: Module[] };
   assert.deepEqual(archived.modules.map((module) => module.id), ['M01', 'M02', 'M03', 'M04']);
 });
+

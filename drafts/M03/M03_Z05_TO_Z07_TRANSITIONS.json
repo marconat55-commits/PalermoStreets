@@ -1,0 +1,22 @@
+{
+  "purpose": "M03 lane section, two seam-locked 800px progressions",
+  "transitions": [
+    {
+      "previous": "M03_Z05_SERVICE_YARD_EXTENDED_BASE.png",
+      "next": "M03_Z06_GATE_LANE_CONTINUATION_BASE.png",
+      "shared_width": 480,
+      "previous_bounds": [800, 0, 1280, 720],
+      "next_bounds": [0, 0, 480, 720],
+      "foreground": "M03_Z05_Z06_BRIDGE_PILLAR_FOREGROUND.png",
+      "foreground_position_in_next": [-250, 0]
+    },
+    {
+      "previous": "M03_Z06_GATE_LANE_CONTINUATION_BASE.png",
+      "next": "M03_Z07_GATE_LANE_EXTENDED_BASE.png",
+      "shared_width": 480,
+      "previous_bounds": [800, 0, 1280, 720],
+      "next_bounds": [0, 0, 480, 720],
+      "source_continuity": "same exact adjacent source crop"
+    }
+  ]
+}

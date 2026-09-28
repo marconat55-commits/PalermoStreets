@@ -63,7 +63,7 @@ test('Franco Gioia and Duracell are enlarged at the start of M02', () => {
   assert.ok(m02);
   const loops = (m02.ambient ?? []).filter((actor): actor is SpriteLoopSpec => actor.kind === 'sprite_loop');
   assert.deepEqual(loops.map((loop) => loop.id), [
-    'm02_franco_gioia', 'm02_duracell', 'm02_meccanico', 'm02_prop_vespa_rossa',
+    'm02_franco_gioia', 'm02_duracell', 'm02_meccanico', 'm02_prop_vespa_rossa', 'm02_prop_vespa_verde', 'm02_prop_vespa_bianca', 'm02_prop_pneumatico', 'm02_prop_pneumatico_poggiato', 'm02_prop_cassetta_birre',
   ]);
   const franco = loops[0]!;
   const duracell = loops[1]!;
@@ -79,14 +79,14 @@ test('Franco Gioia and Duracell are enlarged at the start of M02', () => {
   const mechanic = loops[2]!;
   assert.deepEqual(mechanic.position, [1810, 525]);
   assert.deepEqual(mechanic.size, [151, 151]);
-  assert.equal(collectAmbientAssets(m02).length, 7);
+  assert.equal(collectAmbientAssets(m02).length, 12);
   for (const loop of loops) {
     if (loop.id === 'm02_franco_gioia' || loop.id === 'm02_duracell') assert.ok(loop.position[0] < 800, `${loop.id}: actor must remain near the start of M02`);
     assert.ok(loop.position[1] < 635, `${loop.id}: ambient actor must stay behind the WALK lane`);
     for (const frame of loop.frames) assert.ok(fs.existsSync(`public/${frame}`), `${loop.id}: missing ${frame}`);
   }
-  assert.deepEqual(loops.slice(3).map((loop) => loop.position), [[1990, 590]]);
-  assert.deepEqual(loops.slice(3).map((loop) => loop.size), [[190, 190]]);
+  assert.deepEqual(loops.slice(3).map((loop) => loop.position), [[1990, 590], [2420, 590], [2520, 590], [2740, 635], [2860, 635], [270, 637]]);
+  assert.deepEqual(loops.slice(3).map((loop) => loop.size), [[190, 190], [190, 190], [190, 190], [112, 112], [112, 112], [130, 130]]);
 });
 
 test('sprite loop durations select stable frames and wrap', () => {
@@ -106,3 +106,4 @@ test('il fumetto di Franco attende cinque secondi completi tra due apparizioni',
   assert.equal(ambientSpeechVisible(12.59, 5, 2.6), false);
   assert.equal(ambientSpeechVisible(12.6, 5, 2.6), true);
 });
+

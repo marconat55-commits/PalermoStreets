@@ -12,15 +12,76 @@
       "horizon_y": 315,
       "background": "assets/backgrounds/stage1_zen/final_v2/M01/M01_MAIN.png",
       "background_layers": [
-        { "src": "assets/backgrounds/stage1_zen/final_v2/M01/M01_FAR.png", "parallax": 0.22, "plane": "far", "x": -269, "y": -144, "width": 3098, "height": 871 },
-        { "src": "assets/backgrounds/stage1_zen/final_v2/M01/M01_MAIN.png", "parallax": 1.0, "plane": "main", "x": -269, "y": -144, "width": 3098, "height": 871 },
-        { "src": "assets/backgrounds/stage1_zen/final_v2/M01/M01_FOREGROUND.png", "parallax": 1.0, "plane": "foreground", "enabled": true, "x": -269, "y": -144, "width": 3098, "height": 871 }
+        {
+          "src": "assets/backgrounds/stage1_zen/final_v2/M01/M01_FAR.png",
+          "parallax": 0.22,
+          "plane": "far",
+          "x": -269,
+          "y": -144,
+          "width": 3098,
+          "height": 871
+        },
+        {
+          "src": "assets/backgrounds/stage1_zen/final_v2/M01/M01_MAIN.png",
+          "parallax": 1,
+          "plane": "main",
+          "x": -269,
+          "y": -144,
+          "width": 3098,
+          "height": 871
+        },
+        {
+          "src": "assets/backgrounds/stage1_zen/final_v2/M01/M01_FOREGROUND.png",
+          "parallax": 1,
+          "plane": "foreground",
+          "enabled": true,
+          "x": -269,
+          "y": -144,
+          "width": 3098,
+          "height": 871
+        }
       ],
       "world_width": 2560,
-      "camera_bounds": [0, 1280],
-      "playfield_y": [650, 705],
-      "walk_top": [[0, 650], [640, 652], [1280, 655], [1920, 660], [2560, 665]],
-      "walk_bottom": [[0, 705], [2560, 705]],
+      "camera_bounds": [
+        0,
+        1280
+      ],
+      "playfield_y": [
+        650,
+        705
+      ],
+      "walk_top": [
+        [
+          0,
+          650
+        ],
+        [
+          640,
+          652
+        ],
+        [
+          1280,
+          655
+        ],
+        [
+          1920,
+          660
+        ],
+        [
+          2560,
+          665
+        ]
+      ],
+      "walk_bottom": [
+        [
+          0,
+          705
+        ],
+        [
+          2560,
+          705
+        ]
+      ],
       "ambient": [
         {
           "id": "m01_signora_balcone",
@@ -31,11 +92,25 @@
             "assets/ambient/stage1_zen/M01/signora_balcone/idle_03.png",
             "assets/ambient/stage1_zen/M01/signora_balcone/idle_04.png"
           ],
-          "position": [503, 170],
-          "size": [77, 70],
-          "anchor": [0.5, 1],
-          "frame_durations": [2.4, 0.8, 1.1, 2.0],
-          "parallax": 1.0,
+          "position": [
+            503,
+            170
+          ],
+          "size": [
+            77,
+            70
+          ],
+          "anchor": [
+            0.5,
+            1
+          ],
+          "frame_durations": [
+            2.4,
+            0.8,
+            1.1,
+            2
+          ],
+          "parallax": 1,
           "interactive": false
         },
         {
@@ -47,11 +122,25 @@
             "assets/ambient/stage1_zen/M01/venditore_frutta/idle_03.png",
             "assets/ambient/stage1_zen/M01/venditore_frutta/idle_04.png"
           ],
-          "position": [1104, 586],
-          "size": [308, 226],
-          "anchor": [0.5, 1],
-          "frame_durations": [1.5, 1.2, 0.9, 1.4],
-          "parallax": 1.0,
+          "position": [
+            1104,
+            586
+          ],
+          "size": [
+            308,
+            226
+          ],
+          "anchor": [
+            0.5,
+            1
+          ],
+          "frame_durations": [
+            1.5,
+            1.2,
+            0.9,
+            1.4
+          ],
+          "parallax": 1,
           "interactive": false
         },
         {
@@ -61,11 +150,23 @@
             "assets/ambient/stage1_zen/M01/static_props/vespa_blu.png",
             "assets/ambient/stage1_zen/M01/static_props/vespa_blu.png"
           ],
-          "position": [770, 628],
-          "size": [223, 223],
-          "anchor": [0.5, 1],
-          "frame_durations": [60, 60],
-          "parallax": 1.0,
+          "position": [
+            770,
+            628
+          ],
+          "size": [
+            223,
+            223
+          ],
+          "anchor": [
+            0.5,
+            1
+          ],
+          "frame_durations": [
+            60,
+            60
+          ],
+          "parallax": 1,
           "interactive": false
         },
         {
@@ -75,28 +176,94 @@
             "assets/ambient/stage1_zen/M01/static_props/cassette_agrumi.png",
             "assets/ambient/stage1_zen/M01/static_props/cassette_agrumi.png"
           ],
-          "position": [2470, 642],
-          "size": [164, 164],
-          "anchor": [0.5, 1],
-          "frame_durations": [60, 60],
-          "parallax": 1.0,
+          "position": [
+            2470,
+            642
+          ],
+          "size": [
+            164,
+            164
+          ],
+          "anchor": [
+            0.5,
+            1
+          ],
+          "frame_durations": [
+            60,
+            60
+          ],
+          "parallax": 1,
           "interactive": false
         }
       ],
-      "entry": [147, 680],
+      "entry": [
+        147,
+        680
+      ],
       "exit_x": 2510,
       "heal": 12,
       "items": [
-        { "item": "trash_bag", "position": [2250, 692], "group": "m01_exit" },
-        { "item": "trash_bin", "position": [2365, 692], "group": "m01_exit" }
+        {
+          "item": "trash_bag",
+          "position": [
+            2250,
+            692
+          ],
+          "group": "m01_exit"
+        },
+        {
+          "item": "trash_bin",
+          "position": [
+            2365,
+            692
+          ],
+          "group": "m01_exit"
+        }
       ],
       "waves": [
         {
           "trigger_x": 299,
           "health": 46,
           "aggression": 0.78,
-          "spawns": [[874, 675], [930, 700], [1120, 682], [1280, 702], [1570, 675], [1850, 695], [2150, 685]],
-          "characters": ["talebano", "a_puaicca", "talebano", "a_puaicca", "talebano", "a_puaicca", "talebano"],
+          "spawns": [
+            [
+              874,
+              675
+            ],
+            [
+              930,
+              700
+            ],
+            [
+              1120,
+              682
+            ],
+            [
+              1280,
+              702
+            ],
+            [
+              1570,
+              675
+            ],
+            [
+              1850,
+              695
+            ],
+            [
+              2150,
+              685
+            ]
+          ],
+          "characters": [
+            "talebano",
+            "a_puaicca",
+            "talebano",
+            "a_puaicca",
+            "talebano",
+            "a_puaicca",
+            "talebano"
+          ],
           "name": "SGHERRI",
           "batch_size": 2,
           "lock_stage": false
@@ -111,14 +278,58 @@
       "horizon_y": 300,
       "background": "assets/backgrounds/stage1_zen/final_v1/M02/M02_MAIN.png",
       "background_layers": [
-        { "src": "assets/backgrounds/stage1_zen/final_v1/M02/M02_FAR.png", "parallax": 0.22, "plane": "far", "x": 0, "y": 0, "width": 2560, "height": 720 },
-        { "src": "assets/backgrounds/stage1_zen/final_v2/M02/M02_MAIN_LONG.png", "parallax": 1.0, "plane": "main", "x": 0, "y": 0, "width": 5120, "height": 720 }
+        {
+          "src": "assets/backgrounds/stage1_zen/final_v1/M02/M02_FAR.png",
+          "parallax": 0.22,
+          "plane": "far",
+          "x": 0,
+          "y": 0,
+          "width": 2560,
+          "height": 720
+        },
+        {
+          "src": "assets/backgrounds/stage1_zen/final_v2/M02/M02_MAIN_LONG.png",
+          "parallax": 1,
+          "plane": "main",
+          "x": 0,
+          "y": 0,
+          "width": 5120,
+          "height": 720
+        }
       ],
       "world_width": 5120,
-      "camera_bounds": [0, 3840],
-      "playfield_y": [650, 705],
-      "walk_top": [[0, 650], [2560, 655], [5120, 660]],
-      "walk_bottom": [[0, 705], [5120, 705]],
+      "camera_bounds": [
+        0,
+        3840
+      ],
+      "playfield_y": [
+        650,
+        705
+      ],
+      "walk_top": [
+        [
+          0,
+          650
+        ],
+        [
+          2560,
+          655
+        ],
+        [
+          5120,
+          660
+        ]
+      ],
+      "walk_bottom": [
+        [
+          0,
+          705
+        ],
+        [
+          5120,
+          705
+        ]
+      ],
       "ambient": [
         {
           "id": "m02_franco_gioia",
@@ -127,17 +338,40 @@
             "assets/ambient/stage1_zen/M01/franco_gioia/idle_01.png",
             "assets/ambient/stage1_zen/M01/franco_gioia/idle_02.png"
           ],
-          "position": [710, 615],
-          "size": [267, 267],
-          "anchor": [0.5, 1],
-          "frame_durations": [1.55, 0.8],
-          "parallax": 1.0,
-          "shadow": { "width": 126, "height": 23, "offset": [0, -3], "alpha": 0.28 },
+          "position": [
+            710,
+            615
+          ],
+          "size": [
+            267,
+            267
+          ],
+          "anchor": [
+            0.5,
+            1
+          ],
+          "frame_durations": [
+            1.55,
+            0.8
+          ],
+          "parallax": 1,
+          "shadow": {
+            "width": 126,
+            "height": 23,
+            "offset": [
+              0,
+              -3
+            ],
+            "alpha": 0.28
+          },
           "speech": {
             "text": "HAHAHA CUINNUTI CA SITI!!!",
             "interval": 5,
             "duration": 2.6,
-            "offset": [31, -315],
+            "offset": [
+              31,
+              -315
+            ],
             "scale": 1.375
           },
           "interactive": false
@@ -149,13 +383,40 @@
             "assets/ambient/stage1_zen/M01/duracell/idle_01.png",
             "assets/ambient/stage1_zen/M01/duracell/idle_02.png"
           ],
-          "position": [480, 617],
-          "size": [261, 261],
-          "anchor": [0.5, 1],
-          "frame_durations": [1.75, 0.75],
-          "hidden_regions": [[156, 9, 20, 29]],
-          "parallax": 1.0,
-          "shadow": { "width": 122, "height": 22, "offset": [0, -3], "alpha": 0.28 },
+          "position": [
+            480,
+            617
+          ],
+          "size": [
+            261,
+            261
+          ],
+          "anchor": [
+            0.5,
+            1
+          ],
+          "frame_durations": [
+            1.75,
+            0.75
+          ],
+          "hidden_regions": [
+            [
+              156,
+              9,
+              20,
+              29
+            ]
+          ],
+          "parallax": 1,
+          "shadow": {
+            "width": 122,
+            "height": 22,
+            "offset": [
+              0,
+              -3
+            ],
+            "alpha": 0.28
+          },
           "interactive": false
         },
         {
@@ -165,43 +426,350 @@
             "assets/ambient/stage1_zen/M02/meccanico_work/idle_01.png",
             "assets/ambient/stage1_zen/M02/meccanico_work/idle_02.png"
           ],
-          "position": [1810, 525],
-          "size": [151, 151],
-          "anchor": [0.5, 1],
-          "frame_durations": [1.8, 1.0],
-          "parallax": 1.0,
-          "shadow": { "width": 69, "height": 12, "offset": [0, -1], "alpha": 0.25 },
+          "position": [
+            1810,
+            525
+          ],
+          "size": [
+            151,
+            151
+          ],
+          "anchor": [
+            0.5,
+            1
+          ],
+          "frame_durations": [
+            1.8,
+            1
+          ],
+          "parallax": 1,
+          "shadow": {
+            "width": 69,
+            "height": 12,
+            "offset": [
+              0,
+              -1
+            ],
+            "alpha": 0.25
+          },
           "interactive": false
         },
         {
           "id": "m02_prop_vespa_rossa",
           "kind": "sprite_loop",
-          "frames": ["assets/ambient/stage1_zen/M02/static_props/vespa_rossa.png", "assets/ambient/stage1_zen/M02/static_props/vespa_rossa.png"],
-          "position": [1990, 590],
-          "size": [190, 190],
-          "anchor": [0.5, 1],
-          "frame_durations": [60, 60],
-          "parallax": 1.0,
+          "frames": [
+            "assets/ambient/stage1_zen/M02/static_props/vespa_rossa.png",
+            "assets/ambient/stage1_zen/M02/static_props/vespa_rossa.png"
+          ],
+          "position": [
+            1990,
+            590
+          ],
+          "size": [
+            190,
+            190
+          ],
+          "anchor": [
+            0.5,
+            1
+          ],
+          "frame_durations": [
+            60,
+            60
+          ],
+          "parallax": 1,
+          "interactive": false
+        },
+        {
+          "id": "m02_prop_vespa_verde",
+          "kind": "sprite_loop",
+          "frames": [
+            "assets/ambient/stage1_zen/M02/static_props/vespa_verde.png",
+            "assets/ambient/stage1_zen/M02/static_props/vespa_verde.png"
+          ],
+          "position": [
+            2420,
+            590
+          ],
+          "size": [
+            190,
+            190
+          ],
+          "anchor": [
+            0.5,
+            1
+          ],
+          "frame_durations": [
+            60,
+            60
+          ],
+          "parallax": 1,
+          "interactive": false
+        },
+        {
+          "id": "m02_prop_vespa_bianca",
+          "kind": "sprite_loop",
+          "frames": [
+            "assets/ambient/stage1_zen/M02/static_props/vespa_bianca.png",
+            "assets/ambient/stage1_zen/M02/static_props/vespa_bianca.png"
+          ],
+          "position": [
+            2520,
+            590
+          ],
+          "size": [
+            190,
+            190
+          ],
+          "anchor": [
+            0.5,
+            1
+          ],
+          "frame_durations": [
+            60,
+            60
+          ],
+          "parallax": 1,
+          "interactive": false
+        },
+        {
+          "id": "m02_prop_pneumatico",
+          "kind": "sprite_loop",
+          "frames": [
+            "assets/ambient/stage1_zen/M02/static_props/pneumatico.png",
+            "assets/ambient/stage1_zen/M02/static_props/pneumatico.png"
+          ],
+          "position": [
+            2740,
+            635
+          ],
+          "size": [
+            112,
+            112
+          ],
+          "anchor": [
+            0.5,
+            1
+          ],
+          "frame_durations": [
+            60,
+            60
+          ],
+          "parallax": 1,
+          "interactive": false
+        },
+        {
+          "id": "m02_prop_pneumatico_poggiato",
+          "kind": "sprite_loop",
+          "frames": [
+            "assets/ambient/stage1_zen/M02/static_props/pneumatico_poggiato.png",
+            "assets/ambient/stage1_zen/M02/static_props/pneumatico_poggiato.png"
+          ],
+          "position": [
+            2860,
+            635
+          ],
+          "size": [
+            112,
+            112
+          ],
+          "anchor": [
+            0.5,
+            1
+          ],
+          "frame_durations": [
+            60,
+            60
+          ],
+          "parallax": 1,
+          "interactive": false
+        },
+        {
+          "id": "m02_prop_cassetta_birre",
+          "kind": "sprite_loop",
+          "frames": [
+            "assets/ambient/stage1_zen/M02/static_props/cassetta_birre.png",
+            "assets/ambient/stage1_zen/M02/static_props/cassetta_birre.png"
+          ],
+          "position": [
+            270,
+            637
+          ],
+          "size": [
+            130,
+            130
+          ],
+          "anchor": [
+            0.5,
+            1
+          ],
+          "frame_durations": [
+            60,
+            60
+          ],
+          "parallax": 1,
           "interactive": false
         }
       ],
-      "entry": [128, 675],
+      "entry": [
+        128,
+        675
+      ],
       "exit_x": 5070,
       "heal": 16,
       "items": [
-        { "item": "trash_bag", "position": [1340, 690], "group": "m02_portico" },
-        { "item": "trash_bin", "position": [1455, 692], "group": "m02_portico" },
-        { "item": "trash_bin", "position": [3260, 690], "group": "m02_garage" },
-        { "item": "trash_bag", "position": [3370, 692], "group": "m02_garage" },
-        { "item": "trash_bin", "position": [3480, 690], "group": "m02_garage" }
+        {
+          "item": "trash_bag",
+          "position": [
+            1340,
+            690
+          ],
+          "group": "m02_portico"
+        },
+        {
+          "item": "trash_bin",
+          "position": [
+            1455,
+            692
+          ],
+          "group": "m02_portico"
+        },
+        {
+          "item": "trash_bin",
+          "position": [
+            3260,
+            690
+          ],
+          "group": "m02_garage"
+        },
+        {
+          "item": "trash_bag",
+          "position": [
+            3370,
+            692
+          ],
+          "group": "m02_garage"
+        },
+        {
+          "item": "trash_bin",
+          "position": [
+            3480,
+            690
+          ],
+          "group": "m02_garage"
+        }
       ],
       "waves": [
-        { "trigger_x": 300, "health": 44, "aggression": 0.72, "spawns": [[760, 660]], "character": "a_puaicca", "name": "A PUAICCA" },
-        { "trigger_x": 1050, "health": 48, "aggression": 0.76, "spawns": [[1280, 655], [1420, 690]], "character": "talebano", "name": "TALEBANO" },
-        { "trigger_x": 1800, "health": 42, "aggression": 0.74, "spawns": [[2050, 655], [2180, 675], [2310, 700]], "character": "a_puaicca", "name": "A PUAICCA" },
-        { "trigger_x": 2550, "health": 50, "aggression": 0.80, "spawns": [[2780, 660], [2920, 695]], "character": "talebano", "name": "TALEBANO" },
-        { "trigger_x": 3300, "health": 44, "aggression": 0.78, "spawns": [[3560, 665], [3700, 680], [3840, 700]], "character": "a_puaicca", "name": "A PUAICCA" },
-        { "trigger_x": 4200, "health": 52, "aggression": 0.84, "spawns": [[4470, 665], [4620, 685], [4770, 700]], "character": "talebano", "name": "TALEBANO" }
+        {
+          "trigger_x": 300,
+          "health": 44,
+          "aggression": 0.72,
+          "spawns": [
+            [
+              760,
+              660
+            ]
+          ],
+          "character": "a_puaicca",
+          "name": "A PUAICCA"
+        },
+        {
+          "trigger_x": 1050,
+          "health": 48,
+          "aggression": 0.76,
+          "spawns": [
+            [
+              1280,
+              655
+            ],
+            [
+              1420,
+              690
+            ]
+          ],
+          "character": "talebano",
+          "name": "TALEBANO"
+        },
+        {
+          "trigger_x": 1800,
+          "health": 42,
+          "aggression": 0.74,
+          "spawns": [
+            [
+              2050,
+              655
+            ],
+            [
+              2180,
+              675
+            ],
+            [
+              2310,
+              700
+            ]
+          ],
+          "character": "a_puaicca",
+          "name": "A PUAICCA"
+        },
+        {
+          "trigger_x": 2550,
+          "health": 50,
+          "aggression": 0.8,
+          "spawns": [
+            [
+              2780,
+              660
+            ],
+            [
+              2920,
+              695
+            ]
+          ],
+          "character": "talebano",
+          "name": "TALEBANO"
+        },
+        {
+          "trigger_x": 3300,
+          "health": 44,
+          "aggression": 0.78,
+          "spawns": [
+            [
+              3560,
+              665
+            ],
+            [
+              3700,
+              680
+            ],
+            [
+              3840,
+              700
+            ]
+          ],
+          "character": "a_puaicca",
+          "name": "A PUAICCA"
+        },
+        {
+          "trigger_x": 4200,
+          "health": 52,
+          "aggression": 0.84,
+          "spawns": [
+            [
+              4470,
+              665
+            ],
+            [
+              4620,
+              685
+            ],
+            [
+              4770,
+              700
+            ]
+          ],
+          "character": "talebano",
+          "name": "TALEBANO"
+        }
       ]
     },
     {
@@ -212,20 +780,99 @@
       "horizon_y": 300,
       "background": "assets/backgrounds/stage1_zen/final_v1/M03/M03_S01_MAIN.png",
       "background_layers": [
-        { "src": "assets/backgrounds/stage1_zen/final_v1/M03/M03_FAR.png", "parallax": 0.22, "plane": "far", "x": 0, "y": 0, "width": 2560, "height": 720 },
-        { "src": "assets/backgrounds/stage1_zen/final_v1/M03/M03_S01_MAIN.png", "parallax": 1.0, "plane": "main", "x": 0, "y": 0, "width": 1280, "height": 720 },
-        { "src": "assets/backgrounds/stage1_zen/final_v1/M03/M03_S02_MAIN.png", "parallax": 1.0, "plane": "main", "x": 1280, "y": 0, "width": 1280, "height": 720 },
-        { "src": "assets/backgrounds/stage1_zen/final_v1/M03/M03_S03_MAIN.png", "parallax": 1.0, "plane": "main", "x": 2560, "y": 0, "width": 1280, "height": 720 },
-        { "src": "assets/backgrounds/stage1_zen/final_v1/M03/M03_S04_MAIN.png", "parallax": 1.0, "plane": "main", "x": 3840, "y": 0, "width": 1280, "height": 720 },
-        { "src": "assets/backgrounds/stage1_zen/final_v1/M03/M03_S05_MAIN.png", "parallax": 1.0, "plane": "main", "x": 5120, "y": 0, "width": 1280, "height": 720 }
+        {
+          "src": "assets/backgrounds/stage1_zen/final_v1/M03/M03_FAR.png",
+          "parallax": 0.22,
+          "plane": "far",
+          "x": 0,
+          "y": 0,
+          "width": 2560,
+          "height": 720
+        },
+        {
+          "src": "assets/backgrounds/stage1_zen/final_v1/M03/M03_S01_MAIN.png",
+          "parallax": 1,
+          "plane": "main",
+          "x": 0,
+          "y": 0,
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "src": "assets/backgrounds/stage1_zen/final_v1/M03/M03_S02_MAIN.png",
+          "parallax": 1,
+          "plane": "main",
+          "x": 1280,
+          "y": 0,
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "src": "assets/backgrounds/stage1_zen/final_v1/M03/M03_S03_MAIN.png",
+          "parallax": 1,
+          "plane": "main",
+          "x": 2560,
+          "y": 0,
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "src": "assets/backgrounds/stage1_zen/final_v1/M03/M03_S04_MAIN.png",
+          "parallax": 1,
+          "plane": "main",
+          "x": 3840,
+          "y": 0,
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "src": "assets/backgrounds/stage1_zen/final_v1/M03/M03_S05_MAIN.png",
+          "parallax": 1,
+          "plane": "main",
+          "x": 5120,
+          "y": 0,
+          "width": 1280,
+          "height": 720
+        }
       ],
       "world_width": 6400,
-      "camera_bounds": [0, 5120],
-      "playfield_y": [475, 705],
-      "walk_top": [[0, 475], [3200, 485], [6400, 495]],
-      "walk_bottom": [[0, 705], [6400, 705]],
+      "camera_bounds": [
+        0,
+        5120
+      ],
+      "playfield_y": [
+        475,
+        705
+      ],
+      "walk_top": [
+        [
+          0,
+          475
+        ],
+        [
+          3200,
+          485
+        ],
+        [
+          6400,
+          495
+        ]
+      ],
+      "walk_bottom": [
+        [
+          0,
+          705
+        ],
+        [
+          6400,
+          705
+        ]
+      ],
       "ambient": [],
-      "entry": [147, 610],
+      "entry": [
+        147,
+        610
+      ],
       "exit_x": 6350,
       "heal": 16,
       "items": [],

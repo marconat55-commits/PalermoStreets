@@ -1,0 +1,17 @@
+{
+  "purpose": "M03 second seam-locked transition: entry underpass to deep underpass",
+  "previous_panel": "M03_Z02_OVERPASS_ENTRY_PANEL_B.png",
+  "next_panel": "M03_Z03_UNDERPASS_CONTINUATION_BASE.png",
+  "exact_shared_pixels": {
+    "previous_bounds": [520, 0, 1280, 720],
+    "next_bounds": [0, 0, 760, 720],
+    "width": 760,
+    "rule": "The next panel begins with a byte-for-byte copy of the prior panel's ending." 
+  },
+  "foreground_transition": {
+    "file": "M03_Z02_Z03_BRIDGE_PILLAR_FOREGROUND.png",
+    "placement_in_next_panel": [120, 0],
+    "purpose": "A close, transparent concrete pillar covers the first non-shared background pixels. It is a foreground Pixi layer behind character sprites."
+  },
+  "implementation": "Place the next panel 520 pixels after the prior panel origin, render only one of the 760 shared pixels, then put the foreground pillar at the recorded location."
+}

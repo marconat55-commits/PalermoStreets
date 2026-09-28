@@ -20,9 +20,9 @@ interface Module {
 const stage = JSON.parse(fs.readFileSync('public/data/stage1_zen.json', 'utf8')) as { modules: Module[] };
 
 test('i moduli Zen coprono la propria lunghezza e tengono gli spawn nella walk band', () => {
-  assert.deepEqual(stage.modules.map((module) => module.id), ['M01', 'M02']);
+  assert.deepEqual(stage.modules.map((module) => module.id), ['M01', 'M02', 'M03']);
   for (const module of stage.modules) {
-    const expectedWorldWidth = module.id === 'M01' ? 2560 : module.id === 'M02' ? 5120 : 6400;
+    const expectedWorldWidth = module.id === 'M01' ? 2560 : module.id === 'M02' ? 5120 : 6432;
     const expectedCameraMax = expectedWorldWidth - 1280;
     const [top, bottom] = module.playfield_y;
     assert.ok(top >= 390 && top < bottom && bottom <= 710, `${module.id}: invalid WALK envelope`);
@@ -59,12 +59,14 @@ test('i moduli Zen coprono la propria lunghezza e tengono gli spawn nella walk b
       assert.equal(main?.src, 'assets/backgrounds/stage1_zen/final_v2/M02/M02_MAIN_LONG.png');
       assert.equal(far?.src, 'assets/backgrounds/stage1_zen/final_v1/M02/M02_FAR.png');
     } else {
-      assert.equal(module.background_layers.length, 6);
+      assert.equal(module.background_layers.length, 13);
       assert.ok(module.background_layers.every((layer) => layer.height === 720));
-      assert.deepEqual(module.background_layers.filter((layer) => layer.plane === 'main').map((layer) => layer.x), [0, 1280, 2560, 3840, 5120]);
-      assert.ok(module.background_layers.filter((layer) => layer.plane === 'main').every((layer) => layer.width === 1280));
-      assert.equal(main?.src, 'assets/backgrounds/stage1_zen/final_v1/M03/M03_S01_MAIN.png');
-      assert.equal(far?.src, 'assets/backgrounds/stage1_zen/final_v1/M03/M03_FAR.png');
+      const mainArt = module.background_layers.filter((layer) => layer.plane === 'main' && layer.src.includes('/M03_MAIN_'));
+      assert.deepEqual(mainArt.map((layer) => layer.x), [0, 912, 1432, 1952, 2752, 3552, 4352, 5152]);
+      assert.deepEqual(mainArt.map((layer) => layer.width), [1672, 1280, 1280, 1280, 1280, 1280, 1280, 1280]);
+      assert.equal(main?.src, 'assets/backgrounds/stage1_zen/final_v3/M03/M03_MAIN_Z01_PIAZZALE_TO_OVERPASS.png');
+      assert.equal(far?.src, 'assets/backgrounds/stage1_zen/final_v3/M03/M03_SKY_FAR.png');
+      assert.deepEqual(module.background_layers.filter((layer) => layer.src.includes('/M03_TRANSITION_')).map((layer) => layer.x), [1532, 2052, 3092, 4692]);
     }
   }
 });
@@ -92,10 +94,10 @@ test('M02 è lungo quattro schermate e usa il piano pavimentato approvato', () =
   assert.equal(m02.world_width, 2 * stage.modules[0]!.world_width);
 });
 
-test('il modulo giocabile usa lo sfondo approvato; gli altri sono archiviati', () => {
+test('i moduli giocabili usano gli sfondi approvati; gli altri sono archiviati', () => {
   const approved = stage.modules.filter((module) => module.art_status === 'approved');
-  assert.deepEqual(approved.map((module) => module.id), ['M01', 'M02']);
-  assert.deepEqual(approved.map((module) => module.horizon_y), [315, 300]);
+  assert.deepEqual(approved.map((module) => module.id), ['M01', 'M02', 'M03']);
+  assert.deepEqual(approved.map((module) => module.horizon_y), [315, 300, 310]);
   for (const module of stage.modules) assert.equal(module.reference_actor_height, 290);
   const archived = JSON.parse(fs.readFileSync('art_source/stages/stage1_zen/stage1_zen_runtime_legacy_M01_M04_2026-09-26.json', 'utf8')) as { modules: Module[] };
   assert.deepEqual(archived.modules.map((module) => module.id), ['M01', 'M02', 'M03', 'M04']);

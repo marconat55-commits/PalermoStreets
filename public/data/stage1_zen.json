@@ -748,38 +748,229 @@
     },
     {
       "id": "M03",
-      "name": "Campetto aperto",
-      "art_status": "placeholder_rebuild_required",
+      "name": "Piazzale Zen e sottopasso",
+      "art_status": "approved",
       "reference_actor_height": 290,
-      "horizon_y": 300,
-      "background": "assets/backgrounds/stage1_zen/M03_MAIN_OPEN_FIELD.png",
+      "horizon_y": 310,
+      "background": "assets/backgrounds/stage1_zen/final_v3/M03/M03_MAIN_Z01_PIAZZALE_TO_OVERPASS.png",
       "background_layers": [
         {
-          "src": "assets/backgrounds/stage1_zen/M03_SKY_FAR.png",
+          "src": "assets/backgrounds/stage1_zen/final_v3/M03/M03_SKY_FAR.png",
           "parallax": 0.22,
           "plane": "far",
           "x": 0,
           "y": 0,
-          "width": 10240,
-          "height": 720
+          "width": 6432,
+          "height": 720,
+          "reveal_polygons": [
+            [
+              [
+                130,
+                0
+              ],
+              [
+                955,
+                0
+              ],
+              [
+                955,
+                85
+              ],
+              [
+                130,
+                85
+              ]
+            ],
+            [
+              [
+                3835,
+                0
+              ],
+              [
+                4032,
+                0
+              ],
+              [
+                4032,
+                170
+              ],
+              [
+                3835,
+                170
+              ]
+            ],
+            [
+              [
+                4032,
+                0
+              ],
+              [
+                4832,
+                0
+              ],
+              [
+                4832,
+                150
+              ],
+              [
+                4032,
+                150
+              ]
+            ],
+            [
+              [
+                5200,
+                0
+              ],
+              [
+                5632,
+                0
+              ],
+              [
+                5632,
+                125
+              ],
+              [
+                5200,
+                125
+              ]
+            ],
+            [
+              [
+                5632,
+                0
+              ],
+              [
+                6432,
+                0
+              ],
+              [
+                6432,
+                100
+              ],
+              [
+                5632,
+                100
+              ]
+            ]
+          ]
         },
         {
-          "src": "assets/backgrounds/stage1_zen/M03_MAIN_OPEN_FIELD.png",
+          "src": "assets/backgrounds/stage1_zen/final_v3/M03/M03_MAIN_Z01_PIAZZALE_TO_OVERPASS.png",
           "parallax": 1,
           "plane": "main",
           "x": 0,
           "y": 0,
-          "width": 10240,
+          "width": 1672,
+          "height": 720
+        },
+        {
+          "src": "assets/backgrounds/stage1_zen/final_v3/M03/M03_MAIN_Z03_UNDERPASS.png",
+          "parallax": 1,
+          "plane": "main",
+          "x": 912,
+          "y": 0,
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "src": "assets/backgrounds/stage1_zen/final_v3/M03/M03_MAIN_Z04_SERVICE_YARD.png",
+          "parallax": 1,
+          "plane": "main",
+          "x": 1432,
+          "y": 0,
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "src": "assets/backgrounds/stage1_zen/final_v3/M03/M03_MAIN_Z05_SERVICE_YARD_EXTENDED.png",
+          "parallax": 1,
+          "plane": "main",
+          "x": 1952,
+          "y": 0,
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "src": "assets/backgrounds/stage1_zen/final_v3/M03/M03_MAIN_Z06_GATE_LANE.png",
+          "parallax": 1,
+          "plane": "main",
+          "x": 2752,
+          "y": 0,
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "src": "assets/backgrounds/stage1_zen/final_v3/M03/M03_MAIN_Z07_GATE_LANE_EXTENDED.png",
+          "parallax": 1,
+          "plane": "main",
+          "x": 3552,
+          "y": 0,
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "src": "assets/backgrounds/stage1_zen/final_v3/M03/M03_MAIN_Z08_FINAL_PIAZZALE.png",
+          "parallax": 1,
+          "plane": "main",
+          "x": 4352,
+          "y": 0,
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "src": "assets/backgrounds/stage1_zen/final_v3/M03/M03_MAIN_Z09_FINAL_PIAZZALE_EXTENDED.png",
+          "parallax": 1,
+          "plane": "main",
+          "x": 5152,
+          "y": 0,
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "src": "assets/backgrounds/stage1_zen/final_v3/M03/M03_TRANSITION_PILLAR_A.png",
+          "parallax": 1,
+          "plane": "main",
+          "x": 1532,
+          "y": 0,
+          "width": 280,
+          "height": 720
+        },
+        {
+          "src": "assets/backgrounds/stage1_zen/final_v3/M03/M03_TRANSITION_PILLAR_B.png",
+          "parallax": 1,
+          "plane": "main",
+          "x": 2052,
+          "y": 0,
+          "width": 280,
+          "height": 720
+        },
+        {
+          "src": "assets/backgrounds/stage1_zen/final_v3/M03/M03_TRANSITION_PILLAR_C.png",
+          "parallax": 1,
+          "plane": "main",
+          "x": 3092,
+          "y": 0,
+          "width": 280,
+          "height": 720
+        },
+        {
+          "src": "assets/backgrounds/stage1_zen/final_v3/M03/M03_TRANSITION_GATE_PIER.png",
+          "parallax": 1,
+          "plane": "main",
+          "x": 4692,
+          "y": 0,
+          "width": 280,
           "height": 720
         }
       ],
-      "world_width": 10240,
+      "world_width": 6432,
       "camera_bounds": [
         0,
-        8960
+        5152
       ],
       "playfield_y": [
-        475,
+        650,
         705
       ],
       "walk_top": [
@@ -788,11 +979,19 @@
           650
         ],
         [
-          5120,
+          1616,
+          652
+        ],
+        [
+          3216,
           655
         ],
         [
-          10240,
+          4824,
+          657
+        ],
+        [
+          6432,
           660
         ]
       ],
@@ -802,7 +1001,7 @@
           705
         ],
         [
-          10240,
+          6432,
           705
         ]
       ],
@@ -811,7 +1010,7 @@
         147,
         680
       ],
-      "exit_x": 10150,
+      "exit_x": 6362,
       "heal": 16,
       "items": [],
       "waves": []

@@ -24,7 +24,7 @@ const stage = JSON.parse(fs.readFileSync('public/data/stage1_zen.json', 'utf8'))
 test('M01 resta libero e distribuisce una sola ondata di sette nemici a coppie', () => {
   const m01 = stage.modules.find((module) => module.id === 'M01');
   assert.ok(m01);
-  assert.deepEqual(stage.modules.map((module) => module.id), ['M01', 'M02']);
+  assert.deepEqual(stage.modules.map((module) => module.id), ['M01', 'M02', 'M03']);
   assert.equal(m01.waves.length, 1);
   assert.equal(m01.waves[0]!.spawns.length, 7);
   assert.equal(m01.waves[0]!.characters?.length, 7);

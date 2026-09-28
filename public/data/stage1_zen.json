@@ -533,32 +533,6 @@
           "interactive": false
         },
         {
-          "id": "m02_prop_pneumatico",
-          "kind": "sprite_loop",
-          "frames": [
-            "assets/ambient/stage1_zen/M02/static_props/pneumatico.png",
-            "assets/ambient/stage1_zen/M02/static_props/pneumatico.png"
-          ],
-          "position": [
-            2740,
-            630
-          ],
-          "size": [
-            112,
-            112
-          ],
-          "anchor": [
-            0.5,
-            1
-          ],
-          "frame_durations": [
-            60,
-            60
-          ],
-          "parallax": 1,
-          "interactive": false
-        },
-        {
           "id": "m02_prop_pneumatico_poggiato",
           "kind": "sprite_loop",
           "frames": [
@@ -566,8 +540,8 @@
             "assets/ambient/stage1_zen/M02/static_props/pneumatico_poggiato.png"
           ],
           "position": [
-            2860,
-            630
+            3020,
+            590
           ],
           "size": [
             112,

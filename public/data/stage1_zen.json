@@ -752,7 +752,7 @@
       "art_status": "placeholder_rebuild_required",
       "reference_actor_height": 290,
       "horizon_y": 300,
-      "background": "assets/backgrounds/stage1_zen/M03_SKY_FAR.png",
+      "background": "assets/backgrounds/stage1_zen/M03_MAIN_OPEN_FIELD.png",
       "background_layers": [
         {
           "src": "assets/backgrounds/stage1_zen/M03_SKY_FAR.png",
@@ -760,14 +760,23 @@
           "plane": "far",
           "x": 0,
           "y": 0,
-          "width": 6400,
+          "width": 10240,
+          "height": 720
+        },
+        {
+          "src": "assets/backgrounds/stage1_zen/M03_MAIN_OPEN_FIELD.png",
+          "parallax": 1,
+          "plane": "main",
+          "x": 0,
+          "y": 0,
+          "width": 10240,
           "height": 720
         }
       ],
-      "world_width": 6400,
+      "world_width": 10240,
       "camera_bounds": [
         0,
-        5120
+        8960
       ],
       "playfield_y": [
         475,
@@ -776,15 +785,15 @@
       "walk_top": [
         [
           0,
-          475
+          650
         ],
         [
-          3200,
-          485
+          5120,
+          655
         ],
         [
-          6400,
-          495
+          10240,
+          660
         ]
       ],
       "walk_bottom": [
@@ -793,16 +802,16 @@
           705
         ],
         [
-          6400,
+          10240,
           705
         ]
       ],
       "ambient": [],
       "entry": [
         147,
-        610
+        680
       ],
-      "exit_x": 6350,
+      "exit_x": 10150,
       "heal": 16,
       "items": [],
       "waves": []

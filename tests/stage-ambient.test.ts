@@ -62,7 +62,10 @@ test('Franco Gioia and Duracell are enlarged at the start of M02', () => {
   const m02 = stage.modules.find((module) => module.id === 'M02');
   assert.ok(m02);
   const loops = (m02.ambient ?? []).filter((actor): actor is SpriteLoopSpec => actor.kind === 'sprite_loop');
-  assert.deepEqual(loops.map((loop) => loop.id), ['m02_franco_gioia', 'm02_duracell', 'm02_meccanico']);
+  assert.deepEqual(loops.map((loop) => loop.id), [
+    'm02_franco_gioia', 'm02_duracell', 'm02_meccanico',
+    'm02_prop_vespa_crema', 'm02_prop_vespa_rossa', 'm02_prop_vespa_verde',
+  ]);
   const franco = loops[0]!;
   const duracell = loops[1]!;
   assert.deepEqual(franco.position, [710, 615]);
@@ -77,12 +80,14 @@ test('Franco Gioia and Duracell are enlarged at the start of M02', () => {
   const mechanic = loops[2]!;
   assert.deepEqual(mechanic.position, [1810, 525]);
   assert.deepEqual(mechanic.size, [151, 151]);
-  assert.equal(collectAmbientAssets(m02).length, 6);
+  assert.equal(collectAmbientAssets(m02).length, 9);
   for (const loop of loops) {
-    if (loop.id !== 'm02_meccanico') assert.ok(loop.position[0] < 800, `${loop.id}: actor must remain near the start of M02`);
+    if (loop.id === 'm02_franco_gioia' || loop.id === 'm02_duracell') assert.ok(loop.position[0] < 800, `${loop.id}: actor must remain near the start of M02`);
     assert.ok(loop.position[1] < 635, `${loop.id}: ambient actor must stay behind the WALK lane`);
     for (const frame of loop.frames) assert.ok(fs.existsSync(`public/${frame}`), `${loop.id}: missing ${frame}`);
   }
+  assert.deepEqual(loops.slice(3).map((loop) => loop.position), [[1100, 632], [1870, 632], [3420, 632]]);
+  assert.deepEqual(loops.slice(3).map((loop) => loop.size), [[223, 223], [223, 223], [223, 223]]);
 });
 
 test('sprite loop durations select stable frames and wrap', () => {

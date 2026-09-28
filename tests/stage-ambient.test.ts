@@ -85,7 +85,7 @@ test('Franco Gioia and Duracell are enlarged at the start of M02', () => {
     assert.ok(loop.position[1] < 635, `${loop.id}: ambient actor must stay behind the WALK lane`);
     for (const frame of loop.frames) assert.ok(fs.existsSync(`public/${frame}`), `${loop.id}: missing ${frame}`);
   }
-  assert.deepEqual(loops.slice(3).map((loop) => loop.position), [[1990, 590], [2420, 590], [2520, 590], [3020, 590], [270, 630]]);
+  assert.deepEqual(loops.slice(3).map((loop) => loop.position), [[1990, 590], [2420, 590], [2520, 590], [3020, 560], [270, 630]]);
   assert.deepEqual(loops.slice(3).map((loop) => loop.size), [[190, 190], [190, 190], [190, 190], [112, 112], [130, 130]]);
 });
 
@@ -106,6 +106,7 @@ test('il fumetto di Franco attende cinque secondi completi tra due apparizioni',
   assert.equal(ambientSpeechVisible(12.59, 5, 2.6), false);
   assert.equal(ambientSpeechVisible(12.6, 5, 2.6), true);
 });
+
 
 
 

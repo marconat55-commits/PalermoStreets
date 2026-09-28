@@ -174,33 +174,11 @@
           "interactive": false
         },
         {
-          "id": "m02_prop_vespa_crema",
-          "kind": "sprite_loop",
-          "frames": ["assets/ambient/stage1_zen/M02/static_props/vespa_crema.png", "assets/ambient/stage1_zen/M02/static_props/vespa_crema.png"],
-          "position": [1100, 632],
-          "size": [223, 223],
-          "anchor": [0.5, 1],
-          "frame_durations": [60, 60],
-          "parallax": 1.0,
-          "interactive": false
-        },
-        {
           "id": "m02_prop_vespa_rossa",
           "kind": "sprite_loop",
           "frames": ["assets/ambient/stage1_zen/M02/static_props/vespa_rossa.png", "assets/ambient/stage1_zen/M02/static_props/vespa_rossa.png"],
-          "position": [1870, 632],
-          "size": [223, 223],
-          "anchor": [0.5, 1],
-          "frame_durations": [60, 60],
-          "parallax": 1.0,
-          "interactive": false
-        },
-        {
-          "id": "m02_prop_vespa_verde",
-          "kind": "sprite_loop",
-          "frames": ["assets/ambient/stage1_zen/M02/static_props/vespa_verde.png", "assets/ambient/stage1_zen/M02/static_props/vespa_verde.png"],
-          "position": [3420, 632],
-          "size": [223, 223],
+          "position": [1990, 590],
+          "size": [190, 190],
           "anchor": [0.5, 1],
           "frame_durations": [60, 60],
           "parallax": 1.0,

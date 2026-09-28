@@ -46,7 +46,7 @@
         </div>
         <div class="control">
           <label for="offset">Allineamento pannello destro</label>
-          <input id="offset" type="range" min="-360" max="360" value="0" />
+          <input id="offset" type="range" min="-360" max="720" value="240" />
           <output id="offsetValue"></output>
         </div>
         <button id="reset" type="button">Ripristina anteprima</button>
@@ -69,7 +69,7 @@
       const offsetInput = document.querySelector('#offset');
       const seamValue = document.querySelector('#seamValue');
       const offsetValue = document.querySelector('#offsetValue');
-      const state = { seam: 640, offset: 0, dragging: false };
+      const state = { seam: 640, offset: 240, dragging: false };
       const height = canvas.height;
 
       function render() {
@@ -115,7 +115,7 @@
       canvas.addEventListener('pointerup', (event) => { state.dragging = false; canvas.releasePointerCapture(event.pointerId); });
       seamInput.addEventListener('input', update);
       offsetInput.addEventListener('input', update);
-      document.querySelector('#reset').addEventListener('click', () => { seamInput.value = '640'; offsetInput.value = '0'; update(); });
+      document.querySelector('#reset').addEventListener('click', () => { seamInput.value = '640'; offsetInput.value = '240'; update(); });
       leftImage.addEventListener('load', render);
       rightImage.addEventListener('load', render);
       update();

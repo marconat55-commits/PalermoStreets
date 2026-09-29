@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rimozione manuale cielo — M03</title>
+  <style>
+    :root { color-scheme: dark; font-family: Segoe UI, Arial, sans-serif; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #17191c; color: #f2f2f2; }
+    header { position: sticky; top: 0; z-index: 2; padding: 12px 16px; background: #24272c; border-bottom: 1px solid #41464e; }
+    h1 { margin: 0 0 9px; font-size: 18px; font-weight: 650; }
+    .toolbar { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+    button, label.control { min-height: 36px; border: 1px solid #555c66; border-radius: 6px; padding: 7px 11px; color: #f6f7f8; background: #333840; font: inherit; }
+    button { cursor: pointer; }
+    button:hover { background: #454c56; }
+    button:disabled { opacity: .45; cursor: default; }
+    button.active { border-color: #ffc84a; box-shadow: inset 0 0 0 1px #ffc84a; }
+    button.primary { background: #a66012; border-color: #e69a34; }
+    label.control { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; }
+    input[type="range"] { width: 125px; accent-color: #ffc84a; }
+    #status { color: #c7cbd1; font-size: 13px; margin-left: auto; }
+    .help { padding: 8px 16px; color: #c4c8ce; font-size: 13px; line-height: 1.45; }
+    .help strong { color: #fff; }
+    #viewport { height: calc(100vh - 125px); overflow: auto; padding: 16px; background: #101114; }
+    #sheet { width: max-content; min-width: 100%; min-height: 100%; display: flex; align-items: flex-start; justify-content: flex-start; }
+    #preview { display: block; touch-action: none; cursor: crosshair; background-color: #dedede; background-image: linear-gradient(45deg,#b9b9b9 25%,transparent 25%),linear-gradient(-45deg,#b9b9b9 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#b9b9b9 75%),linear-gradient(-45deg,transparent 75%,#b9b9b9 75%); background-size: 20px 20px; background-position: 0 0,0 10px,10px -10px,-10px 0; }
+    .note { color: #f2cc8e; }
+    @media (max-width: 720px) { #viewport { height: calc(100vh - 190px); } #status { width: 100%; margin: 0; } }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>M03 — rimozione manuale del cielo</h1>
+    <div class="toolbar">
+      <button id="erase" class="active" disabled>Cancella cielo (E)</button>
+      <button id="restore" disabled>Ripristina (R)</button>
+      <button id="undo" disabled>Annulla</button>
+      <button id="redo" disabled>Ripeti</button>
+      <button id="reset" disabled>Ripristina tutto</button>
+      <label class="control">Pennello <input id="brush" type="range" min="3" max="160" value="18"><span id="brushValue">18 px</span></label>
+      <label class="control">Zoom <input id="zoom" type="range" min="15" max="200" value="25"><span id="zoomValue">25%</span></label>
+      <button id="save" class="primary" disabled>Scarica PNG trasparente</button>
+      <span id="status">Caricamento sfondo…</span>
+    </div>
+  </header>
+  <div class="help">
+    Dipingi sul cielo per renderlo trasparente. Usa lo zoom e le barre di scorrimento per rifinire pali, fili, montagne e alberi. <strong>E</strong> cancella, <strong>R</strong> ripristina, <strong>Ctrl+Z</strong> annulla. Il file esportato mantiene la risoluzione originale (5869×720).
+    <span class="note">Il progetto originale non viene modificato finché non scarichi il PNG.</span>
+  </div>
+  <main id="viewport"><div id="sheet"><canvas id="preview" aria-label="Sfondo M03 modificabile"></canvas></div></main>
+  <script>
+    (() => {
+      const source = new Image();
+      source.src = './M03_GPT6_FIVE_PANEL_PREVIEW.png';
+      const preview = document.getElementById('preview');
+      const pctx = preview.getContext('2d');
+      const mask = document.createElement('canvas');
+      const mctx = mask.getContext('2d');
+      const viewport = document.getElementById('viewport');
+      const brush = document.getElementById('brush');
+      const zoomControl = document.getElementById('zoom');
+      const status = document.getElementById('status');
+      const eraseButton = document.getElementById('erase');
+      const restoreButton = document.getElementById('restore');
+      const undoButton = document.getElementById('undo');
+      const redoButton = document.getElementById('redo');
+      const resetButton = document.getElementById('reset');
+      const saveButton = document.getElementById('save');
+      const history = [];
+      const redoHistory = [];
+      let mode = 'erase';
+      let zoom = 0.25;
+      let activeStroke = null;
+      let renderPending = false;
+
+      function applyPath(ctx, stroke) {
+        if (!stroke.points.length) return;
+        ctx.save();
+        ctx.lineWidth = stroke.size;
+        ctx.lineCap = 'round';
+        ctx.lineJoin = 'round';
+        if (stroke.mode === 'erase') {
+          ctx.globalCompositeOperation = 'destination-out';
+          ctx.strokeStyle = '#000';
+          ctx.fillStyle = '#000';
+        } else {
+          ctx.globalCompositeOperation = 'source-over';
+          ctx.strokeStyle = '#fff';
+          ctx.fillStyle = '#fff';
+        }
+        if (stroke.points.length === 1) {
+          const [x, y] = stroke.points[0];
+          ctx.beginPath();
+          ctx.arc(x, y, stroke.size / 2, 0, Math.PI * 2);
+          ctx.fill();
+        } else {
+          ctx.beginPath();
+          ctx.moveTo(stroke.points[0][0], stroke.points[0][1]);
+          for (let i = 1; i < stroke.points.length; i++) ctx.lineTo(stroke.points[i][0], stroke.points[i][1]);
+          ctx.stroke();
+        }
+        ctx.restore();
+      }
+
+      function drawPreview() {
+        renderPending = false;
+        pctx.clearRect(0, 0, preview.width, preview.height);
+        pctx.globalCompositeOperation = 'source-over';
+        pctx.drawImage(source, 0, 0);
+        pctx.globalCompositeOperation = 'destination-in';
+        pctx.drawImage(mask, 0, 0);
+        pctx.globalCompositeOperation = 'source-over';
+      }
+
+      function schedulePreview() {
+        if (renderPending) return;
+        renderPending = true;
+        requestAnimationFrame(drawPreview);
+      }
+
+      function rebuildMask() {
+        mctx.clearRect(0, 0, mask.width, mask.height);
+        mctx.fillStyle = '#fff';
+        mctx.fillRect(0, 0, mask.width, mask.height);
+        for (const stroke of history) applyPath(mctx, stroke);
+        schedulePreview();
+        undoButton.disabled = history.length === 0;
+        redoButton.disabled = redoHistory.length === 0;
+      }
+
+      function setMode(next) {
+        mode = next;
+        eraseButton.classList.toggle('active', mode === 'erase');
+        restoreButton.classList.toggle('active', mode === 'restore');
+      }
+
+      function setZoom(value, preserveCenter = true) {
+        const oldZoom = zoom;
+        const centerX = viewport.scrollLeft + viewport.clientWidth / 2;
+        const centerY = viewport.scrollTop + viewport.clientHeight / 2;
+        zoom = value / 100;
+        preview.style.width = `${preview.width * zoom}px`;
+        preview.style.height = `${preview.height * zoom}px`;
+        document.getElementById('zoomValue').textContent = `${value}%`;
+        if (preserveCenter && oldZoom > 0) {
+          viewport.scrollLeft = Math.max(0, centerX * zoom / oldZoom - viewport.clientWidth / 2);
+          viewport.scrollTop = Math.max(0, centerY * zoom / oldZoom - viewport.clientHeight / 2);
+        }
+      }
+
+      function pointFromEvent(event) {
+        const rect = preview.getBoundingClientRect();
+        return [
+          Math.max(0, Math.min(preview.width, (event.clientX - rect.left) * preview.width / rect.width)),
+          Math.max(0, Math.min(preview.height, (event.clientY - rect.top) * preview.height / rect.height))
+        ];
+      }
+
+      source.onload = () => {
+        preview.width = mask.width = source.naturalWidth;
+        preview.height = mask.height = source.naturalHeight;
+        mctx.fillStyle = '#fff';
+        mctx.fillRect(0, 0, mask.width, mask.height);
+        const fit = Math.max(15, Math.min(100, Math.floor((viewport.clientWidth - 32) / source.naturalWidth * 100)));
+        zoomControl.value = String(fit);
+        setZoom(fit, false);
+        drawPreview();
+        [eraseButton, restoreButton, resetButton, saveButton].forEach(button => button.disabled = false);
+        status.textContent = `${source.naturalWidth} × ${source.naturalHeight} px — cielo intatto`;
+      };
+      source.onerror = () => {
+        status.textContent = 'Impossibile caricare lo sfondo: apri questa pagina dal progetto M03.';
+        status.style.color = '#ff9b8e';
+      };
+
+      preview.addEventListener('pointerdown', event => {
+        if (event.button !== 0 || !source.complete || !source.naturalWidth) return;
+        event.preventDefault();
+        preview.setPointerCapture(event.pointerId);
+        const point = pointFromEvent(event);
+        activeStroke = { mode, size: Number(brush.value), points: [point] };
+        applyPath(mctx, activeStroke);
+        schedulePreview();
+      });
+      preview.addEventListener('pointermove', event => {
+        if (!activeStroke) return;
+        const point = pointFromEvent(event);
+        const last = activeStroke.points[activeStroke.points.length - 1];
+        if (Math.hypot(point[0] - last[0], point[1] - last[1]) < 1.5) return;
+        activeStroke.points.push(point);
+        applyPath(mctx, { ...activeStroke, points: [last, point] });
+        schedulePreview();
+      });
+      const finishStroke = () => {
+        if (!activeStroke) return;
+        history.push(activeStroke);
+        activeStroke = null;
+        redoHistory.length = 0;
+        undoButton.disabled = history.length === 0;
+        redoButton.disabled = true;
+      };
+      preview.addEventListener('pointerup', finishStroke);
+      preview.addEventListener('pointercancel', finishStroke);
+
+      eraseButton.addEventListener('click', () => setMode('erase'));
+      restoreButton.addEventListener('click', () => setMode('restore'));
+      undoButton.addEventListener('click', () => {
+        if (history.length) redoHistory.push(history.pop());
+        rebuildMask();
+      });
+      redoButton.addEventListener('click', () => {
+        if (redoHistory.length) history.push(redoHistory.pop());
+        rebuildMask();
+      });
+      resetButton.addEventListener('click', () => {
+        history.length = 0;
+        redoHistory.length = 0;
+        rebuildMask();
+      });
+      brush.addEventListener('input', () => document.getElementById('brushValue').textContent = `${brush.value} px`);
+      zoomControl.addEventListener('input', () => setZoom(Number(zoomControl.value)));
+      window.addEventListener('keydown', event => {
+        if (event.target instanceof HTMLInputElement) return;
+        if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 'z') {
+          event.preventDefault();
+          event.shiftKey ? redoButton.click() : undoButton.click();
+        } else if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 'y') {
+          event.preventDefault(); redoButton.click();
+        } else if (event.key.toLowerCase() === 'e') setMode('erase');
+        else if (event.key.toLowerCase() === 'r') setMode('restore');
+      });
+      saveButton.addEventListener('click', () => {
+        const output = document.createElement('canvas');
+        output.width = preview.width;
+        output.height = preview.height;
+        const ctx = output.getContext('2d');
+        ctx.drawImage(source, 0, 0);
+        ctx.globalCompositeOperation = 'destination-in';
+        ctx.drawImage(mask, 0, 0);
+        output.toBlob(blob => {
+          if (!blob) { status.textContent = 'Esportazione non riuscita.'; return; }
+          const link = document.createElement('a');
+          link.href = URL.createObjectURL(blob);
+          link.download = 'M03_BACKGROUND_SKY_REMOVED.png';
+          link.click();
+          setTimeout(() => URL.revokeObjectURL(link.href), 1000);
+          status.textContent = 'PNG trasparente scaricato; lo sfondo originale è intatto.';
+        }, 'image/png');
+      });
+    })();
+  </script>
+</body>
+</html>

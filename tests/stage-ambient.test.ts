@@ -89,6 +89,23 @@ test('Franco Gioia and Duracell are enlarged at the start of M02', () => {
   assert.deepEqual(loops.slice(3).map((loop) => loop.size), [[190, 190], [190, 190], [190, 190], [112, 112], [130, 130]]);
 });
 
+test('M03 usa solo il grande albero come prova di copertura del primo raccordo', () => {
+  const m03 = stage.modules.find((module) => module.id === 'M03');
+  assert.ok(m03);
+  const loops = (m03.ambient ?? []).filter((actor): actor is SpriteLoopSpec => actor.kind === 'sprite_loop');
+  assert.deepEqual(loops.map((loop) => loop.id), ['m03_large_tree_seam_01']);
+  const tree = loops[0]!;
+  assert.equal(tree.frames.length, 2);
+  assert.equal(tree.frames[0], tree.frames[1]);
+  assert.deepEqual(tree.frame_durations, [1, 1]);
+  assert.deepEqual(tree.position, [1174, 438]);
+  assert.deepEqual(tree.size, [224, 280]);
+  assert.equal(tree.parallax, 1);
+  assert.equal(tree.interactive, false);
+  for (const frame of tree.frames) assert.ok(fs.existsSync(`public/${frame}`), `missing ${frame}`);
+  assert.deepEqual(collectAmbientAssets(m03), [tree.frames[0]]);
+});
+
 test('sprite loop durations select stable frames and wrap', () => {
   const durations = [1, 2, 1, 2];
   assert.equal(frameAtTime(durations, 0), 0);

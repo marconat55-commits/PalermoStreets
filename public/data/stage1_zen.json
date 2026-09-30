@@ -802,7 +802,34 @@
           705
         ]
       ],
-      "ambient": [],
+      "ambient": [
+        {
+          "id": "m03_large_tree_seam_01",
+          "kind": "sprite_loop",
+          "frames": [
+            "assets/backgrounds/stage1_zen/final_v4/M03/props/M03_TREE_LARGE_SEAM_PREVIEW.png",
+            "assets/backgrounds/stage1_zen/final_v4/M03/props/M03_TREE_LARGE_SEAM_PREVIEW.png"
+          ],
+          "position": [
+            1174,
+            438
+          ],
+          "size": [
+            224,
+            280
+          ],
+          "anchor": [
+            0.5,
+            1
+          ],
+          "frame_durations": [
+            1,
+            1
+          ],
+          "parallax": 1,
+          "interactive": false
+        }
+      ],
       "entry": [
         147,
         680

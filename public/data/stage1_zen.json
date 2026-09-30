@@ -828,6 +828,32 @@
           ],
           "parallax": 1,
           "interactive": false
+        },
+        {
+          "id": "m03_road_sign_seam_04_05",
+          "kind": "sprite_loop",
+          "frames": [
+            "assets/backgrounds/stage1_zen/final_v4/M03/props/M03_ROAD_SIGN_SEAM_04_05_PREVIEW.png",
+            "assets/backgrounds/stage1_zen/final_v4/M03/props/M03_ROAD_SIGN_SEAM_04_05_PREVIEW.png"
+          ],
+          "position": [
+            4695,
+            458
+          ],
+          "size": [
+            240,
+            300
+          ],
+          "anchor": [
+            0.5,
+            1
+          ],
+          "frame_durations": [
+            1,
+            1
+          ],
+          "parallax": 1,
+          "interactive": false
         }
       ],
       "entry": [

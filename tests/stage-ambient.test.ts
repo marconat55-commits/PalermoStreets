@@ -98,7 +98,7 @@ test('M03 usa solo il grande albero come prova di copertura del primo raccordo',
   assert.equal(tree.frames.length, 2);
   assert.equal(tree.frames[0], tree.frames[1]);
   assert.deepEqual(tree.frame_durations, [1, 1]);
-  assert.deepEqual(tree.position, [1095, 438]);
+  assert.deepEqual(tree.position, [1095, 458]);
   assert.deepEqual(tree.size, [252, 315]);
   assert.equal(tree.parallax, 1);
   assert.equal(tree.interactive, false);

@@ -830,6 +830,32 @@
           "interactive": false
         },
         {
+          "id": "m03_bush_wide_gold_seam_02_03",
+          "kind": "sprite_loop",
+          "frames": [
+            "assets/backgrounds/stage1_zen/final_v4/M03/props/M03_BUSH_WIDE_GOLD_SEAM_02_03_PREVIEW.png",
+            "assets/backgrounds/stage1_zen/final_v4/M03/props/M03_BUSH_WIDE_GOLD_SEAM_02_03_PREVIEW.png"
+          ],
+          "position": [
+            2348,
+            458
+          ],
+          "size": [
+            270,
+            180
+          ],
+          "anchor": [
+            0.5,
+            1
+          ],
+          "frame_durations": [
+            1,
+            1
+          ],
+          "parallax": 1,
+          "interactive": false
+        },
+        {
           "id": "m03_road_sign_seam_04_05",
           "kind": "sprite_loop",
           "frames": [

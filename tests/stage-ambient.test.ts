@@ -89,11 +89,15 @@ test('Franco Gioia and Duracell are enlarged at the start of M02', () => {
   assert.deepEqual(loops.slice(3).map((loop) => loop.size), [[190, 190], [190, 190], [190, 190], [112, 112], [130, 130]]);
 });
 
-test('M03 copre i raccordi primo e quarto con due props statici', () => {
+test('M03 copre tre raccordi con props statici proporzionati', () => {
   const m03 = stage.modules.find((module) => module.id === 'M03');
   assert.ok(m03);
   const loops = (m03.ambient ?? []).filter((actor): actor is SpriteLoopSpec => actor.kind === 'sprite_loop');
-  assert.deepEqual(loops.map((loop) => loop.id), ['m03_large_tree_seam_01', 'm03_road_sign_seam_04_05']);
+  assert.deepEqual(loops.map((loop) => loop.id), [
+    'm03_large_tree_seam_01',
+    'm03_bush_wide_gold_seam_02_03',
+    'm03_road_sign_seam_04_05',
+  ]);
   const tree = loops[0]!;
   assert.equal(tree.frames.length, 2);
   assert.equal(tree.frames[0], tree.frames[1]);
@@ -103,7 +107,16 @@ test('M03 copre i raccordi primo e quarto con due props statici', () => {
   assert.equal(tree.parallax, 1);
   assert.equal(tree.interactive, false);
   for (const frame of tree.frames) assert.ok(fs.existsSync(`public/${frame}`), `missing ${frame}`);
-  const sign = loops[1]!;
+  const bush = loops[1]!;
+  assert.equal(bush.frames.length, 2);
+  assert.equal(bush.frames[0], bush.frames[1]);
+  assert.deepEqual(bush.frame_durations, [1, 1]);
+  assert.deepEqual(bush.position, [2348, 458]);
+  assert.deepEqual(bush.size, [270, 180]);
+  assert.equal(bush.parallax, 1);
+  assert.equal(bush.interactive, false);
+  for (const frame of bush.frames) assert.ok(fs.existsSync(`public/${frame}`), `missing ${frame}`);
+  const sign = loops[2]!;
   assert.equal(sign.frames.length, 2);
   assert.equal(sign.frames[0], sign.frames[1]);
   assert.deepEqual(sign.frame_durations, [1, 1]);
@@ -112,7 +125,7 @@ test('M03 copre i raccordi primo e quarto con due props statici', () => {
   assert.equal(sign.parallax, 1);
   assert.equal(sign.interactive, false);
   for (const frame of sign.frames) assert.ok(fs.existsSync(`public/${frame}`), `missing ${frame}`);
-  assert.deepEqual(collectAmbientAssets(m03), [tree.frames[0], sign.frames[0]]);
+  assert.deepEqual(collectAmbientAssets(m03), [tree.frames[0], bush.frames[0], sign.frames[0]]);
 });
 
 test('sprite loop durations select stable frames and wrap', () => {

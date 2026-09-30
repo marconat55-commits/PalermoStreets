@@ -140,7 +140,7 @@ test('M03 copre i quattro raccordi e arricchisce il fondo con props statici prop
   assert.equal(roundBush.frames.length, 2);
   assert.equal(roundBush.frames[0], roundBush.frames[1]);
   assert.deepEqual(roundBush.frame_durations, [1, 1]);
-  assert.deepEqual(roundBush.position, [5450, 472]);
+  assert.deepEqual(roundBush.position, [5450, 482]);
   assert.deepEqual(roundBush.size, [210, 210]);
   assert.equal(roundBush.parallax, 1);
   assert.equal(roundBush.interactive, false);

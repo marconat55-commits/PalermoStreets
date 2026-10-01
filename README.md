@@ -4,11 +4,29 @@ Questa cartella è il nuovo progetto **TypeScript + PixiJS v8** derivato dalla b
 
 L'obiettivo non è infilare Python dentro il browser: il runtime è stato riscritto come progetto web moderno e data-driven, conservando gli asset e le regole di gioco già costruite.
 
+## Riprendere il progetto su un nuovo PC
+
+La copia ufficiale aggiornata è su GitHub:
+
+- repository: `https://github.com/marconat55-commits/PalermoStreets.git`
+- ramo di sviluppo: `crowdfunding-rebuild`
+
+Su un PC nuovo installa **Git** e **Node.js 22 LTS**, poi esegui in PowerShell:
+
+```powershell
+git clone --branch crowdfunding-rebuild --single-branch https://github.com/marconat55-commits/PalermoStreets.git
+Set-Location PalermoStreets
+npm.cmd ci
+npm.cmd run dev
+```
+
+Apri quindi `http://localhost:5173/`. Per lavorare con Visual Studio Code, apri la cartella `PalermoStreets` appena clonata. Le istruzioni complete sono in [APRI_SU_NUOVO_PC.md](APRI_SU_NUOVO_PC.md).
+
 ## Cosa è già migrato
 
 - risoluzione logica 1280x720 e letterbox 16:9;
 - schermata titolo e selezione personaggio arcade con Marco più tre slot roster vuoti;
-- 4 moduli a scorrimento dello Stage 1 ZEN e relativi fondali;
+- 3 moduli a scorrimento dello Stage 1 ZEN e relativi fondali;
 - Marco e Talebano;
 - caricamento profili personaggio JSON;
 - animazioni con durate per-frame e facing;

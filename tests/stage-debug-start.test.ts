@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { resolveStartModuleIndex } from '../src/game/stage/debugStart.ts';
+import { resolveStartModuleIndex, shouldShowStageSelect } from '../src/game/stage/debugStart.ts';
 import type { ModuleData } from '../src/game/types.ts';
 
 const modules = ['M01', 'M02', 'M03', 'M04'].map((id) => ({ id })) as ModuleData[];
@@ -19,4 +19,13 @@ test('missing or invalid shortcuts preserve the normal campaign start', () => {
   assert.equal(resolveStartModuleIndex('', modules), 0);
   assert.equal(resolveStartModuleIndex('?module=M99', modules), 0);
   assert.equal(resolveStartModuleIndex('?module=0', modules), 0);
+});
+
+test('stage selector is opt-in and accepts common explicit false values', () => {
+  assert.equal(shouldShowStageSelect('?stageSelect=1'), true);
+  assert.equal(shouldShowStageSelect('?stageSelect'), true);
+  assert.equal(shouldShowStageSelect('?stageSelect=true'), true);
+  assert.equal(shouldShowStageSelect(''), false);
+  assert.equal(shouldShowStageSelect('?stageSelect=0'), false);
+  assert.equal(shouldShowStageSelect('?stageSelect=false'), false);
 });

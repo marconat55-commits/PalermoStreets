@@ -5,11 +5,12 @@ import { getStageEntry, loadCharacterFrameMeta, loadCharacterIndex, loadCharacte
 import { AssetCatalog } from './assets/AssetCatalog';
 import { TitleScene } from './scenes/TitleScene';
 import { CharacterSelectScene } from './scenes/CharacterSelectScene';
+import { StageSelectScene } from './scenes/StageSelectScene';
 import { StageScene } from './scenes/StageScene';
 import type { Scene } from './scenes/Scene';
 import type { CharacterProfile, RuntimeStageEntry, StageData } from './types';
 import { publicUrl } from './data/paths';
-import { resolveStartModuleIndex } from './stage/debugStart';
+import { resolveStartModuleIndex, shouldShowStageSelect } from './stage/debugStart';
 import { collectModulePrimaryItemAssets } from './stage/moduleItems';
 import { collectAmbientAssets } from './stage/ambientAssets';
 
@@ -19,6 +20,7 @@ export class Game {
   private scene: Scene | null = null;
   private titleScene: TitleScene | null = null;
   private characterSelectScene: CharacterSelectScene | null = null;
+  private stageSelectScene: StageSelectScene | null = null;
   private catalog!: AssetCatalog;
   private stageData!: StageData;
   private stageEntry!: RuntimeStageEntry;
@@ -36,6 +38,8 @@ export class Game {
   private selectionCachedCharacterId: string | null = null;
   private playerProfiles: Array<Pick<CharacterProfile, 'id' | 'display_name' | 'selection'>> = [];
   private startModuleIndex = 0;
+  private stageSelectionEnabled = false;
+  private selectedPlayerId: string | null = null;
 
   async init(host: HTMLElement): Promise<void> {
     await this.app.init({
@@ -62,6 +66,7 @@ export class Game {
     this.stageEntry = getStageEntry(runtime);
     this.stageData = await loadStage(this.stageEntry);
     this.startModuleIndex = resolveStartModuleIndex(window.location.search, this.stageData.modules);
+    this.stageSelectionEnabled = shouldShowStageSelect(window.location.search);
     this.titleBackground = titleBackground;
     this.defaultPlayerId = index.default_player;
     this.defaultEnemyId = index.default_enemy;
@@ -95,7 +100,14 @@ export class Game {
 
     this.scene?.update(dt, this.input);
     if (this.titleScene?.startRequested) void this.showCharacterSelect();
-    if (this.characterSelectScene?.confirmRequested) void this.startStage();
+    if (this.characterSelectScene?.confirmRequested && this.scene === this.characterSelectScene) {
+      this.selectedPlayerId = this.characterSelectScene.selectedCharacterId;
+      if (this.stageSelectionEnabled) this.showStageSelect();
+      else void this.startStage();
+    }
+    if (this.stageSelectScene?.confirmRequested && this.scene === this.stageSelectScene) {
+      this.confirmStageSelection();
+    }
   }
 
   private showTitle(): void {
@@ -110,6 +122,8 @@ export class Game {
     this.app.stage.removeChildren();
     this.titleScene = new TitleScene(this.titleBackground);
     this.characterSelectScene = null;
+    this.stageSelectScene = null;
+    this.selectedPlayerId = null;
     this.scene = this.titleScene;
     this.app.stage.addChild(this.titleScene.root);
     // The default fighter is normally confirmed within a few seconds. Loading
@@ -138,6 +152,7 @@ export class Game {
       this.app.stage.removeChildren();
       this.titleScene = null;
       this.characterSelectScene = selection;
+      this.stageSelectScene = null;
       this.scene = selection;
       this.app.stage.addChild(selection.root);
       this.updateInitialStageLoadProgress();
@@ -150,11 +165,40 @@ export class Game {
     }
   }
 
+  private showStageSelect(): void {
+    const characterSelection = this.characterSelectScene;
+    if (!characterSelection || this.scene !== characterSelection) return;
+    characterSelection.confirmRequested = false;
+    this.selectedPlayerId = characterSelection.selectedCharacterId;
+    const stageSelection = new StageSelectScene(this.titleBackground, this.stageData.modules, this.startModuleIndex);
+    characterSelection.destroy();
+    this.app.stage.removeChildren();
+    this.characterSelectScene = null;
+    this.stageSelectScene = stageSelection;
+    this.scene = stageSelection;
+    this.app.stage.addChild(stageSelection.root);
+    this.updateInitialStageLoadProgress();
+  }
+
+  private confirmStageSelection(): void {
+    const selection = this.stageSelectScene;
+    if (!selection || this.scene !== selection || this.startingStage) return;
+    selection.confirmRequested = false;
+    const nextModuleIndex = selection.selectedModuleIndex;
+    if (nextModuleIndex !== this.startModuleIndex) {
+      this.startModuleIndex = nextModuleIndex;
+      this.initialStagePreload = null;
+      this.initialStageLoadCompleted = 0;
+      this.initialStageLoadTotal = 0;
+    }
+    void this.startStage();
+  }
+
   private async startStage(): Promise<void> {
-    if (!this.characterSelectScene || this.startingStage) return;
+    const selection = this.stageSelectScene ?? this.characterSelectScene;
+    const playerId = this.selectedPlayerId ?? this.characterSelectScene?.selectedCharacterId;
+    if (!selection || !playerId || this.scene !== selection || this.startingStage) return;
     this.startingStage = true;
-    const selection = this.characterSelectScene;
-    const playerId = selection.selectedCharacterId;
     let finishCreation!: () => void;
     this.stageCreation = new Promise<void>((resolve) => { finishCreation = resolve; });
     this.selectedPlayerLoaded = false;
@@ -164,12 +208,12 @@ export class Game {
       await Promise.all([
         this.preloadInitialStage(),
         this.catalog.ensureCharacter(playerId).then(() => {
-          if (this.characterSelectScene !== selection) return;
+          if (this.scene !== selection) return;
           this.selectedPlayerLoaded = true;
           this.updateInitialStageLoadProgress();
         }),
       ]);
-      if (this.characterSelectScene !== selection) return;
+      if (this.scene !== selection) return;
       this.transferSelectionCharacter(playerId);
       const stage = await StageScene.create(
         this.catalog,
@@ -179,7 +223,7 @@ export class Game {
         this.defaultEnemyId,
         this.startModuleIndex,
       );
-      if (this.characterSelectScene !== selection) {
+      if (this.scene !== selection) {
         stage.destroy();
         this.initialStagePreload = null;
         this.initialStageLoadCompleted = 0;
@@ -189,11 +233,13 @@ export class Game {
       selection.destroy();
       this.app.stage.removeChildren();
       this.characterSelectScene = null;
+      this.stageSelectScene = null;
+      this.selectedPlayerId = null;
       this.scene = stage;
       this.app.stage.addChild(stage.root);
     } catch (error) {
       console.error('Avvio stage fallito', error);
-      if (this.characterSelectScene !== selection) return;
+      if (this.scene !== selection) return;
       this.startingStage = false;
       selection.confirmRequested = false;
       selection.setLoading(false);
@@ -209,6 +255,7 @@ export class Game {
       ? completed / total
       : 0;
     this.characterSelectScene?.setLoadingProgress(progress);
+    this.stageSelectScene?.setLoadingProgress(progress);
   }
 
   private requestSelectionCharacter(id: string): void {

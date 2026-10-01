@@ -16,3 +16,10 @@ export function resolveStartModuleIndex(search: string, modules: ModuleData[]): 
   const index = modules.findIndex((module) => module.id.toLocaleUpperCase('en-US') === normalized);
   return index >= 0 ? index : 0;
 }
+
+/** Enables the optional module picker without changing the normal campaign flow. */
+export function shouldShowStageSelect(search: string): boolean {
+  const value = new URLSearchParams(search).get('stageSelect');
+  if (value === null) return false;
+  return !['0', 'false', 'off', 'no'].includes(value.trim().toLocaleLowerCase('en-US'));
+}

@@ -22,6 +22,11 @@ npm.cmd run dev
 
 Apri quindi `http://localhost:5173/`. Per lavorare con Visual Studio Code, apri la cartella `PalermoStreets` appena clonata. Le istruzioni complete sono in [APRI_SU_NUOVO_PC.md](APRI_SU_NUOVO_PC.md).
 
+Per velocizzare i test puoi usare:
+
+- `http://localhost:5173/?stageSelect=1` per scegliere M01, M02 o M03 dopo il personaggio;
+- `http://localhost:5173/?module=M01`, `?module=M02` o `?module=M03` per partire direttamente dal modulo indicato dopo la normale selezione del personaggio.
+
 ## Cosa è già migrato
 
 - risoluzione logica 1280x720 e letterbox 16:9;

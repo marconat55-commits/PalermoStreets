@@ -804,41 +804,80 @@
       ],
       "ambient": [
         {
-          "id": "m03_ragazzo_telefono",
+          "id": "m03_franco_gioia",
           "kind": "sprite_loop",
           "frames": [
-            "assets/ambient/stage1_zen/M03/ragazzo_telefono/idle_01.png",
-            "assets/ambient/stage1_zen/M03/ragazzo_telefono/idle_02.png",
-            "assets/ambient/stage1_zen/M03/ragazzo_telefono/idle_03.png",
-            "assets/ambient/stage1_zen/M03/ragazzo_telefono/idle_04.png"
+            "assets/ambient/stage1_zen/M01/franco_gioia/idle_01.png",
+            "assets/ambient/stage1_zen/M01/franco_gioia/idle_02.png"
           ],
           "position": [
-            780,
-            450
+            820,
+            452
           ],
           "size": [
-            57,
-            148
+            152,
+            152
           ],
           "anchor": [
             0.5,
             1
           ],
           "frame_durations": [
-            1,
-            0.8,
-            0.8,
-            1
+            1.55,
+            0.8
           ],
           "parallax": 1,
           "shadow": {
-            "width": 36,
-            "height": 5,
+            "width": 64,
+            "height": 12,
             "offset": [
               0,
-              -1
+              -2
             ],
-            "alpha": 0.18
+            "alpha": 0.22
+          },
+          "interactive": false
+        },
+        {
+          "id": "m03_duracell",
+          "kind": "sprite_loop",
+          "frames": [
+            "assets/ambient/stage1_zen/M01/duracell/idle_01.png",
+            "assets/ambient/stage1_zen/M01/duracell/idle_02.png"
+          ],
+          "position": [
+            720,
+            447
+          ],
+          "size": [
+            145,
+            145
+          ],
+          "anchor": [
+            0.5,
+            1
+          ],
+          "frame_durations": [
+            1.75,
+            0.75
+          ],
+          "hidden_regions": [
+            [
+              82,
+              5,
+              11,
+              15
+            ]
+          ],
+          "parallax": 1,
+          "shadow": {
+            "width": 62,
+            "height": 11,
+            "offset": [
+              0,
+              -2
+            ],
+            "alpha": 0.22
           },
           "interactive": false
         },
@@ -854,8 +893,8 @@
             458
           ],
           "size": [
-            252,
-            315
+            290,
+            362
           ],
           "anchor": [
             0.5,
@@ -864,6 +903,32 @@
           "frame_durations": [
             1,
             1
+          ],
+          "parallax": 1,
+          "interactive": false
+        },
+        {
+          "id": "m03_prop_cassetta_birre_tree_left",
+          "kind": "sprite_loop",
+          "frames": [
+            "assets/ambient/stage1_zen/M02/static_props/cassetta_birre.png",
+            "assets/ambient/stage1_zen/M02/static_props/cassetta_birre.png"
+          ],
+          "position": [
+            1010,
+            466
+          ],
+          "size": [
+            76,
+            76
+          ],
+          "anchor": [
+            0.5,
+            1
+          ],
+          "frame_durations": [
+            60,
+            60
           ],
           "parallax": 1,
           "interactive": false

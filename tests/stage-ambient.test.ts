@@ -94,31 +94,50 @@ test('M03 copre i quattro raccordi e arricchisce il fondo con props statici prop
   assert.ok(m03);
   const loops = (m03.ambient ?? []).filter((actor): actor is SpriteLoopSpec => actor.kind === 'sprite_loop');
   assert.deepEqual(loops.map((loop) => loop.id), [
-    'm03_ragazzo_telefono',
+    'm03_franco_gioia',
+    'm03_duracell',
     'm03_large_tree_seam_01',
+    'm03_prop_cassetta_birre_tree_left',
     'm03_bush_wide_gold_seam_02_03',
     'm03_bush_tall_grass_seam_03_04',
     'm03_road_sign_seam_04_05',
     'm03_bush_round_end',
   ]);
-  const phoneBoy = loops[0]!;
-  assert.equal(phoneBoy.frames.length, 4);
-  assert.deepEqual(phoneBoy.frame_durations, [1, 0.8, 0.8, 1]);
-  assert.deepEqual(phoneBoy.position, [780, 450]);
-  assert.deepEqual(phoneBoy.size, [57, 148]);
-  assert.equal(phoneBoy.parallax, 1);
-  assert.equal(phoneBoy.interactive, false);
-  for (const frame of phoneBoy.frames) assert.ok(fs.existsSync(`public/${frame}`), `missing ${frame}`);
-  const tree = loops[1]!;
+  const franco = loops[0]!;
+  assert.equal(franco.frames.length, 2);
+  assert.deepEqual(franco.frame_durations, [1.55, 0.8]);
+  assert.deepEqual(franco.position, [820, 452]);
+  assert.deepEqual(franco.size, [152, 152]);
+  assert.deepEqual(franco.shadow, { width: 64, height: 12, offset: [0, -2], alpha: 0.22 });
+  assert.equal(franco.speech, undefined);
+  assert.equal(franco.parallax, 1);
+  assert.equal(franco.interactive, false);
+  for (const frame of franco.frames) assert.ok(fs.existsSync(`public/${frame}`), `missing ${frame}`);
+  const duracell = loops[1]!;
+  assert.equal(duracell.frames.length, 2);
+  assert.deepEqual(duracell.frame_durations, [1.75, 0.75]);
+  assert.deepEqual(duracell.position, [720, 447]);
+  assert.deepEqual(duracell.size, [145, 145]);
+  assert.deepEqual(duracell.shadow, { width: 62, height: 11, offset: [0, -2], alpha: 0.22 });
+  assert.deepEqual(duracell.hidden_regions, [[82, 5, 11, 15]]);
+  assert.equal(duracell.parallax, 1);
+  assert.equal(duracell.interactive, false);
+  for (const frame of duracell.frames) assert.ok(fs.existsSync(`public/${frame}`), `missing ${frame}`);
+  const tree = loops[2]!;
   assert.equal(tree.frames.length, 2);
   assert.equal(tree.frames[0], tree.frames[1]);
   assert.deepEqual(tree.frame_durations, [1, 1]);
   assert.deepEqual(tree.position, [1095, 458]);
-  assert.deepEqual(tree.size, [252, 315]);
+  assert.deepEqual(tree.size, [290, 362]);
   assert.equal(tree.parallax, 1);
   assert.equal(tree.interactive, false);
   for (const frame of tree.frames) assert.ok(fs.existsSync(`public/${frame}`), `missing ${frame}`);
-  const bush = loops[2]!;
+  const leftCrate = loops[3]!;
+  assert.deepEqual(leftCrate.position, [1010, 466]);
+  assert.deepEqual(leftCrate.size, [76, 76]);
+  assert.equal(leftCrate.frames[0], leftCrate.frames[1]);
+  assert.equal(leftCrate.interactive, false);
+  const bush = loops[4]!;
   assert.equal(bush.frames.length, 2);
   assert.equal(bush.frames[0], bush.frames[1]);
   assert.deepEqual(bush.frame_durations, [1, 1]);
@@ -127,7 +146,7 @@ test('M03 copre i quattro raccordi e arricchisce il fondo con props statici prop
   assert.equal(bush.parallax, 1);
   assert.equal(bush.interactive, false);
   for (const frame of bush.frames) assert.ok(fs.existsSync(`public/${frame}`), `missing ${frame}`);
-  const tallBush = loops[3]!;
+  const tallBush = loops[5]!;
   assert.equal(tallBush.frames.length, 2);
   assert.equal(tallBush.frames[0], tallBush.frames[1]);
   assert.deepEqual(tallBush.frame_durations, [1, 1]);
@@ -136,7 +155,7 @@ test('M03 copre i quattro raccordi e arricchisce il fondo con props statici prop
   assert.equal(tallBush.parallax, 1);
   assert.equal(tallBush.interactive, false);
   for (const frame of tallBush.frames) assert.ok(fs.existsSync(`public/${frame}`), `missing ${frame}`);
-  const sign = loops[4]!;
+  const sign = loops[6]!;
   assert.equal(sign.frames.length, 2);
   assert.equal(sign.frames[0], sign.frames[1]);
   assert.deepEqual(sign.frame_durations, [1, 1]);
@@ -145,7 +164,7 @@ test('M03 copre i quattro raccordi e arricchisce il fondo con props statici prop
   assert.equal(sign.parallax, 1);
   assert.equal(sign.interactive, false);
   for (const frame of sign.frames) assert.ok(fs.existsSync(`public/${frame}`), `missing ${frame}`);
-  const roundBush = loops[5]!;
+  const roundBush = loops[7]!;
   assert.equal(roundBush.frames.length, 2);
   assert.equal(roundBush.frames[0], roundBush.frames[1]);
   assert.deepEqual(roundBush.frame_durations, [1, 1]);
@@ -155,8 +174,10 @@ test('M03 copre i quattro raccordi e arricchisce il fondo con props statici prop
   assert.equal(roundBush.interactive, false);
   for (const frame of roundBush.frames) assert.ok(fs.existsSync(`public/${frame}`), `missing ${frame}`);
   assert.deepEqual(collectAmbientAssets(m03), [
-    ...phoneBoy.frames,
+    ...franco.frames,
+    ...duracell.frames,
     tree.frames[0],
+    leftCrate.frames[0],
     bush.frames[0],
     tallBush.frames[0],
     sign.frames[0],

@@ -37,7 +37,9 @@ if (active.stdout.trim() !== branch) {
   process.exit(1);
 }
 
-const fetched = git(['fetch', 'origin', branch]);
+// Large art updates can take longer than the normal lightweight Git checks.
+// Let the first sync finish instead of launching an outdated local stage.
+const fetched = git(['fetch', 'origin', branch], 60000);
 if (fetched.status !== 0) {
   console.warn('GitHub non raggiungibile: avvio la versione locale già disponibile.');
   process.exit(0);
@@ -58,7 +60,7 @@ if (ahead > 0) {
   process.exit(1);
 }
 
-const updated = git(['merge', '--ff-only', `origin/${branch}`], 30000);
+const updated = git(['merge', '--ff-only', `origin/${branch}`], 60000);
 if (updated.status !== 0) {
   console.error('Aggiornamento fermato per conservare le modifiche locali. Controlla git status.');
   console.error(updated.stderr.trim() || updated.stdout.trim());

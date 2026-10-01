@@ -94,6 +94,13 @@ test('M02 è lungo quattro schermate e usa il piano pavimentato approvato', () =
   assert.equal(m02.world_width, 2 * stage.modules[0]!.world_width);
 });
 
+test('M03 estende la walkline di dieci pixel verso il fondo', () => {
+  const m03 = stage.modules.find((module) => module.id === 'M03');
+  assert.ok(m03);
+  assert.deepEqual(m03.playfield_y, [640, 705]);
+  assert.deepEqual(m03.walk_top, [[0, 640], [5869, 640]]);
+});
+
 test('i moduli giocabili usano gli sfondi approvati; gli altri sono archiviati', () => {
   const approved = stage.modules.filter((module) => module.art_status === 'approved');
   assert.deepEqual(approved.map((module) => module.id), ['M01', 'M02', 'M03']);

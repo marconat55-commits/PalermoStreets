@@ -779,17 +779,17 @@
         4589
       ],
       "playfield_y": [
-        650,
+        640,
         705
       ],
       "walk_top": [
         [
           0,
-          650
+          640
         ],
         [
           5869,
-          650
+          640
         ]
       ],
       "walk_bottom": [
@@ -803,6 +803,45 @@
         ]
       ],
       "ambient": [
+        {
+          "id": "m03_ragazzo_telefono",
+          "kind": "sprite_loop",
+          "frames": [
+            "assets/ambient/stage1_zen/M03/ragazzo_telefono/idle_01.png",
+            "assets/ambient/stage1_zen/M03/ragazzo_telefono/idle_02.png",
+            "assets/ambient/stage1_zen/M03/ragazzo_telefono/idle_03.png",
+            "assets/ambient/stage1_zen/M03/ragazzo_telefono/idle_04.png"
+          ],
+          "position": [
+            780,
+            450
+          ],
+          "size": [
+            57,
+            148
+          ],
+          "anchor": [
+            0.5,
+            1
+          ],
+          "frame_durations": [
+            1,
+            0.8,
+            0.8,
+            1
+          ],
+          "parallax": 1,
+          "shadow": {
+            "width": 36,
+            "height": 5,
+            "offset": [
+              0,
+              -1
+            ],
+            "alpha": 0.18
+          },
+          "interactive": false
+        },
         {
           "id": "m03_large_tree_seam_01",
           "kind": "sprite_loop",

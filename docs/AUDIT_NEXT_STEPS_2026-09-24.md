@@ -10,13 +10,14 @@ Restano da verificare e correggere separatamente invalidazione del preload dopo 
 
 ## Inventario e revisione indipendente delle pose
 
-- Master approvati di identità: `art_source/stage1_zen/approved_bundle_2026_09_06/transparent/CHARACTERS/BARBACCIA/` e `PINO_U_PIZZETTU/` (frontale, tre quarti, ritratto).
-- Candidati realistici: `art_source/stage1_zen/enemy_motion_pilots_2026_09_20/`; Barbaccia quattro pose normalizzate, Pino fogli V1/V2 di quattro pose.
-- Esperimento arcade: `art_source/stage1_zen/barbaccia_arcade_v1/`, 4 idle + 6 walk + 3 attacco. Stato art_review_only.
+- Master canonico di Barbaccia: `art_source/stage1_zen/barbaccia_hd_master/BARBACCIA_HD_USER_MASTER.png`, scelto esplicitamente dall'utente. Le vecchie viste frontale e tre quarti sono solo riferimenti anatomici supplementari.
+- Pilot HD di Barbaccia: quattro pose normalizzate in `art_source/stage1_zen/barbaccia_hd_master/walk_frames_v1/`, ancora `art_review_only`.
+- La variante arcade a bassa qualità è stata rimossa dal repository corrente; resta recuperabile nella cronologia Git e non deve essere riutilizzata.
+- Candidati di Pino: `art_source/stage1_zen/enemy_motion_pilots_2026_09_20/`, fogli V1/V2 di quattro pose.
 
-Test dedicato con decoder del validatore PNG: 13/13 frame arcade 640x420, limite inferiore alpha Y=400, 13 hash pixel diversi. Il validatore runtime standard non include automaticamente art_source.
+L'audit riproducibile `scripts/audit-barbaccia-hd.py` verifica i quattro frame HD 640x420 e la baseline Y=400. Il validatore runtime standard non include automaticamente `art_source`.
 
-Problemi visivi: pass_right/pass_left mostrano la stessa gamba col braccialetto avanti; serve correggere alternanza. Attacco alto 303–304 px contro idle 312–318 px: verificare raccordo senza variazione apparente del corpo. Centroide X anticipation/contact/recovery 322/314/331: controllare appoggi e spostamento al recupero. Pino V2 ha frangia blu e non ha una camminata completa. Nessun pacchetto completo danno/caduta/rialzata trovato per entrambi nel repository.
+Problemi visivi ancora aperti: le quattro pose HD cambiano la postura delle mani e vanno valutate in movimento prima dell'approvazione. Pino V2 ha frangia blu e non ha una camminata completa. Nessun pacchetto completo danno/caduta/rialzata trovato per entrambi nel repository.
 
 ## Altre chat consultate
 
@@ -26,7 +27,7 @@ Problemi visivi: pass_right/pass_left mostrano la stessa gamba col braccialetto 
 
 1. Misurare selezione rapida e secondo avvio nel browser; completare gestione cancellazione/riavvio e separare caricamento da presentazione.
 2. Consolidare gli asset recuperati: identità approvata, stile candidato e animazione validata sono stati diversi.
-3. Correggere walk di Barbaccia e provare idle → walk → attack → idle, entrambi i facing, velocità normale/rallentata.
+3. Valutare il pilot HD di Barbaccia in entrambi i facing, a velocità normale e rallentata; produrre idle e attacco soltanto dal master HD.
 4. Completare Barbaccia: attacco pesante, hit, caduta/rialzata con seam pixel-identica; morte compatibile.
 5. Pulire Pino/Pizzetto e completare walk, attacco, scarto, hit, caduta/rialzata nello stile scelto.
 6. Importare atlas/metadati e provare combattimento reale; solo dopo regolare ondate e proseguire i moduli ZEN.

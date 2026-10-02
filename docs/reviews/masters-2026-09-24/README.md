@@ -1,12 +1,12 @@
 # Revisione master — 24 settembre 2026
 
-Aprire index.html: 99 immagini, 16 identità originali/NPC e 3 reference MUGEN. Le miniature non rappresentano le scale nel gioco. Cliccare per vedere le sorgenti.
+Aprire index.html: 98 immagini, 16 identità originali/NPC e 3 reference MUGEN. Le miniature non rappresentano le scale nel gioco. Cliccare per vedere le sorgenti.
 
 ## Decisioni confermate
 
 - Marco, Merco e Pino U Pizzettu sono tre personaggi distinti, confermati dall'utente: non unificarli come cloni.
 - Rimosso il personaggio col motorino su richiesta esplicita: entrambe le sorgenti, manifest e anteprime. Nessun altro personaggio eliminato.
-- Barbaccia M013 è il master HD scelto il 24/09. M005 è la direzione arcade superata; M006 è un pilot non approvato come ciclo.
+- Barbaccia M013 è il master HD scelto il 24/09 e resta l'unico master canonico. La direzione arcade M005 è stata eliminata dal repository corrente; M006 è un pilot storico non approvato come ciclo.
 
 ## Da verificare insieme
 

@@ -8,15 +8,11 @@ Cinque regressioni automatiche verificano cancellazione in attesa, cancellazione
 
 ## 2 — Inventario locale
 
-`scripts/audit-enemy-pilots.py` produce `art_source/stage1_zen/enemy_pose_audit.json`: hash sorgenti, dimensioni, alpha bounds e unicità dei 13 frame arcade. Richiede Pillow. L'inventario locale è riproducibile; ricerca nelle altre chat ancora non esaustiva. I master di identità non equivalgono a clip animati approvati.
+`scripts/audit-barbaccia-hd.py` produce `art_source/stage1_zen/barbaccia_hd_pose_audit.json`: hash del master canonico, dimensioni, alpha bounds e unicità dei quattro frame del pilot HD. Richiede Pillow. Il master di identità non equivale a un ciclo animato approvato.
 
 ## 3 — Camminata Barbaccia, in lavorazione
 
-`WALK_OPPOSITE_STEP_REJECTED.png`: prova scartata; sposta il braccialetto senza risolvere sufficientemente la fase del passo. Nessuna registrazione runtime.
-
-`WALK_PASS_SUPPORT_NEAR_V2.png`: nuovo candidato con gamba vicina/braccialetto piantata e gamba lontana sollevata, ginocchia ravvicinate. Normalizzato in `walk_candidates_v2/pass_support_near.png` con tela 640x420 e baseline Y=400. Va accoppiato con la fase opposta e verificato in loop; non è un ciclo approvato.
-
-Generato con ImageGen built-in. Specifica: conservare identità, torso e stile del frame pass_left; gamba col monitor verticale in appoggio, altra gamba piegata con tallone dietro il polpaccio; sfondo trasparente. Il foglio V1 e i frame precedenti restano disponibili per confronto.
+`BARBACCIA_HD_USER_MASTER.png` è l'unica identità canonica. I quattro frame in `barbaccia_hd_master/walk_frames_v1/` rispettano tela 640x420 e baseline Y=400, ma restano `art_review_only`: vanno verificati in loop perché le mani cambiano postura rispetto al master. La variante arcade semplificata è stata eliminata dal repository corrente.
 
 ## 4–6 — Da eseguire dopo il gate di movimento
 

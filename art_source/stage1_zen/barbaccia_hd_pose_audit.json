@@ -1,0 +1,80 @@
+{
+  "schema": 2,
+  "character": "barbaccia",
+  "canonical_identity_master": "art_source/stage1_zen/barbaccia_hd_master/BARBACCIA_HD_USER_MASTER.png",
+  "canonical_master_size": [
+    1548,
+    1016
+  ],
+  "canonical_master_sha256": "60cfff8149c1645e9379237420d98e6c75cf0baf975786be581c25f4c384419b",
+  "style_reference": [
+    "art_source/characters/marco/MARCO_MASTER_APPROVED.png",
+    "art_source/characters/merco/approved/MERCO_MASTER_APPROVED_CHROMA.png"
+  ],
+  "walk_frames": [
+    {
+      "path": "art_source/stage1_zen/barbaccia_hd_master/walk_frames_v1/01_contact_right.png",
+      "size": [
+        640,
+        420
+      ],
+      "alpha_bounds": [
+        170,
+        84,
+        470,
+        400
+      ],
+      "pixel_sha256": "dc09c9cdbb69c363f6f81e62ff2f6a5528409f5faca8f2489b19e8a1ae0b6f64"
+    },
+    {
+      "path": "art_source/stage1_zen/barbaccia_hd_master/walk_frames_v1/02_pass_left.png",
+      "size": [
+        640,
+        420
+      ],
+      "alpha_bounds": [
+        192,
+        84,
+        448,
+        400
+      ],
+      "pixel_sha256": "271507ca5f433b3f276699a52ee8cc6935a412800704368c1b41b2439a0e0333"
+    },
+    {
+      "path": "art_source/stage1_zen/barbaccia_hd_master/walk_frames_v1/03_contact_left.png",
+      "size": [
+        640,
+        420
+      ],
+      "alpha_bounds": [
+        161,
+        84,
+        479,
+        400
+      ],
+      "pixel_sha256": "f28afe247e8b574b3fda3b92f531840cb47fba400fe7945ef4b7e588b9b4abb5"
+    },
+    {
+      "path": "art_source/stage1_zen/barbaccia_hd_master/walk_frames_v1/04_pass_right.png",
+      "size": [
+        640,
+        420
+      ],
+      "alpha_bounds": [
+        200,
+        84,
+        439,
+        400
+      ],
+      "pixel_sha256": "dbd468d386bf02e191b34bf2538875967adac5f4f4e2e418c6e1e84fd7c2df12"
+    }
+  ],
+  "format_errors": [],
+  "unique_pixel_frames": 4,
+  "motion_approved": false,
+  "visual_findings": [
+    "Il master HD scelto dall'utente e' l'unico riferimento canonico di identita.",
+    "Le quattro pose di camminata restano art_review_only e richiedono verifica in movimento.",
+    "Le viste frontale e tre quarti storiche servono solo come supporto anatomico."
+  ]
+}

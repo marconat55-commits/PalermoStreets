@@ -4,7 +4,7 @@ Il riferimento per le prossime prove è esattamente `BARBACCIA_HD_USER_MASTER.pn
 
 Posa: passo verso destra, mani aperte, barba lunga, canottiera bianca, pantaloncini scuri, gioielli e sandali; monitor sulla caviglia della gamba arretrata. Conservare qualità illustrata dettagliata, volto, corporatura, abiti e proporzioni.
 
-Questa scelta sostituisce la direzione arcade semplificata per le nuove prove di Barbaccia. I vecchi esperimenti restano archiviati e non costituiscono approvazione delle animazioni. Il file è un riferimento artistico, non un frame runtime pronto né un ciclo completo approvato.
+Questa è l'unica identità master canonica di Barbaccia. La direzione arcade semplificata è stata rimossa dal repository corrente perché aveva qualità e stile incompatibili con i master di Marco e Merco; rimane recuperabile nella cronologia Git. Le viste frontale e tre quarti del vecchio bundle sono soltanto riferimenti anatomici supplementari della stessa identità. Il file HD è un riferimento artistico, non un frame runtime pronto né un ciclo completo approvato.
 
 ## Walk pilot HD v1
 

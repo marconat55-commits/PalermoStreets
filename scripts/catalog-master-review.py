@@ -30,8 +30,7 @@ if (pose_review/'manifest.json').exists():
 for p in sorted((ROOT/'art_source/stage1_zen/approved_bundle_2026_09_06').rglob('*.png')):
     if 'CHARACTERS' in p.parts:
         add(p, p.parent.name.lower(), 'Bundle denominato approved 06/09; versione da confrontare', 'identità')
-add(ROOT/'art_source/stage1_zen/barbaccia_hd_master/BARBACCIA_HD_USER_MASTER.png', 'barbaccia', 'CONFERMATO: scelta esplicita utente 24/09, riferimento corrente', 'identità')
-add(ROOT/'art_source/stage1_zen/barbaccia_arcade_v1/BARBACCIA_ARCADE_MASTER_GUARD_V1.png', 'barbaccia', 'SUPERATO: direzione arcade scartata dall’utente', 'esperimento')
+add(ROOT/'art_source/stage1_zen/barbaccia_hd_master/BARBACCIA_HD_USER_MASTER.png', 'barbaccia', 'CONFERMATO: scelta esplicita utente 24/09, unico master canonico', 'identità')
 for p in sorted((ROOT/'art_source/stage1_zen/enemy_motion_pilots_2026_09_20').glob('*.png')):
     add(p, 'barbaccia' if 'BARBACCIA' in p.name else 'pino_u_pizzettu', 'Pilot sperimentale: ciclo non approvato', 'esperimento')
 for profile in sorted((ROOT/'public/data/characters').glob('*.json')):
@@ -66,10 +65,10 @@ for old in previous['items']:
     if old['id'] not in active_ids:
         (OUT/'thumbs'/f"{old['id']}.jpg").unlink(missing_ok=True)
 pixel_duplicates = [v for v in pixels.values() if len(v)>1]
-(OUT/'inventory.json').write_text(json.dumps(dict(scope='Repository corrente; non include allegati remoti non importati. Nessuna cancellazione.',items=items,byte_duplicates=duplicates,pixel_duplicates=pixel_duplicates),ensure_ascii=False,indent=2),encoding='utf-8')
+(OUT/'inventory.json').write_text(json.dumps(dict(scope='Repository corrente; non include allegati remoti non importati.',items=items,byte_duplicates=duplicates,pixel_duplicates=pixel_duplicates),ensure_ascii=False,indent=2),encoding='utf-8')
 groups = defaultdict(list)
 for row in items: groups[row['character']].append(row)
-parts = ['<!doctype html><meta charset="utf-8"><title>Palermo Streets — revisione master</title><style>body{background:#171c25;color:#edf0f6;font:16px system-ui;margin:28px}h2{margin-top:48px}.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:15px}article{background:#252e3b;padding:14px;border-radius:8px}img{width:100%;height:260px;object-fit:contain}small{overflow-wrap:anywhere}a{color:#85d7ff}.status{color:#ffe093}</style><h1>Revisione master — Palermo Streets</h1><p>Ogni codice identifica un file preciso. Nessun file eliminato. Originale e trasparente possono essere versioni di lavorazione legittime. I campioni runtime non sono master approvati. Ambito: file presenti nel repository.</p><p>Barbaccia: il master HD scelto il 24/09 prevale sulla versione arcade. Le altre approvazioni riportano la provenienza documentale e richiedono confronto visivo.</p>']
+parts = ['<!doctype html><meta charset="utf-8"><title>Palermo Streets — revisione master</title><style>body{background:#171c25;color:#edf0f6;font:16px system-ui;margin:28px}h2{margin-top:48px}.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:15px}article{background:#252e3b;padding:14px;border-radius:8px}img{width:100%;height:260px;object-fit:contain}small{overflow-wrap:anywhere}a{color:#85d7ff}.status{color:#ffe093}</style><h1>Revisione master — Palermo Streets</h1><p>Ogni codice identifica un file preciso. Originale e trasparente possono essere versioni di lavorazione legittime. I campioni runtime non sono master approvati. Ambito: file presenti nel repository.</p><p>Barbaccia: il master HD scelto il 24/09 è l’unico riferimento canonico; la variante arcade a bassa qualità è stata rimossa.</p>']
 parts.append('<p>Duplicati byte-identici: '+html.escape(str(duplicates))+'</p>')
 parts.append('<p>Decisione utente: Marco, Merco e Pino U Pizzettu sono tre personaggi distinti; non vanno unificati come cloni.</p>')
 for name, rows in groups.items():

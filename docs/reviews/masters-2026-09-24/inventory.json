@@ -1,5 +1,5 @@
 {
-  "scope": "Repository corrente; non include allegati remoti non importati. Nessuna cancellazione.",
+  "scope": "Repository corrente; non include allegati remoti non importati.",
   "items": [
     {
       "path": "art_source/stage1_zen/characters_master/original/A_PUAICCA_MASTER.png",
@@ -52,19 +52,6 @@
         420
       ],
       "pixel_hash": "40d400100a409ee0d0f8b9e993063be5330219a5137b6127f0148da97ece1020"
-    },
-    {
-      "path": "art_source/stage1_zen/barbaccia_arcade_v1/BARBACCIA_ARCADE_MASTER_GUARD_V1.png",
-      "character": "barbaccia",
-      "status": "SUPERATO: direzione arcade scartata dall’utente",
-      "category": "esperimento",
-      "id": "M005",
-      "sha256": "05fb984a4eb053125cc4de6d4c20582330ba406ea699cb3633f8fb0d74e18e05",
-      "size": [
-        1182,
-        1330
-      ],
-      "pixel_hash": "034da2410179c9223fb5e0b3c65a1bdf34374ac64a5bb772188c4f3fbf4adf80"
     },
     {
       "path": "art_source/stage1_zen/enemy_motion_pilots_2026_09_20/BARBACCIA_GUARD_WALK_PILOT.png",
@@ -160,7 +147,7 @@
     {
       "path": "art_source/stage1_zen/barbaccia_hd_master/BARBACCIA_HD_USER_MASTER.png",
       "character": "barbaccia",
-      "status": "CONFERMATO: scelta esplicita utente 24/09, riferimento corrente",
+      "status": "CONFERMATO: scelta esplicita utente 24/09, unico master canonico",
       "category": "identità",
       "id": "M013",
       "sha256": "60cfff8149c1645e9379237420d98e6c75cf0baf975786be581c25f4c384419b",

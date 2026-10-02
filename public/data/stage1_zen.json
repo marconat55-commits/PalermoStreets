@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "build_scope": "stage1_zen_m01_m03_demo_v1",
+  "build_scope": "stage1_zen_m01_m04_demo_v1",
   "stage_name": "STAGE 1 — ZEN",
   "stage_subtitle": "LA BARBA È SACRA",
   "modules": [
@@ -1085,6 +1085,63 @@
         680
       ],
       "exit_x": 5799,
+      "heal": 16,
+      "items": [],
+      "waves": []
+    },
+    {
+      "id": "M04",
+      "name": "Porticato residenziale e atrio",
+      "art_status": "approved",
+      "reference_actor_height": 290,
+      "horizon_y": 305,
+      "background": "assets/backgrounds/stage1_zen/final_v1/M04/M04_MAIN.png",
+      "background_layers": [
+        {
+          "src": "assets/backgrounds/stage1_zen/final_v1/M04/M04_MAIN.png",
+          "parallax": 1,
+          "plane": "main",
+          "x": 0,
+          "y": 0,
+          "width": 3525,
+          "height": 720
+        }
+      ],
+      "world_width": 3525,
+      "camera_bounds": [
+        0,
+        2245
+      ],
+      "playfield_y": [
+        640,
+        705
+      ],
+      "walk_top": [
+        [
+          0,
+          640
+        ],
+        [
+          3525,
+          640
+        ]
+      ],
+      "walk_bottom": [
+        [
+          0,
+          705
+        ],
+        [
+          3525,
+          705
+        ]
+      ],
+      "ambient": [],
+      "entry": [
+        147,
+        680
+      ],
+      "exit_x": 3455,
       "heal": 16,
       "items": [],
       "waves": []

@@ -20,9 +20,11 @@ interface Module {
 const stage = JSON.parse(fs.readFileSync('public/data/stage1_zen.json', 'utf8')) as { modules: Module[] };
 
 test('i moduli Zen coprono la propria lunghezza e tengono gli spawn nella walk band', () => {
-  assert.deepEqual(stage.modules.map((module) => module.id), ['M01', 'M02', 'M03']);
+  assert.deepEqual(stage.modules.map((module) => module.id), ['M01', 'M02', 'M03', 'M04']);
+  const expectedWorldWidths: Record<string, number> = { M01: 2560, M02: 5120, M03: 5869, M04: 3525 };
   for (const module of stage.modules) {
-    const expectedWorldWidth = module.id === 'M01' ? 2560 : module.id === 'M02' ? 5120 : 5869;
+    const expectedWorldWidth = expectedWorldWidths[module.id];
+    assert.ok(expectedWorldWidth, `${module.id}: missing expected world width`);
     const expectedCameraMax = expectedWorldWidth - 1280;
     const [top, bottom] = module.playfield_y;
     assert.ok(top >= 390 && top < bottom && bottom <= 710, `${module.id}: invalid WALK envelope`);
@@ -40,7 +42,7 @@ test('i moduli Zen coprono la propria lunghezza e tengono gli spawn nella walk b
     }
     const far = module.background_layers.find((layer) => layer.plane === 'far');
     const main = module.background_layers.find((layer) => layer.plane === 'main');
-    assert.equal(far?.parallax, 0.22, `${module.id}: continuous Palermo skyline must use far parallax`);
+    if (far) assert.equal(far.parallax, 0.22, `${module.id}: continuous Palermo skyline must use far parallax`);
     if (module.id === 'M01') {
       for (const layer of module.background_layers) {
         assert.equal(layer.x, -269, 'M01: unexpected layer X');
@@ -58,7 +60,7 @@ test('i moduli Zen coprono la propria lunghezza e tengono gli spawn nella walk b
       assert.equal(main?.width, 5120);
       assert.equal(main?.src, 'assets/backgrounds/stage1_zen/final_v2/M02/M02_MAIN_LONG.png');
       assert.equal(far?.src, 'assets/backgrounds/stage1_zen/final_v1/M02/M02_FAR.png');
-    } else {
+    } else if (module.id === 'M03') {
       assert.equal(module.background_layers.length, 2);
       assert.ok(module.background_layers.every((layer) => layer.height === 720));
       const mainArt = module.background_layers.filter((layer) => layer.plane === 'main' && layer.src.includes('/M03_MAIN_'));
@@ -67,6 +69,12 @@ test('i moduli Zen coprono la propria lunghezza e tengono gli spawn nella walk b
       assert.equal(main?.src, 'assets/backgrounds/stage1_zen/final_v4/M03/M03_MAIN_FOREGROUND.png');
       assert.equal(far?.src, 'assets/backgrounds/stage1_zen/final_v4/M03/M03_SKY_FAR.png');
       assert.equal(far?.width, 5869);
+    } else {
+      assert.equal(module.background_layers.length, 1);
+      assert.equal(main?.src, 'assets/backgrounds/stage1_zen/final_v1/M04/M04_MAIN.png');
+      assert.equal(main?.width, 3525);
+      assert.equal(main?.height, 720);
+      assert.equal(far, undefined);
     }
   }
 });
@@ -101,10 +109,19 @@ test('M03 estende la walkline di dieci pixel verso il fondo', () => {
   assert.deepEqual(m03.walk_top, [[0, 640], [5869, 640]]);
 });
 
+test('M04 conduce dal porticato residenziale al vano scala', () => {
+  const m04 = stage.modules.find((module) => module.id === 'M04');
+  assert.ok(m04);
+  assert.equal(m04.world_width, 3525);
+  assert.deepEqual(m04.camera_bounds, [0, 2245]);
+  assert.deepEqual(m04.playfield_y, [640, 705]);
+  assert.deepEqual(m04.walk_top, [[0, 640], [3525, 640]]);
+});
+
 test('i moduli giocabili usano gli sfondi approvati; gli altri sono archiviati', () => {
   const approved = stage.modules.filter((module) => module.art_status === 'approved');
-  assert.deepEqual(approved.map((module) => module.id), ['M01', 'M02', 'M03']);
-  assert.deepEqual(approved.map((module) => module.horizon_y), [315, 300, 310]);
+  assert.deepEqual(approved.map((module) => module.id), ['M01', 'M02', 'M03', 'M04']);
+  assert.deepEqual(approved.map((module) => module.horizon_y), [315, 300, 310, 305]);
   for (const module of stage.modules) assert.equal(module.reference_actor_height, 290);
   const archived = JSON.parse(fs.readFileSync('art_source/stages/stage1_zen/stage1_zen_runtime_legacy_M01_M04_2026-09-26.json', 'utf8')) as { modules: Module[] };
   assert.deepEqual(archived.modules.map((module) => module.id), ['M01', 'M02', 'M03', 'M04']);

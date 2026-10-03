@@ -1,4 +1,4 @@
-import { Container, Graphics, Sprite, Text, type Texture } from 'pixi.js';
+import { BlurFilter, Container, Graphics, Sprite, Text, type Texture } from 'pixi.js';
 import type { AmbientActorData, SpriteLoopAmbientActorData, Vec2 } from '../types';
 import { ambientSpeechVisible, frameAtTime } from './ambientAssets';
 
@@ -84,6 +84,7 @@ export class StageAmbientLayer {
         const shadow = new Graphics()
           .ellipse(offset[0], offset[1], spec.shadow.width / 2, spec.shadow.height / 2)
           .fill({ color: 0x120b08, alpha: spec.shadow.alpha ?? 0.3 });
+        if (spec.shadow.blur) shadow.filters = [new BlurFilter({ strength: spec.shadow.blur, quality: 4 })];
         root.addChild(shadow);
       }
       if (spec.motion_window) {

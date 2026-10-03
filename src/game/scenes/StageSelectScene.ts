@@ -5,9 +5,9 @@ import type { Scene } from './Scene';
 
 const DISPLAY_FONT = 'Bangers, Impact, Arial Black, sans-serif';
 const UI_FONT = 'Arial Black, Arial, sans-serif';
-const CARD_WIDTH = 330;
+const CARD_WIDTH = 280;
 const CARD_HEIGHT = 270;
-const CARD_GAP = 34;
+const CARD_GAP = 24;
 
 function centeredText(text: string, style: TextStyle, x: number, y: number): Text {
   const value = new Text({ text, style });
@@ -16,7 +16,7 @@ function centeredText(text: string, style: TextStyle, x: number, y: number): Tex
   return value;
 }
 
-/** Optional test-only module picker shown after character selection. */
+/** Module picker shown after character selection. */
 export class StageSelectScene implements Scene {
   readonly root = new Container();
   confirmRequested = false;
@@ -56,7 +56,7 @@ export class StageSelectScene implements Scene {
       stroke: { color: 0x641000, width: 7 },
       letterSpacing: 4,
     }), 495, 57));
-    this.root.addChild(centeredText('ACCESSO RAPIDO PER I TEST', new TextStyle({
+    this.root.addChild(centeredText('STAGE 1 — ZEN', new TextStyle({
       fontFamily: UI_FONT,
       fontSize: 16,
       fontWeight: '900',

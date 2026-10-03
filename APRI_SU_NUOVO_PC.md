@@ -6,7 +6,7 @@ Il progetto ufficiale è qui:
 
 **https://github.com/marconat55-commits/PalermoStreets**
 
-Il ramo usato per lo sviluppo è **`crowdfunding-rebuild`**. Contiene il gioco PixiJS aggiornato, gli asset approvati e i moduli M01, M02 e M03.
+Il ramo usato per lo sviluppo è **`crowdfunding-rebuild`**. Contiene il gioco PixiJS aggiornato, gli asset approvati e i moduli M01, M02, M03 e M04.
 
 ## Prima preparazione
 
@@ -38,6 +38,8 @@ npm.cmd run dev
 ```
 
 Lo script di avvio controlla il ramo `crowdfunding-rebuild` e scarica automaticamente gli aggiornamenti pubblicati, senza sovrascrivere eventuali modifiche locali.
+
+Apri l'indirizzo mostrato nel terminale senza vecchi parametri nell'URL. Dopo la scelta del personaggio compare automaticamente la selezione dei quattro stage. Lascia il terminale aperto mentre giochi; dopo il riavvio del PC devi avviare nuovamente il comando.
 
 ## Controllo rapido
 

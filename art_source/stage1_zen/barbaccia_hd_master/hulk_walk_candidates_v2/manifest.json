@@ -1,0 +1,10 @@
+{
+  "status": "saved_for_later_review_not_approved",
+  "motion_reference": "SavageHulk.zip / AIR Action 20",
+  "identity_master": "../BARBACCIA_HD_USER_MASTER.png",
+  "candidates": [
+    {"file": "phase03_pose_locked_candidate.png", "reference_phase": 3, "note": "early transfer; monitored leg rear/lifted"},
+    {"file": "phase07_pose_locked_candidate.png", "reference_phase": 7, "note": "late transfer; monitored leg intended forward"}
+  ],
+  "runtime": false
+}

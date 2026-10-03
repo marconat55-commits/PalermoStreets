@@ -21,11 +21,11 @@ test('missing or invalid shortcuts preserve the normal campaign start', () => {
   assert.equal(resolveStartModuleIndex('?module=0', modules), 0);
 });
 
-test('stage selector is opt-in and accepts common explicit false values', () => {
+test('stage selector is enabled by default and accepts common explicit false values', () => {
   assert.equal(shouldShowStageSelect('?stageSelect=1'), true);
   assert.equal(shouldShowStageSelect('?stageSelect'), true);
   assert.equal(shouldShowStageSelect('?stageSelect=true'), true);
-  assert.equal(shouldShowStageSelect(''), false);
+  assert.equal(shouldShowStageSelect(''), true);
   assert.equal(shouldShowStageSelect('?stageSelect=0'), false);
   assert.equal(shouldShowStageSelect('?stageSelect=false'), false);
 });

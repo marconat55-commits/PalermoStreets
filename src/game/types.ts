@@ -171,6 +171,7 @@ export interface SpriteLoopAmbientActorData {
   shadow?: {
     width: number;
     height: number;
+    blur?: number;
     offset?: [number, number];
     alpha?: number;
   };

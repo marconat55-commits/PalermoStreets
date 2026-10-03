@@ -22,16 +22,16 @@ npm.cmd run dev
 
 Apri quindi `http://localhost:5173/`. Per lavorare con Visual Studio Code, apri la cartella `PalermoStreets` appena clonata. Le istruzioni complete sono in [APRI_SU_NUOVO_PC.md](APRI_SU_NUOVO_PC.md).
 
-Per velocizzare i test puoi usare:
+La selezione dei quattro stage M01, M02, M03 e M04 compare automaticamente dopo la scelta del personaggio. Per velocizzare i test puoi usare:
 
-- `http://localhost:5173/?stageSelect=1` per scegliere M01, M02 o M03 dopo il personaggio;
-- `http://localhost:5173/?module=M01`, `?module=M02` o `?module=M03` per partire direttamente dal modulo indicato dopo la normale selezione del personaggio.
+- `http://localhost:5173/?module=M04` per preselezionare M04 nella scelta stage;
+- `http://localhost:5173/?module=M04&stageSelect=0` per partire direttamente da M04 dopo la scelta del personaggio (vale anche per M01, M02 e M03).
 
 ## Cosa è già migrato
 
 - risoluzione logica 1280x720 e letterbox 16:9;
 - schermata titolo e selezione personaggio arcade con Marco più tre slot roster vuoti;
-- 3 moduli a scorrimento dello Stage 1 ZEN e relativi fondali;
+- 4 moduli a scorrimento dello Stage 1 ZEN e relativi fondali;
 - Marco e Talebano;
 - caricamento profili personaggio JSON;
 - animazioni con durate per-frame e facing;

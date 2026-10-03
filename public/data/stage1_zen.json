@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "build_scope": "stage1_zen_m01_m04_demo_v1",
+  "build_scope": "stage1_zen_m01_m05_rooftop_preview_v1",
   "stage_name": "STAGE 1 — ZEN",
   "stage_subtitle": "LA BARBA È SACRA",
   "modules": [
@@ -1180,6 +1180,77 @@
         680
       ],
       "exit_x": 3455,
+      "heal": 16,
+      "items": [],
+      "waves": []
+    },
+    {
+      "id": "M05",
+      "name": "Terrazza di Barbaccia",
+      "art_status": "placeholder_rebuild_required",
+      "reference_actor_height": 290,
+      "horizon_y": 320,
+      "background": "assets/backgrounds/stage1_zen/final_v1/M05/M05_MAIN_FOREGROUND.png",
+      "background_layers": [
+        {
+          "src": "assets/backgrounds/stage1_zen/final_v4/M03/M03_SKY_FAR.png",
+          "parallax": 0.22,
+          "plane": "far",
+          "x": 0,
+          "y": 0,
+          "width": 5869,
+          "height": 720
+        },
+        {
+          "src": "assets/backgrounds/stage1_zen/final_v1/M05/M05_MAIN_FOREGROUND.png",
+          "parallax": 1,
+          "plane": "main",
+          "x": 0,
+          "y": 0,
+          "width": 1900,
+          "height": 720
+        }
+      ],
+      "world_width": 1900,
+      "camera_bounds": [0, 620],
+      "playfield_y": [510, 675],
+      "walk_top": [[0, 510], [1900, 510]],
+      "walk_bottom": [[0, 675], [1900, 675]],
+      "ambient": [
+        {
+          "id": "m05_barbaccia_throne_preview",
+          "kind": "sprite_loop",
+          "frames": [
+            "assets/ambient/stage1_zen/M05/static_props/throne_cutout_preview.png",
+            "assets/ambient/stage1_zen/M05/static_props/throne_cutout_preview.png"
+          ],
+          "position": [1650, 650],
+          "size": [540, 360],
+          "anchor": [0.5, 1],
+          "frame_durations": [10, 10],
+          "parallax": 1,
+          "alpha": 1,
+          "interactive": false
+        },
+        {
+          "id": "m05_barbaccia_seated_preview",
+          "kind": "sprite_loop",
+          "frames": [
+            "assets/ambient/stage1_zen/M05/static_props/barbaccia_seated_preview.png",
+            "assets/ambient/stage1_zen/M05/static_props/barbaccia_seated_preview.png"
+          ],
+          "position": [1650, 638],
+          "size": [488, 325],
+          "anchor": [0.5, 1],
+          "flip_x": true,
+          "frame_durations": [10, 10],
+          "parallax": 1,
+          "alpha": 1,
+          "interactive": false
+        }
+      ],
+      "entry": [150, 650],
+      "exit_x": 1730,
       "heal": 16,
       "items": [],
       "waves": []

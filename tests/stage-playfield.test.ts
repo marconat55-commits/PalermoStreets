@@ -20,8 +20,8 @@ interface Module {
 const stage = JSON.parse(fs.readFileSync('public/data/stage1_zen.json', 'utf8')) as { modules: Module[] };
 
 test('i moduli Zen coprono la propria lunghezza e tengono gli spawn nella walk band', () => {
-  assert.deepEqual(stage.modules.map((module) => module.id), ['M01', 'M02', 'M03', 'M04']);
-  const expectedWorldWidths: Record<string, number> = { M01: 2560, M02: 5120, M03: 5869, M04: 3525 };
+  assert.deepEqual(stage.modules.map((module) => module.id), ['M01', 'M02', 'M03', 'M04', 'M05']);
+  const expectedWorldWidths: Record<string, number> = { M01: 2560, M02: 5120, M03: 5869, M04: 3525, M05: 1900 };
   for (const module of stage.modules) {
     const expectedWorldWidth = expectedWorldWidths[module.id];
     assert.ok(expectedWorldWidth, `${module.id}: missing expected world width`);
@@ -69,12 +69,18 @@ test('i moduli Zen coprono la propria lunghezza e tengono gli spawn nella walk b
       assert.equal(main?.src, 'assets/backgrounds/stage1_zen/final_v4/M03/M03_MAIN_FOREGROUND.png');
       assert.equal(far?.src, 'assets/backgrounds/stage1_zen/final_v4/M03/M03_SKY_FAR.png');
       assert.equal(far?.width, 5869);
-    } else {
+    } else if (module.id === 'M04') {
       assert.equal(module.background_layers.length, 1);
       assert.equal(main?.src, 'assets/backgrounds/stage1_zen/final_v1/M04/M04_MAIN.png');
       assert.equal(main?.width, 3525);
       assert.equal(main?.height, 720);
       assert.equal(far, undefined);
+    } else if (module.id === 'M05') {
+      assert.equal(module.background_layers.length, 2);
+      assert.equal(main?.src, 'assets/backgrounds/stage1_zen/final_v1/M05/M05_MAIN_FOREGROUND.png');
+      assert.equal(main?.width, 1900);
+      assert.equal(main?.height, 720);
+      assert.equal(far?.src, 'assets/backgrounds/stage1_zen/final_v4/M03/M03_SKY_FAR.png');
     }
   }
 });
@@ -116,6 +122,14 @@ test('M04 conduce dal porticato residenziale al vano scala', () => {
   assert.deepEqual(m04.camera_bounds, [0, 2245]);
   assert.deepEqual(m04.playfield_y, [640, 705]);
   assert.deepEqual(m04.walk_top, [[0, 640], [3525, 640]]);
+});
+
+test('M05 offre una fascia di movimento profonda intorno al futuro boss', () => {
+  const m05 = stage.modules.find((module) => module.id === 'M05');
+  assert.ok(m05);
+  assert.deepEqual(m05.playfield_y, [510, 675]);
+  assert.equal(m05.playfield_y[1] - m05.playfield_y[0], 165);
+  assert.deepEqual(m05.camera_bounds, [0, 620]);
 });
 
 test('i moduli giocabili usano gli sfondi approvati; gli altri sono archiviati', () => {

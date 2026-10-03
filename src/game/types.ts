@@ -158,6 +158,8 @@ export interface SpriteLoopAmbientActorData {
   position: [number, number];
   /** Display size in logical pixels. */
   size: [number, number];
+  /** Mirror the sprite horizontally while keeping its world anchor fixed. */
+  flip_x?: boolean;
   anchor?: [number, number];
   /** Per-frame durations in seconds; one value per frame. */
   frame_durations: number[];

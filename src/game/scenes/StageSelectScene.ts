@@ -8,6 +8,7 @@ const UI_FONT = 'Arial Black, Arial, sans-serif';
 const CARD_WIDTH = 280;
 const CARD_HEIGHT = 270;
 const CARD_GAP = 24;
+const MAX_CARDS_WIDTH = 1192;
 
 function centeredText(text: string, style: TextStyle, x: number, y: number): Text {
   const value = new Text({ text, style });
@@ -28,6 +29,7 @@ export class StageSelectScene implements Scene {
   private readonly loadingGroup = new Container();
   private readonly loadingBar = new Graphics();
   private readonly loadingPercent: Text;
+  private readonly cardWidth: number;
 
   constructor(
     backgroundTexture: Texture,
@@ -35,6 +37,7 @@ export class StageSelectScene implements Scene {
     initialIndex: number,
   ) {
     this.selectedIndex = Math.max(0, Math.min(modules.length - 1, initialIndex));
+    this.cardWidth = Math.min(CARD_WIDTH, Math.floor((MAX_CARDS_WIDTH - Math.max(0, modules.length - 1) * CARD_GAP) / Math.max(1, modules.length)));
 
     const background = new Sprite(backgroundTexture);
     background.width = 1280;
@@ -64,17 +67,17 @@ export class StageSelectScene implements Scene {
       letterSpacing: 3,
     }), 1120, 56));
 
-    const totalWidth = modules.length * CARD_WIDTH + Math.max(0, modules.length - 1) * CARD_GAP;
+    const totalWidth = modules.length * this.cardWidth + Math.max(0, modules.length - 1) * CARD_GAP;
     const startX = (1280 - totalWidth) / 2;
     for (let index = 0; index < modules.length; index += 1) {
       const module = modules[index]!;
-      const x = startX + index * (CARD_WIDTH + CARD_GAP);
+      const x = startX + index * (this.cardWidth + CARD_GAP);
       const plate = new Graphics();
-      plate.moveTo(x, 208).lineTo(x + 18, 190).lineTo(x + CARD_WIDTH, 190)
-        .lineTo(x + CARD_WIDTH, 190 + CARD_HEIGHT - 18).lineTo(x + CARD_WIDTH - 18, 190 + CARD_HEIGHT)
+      plate.moveTo(x, 208).lineTo(x + 18, 190).lineTo(x + this.cardWidth, 190)
+        .lineTo(x + this.cardWidth, 190 + CARD_HEIGHT - 18).lineTo(x + this.cardWidth - 18, 190 + CARD_HEIGHT)
         .lineTo(x, 190 + CARD_HEIGHT).closePath()
         .fill({ color: 0x1a0603, alpha: 0.95 }).stroke({ color: 0x9d3217, width: 4 });
-      plate.rect(x + 18, 212, CARD_WIDTH - 36, 82).fill({ color: 0xd82912, alpha: 0.82 });
+      plate.rect(x + 18, 212, this.cardWidth - 36, 82).fill({ color: 0xd82912, alpha: 0.82 });
       this.root.addChild(plate);
 
       const moduleId = centeredText(module.id, new TextStyle({
@@ -85,30 +88,30 @@ export class StageSelectScene implements Scene {
         fill: 0xffc328,
         stroke: { color: 0x5d0d04, width: 7 },
         letterSpacing: 4,
-      }), x + CARD_WIDTH / 2, 253);
+      }), x + this.cardWidth / 2, 253);
       const moduleName = centeredText(module.name, new TextStyle({
         fontFamily: DISPLAY_FONT,
         fontSize: 30,
         fontWeight: '900',
         fill: 0xffe1aa,
         letterSpacing: 2,
-      }), x + CARD_WIDTH / 2, 338);
-      moduleName.scale.set(Math.min(1, (CARD_WIDTH - 44) / Math.max(1, moduleName.width)));
-      const length = Math.max(1, Math.round((module.world_width ?? 1280) / 1280));
+      }), x + this.cardWidth / 2, 338);
+      moduleName.scale.set(Math.min(1, (this.cardWidth - 28) / Math.max(1, moduleName.width)));
+      const length = Math.max(1, Math.ceil((module.world_width ?? 1280) / 1280));
       const lengthLabel = centeredText(`${length} ${length === 1 ? 'SEZIONE' : 'SEZIONI'}`, new TextStyle({
         fontFamily: UI_FONT,
         fontSize: 14,
         fontWeight: '900',
         fill: 0xf0c68e,
         letterSpacing: 2,
-      }), x + CARD_WIDTH / 2, 392);
+      }), x + this.cardWidth / 2, 392);
       const status = centeredText(module.art_status === 'placeholder_rebuild_required' ? 'IN LAVORAZIONE' : 'PRONTO', new TextStyle({
         fontFamily: UI_FONT,
         fontSize: 13,
         fontWeight: '900',
         fill: module.art_status === 'placeholder_rebuild_required' ? 0xffa315 : 0x55dce7,
         letterSpacing: 2,
-      }), x + CARD_WIDTH / 2, 430);
+      }), x + this.cardWidth / 2, 430);
       this.root.addChild(moduleId, moduleName, lengthLabel, status);
     }
     this.root.addChild(this.selectionFrame);
@@ -155,10 +158,10 @@ export class StageSelectScene implements Scene {
   get selectedModuleIndex(): number { return this.selectedIndex; }
 
   private refreshSelection(): void {
-    const totalWidth = this.modules.length * CARD_WIDTH + Math.max(0, this.modules.length - 1) * CARD_GAP;
+    const totalWidth = this.modules.length * this.cardWidth + Math.max(0, this.modules.length - 1) * CARD_GAP;
     const startX = (1280 - totalWidth) / 2;
-    const x = startX + this.selectedIndex * (CARD_WIDTH + CARD_GAP);
-    this.selectionFrame.clear().roundRect(x - 8, 182, CARD_WIDTH + 16, CARD_HEIGHT + 16, 14)
+    const x = startX + this.selectedIndex * (this.cardWidth + CARD_GAP);
+    this.selectionFrame.clear().roundRect(x - 8, 182, this.cardWidth + 16, CARD_HEIGHT + 16, 14)
       .stroke({ color: 0xffefb5, width: 6 });
   }
 

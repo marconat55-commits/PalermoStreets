@@ -77,6 +77,7 @@ export class StageAmbientLayer {
       sprite.anchor.set(...anchor);
       sprite.width = spec.size[0];
       sprite.height = spec.size[1];
+      if (spec.flip_x) sprite.scale.x *= -1;
       sprite.alpha = spec.alpha ?? 1;
       const root = new Container();
       if (spec.shadow) {
@@ -92,6 +93,7 @@ export class StageAmbientLayer {
         shell.anchor.set(...anchor);
         shell.width = spec.size[0];
         shell.height = spec.size[1];
+        if (spec.flip_x) shell.scale.x *= -1;
         shell.alpha = spec.alpha ?? 1;
         const [x, y, width, height] = spec.motion_window;
         const mask = new Graphics()

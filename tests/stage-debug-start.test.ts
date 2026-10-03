@@ -3,7 +3,7 @@ import test from 'node:test';
 import { resolveStartModuleIndex, shouldShowStageSelect } from '../src/game/stage/debugStart.ts';
 import type { ModuleData } from '../src/game/types.ts';
 
-const modules = ['M01', 'M02', 'M03', 'M04'].map((id) => ({ id })) as ModuleData[];
+const modules = ['M01', 'M02', 'M03', 'M04', 'M05'].map((id) => ({ id })) as ModuleData[];
 
 test('stage module shortcut accepts canonical ids case-insensitively', () => {
   assert.equal(resolveStartModuleIndex('?module=M03', modules), 2);

@@ -60,37 +60,37 @@ test('M01 keeps approved ambient actors and static props behind the WALK lane', 
   assert.deepEqual(loops.slice(2).map((loop) => loop.size), [[207, 207], [164, 164]]);
 });
 
-test('Franco Gioia and Duracell are enlarged at the start of M02', () => {
+test('M02 conserva il pass ambientale approvato nell editor', () => {
   const m02 = stage.modules.find((module) => module.id === 'M02');
   assert.ok(m02);
   const loops = (m02.ambient ?? []).filter((actor): actor is SpriteLoopSpec => actor.kind === 'sprite_loop');
   assert.deepEqual(loops.map((loop) => loop.id), [
-    'm02_franco_gioia', 'm02_duracell', 'm02_meccanico', 'm02_prop_vespa_rossa', 'm02_prop_vespa_verde', 'm02_prop_vespa_bianca', 'm02_prop_pneumatico_poggiato', 'm02_prop_cassetta_birre',
+    'm02_franco_gioia', 'm02_duracell', 'm02_meccanico', 'm02_prop_vespa_rossa', 'm02_prop_vespa_verde', 'm02_prop_vespa_bianca', 'm02_prop_pneumatico_poggiato', 'm02_prop_cassetta_birre', 'm02_signora_balcone', 'm02_ragazzo_telefono',
   ]);
   const franco = loops[0]!;
   const duracell = loops[1]!;
-  assert.deepEqual(franco.position, [710, 615]);
-  assert.deepEqual(franco.size, [267, 267]);
+  assert.deepEqual(franco.position, [710, 592]);
+  assert.deepEqual(franco.size, [255, 255]);
   assert.equal(franco.speech?.text, 'HAHAHA CUINNUTI CA SITI!!!');
   assert.equal(franco.speech?.interval, 5);
-  assert.deepEqual(duracell.position, [480, 617]);
-  assert.deepEqual(duracell.size, [261, 261]);
+  assert.deepEqual(duracell.position, [480, 583]);
+  assert.deepEqual(duracell.size, [228, 228]);
   assert.deepEqual(duracell.hidden_regions, [[156, 9, 20, 29]]);
   assert.deepEqual(franco.shadow, { width: 126, height: 23, offset: [0, -3], alpha: 0.24 });
   assert.deepEqual(duracell.shadow, { width: 122, height: 22, offset: [0, -3], alpha: 0.24 });
   const mechanic = loops[2]!;
   assert.deepEqual(mechanic.position, [1810, 525]);
-  assert.deepEqual(mechanic.size, [151, 151]);
+  assert.deepEqual(mechanic.size, [134, 134]);
   assert.deepEqual(mechanic.shadow, { width: 69, height: 12, offset: [0, -1], alpha: 0.2 });
-  assert.equal(collectAmbientAssets(m02).length, 11);
+  assert.equal(collectAmbientAssets(m02).length, 19);
   for (const loop of loops) {
     if (loop.id === 'm02_franco_gioia' || loop.id === 'm02_duracell') assert.ok(loop.position[0] < 800, `${loop.id}: actor must remain near the start of M02`);
     assert.ok(loop.position[1] < 635, `${loop.id}: ambient actor must stay behind the WALK lane`);
     for (const frame of loop.frames) assert.ok(fs.existsSync(`public/${frame}`), `${loop.id}: missing ${frame}`);
   }
-  assert.deepEqual(loops.slice(3).map((loop) => loop.position), [[1990, 590], [2420, 590], [2520, 590], [3020, 560], [270, 630]]);
-  assert.deepEqual(loops.slice(3).map((loop) => loop.size), [[190, 190], [190, 190], [190, 190], [112, 112], [130, 130]]);
-  assert.deepEqual(loops.map((loop) => loop.alpha), [0.96, 0.96, 0.95, 0.97, 0.97, 0.96, 0.97, 0.97]);
+  assert.deepEqual(loops.slice(3).map((loop) => loop.position), [[1990, 590], [2420, 590], [2520, 590], [3020, 560], [270, 630], [3801, 110], [3461, 532]]);
+  assert.deepEqual(loops.slice(3).map((loop) => loop.size), [[185, 185], [186, 186], [186, 186], [112, 112], [130, 130], [91, 77], [67, 174]]);
+  assert.deepEqual(loops.map((loop) => loop.alpha), [0.96, 0.96, 0.95, 0.97, 0.97, 0.96, 0.97, 0.97, 1, 0.87]);
 });
 
 test('M03 copre i quattro raccordi e arricchisce il fondo con props statici proporzionati', () => {
@@ -107,12 +107,15 @@ test('M03 copre i quattro raccordi e arricchisce il fondo con props statici prop
     'm03_bush_tall_grass_seam_03_04',
     'm03_road_sign_seam_04_05',
     'm03_bush_round_end',
+    'm03_m03_bush_tall_grass_seam_03_04_preview',
+    'm03_vespa_rossa',
+    'm03_pneumatico_poggiato',
   ]);
   const franco = loops[0]!;
   assert.equal(franco.frames.length, 2);
   assert.deepEqual(franco.frame_durations, [1.55, 0.8]);
-  assert.deepEqual(franco.position, [820, 452]);
-  assert.deepEqual(franco.size, [152, 152]);
+  assert.deepEqual(franco.position, [887, 452]);
+  assert.deepEqual(franco.size, [138, 138]);
   assert.deepEqual(franco.shadow, { width: 64, height: 12, offset: [0, -2], alpha: 0.18 });
   assert.equal(franco.speech, undefined);
   assert.equal(franco.parallax, 1);
@@ -121,8 +124,8 @@ test('M03 copre i quattro raccordi e arricchisce il fondo con props statici prop
   const duracell = loops[1]!;
   assert.equal(duracell.frames.length, 2);
   assert.deepEqual(duracell.frame_durations, [1.75, 0.75]);
-  assert.deepEqual(duracell.position, [720, 447]);
-  assert.deepEqual(duracell.size, [145, 145]);
+  assert.deepEqual(duracell.position, [790, 447]);
+  assert.deepEqual(duracell.size, [120, 120]);
   assert.deepEqual(duracell.shadow, { width: 62, height: 11, offset: [0, -2], alpha: 0.18 });
   assert.deepEqual(duracell.hidden_regions, [[82, 5, 11, 15]]);
   assert.equal(duracell.parallax, 1);
@@ -132,8 +135,8 @@ test('M03 copre i quattro raccordi e arricchisce il fondo con props statici prop
   assert.equal(tree.frames.length, 2);
   assert.equal(tree.frames[0], tree.frames[1]);
   assert.deepEqual(tree.frame_durations, [1, 1]);
-  assert.deepEqual(tree.position, [1095, 458]);
-  assert.deepEqual(tree.size, [290, 362]);
+  assert.deepEqual(tree.position, [1095, 471]);
+  assert.deepEqual(tree.size, [310, 382]);
   assert.equal(tree.parallax, 1);
   assert.equal(tree.interactive, false);
   for (const frame of tree.frames) assert.ok(fs.existsSync(`public/${frame}`), `missing ${frame}`);
@@ -171,7 +174,7 @@ test('M03 copre i quattro raccordi e arricchisce il fondo con props statici prop
   assert.equal(sign.frames[0], sign.frames[1]);
   assert.deepEqual(sign.frame_durations, [1, 1]);
   assert.deepEqual(sign.position, [4695, 458]);
-  assert.deepEqual(sign.size, [240, 300]);
+  assert.deepEqual(sign.size, [208, 260]);
   assert.equal(sign.parallax, 1);
   assert.equal(sign.interactive, false);
   for (const frame of sign.frames) assert.ok(fs.existsSync(`public/${frame}`), `missing ${frame}`);
@@ -184,7 +187,16 @@ test('M03 copre i quattro raccordi e arricchisce il fondo con props statici prop
   assert.equal(roundBush.parallax, 1);
   assert.equal(roundBush.interactive, false);
   for (const frame of roundBush.frames) assert.ok(fs.existsSync(`public/${frame}`), `missing ${frame}`);
-  assert.deepEqual(loops.map((loop) => loop.alpha), [0.95, 0.95, 0.98, 0.97, undefined, 0.97, 0.97, 0.98, 0.97]);
+  const addedTallGrass = loops[9]!;
+  assert.deepEqual(addedTallGrass.position, [455, 445]);
+  assert.deepEqual(addedTallGrass.size, [189, 189]);
+  const vespa = loops[10]!;
+  assert.deepEqual(vespa.position, [4444, 450]);
+  assert.deepEqual(vespa.size, [103, 103]);
+  const tire = loops[11]!;
+  assert.deepEqual(tire.position, [4209, 437]);
+  assert.deepEqual(tire.size, [68, 68]);
+  assert.deepEqual(loops.map((loop) => loop.alpha), [0.95, 0.95, 0.96, 0.97, undefined, 0.97, 0.97, 0.95, 0.95, 0.92, 0.93, 0.88]);
   assert.deepEqual(collectAmbientAssets(m03), [
     ...franco.frames,
     ...duracell.frames,
@@ -195,6 +207,8 @@ test('M03 copre i quattro raccordi e arricchisce il fondo con props statici prop
     tallBush.frames[0],
     sign.frames[0],
     roundBush.frames[0],
+    vespa.frames[0],
+    tire.frames[0],
   ]);
 });
 

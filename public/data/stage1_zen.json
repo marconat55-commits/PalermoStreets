@@ -340,11 +340,11 @@
           ],
           "position": [
             710,
-            615
+            592
           ],
           "size": [
-            267,
-            267
+            255,
+            255
           ],
           "anchor": [
             0.5,
@@ -386,11 +386,11 @@
           ],
           "position": [
             480,
-            617
+            583
           ],
           "size": [
-            261,
-            261
+            228,
+            228
           ],
           "anchor": [
             0.5,
@@ -433,8 +433,8 @@
             525
           ],
           "size": [
-            151,
-            151
+            134,
+            134
           ],
           "anchor": [
             0.5,
@@ -453,7 +453,7 @@
               0,
               -1
             ],
-            "alpha": 0.20
+            "alpha": 0.2
           },
           "interactive": false
         },
@@ -469,8 +469,8 @@
             590
           ],
           "size": [
-            190,
-            190
+            185,
+            185
           ],
           "anchor": [
             0.5,
@@ -496,8 +496,8 @@
             590
           ],
           "size": [
-            190,
-            190
+            186,
+            186
           ],
           "anchor": [
             0.5,
@@ -523,8 +523,8 @@
             590
           ],
           "size": [
-            190,
-            190
+            186,
+            186
           ],
           "anchor": [
             0.5,
@@ -590,6 +590,68 @@
           ],
           "parallax": 1,
           "alpha": 0.97,
+          "interactive": false
+        },
+        {
+          "id": "m02_signora_balcone",
+          "kind": "sprite_loop",
+          "frames": [
+            "assets/ambient/stage1_zen/M01/signora_balcone/idle_01.png",
+            "assets/ambient/stage1_zen/M01/signora_balcone/idle_02.png",
+            "assets/ambient/stage1_zen/M01/signora_balcone/idle_03.png",
+            "assets/ambient/stage1_zen/M01/signora_balcone/idle_04.png"
+          ],
+          "position": [
+            3801,
+            110
+          ],
+          "size": [
+            91,
+            77
+          ],
+          "anchor": [
+            0.5,
+            1
+          ],
+          "frame_durations": [
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "parallax": 1,
+          "alpha": 1,
+          "interactive": false
+        },
+        {
+          "id": "m02_ragazzo_telefono",
+          "kind": "sprite_loop",
+          "frames": [
+            "assets/ambient/stage1_zen/M03/ragazzo_telefono/idle_01.png",
+            "assets/ambient/stage1_zen/M03/ragazzo_telefono/idle_02.png",
+            "assets/ambient/stage1_zen/M03/ragazzo_telefono/idle_03.png",
+            "assets/ambient/stage1_zen/M03/ragazzo_telefono/idle_04.png"
+          ],
+          "position": [
+            3461,
+            532
+          ],
+          "size": [
+            67,
+            174
+          ],
+          "anchor": [
+            0.5,
+            1
+          ],
+          "frame_durations": [
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "parallax": 1,
+          "alpha": 0.87,
           "interactive": false
         }
       ],
@@ -819,12 +881,12 @@
             "assets/ambient/stage1_zen/M01/franco_gioia/idle_02.png"
           ],
           "position": [
-            820,
+            887,
             452
           ],
           "size": [
-            152,
-            152
+            138,
+            138
           ],
           "anchor": [
             0.5,
@@ -855,12 +917,12 @@
             "assets/ambient/stage1_zen/M01/duracell/idle_02.png"
           ],
           "position": [
-            720,
+            790,
             447
           ],
           "size": [
-            145,
-            145
+            120,
+            120
           ],
           "anchor": [
             0.5,
@@ -900,11 +962,11 @@
           ],
           "position": [
             1095,
-            458
+            471
           ],
           "size": [
-            290,
-            362
+            310,
+            382
           ],
           "anchor": [
             0.5,
@@ -915,7 +977,7 @@
             1
           ],
           "parallax": 1,
-          "alpha": 0.98,
+          "alpha": 0.96,
           "interactive": false
         },
         {
@@ -1037,8 +1099,8 @@
             458
           ],
           "size": [
-            240,
-            300
+            208,
+            260
           ],
           "anchor": [
             0.5,
@@ -1049,7 +1111,7 @@
             1
           ],
           "parallax": 1,
-          "alpha": 0.98,
+          "alpha": 0.95,
           "interactive": false
         },
         {
@@ -1076,7 +1138,88 @@
             1
           ],
           "parallax": 1,
-          "alpha": 0.97,
+          "alpha": 0.95,
+          "interactive": false
+        },
+        {
+          "id": "m03_m03_bush_tall_grass_seam_03_04_preview",
+          "kind": "sprite_loop",
+          "frames": [
+            "assets/backgrounds/stage1_zen/final_v4/M03/props/M03_BUSH_TALL_GRASS_SEAM_03_04_PREVIEW.png",
+            "assets/backgrounds/stage1_zen/final_v4/M03/props/M03_BUSH_TALL_GRASS_SEAM_03_04_PREVIEW.png"
+          ],
+          "position": [
+            455,
+            445
+          ],
+          "size": [
+            189,
+            189
+          ],
+          "anchor": [
+            0.5,
+            1
+          ],
+          "frame_durations": [
+            0.5,
+            0.5
+          ],
+          "parallax": 1,
+          "alpha": 0.92,
+          "interactive": false
+        },
+        {
+          "id": "m03_vespa_rossa",
+          "kind": "sprite_loop",
+          "frames": [
+            "assets/ambient/stage1_zen/M02/static_props/vespa_rossa.png",
+            "assets/ambient/stage1_zen/M02/static_props/vespa_rossa.png"
+          ],
+          "position": [
+            4444,
+            450
+          ],
+          "size": [
+            103,
+            103
+          ],
+          "anchor": [
+            0.5,
+            1
+          ],
+          "frame_durations": [
+            0.5,
+            0.5
+          ],
+          "parallax": 1,
+          "alpha": 0.93,
+          "interactive": false
+        },
+        {
+          "id": "m03_pneumatico_poggiato",
+          "kind": "sprite_loop",
+          "frames": [
+            "assets/ambient/stage1_zen/M02/static_props/pneumatico_poggiato.png",
+            "assets/ambient/stage1_zen/M02/static_props/pneumatico_poggiato.png"
+          ],
+          "position": [
+            4209,
+            437
+          ],
+          "size": [
+            68,
+            68
+          ],
+          "anchor": [
+            0.5,
+            1
+          ],
+          "frame_durations": [
+            0.5,
+            0.5
+          ],
+          "parallax": 1,
+          "alpha": 0.88,
           "interactive": false
         }
       ],
@@ -1145,12 +1288,12 @@
             "assets/ambient/stage1_zen/M04/static_props/padre_pio.png"
           ],
           "position": [
-            235,
-            530
+            207,
+            494
           ],
           "size": [
-            123,
-            214
+            107,
+            187
           ],
           "anchor": [
             0.5,
@@ -1212,10 +1355,34 @@
         }
       ],
       "world_width": 1900,
-      "camera_bounds": [0, 620],
-      "playfield_y": [510, 675],
-      "walk_top": [[0, 510], [1900, 510]],
-      "walk_bottom": [[0, 675], [1900, 675]],
+      "camera_bounds": [
+        0,
+        620
+      ],
+      "playfield_y": [
+        510,
+        675
+      ],
+      "walk_top": [
+        [
+          0,
+          510
+        ],
+        [
+          1900,
+          510
+        ]
+      ],
+      "walk_bottom": [
+        [
+          0,
+          675
+        ],
+        [
+          1900,
+          675
+        ]
+      ],
       "ambient": [
         {
           "id": "m05_barbaccia_throne_preview",
@@ -1224,10 +1391,22 @@
             "assets/ambient/stage1_zen/M05/static_props/throne_cutout_preview.png",
             "assets/ambient/stage1_zen/M05/static_props/throne_cutout_preview.png"
           ],
-          "position": [1650, 650],
-          "size": [540, 360],
-          "anchor": [0.5, 1],
-          "frame_durations": [10, 10],
+          "position": [
+            1650,
+            650
+          ],
+          "size": [
+            540,
+            360
+          ],
+          "anchor": [
+            0.5,
+            1
+          ],
+          "frame_durations": [
+            10,
+            10
+          ],
           "parallax": 1,
           "alpha": 1,
           "interactive": false
@@ -1239,17 +1418,32 @@
             "assets/ambient/stage1_zen/M05/static_props/barbaccia_seated_preview.png",
             "assets/ambient/stage1_zen/M05/static_props/barbaccia_seated_preview.png"
           ],
-          "position": [1650, 638],
-          "size": [488, 325],
-          "anchor": [0.5, 1],
+          "position": [
+            1649,
+            643
+          ],
+          "size": [
+            488,
+            325
+          ],
+          "anchor": [
+            0.5,
+            1
+          ],
           "flip_x": true,
-          "frame_durations": [10, 10],
+          "frame_durations": [
+            10,
+            10
+          ],
           "parallax": 1,
           "alpha": 1,
           "interactive": false
         }
       ],
-      "entry": [150, 650],
+      "entry": [
+        150,
+        650
+      ],
       "exit_x": 1730,
       "heal": 16,
       "items": [],

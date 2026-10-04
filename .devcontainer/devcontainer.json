@@ -1,0 +1,14 @@
+{
+  "name": "Palermo Streets",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:22-bookworm",
+  "postCreateCommand": "npm ci",
+  "postStartCommand": "bash .devcontainer/start-palermo.sh",
+  "forwardPorts": [5173],
+  "portsAttributes": {
+    "5173": {
+      "label": "Palermo Streets",
+      "onAutoForward": "openBrowser"
+    }
+  },
+  "remoteUser": "node"
+}

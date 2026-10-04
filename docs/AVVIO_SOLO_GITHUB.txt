@@ -1,0 +1,50 @@
+PALERMO STREETS — AVVIO SOLO DA GITHUB
+
+Il progetto aggiornato si trova qui:
+https://github.com/marconat55-commits/PalermoStreets
+
+IMPORTANTE: usare il ramo crowdfunding-rebuild, perché il ramo main contiene una versione precedente.
+
+Ultima versione verificata: commit ea304fe.
+Questa versione comprende gli ultimi salvataggi dell'Editor su M04 e M02, la modifica grafica delle WALK line e la scala dei combattenti regolabile per ogni modulo.
+
+PROCEDURA DA UN NUOVO PC, SENZA VISUAL STUDIO E SENZA CARTELLE LOCALI
+
+1. Accedere a GitHub con il proprio account.
+2. Aprire la repository PalermoStreets.
+3. Aprire direttamente questo collegamento, già impostato sul ramo crowdfunding-rebuild:
+
+   https://github.com/codespaces/new?hide_repo_select=true&ref=crowdfunding-rebuild&repo=1327047372
+
+4. Premere Create codespace.
+5. Attendere l'apertura dell'ambiente GitHub nel browser.
+6. Nel terminale eseguire, soltanto al primo avvio:
+
+   npm install
+
+7. Avviare il gioco con:
+
+   npm run dev
+
+8. Quando GitHub segnala che la porta 5173 è disponibile, premere Open in Browser.
+
+Non bisogna aprire localhost: il gioco viene raggiunto attraverso il collegamento della porta 5173 generato da GitHub Codespaces.
+
+NEI GIORNI SUCCESSIVI
+
+1. Aprire https://github.com/codespaces
+2. Riaprire il Codespace di PalermoStreets.
+3. Nel terminale eseguire npm run dev.
+4. Aprire nuovamente la porta 5173.
+
+EDITOR
+
+L'Editor si apre premendo E nella schermata di selezione del personaggio oppure aggiungendo /tools/stage-editor.html all'indirizzo del gioco.
+
+Il pulsante Salva e pubblica salva le modifiche dello stage e le invia al ramo crowdfunding-rebuild della repository.
+
+NOTA
+
+GitHub Codespaces usa la quota prevista dall'account GitHub. Per avere in futuro un collegamento pubblico che avvii direttamente il gioco senza terminale bisogna configurare GitHub Pages; quella versione sarebbe adatta al gioco, ma non potrebbe salvare direttamente le modifiche dell'Editor nella repository.
+
+Se il collegamento diretto non permette di creare il Codespace o chiede di configurare un metodo di pagamento/limite di spesa, Codespaces non è attivo o non ha quota disponibile per quell'account. In quel caso non è possibile avviare l'Editor completo soltanto dalla normale pagina dei file della repository.

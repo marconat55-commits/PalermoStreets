@@ -485,6 +485,9 @@ async function publishStage(): Promise<void> {
 }
 
 function bindEvents(): void {
+  element<HTMLButtonElement>('#back-to-game').addEventListener('click', () => {
+    window.location.assign('/');
+  });
   moduleSelect.addEventListener('change', () => {
     activeModuleId = moduleSelect.value;
     selectedId = null;

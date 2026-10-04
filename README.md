@@ -22,7 +22,7 @@ npm.cmd run dev
 
 Apri quindi `http://localhost:5173/`. Per lavorare con Visual Studio Code, apri la cartella `PalermoStreets` appena clonata. Le istruzioni complete sono in [APRI_SU_NUOVO_PC.md](APRI_SU_NUOVO_PC.md).
 
-Lo Stage Editor locale è disponibile durante `npm.cmd run dev` su `http://localhost:5173/tools/stage-editor.html`. Le istruzioni sono in [docs/STAGE_EDITOR.md](docs/STAGE_EDITOR.md).
+Lo Stage Editor locale è disponibile durante `npm.cmd run dev`: dalla selezione personaggio premi **E** oppure fai clic su **EDITOR STAGE**. Puoi anche aprirlo direttamente su `http://localhost:5173/tools/stage-editor.html`. Le istruzioni sono in [docs/STAGE_EDITOR.md](docs/STAGE_EDITOR.md).
 
 Per lavorare senza conservare il progetto sul PC, crea un GitHub Codespace sul ramo `crowdfunding-rebuild`: la configurazione inclusa installa le dipendenze, avvia il server e inoltra automaticamente la porta 5173.
 

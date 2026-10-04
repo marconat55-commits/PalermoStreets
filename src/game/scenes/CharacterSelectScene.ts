@@ -28,6 +28,7 @@ function label(text: string, style: TextStyle, x: number, y: number, anchorX = 0
 export class CharacterSelectScene implements Scene {
   readonly root = new Container();
   confirmRequested = false;
+  editorRequested = false;
   private elapsed = 0;
   private loading = false;
   private loadProgress = 0;
@@ -149,6 +150,28 @@ export class CharacterSelectScene implements Scene {
     this.confirmPrompt = label('WASD  SCEGLI     INVIO  CONFERMA', new TextStyle({ fontFamily: UI_FONT, fontSize: 15, fontWeight: '900', fill: 0xffe2ad }), 948, 668, 0.5);
     this.root.addChild(this.confirmPrompt);
 
+    const editorButton = new Container();
+    editorButton.position.set(88, 642);
+    editorButton.eventMode = 'static';
+    editorButton.cursor = 'pointer';
+    const editorPlate = new Graphics();
+    editorPlate.moveTo(0, 10).lineTo(12, 0).lineTo(458, 0).lineTo(446, 52).lineTo(0, 52).closePath()
+      .fill({ color: 0x071316, alpha: 0.96 }).stroke({ color: 0x50dce7, width: 3 });
+    const editorLabel = label('E  EDITOR STAGE', new TextStyle({
+      fontFamily: DISPLAY_FONT,
+      fontSize: 25,
+      fontWeight: '900',
+      fontStyle: 'italic',
+      fill: 0xbff8ff,
+      letterSpacing: 2,
+    }), 229, 26, 0.5);
+    editorButton.addChild(editorPlate, editorLabel);
+    editorButton.on('pointerover', () => { editorButton.alpha = 1; });
+    editorButton.on('pointerout', () => { editorButton.alpha = 0.86; });
+    editorButton.on('pointertap', () => { this.editorRequested = true; });
+    editorButton.alpha = 0.86;
+    this.root.addChild(editorButton);
+
     const loadingShade = new Graphics();
     loadingShade.rect(0, 0, 1280, 720).fill({ color: 0x030100, alpha: 0.84 });
     loadingShade.roundRect(388, 286, 504, 148, 14).fill(0x160604).stroke({ color: 0xffa315, width: 4 });
@@ -234,6 +257,7 @@ export class CharacterSelectScene implements Scene {
       this.selectionDwell += dt;
       if (this.selectionDwell >= 0.18) this.requestSelectedCharacterPreload();
     }
+    if (input.wasPressed('KeyE')) this.editorRequested = true;
     if (input.wasPressed('Enter', 'NumpadEnter') && this.selectedCharacterAvailable) this.confirmRequested = true;
   }
 

@@ -100,6 +100,11 @@ export class Game {
 
     this.scene?.update(dt, this.input);
     if (this.titleScene?.startRequested) void this.showCharacterSelect();
+    if (this.characterSelectScene?.editorRequested && this.scene === this.characterSelectScene) {
+      this.characterSelectScene.editorRequested = false;
+      window.location.assign('/tools/stage-editor.html');
+      return;
+    }
     if (this.characterSelectScene?.confirmRequested && this.scene === this.characterSelectScene) {
       this.selectedPlayerId = this.characterSelectScene.selectedCharacterId;
       if (this.stageSelectionEnabled) this.showStageSelect();

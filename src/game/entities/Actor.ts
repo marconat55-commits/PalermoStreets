@@ -25,7 +25,7 @@ export class Actor {
   velocity: Vec2 = { x: 0, y: 0 };
   maxHealth: number;
   health: number;
-  readonly visualScale: number;
+  visualScale: number;
   facing: -1 | 1 = 1;
   state = 'idle';
   stateElapsed = 0;
@@ -47,7 +47,7 @@ export class Actor {
     this.position = { ...position };
     this.maxHealth = maxHealth;
     this.health = maxHealth;
-    this.visualScale = clamp(visualScale, 0.85, 1.15);
+    this.visualScale = clamp(visualScale, 0.75, 1.35);
 
     this.root.sortableChildren = true;
     for (const [dx, dy] of [[-1, 0], [1, 0], [0, -1], [0, 1]] as const) {
@@ -180,6 +180,12 @@ export class Actor {
 
   setPlayfieldProfile(profile?: (worldX: number) => [number, number]): void {
     this.playfieldProfile = profile;
+    this.clampToPlayfield();
+  }
+
+  setVisualScale(value: number): void {
+    this.visualScale = clamp(value, 0.75, 1.35);
+    this.syncVisual(true);
     this.clampToPlayfield();
   }
 

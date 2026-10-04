@@ -30,6 +30,7 @@ interface StageModule {
   id: string;
   name: string;
   world_width?: number;
+  character_scale?: number;
   background: string;
   background_layers?: BackgroundLayer[];
   ambient?: AmbientActor[];
@@ -86,6 +87,12 @@ const walkGuides = element<SVGSVGElement>('#walk-guides');
 const cameraGuide = element<HTMLDivElement>('#camera-guide');
 const scaleReference = element<HTMLDivElement>('#scale-reference');
 const zoomInput = element<HTMLInputElement>('#zoom');
+const characterScaleInput = element<HTMLInputElement>('#character-scale');
+const characterScaleValue = element<HTMLOutputElement>('#character-scale-value');
+const editWalkButton = element<HTMLButtonElement>('#edit-walk');
+const walkTools = element<HTMLDivElement>('#walk-tools');
+const walkTopButton = element<HTMLButtonElement>('#walk-top');
+const walkBottomButton = element<HTMLButtonElement>('#walk-bottom');
 const dirtyState = element<HTMLSpanElement>('#dirty-state');
 const inspector = element<HTMLFormElement>('#inspector');
 const emptyInspector = element<HTMLDivElement>('#empty-inspector');
@@ -111,6 +118,10 @@ let savedState = '';
 let editHistory: string[] = [];
 let historyIndex = 0;
 let toastTimer = 0;
+type WalkKey = 'walk_top' | 'walk_bottom';
+let walkEditMode = false;
+let activeWalkKey: WalkKey = 'walk_top';
+let selectedWalkPoint: { key: WalkKey; index: number } | null = null;
 
 function currentModule(): StageModule {
   const module = stageData.modules.find((candidate) => candidate.id === activeModuleId);
@@ -212,22 +223,85 @@ function pointsFor(module: StageModule, key: 'walk_top' | 'walk_bottom'): Array<
   return [[0, y], [worldWidth(module), y]];
 }
 
+function editablePoints(module: StageModule, key: WalkKey): Array<[number, number]> {
+  if (!module[key]?.length) module[key] = clone(pointsFor(module, key));
+  return module[key]!;
+}
+
+function interpolatePoints(points: Array<[number, number]>, x: number): number {
+  if (x <= points[0]![0]) return points[0]![1];
+  const last = points.at(-1)!;
+  if (x >= last[0]) return last[1];
+  for (let index = 1; index < points.length; index += 1) {
+    const right = points[index]!;
+    if (x > right[0]) continue;
+    const left = points[index - 1]!;
+    const span = right[0] - left[0];
+    const progress = span > 0 ? (x - left[0]) / span : 1;
+    return left[1] + (right[1] - left[1]) * progress;
+  }
+  return last[1];
+}
+
+function constrainedWalkPoint(module: StageModule, key: WalkKey, index: number, x: number, y: number): [number, number] {
+  const points = editablePoints(module, key);
+  const width = worldWidth(module);
+  const previousX = points[index - 1]?.[0] ?? -1;
+  const nextX = points[index + 1]?.[0] ?? width + 1;
+  const constrainedX = index === 0 ? 0 : index === points.length - 1 ? width : Math.max(previousX + 1, Math.min(nextX - 1, Math.round(x)));
+  const otherKey: WalkKey = key === 'walk_top' ? 'walk_bottom' : 'walk_top';
+  const otherY = interpolatePoints(pointsFor(module, otherKey), constrainedX);
+  const roundedY = Math.max(0, Math.min(720, Math.round(y)));
+  return key === 'walk_top'
+    ? [constrainedX, Math.min(roundedY, Math.floor(otherY - 20))]
+    : [constrainedX, Math.max(roundedY, Math.ceil(otherY + 20))];
+}
+
+function updateWalkButtons(): void {
+  walkTopButton.classList.toggle('active', activeWalkKey === 'walk_top');
+  walkBottomButton.classList.toggle('active', activeWalkKey === 'walk_bottom');
+}
+
 function renderGuides(module: StageModule): void {
   const width = worldWidth(module);
   walkGuides.setAttribute('viewBox', `0 0 ${width} 720`);
   walkGuides.style.width = `${width}px`;
   walkGuides.style.height = '720px';
+  walkGuides.classList.toggle('editing', walkEditMode);
   walkGuides.replaceChildren();
   for (const [key, color] of [['walk_top', '#56f2a3'], ['walk_bottom', '#ff6f61']] as const) {
+    const points = pointsFor(module, key);
     const line = document.createElementNS('http://www.w3.org/2000/svg', 'polyline');
-    line.setAttribute('points', pointsFor(module, key).map(([x, y]) => `${x},${y}`).join(' '));
+    line.dataset.key = key;
+    line.classList.add('walk-line');
+    line.setAttribute('points', points.map(([x, y]) => `${x},${y}`).join(' '));
     line.setAttribute('fill', 'none');
     line.setAttribute('stroke', color);
-    line.setAttribute('stroke-width', '4');
+    line.setAttribute('stroke-width', walkEditMode && activeWalkKey === key ? '7' : '4');
     line.setAttribute('stroke-dasharray', '14 8');
     walkGuides.appendChild(line);
+    if (walkEditMode) {
+      for (let index = 0; index < points.length; index += 1) {
+        const [x, y] = points[index]!;
+        const node = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        node.dataset.key = key;
+        node.dataset.index = String(index);
+        node.classList.add('walk-node');
+        if (selectedWalkPoint?.key === key && selectedWalkPoint.index === index) node.classList.add('selected');
+        node.setAttribute('cx', String(x));
+        node.setAttribute('cy', String(y));
+        node.setAttribute('r', '11');
+        node.setAttribute('fill', color);
+        node.setAttribute('stroke', '#101010');
+        node.setAttribute('stroke-width', '3');
+        node.addEventListener('pointerdown', startWalkPointPointer);
+        walkGuides.appendChild(node);
+      }
+    }
   }
-  scaleReference.style.height = `${module.reference_actor_height ?? 290}px`;
+  const characterScale = module.character_scale ?? 1;
+  scaleReference.style.height = `${(module.reference_actor_height ?? 290) * characterScale}px`;
+  scaleReference.querySelector('span')!.innerHTML = `MERCO<br />${Math.round(characterScale * 100)}%`;
   cameraGuide.style.left = `${Math.min(Math.max(0, stageScroll.scrollLeft / zoom), Math.max(0, width - 1280))}px`;
 }
 
@@ -277,9 +351,18 @@ function renderInspector(): void {
 }
 
 function renderModuleInfo(module: StageModule): void {
-  const top = pointsFor(module, 'walk_top')[0]?.[1] ?? 0;
-  const bottom = pointsFor(module, 'walk_bottom')[0]?.[1] ?? 0;
-  moduleInfo.innerHTML = `<dt>Nome</dt><dd>${module.name}</dd><dt>Larghezza</dt><dd>${worldWidth(module)} px</dd><dt>WALK</dt><dd>${top}–${bottom} px</dd><dt>Oggetti</dt><dd>${currentAmbient().length}</dd>`;
+  const top = Math.min(...pointsFor(module, 'walk_top').map((point) => point[1]));
+  const bottom = Math.max(...pointsFor(module, 'walk_bottom').map((point) => point[1]));
+  moduleInfo.innerHTML = `<dt>Nome</dt><dd>${module.name}</dd><dt>Larghezza</dt><dd>${worldWidth(module)} px</dd><dt>WALK</dt><dd>${top}–${bottom} px</dd><dt>Scala fighter</dt><dd>${Math.round((module.character_scale ?? 1) * 100)}%</dd><dt>Oggetti</dt><dd>${currentAmbient().length}</dd>`;
+}
+
+function renderModuleSettings(module: StageModule): void {
+  const scale = module.character_scale ?? 1;
+  characterScaleInput.value = String(scale);
+  characterScaleValue.value = `${Math.round(scale * 100)}%`;
+  walkTools.hidden = !walkEditMode;
+  editWalkButton.classList.toggle('active', walkEditMode);
+  updateWalkButtons();
 }
 
 function renderModule(): void {
@@ -290,6 +373,7 @@ function renderModule(): void {
   renderAmbient();
   renderInspector();
   renderModuleInfo(module);
+  renderModuleSettings(module);
   applyZoom();
 }
 
@@ -300,7 +384,7 @@ function selectActor(id: string | null): void {
 }
 
 function startObjectPointer(event: PointerEvent): void {
-  if (stageCanvas.classList.contains('preview-mode')) return;
+  if (stageCanvas.classList.contains('preview-mode') || walkEditMode) return;
   event.preventDefault();
   event.stopPropagation();
   const wrapper = event.currentTarget as HTMLDivElement;
@@ -337,6 +421,105 @@ function startObjectPointer(event: PointerEvent): void {
   wrapper.addEventListener('pointermove', move);
   wrapper.addEventListener('pointerup', up);
   wrapper.addEventListener('pointercancel', up);
+}
+
+function stagePoint(event: PointerEvent): [number, number] {
+  const rect = stageCanvas.getBoundingClientRect();
+  return [
+    (event.clientX - rect.left) / zoom,
+    (event.clientY - rect.top) / zoom,
+  ];
+}
+
+function refreshWalkGeometry(key: WalkKey, node?: SVGCircleElement): void {
+  const points = pointsFor(currentModule(), key);
+  const line = walkGuides.querySelector<SVGPolylineElement>(`.walk-line[data-key="${key}"]`);
+  line?.setAttribute('points', points.map(([x, y]) => `${x},${y}`).join(' '));
+  if (node && selectedWalkPoint) {
+    const point = points[selectedWalkPoint.index];
+    if (point) {
+      node.setAttribute('cx', String(point[0]));
+      node.setAttribute('cy', String(point[1]));
+    }
+  }
+}
+
+function startWalkPointPointer(event: PointerEvent): void {
+  if (!walkEditMode || stageCanvas.classList.contains('preview-mode')) return;
+  event.preventDefault();
+  event.stopPropagation();
+  const node = event.currentTarget as SVGCircleElement;
+  const key = node.dataset.key as WalkKey;
+  const index = Number(node.dataset.index);
+  if (!['walk_top', 'walk_bottom'].includes(key) || !Number.isInteger(index)) return;
+  activeWalkKey = key;
+  selectedWalkPoint = { key, index };
+  selectedId = null;
+  updateWalkButtons();
+  renderInspector();
+  node.classList.add('selected');
+  node.setPointerCapture(event.pointerId);
+
+  const move = (moveEvent: PointerEvent): void => {
+    const [x, y] = stagePoint(moveEvent);
+    const module = currentModule();
+    editablePoints(module, key)[index] = constrainedWalkPoint(module, key, index, x, y);
+    refreshWalkGeometry(key, node);
+  };
+  const up = (): void => {
+    node.removeEventListener('pointermove', move);
+    node.removeEventListener('pointerup', up);
+    node.removeEventListener('pointercancel', up);
+    commitHistory();
+    renderGuides(currentModule());
+    renderModuleInfo(currentModule());
+  };
+  node.addEventListener('pointermove', move);
+  node.addEventListener('pointerup', up);
+  node.addEventListener('pointercancel', up);
+}
+
+function addWalkPoint(event: MouseEvent): void {
+  if (!walkEditMode || stageCanvas.classList.contains('preview-mode')) return;
+  const target = event.target as SVGElement;
+  if (target.classList.contains('walk-node')) return;
+  event.preventDefault();
+  event.stopPropagation();
+  const key = (target.dataset.key as WalkKey | undefined) ?? activeWalkKey;
+  activeWalkKey = key;
+  const module = currentModule();
+  const points = editablePoints(module, key);
+  const [rawX, rawY] = stagePoint(event as unknown as PointerEvent);
+  const x = Math.max(1, Math.min(worldWidth(module) - 1, Math.round(rawX)));
+  let index = points.findIndex((point) => point[0] > x);
+  if (index < 0) index = points.length - 1;
+  const otherKey: WalkKey = key === 'walk_top' ? 'walk_bottom' : 'walk_top';
+  const otherY = interpolatePoints(pointsFor(module, otherKey), x);
+  const roundedY = Math.max(0, Math.min(720, Math.round(rawY)));
+  const y = key === 'walk_top'
+    ? Math.min(roundedY, Math.floor(otherY - 20))
+    : Math.max(roundedY, Math.ceil(otherY + 20));
+  const point: [number, number] = [x, y];
+  points.splice(index, 0, point);
+  selectedWalkPoint = { key, index };
+  selectedId = null;
+  commitHistory();
+  renderModule();
+}
+
+function deleteSelectedWalkPoint(): boolean {
+  if (!selectedWalkPoint) return false;
+  const points = editablePoints(currentModule(), selectedWalkPoint.key);
+  const index = selectedWalkPoint.index;
+  if (index <= 0 || index >= points.length - 1) {
+    showToast('I due punti alle estremità non possono essere eliminati.', true);
+    return true;
+  }
+  points.splice(index, 1);
+  selectedWalkPoint = null;
+  commitHistory();
+  renderModule();
+  return true;
 }
 
 function uniqueId(base: string): string {
@@ -491,6 +674,7 @@ function bindEvents(): void {
   moduleSelect.addEventListener('change', () => {
     activeModuleId = moduleSelect.value;
     selectedId = null;
+    selectedWalkPoint = null;
     stageScroll.scrollTo({ left: 0, top: 0 });
     renderModule();
     updateDirtyState();
@@ -506,6 +690,7 @@ function bindEvents(): void {
     if (event.target === stageCanvas || event.target === ambientLayer || event.target === backgroundLayer) selectActor(null);
   });
   stageCanvas.addEventListener('dragover', (event) => event.preventDefault());
+  walkGuides.addEventListener('dblclick', addWalkPoint);
   stageCanvas.addEventListener('drop', (event) => {
     event.preventDefault();
     const assetPath = event.dataTransfer?.getData('application/x-palermo-asset');
@@ -515,6 +700,16 @@ function bindEvents(): void {
     void addAsset(entry, (event.clientX - rect.left) / zoom, (event.clientY - rect.top) / zoom);
   });
   stageScroll.addEventListener('scroll', () => renderGuides(currentModule()), { passive: true });
+
+  characterScaleInput.addEventListener('input', () => {
+    const scale = Math.max(0.8, Math.min(1.2, Number(characterScaleInput.value)));
+    currentModule().character_scale = Math.round(scale * 100) / 100;
+    characterScaleValue.value = `${Math.round(scale * 100)}%`;
+    renderGuides(currentModule());
+    renderModuleInfo(currentModule());
+    updateDirtyState();
+  });
+  characterScaleInput.addEventListener('change', commitHistory);
 
   objectX.addEventListener('change', () => mutateSelected((actor) => { actor.position[0] = Number(objectX.value); }));
   objectY.addEventListener('change', () => mutateSelected((actor) => { actor.position[1] = Number(objectY.value); }));
@@ -546,6 +741,28 @@ function bindEvents(): void {
     button.classList.toggle('active');
     stageCanvas.classList.toggle('guides-off', !button.classList.contains('active'));
   });
+  editWalkButton.addEventListener('click', () => {
+    walkEditMode = !walkEditMode;
+    selectedWalkPoint = null;
+    if (walkEditMode) {
+      stageCanvas.classList.remove('preview-mode');
+      element<HTMLButtonElement>('#preview-game').classList.remove('active');
+      selectActor(null);
+    }
+    renderModule();
+  });
+  walkTopButton.addEventListener('click', () => {
+    activeWalkKey = 'walk_top';
+    selectedWalkPoint = null;
+    renderGuides(currentModule());
+    updateWalkButtons();
+  });
+  walkBottomButton.addEventListener('click', () => {
+    activeWalkKey = 'walk_bottom';
+    selectedWalkPoint = null;
+    renderGuides(currentModule());
+    updateWalkButtons();
+  });
   element<HTMLButtonElement>('#preview-game').addEventListener('click', (event) => {
     const button = event.currentTarget as HTMLButtonElement;
     button.classList.toggle('active');
@@ -572,6 +789,7 @@ function bindEvents(): void {
     }
     if (event.key === 'Delete' || event.key === 'Backspace') {
       event.preventDefault();
+      if (deleteSelectedWalkPoint()) return;
       deleteSelected();
       return;
     }

@@ -16,6 +16,19 @@ const expectedMeta = new Set();
 function fail(message) { errors.push(message); }
 function warn(message) { warnings.push(message); }
 function frameName(index) { return `${String(index).padStart(2, '0')}.png`; }
+function interpolateProfile(profile, x) {
+  if (x <= profile[0][0]) return profile[0][1];
+  const last = profile.at(-1);
+  if (x >= last[0]) return last[1];
+  for (let index = 1; index < profile.length; index += 1) {
+    const right = profile[index];
+    if (x > right[0]) continue;
+    const left = profile[index - 1];
+    const span = right[0] - left[0];
+    return span > 0 ? left[1] + (right[1] - left[1]) * ((x - left[0]) / span) : right[1];
+  }
+  return last[1];
+}
 function isRecord(value) { return Boolean(value) && typeof value === 'object' && !Array.isArray(value); }
 function deepMerge(base, override) {
   if (!isRecord(base) || !isRecord(override)) return override;
@@ -254,6 +267,10 @@ for (const module of stage.modules ?? []) {
   if (!Number.isFinite(module.reference_actor_height) || module.reference_actor_height <= 0) {
     fail(`${module.id}: reference_actor_height non valido`);
   }
+  if (module.character_scale !== undefined
+    && (!Number.isFinite(module.character_scale) || module.character_scale < 0.8 || module.character_scale > 1.2)) {
+    fail(`${module.id}: character_scale deve essere compreso tra 0.8 e 1.2`);
+  }
   if (module.art_status === 'approved' && !Number.isFinite(module.horizon_y)) {
     fail(`${module.id}: un modulo approvato deve dichiarare horizon_y`);
   }
@@ -270,6 +287,36 @@ for (const module of stage.modules ?? []) {
     || !playfieldY.every(Number.isFinite)
     || playfieldY[0] < 0 || playfieldY[1] > 720 || playfieldY[1] <= playfieldY[0]) {
     fail(`${module.id}: playfield_y non valido`);
+  }
+  for (const key of ['walk_top', 'walk_bottom']) {
+    const profile = module[key];
+    if (!Array.isArray(profile) || profile.length < 2) {
+      fail(`${module.id}: ${key} deve avere almeno due punti`);
+      continue;
+    }
+    for (const [pointIndex, point] of profile.entries()) {
+      if (!Array.isArray(point) || point.length !== 2 || !point.every(Number.isFinite)
+        || point[0] < 0 || point[0] > worldWidth || point[1] < 0 || point[1] > 720) {
+        fail(`${module.id}: punto ${pointIndex + 1} di ${key} non valido`);
+      }
+      if (pointIndex > 0 && point[0] <= profile[pointIndex - 1][0]) {
+        fail(`${module.id}: i punti di ${key} devono avere X crescente`);
+      }
+    }
+    if (profile[0]?.[0] !== 0 || profile.at(-1)?.[0] !== worldWidth) {
+      fail(`${module.id}: ${key} deve coprire da X 0 a X ${worldWidth}`);
+    }
+  }
+  if (Array.isArray(module.walk_top) && module.walk_top.length >= 2
+    && Array.isArray(module.walk_bottom) && module.walk_bottom.length >= 2) {
+    const sampleXs = new Set([0, worldWidth, ...module.walk_top.map((point) => point[0]), ...module.walk_bottom.map((point) => point[0])]);
+    for (let x = 0; x <= worldWidth; x += 64) sampleXs.add(Math.min(x, worldWidth));
+    for (const x of sampleXs) {
+      if (interpolateProfile(module.walk_top, x) + 20 > interpolateProfile(module.walk_bottom, x)) {
+        fail(`${module.id}: le WALK line si incrociano o lasciano meno di 20 px a X ${x}`);
+        break;
+      }
+    }
   }
   for (const [layerIndex, layer] of (module.background_layers ?? []).entries()) {
     if (!layer?.src || !exists(layer.src)) fail(`${module.id}: layer ${layerIndex + 1} mancante ${layer?.src ?? ''}`);

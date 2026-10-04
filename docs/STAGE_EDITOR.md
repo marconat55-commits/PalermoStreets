@@ -26,7 +26,9 @@ Visitare quindi:
 - specchio orizzontale e trasparenza;
 - duplicazione ed eliminazione;
 - undo e redo;
-- guide WALK, riferimento Merco da 290 px e camera 1280×720;
+- editing grafico delle WALK line superiore e inferiore, con nodi trascinabili, aggiungibili ed eliminabili;
+- scala uniforme di giocatore e nemici configurabile separatamente per ogni modulo;
+- guide WALK, riferimento Merco in scala e camera 1280×720;
 - vista pulita di anteprima;
 - salvataggio diretto nel JSON usato dal gioco.
 - pubblicazione esplicita su GitHub tramite il pulsante **Salva e pubblica**.
@@ -75,4 +77,6 @@ Per vedere un nuovo asset basta ricaricare la pagina dell'editor.
 - Ctrl + Shift + Z: ripeti;
 - Ctrl + S: salva.
 
-La rotazione, i layer OCCLUSION/FOREGROUND, il grading e il salvataggio Git saranno aggiunti solo dopo aver esteso lo stesso supporto nel runtime di gioco.
+In modalità **Modifica WALK**, trascinare i nodi per ridisegnare la fascia. Un doppio clic aggiunge un nodo alla linea attiva; Canc elimina il nodo selezionato, tranne i due estremi che mantengono la copertura completa del modulo.
+
+La rotazione, i layer OCCLUSION/FOREGROUND, il grading e l'editor grafico delle schermate UI saranno aggiunti solo dopo aver esteso lo stesso supporto nel runtime di gioco.

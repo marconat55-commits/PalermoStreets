@@ -16,6 +16,7 @@ import { SPIN_SPECIAL } from '../combat/attacks';
 import { resolveWalkBand, sampleWalkBand } from '../stage/walkBand';
 import { StageAmbientLayer } from '../stage/StageAmbientLayer';
 import { collectAmbientAssets } from '../stage/ambientAssets';
+import { moduleCharacterScale } from '../stage/moduleCharacterScale';
 import { resolveEncounterBounds, resolveWaveEntry } from '../stage/waveEntry';
 import { loadStageItems } from '../data/loadData';
 import { collectModuleItemAssets, collectModulePrimaryItemAssets, selectDropItem } from '../stage/moduleItems';
@@ -297,6 +298,7 @@ export class StageScene implements Scene {
       tuning.max_health ?? 120,
       tuning.move_speed ?? 285,
       tuning.depth_speed ?? 205,
+      moduleCharacterScale(this.modules[startModuleIndex]!),
     );
     this.actors.addChild(this.player.root);
     this.enterModule(startModuleIndex, false);
@@ -478,6 +480,7 @@ export class StageScene implements Scene {
     this.player.releaseGrab();
     this.player.elevation = 0;
     this.player.alpha255 = 255;
+    this.player.setVisualScale(moduleCharacterScale(this.currentModule));
     this.player.beginState('idle', 'idle');
     this.player.setPlayfieldBounds(45, this.worldWidth - 45, this.playfieldTop, this.playfieldBottom);
     this.player.setPlayfieldProfile((worldX) => resolveWalkBand(
@@ -768,7 +771,7 @@ export class StageScene implements Scene {
         attackPattern: wave.attack_pattern ?? defaults.attack_pattern,
         cooldownScale: wave.cooldown_scale ?? defaults.cooldown_scale,
         collisionScale: wave.collision_scale ?? defaults.collision_scale,
-        visualScale: defaults.visual_scale,
+        visualScale: defaults.visual_scale * moduleCharacterScale(this.currentModule),
         dodgeChance: wave.dodge_chance ?? defaults.dodge_chance,
         dodgeCooldown: wave.dodge_cooldown ?? defaults.dodge_cooldown,
         spawnFadeSeconds: defaults.spawn_fade_seconds,

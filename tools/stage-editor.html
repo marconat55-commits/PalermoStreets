@@ -16,6 +16,7 @@
         <button id="undo" type="button" title="Ctrl+Z">Annulla</button>
         <button id="redo" type="button" title="Ctrl+Shift+Z">Ripeti</button>
         <button id="toggle-guides" type="button" class="active">Guide</button>
+        <button id="edit-walk" type="button">Modifica WALK</button>
         <button id="preview-game" type="button">Vista gioco</button>
         <label>Zoom <input id="zoom" type="range" min="20" max="100" step="5" value="50" /></label>
         <button id="save" type="button" class="primary">Salva stage</button>
@@ -69,6 +70,22 @@
           <section class="module-info">
             <h2>Modulo</h2>
             <dl id="module-info"></dl>
+          </section>
+          <section class="module-settings">
+            <h2>Scala combattenti</h2>
+            <label class="scale-setting">
+              <span>Giocatore + nemici <output id="character-scale-value">100%</output></span>
+              <input id="character-scale" type="range" min="0.8" max="1.2" step="0.01" value="1" />
+            </label>
+            <p class="hint">Si applica uniformemente solo al modulo selezionato. Le distanze di combattimento non cambiano.</p>
+            <div id="walk-tools" hidden>
+              <h2>WALK line</h2>
+              <div class="button-grid">
+                <button id="walk-top" type="button" class="walk-top active">Linea superiore</button>
+                <button id="walk-bottom" type="button" class="walk-bottom">Linea inferiore</button>
+              </div>
+              <p class="hint">Trascina i nodi. Doppio clic sulla linea o sullo stage per aggiungerne uno. Seleziona un nodo interno e premi Canc per eliminarlo.</p>
+            </div>
           </section>
         </aside>
       </main>

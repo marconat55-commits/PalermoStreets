@@ -199,6 +199,8 @@ export interface ModuleData {
   /** Art approval is separate from runtime/playability status. */
   art_status?: 'approved' | 'placeholder_rebuild_required';
   reference_actor_height?: number;
+  /** Uniform visual scale applied to the player and every enemy only in this module. */
+  character_scale?: number;
   horizon_y?: number;
   background: string;
   /** Ordered authored layers. `background` remains the backwards-compatible main fallback. */

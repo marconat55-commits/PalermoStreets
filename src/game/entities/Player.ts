@@ -66,8 +66,8 @@ export class Player extends Actor {
   private idleVariantIndex = 0;
   private idleStillTime = 0;
 
-  constructor(bank: AnimationBank, position: Vec2, maxHealth = 120, moveSpeed = 285, depthSpeed = 205) {
-    super(bank, position, maxHealth);
+  constructor(bank: AnimationBank, position: Vec2, maxHealth = 120, moveSpeed = 285, depthSpeed = 205, visualScale = 1) {
+    super(bank, position, maxHealth, visualScale);
     this.moveSpeed = moveSpeed;
     this.depthSpeed = depthSpeed;
     this.idleVariants = orderedIdleVariants(this.animator.bank.clips.keys());

@@ -332,96 +332,6 @@
       ],
       "ambient": [
         {
-          "id": "m02_franco_gioia",
-          "kind": "sprite_loop",
-          "frames": [
-            "assets/ambient/stage1_zen/M01/franco_gioia/idle_01.png",
-            "assets/ambient/stage1_zen/M01/franco_gioia/idle_02.png"
-          ],
-          "position": [
-            710,
-            592
-          ],
-          "size": [
-            255,
-            255
-          ],
-          "anchor": [
-            0.5,
-            1
-          ],
-          "frame_durations": [
-            1.55,
-            0.8
-          ],
-          "parallax": 1,
-          "alpha": 0.96,
-          "shadow": {
-            "width": 126,
-            "height": 23,
-            "offset": [
-              0,
-              -3
-            ],
-            "alpha": 0.24
-          },
-          "speech": {
-            "text": "HAHAHA CUINNUTI CA SITI!!!",
-            "interval": 5,
-            "duration": 2.6,
-            "offset": [
-              31,
-              -315
-            ],
-            "scale": 1.375
-          },
-          "interactive": false
-        },
-        {
-          "id": "m02_duracell",
-          "kind": "sprite_loop",
-          "frames": [
-            "assets/ambient/stage1_zen/M01/duracell/idle_01.png",
-            "assets/ambient/stage1_zen/M01/duracell/idle_02.png"
-          ],
-          "position": [
-            480,
-            583
-          ],
-          "size": [
-            228,
-            228
-          ],
-          "anchor": [
-            0.5,
-            1
-          ],
-          "frame_durations": [
-            1.75,
-            0.75
-          ],
-          "hidden_regions": [
-            [
-              156,
-              9,
-              20,
-              29
-            ]
-          ],
-          "parallax": 1,
-          "alpha": 0.96,
-          "shadow": {
-            "width": 122,
-            "height": 22,
-            "offset": [
-              0,
-              -3
-            ],
-            "alpha": 0.24
-          },
-          "interactive": false
-        },
-        {
           "id": "m02_meccanico",
           "kind": "sprite_loop",
           "frames": [
@@ -589,7 +499,7 @@
             60
           ],
           "parallax": 1,
-          "alpha": 0.97,
+          "alpha": 0.95,
           "interactive": false
         },
         {
@@ -1315,6 +1225,61 @@
             ],
             "alpha": 0.22
           },
+          "interactive": false
+        },
+        {
+          "id": "m04_npc_ragazzo_cappuccio_nero",
+          "kind": "sprite_loop",
+          "frames": [
+            "assets/ambient/stage1_zen/editor_assets/static_props/npc_ragazzo_cappuccio_nero.png",
+            "assets/ambient/stage1_zen/editor_assets/static_props/npc_ragazzo_cappuccio_nero.png"
+          ],
+          "position": [
+            2703,
+            485
+          ],
+          "size": [
+            91,
+            124
+          ],
+          "anchor": [
+            0.5,
+            1
+          ],
+          "frame_durations": [
+            0.5,
+            0.5
+          ],
+          "parallax": 1,
+          "alpha": 0.92,
+          "interactive": false,
+          "flip_x": false
+        },
+        {
+          "id": "m04_pianta_fioriera_yucca_doppia",
+          "kind": "sprite_loop",
+          "frames": [
+            "assets/ambient/stage1_zen/editor_assets/static_props/pianta_fioriera_yucca_doppia.png",
+            "assets/ambient/stage1_zen/editor_assets/static_props/pianta_fioriera_yucca_doppia.png"
+          ],
+          "position": [
+            953,
+            544
+          ],
+          "size": [
+            240,
+            180
+          ],
+          "anchor": [
+            0.5,
+            1
+          ],
+          "frame_durations": [
+            0.5,
+            0.5
+          ],
+          "parallax": 1,
+          "alpha": 0.78,
           "interactive": false
         }
       ],

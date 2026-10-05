@@ -63,7 +63,63 @@
           705
         ]
       ],
-      "ambient": [],
+      "ambient": [
+        {
+          "id": "m01_moto_yamaha_xt250",
+          "kind": "sprite_loop",
+          "frames": [
+            "assets/ambient/stage1_zen/editor_assets/static_props/moto_yamaha_xt250.png",
+            "assets/ambient/stage1_zen/editor_assets/static_props/moto_yamaha_xt250.png"
+          ],
+          "position": [
+            192,
+            583
+          ],
+          "size": [
+            261,
+            197
+          ],
+          "anchor": [
+            0.5,
+            1
+          ],
+          "frame_durations": [
+            0.5,
+            0.5
+          ],
+          "parallax": 1,
+          "alpha": 0.94,
+          "interactive": false,
+          "flip_x": false
+        },
+        {
+          "id": "m01_padre_pio",
+          "kind": "sprite_loop",
+          "frames": [
+            "assets/ambient/stage1_zen/M04/static_props/padre_pio.png",
+            "assets/ambient/stage1_zen/M04/static_props/padre_pio.png"
+          ],
+          "position": [
+            572,
+            419
+          ],
+          "size": [
+            103,
+            180
+          ],
+          "anchor": [
+            0.5,
+            1
+          ],
+          "frame_durations": [
+            0.5,
+            0.5
+          ],
+          "parallax": 1,
+          "alpha": 0.94,
+          "interactive": false
+        }
+      ],
       "entry": [
         147,
         680

@@ -376,11 +376,11 @@
           ],
           "position": [
             1990,
-            590
+            582
           ],
           "size": [
-            185,
-            185
+            175,
+            175
           ],
           "anchor": [
             0.5,
@@ -460,8 +460,8 @@
             560
           ],
           "size": [
-            112,
-            112
+            105,
+            105
           ],
           "anchor": [
             0.5,
@@ -499,7 +499,7 @@
             60
           ],
           "parallax": 1,
-          "alpha": 0.95,
+          "alpha": 0.92,
           "interactive": false
         },
         {
@@ -563,6 +563,34 @@
           "parallax": 1,
           "alpha": 0.87,
           "interactive": false
+        },
+        {
+          "id": "m02_macerie_carriola_legna",
+          "kind": "sprite_loop",
+          "frames": [
+            "assets/ambient/stage1_zen/editor_assets/static_props/macerie_carriola_legna.png",
+            "assets/ambient/stage1_zen/editor_assets/static_props/macerie_carriola_legna.png"
+          ],
+          "position": [
+            154,
+            556
+          ],
+          "size": [
+            187,
+            137
+          ],
+          "anchor": [
+            0.5,
+            1
+          ],
+          "frame_durations": [
+            0.5,
+            0.5
+          ],
+          "parallax": 1,
+          "alpha": 0.85,
+          "interactive": false,
+          "flip_x": false
         }
       ],
       "entry": [
@@ -1462,7 +1490,7 @@
       "heal": 16,
       "items": [],
       "waves": [],
-      "character_scale": 0.85
+      "character_scale": 0.8
     }
   ],
   "character_system": "profile_registry_v1"

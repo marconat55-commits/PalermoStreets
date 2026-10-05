@@ -21,7 +21,7 @@ const stage = JSON.parse(fs.readFileSync('public/data/stage1_zen.json', 'utf8'))
 
 test('i moduli Zen coprono la propria lunghezza e tengono gli spawn nella walk band', () => {
   assert.deepEqual(stage.modules.map((module) => module.id), ['M01', 'M02', 'M03', 'M04', 'M05']);
-  const expectedWorldWidths: Record<string, number> = { M01: 2560, M02: 5120, M03: 5869, M04: 3525, M05: 1900 };
+  const expectedWorldWidths: Record<string, number> = { M01: 2927, M02: 5120, M03: 5869, M04: 3525, M05: 1900 };
   for (const module of stage.modules) {
     const expectedWorldWidth = expectedWorldWidths[module.id];
     assert.ok(expectedWorldWidth, `${module.id}: missing expected world width`);
@@ -44,14 +44,13 @@ test('i moduli Zen coprono la propria lunghezza e tengono gli spawn nella walk b
     const main = module.background_layers.find((layer) => layer.plane === 'main');
     if (far) assert.equal(far.parallax, 0.22, `${module.id}: continuous Palermo skyline must use far parallax`);
     if (module.id === 'M01') {
-      for (const layer of module.background_layers) {
-        assert.equal(layer.x, -269, 'M01: unexpected layer X');
-        assert.equal(layer.width, 3098, 'M01: unexpected display width');
-        assert.equal(layer.height, 871, 'M01: unexpected layer height');
-        assert.equal(layer.y, -144, 'M01: unexpected layer Y');
-      }
-      assert.equal(far?.src, 'assets/backgrounds/stage1_zen/final_v2/M01/M01_FAR.png');
-      assert.equal(main?.src, 'assets/backgrounds/stage1_zen/final_v2/M01/M01_MAIN.png');
+      assert.equal(module.background_layers.length, 1);
+      assert.equal(main?.x, 0);
+      assert.equal(main?.y, 0);
+      assert.equal(main?.width, 2927);
+      assert.equal(main?.height, 720);
+      assert.equal(main?.src, 'assets/backgrounds/stage1_zen/final_v3/M01/M01_MAIN.png');
+      assert.equal(far, undefined);
     } else if (module.id === 'M02') {
       assert.equal(module.background_layers.length, 2);
       assert.equal(module.background_layers.filter((layer) => layer.flip_x).length, 0);
@@ -85,12 +84,12 @@ test('i moduli Zen coprono la propria lunghezza e tengono gli spawn nella walk b
   }
 });
 
-test('M01 conserva la walkline verde impostata dall utente', () => {
+test('M01 rebuilt usa l intero piazzale come fascia di combattimento', () => {
   const m01 = stage.modules.find((module) => module.id === 'M01');
-  assert.deepEqual(m01?.playfield_y, [650, 705]);
+  assert.deepEqual(m01?.playfield_y, [585, 705]);
   assert.ok(m01);
-  assert.equal(m01.playfield_y[1] - m01.playfield_y[0], 55, 'M01 road lane must match the user-authored green line');
-  assert.deepEqual(m01.walk_top, [[0, 650], [640, 652], [1280, 655], [1920, 660], [2560, 665]]);
+  assert.equal(m01.playfield_y[1] - m01.playfield_y[0], 120, 'M01 piazzale must provide useful combat depth');
+  assert.deepEqual(m01.walk_top, [[0, 585], [732, 582], [1464, 586], [2196, 588], [2927, 584]]);
   for (const wave of m01.waves) {
     for (const [, feetY] of wave.spawns) {
       assert.ok(feetY >= m01.playfield_y[0], 'spawn outside the authored ground plane');
@@ -105,7 +104,6 @@ test('M02 è lungo quattro schermate e usa il piano pavimentato approvato', () =
   assert.deepEqual(m02.camera_bounds, [0, 3840]);
   assert.deepEqual(m02.playfield_y, [650, 705]);
   assert.deepEqual(m02.walk_top, [[0, 614], [2562, 638], [5120, 504]]);
-  assert.equal(m02.world_width, 2 * stage.modules[0]!.world_width);
 });
 
 test('M03 estende la walkline di dieci pixel verso il fondo', () => {

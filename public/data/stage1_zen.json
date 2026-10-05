@@ -10,66 +10,47 @@
       "art_status": "approved",
       "reference_actor_height": 290,
       "horizon_y": 315,
-      "background": "assets/backgrounds/stage1_zen/final_v2/M01/M01_MAIN.png",
+      "background": "assets/backgrounds/stage1_zen/final_v3/M01/M01_MAIN.png",
       "background_layers": [
         {
-          "src": "assets/backgrounds/stage1_zen/final_v2/M01/M01_FAR.png",
-          "parallax": 0.22,
-          "plane": "far",
-          "x": -269,
-          "y": -144,
-          "width": 3098,
-          "height": 871
-        },
-        {
-          "src": "assets/backgrounds/stage1_zen/final_v2/M01/M01_MAIN.png",
+          "src": "assets/backgrounds/stage1_zen/final_v3/M01/M01_MAIN.png",
           "parallax": 1,
           "plane": "main",
-          "x": -269,
-          "y": -144,
-          "width": 3098,
-          "height": 871
-        },
-        {
-          "src": "assets/backgrounds/stage1_zen/final_v2/M01/M01_FOREGROUND.png",
-          "parallax": 1,
-          "plane": "foreground",
-          "enabled": true,
-          "x": -269,
-          "y": -144,
-          "width": 3098,
-          "height": 871
+          "x": 0,
+          "y": 0,
+          "width": 2927,
+          "height": 720
         }
       ],
-      "world_width": 2560,
+      "world_width": 2927,
       "camera_bounds": [
         0,
-        1280
+        1647
       ],
       "playfield_y": [
-        650,
+        585,
         705
       ],
       "walk_top": [
         [
           0,
-          650
+          585
         ],
         [
-          640,
-          652
+          732,
+          582
         ],
         [
-          1280,
-          655
+          1464,
+          586
         ],
         [
-          1920,
-          660
+          2196,
+          588
         ],
         [
-          2560,
-          665
+          2927,
+          584
         ]
       ],
       "walk_bottom": [
@@ -78,163 +59,22 @@
           705
         ],
         [
-          2560,
+          2927,
           705
         ]
       ],
-      "ambient": [
-        {
-          "id": "m01_signora_balcone",
-          "kind": "sprite_loop",
-          "frames": [
-            "assets/ambient/stage1_zen/M01/signora_balcone/idle_01.png",
-            "assets/ambient/stage1_zen/M01/signora_balcone/idle_02.png",
-            "assets/ambient/stage1_zen/M01/signora_balcone/idle_03.png",
-            "assets/ambient/stage1_zen/M01/signora_balcone/idle_04.png"
-          ],
-          "position": [
-            503,
-            170
-          ],
-          "size": [
-            77,
-            70
-          ],
-          "anchor": [
-            0.5,
-            1
-          ],
-          "frame_durations": [
-            2.4,
-            0.8,
-            1.1,
-            2
-          ],
-          "parallax": 1,
-          "interactive": false
-        },
-        {
-          "id": "m01_venditore_frutta",
-          "kind": "sprite_loop",
-          "frames": [
-            "assets/ambient/stage1_zen/M01/venditore_frutta/idle_01.png",
-            "assets/ambient/stage1_zen/M01/venditore_frutta/idle_02.png",
-            "assets/ambient/stage1_zen/M01/venditore_frutta/idle_03.png",
-            "assets/ambient/stage1_zen/M01/venditore_frutta/idle_04.png"
-          ],
-          "position": [
-            1104,
-            586
-          ],
-          "size": [
-            308,
-            226
-          ],
-          "anchor": [
-            0.5,
-            1
-          ],
-          "frame_durations": [
-            1.5,
-            1.2,
-            0.9,
-            1.4
-          ],
-          "parallax": 1,
-          "interactive": false
-        },
-        {
-          "id": "m01_prop_vespa_blu",
-          "kind": "sprite_loop",
-          "frames": [
-            "assets/ambient/stage1_zen/M01/static_props/vespa_blu.png",
-            "assets/ambient/stage1_zen/M01/static_props/vespa_blu.png"
-          ],
-          "position": [
-            770,
-            628
-          ],
-          "size": [
-            161,
-            161
-          ],
-          "anchor": [
-            0.5,
-            1
-          ],
-          "frame_durations": [
-            60,
-            60
-          ],
-          "parallax": 1,
-          "interactive": false
-        },
-        {
-          "id": "m01_prop_cassette_agrumi",
-          "kind": "sprite_loop",
-          "frames": [
-            "assets/ambient/stage1_zen/M01/static_props/cassette_agrumi.png",
-            "assets/ambient/stage1_zen/M01/static_props/cassette_agrumi.png"
-          ],
-          "position": [
-            2470,
-            642
-          ],
-          "size": [
-            162,
-            162
-          ],
-          "anchor": [
-            0.5,
-            1
-          ],
-          "frame_durations": [
-            60,
-            60
-          ],
-          "parallax": 1,
-          "interactive": false
-        },
-        {
-          "id": "m01_moto_yamaha_xt250",
-          "kind": "sprite_loop",
-          "frames": [
-            "assets/ambient/stage1_zen/editor_assets/static_props/moto_yamaha_xt250.png",
-            "assets/ambient/stage1_zen/editor_assets/static_props/moto_yamaha_xt250.png"
-          ],
-          "position": [
-            164,
-            674
-          ],
-          "size": [
-            233,
-            173
-          ],
-          "anchor": [
-            0.5,
-            1
-          ],
-          "frame_durations": [
-            0.5,
-            0.5
-          ],
-          "parallax": 1,
-          "alpha": 0.95,
-          "interactive": false,
-          "flip_x": false
-        }
-      ],
+      "ambient": [],
       "entry": [
         147,
         680
       ],
-      "exit_x": 2510,
+      "exit_x": 2877,
       "heal": 12,
       "items": [
         {
           "item": "trash_bag",
           "position": [
-            2250,
+            2660,
             692
           ],
           "group": "m01_exit"
@@ -242,7 +82,7 @@
         {
           "item": "trash_bin",
           "position": [
-            2365,
+            2775,
             692
           ],
           "group": "m01_exit"
@@ -250,37 +90,37 @@
       ],
       "waves": [
         {
-          "trigger_x": 299,
+          "trigger_x": 320,
           "health": 46,
           "aggression": 0.78,
           "spawns": [
             [
-              874,
-              675
+              820,
+              650
             ],
             [
-              930,
-              700
-            ],
-            [
-              1120,
-              682
-            ],
-            [
-              1280,
-              702
-            ],
-            [
-              1570,
-              675
-            ],
-            [
-              1850,
+              940,
               695
             ],
             [
-              2150,
-              685
+              1180,
+              670
+            ],
+            [
+              1460,
+              700
+            ],
+            [
+              1800,
+              648
+            ],
+            [
+              2180,
+              690
+            ],
+            [
+              2550,
+              665
             ]
           ],
           "characters": [

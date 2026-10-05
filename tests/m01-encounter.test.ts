@@ -42,7 +42,7 @@ test('M01 conserva un solo piccolo gruppo di sacchi e bidoni alla fine e rilasci
   const groups = Map.groupBy(m01.items, (item) => item.group);
   assert.equal(groups.size, 1);
   assert.equal(groups.get('m01_exit')?.length, 2);
-  assert.ok(m01.items.every((item) => item.position[0] >= 2200));
+  assert.ok(m01.items.every((item) => item.position[0] >= 2600));
   assert.ok(m01.items.every((item) => item.position[0] < m01.exit_x));
   const catalog = JSON.parse(fs.readFileSync('public/data/items/stage1_zen.json', 'utf8')) as {
     items: Array<{ id: string; kind: string; drop_item?: string; drop_items?: string[] }>;

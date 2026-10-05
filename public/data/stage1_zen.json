@@ -1098,33 +1098,6 @@
           "interactive": false
         },
         {
-          "id": "m03_m03_bush_tall_grass_seam_03_04_preview",
-          "kind": "sprite_loop",
-          "frames": [
-            "assets/backgrounds/stage1_zen/final_v4/M03/props/M03_BUSH_TALL_GRASS_SEAM_03_04_PREVIEW.png",
-            "assets/backgrounds/stage1_zen/final_v4/M03/props/M03_BUSH_TALL_GRASS_SEAM_03_04_PREVIEW.png"
-          ],
-          "position": [
-            455,
-            445
-          ],
-          "size": [
-            189,
-            189
-          ],
-          "anchor": [
-            0.5,
-            1
-          ],
-          "frame_durations": [
-            0.5,
-            0.5
-          ],
-          "parallax": 1,
-          "alpha": 0.92,
-          "interactive": false
-        },
-        {
           "id": "m03_vespa_rossa",
           "kind": "sprite_loop",
           "frames": [
@@ -1176,6 +1149,33 @@
           ],
           "parallax": 1,
           "alpha": 0.88,
+          "interactive": false
+        },
+        {
+          "id": "m03_cisterna_vogliamo_il_vino",
+          "kind": "sprite_loop",
+          "frames": [
+            "assets/ambient/stage1_zen/editor_assets/static_props/cisterna_vogliamo_il_vino.png",
+            "assets/ambient/stage1_zen/editor_assets/static_props/cisterna_vogliamo_il_vino.png"
+          ],
+          "position": [
+            491,
+            466
+          ],
+          "size": [
+            293,
+            195
+          ],
+          "anchor": [
+            0.5,
+            1
+          ],
+          "frame_durations": [
+            0.5,
+            0.5
+          ],
+          "parallax": 1,
+          "alpha": 0.91,
           "interactive": false
         }
       ],

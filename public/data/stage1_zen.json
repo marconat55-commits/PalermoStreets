@@ -678,7 +678,7 @@
           "name": "TALEBANO"
         }
       ],
-      "character_scale": 0.9
+      "character_scale": 0.85
     },
     {
       "id": "M03",
@@ -1161,43 +1161,6 @@
         ]
       ],
       "ambient": [
-        {
-          "id": "m04_prop_padre_pio",
-          "kind": "sprite_loop",
-          "frames": [
-            "assets/ambient/stage1_zen/M04/static_props/padre_pio.png",
-            "assets/ambient/stage1_zen/M04/static_props/padre_pio.png"
-          ],
-          "position": [
-            207,
-            494
-          ],
-          "size": [
-            107,
-            187
-          ],
-          "anchor": [
-            0.5,
-            1
-          ],
-          "frame_durations": [
-            10,
-            10
-          ],
-          "parallax": 1,
-          "alpha": 1,
-          "shadow": {
-            "width": 76,
-            "height": 10,
-            "blur": 6,
-            "offset": [
-              0,
-              -2
-            ],
-            "alpha": 0.22
-          },
-          "interactive": false
-        },
         {
           "id": "m04_npc_ragazzo_cappuccio_nero",
           "kind": "sprite_loop",

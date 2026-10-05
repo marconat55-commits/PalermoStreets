@@ -754,7 +754,7 @@
           "name": "TALEBANO"
         }
       ],
-      "character_scale": 1
+      "character_scale": 0.8
     },
     {
       "id": "M03",
@@ -1186,7 +1186,8 @@
       "exit_x": 5799,
       "heal": 16,
       "items": [],
-      "waves": []
+      "waves": [],
+      "character_scale": 0.8
     },
     {
       "id": "M04",
@@ -1336,7 +1337,8 @@
       "exit_x": 3455,
       "heal": 16,
       "items": [],
-      "waves": []
+      "waves": [],
+      "character_scale": 0.8
     },
     {
       "id": "M05",

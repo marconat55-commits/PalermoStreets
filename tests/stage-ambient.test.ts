@@ -57,7 +57,7 @@ test('M01 keeps approved ambient actors and static props behind the WALK lane', 
   assert.deepEqual(vendor.position, [1104, 586]);
   assert.deepEqual(vendor.size, [308, 226]);
   assert.deepEqual(loops.slice(2).map((loop) => loop.position), [[770, 628], [2470, 642]]);
-  assert.deepEqual(loops.slice(2).map((loop) => loop.size), [[207, 207], [164, 164]]);
+  assert.deepEqual(loops.slice(2).map((loop) => loop.size), [[170, 170], [162, 162]]);
 });
 
 test('M02 conserva il pass ambientale approvato nell editor', () => {
@@ -65,20 +65,20 @@ test('M02 conserva il pass ambientale approvato nell editor', () => {
   assert.ok(m02);
   const loops = (m02.ambient ?? []).filter((actor): actor is SpriteLoopSpec => actor.kind === 'sprite_loop');
   assert.deepEqual(loops.map((loop) => loop.id), [
-    'm02_meccanico', 'm02_prop_vespa_rossa', 'm02_prop_vespa_verde', 'm02_prop_vespa_bianca', 'm02_prop_pneumatico_poggiato', 'm02_prop_cassetta_birre', 'm02_signora_balcone', 'm02_ragazzo_telefono',
+    'm02_meccanico', 'm02_prop_vespa_rossa', 'm02_prop_vespa_verde', 'm02_prop_vespa_bianca', 'm02_prop_pneumatico_poggiato', 'm02_prop_cassetta_birre', 'm02_signora_balcone', 'm02_ragazzo_telefono', 'm02_macerie_carriola_legna',
   ]);
   const mechanic = loops[0]!;
   assert.deepEqual(mechanic.position, [1810, 525]);
-  assert.deepEqual(mechanic.size, [134, 134]);
+  assert.deepEqual(mechanic.size, [135, 135]);
   assert.deepEqual(mechanic.shadow, { width: 69, height: 12, offset: [0, -1], alpha: 0.2 });
-  assert.equal(collectAmbientAssets(m02).length, 15);
+  assert.equal(collectAmbientAssets(m02).length, 16);
   for (const loop of loops) {
     assert.ok(loop.position[1] < 635, `${loop.id}: ambient actor must stay behind the WALK lane`);
     for (const frame of loop.frames) assert.ok(fs.existsSync(`public/${frame}`), `${loop.id}: missing ${frame}`);
   }
-  assert.deepEqual(loops.slice(1).map((loop) => loop.position), [[1990, 590], [2420, 590], [2520, 590], [3020, 560], [270, 630], [3801, 110], [3461, 532]]);
-  assert.deepEqual(loops.slice(1).map((loop) => loop.size), [[185, 185], [186, 186], [186, 186], [112, 112], [130, 130], [91, 77], [67, 174]]);
-  assert.deepEqual(loops.map((loop) => loop.alpha), [0.95, 0.97, 0.97, 0.96, 0.97, 0.95, 1, 0.87]);
+  assert.deepEqual(loops.slice(1).map((loop) => loop.position), [[1990, 582], [2420, 590], [2520, 590], [3020, 560], [270, 630], [3801, 110], [3461, 532], [154, 556]]);
+  assert.deepEqual(loops.slice(1).map((loop) => loop.size), [[175, 175], [186, 186], [186, 186], [105, 105], [130, 130], [91, 77], [67, 174], [187, 137]]);
+  assert.deepEqual(loops.map((loop) => loop.alpha), [0.93, 0.97, 0.97, 0.96, 0.97, 0.92, 1, 0.87, 0.85]);
 });
 
 test('M03 copre i quattro raccordi e arricchisce il fondo con props statici proporzionati', () => {

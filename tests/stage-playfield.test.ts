@@ -104,7 +104,7 @@ test('M02 è lungo quattro schermate e usa il piano pavimentato approvato', () =
   assert.equal(m02.world_width, 5120);
   assert.deepEqual(m02.camera_bounds, [0, 3840]);
   assert.deepEqual(m02.playfield_y, [650, 705]);
-  assert.deepEqual(m02.walk_top, [[0, 650], [2560, 655], [5120, 660]]);
+  assert.deepEqual(m02.walk_top, [[0, 614], [2562, 638], [5120, 504]]);
   assert.equal(m02.world_width, 2 * stage.modules[0]!.world_width);
 });
 
@@ -112,7 +112,7 @@ test('M03 estende la walkline di dieci pixel verso il fondo', () => {
   const m03 = stage.modules.find((module) => module.id === 'M03');
   assert.ok(m03);
   assert.deepEqual(m03.playfield_y, [640, 705]);
-  assert.deepEqual(m03.walk_top, [[0, 640], [5869, 640]]);
+  assert.deepEqual(m03.walk_top, [[0, 585], [1287, 588], [2348, 595], [3602, 592], [4831, 585], [5869, 576]]);
 });
 
 test('M04 conduce dal porticato residenziale al vano scala', () => {
@@ -121,7 +121,7 @@ test('M04 conduce dal porticato residenziale al vano scala', () => {
   assert.equal(m04.world_width, 3525);
   assert.deepEqual(m04.camera_bounds, [0, 2245]);
   assert.deepEqual(m04.playfield_y, [640, 705]);
-  assert.deepEqual(m04.walk_top, [[0, 640], [3525, 640]]);
+  assert.deepEqual(m04.walk_top, [[0, 608], [3525, 612]]);
 });
 
 test('M05 offre una fascia di movimento profonda intorno al futuro boss', () => {

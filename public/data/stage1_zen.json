@@ -155,8 +155,8 @@
             628
           ],
           "size": [
-            170,
-            170
+            161,
+            161
           ],
           "anchor": [
             0.5,
@@ -194,6 +194,34 @@
           ],
           "parallax": 1,
           "interactive": false
+        },
+        {
+          "id": "m01_moto_yamaha_xt250",
+          "kind": "sprite_loop",
+          "frames": [
+            "assets/ambient/stage1_zen/editor_assets/static_props/moto_yamaha_xt250.png",
+            "assets/ambient/stage1_zen/editor_assets/static_props/moto_yamaha_xt250.png"
+          ],
+          "position": [
+            164,
+            674
+          ],
+          "size": [
+            233,
+            173
+          ],
+          "anchor": [
+            0.5,
+            1
+          ],
+          "frame_durations": [
+            0.5,
+            0.5
+          ],
+          "parallax": 1,
+          "alpha": 0.95,
+          "interactive": false,
+          "flip_x": false
         }
       ],
       "entry": [

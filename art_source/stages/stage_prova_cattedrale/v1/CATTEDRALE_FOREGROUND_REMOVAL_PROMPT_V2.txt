@@ -1,0 +1,10 @@
+Tool: OpenAI ImageGen (built-in image editing)
+Reference: public/assets/backgrounds/stage_prova_cattedrale/CATTEDRALE_MAIN.png
+Output role: revised semantic cutout reference; final full-resolution mask was rebuilt from the untouched source pixels
+
+Prompt used:
+
+Create a precise transparent-background cutout of this exact cathedral panorama. Remove ONLY the sky, including the bright sun, and make every removed sky pixel fully transparent. Preserve the entire original foreground exactly: every cathedral wall, the large central gray dome and its lantern and cross, the smaller green-and-gold cupola, every tower, spire, finial, crenellation, bridge arch, palm frond, tree, fence, building, street lamp, curb, and cobblestone. Do not erase, redraw, reshape, move, crop, recolor, or regenerate any architectural element. Pay special attention to keeping all domes completely intact with clean accurate silhouettes. Preserve sky openings visible through the large stone arches as transparency, while keeping the stone arches themselves. Maintain the full ultrawide panorama composition and alignment. Output as a PNG with a genuinely transparent sky and clean antialiased edges, no halo, no leftover sky fringe, no missing cupola, and no checkerboard baked into the image.
+
+ImageGen raw output: 2173 × 724 px.
+The final 3338 × 720 alpha was reconstructed from the original panorama with a connected-sky mask and audited against a solid magenta background. This prevents the model-generated geometry from replacing or truncating the dome.

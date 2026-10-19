@@ -23,9 +23,11 @@ Il master è ridotto proporzionalmente a 3338 × 720 px e separato in due livell
 - `public/assets/backgrounds/stage_prova_cattedrale/CATTEDRALE_DAWN_SKY.png` — cielo d’alba, piano `far`, parallasse 0.18.
 - `public/assets/backgrounds/stage_prova_cattedrale/CATTEDRALE_MAIN_FOREGROUND.png` — architettura e strada con cielo trasparente, piano `main`.
 
-`CATTEDRALE_DAWN_COMPOSITE_PREVIEW.png` mostra il risultato combinato. I file `CATTEDRALE_DAWN_SKY_IMAGEGEN_RAW.png` e `CATTEDRALE_FOREGROUND_CUTOUT_HINT_RAW.png` conservano gli output ImageGen originali; le versioni finali 3338 × 720 sono state riallineate alla geometria del master senza ridisegnare l’architettura.
+`CATTEDRALE_DAWN_COMPOSITE_PREVIEW.png` mostra il risultato combinato. I file `CATTEDRALE_DAWN_SKY_IMAGEGEN_RAW.png`, `CATTEDRALE_FOREGROUND_CUTOUT_HINT_RAW.png` e `CATTEDRALE_FOREGROUND_CUTOUT_HINT_RAW_V2.png` conservano gli output ImageGen originali.
 
-I prompt effettivi sono conservati in `CATTEDRALE_DAWN_SKY_GENERATION_PROMPT.txt` e `CATTEDRALE_FOREGROUND_REMOVAL_PROMPT.txt`.
+La maschera foreground definitiva è stata ricostruita direttamente dai pixel del master 3338 × 720. La revisione V2 conserva integralmente la grande cupola, la croce, le torri, le guglie, le merlature e la muratura della torre sinistra. `CATTEDRALE_MAIN_FOREGROUND_ALPHA.png` archivia la maschera finale verificata; i pixel RGB dell’architettura provengono dalla sorgente originale e non sono stati ridisegnati.
+
+I prompt effettivi sono conservati in `CATTEDRALE_DAWN_SKY_GENERATION_PROMPT.txt`, `CATTEDRALE_FOREGROUND_REMOVAL_PROMPT.txt` e `CATTEDRALE_FOREGROUND_REMOVAL_PROMPT_V2.txt`.
 
 La configurazione editor-only è in:
 

@@ -1,0 +1,8 @@
+Foreground mask revision V2 — 2026-10-19
+
+- Rebuilt the sky selection from the untouched 3338 × 720 runtime panorama.
+- Restored the full central dome, lantern and cross removed by the previous semantic mask.
+- Preserved the left tower masonry, every roofline, spire and crenellation.
+- Retained the transparent sky opening beneath the large stone bridge arch.
+- Kept the previously generated dawn sky unchanged.
+- Verified the combined panorama and the transparent foreground against a solid magenta background at the left, center and right edges.

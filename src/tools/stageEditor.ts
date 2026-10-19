@@ -55,6 +55,9 @@ interface AssetEntry {
 
 interface EditorPayload {
   stage: StageData;
+  stageId: string;
+  stageOptions: Array<{ id: string; label: string; canPublish: boolean }>;
+  canPublish: boolean;
   revision: string;
   assets: AssetEntry[];
   backgrounds: string[];
@@ -74,6 +77,7 @@ function assetUrl(assetPath: string): string {
   return `/${assetPath.replace(/^\/+/, '')}`;
 }
 
+const stageSelect = element<HTMLSelectElement>('#stage-select');
 const moduleSelect = element<HTMLSelectElement>('#module-select');
 const assetSearch = element<HTMLInputElement>('#asset-search');
 const assetCategory = element<HTMLSelectElement>('#asset-category');
@@ -110,6 +114,8 @@ const objectFlip = element<HTMLInputElement>('#object-flip');
 
 let stageData: StageData;
 let assets: AssetEntry[] = [];
+let activeStageId = '';
+let canPublish = false;
 let revision = '';
 let activeModuleId = '';
 let selectedId: string | null = null;
@@ -621,7 +627,7 @@ async function saveStage(): Promise<boolean> {
     const response = await fetch('/__stage-editor/save', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ stage: stageData, revision }),
+      body: JSON.stringify({ stageId: activeStageId, stage: stageData, revision }),
     });
     const result = await response.json() as { revision?: string; message?: string; error?: string };
     if (!response.ok) throw new Error(result.error ?? 'Salvataggio fallito');
@@ -640,6 +646,10 @@ async function saveStage(): Promise<boolean> {
 }
 
 async function publishStage(): Promise<void> {
+  if (!canPublish) {
+    showToast('Questo stage di prova resta locale all’editor.', true);
+    return;
+  }
   const publishButton = element<HTMLButtonElement>('#publish');
   const saveButton = element<HTMLButtonElement>('#save');
   publishButton.disabled = true;
@@ -652,7 +662,7 @@ async function publishStage(): Promise<void> {
     const response = await fetch('/__stage-editor/publish', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ moduleId: activeModuleId }),
+      body: JSON.stringify({ stageId: activeStageId, moduleId: activeModuleId }),
     });
     const result = await response.json() as { commit?: string; message?: string; error?: string };
     if (!response.ok) throw new Error(result.error ?? 'Pubblicazione fallita');
@@ -662,7 +672,7 @@ async function publishStage(): Promise<void> {
     updateDirtyState();
     showToast(error instanceof Error ? error.message : String(error), true);
   } finally {
-    publishButton.disabled = false;
+    publishButton.disabled = !canPublish;
     saveButton.disabled = false;
   }
 }
@@ -670,6 +680,15 @@ async function publishStage(): Promise<void> {
 function bindEvents(): void {
   element<HTMLButtonElement>('#back-to-game').addEventListener('click', () => {
     window.location.assign('/');
+  });
+  stageSelect.addEventListener('change', () => {
+    if (serialized() !== savedState && !window.confirm('Cambiare stage e scartare le modifiche non salvate?')) {
+      stageSelect.value = activeStageId;
+      return;
+    }
+    const url = new URL(window.location.href);
+    url.searchParams.set('stage', stageSelect.value);
+    window.location.assign(url.toString());
   });
   moduleSelect.addEventListener('change', () => {
     activeModuleId = moduleSelect.value;
@@ -812,16 +831,32 @@ function bindEvents(): void {
 }
 
 async function loadEditor(): Promise<void> {
-  const response = await fetch('/__stage-editor/state');
+  const requestedStage = new URL(window.location.href).searchParams.get('stage');
+  const stateUrl = new URL('/__stage-editor/state', window.location.origin);
+  if (requestedStage) stateUrl.searchParams.set('stage', requestedStage);
+  const response = await fetch(`${stateUrl.pathname}${stateUrl.search}`);
   if (!response.ok) throw new Error('Il server editor non è attivo. Riavvia npm run dev.');
   const payload = await response.json() as EditorPayload;
   stageData = payload.stage;
+  activeStageId = payload.stageId;
+  canPublish = payload.canPublish;
   revision = payload.revision;
   assets = payload.assets;
   activeModuleId = stageData.modules[0]?.id ?? '';
   savedState = serialized();
   editHistory = [savedState];
   historyIndex = 0;
+
+  stageSelect.replaceChildren(...payload.stageOptions.map((stage) => {
+    const option = document.createElement('option');
+    option.value = stage.id;
+    option.textContent = stage.label;
+    return option;
+  }));
+  stageSelect.value = activeStageId;
+  const publishButton = element<HTMLButtonElement>('#publish');
+  publishButton.disabled = !canPublish;
+  publishButton.title = canPublish ? 'Salva e pubblica questo stage' : 'Lo stage di prova resta locale all’editor';
 
   moduleSelect.replaceChildren(...stageData.modules.map((module) => {
     const option = document.createElement('option');

@@ -1,0 +1,23 @@
+Stage Cattedrale — Panels 1–4 fusion
+
+Final source files:
+- CATTEDRALE_PANELS_01_02_03_FUSION_FULL.png: 3584 × 941 px
+- CATTEDRALE_PANEL_04.png: 1672 × 941 px
+
+Panel 4 placement:
+- Panel 3 origin in the Panels 1–3 panorama: x = 1912
+- Calibrated Panel 4 translation from Panel 3: x = 778
+- Panel 4 origin in the final panorama: x = 2690
+- Effective overlap with the previous panorama: 894 px
+
+Seam method:
+- Adaptive minimum-cost seam through the overlap
+- Seam range inside Panel 4: x = 365–587, varying by row
+- Narrow 10 px feather around the seam
+- Cost considers RGB difference and local edges to avoid cutting conspicuous architectural details
+
+Final outputs:
+- CATTEDRALE_PANELS_01_02_03_04_FUSION_FULL.png: 4362 × 941 px
+- CATTEDRALE_PANELS_01_02_03_04_FUSION_720P.png: 3338 × 720 px
+
+The original panel sources are preserved unchanged. Earlier broad-feather test files remain clearly marked as test/detail artifacts and are not final deliverables.

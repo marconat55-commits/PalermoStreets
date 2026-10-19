@@ -28,6 +28,7 @@ input[type='range'] { padding: 0; }
   border-bottom: 2px solid #9f351d;
 }
 .toolbar label { display: flex; align-items: center; gap: 7px; font-size: 12px; color: #c9bbaa; }
+.toolbar select { max-width: 170px; }
 .toolbar .brand { min-width: 190px; display: flex; flex-direction: column; line-height: 1; }
 .brand span { color: #e54a28; font-size: 11px; letter-spacing: 2px; font-weight: 900; }
 .brand strong { color: #ffd47a; font-size: 18px; letter-spacing: 1px; }

@@ -1,0 +1,20 @@
+Tool: OpenAI ImageGen (built-in image generation)
+References:
+- CATTEDRALE_PANEL_03.png — hard continuity reference
+- CATTEDRALE_PANELS_01_02_03_FUSION_FULL.png — global panorama reference
+
+Prompt used:
+
+Use case: stylized-concept.
+Asset type: PANEL 4 for a side-scrolling Palermo Streets Stage Cattedrale panorama.
+Input images: Image 1 is PANEL 3 and the hard continuity reference. Image 2 is the fused Panels 1–3 panorama and the global reference for camera height, scale, perspective, lighting, palette, street geometry and visual density.
+Primary request: Create the next rightward continuation of this exact scene. Continue horizontally from the open piazza and lower historic buildings at the right end of Panel 3. The Cathedral progressively recedes and leaves the frame to the LEFT. Develop the new area into a broad historic Palermo piazza bordered by lower warm-stone palazzi with restrained iron balconies, arcades and shuttered windows. Keep it one continuous place; do not introduce another dominant monument.
+Seam lock: The leftmost approximately 42% of PANEL 4 must reproduce and continue the rightmost 700 pixels of Image 1 at the exact same scale and perspective as a shared overlap. Match curb height, the fence and garden termination, final Cathedral masonry, cypress and palm silhouettes, adjoining palazzi, sky gradient, pink-cloud direction, street reflections and cobblestone perspective. Do not add a new vertical object on the seam. Fill every edge; no frame or fade.
+Composition: Exactly 1672 × 941 landscape if supported. Same fixed low street-level side-scrolling camera, lens, horizon and ground proportions. Keep the cobblestone street wide, empty and unobstructed across the bottom third. No camera turn, zoom, tilt, aerial view or sudden vanishing-point shift. Use the central and right portions to open the piazza and establish lower urban architecture. Keep the far-right edge simple and open enough for a possible Panel 5.
+Scene progression: After the overlap, finish the Cathedral fence and garden naturally. Continue with coherent historic Palermo palazzi, pale sandstone façades, dark iron balconies, shuttered windows, a few wall-mounted lanterns and sparse palms or cypress trees set behind the playable lane. Keep architectural heights lower than the Cathedral. Avoid mechanical repetition.
+Lighting and style: Exact blue-hour sunset continuity: saturated clear blue sky, sparse soft pink clouds travelling in the same direction, warm amber sunlight from the LEFT, matching long highlights and shadow direction. Preserve the cinematic painterly-photorealistic game-background finish, sharp architectural detail and warm/cool balance.
+Gameplay constraints: Keep the foreground empty and readable for combat silhouettes. No people, enemies, vehicles, carts, market stalls, benches, bollards, fountains, statues, large foreground plants or props blocking movement. No text, signs, logos, UI, watermark or border.
+Avoid: repeating the Cathedral dome, bridge arches or tall towers; a second cathedral; oversized new monuments; scale changes; warped façades, windows or balconies; discontinuous curb; mismatched cobblestones; sudden color changes; a new sun; night lighting; modern objects; crowds; mirrored elements; tiling or seams.
+Output: one clean PANEL 4 image only, preserving full detail to every edge.
+
+Generated output: 1672 × 941 pixels.

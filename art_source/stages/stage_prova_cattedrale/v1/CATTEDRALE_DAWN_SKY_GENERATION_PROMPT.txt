@@ -1,0 +1,9 @@
+Tool: OpenAI ImageGen (built-in image generation)
+Output role: separate far-sky layer for Stage Prova — Cattedrale
+
+Prompt used:
+
+Create a clean ultra-wide panoramic DAWN sky layer for a cinematic painterly-photorealistic side-scrolling game background set in Palermo. Sky only from edge to edge: no land, no buildings, no cathedral, no silhouettes, no trees, no birds, no text. Early sunrise before full daylight. Deep cool blue and soft cyan across the upper sky, transitioning smoothly to pale apricot, warm gold and delicate rose near the horizon. The strongest warm glow comes from the far LEFT, matching amber light already falling from the left in the stage. Add sparse long feathered clouds flowing diagonally from upper-left toward lower-right, with subtle peach and pink illuminated undersides. Keep the center readable and calm, avoid dramatic storm clouds, avoid a visible sun disk, avoid hard bands, avoid repeated cloud patterns. Painterly-photorealistic cinematic game-background finish, fine natural cloud texture, clean full-bleed edges. Composition must remain usable behind architecture across an exact 3338 × 720 ultra-wide canvas.
+
+ImageGen raw output: 2109 × 746 px.
+Final aligned layer: 3338 × 720 px.

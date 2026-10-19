@@ -1,0 +1,10 @@
+Tool: OpenAI ImageGen (built-in image editing)
+Reference: public/assets/backgrounds/stage_prova_cattedrale/CATTEDRALE_MAIN.png
+Output role: semantic cutout hint used to build the exact-size transparent foreground
+
+Prompt used:
+
+Edit the supplied Stage Prova Cattedrale panoramic game background. Remove ONLY the entire existing blue-and-pink sky and every sky cloud, making those sky pixels fully transparent. Preserve all non-sky content exactly: cathedral architecture, every tower and spire, crosses, roofline, buildings, palm fronds, cypress trees, fence, curb, lamps, cobblestones, perspective, warm lighting, shadows, color, sharpness and composition. Carefully preserve fine silhouettes and clean alpha edges around crosses, pinnacles, balconies, tree branches and palm leaves. Also remove sky visible through gaps between architectural details and foliage. Do not repaint, regenerate, move, resize, crop or modify any foreground element. No halo, blue fringe, pink fringe, missing spires, softened buildings, new objects, text or border. Keep the exact original canvas and aspect ratio, 3338 × 720 pixels, as a transparent PNG foreground cutout.
+
+ImageGen raw output: 2173 × 724 px.
+The raw alpha was used only as a semantic hint. Final foreground pixels come from the untouched 3338 × 720 source; the mask was realigned and its cropped road and edge buildings were restored before export.

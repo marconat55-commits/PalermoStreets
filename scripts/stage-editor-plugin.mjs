@@ -5,6 +5,30 @@ import { spawnSync } from 'node:child_process';
 
 const IMAGE_EXTENSIONS = new Set(['.png', '.webp']);
 const DEVELOPMENT_BRANCH = 'crowdfunding-rebuild';
+const DEFAULT_STAGE_DOCUMENT_ID = 'stage1_zen';
+const STAGE_DOCUMENTS = [
+  {
+    id: 'stage1_zen',
+    label: 'Stage 1 — Zen',
+    file: 'stage1_zen.json',
+    publishable: true,
+    validateWithProject: true,
+  },
+  {
+    id: 'stage_prova_cattedrale',
+    label: 'Prova — Cattedrale',
+    file: 'stage_prova_cattedrale.json',
+    publishable: false,
+    validateWithProject: false,
+  },
+];
+
+function resolveStageDocument(value) {
+  const requested = typeof value === 'string' && value.length > 0 ? value : DEFAULT_STAGE_DOCUMENT_ID;
+  const document = STAGE_DOCUMENTS.find((candidate) => candidate.id === requested);
+  if (!document) throw new Error(`Stage editor sconosciuto: ${requested}`);
+  return document;
+}
 
 function hash(value) {
   return crypto.createHash('sha256').update(value).digest('hex');
@@ -144,7 +168,7 @@ function assertStage(stage) {
 export function stageEditorPlugin() {
   const projectRoot = process.cwd();
   const publicRoot = path.join(projectRoot, 'public');
-  const stagePath = path.join(publicRoot, 'data', 'stage1_zen.json');
+  const dataRoot = path.join(publicRoot, 'data');
   const ambientRoot = path.join(publicRoot, 'assets', 'ambient');
   const backgroundRoot = path.join(publicRoot, 'assets', 'backgrounds');
 
@@ -156,6 +180,8 @@ export function stageEditorPlugin() {
         const url = new URL(request.url ?? '/', 'http://localhost');
         try {
           if (request.method === 'GET' && url.pathname === '/__stage-editor/state') {
+            const stageDocument = resolveStageDocument(url.searchParams.get('stage'));
+            const stagePath = path.join(dataRoot, stageDocument.file);
             const raw = await fs.readFile(stagePath, 'utf8');
             const [ambientAssets, backgrounds] = await Promise.all([
               collectImages(ambientRoot, publicRoot),
@@ -164,6 +190,13 @@ export function stageEditorPlugin() {
             const placeableBackgroundProps = backgrounds.filter((assetPath) => assetPath.includes('/props/'));
             send(response, 200, {
               stage: JSON.parse(raw),
+              stageId: stageDocument.id,
+              stageOptions: STAGE_DOCUMENTS.map((document) => ({
+                id: document.id,
+                label: document.label,
+                canPublish: document.publishable,
+              })),
+              canPublish: stageDocument.publishable,
               revision: hash(raw),
               assets: buildAssetLibrary([...ambientAssets, ...placeableBackgroundProps]),
               backgrounds,
@@ -173,6 +206,8 @@ export function stageEditorPlugin() {
 
           if (request.method === 'POST' && url.pathname === '/__stage-editor/save') {
             const payload = await readBody(request);
+            const stageDocument = resolveStageDocument(payload.stageId);
+            const stagePath = path.join(dataRoot, stageDocument.file);
             assertStage(payload.stage);
             const current = await fs.readFile(stagePath, 'utf8');
             if (payload.revision !== hash(current)) {
@@ -183,20 +218,22 @@ export function stageEditorPlugin() {
             const backupRoot = path.join(projectRoot, '.tmp', 'stage-editor-backups');
             await fs.mkdir(backupRoot, { recursive: true });
             const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
-            await fs.writeFile(path.join(backupRoot, `stage1_zen-${timestamp}.json`), current, 'utf8');
+            await fs.writeFile(path.join(backupRoot, `${stageDocument.id}-${timestamp}.json`), current, 'utf8');
             const nextRaw = `${JSON.stringify(payload.stage, null, 2)}\n`;
             await fs.writeFile(stagePath, nextRaw, 'utf8');
 
-            const validation = spawnSync(process.execPath, ['scripts/validate-data.mjs'], {
-              cwd: projectRoot,
-              encoding: 'utf8',
-              windowsHide: true,
-              timeout: 30_000,
-            });
-            if (validation.status !== 0) {
-              await fs.writeFile(stagePath, current, 'utf8');
-              send(response, 422, { error: validation.stderr.trim() || validation.stdout.trim() || 'Validazione fallita; modifica annullata.' });
-              return;
+            if (stageDocument.validateWithProject) {
+              const validation = spawnSync(process.execPath, ['scripts/validate-data.mjs'], {
+                cwd: projectRoot,
+                encoding: 'utf8',
+                windowsHide: true,
+                timeout: 30_000,
+              });
+              if (validation.status !== 0) {
+                await fs.writeFile(stagePath, current, 'utf8');
+                send(response, 422, { error: validation.stderr.trim() || validation.stdout.trim() || 'Validazione fallita; modifica annullata.' });
+                return;
+              }
             }
 
             send(response, 200, { revision: hash(nextRaw), message: 'Stage salvato e validato.' });
@@ -205,6 +242,12 @@ export function stageEditorPlugin() {
 
           if (request.method === 'POST' && url.pathname === '/__stage-editor/publish') {
             const payload = await readBody(request);
+            const stageDocument = resolveStageDocument(payload.stageId);
+            if (!stageDocument.publishable) {
+              send(response, 403, { error: 'Questo stage di prova resta locale all’editor.' });
+              return;
+            }
+            const stagePath = path.join(dataRoot, stageDocument.file);
             const moduleId = typeof payload.moduleId === 'string' && /^M\d{2}$/.test(payload.moduleId) ? payload.moduleId : 'stage';
             const raw = await fs.readFile(stagePath, 'utf8');
             const stage = JSON.parse(raw);

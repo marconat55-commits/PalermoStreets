@@ -1,0 +1,89 @@
+{
+  "schema": 4,
+  "editor_only": true,
+  "build_scope": "stage_prova_cattedrale_editor_preview_v1",
+  "stage_name": "STAGE PROVA — CATTEDRALE",
+  "stage_subtitle": "PIAZZA DELLA CATTEDRALE",
+  "modules": [
+    {
+      "id": "P01",
+      "name": "Panorama Cattedrale",
+      "art_status": "approval_candidate",
+      "reference_actor_height": 290,
+      "horizon_y": 315,
+      "background": "assets/backgrounds/stage_prova_cattedrale/CATTEDRALE_MAIN_FOREGROUND.png",
+      "background_layers": [
+        {
+          "src": "assets/backgrounds/stage_prova_cattedrale/CATTEDRALE_DAWN_SKY.png",
+          "parallax": 0.18,
+          "plane": "far",
+          "x": 0,
+          "y": 0,
+          "width": 3338,
+          "height": 720
+        },
+        {
+          "src": "assets/backgrounds/stage_prova_cattedrale/CATTEDRALE_MAIN_FOREGROUND.png",
+          "parallax": 1,
+          "plane": "main",
+          "x": 0,
+          "y": 0,
+          "width": 3338,
+          "height": 720
+        }
+      ],
+      "world_width": 3338,
+      "camera_bounds": [
+        0,
+        2058
+      ],
+      "playfield_y": [
+        575,
+        705
+      ],
+      "walk_top": [
+        [
+          0,
+          575
+        ],
+        [
+          835,
+          575
+        ],
+        [
+          1669,
+          575
+        ],
+        [
+          2504,
+          575
+        ],
+        [
+          3338,
+          575
+        ]
+      ],
+      "walk_bottom": [
+        [
+          0,
+          705
+        ],
+        [
+          3338,
+          705
+        ]
+      ],
+      "ambient": [],
+      "entry": [
+        150,
+        680
+      ],
+      "exit_x": 3288,
+      "heal": 0,
+      "items": [],
+      "waves": [],
+      "character_scale": 0.8
+    }
+  ],
+  "character_system": "profile_registry_v1"
+}

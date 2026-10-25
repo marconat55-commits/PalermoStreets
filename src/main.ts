@@ -18,7 +18,7 @@ async function bootstrap(): Promise<void> {
     await rigLab.init(host);
     return;
   }
-  const game = new Game();
+  const game = new Game(import.meta.env.DEV && params.has('tignusuPilot'));
   await game.init(host);
 }
 

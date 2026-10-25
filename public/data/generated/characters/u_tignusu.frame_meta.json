@@ -1,0 +1,233 @@
+{
+  "/assets/characters/u_tignusu_anim/idle/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      233,
+      100,
+      173,
+      300
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/u_tignusu_anim/walk/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      258,
+      100,
+      124,
+      300
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/u_tignusu_anim/walk/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      258,
+      100,
+      123,
+      300
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/u_tignusu_anim/walk/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      255,
+      100,
+      130,
+      300
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/u_tignusu_anim/walk/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      212,
+      100,
+      215,
+      300
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/u_tignusu_anim/walk/05.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      203,
+      100,
+      234,
+      300
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/u_tignusu_anim/walk/06.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      237,
+      100,
+      165,
+      300
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/u_tignusu_anim/walk/07.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      245,
+      100,
+      150,
+      300
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/u_tignusu_anim/walk/08.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      258,
+      100,
+      124,
+      300
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/u_tignusu_anim/attack/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      207,
+      100,
+      226,
+      300
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/u_tignusu_anim/attack/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      199,
+      100,
+      241,
+      300
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/u_tignusu_anim/attack/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      206,
+      100,
+      227,
+      300
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/u_tignusu_anim/attack/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      233,
+      100,
+      173,
+      300
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/u_tignusu_anim/hit/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      209,
+      125,
+      222,
+      275
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/u_tignusu_anim/hit/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      233,
+      100,
+      173,
+      300
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/u_tignusu_anim/fall/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      180,
+      190,
+      280,
+      210
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/u_tignusu_anim/fall/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      156,
+      285,
+      328,
+      115
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/u_tignusu_anim/getup/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      156,
+      285,
+      328,
+      115
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/u_tignusu_anim/getup/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      229,
+      241,
+      181,
+      159
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/u_tignusu_anim/getup/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      240,
+      219,
+      159,
+      181
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/u_tignusu_anim/getup/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      233,
+      100,
+      173,
+      300
+    ],
+    "offsetY": 20
+  }
+}

@@ -15,6 +15,8 @@ import { collectModulePrimaryItemAssets } from './stage/moduleItems';
 import { collectAmbientAssets } from './stage/ambientAssets';
 
 export class Game {
+  private readonly enemyPilot: boolean;
+  constructor(enemyPilot = false) { this.enemyPilot = enemyPilot; }
   readonly app = new Application();
   readonly input = new Input();
   private scene: Scene | null = null;
@@ -64,9 +66,12 @@ export class Game {
       Assets.load<Texture>(publicUrl('assets/ui/title/palermo_night.png')),
     ]);
     this.stageEntry = getStageEntry(runtime);
+    const enemyPilot = this.enemyPilot;
+    if (enemyPilot) this.stageEntry = { ...this.stageEntry, data: 'data/stage_tignusu_pilot.json' };
     this.stageData = await loadStage(this.stageEntry);
     this.startModuleIndex = resolveStartModuleIndex(window.location.search, this.stageData.modules);
     this.stageSelectionEnabled = shouldShowStageSelect(window.location.search);
+    if (enemyPilot) this.stageSelectionEnabled = false;
     this.titleBackground = titleBackground;
     this.defaultPlayerId = index.default_player;
     this.defaultEnemyId = index.default_enemy;

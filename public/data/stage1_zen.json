@@ -188,6 +188,7 @@
             "a_puaicca",
             "talebano"
           ],
+          "random_character": { "id": "u_tignusu", "chance": 0.18 },
           "name": "SGHERRI",
           "batch_size": 2,
           "lock_stage": false
@@ -578,6 +579,7 @@
             ]
           ],
           "character": "a_puaicca",
+          "random_character": { "id": "u_tignusu", "chance": 0.18 },
           "name": "A PUAICCA"
         },
         {
@@ -595,6 +597,7 @@
             ]
           ],
           "character": "talebano",
+          "random_character": { "id": "u_tignusu", "chance": 0.18 },
           "name": "TALEBANO"
         },
         {
@@ -616,6 +619,7 @@
             ]
           ],
           "character": "a_puaicca",
+          "random_character": { "id": "u_tignusu", "chance": 0.18 },
           "name": "A PUAICCA"
         },
         {
@@ -633,6 +637,7 @@
             ]
           ],
           "character": "talebano",
+          "random_character": { "id": "u_tignusu", "chance": 0.18 },
           "name": "TALEBANO"
         },
         {
@@ -654,6 +659,7 @@
             ]
           ],
           "character": "a_puaicca",
+          "random_character": { "id": "u_tignusu", "chance": 0.18 },
           "name": "A PUAICCA"
         },
         {
@@ -675,6 +681,7 @@
             ]
           ],
           "character": "talebano",
+          "random_character": { "id": "u_tignusu", "chance": 0.18 },
           "name": "TALEBANO"
         }
       ],

@@ -387,6 +387,13 @@ for (const module of stage.modules ?? []) {
         }
       }
     }
+    if (wave.random_character !== undefined) {
+      const variant = wave.random_character;
+      if (!variant || !ids.has(variant.id) || !Number.isFinite(variant.chance)
+        || variant.chance <= 0 || variant.chance >= 1) {
+        fail(`${module.id}: sostituzione casuale nemico non valida`);
+      }
+    }
     if (wave.batch_size !== undefined && (!Number.isInteger(wave.batch_size) || wave.batch_size < 1 || wave.batch_size > wave.spawns?.length)) {
       fail(`${module.id}: batch_size non valido`);
     }

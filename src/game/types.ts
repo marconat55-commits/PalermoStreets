@@ -113,6 +113,8 @@ export interface WaveData {
   character?: string;
   /** Optional per-spawn roster; falls back to character when omitted. */
   characters?: string[];
+  /** Optional occasional replacement of a fixed spawn by another registered enemy. */
+  random_character?: { id: string; chance: number };
   name?: string;
   boss?: boolean;
   move_speed_scale?: number;

@@ -13,7 +13,7 @@
     "outfit": "camicia bianca aperta con maniche arrotolate, cintura marrone, jeans blu leggermente strappati e scarpe da tennis nere e bianche",
     "fighting_style": "kickboxing e Muay Thai dinamica",
     "special_move": "long kick volante",
-    "canon": "Prototipo scalabile Merco V1: identità master bloccata; idle, walk, run Ken-style, jump, long kick e presa/lancio originali approvati; locomozione residua e reazioni ereditate temporaneamente dal core Marco"
+    "canon": "Prototipo scalabile Merco V1: identità master bloccata; idle, walk, run Ken-style, jump, long kick, presa/lancio, nuovi pugni, montante, super e frenata; locomozione residua e reazioni ereditate temporaneamente dal core Marco"
   },
   "gameplay": {
     "player": {
@@ -64,6 +64,16 @@
       "source_facing": 1,
       "reference_speed": 420
     },
+    "brake": {
+      "folder": "brake",
+      "frames": 3,
+      "source_frames": 3,
+      "frame_sequence": [1, 2, 3],
+      "durations": [0.07, 0.10, 0.14],
+      "visual_scales": [1.0],
+      "source_facing": 1,
+      "loop": false
+    },
     "jump": {
       "folder": "jump",
       "frames": 6,
@@ -109,17 +119,17 @@
       "frames": 4,
       "source_frames": 4,
       "frame_sequence": [1, 2, 3, 4],
-      "durations": [0.05, 0.0333, 0.0333, 0.0333],
+      "durations": [0.075, 0.075, 0.11, 0.13],
       "visual_scales": [1.0],
       "source_facing": 1,
       "contact_frame": 3
     },
     "punch_right": {
       "folder": "punch_right",
-      "frames": 3,
-      "source_frames": 3,
-      "frame_sequence": [1, 2, 3],
-      "durations": [0.07, 0.12, 0.1],
+      "frames": 4,
+      "source_frames": 4,
+      "frame_sequence": [1, 2, 3, 4],
+      "durations": [0.12, 0.12, 0.12, 0.12],
       "visual_scales": [1.0],
       "source_facing": 1,
       "contact_frame": 2
@@ -136,13 +146,23 @@
     },
     "combo_finisher": {
       "folder": "combo_finisher",
-      "frames": 3,
-      "source_frames": 3,
-      "frame_sequence": [1, 2, 3],
-      "durations": [0.09, 0.18, 0.17],
+      "frames": 4,
+      "source_frames": 4,
+      "frame_sequence": [1, 2, 3, 4],
+      "durations": [0.14, 0.14, 0.13, 0.14],
       "visual_scales": [1.0],
       "source_facing": 1,
       "contact_frame": 2
+    },
+    "super": {
+      "folder": "super",
+      "frames": 5,
+      "source_frames": 5,
+      "frame_sequence": [1, 2, 3, 4, 5],
+      "durations": [0.12, 0.10, 0.14, 0.13, 0.12],
+      "visual_scales": [1.0],
+      "source_facing": 1,
+      "contact_frame": 3
     },
     "grab": {
       "folder": "grab",

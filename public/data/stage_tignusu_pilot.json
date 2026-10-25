@@ -1,0 +1,81 @@
+{
+  "schema": 4,
+  "build_scope": "stage1_zen_m01_m05_rooftop_preview_v1",
+  "stage_name": "PROVA U TIGNUSU",
+  "stage_subtitle": "J: pugno / presa · K: lancio durante presa · ricarica per riprovare",
+  "modules": [
+    {
+      "id": "M01",
+      "name": "PROVA U TIGNUSU",
+      "art_status": "approved",
+      "reference_actor_height": 290,
+      "horizon_y": 315,
+      "background": "assets/backgrounds/stage1_zen/final_v3/M01/M01_MAIN.png",
+      "background_layers": [
+        {
+          "src": "assets/backgrounds/stage1_zen/final_v3/M01/M01_MAIN.png",
+          "parallax": 1,
+          "plane": "main",
+          "x": 0,
+          "y": 0,
+          "width": 2927,
+          "height": 720
+        }
+      ],
+      "world_width": 1280,
+      "camera_bounds": [
+        0,
+        0
+      ],
+      "playfield_y": [
+        585,
+        705
+      ],
+      "walk_top": [
+        [
+          0,
+          585
+        ],
+        [
+          1280,
+          585
+        ]
+      ],
+      "walk_bottom": [
+        [
+          0,
+          705
+        ],
+        [
+          1280,
+          705
+        ]
+      ],
+      "ambient": [],
+      "entry": [
+        350,
+        640
+      ],
+      "exit_x": 1250,
+      "heal": 12,
+      "items": [],
+      "waves": [
+        {
+          "character": "u_tignusu",
+          "spawns": [
+            [
+              900,
+              640
+            ]
+          ],
+          "health": 240,
+          "batch_size": 1,
+          "lock_stage": true,
+          "trigger_x": 0
+        }
+      ],
+      "character_scale": 1
+    }
+  ],
+  "character_system": "profile_registry_v1"
+}

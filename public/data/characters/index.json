@@ -7,11 +7,28 @@
     "talebano",
     "haggar_ref",
     "aiori_ref",
-    "a_puaicca"
+    "a_puaicca",
+    "u_tignusu"
   ],
   "upcoming_players": [
-    { "id": "leandra", "display_name": "LEANDRA", "selection": { "portrait": "assets/ui/character_select/leandra_portrait.png", "subtitle": "TI VOGLIO BENE. MA NON ESAGERARE.", "available": false } },
-    { "id": "julien", "display_name": "JULIEN", "selection": { "portrait": "assets/ui/character_select/julien_portrait.png", "subtitle": "PRIMA FACCIAMO PACE. POI UN BRINDISI.", "available": false } }
+    {
+      "id": "leandra",
+      "display_name": "LEANDRA",
+      "selection": {
+        "portrait": "assets/ui/character_select/leandra_portrait.png",
+        "subtitle": "TI VOGLIO BENE. MA NON ESAGERARE.",
+        "available": false
+      }
+    },
+    {
+      "id": "julien",
+      "display_name": "JULIEN",
+      "selection": {
+        "portrait": "assets/ui/character_select/julien_portrait.png",
+        "subtitle": "PRIMA FACCIAMO PACE. POI UN BRINDISI.",
+        "available": false
+      }
+    }
   ],
   "default_player": "marco",
   "default_enemy": "talebano"

@@ -2632,10 +2632,10 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      191,
-      140,
-      258,
-      260
+      216,
+      145,
+      208,
+      255
     ],
     "offsetY": 20
   },
@@ -2643,54 +2643,10 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      197,
-      123,
-      245,
-      277
-    ],
-    "offsetY": 20
-  },
-  "/assets/characters/merco_anim/brake/03.png": {
-    "width": 640,
-    "height": 420,
-    "bounds": [
-      195,
-      137,
-      250,
-      263
-    ],
-    "offsetY": 20
-  },
-  "/assets/characters/merco_anim/brake/04.png": {
-    "width": 640,
-    "height": 420,
-    "bounds": [
-      182,
-      131,
-      276,
-      269
-    ],
-    "offsetY": 20
-  },
-  "/assets/characters/merco_anim/brake/05.png": {
-    "width": 640,
-    "height": 420,
-    "bounds": [
-      218,
-      125,
-      204,
-      275
-    ],
-    "offsetY": 20
-  },
-  "/assets/characters/merco_anim/brake/06.png": {
-    "width": 640,
-    "height": 420,
-    "bounds": [
-      217,
-      112,
-      205,
-      288
+      147,
+      133,
+      346,
+      267
     ],
     "offsetY": 20
   },
@@ -2918,9 +2874,9 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      252,
+      213,
       110,
-      137,
+      214,
       290
     ],
     "offsetY": 20
@@ -2929,10 +2885,10 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      237,
-      110,
-      166,
-      290
+      178,
+      118,
+      284,
+      282
     ],
     "offsetY": 20
   },
@@ -2940,10 +2896,10 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      218,
-      110,
-      204,
-      290
+      141,
+      125,
+      357,
+      275
     ],
     "offsetY": 20
   },
@@ -2951,10 +2907,10 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      214,
-      133,
-      213,
-      267
+      178,
+      118,
+      284,
+      282
     ],
     "offsetY": 20
   },
@@ -2962,10 +2918,10 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      218,
-      131,
-      205,
-      269
+      152,
+      125,
+      335,
+      275
     ],
     "offsetY": 20
   },
@@ -2973,10 +2929,10 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      218,
-      131,
-      205,
-      269
+      207,
+      118,
+      225,
+      282
     ],
     "offsetY": 20
   },
@@ -3017,10 +2973,10 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      227,
-      134,
       186,
-      266
+      132,
+      268,
+      268
     ],
     "offsetY": 20
   },
@@ -3028,10 +2984,10 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      206,
-      140,
-      229,
-      260
+      184,
+      115,
+      272,
+      285
     ],
     "offsetY": 20
   },
@@ -3039,10 +2995,10 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      230,
-      110,
-      179,
-      290
+      207,
+      118,
+      225,
+      282
     ],
     "offsetY": 20
   },
@@ -3369,10 +3325,10 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      200,
-      110,
-      241,
-      290
+      173,
+      132,
+      293,
+      268
     ],
     "offsetY": 20
   },
@@ -3380,10 +3336,10 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      168,
-      110,
-      305,
-      290
+      141,
+      125,
+      357,
+      275
     ],
     "offsetY": 20
   },
@@ -3391,10 +3347,10 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      163,
-      110,
-      314,
-      290
+      184,
+      115,
+      272,
+      285
     ],
     "offsetY": 20
   },
@@ -3402,10 +3358,10 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      183,
-      110,
-      274,
-      290
+      207,
+      118,
+      225,
+      282
     ],
     "offsetY": 20
   },
@@ -3413,9 +3369,9 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      202,
+      213,
       110,
-      237,
+      214,
       290
     ],
     "offsetY": 20
@@ -6526,9 +6482,9 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      238,
+      213,
       110,
-      164,
+      214,
       290
     ],
     "offsetY": 20
@@ -6849,6 +6805,270 @@
       100,
       170,
       300
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/u_tignusu_anim/idle/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      233,
+      100,
+      173,
+      300
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/u_tignusu_anim/walk/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      258,
+      100,
+      124,
+      300
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/u_tignusu_anim/walk/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      258,
+      100,
+      123,
+      300
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/u_tignusu_anim/walk/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      255,
+      100,
+      130,
+      300
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/u_tignusu_anim/walk/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      212,
+      100,
+      215,
+      300
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/u_tignusu_anim/walk/05.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      203,
+      100,
+      234,
+      300
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/u_tignusu_anim/walk/06.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      237,
+      100,
+      165,
+      300
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/u_tignusu_anim/walk/07.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      245,
+      100,
+      150,
+      300
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/u_tignusu_anim/walk/08.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      258,
+      100,
+      124,
+      300
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/u_tignusu_anim/attack/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      207,
+      100,
+      226,
+      300
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/u_tignusu_anim/attack/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      199,
+      100,
+      241,
+      300
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/u_tignusu_anim/attack/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      206,
+      100,
+      227,
+      300
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/u_tignusu_anim/attack/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      233,
+      100,
+      173,
+      300
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/u_tignusu_anim/hit/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      209,
+      125,
+      222,
+      275
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/u_tignusu_anim/hit/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      233,
+      100,
+      173,
+      300
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/u_tignusu_anim/fall/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      180,
+      190,
+      280,
+      210
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/u_tignusu_anim/fall/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      156,
+      285,
+      328,
+      115
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/u_tignusu_anim/getup/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      156,
+      285,
+      328,
+      115
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/u_tignusu_anim/getup/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      229,
+      241,
+      181,
+      159
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/u_tignusu_anim/getup/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      240,
+      219,
+      159,
+      181
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/u_tignusu_anim/getup/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      233,
+      100,
+      173,
+      300
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/merco_anim/punch_right/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      213,
+      110,
+      214,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/merco_anim/combo_finisher/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      213,
+      110,
+      214,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/merco_anim/brake/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      213,
+      110,
+      214,
+      290
     ],
     "offsetY": 20
   }

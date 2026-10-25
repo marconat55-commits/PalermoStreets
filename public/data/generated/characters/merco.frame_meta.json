@@ -168,10 +168,10 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      191,
-      140,
-      258,
-      260
+      216,
+      145,
+      208,
+      255
     ],
     "offsetY": 20
   },
@@ -179,54 +179,10 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      197,
-      123,
-      245,
-      277
-    ],
-    "offsetY": 20
-  },
-  "/assets/characters/merco_anim/brake/03.png": {
-    "width": 640,
-    "height": 420,
-    "bounds": [
-      195,
-      137,
-      250,
-      263
-    ],
-    "offsetY": 20
-  },
-  "/assets/characters/merco_anim/brake/04.png": {
-    "width": 640,
-    "height": 420,
-    "bounds": [
-      182,
-      131,
-      276,
-      269
-    ],
-    "offsetY": 20
-  },
-  "/assets/characters/merco_anim/brake/05.png": {
-    "width": 640,
-    "height": 420,
-    "bounds": [
-      218,
-      125,
-      204,
-      275
-    ],
-    "offsetY": 20
-  },
-  "/assets/characters/merco_anim/brake/06.png": {
-    "width": 640,
-    "height": 420,
-    "bounds": [
-      217,
-      112,
-      205,
-      288
+      147,
+      133,
+      346,
+      267
     ],
     "offsetY": 20
   },
@@ -454,9 +410,9 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      252,
+      213,
       110,
-      137,
+      214,
       290
     ],
     "offsetY": 20
@@ -465,10 +421,10 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      237,
-      110,
-      166,
-      290
+      178,
+      118,
+      284,
+      282
     ],
     "offsetY": 20
   },
@@ -476,10 +432,10 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      218,
-      110,
-      204,
-      290
+      141,
+      125,
+      357,
+      275
     ],
     "offsetY": 20
   },
@@ -487,10 +443,10 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      214,
-      133,
-      213,
-      267
+      178,
+      118,
+      284,
+      282
     ],
     "offsetY": 20
   },
@@ -498,10 +454,10 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      218,
-      131,
-      205,
-      269
+      152,
+      125,
+      335,
+      275
     ],
     "offsetY": 20
   },
@@ -509,10 +465,10 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      218,
-      131,
-      205,
-      269
+      207,
+      118,
+      225,
+      282
     ],
     "offsetY": 20
   },
@@ -553,10 +509,10 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      227,
-      134,
       186,
-      266
+      132,
+      268,
+      268
     ],
     "offsetY": 20
   },
@@ -564,10 +520,10 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      206,
-      140,
-      229,
-      260
+      184,
+      115,
+      272,
+      285
     ],
     "offsetY": 20
   },
@@ -575,10 +531,10 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      230,
-      110,
-      179,
-      290
+      207,
+      118,
+      225,
+      282
     ],
     "offsetY": 20
   },
@@ -905,10 +861,10 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      200,
-      110,
-      241,
-      290
+      173,
+      132,
+      293,
+      268
     ],
     "offsetY": 20
   },
@@ -916,10 +872,10 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      168,
-      110,
-      305,
-      290
+      141,
+      125,
+      357,
+      275
     ],
     "offsetY": 20
   },
@@ -927,10 +883,10 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      163,
-      110,
-      314,
-      290
+      184,
+      115,
+      272,
+      285
     ],
     "offsetY": 20
   },
@@ -938,10 +894,10 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      183,
-      110,
-      274,
-      290
+      207,
+      118,
+      225,
+      282
     ],
     "offsetY": 20
   },
@@ -949,9 +905,9 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      202,
+      213,
       110,
-      237,
+      214,
       290
     ],
     "offsetY": 20
@@ -1928,9 +1884,42 @@
     "width": 640,
     "height": 420,
     "bounds": [
-      238,
+      213,
       110,
-      164,
+      214,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/merco_anim/punch_right/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      213,
+      110,
+      214,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/merco_anim/combo_finisher/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      213,
+      110,
+      214,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/merco_anim/brake/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      213,
+      110,
+      214,
       290
     ],
     "offsetY": 20

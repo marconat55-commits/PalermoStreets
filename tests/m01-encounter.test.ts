@@ -30,7 +30,7 @@ test('M01 resta libero e distribuisce una sola ondata di sette nemici a coppie',
   assert.equal(m01.waves[0]!.characters?.length, 7);
   assert.deepEqual(new Set(m01.waves[0]!.characters), new Set(['talebano', 'a_puaicca']));
   assert.deepEqual((m01.waves[0] as typeof m01.waves[0] & { random_character?: unknown }).random_character,
-    { id: 'u_tignusu', chance: 0.18 });
+    { id: 'u_tignusu', chance: 0.18, min_count: 1 });
   assert.equal(m01.waves[0]!.batch_size, 2);
   assert.equal(m01.waves[0]!.lock_stage, false);
   assert.ok(m01.waves.every((wave, index) => wave.trigger_x < m01.exit_x && (index === 0 || wave.trigger_x > m01.waves[index - 1]!.trigger_x)));

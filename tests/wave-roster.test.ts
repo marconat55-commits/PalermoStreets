@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { selectWaveCharacter, waveCharacterIds } from '../src/game/stage/waveRoster.ts';
+import { planWaveCharacters, selectWaveCharacter, waveCharacterIds } from '../src/game/stage/waveRoster.ts';
 import type { WaveData } from '../src/game/types.ts';
 
 test('una variante occasionale lascia il roster e le coordinate originali della wave', () => {
@@ -13,4 +13,15 @@ test('una variante occasionale lascia il roster e le coordinate originali della 
   assert.equal(selectWaveCharacter(wave, 0, 'talebano', () => 0.17), 'u_tignusu');
   assert.equal(selectWaveCharacter(wave, 1, 'talebano', () => 0.18), 'a_puaicca');
   assert.deepEqual(wave.spawns, [[800, 650], [940, 680]]);
+});
+
+test('il roster garantisce una variante in una wave con rinforzi anche se i lanci iniziali falliscono', () => {
+  const wave: WaveData = {
+    spawns: [[800, 650], [940, 680], [1100, 650]],
+    characters: ['talebano', 'a_puaicca', 'talebano'],
+    random_character: { id: 'u_tignusu', chance: 0.18, min_count: 1 },
+  };
+  const draws = [0.9, 0.9, 0.9, 0.5];
+  assert.deepEqual(planWaveCharacters(wave, 'talebano', () => draws.shift()!),
+    ['talebano', 'u_tignusu', 'talebano']);
 });

@@ -188,7 +188,7 @@
             "a_puaicca",
             "talebano"
           ],
-          "random_character": { "id": "u_tignusu", "chance": 0.18 },
+          "random_character": { "id": "u_tignusu", "chance": 0.18, "min_count": 1 },
           "name": "SGHERRI",
           "batch_size": 2,
           "lock_stage": false

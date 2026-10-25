@@ -393,6 +393,10 @@ for (const module of stage.modules ?? []) {
         || variant.chance <= 0 || variant.chance >= 1) {
         fail(`${module.id}: sostituzione casuale nemico non valida`);
       }
+      if (variant.min_count !== undefined && (!Number.isInteger(variant.min_count)
+        || variant.min_count < 1 || variant.min_count > wave.spawns?.length)) {
+        fail(`${module.id}: numero minimo di nemici casuali non valido`);
+      }
     }
     if (wave.batch_size !== undefined && (!Number.isInteger(wave.batch_size) || wave.batch_size < 1 || wave.batch_size > wave.spawns?.length)) {
       fail(`${module.id}: batch_size non valido`);

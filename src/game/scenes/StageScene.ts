@@ -18,7 +18,7 @@ import { StageAmbientLayer } from '../stage/StageAmbientLayer';
 import { collectAmbientAssets } from '../stage/ambientAssets';
 import { moduleCharacterScale } from '../stage/moduleCharacterScale';
 import { resolveEncounterBounds, resolveWaveEntry } from '../stage/waveEntry';
-import { selectWaveCharacter, waveCharacterIds } from '../stage/waveRoster';
+import { planWaveCharacters, waveCharacterIds } from '../stage/waveRoster';
 import { loadStageItems } from '../data/loadData';
 import { collectModuleItemAssets, collectModulePrimaryItemAssets, selectDropItem } from '../stage/moduleItems';
 import { WorldObject } from '../objects/WorldObject';
@@ -113,6 +113,7 @@ export class StageScene implements Scene {
   private nextWaveTimer = 0.70;
   private waveLoadPending = false;
   private waveSpawnCursor = 0;
+  private plannedWaveCharacters: string[] = [];
   private reinforcementTimer = 0;
   private encounterCameraX: number | null = null;
   private moduleClear = false;
@@ -446,6 +447,7 @@ export class StageScene implements Scene {
     this.nextWaveTimer = 0.08;
     this.waveLoadPending = false;
     this.waveSpawnCursor = 0;
+    this.plannedWaveCharacters = [];
     this.reinforcementTimer = 0;
     this.encounterCameraX = null;
     this.moduleClear = false;
@@ -730,6 +732,7 @@ export class StageScene implements Scene {
     const wave = this.waveData[this.waveIndex]!;
     if (wave.lock_stage !== false) this.encounterCameraX ??= this.cameraX;
     this.waveSpawnCursor = 0;
+    this.plannedWaveCharacters = planWaveCharacters(wave, this.defaultEnemyId);
     this.spawnWaveBatch(wave);
     this.reinforcementTimer = 0.45;
     const firstCharacterId = wave.characters?.[0] ?? wave.character ?? this.defaultEnemyId;
@@ -753,7 +756,7 @@ export class StageScene implements Scene {
     for (let index = this.waveSpawnCursor; index < end; index += 1) {
       const spawn = wave.spawns[index]!;
       const fixedCharacterId = wave.characters?.[index] ?? wave.character ?? this.defaultEnemyId;
-      const characterId = selectWaveCharacter(wave, index, this.defaultEnemyId);
+      const characterId = this.plannedWaveCharacters[index] ?? fixedCharacterId;
       const profile = this.catalog.getProfile(characterId);
       const defaults = this.enemyDefaults(profile);
       const enemy = new Enemy(this.catalog.getBank(characterId), { x: spawn[0], y: spawn[1] }, {

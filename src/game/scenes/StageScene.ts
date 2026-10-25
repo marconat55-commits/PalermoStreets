@@ -1200,7 +1200,7 @@ export class StageScene implements Scene {
     this.overlayTitle.visible = false;
     this.overlaySubtitle.visible = false;
     if (this.paused) this.showCenterOverlay('PAUSA', 'PREMI P PER CONTINUARE');
-    else if (this.player.dead) this.showCenterOverlay('MARCO È A TERRA', 'PREMI R — RIPARTI DAL CHECKPOINT');
+    else if (this.player.dead) this.showCenterOverlay(`${this.catalog.getProfile(this.playerId).display_name} È A TERRA`, 'PREMI R — RIPARTI DAL CHECKPOINT');
     else if (this.stageComplete) this.showCenterOverlay(`${this.currentModule.id} COMPLETATO`, 'DEMO ZEN — ALTRI MODULI IN LAVORAZIONE');
 
     this.fade.clear();

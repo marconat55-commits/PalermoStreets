@@ -1,0 +1,173 @@
+{
+  "schema": 1,
+  "id": "mark_nat",
+  "extends": "merco",
+  "display_name": "MARK NAT",
+  "assets": {
+    "animation_root": "assets/characters/mark_nat_anim",
+    "texture_atlas": "assets/characters/mark_nat_anim/atlas/atlas.json",
+    "frame_meta": "data/generated/characters/mark_nat.frame_meta.json"
+  },
+  "identity": {
+    "canon": "Prototipo Mark Nat separato da Merco: guardia, due pugni, colpi subiti, caduta e rialzata in stile cartoon; altri movimenti ereditati temporaneamente da Merco in un pacchetto runtime indipendente"
+  },
+  "factory": {
+    "animation_template": "data/character_templates/mark_nat_pilot_v1.json"
+  },
+  "selection": {
+    "portrait": "assets/ui/character_select/mark_nat_portrait.png",
+    "subtitle": "DUE PUGNI — PROTOTIPO CARTOON",
+    "stats": {
+      "strength": 4,
+      "speed": 5,
+      "technique": 5
+    },
+    "prototype": true
+  },
+  "animations": {
+    "idle": {
+      "folder": "idle",
+      "frames": 1,
+      "source_frames": 1,
+      "frame_sequence": [
+        1
+      ],
+      "durations": [
+        0.3
+      ],
+      "visual_scales": [
+        1.0
+      ],
+      "source_facing": 1,
+      "loop": true
+    },
+    "punch_left": {
+      "folder": "punch_left",
+      "frames": 4,
+      "source_frames": 4,
+      "frame_sequence": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "durations": [
+        0.07,
+        0.09,
+        0.14,
+        0.12
+      ],
+      "visual_scales": [
+        1.0
+      ],
+      "source_facing": 1,
+      "contact_frame": 3
+    },
+    "punch_right": {
+      "folder": "punch_right",
+      "frames": 3,
+      "source_frames": 3,
+      "frame_sequence": [
+        1,
+        2,
+        3
+      ],
+      "durations": [
+        0.09,
+        0.16,
+        0.13
+      ],
+      "visual_scales": [
+        1.0
+      ],
+      "source_facing": 1,
+      "contact_frame": 2
+    },
+    "hit": {
+      "folder": "hit",
+      "frames": 4,
+      "source_frames": 4,
+      "frame_sequence": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "durations": [
+        0.07,
+        0.09,
+        0.1,
+        0.11
+      ],
+      "visual_scales": [
+        1.0
+      ],
+      "source_facing": 1
+    },
+    "knockdown": {
+      "folder": "fall",
+      "frames": 4,
+      "source_frames": 4,
+      "frame_sequence": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "durations": [
+        0.1,
+        0.14,
+        0.19,
+        0.5
+      ],
+      "visual_scales": [
+        1.0
+      ],
+      "source_facing": 1
+    },
+    "getup": {
+      "folder": "getup",
+      "frames": 5,
+      "source_frames": 5,
+      "frame_sequence": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "durations": [
+        0.15,
+        0.17,
+        0.21,
+        0.2,
+        0.18
+      ],
+      "visual_scales": [
+        1.0
+      ],
+      "source_facing": 1
+    },
+    "dead": {
+      "folder": "fall",
+      "frames": 4,
+      "source_frames": 4,
+      "frame_sequence": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "durations": [
+        0.1,
+        0.14,
+        0.19,
+        9.0
+      ],
+      "visual_scales": [
+        1.0
+      ],
+      "source_facing": 1
+    }
+  }
+}

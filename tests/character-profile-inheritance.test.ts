@@ -25,3 +25,20 @@ test('Merco eredita il core di Marco e sostituisce soltanto le clip approvate', 
   assert.equal(merco.gameplay.player?.move_speed, 310);
   assert.equal(merco.selection?.prototype, true);
 });
+
+test('Mark Nat ha un pacchetto separato e una caduta continua con la rialzata', () => {
+  const marco = read<CharacterProfile>('public/data/characters/marco.json');
+  const merco = mergeCharacterProfile(marco, read<CharacterProfileSource>('public/data/characters/merco.json'));
+  const markNat = mergeCharacterProfile(merco, read<CharacterProfileSource>('public/data/characters/mark_nat.json'));
+  const index = read<{ characters: string[] }>('public/data/characters/index.json');
+  assert.ok(index.characters.includes('merco'));
+  assert.ok(index.characters.includes('mark_nat'));
+  assert.equal(merco.assets.animation_root, 'assets/characters/merco_anim');
+  assert.equal(markNat.assets.animation_root, 'assets/characters/mark_nat_anim');
+  assert.equal(markNat.display_name, 'MARK NAT');
+  assert.equal(markNat.animations.punch_left.contact_frame, 3);
+  assert.equal(markNat.animations.punch_right.contact_frame, 2);
+  const fall = `public/${markNat.assets.animation_root}/fall/04.png`;
+  const getup = `public/${markNat.assets.animation_root}/getup/01.png`;
+  assert.deepEqual(fs.readFileSync(fall), fs.readFileSync(getup));
+});

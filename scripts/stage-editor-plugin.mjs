@@ -129,6 +129,10 @@ function commandMessage(result, fallback) {
   return result.stderr?.trim() || result.stdout?.trim() || fallback;
 }
 
+function gitPermissionDenied(result) {
+  return /(?:permission denied|access is denied|eacces|eperm)/i.test(commandMessage(result, ''));
+}
+
 function publishablePaths(stage, projectRoot, publicRoot, stagePath) {
   const files = new Set([path.relative(projectRoot, stagePath)]);
   for (const module of stage.modules ?? []) {
@@ -284,7 +288,9 @@ export function stageEditorPlugin() {
 
             const fetched = git(projectRoot, ['fetch', 'origin', DEVELOPMENT_BRANCH], 120_000);
             if (fetched.status !== 0) {
-              send(response, 503, { error: commandMessage(fetched, 'GitHub non raggiungibile.') });
+              send(response, 503, { error: gitPermissionDenied(fetched)
+                ? 'Il server locale non ha accesso in scrittura a Git. Riavvia il gioco da un terminale con accesso Git e riprova Salva e pubblica.'
+                : commandMessage(fetched, 'GitHub non raggiungibile.') });
               return;
             }
             const comparison = git(projectRoot, ['rev-list', '--left-right', '--count', `HEAD...origin/${DEVELOPMENT_BRANCH}`]);

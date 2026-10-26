@@ -41,7 +41,12 @@ if (active.stdout.trim() !== branch) {
 // Let the first sync finish instead of launching an outdated local stage.
 const fetched = git(['fetch', 'origin', branch], 60000);
 if (fetched.status !== 0) {
-  console.warn('GitHub non raggiungibile: avvio la versione locale già disponibile.');
+  const detail = fetched.stderr?.trim() || fetched.stdout?.trim() || '';
+  if (/(?:permission denied|access is denied|eacces|eperm)/i.test(detail)) {
+    console.warn('Git non accessibile in scrittura: avvio la versione locale. Salva e pubblica richiede un server con accesso Git.');
+  } else {
+    console.warn('GitHub non raggiungibile: avvio la versione locale già disponibile.');
+  }
   process.exit(0);
 }
 

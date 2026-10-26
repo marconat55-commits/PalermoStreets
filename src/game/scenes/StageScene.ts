@@ -12,7 +12,7 @@ import { EXIT_TRIGGER_TOLERANCE, EXIT_X, LOGICAL_HEIGHT, LOGICAL_WIDTH, MODULE_E
 import { preventCrossings, resolveEnemyAttack, resolvePlayerAttack, separateActors } from '../combat/combat';
 import { cameraTargetForPlayer, resolveCameraBounds, smoothCamera, type HorizontalCameraBounds } from '../stage/camera';
 import { resolveArcadeAction, resolveGrabAction } from '../input/arcadeControls';
-import { SPIN_SPECIAL, THROW } from '../combat/attacks';
+import { SPIN_SPECIAL } from '../combat/attacks';
 import { resolveWalkBand, sampleWalkBand } from '../stage/walkBand';
 import { StageAmbientLayer } from '../stage/StageAmbientLayer';
 import { collectAmbientAssets } from '../stage/ambientAssets';
@@ -22,7 +22,7 @@ import { planWaveCharacters, waveCharacterIds } from '../stage/waveRoster';
 import { loadStageItems } from '../data/loadData';
 import { collectModuleItemAssets, collectModulePrimaryItemAssets, selectDropItem } from '../stage/moduleItems';
 import { WorldObject } from '../objects/WorldObject';
-import { ImpactAudio } from '../audio/ImpactAudio';
+import { ImpactAudio, playerImpactCue } from '../audio/ImpactAudio';
 
 import { isPickupKind, itemWithinRange, resolveItemInteraction } from '../objects/itemRules';
 import { rectsIntersect } from '../../utils/math';
@@ -1042,6 +1042,7 @@ export class StageScene implements Scene {
       this.effects.landingDust(actor.position, heavyLanding);
       this.screenShake = Math.max(this.screenShake, heavyLanding ? 7 : 4);
       this.hitStop = Math.max(this.hitStop, heavyLanding ? 0.035 : 0.022);
+      if (heavyLanding) this.impactAudio.play('fall');
     }
 
     for (const event of resolvePlayerAttack(this.player, this.enemies)) {
@@ -1054,9 +1055,7 @@ export class StageScene implements Scene {
       this.effects.hitSpark(event.position, event.heavy);
       this.effects.damageText(event.position, event.damage, event.heavy);
       this.triggerImpactFlash(event.heavy);
-      this.impactAudio.play(this.player.currentAttack === THROW
-        ? 'throw'
-        : this.player.currentAttack === SPIN_SPECIAL || event.heavy || event.targetKilled ? 'heavy' : 'light');
+      this.impactAudio.play(playerImpactCue(this.player.currentAttack?.name, event.heavy || event.targetKilled));
       if (this.player.currentAttack === SPIN_SPECIAL) this.effects.fireRush(event.position, this.player.facing, true);
     }
     this.resolveBreakableHits();
@@ -1069,6 +1068,7 @@ export class StageScene implements Scene {
       this.effects.damageText(event.position, event.damage, event.heavy);
       this.triggerImpactFlash(event.heavy);
       this.enemyAttackLock = Math.max(this.enemyAttackLock, 0.48);
+      this.impactAudio.play(event.blocked ? 'block' : enemy.isBoss ? 'boss' : event.heavy ? 'heavy' : 'slap');
     }
 
     separateActors([this.player, ...this.enemies], this.player);

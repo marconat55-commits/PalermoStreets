@@ -1,4 +1,30 @@
 export type ImpactSound = 'light' | 'heavy' | 'throw';
+export type ImpactCue = ImpactSound | 'slap' | 'grab' | 'kick' | 'head' | 'block' | 'special' | 'fall' | 'boss';
+
+const CLIPS: Record<ImpactCue, readonly string[]> = {
+  light: ['01_Pugno_Secco', '02_Pugno_Classico'],
+  heavy: ['03_Pugno_Pesante', '06_Montante'],
+  throw: ['05_Sberlone_Bud'],
+  slap: ['04_Schiaffo'],
+  grab: ['05_Sberlone_Bud'],
+  kick: ['07_Calcio_Laterale'],
+  head: ['08_Testata_Comica'],
+  block: ['09_Parata'],
+  special: ['10_Doppio_Pugno'],
+  fall: ['11_Caduta_KO'],
+  boss: ['12_Boss_Barbaccia'],
+};
+
+const CLIP_NAMES = [...new Set(Object.values(CLIPS).flat())];
+
+export function playerImpactCue(attackName: string | undefined, heavy: boolean): ImpactCue {
+  if (attackName === 'throw') return 'throw';
+  if (attackName === 'grab_strike') return 'grab';
+  if (attackName === 'spin_special' || attackName === 'super') return 'special';
+  if (attackName === 'combo_elbow') return 'head';
+  if (attackName?.startsWith('kick_') || attackName === 'air_attack') return 'kick';
+  return heavy ? 'heavy' : 'light';
+}
 
 const SAMPLE_RATE = 44_100;
 
@@ -57,13 +83,23 @@ function makeImpactBuffer(context: AudioContext, kind: ImpactSound, variant: num
 export class ImpactAudio {
   private context: AudioContext | null = null;
   private buffers: Record<ImpactSound, AudioBuffer[]> | null = null;
+  private readonly loadedClips = new Map<string, AudioBuffer>();
+  private readonly clipRequests = new Map<string, Promise<ArrayBuffer | null>>();
+  private readonly cueCounts = new Map<ImpactCue, number>();
   private playCount = 0;
   private lastImpactAt = -1;
+  private destroyed = false;
   private readonly onUserGesture = (): void => { this.unlock(); };
 
   constructor() {
     window.addEventListener('keydown', this.onUserGesture);
     window.addEventListener('pointerdown', this.onUserGesture);
+    for (const name of CLIP_NAMES) {
+      const url = `${import.meta.env.BASE_URL}assets/audio/impacts/${name}.wav`;
+      this.clipRequests.set(name, fetch(url)
+        .then((response) => response.ok ? response.arrayBuffer() : null)
+        .catch(() => null));
+    }
   }
 
   private unlock(): void {
@@ -75,11 +111,20 @@ export class ImpactAudio {
         heavy: [0, 1, 2].map((variant) => makeImpactBuffer(this.context!, 'heavy', variant)),
         throw: [0, 1, 2].map((variant) => makeImpactBuffer(this.context!, 'throw', variant)),
       };
+      for (const [name, request] of this.clipRequests) {
+        void request.then(async (bytes) => {
+          if (!bytes || this.destroyed || !this.context) return;
+          try {
+            const buffer = await this.context.decodeAudioData(bytes);
+            if (!this.destroyed) this.loadedClips.set(name, buffer);
+          } catch { /* Synthesized impact remains available if decoding fails. */ }
+        });
+      }
     }
     if (this.context.state === 'suspended') void this.context.resume().catch(() => undefined);
   }
 
-  play(kind: ImpactSound): void {
+  play(kind: ImpactCue): void {
     const context = this.context;
     const buffers = this.buffers;
     if (!context || !buffers || context.state !== 'running') return;
@@ -87,20 +132,28 @@ export class ImpactAudio {
     if (context.currentTime - this.lastImpactAt < 0.035) return;
     this.lastImpactAt = context.currentTime;
     const source = context.createBufferSource();
-    source.buffer = buffers[kind][this.playCount % buffers[kind].length]!;
+    const choices = CLIPS[kind];
+    const count = this.cueCounts.get(kind) ?? 0;
+    this.cueCounts.set(kind, count + 1);
+    const clip = this.loadedClips.get(choices[count % choices.length]!);
+    const fallback: ImpactSound = kind === 'light' || kind === 'slap' || kind === 'block'
+      ? 'light' : kind === 'throw' || kind === 'fall' ? 'throw' : 'heavy';
+    source.buffer = clip ?? buffers[fallback][this.playCount % buffers[fallback].length]!;
     this.playCount += 1;
-    source.playbackRate.value = 0.96 + (this.playCount % 5) * 0.02;
+    source.playbackRate.value = 0.97 + (this.playCount % 4) * 0.02;
     const gain = context.createGain();
-    gain.gain.value = kind === 'light' ? 0.35 : kind === 'heavy' ? 0.42 : 0.45;
+    gain.gain.value = kind === 'light' || kind === 'slap' ? 0.32 : kind === 'block' ? 0.26 : 0.39;
     source.connect(gain).connect(context.destination);
     source.start();
   }
 
   destroy(): void {
+    this.destroyed = true;
     window.removeEventListener('keydown', this.onUserGesture);
     window.removeEventListener('pointerdown', this.onUserGesture);
     if (this.context) void this.context.close().catch(() => undefined);
     this.context = null;
     this.buffers = null;
+    this.loadedClips.clear();
   }
 }

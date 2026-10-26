@@ -12,7 +12,7 @@ import { EXIT_TRIGGER_TOLERANCE, EXIT_X, LOGICAL_HEIGHT, LOGICAL_WIDTH, MODULE_E
 import { preventCrossings, resolveEnemyAttack, resolvePlayerAttack, separateActors } from '../combat/combat';
 import { cameraTargetForPlayer, resolveCameraBounds, smoothCamera, type HorizontalCameraBounds } from '../stage/camera';
 import { resolveArcadeAction, resolveGrabAction } from '../input/arcadeControls';
-import { SPIN_SPECIAL } from '../combat/attacks';
+import { SPIN_SPECIAL, THROW } from '../combat/attacks';
 import { resolveWalkBand, sampleWalkBand } from '../stage/walkBand';
 import { StageAmbientLayer } from '../stage/StageAmbientLayer';
 import { collectAmbientAssets } from '../stage/ambientAssets';
@@ -22,6 +22,7 @@ import { planWaveCharacters, waveCharacterIds } from '../stage/waveRoster';
 import { loadStageItems } from '../data/loadData';
 import { collectModuleItemAssets, collectModulePrimaryItemAssets, selectDropItem } from '../stage/moduleItems';
 import { WorldObject } from '../objects/WorldObject';
+import { ImpactAudio } from '../audio/ImpactAudio';
 
 import { isPickupKind, itemWithinRange, resolveItemInteraction } from '../objects/itemRules';
 import { rectsIntersect } from '../../utils/math';
@@ -53,6 +54,7 @@ export class StageScene implements Scene {
   private readonly warningGraphics = new Graphics();
   private readonly enemyHud = new EnemyHudLayer();
   private readonly effects = new EffectsLayer();
+  private readonly impactAudio = new ImpactAudio();
   private readonly screen = new Container();
   private readonly impactFlash = new Graphics();
   private readonly hud: Hud;
@@ -634,6 +636,7 @@ export class StageScene implements Scene {
     this.hitStop = Math.max(this.hitStop, 0.055);
     this.screenShake = Math.max(this.screenShake, 3.5);
     this.triggerImpactFlash(false);
+    this.impactAudio.play('light');
   }
 
   private triggerImpactFlash(heavy: boolean): void {
@@ -999,6 +1002,7 @@ export class StageScene implements Scene {
         this.hitStop = Math.max(this.hitStop, 0.085);
         this.screenShake = Math.max(this.screenShake, 6);
         this.triggerImpactFlash(true);
+        this.impactAudio.play('throw');
         break;
       }
     }
@@ -1047,6 +1051,9 @@ export class StageScene implements Scene {
       this.effects.hitSpark(event.position, event.heavy);
       this.effects.damageText(event.position, event.damage, event.heavy);
       this.triggerImpactFlash(event.heavy);
+      this.impactAudio.play(this.player.currentAttack === THROW
+        ? 'throw'
+        : this.player.currentAttack === SPIN_SPECIAL || event.heavy || event.targetKilled ? 'heavy' : 'light');
       if (this.player.currentAttack === SPIN_SPECIAL) this.effects.fireRush(event.position, this.player.facing, true);
     }
     this.resolveBreakableHits();
@@ -1250,6 +1257,7 @@ export class StageScene implements Scene {
   }
 
   destroy(): void {
+    this.impactAudio.destroy();
     for (const enemy of this.enemies) enemy.destroy();
     this.player.destroy();
     this.ambientLayer.destroy();

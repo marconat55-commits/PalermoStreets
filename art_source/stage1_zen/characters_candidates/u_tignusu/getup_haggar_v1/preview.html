@@ -1,0 +1,14 @@
+<!doctype html><meta charset="utf-8"><title>U Tignusu — rialzata candidata</title>
+<style>body{background:#20242a;color:#eee;font:18px system-ui;text-align:center}canvas{max-width:95%;background:#363c45;border-bottom:2px solid #b8a985}button,input{margin:12px}img{height:180px;max-width:24%;object-fit:contain}p{font-size:15px}</style>
+<h2>U Tignusu · Rialzata candidata</h2><canvas width="800" height="440"></canvas>
+<div><button id="toggle">Pausa</button><label>Velocità <input id="speed" type="range" min=".25" max="1.5" step=".25" value=".75"></label><span id="label"></span></div>
+<p>Caduta approvata → raccolta → spinta → guardia. Scala e raccordi da validare; nessuna interpolazione.</p>
+<div id="poses"></div>
+<script>
+const files=['01_ground_approved.png','02_seated_candidate.png','03_push_candidate.png','04_guard_reference.png'];
+const names=['A terra','Raccolta','Spinta','Guardia'], heights=[130,180,205,340], holds=[850,240,240,800];
+const c=document.querySelector('canvas'),ctx=c.getContext('2d');let playing=true,t=0,last=0,frames=[];
+toggle.onclick=()=>{playing=!playing;toggle.textContent=playing?'Pausa':'Riprendi'};
+Promise.all(files.map(src=>new Promise(resolve=>{let im=new Image();im.onload=()=>{let a=document.createElement('canvas');a.width=im.width;a.height=im.height;let ac=a.getContext('2d');ac.drawImage(im,0,0);let d=ac.getImageData(0,0,a.width,a.height).data,x0=a.width,y0=a.height,x1=0,y1=0;for(let y=0;y<a.height;y++)for(let x=0;x<a.width;x++)if(d[(y*a.width+x)*4+3]>180){x0=Math.min(x0,x);y0=Math.min(y0,y);x1=Math.max(x1,x);y1=Math.max(y1,y)}resolve({im,x0,y0,w:x1-x0+1,h:y1-y0+1})};im.src=src}))).then(f=>{frames=f;frames.forEach((f,i)=>{const tile=document.createElement("canvas");tile.width=400;tile.height=440;tile.style.width="24%";const tc=tile.getContext("2d"),h=heights[i],w=f.w*h/f.h;tc.drawImage(f.im,f.x0,f.y0,f.w,f.h,200-w/2,400-h,w,h);tc.fillStyle="#eee";tc.font="18px system-ui";tc.fillText(names[i],12,430);document.querySelector("#poses").append(tile)});requestAnimationFrame(draw)});
+function draw(now){if(playing)t+=(now-(last||now))*Number(speed.value);last=now;let q=t%holds.reduce((a,b)=>a+b,0),i=0;while(q>=holds[i])q-=holds[i++];ctx.clearRect(0,0,800,440);let f=frames[i],h=heights[i],w=f.w*h/f.h;ctx.drawImage(f.im,f.x0,f.y0,f.w,f.h,400-w/2,400-h,w,h);label.textContent=names[i];requestAnimationFrame(draw)}
+</script>

@@ -6,7 +6,7 @@ import test from 'node:test';
 const root = path.resolve(import.meta.dirname, '..');
 const previewPath = path.join(root, 'public/data/stage_prova_cattedrale.json');
 const preview = JSON.parse(fs.readFileSync(previewPath, 'utf8')) as {
-  editor_only: boolean;
+  editor_only?: boolean;
   modules: Array<{
     id: string;
     background: string;
@@ -32,8 +32,8 @@ function pngHeader(assetPath: string): { width: number; height: number; colorTyp
   };
 }
 
-test('Stage Prova Cattedrale resta editor-only e conserva la geometria panoramica', () => {
-  assert.equal(preview.editor_only, true);
+test('Stage Cattedrale e giocabile con una ondata e conserva la geometria panoramica', () => {
+  assert.notEqual(preview.editor_only, true);
   assert.equal(preview.modules.length, 1);
   const module = preview.modules[0]!;
   assert.equal(module.id, 'P01');
@@ -47,7 +47,7 @@ test('Stage Prova Cattedrale resta editor-only e conserva la geometria panoramic
     ['far', 0.18],
     ['main', 1],
   ]);
-  assert.deepEqual(module.waves, []);
+  assert.equal(module.waves.length, 1);
   for (const layer of module.background_layers) {
     assert.ok(fs.existsSync(path.join(root, 'public', layer.src)), `missing ${layer.src}`);
     assert.deepEqual(pngHeader(layer.src), {
@@ -61,5 +61,5 @@ test('Stage Prova Cattedrale resta editor-only e conserva la geometria panoramic
   const runtime = JSON.parse(fs.readFileSync(path.join(root, 'public/data/runtime.json'), 'utf8')) as {
     stages: Array<{ id: string }>;
   };
-  assert.equal(runtime.stages.some((stage) => stage.id === 'stage_prova_cattedrale'), false);
+  assert.equal(runtime.stages.some((stage) => stage.id === 'stage_prova_cattedrale'), true);
 });

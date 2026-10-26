@@ -1,0 +1,378 @@
+{
+  "status": "sixteen_pose_hulk_cycle_preview_not_approved",
+  "source_candidates_untouched": true,
+  "normalization": "equal opaque mass, uniform scale, common feet baseline",
+  "merco_reference": "public/assets/characters/merco_anim/idle/01.png",
+  "target_mass_ratio_vs_merco": 2.1,
+  "target_opaque_area": 42953,
+  "frames": [
+    {
+      "source": "phase01_pose_locked_candidate.png",
+      "source_sha256": "e68d418f33abd2618bf43db8cccf749613d2fbb191cbfe5fb8f5c13d998395c6",
+      "output": "01_phase01.png",
+      "canvas": [
+        640,
+        420
+      ],
+      "feet_y": 400,
+      "visible_bbox": [
+        152,
+        140,
+        487,
+        400
+      ],
+      "visible_size": [
+        335,
+        260
+      ],
+      "opaque_area": 42965,
+      "scale_from_source": 0.258406,
+      "reference_phase": 1
+    },
+    {
+      "source": "phase02_pose_locked_candidate.png",
+      "source_sha256": "aa4b3b535d8342aa785879e11ca7edd693059a494bfe030cfda5b6ee45876982",
+      "output": "02_phase02.png",
+      "canvas": [
+        640,
+        420
+      ],
+      "feet_y": 400,
+      "visible_bbox": [
+        162,
+        133,
+        477,
+        400
+      ],
+      "visible_size": [
+        315,
+        267
+      ],
+      "opaque_area": 42911,
+      "scale_from_source": 0.260075,
+      "reference_phase": 2
+    },
+    {
+      "source": "phase03_pose_locked_candidate.png",
+      "source_sha256": "07ca65264cf6584db454dbdf00ea3dd4a9b406e90fd0a704cea024e224eef568",
+      "output": "03_phase03.png",
+      "canvas": [
+        640,
+        420
+      ],
+      "feet_y": 400,
+      "visible_bbox": [
+        193,
+        86,
+        447,
+        400
+      ],
+      "visible_size": [
+        254,
+        314
+      ],
+      "opaque_area": 42998,
+      "scale_from_source": 0.239253,
+      "reference_phase": 3
+    },
+    {
+      "source": "phase04_pose_locked_candidate.png",
+      "source_sha256": "8524fe2f757d251ede38d46f9381c37b467b99195f51ecfb816d493dffa79625",
+      "output": "04_phase04.png",
+      "canvas": [
+        640,
+        420
+      ],
+      "feet_y": 400,
+      "visible_bbox": [
+        191,
+        102,
+        448,
+        400
+      ],
+      "visible_size": [
+        257,
+        298
+      ],
+      "opaque_area": 42973,
+      "scale_from_source": 0.245547,
+      "reference_phase": 4
+    },
+    {
+      "source": "phase05_pose_locked_candidate.png",
+      "source_sha256": "2139ccb0d6d33981a8ef78523501316a718b27e5deec28e9c88cec4bab98d97a",
+      "output": "05_phase05.png",
+      "canvas": [
+        640,
+        420
+      ],
+      "feet_y": 400,
+      "visible_bbox": [
+        193,
+        108,
+        447,
+        400
+      ],
+      "visible_size": [
+        254,
+        292
+      ],
+      "opaque_area": 42912,
+      "scale_from_source": 0.24633,
+      "reference_phase": 5
+    },
+    {
+      "source": "phase06_pose_locked_candidate.png",
+      "source_sha256": "d72057698ffdb85cd284aa8a5442141620af6a93f39bceb5dece39dc0564b8a6",
+      "output": "06_phase06.png",
+      "canvas": [
+        640,
+        420
+      ],
+      "feet_y": 400,
+      "visible_bbox": [
+        165,
+        125,
+        474,
+        400
+      ],
+      "visible_size": [
+        309,
+        275
+      ],
+      "opaque_area": 42939,
+      "scale_from_source": 0.248282,
+      "reference_phase": 6
+    },
+    {
+      "source": "phase07_pose_locked_candidate.png",
+      "source_sha256": "814235910dbf0fd369d3e5a587a5d92a635e0bfc5735294794d1f6282e928254",
+      "output": "07_phase07.png",
+      "canvas": [
+        640,
+        420
+      ],
+      "feet_y": 400,
+      "visible_bbox": [
+        163,
+        123,
+        477,
+        400
+      ],
+      "visible_size": [
+        314,
+        277
+      ],
+      "opaque_area": 43064,
+      "scale_from_source": 0.242033,
+      "reference_phase": 7
+    },
+    {
+      "source": "phase08_pose_locked_candidate.png",
+      "source_sha256": "be3188ff1aa2bbf83b6344cf4f197120b6ecf54723821e35f6dfa582f0876cec",
+      "output": "08_phase08.png",
+      "canvas": [
+        640,
+        420
+      ],
+      "feet_y": 400,
+      "visible_bbox": [
+        163,
+        140,
+        476,
+        400
+      ],
+      "visible_size": [
+        313,
+        260
+      ],
+      "opaque_area": 42929,
+      "scale_from_source": 0.2498,
+      "reference_phase": 8
+    },
+    {
+      "source": "phase09_pose_locked_candidate.png",
+      "source_sha256": "a82e04f43b99808d19434d4aebf810c9f68defe22ee206e337fb612bf5a973e8",
+      "output": "09_phase09.png",
+      "canvas": [
+        640,
+        420
+      ],
+      "feet_y": 400,
+      "visible_bbox": [
+        159,
+        143,
+        480,
+        400
+      ],
+      "visible_size": [
+        321,
+        257
+      ],
+      "opaque_area": 43046,
+      "scale_from_source": 0.272267,
+      "reference_phase": 9
+    },
+    {
+      "source": "phase10_pose_locked_candidate.png",
+      "source_sha256": "23c050eb96d7b80e50d5494ff88d0521dc3d4130d07ae3f55e74bbd99e33a891",
+      "output": "10_phase10.png",
+      "canvas": [
+        640,
+        420
+      ],
+      "feet_y": 400,
+      "visible_bbox": [
+        164,
+        124,
+        475,
+        400
+      ],
+      "visible_size": [
+        311,
+        276
+      ],
+      "opaque_area": 42997,
+      "scale_from_source": 0.267999,
+      "reference_phase": 10
+    },
+    {
+      "source": "phase11_pose_locked_candidate.png",
+      "source_sha256": "559caab005b2e80d7c813548291bd69d62b6af4a8d8d62349338810077b5d826",
+      "output": "11_phase11.png",
+      "canvas": [
+        640,
+        420
+      ],
+      "feet_y": 400,
+      "visible_bbox": [
+        160,
+        107,
+        479,
+        400
+      ],
+      "visible_size": [
+        319,
+        293
+      ],
+      "opaque_area": 42883,
+      "scale_from_source": 0.27319,
+      "reference_phase": 11
+    },
+    {
+      "source": "phase12_pose_locked_candidate.png",
+      "source_sha256": "8d64323f9410e1db901bc12eccb17362b72e3e8b47fe7b11d9fb8143882c669c",
+      "output": "12_phase12.png",
+      "canvas": [
+        640,
+        420
+      ],
+      "feet_y": 400,
+      "visible_bbox": [
+        189,
+        89,
+        451,
+        400
+      ],
+      "visible_size": [
+        262,
+        311
+      ],
+      "opaque_area": 43016,
+      "scale_from_source": 0.263501,
+      "reference_phase": 12
+    },
+    {
+      "source": "phase13_pose_locked_candidate.png",
+      "source_sha256": "14069607f382a323b00c9d5f92fd9ff880a615036d5d68ae2763e8123a83441c",
+      "output": "13_phase13.png",
+      "canvas": [
+        640,
+        420
+      ],
+      "feet_y": 400,
+      "visible_bbox": [
+        197,
+        67,
+        442,
+        400
+      ],
+      "visible_size": [
+        245,
+        333
+      ],
+      "opaque_area": 43011,
+      "scale_from_source": 0.269956,
+      "reference_phase": 13
+    },
+    {
+      "source": "phase14_pose_locked_candidate.png",
+      "source_sha256": "885c7a3d14e8fe8774ba3da0192303bf49590a3e7f49ef34627b958c5b523a6f",
+      "output": "14_phase14.png",
+      "canvas": [
+        640,
+        420
+      ],
+      "feet_y": 400,
+      "visible_bbox": [
+        154,
+        125,
+        485,
+        400
+      ],
+      "visible_size": [
+        331,
+        275
+      ],
+      "opaque_area": 42931,
+      "scale_from_source": 0.265702,
+      "reference_phase": 14
+    },
+    {
+      "source": "phase15_pose_locked_candidate.png",
+      "source_sha256": "8aae689b86280eeb37aaaa9970be1033e9caf8b0ebdf608c50f37926384bd1b2",
+      "output": "15_phase15.png",
+      "canvas": [
+        640,
+        420
+      ],
+      "feet_y": 400,
+      "visible_bbox": [
+        144,
+        126,
+        496,
+        400
+      ],
+      "visible_size": [
+        352,
+        274
+      ],
+      "opaque_area": 42886,
+      "scale_from_source": 0.270157,
+      "reference_phase": 15
+    },
+    {
+      "source": "phase16_pose_locked_candidate.png",
+      "source_sha256": "dc57b1fa8982c79515312ab270f473355ca2c5ebaaf15c04fea051d053f7a391",
+      "output": "16_phase16.png",
+      "canvas": [
+        640,
+        420
+      ],
+      "feet_y": 400,
+      "visible_bbox": [
+        147,
+        142,
+        493,
+        400
+      ],
+      "visible_size": [
+        346,
+        258
+      ],
+      "opaque_area": 42908,
+      "scale_from_source": 0.263687,
+      "reference_phase": 16
+    }
+  ]
+}

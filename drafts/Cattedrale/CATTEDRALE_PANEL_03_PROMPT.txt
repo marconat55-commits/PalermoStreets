@@ -1,0 +1,34 @@
+Use case: stylized-concept
+Asset type: third panoramic background panel for the Palermo Streets “Stage Cattedrale” side-scrolling module
+
+Input images:
+- Image 1 — CATTEDRALE_PANEL_02_SOURCE.jpeg: hard continuity reference. Its right edge must connect to the new panel.
+- Image 2 — CATTEDRALE_PANELS_01_02_FUSION_FULL.png: global reference for camera height, scale, architecture, palette, lighting, street geometry and visual density.
+
+Primary request:
+Create PANEL 3 as the next rightward continuation of this exact panoramic scene. The camera keeps travelling horizontally to the right along the Cathedral perimeter. Continue the same cathedral flank and surrounding historic Palermo architecture, then gradually reveal a slightly more open section of the street and piazza toward the far right. Advance the location: do not repeat the large central dome, the bridge arches, or the major towers already shown in Panels 1 and 2.
+
+Seam-lock requirement:
+The LEFTMOST 700 pixels of Panel 3 must reproduce and continue the RIGHTMOST 700 pixels of Panel 2 at the same scale and perspective, providing a shared overlap for a seamless stitch. Match the exact curb height, fence baseline, masonry courses, vegetation line, cathedral roofline, sky gradient, cloud direction, and cobblestone perspective at the joining edge. Do not add a vertical object directly on the seam. Keep the left border fully filled; no blank margin, frame, vignette or fade.
+
+Composition and camera:
+- Output canvas: exactly 1672 × 941 pixels, landscape.
+- Same fixed low street-level camera and the same lens/perspective as Panels 1 and 2.
+- Same horizon and ground proportions: the curb and fence stay at the same Y positions; the cobblestone street remains a wide, unobstructed playable foreground across the bottom third.
+- Maintain a continuous side-scrolling panorama. No camera turn, zoom, tilt, aerial view or new vanishing-point jump.
+- The far-right edge should remain visually open and easy to extend into a future Panel 4.
+
+Scene and architecture:
+Continue the warm sandstone Cathedral complex with coherent Norman-Gothic arches, crenellations, buttresses and side chapels, transitioning toward lower historic buildings and an open piazza edge. Preserve the iron fence, pale stone posts, palms, cypress trees and garden rhythm without mechanically repeating the same tree or fence-post pattern. The architecture must feel like one continuous place rather than a new establishing shot.
+
+Lighting and color:
+Exact continuation of the blue-hour sunset in the references: saturated clear blue sky, sparse soft pink clouds moving in the same direction, warm amber sunlight from the LEFT, long low-angle highlights on sandstone and cobblestones, consistent shadow direction and contrast. Preserve the same polished, cinematic, painterly-photorealistic game-background finish.
+
+Gameplay constraints:
+Keep the foreground street empty and readable for combat silhouettes. No people, enemies, vehicles, carts, market stalls, benches, bollards, large foreground plants or props blocking the walkable lane. No text, signs, logos, UI, watermark or border.
+
+Avoid:
+Duplicated domes or towers from earlier panels; architectural scale changes; warped windows or fence rails; floating masonry; discontinuous curb; mismatched cobblestone size; sudden color-temperature changes; a new sun; heavy haze; night lighting; modern objects; crowds; seams; mirrored elements; obvious tiling.
+
+Output:
+One clean PANEL 3 image only, exactly 1672 × 941 pixels. Preserve full detail to every edge.

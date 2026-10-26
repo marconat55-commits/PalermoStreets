@@ -1,0 +1,23 @@
+Tool: built-in ImageGen
+Use case: stylized-concept
+Asset type: PANEL 3 for a side-scrolling Palermo Streets Stage Cattedrale panorama.
+
+Input images: Image 1 is the hard continuity reference for Panel 2; Image 2 is the fused Panels 1–2 panorama and the global reference for camera height, scale, perspective, lighting, palette, street geometry and visual density.
+
+Primary request: Create the next rightward continuation of this exact panorama. Continue horizontally along the right-hand perimeter of the same Cathedral complex, then gradually reveal a slightly more open section of street and piazza with lower historic Palermo buildings toward the far right. Advance the location; do not repeat the large central dome, bridge arches, or major towers already visible.
+
+Seam lock: The leftmost approximately 42% of the new panel must reproduce and continue the rightmost 700 pixels of Image 1 at exactly the same scale and perspective as a shared overlap for later stitching. Match curb height, fence baseline, masonry courses, vegetation line, roofline, sky gradient, cloud direction and cobblestone perspective. Do not place a new vertical object on the seam. Fill every edge; no frame or fade.
+
+Composition: Exactly 1672 × 941 landscape if supported. Same fixed low street-level camera, same lens, horizon and ground proportions. The cobblestone street remains a broad unobstructed playable foreground across the bottom third. No camera turn, zoom, tilt, aerial view or vanishing-point jump. Keep the far-right edge visually open for a possible Panel 4.
+
+Scene: Continue coherent warm sandstone Norman-Gothic architecture, crenellations, side chapels, iron fence, pale stone posts, palms, cypress trees and garden rhythm without mechanical repetition. Transition toward lower historic buildings and an open piazza edge.
+
+Lighting and style: Exact blue-hour sunset continuity: saturated clear blue sky, sparse soft pink clouds moving in the same direction, warm amber sunlight from the left, matching long highlights and shadow direction. Cinematic painterly-photorealistic game-background finish matching the references.
+
+Gameplay constraints: Empty readable foreground for combat silhouettes. No people, enemies, vehicles, carts, market stalls, benches, bollards, large foreground plants or props blocking the lane. No text, signs, logos, UI, watermark or border.
+
+Avoid: duplicated domes or towers, architectural scale changes, warped windows or fence rails, floating masonry, discontinuous curb, mismatched cobblestone size, sudden color-temperature changes, a new sun, heavy haze, night lighting, modern objects, mirrored elements, obvious tiling or a visible seam.
+
+Output: one clean PANEL 3 image only, preserving full detail to every edge.
+
+Output note: ImageGen returned 1671×941. The final project copy is 1672×941; the extra pixel is a duplicate of the original rightmost column, so the generated composition and left seam remain unchanged.

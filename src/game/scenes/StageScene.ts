@@ -240,6 +240,9 @@ export class StageScene implements Scene {
     this.ambientTextures = ambientTextures;
     this.itemDefinitions = new Map(itemCatalog.items.map((item) => [item.id, item]));
     this.itemTextures = itemTextures;
+    const [stageNumber, stageName] = stageData.stage_name.split(/\s+—\s+/, 2);
+    this.stageCardNumber.text = stageNumber ?? 'STAGE';
+    this.stageCardName.text = stageNumber === 'STAGE 1' && stageName === 'ZEN' ? 'THE ZEN' : (stageName ?? stageData.stage_name);
     this.stageCardSubtitle.text = stageData.stage_subtitle ?? '';
     this.actors.sortableChildren = true;
     this.world.sortableChildren = true;

@@ -2,14 +2,26 @@ import { Application, Assets, Container, Graphics, Sprite, Text, Texture } from 
 
 const WIDTH = 1280;
 const HEIGHT = 720;
-const BASELINE_Y = 590;
-const ROOT = '/art_source/stage1_zen/barbaccia_hd_master/';
+const BASELINE_Y = 625;
+const ROOT = '/art_source/stage1_zen/barbaccia_hd_master/hulk_walk_candidates_v2/runtime_preview/';
 type FrameSpec = readonly [path: string, durationMs: number];
 const FRAMES: readonly FrameSpec[] = [
-  ['walk_frames_v1/01_contact_right.png', 165],
-  ['walk_frames_v1/02_pass_left.png', 125],
-  ['walk_frames_v1/03_contact_left.png', 165],
-  ['walk_frames_v1/04_pass_right.png', 125],
+  ['01_phase01.png', 83],
+  ['02_phase02.png', 67],
+  ['03_phase03.png', 83],
+  ['04_phase04.png', 67],
+  ['05_phase05.png', 83],
+  ['06_phase06.png', 67],
+  ['07_phase07.png', 83],
+  ['08_phase08.png', 67],
+  ['09_phase09.png', 83],
+  ['10_phase10.png', 67],
+  ['11_phase11.png', 83],
+  ['12_phase12.png', 67],
+  ['13_phase13.png', 83],
+  ['14_phase14.png', 67],
+  ['15_phase15.png', 83],
+  ['16_phase16.png', 67],
 ];
 
 export class BarbacciaWalkPilot {
@@ -31,13 +43,13 @@ export class BarbacciaWalkPilot {
     await this.app.init({ width: WIDTH, height: HEIGHT, background: '#15171d', antialias: true });
     host.replaceChildren(this.app.canvas);
     const [background, ...textures] = await Promise.all([
-      Assets.load<Texture>('/assets/backgrounds/stage1_zen/final_v2/M01/M01_MAIN.png'),
+      Assets.load<Texture>('/assets/backgrounds/stage1_zen/final_v1/M05/M05_MAIN_FOREGROUND.png'),
       ...FRAMES.map(([path]) => Assets.load<Texture>(ROOT + path)),
     ]);
     const backdrop = new Sprite(background);
-    backdrop.position.set(-870, -72);
-    const shade = new Graphics().rect(0, 0, WIDTH, HEIGHT).fill({ color: 0x05070b, alpha: 0.18 });
-    this.actor.position.set(790, BASELINE_Y);
+    backdrop.position.set(-310, 0);
+    const shade = new Graphics().rect(0, 0, WIDTH, HEIGHT).fill({ color: 0x05070b, alpha: 0.08 });
+    this.actor.position.set(700, BASELINE_Y);
     textures.forEach((texture, index) => {
       const sprite = new Sprite(texture);
       sprite.anchor.set(0.5, 400 / 420);
@@ -58,12 +70,12 @@ export class BarbacciaWalkPilot {
     const panel = new Graphics().rect(18, 16, 640, 95).fill({ color: 0x09080b, alpha: 0.84 })
       .stroke({ color: 0xffb628, width: 2 });
     const title = new Text({
-      text: `BARBACCIA HD - WALK PILOT ${FRAMES.length} POSE`,
+      text: 'BARBACCIA HD - CAMMINATA HULK 16 POSE',
       style: { fill: '#ffd078', fontFamily: 'Bangers, Arial Black', fontSize: 30 },
     });
     title.position.set(34, 26);
     const help = new Text({
-      text: 'SPAZIO pausa | frecce pose | F gira | S rallenta | M avanza',
+      text: 'SPAZIO pausa | frecce confronta | F gira | S rallenta | M avanza',
       style: { fill: '#fff', fontFamily: 'Arial', fontSize: 16 },
     });
     help.position.set(34, 72);

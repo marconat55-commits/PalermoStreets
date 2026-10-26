@@ -7,6 +7,14 @@
       "id": "stage1_zen",
       "data": "data/stage1_zen.json",
       "items": "data/items/stage1_zen.json"
+    },
+    {
+      "id": "stage2_san_lorenzo",
+      "data": "data/stage2_san_lorenzo.json"
+    },
+    {
+      "id": "stage_prova_cattedrale",
+      "data": "data/stage_prova_cattedrale.json"
     }
   ]
 }

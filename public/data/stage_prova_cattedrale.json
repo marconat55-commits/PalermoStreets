@@ -1,14 +1,13 @@
 {
   "schema": 4,
-  "editor_only": true,
-  "build_scope": "stage_prova_cattedrale_editor_preview_v1",
-  "stage_name": "STAGE PROVA — CATTEDRALE",
+  "build_scope": "stage_cattedrale_one_wave_v1",
+  "stage_name": "STAGE 3 — CATTEDRALE",
   "stage_subtitle": "PIAZZA DELLA CATTEDRALE",
   "modules": [
     {
       "id": "P01",
       "name": "Panorama Cattedrale",
-      "art_status": "approval_candidate",
+      "art_status": "approved",
       "reference_actor_height": 290,
       "horizon_y": 315,
       "background": "assets/backgrounds/stage_prova_cattedrale/CATTEDRALE_MAIN_FOREGROUND.png",
@@ -73,7 +72,35 @@
           705
         ]
       ],
-      "ambient": [],
+      "ambient": [
+        {
+          "id": "p01_lampione_palermitano_ornato",
+          "kind": "sprite_loop",
+          "frames": [
+            "assets/ambient/editor_assets/static_props/lampione_palermitano_ornato.png",
+            "assets/ambient/editor_assets/static_props/lampione_palermitano_ornato.png"
+          ],
+          "position": [
+            2406,
+            586
+          ],
+          "size": [
+            166,
+            221
+          ],
+          "anchor": [
+            0.5,
+            1
+          ],
+          "frame_durations": [
+            0.5,
+            0.5
+          ],
+          "parallax": 1,
+          "alpha": 1,
+          "interactive": false
+        }
+      ],
       "entry": [
         150,
         680
@@ -81,7 +108,18 @@
       "exit_x": 3288,
       "heal": 0,
       "items": [],
-      "waves": [],
+      "waves": [
+        {
+          "name": "GUARDIANI DELLA PIAZZA",
+          "trigger_x": 470,
+          "health": 46,
+          "aggression": 0.76,
+          "spawns": [[1040, 650], [1550, 690], [2180, 660], [2700, 690]],
+          "characters": ["talebano", "a_puaicca", "talebano", "u_tignusu"],
+          "batch_size": 2,
+          "lock_stage": false
+        }
+      ],
       "character_scale": 0.8
     }
   ],

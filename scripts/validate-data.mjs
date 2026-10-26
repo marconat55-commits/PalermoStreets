@@ -67,7 +67,20 @@ for (const entry of runtime.stages ?? []) {
 }
 if (!stageIds.has(runtime.default_stage)) fail(`runtime registry: default_stage non registrato ${runtime.default_stage}`);
 const defaultStageEntry = runtime.stages.find((entry) => entry.id === runtime.default_stage);
-const stage = read(defaultStageEntry.data);
+const registeredStages = (runtime.stages ?? [])
+  .filter((entry) => entry.data && exists(entry.data))
+  .map((entry) => ({ entry, data: read(entry.data) }));
+const stageModules = [];
+const moduleIds = new Set();
+for (const { entry, data } of registeredStages) {
+  if (data.editor_only === true) fail(`${entry.id}: stage editor-only presente nel runtime`);
+  if (!Array.isArray(data.modules) || data.modules.length === 0) fail(`${entry.id}: nessun modulo giocabile`);
+  for (const module of data.modules ?? []) {
+    if (!module.id || moduleIds.has(module.id)) fail(`${entry.id}: id modulo duplicato o mancante ${module.id ?? ''}`);
+    moduleIds.add(module.id);
+    stageModules.push(module);
+  }
+}
 const itemCatalog = defaultStageEntry.items ? read(defaultStageEntry.items) : { schema: 1, stage_id: defaultStageEntry.id, items: [] };
 const meta = read('data/generated/frame_meta.json');
 const ids = new Set(index.characters);
@@ -259,7 +272,7 @@ const runtimePng = index.characters.flatMap((id) => {
 for (const png of runtimePng) if (!expectedPng.has(png)) fail(`PNG runtime non referenziato: ${png}`);
 for (const key of Object.keys(meta)) if (!expectedMeta.has(key)) fail(`Metadata orfano: ${key}`);
 
-for (const module of stage.modules ?? []) {
+for (const module of stageModules) {
   if (!exists(module.background)) fail(`${module.id}: background mancante ${module.background}`);
   if (!['approved', 'placeholder_rebuild_required'].includes(module.art_status)) {
     fail(`${module.id}: art_status mancante o non valido`);
@@ -420,4 +433,4 @@ if (errors.length) {
   for (const error of errors) console.error(`- ${error}`);
   process.exit(1);
 }
-console.log(`VALIDATION PASS - ${index.characters.length} personaggi, ${stage.modules.length} moduli, ${activePng.size} PNG attivi, ${expectedPng.size - activePng.size} PNG archiviati, ${Object.keys(meta).length} metadata.`);
+console.log(`VALIDATION PASS - ${index.characters.length} personaggi, ${stageModules.length} moduli, ${activePng.size} PNG attivi, ${expectedPng.size - activePng.size} PNG archiviati, ${Object.keys(meta).length} metadata.`);

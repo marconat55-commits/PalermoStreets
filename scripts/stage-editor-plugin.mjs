@@ -15,11 +15,18 @@ const STAGE_DOCUMENTS = [
     validateWithProject: true,
   },
   {
+    id: 'stage2_san_lorenzo',
+    label: 'Stage 2 — San Lorenzo',
+    file: 'stage2_san_lorenzo.json',
+    publishable: true,
+    validateWithProject: true,
+  },
+  {
     id: 'stage_prova_cattedrale',
-    label: 'Prova — Cattedrale',
+    label: 'Stage 3 — Cattedrale',
     file: 'stage_prova_cattedrale.json',
-    publishable: false,
-    validateWithProject: false,
+    publishable: true,
+    validateWithProject: true,
   },
 ];
 
@@ -248,7 +255,7 @@ export function stageEditorPlugin() {
               return;
             }
             const stagePath = path.join(dataRoot, stageDocument.file);
-            const moduleId = typeof payload.moduleId === 'string' && /^M\d{2}$/.test(payload.moduleId) ? payload.moduleId : 'stage';
+            const moduleId = typeof payload.moduleId === 'string' && /^[A-Z]{1,3}\d{2}$/.test(payload.moduleId) ? payload.moduleId : 'stage';
             const raw = await fs.readFile(stagePath, 'utf8');
             const stage = JSON.parse(raw);
             assertStage(stage);

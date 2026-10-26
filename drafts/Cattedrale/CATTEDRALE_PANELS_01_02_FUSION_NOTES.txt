@@ -1,0 +1,11 @@
+Stage Cattedrale — Panels 1+2 fusion
+
+Sources: 1672×941 each.
+Horizontal placement of Panel 2: x = 940.
+Shared overlap: 732 px.
+Selected seam in composite: x = 1245.
+Soft transition width: 96 px.
+Full-resolution result: 2612×941.
+720p-height result: 1999×720.
+
+The sources were preserved unchanged. The fusion is a deterministic overlap blend; it does not regenerate or repaint either panel.

@@ -32,12 +32,19 @@ test('Stage 1 no longer renders procedural bird flocks', () => {
   }
 });
 
-test('M01 rebuilt starts clean so its ambient dressing can be authored in the editor', () => {
+test('M01 conserva gli oggetti approvati e salvati nell editor', () => {
   const m01 = stage.modules.find((module) => module.id === 'M01');
   assert.ok(m01);
   const loops = (m01.ambient ?? []).filter((actor): actor is SpriteLoopSpec => actor.kind === 'sprite_loop');
-  assert.deepEqual(loops, []);
-  assert.deepEqual(collectAmbientAssets(m01), []);
+  assert.deepEqual(loops.map((loop) => loop.id), ['m01_moto_yamaha_xt250', 'm01_padre_pio']);
+  assert.deepEqual(loops.map((loop) => loop.position), [[192, 583], [572, 419]]);
+  assert.deepEqual(loops.map((loop) => loop.size), [[261, 197], [103, 180]]);
+  assert.deepEqual(loops.map((loop) => loop.alpha), [0.94, 0.94]);
+  assert.equal(collectAmbientAssets(m01).length, 2);
+  for (const loop of loops) {
+    assert.equal(loop.frames[0], loop.frames[1]);
+    for (const frame of loop.frames) assert.ok(fs.existsSync(`public/${frame}`), `${loop.id}: missing ${frame}`);
+  }
 });
 
 test('M02 conserva il pass ambientale approvato nell editor', () => {
@@ -49,15 +56,15 @@ test('M02 conserva il pass ambientale approvato nell editor', () => {
   ]);
   const mechanic = loops[0]!;
   assert.deepEqual(mechanic.position, [1810, 525]);
-  assert.deepEqual(mechanic.size, [135, 135]);
+  assert.deepEqual(mechanic.size, [128, 128]);
   assert.deepEqual(mechanic.shadow, { width: 69, height: 12, offset: [0, -1], alpha: 0.2 });
   assert.equal(collectAmbientAssets(m02).length, 16);
   for (const loop of loops) {
     assert.ok(loop.position[1] < 635, `${loop.id}: ambient actor must stay behind the WALK lane`);
     for (const frame of loop.frames) assert.ok(fs.existsSync(`public/${frame}`), `${loop.id}: missing ${frame}`);
   }
-  assert.deepEqual(loops.slice(1).map((loop) => loop.position), [[1990, 582], [2420, 590], [2520, 590], [3020, 560], [270, 630], [3801, 110], [3461, 532], [154, 556]]);
-  assert.deepEqual(loops.slice(1).map((loop) => loop.size), [[175, 175], [186, 186], [186, 186], [105, 105], [130, 130], [91, 77], [67, 174], [187, 137]]);
+  assert.deepEqual(loops.slice(1).map((loop) => loop.position), [[1990, 582], [2420, 590], [2520, 590], [3020, 560], [270, 630], [3796, 101], [3461, 532], [154, 556]]);
+  assert.deepEqual(loops.slice(1).map((loop) => loop.size), [[162, 162], [176, 176], [175, 175], [105, 105], [130, 130], [77, 63], [61, 156], [187, 137]]);
   assert.deepEqual(loops.map((loop) => loop.alpha), [0.93, 0.97, 0.97, 0.96, 0.97, 0.92, 1, 0.87, 0.85]);
 });
 

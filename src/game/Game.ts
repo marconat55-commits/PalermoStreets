@@ -5,7 +5,7 @@ import { getStageEntry, loadCharacterFrameMeta, loadCharacterIndex, loadCharacte
 import { AssetCatalog } from './assets/AssetCatalog';
 import { TitleScene } from './scenes/TitleScene';
 import { CharacterSelectScene } from './scenes/CharacterSelectScene';
-import { StageSelectScene } from './scenes/StageSelectScene';
+import { StageSelectScene, type StageSelectionOption } from './scenes/StageSelectScene';
 import { StageScene } from './scenes/StageScene';
 import type { Scene } from './scenes/Scene';
 import type { CharacterProfile, RuntimeStageEntry, StageData } from './types';
@@ -40,6 +40,9 @@ export class Game {
   private selectionCachedCharacterId: string | null = null;
   private playerProfiles: Array<Pick<CharacterProfile, 'id' | 'display_name' | 'selection'>> = [];
   private startModuleIndex = 0;
+  private startChoiceIndex = 0;
+  private stageChoices: Array<StageSelectionOption & { entry: RuntimeStageEntry; data: StageData; moduleIndex: number }> = [];
+  private initialStageLoadEpoch = 0;
   private stageSelectionEnabled = false;
   private selectedPlayerId: string | null = null;
 
@@ -65,11 +68,27 @@ export class Game {
       loadCharacterIndex(),
       Assets.load<Texture>(publicUrl('assets/ui/title/palermo_night.png')),
     ]);
-    this.stageEntry = getStageEntry(runtime);
     const enemyPilot = this.enemyPilot;
-    if (enemyPilot) this.stageEntry = { ...this.stageEntry, data: 'data/stage_tignusu_pilot.json' };
-    this.stageData = await loadStage(this.stageEntry);
-    this.startModuleIndex = resolveStartModuleIndex(window.location.search, this.stageData.modules);
+    if (enemyPilot) {
+      this.stageEntry = { ...getStageEntry(runtime), data: 'data/stage_tignusu_pilot.json' };
+      this.stageData = await loadStage(this.stageEntry);
+      this.startModuleIndex = resolveStartModuleIndex(window.location.search, this.stageData.modules);
+    } else {
+      const stages = await Promise.all(runtime.stages.map(async (entry) => ({ entry, data: await loadStage(entry) })));
+      this.stageChoices = stages.flatMap(({ entry, data }) => data.modules.map((module, moduleIndex) => ({
+        entry, data, module, moduleIndex, stageId: entry.id, stageName: data.stage_name,
+      })));
+      const requestedStageId = new URLSearchParams(window.location.search).get('stage');
+      const selectedStage = stages.find(({ entry }) => entry.id === requestedStageId)
+        ?? stages.find(({ entry }) => entry.id === runtime.default_stage)
+        ?? stages[0];
+      if (!selectedStage) throw new Error('Nessuno stage disponibile');
+      this.stageEntry = selectedStage.entry;
+      this.stageData = selectedStage.data;
+      this.startModuleIndex = resolveStartModuleIndex(window.location.search, this.stageData.modules);
+      this.startChoiceIndex = Math.max(0, this.stageChoices.findIndex((choice) =>
+        choice.stageId === this.stageEntry.id && choice.moduleIndex === this.startModuleIndex));
+    }
     this.stageSelectionEnabled = shouldShowStageSelect(window.location.search);
     if (enemyPilot) this.stageSelectionEnabled = false;
     this.titleBackground = titleBackground;
@@ -180,7 +199,7 @@ export class Game {
     if (!characterSelection || this.scene !== characterSelection) return;
     characterSelection.confirmRequested = false;
     this.selectedPlayerId = characterSelection.selectedCharacterId;
-    const stageSelection = new StageSelectScene(this.titleBackground, this.stageData.modules, this.startModuleIndex);
+    const stageSelection = new StageSelectScene(this.titleBackground, this.stageChoices, this.startChoiceIndex);
     characterSelection.destroy();
     this.app.stage.removeChildren();
     this.characterSelectScene = null;
@@ -194,9 +213,14 @@ export class Game {
     const selection = this.stageSelectScene;
     if (!selection || this.scene !== selection || this.startingStage) return;
     selection.confirmRequested = false;
-    const nextModuleIndex = selection.selectedModuleIndex;
-    if (nextModuleIndex !== this.startModuleIndex) {
-      this.startModuleIndex = nextModuleIndex;
+    const choice = this.stageChoices[selection.selectedChoiceIndex];
+    if (!choice) return;
+    if (choice.stageId !== this.stageEntry.id || choice.moduleIndex !== this.startModuleIndex) {
+      this.stageEntry = choice.entry;
+      this.stageData = choice.data;
+      this.startModuleIndex = choice.moduleIndex;
+      this.startChoiceIndex = selection.selectedChoiceIndex;
+      this.initialStageLoadEpoch += 1;
       this.initialStagePreload = null;
       this.initialStageLoadCompleted = 0;
       this.initialStageLoadTotal = 0;
@@ -297,14 +321,16 @@ export class Game {
 
   private async preloadInitialStage(): Promise<void> {
     if (this.initialStagePreload) return this.initialStagePreload;
+    const epoch = this.initialStageLoadEpoch;
     this.initialStagePreload = this.loadInitialStageResources().catch((error: unknown) => {
-      this.initialStagePreload = null;
+      if (epoch === this.initialStageLoadEpoch) this.initialStagePreload = null;
       throw error;
     });
     return this.initialStagePreload;
   }
 
   private async loadInitialStageResources(): Promise<void> {
+    const epoch = this.initialStageLoadEpoch;
     const firstModule = this.stageData.modules[this.startModuleIndex];
     if (!firstModule) return Promise.reject(new Error('Stage senza moduli'));
     const enabledLayers = firstModule.background_layers?.filter((layer) => layer.enabled !== false);
@@ -324,11 +350,13 @@ export class Game {
       ...itemAssets.map((path) => this.catalog.loadBackground(path)),
       ...ambientAssets.map((path) => this.catalog.loadBackground(path)),
     ];
+    if (epoch !== this.initialStageLoadEpoch) return;
     this.initialStageLoadCompleted = 0;
     this.initialStageLoadTotal = tasks.length;
     this.updateInitialStageLoadProgress();
     await Promise.all(tasks.map(async (task) => {
       await task;
+      if (epoch !== this.initialStageLoadEpoch) return;
       this.initialStageLoadCompleted += 1;
       this.updateInitialStageLoadProgress();
     }));

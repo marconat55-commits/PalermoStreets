@@ -1,0 +1,12 @@
+Stage Cattedrale — Panels 1+2+3 fusion
+
+Panel 3 canvas: 1672×941.
+Horizontal placement of Panel 3: x = 1912.
+Shared overlap with the Panels 1–2 master: 700 px.
+Selected seam inside Panel 3: x = 390.
+Selected seam in the composite: x = 2302.
+Soft transition width: 96 px.
+Full-resolution result: 3584×941.
+720p-height result: 2742×720.
+
+The panel sources were preserved separately. The panorama uses a deterministic overlap blend and does not regenerate the earlier panels.

@@ -1,10 +1,28 @@
 {
-  "status": "saved_for_later_review_not_approved",
+  "status": "sixteen_pose_hulk_cycle_preview_not_approved",
   "motion_reference": "SavageHulk.zip / AIR Action 20",
   "identity_master": "../BARBACCIA_HD_USER_MASTER.png",
   "candidates": [
-    {"file": "phase03_pose_locked_candidate.png", "reference_phase": 3, "note": "early transfer; monitored leg rear/lifted"},
-    {"file": "phase07_pose_locked_candidate.png", "reference_phase": 7, "note": "late transfer; monitored leg intended forward"}
+    {"file": "phase01_pose_locked_candidate.png", "reference_phase": 1, "reference_file": "01_hulk_walk_09.png", "note": "pose-locked Hulk keyframe; pending review"},
+    {"file": "phase02_pose_locked_candidate.png", "reference_phase": 2, "reference_file": "02_hulk_walk_10.png", "note": "pose-locked Hulk keyframe; pending review"},
+    {"file": "phase03_pose_locked_candidate.png", "reference_phase": 3, "reference_file": "03_hulk_walk_11.png", "note": "pose-locked Hulk keyframe; pending review"},
+    {"file": "phase04_pose_locked_candidate.png", "reference_phase": 4, "reference_file": "04_hulk_walk_12.png", "note": "pose-locked Hulk keyframe; pending review"},
+    {"file": "phase05_pose_locked_candidate.png", "reference_phase": 5, "reference_file": "05_hulk_walk_13.png", "note": "pose-locked Hulk keyframe; pending review"},
+    {"file": "phase06_pose_locked_candidate.png", "reference_phase": 6, "reference_file": "06_hulk_walk_14.png", "note": "pose-locked Hulk keyframe; pending review"},
+    {"file": "phase07_pose_locked_candidate.png", "reference_phase": 7, "reference_file": "07_hulk_walk_15.png", "note": "pose-locked Hulk keyframe; pending review"},
+    {"file": "phase08_pose_locked_candidate.png", "reference_phase": 8, "reference_file": "08_hulk_walk_00.png", "note": "pose-locked Hulk keyframe; pending review"},
+    {"file": "phase09_pose_locked_candidate.png", "reference_phase": 9, "reference_file": "09_hulk_walk_01.png", "note": "pose-locked Hulk keyframe; pending review"},
+    {"file": "phase10_pose_locked_candidate.png", "reference_phase": 10, "reference_file": "10_hulk_walk_02.png", "note": "pose-locked Hulk keyframe; pending review"},
+    {"file": "phase11_pose_locked_candidate.png", "reference_phase": 11, "reference_file": "11_hulk_walk_03.png", "note": "pose-locked Hulk keyframe; pending review"},
+    {"file": "phase12_pose_locked_candidate.png", "reference_phase": 12, "reference_file": "12_hulk_walk_04.png", "note": "pose-locked Hulk keyframe; pending review"},
+    {"file": "phase13_pose_locked_candidate.png", "reference_phase": 13, "reference_file": "13_hulk_walk_05.png", "note": "pose-locked Hulk keyframe; pending review"},
+    {"file": "phase14_pose_locked_candidate.png", "reference_phase": 14, "reference_file": "14_hulk_walk_06.png", "note": "pose-locked Hulk keyframe; pending review"},
+    {"file": "phase15_pose_locked_candidate.png", "reference_phase": 15, "reference_file": "15_hulk_walk_07.png", "note": "pose-locked Hulk keyframe; pending review"},
+    {"file": "phase16_pose_locked_candidate.png", "reference_phase": 16, "reference_file": "16_hulk_walk_08.png", "note": "pose-locked Hulk keyframe with both legs required; pending review"}
+  ],
+  "rejected_candidates": [
+    {"file": "phase05_passing_strapped_forward_candidate.png", "reason": "freeform intermediate did not copy a specific Hulk keyframe"},
+    {"file": "phase09_passing_unstrapped_forward_candidate.png", "reason": "freeform intermediate did not copy a specific Hulk keyframe"}
   ],
   "runtime": false
 }

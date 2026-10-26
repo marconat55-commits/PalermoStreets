@@ -13,6 +13,7 @@ import { publicUrl } from './data/paths';
 import { resolveStartModuleIndex, shouldShowStageSelect } from './stage/debugStart';
 import { collectModulePrimaryItemAssets } from './stage/moduleItems';
 import { collectAmbientAssets } from './stage/ambientAssets';
+import { SelectionMusic } from './audio/SelectionMusic';
 
 export class Game {
   private readonly enemyPilot: boolean;
@@ -23,6 +24,7 @@ export class Game {
   private titleScene: TitleScene | null = null;
   private characterSelectScene: CharacterSelectScene | null = null;
   private stageSelectScene: StageSelectScene | null = null;
+  private selectionMusic: SelectionMusic | null = null;
   private catalog!: AssetCatalog;
   private stageData!: StageData;
   private stageEntry!: RuntimeStageEntry;
@@ -126,6 +128,7 @@ export class Game {
     if (this.titleScene?.startRequested) void this.showCharacterSelect();
     if (this.characterSelectScene?.editorRequested && this.scene === this.characterSelectScene) {
       this.characterSelectScene.editorRequested = false;
+      this.stopSelectionMusic();
       window.location.assign('/tools/stage-editor.html');
       return;
     }
@@ -140,6 +143,7 @@ export class Game {
   }
 
   private showTitle(): void {
+    this.stopSelectionMusic();
     if (this.scene instanceof StageScene) {
       this.initialStagePreload = null;
       this.initialStageLoadCompleted = 0;
@@ -184,6 +188,7 @@ export class Game {
       this.stageSelectScene = null;
       this.scene = selection;
       this.app.stage.addChild(selection.root);
+      this.selectionMusic ??= new SelectionMusic();
       this.updateInitialStageLoadProgress();
     } catch (error) {
       console.error('Selezione personaggio non caricabile', error);
@@ -271,6 +276,7 @@ export class Game {
       this.selectedPlayerId = null;
       this.scene = stage;
       this.app.stage.addChild(stage.root);
+      this.stopSelectionMusic();
     } catch (error) {
       console.error('Avvio stage fallito', error);
       if (this.scene !== selection) return;
@@ -280,6 +286,11 @@ export class Game {
     } finally {
       finishCreation();
     }
+  }
+
+  private stopSelectionMusic(): void {
+    this.selectionMusic?.destroy();
+    this.selectionMusic = null;
   }
 
   private updateInitialStageLoadProgress(): void {

@@ -3,7 +3,6 @@ import type { Input } from '../input/Input';
 import { publicUrl } from '../data/paths';
 import type { CharacterProfile } from '../types';
 import type { Scene } from './Scene';
-import { SelectionMusic } from '../audio/SelectionMusic';
 
 const DISPLAY_FONT = 'Bangers, Impact, Arial Black, sans-serif';
 const UI_FONT = 'Arial Black, Arial, sans-serif';
@@ -48,7 +47,6 @@ export class CharacterSelectScene implements Scene {
   private readonly nameStats: Text;
   private readonly subtitle: Text;
   private readonly statPips = new Graphics();
-  private readonly music: SelectionMusic;
 
   static async create(
     profiles: Array<Pick<CharacterProfile, 'id' | 'display_name' | 'selection'>>,
@@ -70,7 +68,6 @@ export class CharacterSelectScene implements Scene {
     initialId: string,
     private readonly requestCharacterPreload?: (id: string) => void,
   ) {
-    this.music = new SelectionMusic();
     this.selectedIndex = Math.max(0, profiles.findIndex((profile) => profile.id === initialId));
     const background = new Sprite(backgroundTexture);
     background.width = 1280;
@@ -265,7 +262,6 @@ export class CharacterSelectScene implements Scene {
   }
 
   destroy(): void {
-    this.music.destroy();
     this.root.destroy({ children: true });
   }
 }

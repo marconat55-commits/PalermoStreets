@@ -21,9 +21,10 @@ function fixture() {
     static async create() { createCalls++; return new StageScene(); }
   }
   class TitleScene { root = {}; destroy() {} }
+  class StageSelectScene { root = {}; setLoading() {} setLoadingProgress() {} destroy() {} }
   const context = vm.createContext({
     Application: class { stage = { removeChildren() {}, addChild(x) { attached.push(x); } }; },
-    Input: class {}, StageScene, TitleScene, console,
+    Input: class {}, StageScene, StageSelectScene, TitleScene, console,
   });
   const Game = vm.runInContext(stripTypeScriptTypes(source) + '\nGame', context);
   const game = new Game();
@@ -34,6 +35,18 @@ function fixture() {
   game.preloadInitialStage = async () => {};
   return { game, selection, StageScene, attached, calls: () => createCalls };
 }
+
+test('la musica continua nella scelta dello stage e si ferma quando il gioco inizia', async () => {
+  const f = fixture();
+  const music = { destroyed: false, destroy() { this.destroyed = true; } };
+  f.game.selectionMusic = music;
+  f.game.showStageSelect();
+  assert.equal(f.game.selectionMusic, music);
+  assert.equal(music.destroyed, false);
+  await f.game.startStage();
+  assert.equal(f.game.selectionMusic, null);
+  assert.equal(music.destroyed, true);
+});
 
 test('Esc while resources load prevents abandoned stage attachment', async () => {
   const f = fixture();

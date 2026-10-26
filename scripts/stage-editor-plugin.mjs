@@ -222,6 +222,11 @@ export function stageEditorPlugin() {
               return;
             }
 
+            if (JSON.stringify(JSON.parse(current)) === JSON.stringify(payload.stage)) {
+              send(response, 200, { revision: hash(current), message: 'Nessuna modifica da salvare.' });
+              return;
+            }
+
             const backupRoot = path.join(projectRoot, '.tmp', 'stage-editor-backups');
             await fs.mkdir(backupRoot, { recursive: true });
             const timestamp = new Date().toISOString().replace(/[:.]/g, '-');

@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "build_scope": "stage2_san_lorenzo_one_wave_v1",
+  "build_scope": "stage2_san_lorenzo_two_modules_v2",
   "stage_name": "STAGE 2 — SAN LORENZO",
   "stage_subtitle": "TUTTO IN REGOLA",
   "modules": [
@@ -50,6 +50,57 @@
           "spawns": [[1150, 655], [1540, 690], [2250, 665], [2970, 690], [3680, 655], [4250, 690]],
           "characters": ["talebano", "a_puaicca", "talebano", "a_puaicca", "u_tignusu", "talebano"],
           "batch_size": 2,
+          "lock_stage": false
+        }
+      ],
+      "character_scale": 0.8
+    },
+    {
+      "id": "SL02",
+      "name": "Cantiere e villa",
+      "art_status": "approved",
+      "reference_actor_height": 290,
+      "horizon_y": 315,
+      "background": "assets/backgrounds/stage2_san_lorenzo/courtyard_v1/SAN_LORENZO_COURTYARD_MAIN_FOREGROUND.png",
+      "background_layers": [
+        {
+          "src": "assets/backgrounds/stage2_san_lorenzo/final_v1/SAN_LORENZO_SKY_FAR.png",
+          "parallax": 0.22,
+          "plane": "far",
+          "x": 0,
+          "y": 0,
+          "width": 5319,
+          "height": 720
+        },
+        {
+          "src": "assets/backgrounds/stage2_san_lorenzo/courtyard_v1/SAN_LORENZO_COURTYARD_MAIN_FOREGROUND.png",
+          "parallax": 1,
+          "plane": "main",
+          "x": 0,
+          "y": 0,
+          "width": 5319,
+          "height": 720
+        }
+      ],
+      "world_width": 5319,
+      "camera_bounds": [0, 4039],
+      "playfield_y": [550, 705],
+      "walk_top": [[0, 550], [5319, 550]],
+      "walk_bottom": [[0, 705], [5319, 705]],
+      "ambient": [],
+      "entry": [150, 680],
+      "exit_x": 5269,
+      "heal": 0,
+      "items": [],
+      "waves": [
+        {
+          "name": "TUTTO IN REGOLA",
+          "trigger_x": 650,
+          "health": 48,
+          "aggression": 0.78,
+          "spawns": [[1400, 655], [1650, 690], [1900, 665]],
+          "characters": ["talebano", "a_puaicca", "u_tignusu"],
+          "batch_size": 3,
           "lock_stage": false
         }
       ],

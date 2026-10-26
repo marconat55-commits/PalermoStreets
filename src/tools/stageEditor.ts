@@ -688,10 +688,14 @@ function bindEvents(): void {
     }
     const url = new URL(window.location.href);
     url.searchParams.set('stage', stageSelect.value);
+    url.searchParams.delete('module');
     window.location.assign(url.toString());
   });
   moduleSelect.addEventListener('change', () => {
     activeModuleId = moduleSelect.value;
+    const url = new URL(window.location.href);
+    url.searchParams.set('module', activeModuleId);
+    window.history.replaceState(null, '', url);
     selectedId = null;
     selectedWalkPoint = null;
     stageScroll.scrollTo({ left: 0, top: 0 });
@@ -831,7 +835,9 @@ function bindEvents(): void {
 }
 
 async function loadEditor(): Promise<void> {
-  const requestedStage = new URL(window.location.href).searchParams.get('stage');
+  const pageUrl = new URL(window.location.href);
+  const requestedStage = pageUrl.searchParams.get('stage');
+  const requestedModule = pageUrl.searchParams.get('module');
   const stateUrl = new URL('/__stage-editor/state', window.location.origin);
   if (requestedStage) stateUrl.searchParams.set('stage', requestedStage);
   const response = await fetch(`${stateUrl.pathname}${stateUrl.search}`);
@@ -842,7 +848,9 @@ async function loadEditor(): Promise<void> {
   canPublish = payload.canPublish;
   revision = payload.revision;
   assets = payload.assets;
-  activeModuleId = stageData.modules[0]?.id ?? '';
+  activeModuleId = stageData.modules.some((module) => module.id === requestedModule)
+    ? requestedModule!
+    : (stageData.modules[0]?.id ?? '');
   savedState = serialized();
   editHistory = [savedState];
   historyIndex = 0;

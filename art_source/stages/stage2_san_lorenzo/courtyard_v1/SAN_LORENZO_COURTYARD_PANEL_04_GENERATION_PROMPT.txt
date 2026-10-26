@@ -1,0 +1,13 @@
+Crea il quarto pannello del cortile interno di STAGE 2 — SAN LORENZO, continuando verso destra il pannello allegato "Villa mediterranea al tramonto in costruzione" (P3).
+
+Allega anche la fusione P1+P2+P3 per mostrare la progressione complessiva, ma usa P3 originale come riferimento principale per il raccordo.
+
+Formato: PNG orizzontale 1673 x 940 pixel, identico ai pannelli sorgente. Un solo pannello nuovo, non un panorama riassuntivo.
+
+Nel 15-20% sinistro riprendi fedelmente il bordo destro di P3: la facciata della villa mediterranea, i cipressi, la bouganville, la vetrata della piscina, il muretto, il marciapiede e il pavimento. Mantieni scala degli edifici, prospettiva laterale ad altezza d'uomo, linea del marciapiede, fughe del pavimento e cielo rosa-arancio alla stessa altezza. Questo tratto servira per fondere P3 e P4.
+
+Proseguendo verso destra, lascia alle spalle il cantiere e mostra la parte piu privata della STESSA villa: patio coperto, facciata elegante ma quasi buia, alte siepi e un ingresso riservato in ombra. La piscina di P3 puo continuare solo all'inizio, sempre dietro il muretto o la vetrata; non creare una seconda piscina. L'atmosfera e quella di una potente residenza mafiosa, discreta e inquietante, senza simboli, scritte o caricature.
+
+Riduci drasticamente le luci artificiali. Le luci del cantiere non sono piu visibili; niente pali-faro, proiettori alti, file di lampade, colonne di luce o riflessi arancioni ripetuti. Quasi tutte le finestre della villa sono spente. Concedi al massimo una o due finestre debolmente illuminate e un riflesso blu molto tenue della piscina nel primo tratto. Il cielo resta dello stesso tramonto di P3: la villa diventa piu scura perche le luci sono spente, non perche e arrivata la notte.
+
+Il 45% inferiore resta un piazzale largo, quasi piano e libero per il combattimento. La piscina, i vasi e gli arredi devono rimanere dietro la linea del marciapiede, mai sul piano di gioco. Il bordo destro deve aprire naturalmente il quinto pannello, magari verso un portico o vialetto privato in ombra. Nessun personaggio, nemico, testo, logo, HUD o filigrana. Non cambiare angolo di ripresa e non introdurre una forte fuga prospettica.

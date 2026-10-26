@@ -1,0 +1,31 @@
+{
+  "width": 6797,
+  "height": 920,
+  "xPos": [
+    0,
+    1473,
+    2746,
+    4075,
+    5124
+  ],
+  "yPos": [
+    0,
+    0,
+    -16,
+    -20,
+    -20
+  ],
+  "overlap": [
+    200,
+    400,
+    344,
+    624
+  ],
+  "sources": [
+    "SAN_LORENZO_COURTYARD_PANEL_01_SOURCE.png",
+    "SAN_LORENZO_COURTYARD_PANEL_02_SOURCE.png",
+    "SAN_LORENZO_COURTYARD_PANEL_03_SOURCE.png",
+    "SAN_LORENZO_COURTYARD_PANEL_04_SOURCE.png",
+    "SAN_LORENZO_COURTYARD_PANEL_05_SOURCE.png"
+  ]
+}

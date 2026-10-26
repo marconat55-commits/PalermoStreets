@@ -1,0 +1,13 @@
+Crea il QUINTO E ULTIMO pannello del cortile interno di STAGE 2 — SAN LORENZO, continuando verso destra l'immagine allegata "Villa Mediterranea al Tramonto.png" (P4).
+
+Allega anche la fusione P1+P2+P3+P4 per mostrare la progressione complessiva, ma usa P4 originale come riferimento principale per il raccordo.
+
+Formato: PNG orizzontale 1673 x 940 pixel, identico ai pannelli sorgente. Un solo pannello nuovo, non un panorama riassuntivo.
+
+Nel 15-20% sinistro riprendi fedelmente il bordo destro di P4: cancello scuro, pilastri chiari, siepi, cipressi, palme e vialetto. Mantieni alla stessa altezza il marciapiede e le fughe del pavimento, la scala della villa, la prospettiva laterale ad altezza d'uomo e il cielo rosa-viola del tramonto. Il raccordo deve permettere la fusione P4-P5 senza salto di luce o geometria.
+
+Verso destra rivela l'area finale davanti all'ingresso padronale della STESSA villa mediterranea: facciata elegante e severa, portico profondo in ombra, grande portone chiuso sullo sfondo, muro e vegetazione di privacy. Una telecamera discreta puo suggerire sorveglianza. Il piazzale davanti al portico deve offrire uno spazio ampio e leggibile per lo scontro conclusivo del modulo. Non introdurre un altro cantiere, un'altra piscina o un'altra villa separata.
+
+Luci artificiali quasi tutte spente: nessun palo-faro, proiettore, fila di lampade, finestre luminose ripetute o colonne arancioni di riflesso sul pavimento. Al massimo una debole lampada sotto il portico e una finestra calda lontana. La villa deve apparire piu scura e misteriosa di P4, ma i contorni degli edifici devono restare leggibili. Mantieni lo stesso cielo al tramonto: non trasformare la scena in notte.
+
+Il 45% inferiore resta pavimentazione larga, quasi piana e completamente libera per il combattimento; portone, siepi, vasi e arredi stanno dietro il marciapiede. Poiche questo e il pannello finale, il bordo destro deve chiudere naturalmente il percorso con la facciata o il muro della proprieta, senza promettere un'altra strada. Nessun personaggio, nemico, auto in primo piano, testo, logo, simbolo mafioso, HUD o filigrana. Non cambiare angolo di ripresa e non creare una forte fuga prospettica.

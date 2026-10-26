@@ -1,0 +1,15 @@
+Crea il terzo pannello del nuovo tratto di STAGE 2 — SAN LORENZO, continuando verso destra il pannello allegato "Cantiere di lusso al tramonto 2".
+
+Usa come immagini di riferimento:
+1. P2 originale: vincolo principale per raccordo, scala, prospettiva, colori e pavimento.
+2. Fusione P1+P2: solo per capire la progressione complessiva, non per copiare il suo bordo ridimensionato.
+
+Formato: PNG orizzontale 1673 x 940 pixel, uguale ai due pannelli sorgente. Un solo pannello nuovo, non un panorama riassuntivo.
+
+Nel 15-20% sinistro riprendi il bordo destro di P2: la villa incompiuta con impalcature, il muro e i materiali dietro il marciapiede. Mantieni allineati marciapiede, fughe del pavimento, scala degli edifici, prospettiva laterale ad altezza d'uomo e cielo rosa-arancio al tramonto. Questo tratto servirà per fondere P2 e P3.
+
+Verso destra, fai terminare gradualmente il cantiere illuminato e rivela qualcosa di diverso: una villa mediterranea privata, ricca e riservata, con un cortile e una piscina rettangolare visibile dietro un muretto basso o una vetrata. L'atmosfera deve suggerire una residenza di un potente mafioso senza scritte, stemmi o caricature: architettura elegante, siepi, telecamera discreta, grandi finestre scure e accesso sorvegliato. La piscina resta sempre dietro l'area giocabile: nessun bordo d'acqua o ostacolo sul pavimento dove camminano i personaggi.
+
+Le luci del cantiere sono quasi tutte spente. Non aggiungere pali-faro alti. Illumina la villa con pochissime finestre calde e una luce soffusa della piscina; evita serie di lampade verticali e riflessi arancioni ripetuti. Conserva la stessa ora del giorno e la stessa palette del P2: cambia l'intensita delle luci artificiali, non il colore del cielo.
+
+Lascia il 45% inferiore libero come piazzale quasi piano per il combattimento, con la linea del marciapiede alla stessa altezza del P2. Il bordo destro deve essere semplice da proseguire con P4. Nessun personaggio, operaio, nemico, testo, logo, HUD o filigrana. Non cambiare angolo di ripresa e non creare una forte fuga prospettica verso il centro.

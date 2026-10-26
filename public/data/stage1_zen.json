@@ -188,7 +188,11 @@
             "a_puaicca",
             "talebano"
           ],
-          "random_character": { "id": "u_tignusu", "chance": 0.18, "min_count": 1 },
+          "random_character": {
+            "id": "u_tignusu",
+            "chance": 0.18,
+            "min_count": 1
+          },
           "name": "SGHERRI",
           "batch_size": 2,
           "lock_stage": false
@@ -579,7 +583,10 @@
             ]
           ],
           "character": "a_puaicca",
-          "random_character": { "id": "u_tignusu", "chance": 0.18 },
+          "random_character": {
+            "id": "u_tignusu",
+            "chance": 0.18
+          },
           "name": "A PUAICCA"
         },
         {
@@ -597,7 +604,10 @@
             ]
           ],
           "character": "talebano",
-          "random_character": { "id": "u_tignusu", "chance": 0.18 },
+          "random_character": {
+            "id": "u_tignusu",
+            "chance": 0.18
+          },
           "name": "TALEBANO"
         },
         {
@@ -619,7 +629,10 @@
             ]
           ],
           "character": "a_puaicca",
-          "random_character": { "id": "u_tignusu", "chance": 0.18 },
+          "random_character": {
+            "id": "u_tignusu",
+            "chance": 0.18
+          },
           "name": "A PUAICCA"
         },
         {
@@ -637,7 +650,10 @@
             ]
           ],
           "character": "talebano",
-          "random_character": { "id": "u_tignusu", "chance": 0.18 },
+          "random_character": {
+            "id": "u_tignusu",
+            "chance": 0.18
+          },
           "name": "TALEBANO"
         },
         {
@@ -659,7 +675,10 @@
             ]
           ],
           "character": "a_puaicca",
-          "random_character": { "id": "u_tignusu", "chance": 0.18 },
+          "random_character": {
+            "id": "u_tignusu",
+            "chance": 0.18
+          },
           "name": "A PUAICCA"
         },
         {
@@ -681,7 +700,10 @@
             ]
           ],
           "character": "talebano",
-          "random_character": { "id": "u_tignusu", "chance": 0.18 },
+          "random_character": {
+            "id": "u_tignusu",
+            "chance": 0.18
+          },
           "name": "TALEBANO"
         }
       ],
@@ -772,8 +794,8 @@
             452
           ],
           "size": [
-            138,
-            138
+            130,
+            130
           ],
           "anchor": [
             0.5,
@@ -808,8 +830,8 @@
             447
           ],
           "size": [
-            120,
-            120
+            125,
+            125
           ],
           "anchor": [
             0.5,
@@ -1107,6 +1129,61 @@
           ],
           "parallax": 1,
           "alpha": 0.91,
+          "interactive": false
+        },
+        {
+          "id": "m03_motoape_piaggio_blu_arrugginita",
+          "kind": "sprite_loop",
+          "frames": [
+            "assets/ambient/editor_assets/static_props/motoape_piaggio_blu_arrugginita.png",
+            "assets/ambient/editor_assets/static_props/motoape_piaggio_blu_arrugginita.png"
+          ],
+          "position": [
+            266,
+            451
+          ],
+          "size": [
+            167,
+            98
+          ],
+          "anchor": [
+            0.5,
+            1
+          ],
+          "frame_durations": [
+            0.5,
+            0.5
+          ],
+          "parallax": 1,
+          "alpha": 0.9,
+          "interactive": false,
+          "flip_x": true
+        },
+        {
+          "id": "m03_cassette_agrumi",
+          "kind": "sprite_loop",
+          "frames": [
+            "assets/ambient/stage1_zen/M01/static_props/cassette_agrumi.png",
+            "assets/ambient/stage1_zen/M01/static_props/cassette_agrumi.png"
+          ],
+          "position": [
+            328,
+            452
+          ],
+          "size": [
+            66,
+            66
+          ],
+          "anchor": [
+            0.5,
+            1
+          ],
+          "frame_durations": [
+            0.5,
+            0.5
+          ],
+          "parallax": 1,
+          "alpha": 0.85,
           "interactive": false
         }
       ],

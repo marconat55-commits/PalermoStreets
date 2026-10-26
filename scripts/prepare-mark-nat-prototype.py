@@ -19,6 +19,7 @@ SOURCE = PUBLIC / "assets/characters/merco_anim"
 TARGET = PUBLIC / "assets/characters/mark_nat_anim"
 PILOT = ROOT / "art_source/characters/merco/pilots/combo_preview_v1"
 REACTIONS = ROOT / "art_source/characters/mark_nat/reactions_v1/runtime_frames"
+IDLE_VARIANT = ROOT / "art_source/characters/mark_nat/idle_wrist_v1/wrist_check_640x420.png"
 PREFIX = "/assets/characters/mark_nat_anim/"
 
 
@@ -49,6 +50,7 @@ def main() -> None:
     install_frame("idle", 1, "guard")
     for number in range(2, 7):
         (TARGET / "idle" / f"{number:02d}.png").unlink(missing_ok=True)
+    replace_reaction("idle_variant_2", (PILOT / "guard_640x420.png", IDLE_VARIANT))
     for number, pose in enumerate(("guard", "charge", "straight_one", "recovery"), 1):
         install_frame("punch_left", number, pose)
     for number, pose in enumerate(("guard", "straight_two", "recovery"), 1):
@@ -91,7 +93,7 @@ def main() -> None:
             "frame_meta": "data/generated/characters/mark_nat.frame_meta.json",
         },
         "identity": {
-            "canon": "Prototipo Mark Nat separato da Merco: guardia, due pugni, colpi subiti, caduta e rialzata in stile cartoon; altri movimenti ereditati temporaneamente da Merco in un pacchetto runtime indipendente"
+            "canon": "Prototipo Mark Nat separato da Merco: guardia, attesa al polso, due pugni, colpi subiti, caduta e rialzata in stile cartoon; altri movimenti ereditati temporaneamente da Merco in un pacchetto runtime indipendente"
         },
         "factory": {"animation_template": "data/character_templates/mark_nat_pilot_v1.json"},
         "selection": {
@@ -105,6 +107,11 @@ def main() -> None:
                 "folder": "idle", "frames": 1, "source_frames": 1,
                 "frame_sequence": [1], "durations": [0.3], "visual_scales": [1.0],
                 "source_facing": 1, "loop": True,
+            },
+            "idle_variant_2": {
+                "folder": "idle_variant_2", "frames": 2,
+                "durations": [0.18, 0.72],
+                "visual_scales": [1.0], "source_facing": 1,
             },
             "punch_left": {
                 "folder": "punch_left", "frames": 4, "source_frames": 4,
@@ -153,6 +160,7 @@ def main() -> None:
     # Fallback clips are still Merco art; compare their heights independently
     # until their Mark Nat equivalents are authored.
     template["qa"]["apparent_area_ratio_by_clip"] = {}
+    template["qa"]["min_silhouette_distance_by_clip"]["idle_variant_2"] = 0.008
     write_json(PUBLIC / "data/character_templates/mark_nat_pilot_v1.json", template)
 
     index_path = PUBLIC / "data/characters/index.json"

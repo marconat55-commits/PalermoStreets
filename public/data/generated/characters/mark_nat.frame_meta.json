@@ -670,6 +670,28 @@
     ],
     "offsetY": 20
   },
+  "/assets/characters/mark_nat_anim/idle_variant_2/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      227,
+      110,
+      188,
+      290
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/mark_nat_anim/idle_variant_2/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      219,
+      115,
+      202,
+      285
+    ],
+    "offsetY": 20
+  },
   "/assets/characters/mark_nat_anim/jump/01.png": {
     "width": 640,
     "height": 420,

@@ -9,7 +9,7 @@
     "frame_meta": "data/generated/characters/mark_nat.frame_meta.json"
   },
   "identity": {
-    "canon": "Prototipo Mark Nat separato da Merco: guardia, due pugni, colpi subiti, caduta e rialzata in stile cartoon; altri movimenti ereditati temporaneamente da Merco in un pacchetto runtime indipendente"
+    "canon": "Prototipo Mark Nat separato da Merco: guardia, attesa al polso, due pugni, colpi subiti, caduta e rialzata in stile cartoon; altri movimenti ereditati temporaneamente da Merco in un pacchetto runtime indipendente"
   },
   "factory": {
     "animation_template": "data/character_templates/mark_nat_pilot_v1.json"
@@ -40,6 +40,18 @@
       ],
       "source_facing": 1,
       "loop": true
+    },
+    "idle_variant_2": {
+      "folder": "idle_variant_2",
+      "frames": 2,
+      "durations": [
+        0.18,
+        0.72
+      ],
+      "visual_scales": [
+        1.0
+      ],
+      "source_facing": 1
     },
     "punch_left": {
       "folder": "punch_left",

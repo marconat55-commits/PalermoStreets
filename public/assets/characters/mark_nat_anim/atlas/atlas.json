@@ -8,8 +8,8 @@
     },
     {
       "file": "atlas_02.png",
-      "width": 2022,
-      "height": 1097
+      "width": 2046,
+      "height": 1100
     }
   ],
   "frames": {
@@ -277,7 +277,7 @@
       "source_x": 227,
       "source_y": 110
     },
-    "punch_left/01.png": {
+    "idle_variant_2/01.png": {
       "page": 0,
       "x": 763,
       "y": 625,
@@ -288,7 +288,7 @@
       "source_x": 227,
       "source_y": 110
     },
-    "punch_right/01.png": {
+    "punch_left/01.png": {
       "page": 0,
       "x": 953,
       "y": 625,
@@ -299,9 +299,20 @@
       "source_x": 227,
       "source_y": 110
     },
-    "walk/04.png": {
+    "punch_right/01.png": {
       "page": 0,
       "x": 1143,
+      "y": 625,
+      "width": 188,
+      "height": 290,
+      "source_width": 640,
+      "source_height": 420,
+      "source_x": 227,
+      "source_y": 110
+    },
+    "walk/04.png": {
+      "page": 0,
+      "x": 1333,
       "y": 625,
       "width": 153,
       "height": 290,
@@ -312,7 +323,7 @@
     },
     "walk/05.png": {
       "page": 0,
-      "x": 1298,
+      "x": 1488,
       "y": 625,
       "width": 146,
       "height": 290,
@@ -323,7 +334,7 @@
     },
     "walk/08.png": {
       "page": 0,
-      "x": 1446,
+      "x": 1636,
       "y": 625,
       "width": 118,
       "height": 290,
@@ -334,7 +345,7 @@
     },
     "walk/02.png": {
       "page": 0,
-      "x": 1566,
+      "x": 1756,
       "y": 625,
       "width": 117,
       "height": 290,
@@ -345,7 +356,7 @@
     },
     "walk/03.png": {
       "page": 0,
-      "x": 1685,
+      "x": 1875,
       "y": 625,
       "width": 116,
       "height": 290,
@@ -356,8 +367,8 @@
     },
     "jump/01.png": {
       "page": 0,
-      "x": 1803,
-      "y": 625,
+      "x": 2,
+      "y": 917,
       "width": 113,
       "height": 290,
       "source_width": 640,
@@ -367,8 +378,8 @@
     },
     "walk/06.png": {
       "page": 0,
-      "x": 1918,
-      "y": 625,
+      "x": 117,
+      "y": 917,
       "width": 110,
       "height": 290,
       "source_width": 640,
@@ -378,7 +389,7 @@
     },
     "walk/01.png": {
       "page": 0,
-      "x": 2,
+      "x": 229,
       "y": 917,
       "width": 109,
       "height": 290,
@@ -389,7 +400,7 @@
     },
     "walk/07.png": {
       "page": 0,
-      "x": 113,
+      "x": 340,
       "y": 917,
       "width": 108,
       "height": 290,
@@ -400,7 +411,7 @@
     },
     "jump_forward/01.png": {
       "page": 0,
-      "x": 223,
+      "x": 450,
       "y": 917,
       "width": 103,
       "height": 290,
@@ -411,7 +422,7 @@
     },
     "kick_right/01.png": {
       "page": 0,
-      "x": 328,
+      "x": 555,
       "y": 917,
       "width": 164,
       "height": 289,
@@ -422,7 +433,7 @@
     },
     "block/02.png": {
       "page": 0,
-      "x": 494,
+      "x": 721,
       "y": 917,
       "width": 188,
       "height": 288,
@@ -433,7 +444,7 @@
     },
     "block/01.png": {
       "page": 0,
-      "x": 684,
+      "x": 911,
       "y": 917,
       "width": 186,
       "height": 288,
@@ -444,7 +455,7 @@
     },
     "block/04.png": {
       "page": 0,
-      "x": 872,
+      "x": 1099,
       "y": 917,
       "width": 179,
       "height": 288,
@@ -455,7 +466,7 @@
     },
     "block/03.png": {
       "page": 0,
-      "x": 1053,
+      "x": 1280,
       "y": 917,
       "width": 190,
       "height": 287,
@@ -466,7 +477,7 @@
     },
     "kick_right/06.png": {
       "page": 0,
-      "x": 1245,
+      "x": 1472,
       "y": 917,
       "width": 166,
       "height": 287,
@@ -477,7 +488,7 @@
     },
     "getup/04.png": {
       "page": 0,
-      "x": 1413,
+      "x": 1640,
       "y": 917,
       "width": 192,
       "height": 286,
@@ -488,7 +499,7 @@
     },
     "punch_left/02.png": {
       "page": 0,
-      "x": 1607,
+      "x": 1834,
       "y": 917,
       "width": 192,
       "height": 286,
@@ -541,9 +552,20 @@
       "source_x": 223,
       "source_y": 115
     },
-    "kick_finisher/06.png": {
+    "idle_variant_2/02.png": {
       "page": 0,
       "x": 1031,
+      "y": 1209,
+      "width": 202,
+      "height": 285,
+      "source_width": 640,
+      "source_height": 420,
+      "source_x": 219,
+      "source_y": 115
+    },
+    "kick_finisher/06.png": {
+      "page": 0,
+      "x": 1235,
       "y": 1209,
       "width": 156,
       "height": 285,
@@ -554,7 +576,7 @@
     },
     "kick_right/05.png": {
       "page": 0,
-      "x": 1189,
+      "x": 1393,
       "y": 1209,
       "width": 141,
       "height": 283,
@@ -565,7 +587,7 @@
     },
     "kick_right/03.png": {
       "page": 0,
-      "x": 1332,
+      "x": 1536,
       "y": 1209,
       "width": 134,
       "height": 283,
@@ -576,7 +598,7 @@
     },
     "combo_finisher/03.png": {
       "page": 0,
-      "x": 1468,
+      "x": 1672,
       "y": 1209,
       "width": 225,
       "height": 282,
@@ -587,8 +609,8 @@
     },
     "super/04.png": {
       "page": 0,
-      "x": 1695,
-      "y": 1209,
+      "x": 2,
+      "y": 1496,
       "width": 225,
       "height": 282,
       "source_width": 640,
@@ -598,7 +620,7 @@
     },
     "kick_right/04.png": {
       "page": 0,
-      "x": 2,
+      "x": 229,
       "y": 1496,
       "width": 266,
       "height": 281,
@@ -609,7 +631,7 @@
     },
     "throw/03.png": {
       "page": 0,
-      "x": 270,
+      "x": 497,
       "y": 1496,
       "width": 232,
       "height": 280,
@@ -620,7 +642,7 @@
     },
     "grab/01.png": {
       "page": 0,
-      "x": 504,
+      "x": 731,
       "y": 1496,
       "width": 217,
       "height": 280,
@@ -631,7 +653,7 @@
     },
     "grab_strike/01.png": {
       "page": 0,
-      "x": 723,
+      "x": 950,
       "y": 1496,
       "width": 217,
       "height": 280,
@@ -642,7 +664,7 @@
     },
     "throw/01.png": {
       "page": 0,
-      "x": 942,
+      "x": 1169,
       "y": 1496,
       "width": 217,
       "height": 280,
@@ -653,7 +675,7 @@
     },
     "hit/02.png": {
       "page": 0,
-      "x": 1161,
+      "x": 1388,
       "y": 1496,
       "width": 195,
       "height": 280,
@@ -664,7 +686,7 @@
     },
     "jump_forward/07.png": {
       "page": 0,
-      "x": 1358,
+      "x": 1585,
       "y": 1496,
       "width": 114,
       "height": 280,
@@ -675,7 +697,7 @@
     },
     "kick_right/02.png": {
       "page": 0,
-      "x": 1474,
+      "x": 1701,
       "y": 1496,
       "width": 185,
       "height": 279,
@@ -684,43 +706,10 @@
       "source_x": 227,
       "source_y": 121
     },
-    "land/01.png": {
-      "page": 0,
-      "x": 1661,
-      "y": 1496,
-      "width": 166,
-      "height": 279,
-      "source_width": 640,
-      "source_height": 420,
-      "source_x": 237,
-      "source_y": 121
-    },
-    "brake/02.png": {
-      "page": 0,
-      "x": 2,
-      "y": 1779,
-      "width": 346,
-      "height": 267,
-      "source_width": 640,
-      "source_height": 420,
-      "source_x": 147,
-      "source_y": 133
-    },
-    "kick_finisher/03.png": {
-      "page": 0,
-      "x": 350,
-      "y": 1779,
-      "width": 142,
-      "height": 267,
-      "source_width": 640,
-      "source_height": 420,
-      "source_x": 249,
-      "source_y": 133
-    },
     "muay_elbow/02.png": {
       "page": 0,
-      "x": 494,
-      "y": 1779,
+      "x": 2,
+      "y": 1780,
       "width": 186,
       "height": 266,
       "source_width": 640,
@@ -730,8 +719,8 @@
     },
     "muay_elbow/03.png": {
       "page": 0,
-      "x": 682,
-      "y": 1779,
+      "x": 190,
+      "y": 1780,
       "width": 186,
       "height": 266,
       "source_width": 640,
@@ -741,8 +730,8 @@
     },
     "kick_finisher/02.png": {
       "page": 0,
-      "x": 870,
-      "y": 1779,
+      "x": 378,
+      "y": 1780,
       "width": 209,
       "height": 263,
       "source_width": 640,
@@ -752,8 +741,8 @@
     },
     "air_punch/03.png": {
       "page": 0,
-      "x": 1081,
-      "y": 1779,
+      "x": 589,
+      "y": 1780,
       "width": 330,
       "height": 256,
       "source_width": 640,
@@ -763,8 +752,8 @@
     },
     "run/05.png": {
       "page": 0,
-      "x": 1413,
-      "y": 1779,
+      "x": 921,
+      "y": 1780,
       "width": 216,
       "height": 255,
       "source_width": 640,
@@ -774,8 +763,8 @@
     },
     "run/04.png": {
       "page": 0,
-      "x": 1631,
-      "y": 1779,
+      "x": 1139,
+      "y": 1780,
       "width": 209,
       "height": 255,
       "source_width": 640,
@@ -783,9 +772,53 @@
       "source_x": 216,
       "source_y": 145
     },
-    "super/02.png": {
+    "brake/01.png": {
+      "page": 0,
+      "x": 1350,
+      "y": 1780,
+      "width": 208,
+      "height": 255,
+      "source_width": 640,
+      "source_height": 420,
+      "source_x": 216,
+      "source_y": 145
+    },
+    "run/06.png": {
+      "page": 0,
+      "x": 1560,
+      "y": 1780,
+      "width": 208,
+      "height": 255,
+      "source_width": 640,
+      "source_height": 420,
+      "source_x": 216,
+      "source_y": 145
+    },
+    "run/01.png": {
+      "page": 0,
+      "x": 1770,
+      "y": 1780,
+      "width": 172,
+      "height": 255,
+      "source_width": 640,
+      "source_height": 420,
+      "source_x": 234,
+      "source_y": 145
+    },
+    "land/01.png": {
       "page": 1,
       "x": 2,
+      "y": 2,
+      "width": 166,
+      "height": 279,
+      "source_width": 640,
+      "source_height": 420,
+      "source_x": 237,
+      "source_y": 121
+    },
+    "super/02.png": {
+      "page": 1,
+      "x": 170,
       "y": 2,
       "width": 357,
       "height": 275,
@@ -796,7 +829,7 @@
     },
     "air_punch/04.png": {
       "page": 1,
-      "x": 361,
+      "x": 529,
       "y": 2,
       "width": 207,
       "height": 275,
@@ -807,7 +840,7 @@
     },
     "air_punch/02.png": {
       "page": 1,
-      "x": 570,
+      "x": 738,
       "y": 2,
       "width": 325,
       "height": 274,
@@ -818,7 +851,7 @@
     },
     "air_attack/04.png": {
       "page": 1,
-      "x": 897,
+      "x": 1065,
       "y": 2,
       "width": 194,
       "height": 273,
@@ -829,7 +862,7 @@
     },
     "kick_finisher/05.png": {
       "page": 1,
-      "x": 1093,
+      "x": 1261,
       "y": 2,
       "width": 149,
       "height": 273,
@@ -840,7 +873,7 @@
     },
     "jump/09.png": {
       "page": 1,
-      "x": 1244,
+      "x": 1412,
       "y": 2,
       "width": 106,
       "height": 272,
@@ -851,7 +884,7 @@
     },
     "air_punch/01.png": {
       "page": 1,
-      "x": 1352,
+      "x": 1520,
       "y": 2,
       "width": 237,
       "height": 271,
@@ -862,7 +895,7 @@
     },
     "kick_finisher/04.png": {
       "page": 1,
-      "x": 1591,
+      "x": 1759,
       "y": 2,
       "width": 280,
       "height": 269,
@@ -874,7 +907,7 @@
     "muay_elbow/01.png": {
       "page": 1,
       "x": 2,
-      "y": 279,
+      "y": 283,
       "width": 205,
       "height": 269,
       "source_width": 640,
@@ -885,7 +918,7 @@
     "super/01.png": {
       "page": 1,
       "x": 209,
-      "y": 279,
+      "y": 283,
       "width": 293,
       "height": 268,
       "source_width": 640,
@@ -896,7 +929,7 @@
     "combo_finisher/01.png": {
       "page": 1,
       "x": 504,
-      "y": 279,
+      "y": 283,
       "width": 268,
       "height": 268,
       "source_width": 640,
@@ -904,43 +937,32 @@
       "source_x": 186,
       "source_y": 132
     },
-    "brake/01.png": {
+    "brake/02.png": {
       "page": 1,
       "x": 774,
-      "y": 279,
-      "width": 208,
-      "height": 255,
+      "y": 283,
+      "width": 346,
+      "height": 267,
       "source_width": 640,
       "source_height": 420,
-      "source_x": 216,
-      "source_y": 145
+      "source_x": 147,
+      "source_y": 133
     },
-    "run/06.png": {
+    "kick_finisher/03.png": {
       "page": 1,
-      "x": 984,
-      "y": 279,
-      "width": 208,
-      "height": 255,
+      "x": 1122,
+      "y": 283,
+      "width": 142,
+      "height": 267,
       "source_width": 640,
       "source_height": 420,
-      "source_x": 216,
-      "source_y": 145
-    },
-    "run/01.png": {
-      "page": 1,
-      "x": 1194,
-      "y": 279,
-      "width": 172,
-      "height": 255,
-      "source_width": 640,
-      "source_height": 420,
-      "source_x": 234,
-      "source_y": 145
+      "source_x": 249,
+      "source_y": 133
     },
     "run/03.png": {
       "page": 1,
-      "x": 1368,
-      "y": 279,
+      "x": 1266,
+      "y": 283,
       "width": 150,
       "height": 255,
       "source_width": 640,
@@ -950,8 +972,8 @@
     },
     "run/02.png": {
       "page": 1,
-      "x": 1520,
-      "y": 279,
+      "x": 1418,
+      "y": 283,
       "width": 140,
       "height": 255,
       "source_width": 640,
@@ -961,8 +983,8 @@
     },
     "fall/01.png": {
       "page": 1,
-      "x": 1662,
-      "y": 279,
+      "x": 1560,
+      "y": 283,
       "width": 178,
       "height": 250,
       "source_width": 640,
@@ -972,8 +994,8 @@
     },
     "hit/03.png": {
       "page": 1,
-      "x": 1842,
-      "y": 279,
+      "x": 1740,
+      "y": 283,
       "width": 178,
       "height": 250,
       "source_width": 640,
@@ -983,8 +1005,8 @@
     },
     "jump/08.png": {
       "page": 1,
-      "x": 2,
-      "y": 550,
+      "x": 1920,
+      "y": 283,
       "width": 102,
       "height": 250,
       "source_width": 640,
@@ -994,8 +1016,8 @@
     },
     "jump_forward/02.png": {
       "page": 1,
-      "x": 106,
-      "y": 550,
+      "x": 2,
+      "y": 554,
       "width": 132,
       "height": 249,
       "source_width": 640,
@@ -1005,8 +1027,8 @@
     },
     "jump/02.png": {
       "page": 1,
-      "x": 240,
-      "y": 550,
+      "x": 136,
+      "y": 554,
       "width": 100,
       "height": 246,
       "source_width": 640,
@@ -1016,8 +1038,8 @@
     },
     "air_punch/07.png": {
       "page": 1,
-      "x": 342,
-      "y": 550,
+      "x": 238,
+      "y": 554,
       "width": 338,
       "height": 245,
       "source_width": 640,
@@ -1027,8 +1049,8 @@
     },
     "air_attack/02.png": {
       "page": 1,
-      "x": 682,
-      "y": 550,
+      "x": 578,
+      "y": 554,
       "width": 195,
       "height": 231,
       "source_width": 640,
@@ -1038,8 +1060,8 @@
     },
     "air_punch/06.png": {
       "page": 1,
-      "x": 879,
-      "y": 550,
+      "x": 775,
+      "y": 554,
       "width": 164,
       "height": 223,
       "source_width": 640,
@@ -1049,8 +1071,8 @@
     },
     "fall/02.png": {
       "page": 1,
-      "x": 1045,
-      "y": 550,
+      "x": 941,
+      "y": 554,
       "width": 239,
       "height": 215,
       "source_width": 640,
@@ -1060,8 +1082,8 @@
     },
     "land/02.png": {
       "page": 1,
-      "x": 1286,
-      "y": 550,
+      "x": 1182,
+      "y": 554,
       "width": 160,
       "height": 213,
       "source_width": 640,
@@ -1071,8 +1093,8 @@
     },
     "getup/03.png": {
       "page": 1,
-      "x": 1448,
-      "y": 550,
+      "x": 1344,
+      "y": 554,
       "width": 320,
       "height": 212,
       "source_width": 640,
@@ -1082,8 +1104,8 @@
     },
     "air_attack/03.png": {
       "page": 1,
-      "x": 1770,
-      "y": 550,
+      "x": 1666,
+      "y": 554,
       "width": 241,
       "height": 194,
       "source_width": 640,
@@ -1093,8 +1115,8 @@
     },
     "jump/03.png": {
       "page": 1,
-      "x": 2,
-      "y": 802,
+      "x": 1909,
+      "y": 554,
       "width": 135,
       "height": 185,
       "source_width": 640,
@@ -1104,8 +1126,8 @@
     },
     "jump/07.png": {
       "page": 1,
-      "x": 139,
-      "y": 802,
+      "x": 2,
+      "y": 805,
       "width": 135,
       "height": 185,
       "source_width": 640,
@@ -1115,8 +1137,8 @@
     },
     "fall/03.png": {
       "page": 1,
-      "x": 276,
-      "y": 802,
+      "x": 139,
+      "y": 805,
       "width": 301,
       "height": 175,
       "source_width": 640,
@@ -1126,8 +1148,8 @@
     },
     "jump_forward/04.png": {
       "page": 1,
-      "x": 579,
-      "y": 802,
+      "x": 442,
+      "y": 805,
       "width": 120,
       "height": 163,
       "source_width": 640,
@@ -1137,8 +1159,8 @@
     },
     "jump_forward/05.png": {
       "page": 1,
-      "x": 701,
-      "y": 802,
+      "x": 564,
+      "y": 805,
       "width": 137,
       "height": 161,
       "source_width": 640,
@@ -1148,8 +1170,8 @@
     },
     "jump/04.png": {
       "page": 1,
-      "x": 840,
-      "y": 802,
+      "x": 703,
+      "y": 805,
       "width": 131,
       "height": 158,
       "source_width": 640,
@@ -1159,8 +1181,8 @@
     },
     "jump/06.png": {
       "page": 1,
-      "x": 973,
-      "y": 802,
+      "x": 836,
+      "y": 805,
       "width": 131,
       "height": 158,
       "source_width": 640,
@@ -1170,8 +1192,8 @@
     },
     "getup/02.png": {
       "page": 1,
-      "x": 1106,
-      "y": 802,
+      "x": 969,
+      "y": 805,
       "width": 320,
       "height": 143,
       "source_width": 640,
@@ -1181,8 +1203,8 @@
     },
     "jump_forward/06.png": {
       "page": 1,
-      "x": 1428,
-      "y": 802,
+      "x": 1291,
+      "y": 805,
       "width": 95,
       "height": 135,
       "source_width": 640,
@@ -1192,8 +1214,8 @@
     },
     "jump_forward/03.png": {
       "page": 1,
-      "x": 1525,
-      "y": 802,
+      "x": 1388,
+      "y": 805,
       "width": 178,
       "height": 121,
       "source_width": 640,
@@ -1203,8 +1225,8 @@
     },
     "jump/05.png": {
       "page": 1,
-      "x": 1705,
-      "y": 802,
+      "x": 1568,
+      "y": 805,
       "width": 124,
       "height": 119,
       "source_width": 640,
@@ -1214,8 +1236,8 @@
     },
     "fall/04.png": {
       "page": 1,
-      "x": 2,
-      "y": 989,
+      "x": 1694,
+      "y": 805,
       "width": 315,
       "height": 106,
       "source_width": 640,
@@ -1225,8 +1247,8 @@
     },
     "getup/01.png": {
       "page": 1,
-      "x": 319,
-      "y": 989,
+      "x": 2,
+      "y": 992,
       "width": 315,
       "height": 106,
       "source_width": 640,

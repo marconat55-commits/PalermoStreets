@@ -38,6 +38,15 @@ test('Mark Nat ha un pacchetto separato e una caduta continua con la rialzata', 
   assert.equal(markNat.display_name, 'MARK NAT');
   assert.equal(markNat.animations.punch_left.contact_frame, 3);
   assert.equal(markNat.animations.punch_right.contact_frame, 2);
+  assert.equal(markNat.animations.idle_variant_2.frames, 2);
+  assert.deepEqual(
+    fs.readFileSync('public/assets/characters/mark_nat_anim/idle_variant_2/01.png'),
+    fs.readFileSync('public/assets/characters/mark_nat_anim/idle/01.png'),
+  );
+  assert.notDeepEqual(
+    fs.readFileSync('public/assets/characters/mark_nat_anim/idle_variant_2/02.png'),
+    fs.readFileSync('public/assets/characters/mark_nat_anim/idle/01.png'),
+  );
   assert.deepEqual(markNat.animations.walk, merco.animations.walk);
   for (let frame = 1; frame <= 8; frame += 1) {
     const filename = `${String(frame).padStart(2, '0')}.png`;

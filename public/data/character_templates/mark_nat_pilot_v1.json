@@ -148,7 +148,8 @@
       "brake": 0.01,
       "jump": 0.01,
       "jump_forward": 0.01,
-      "land": 0.01
+      "land": 0.01,
+      "idle_variant_2": 0.008
     },
     "max_visual_height_error_px": 6,
     "max_visual_height_error_px_by_clip": {},

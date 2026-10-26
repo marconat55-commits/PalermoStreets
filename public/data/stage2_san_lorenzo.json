@@ -32,12 +32,51 @@
         }
       ],
       "world_width": 4937,
-      "camera_bounds": [0, 3657],
-      "playfield_y": [550, 705],
-      "walk_top": [[0, 550], [1234, 550], [2468, 550], [3702, 550], [4937, 550]],
-      "walk_bottom": [[0, 705], [4937, 705]],
+      "camera_bounds": [
+        0,
+        3657
+      ],
+      "playfield_y": [
+        550,
+        705
+      ],
+      "walk_top": [
+        [
+          0,
+          550
+        ],
+        [
+          1234,
+          550
+        ],
+        [
+          2468,
+          550
+        ],
+        [
+          3702,
+          550
+        ],
+        [
+          4937,
+          550
+        ]
+      ],
+      "walk_bottom": [
+        [
+          0,
+          705
+        ],
+        [
+          4937,
+          705
+        ]
+      ],
       "ambient": [],
-      "entry": [150, 680],
+      "entry": [
+        150,
+        680
+      ],
       "exit_x": 4887,
       "heal": 0,
       "items": [],
@@ -47,13 +86,45 @@
           "trigger_x": 650,
           "health": 48,
           "aggression": 0.78,
-          "spawns": [[1150, 655], [1540, 690], [2250, 665], [2970, 690], [3680, 655], [4250, 690]],
-          "characters": ["talebano", "a_puaicca", "talebano", "a_puaicca", "u_tignusu", "talebano"],
+          "spawns": [
+            [
+              1150,
+              655
+            ],
+            [
+              1540,
+              690
+            ],
+            [
+              2250,
+              665
+            ],
+            [
+              2970,
+              690
+            ],
+            [
+              3680,
+              655
+            ],
+            [
+              4250,
+              690
+            ]
+          ],
+          "characters": [
+            "talebano",
+            "a_puaicca",
+            "talebano",
+            "a_puaicca",
+            "u_tignusu",
+            "talebano"
+          ],
           "batch_size": 2,
           "lock_stage": false
         }
       ],
-      "character_scale": 0.8
+      "character_scale": 0.85
     },
     {
       "id": "SL02",
@@ -83,12 +154,39 @@
         }
       ],
       "world_width": 5319,
-      "camera_bounds": [0, 4039],
-      "playfield_y": [550, 705],
-      "walk_top": [[0, 550], [5319, 550]],
-      "walk_bottom": [[0, 705], [5319, 705]],
+      "camera_bounds": [
+        0,
+        4039
+      ],
+      "playfield_y": [
+        550,
+        705
+      ],
+      "walk_top": [
+        [
+          0,
+          550
+        ],
+        [
+          5319,
+          550
+        ]
+      ],
+      "walk_bottom": [
+        [
+          0,
+          705
+        ],
+        [
+          5319,
+          705
+        ]
+      ],
       "ambient": [],
-      "entry": [150, 680],
+      "entry": [
+        150,
+        680
+      ],
       "exit_x": 5269,
       "heal": 0,
       "items": [],
@@ -98,13 +196,30 @@
           "trigger_x": 650,
           "health": 48,
           "aggression": 0.78,
-          "spawns": [[1400, 655], [1650, 690], [1900, 665]],
-          "characters": ["talebano", "a_puaicca", "u_tignusu"],
+          "spawns": [
+            [
+              1400,
+              655
+            ],
+            [
+              1650,
+              690
+            ],
+            [
+              1900,
+              665
+            ]
+          ],
+          "characters": [
+            "talebano",
+            "a_puaicca",
+            "u_tignusu"
+          ],
           "batch_size": 3,
           "lock_stage": false
         }
       ],
-      "character_scale": 0.8
+      "character_scale": 0.85
     }
   ],
   "character_system": "profile_registry_v1"

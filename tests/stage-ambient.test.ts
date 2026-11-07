@@ -85,12 +85,15 @@ test('M03 copre i quattro raccordi e arricchisce il fondo con props statici prop
     'm03_vespa_rossa',
     'm03_pneumatico_poggiato',
     'm03_cisterna_vogliamo_il_vino',
+    'm03_motoape_piaggio_blu_arrugginita',
+    'm03_cassette_agrumi',
+    'm03_sedia_plastica',
   ]);
   const franco = loops[0]!;
   assert.equal(franco.frames.length, 2);
   assert.deepEqual(franco.frame_durations, [1.55, 0.8]);
   assert.deepEqual(franco.position, [887, 452]);
-  assert.deepEqual(franco.size, [138, 138]);
+  assert.deepEqual(franco.size, [130, 130]);
   assert.deepEqual(franco.shadow, { width: 64, height: 12, offset: [0, -2], alpha: 0.18 });
   assert.equal(franco.speech, undefined);
   assert.equal(franco.parallax, 1);
@@ -100,7 +103,7 @@ test('M03 copre i quattro raccordi e arricchisce il fondo con props statici prop
   assert.equal(duracell.frames.length, 2);
   assert.deepEqual(duracell.frame_durations, [1.75, 0.75]);
   assert.deepEqual(duracell.position, [790, 447]);
-  assert.deepEqual(duracell.size, [120, 120]);
+  assert.deepEqual(duracell.size, [125, 125]);
   assert.deepEqual(duracell.shadow, { width: 62, height: 11, offset: [0, -2], alpha: 0.18 });
   assert.deepEqual(duracell.hidden_regions, [[82, 5, 11, 15]]);
   assert.equal(duracell.parallax, 1);
@@ -171,7 +174,7 @@ test('M03 copre i quattro raccordi e arricchisce il fondo con props statici prop
   const cisterna = loops[11]!;
   assert.deepEqual(cisterna.position, [491, 466]);
   assert.deepEqual(cisterna.size, [293, 195]);
-  assert.deepEqual(loops.map((loop) => loop.alpha), [0.95, 0.95, 0.96, 0.97, undefined, 0.97, 0.97, 0.95, 0.95, 0.93, 0.88, 0.91]);
+  assert.deepEqual(loops.map((loop) => loop.alpha), [0.95, 0.95, 0.96, 0.97, undefined, 0.97, 0.97, 0.95, 0.95, 0.93, 0.88, 0.91, 0.9, 0.85, 1]);
   assert.deepEqual(collectAmbientAssets(m03), [
     ...franco.frames,
     ...duracell.frames,
@@ -185,6 +188,9 @@ test('M03 copre i quattro raccordi e arricchisce il fondo con props statici prop
     vespa.frames[0],
     tire.frames[0],
     cisterna.frames[0],
+    loops[12]!.frames[0],
+    loops[13]!.frames[0],
+    loops[14]!.frames[0],
   ]);
 });
 

@@ -1,0 +1,1674 @@
+{
+  "/assets/characters/cammy_ref_anim/idle/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      229,
+      129,
+      212,
+      271
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/idle/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      229,
+      126,
+      212,
+      274
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/idle/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      229,
+      123,
+      209,
+      277
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/idle/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      229,
+      126,
+      212,
+      274
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/idle/05.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      234,
+      129,
+      206,
+      271
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/idle/06.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      229,
+      126,
+      212,
+      274
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/idle/07.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      229,
+      123,
+      209,
+      277
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/idle/08.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      229,
+      126,
+      212,
+      274
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/walk/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      220,
+      114,
+      209,
+      286
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/walk/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      217,
+      123,
+      212,
+      277
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/walk/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      217,
+      108,
+      212,
+      292
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/walk/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      214,
+      117,
+      189,
+      283
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/walk/05.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      252,
+      123,
+      136,
+      277
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/walk/06.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      214,
+      111,
+      189,
+      289
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/walk/07.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      217,
+      117,
+      212,
+      283
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/walk/08.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      217,
+      114,
+      212,
+      286
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/walk/09.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      214,
+      108,
+      215,
+      292
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/walk/10.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      214,
+      117,
+      189,
+      283
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/walk/11.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      237,
+      129,
+      150,
+      271
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/walk/12.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      214,
+      126,
+      189,
+      274
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/run/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      261,
+      158,
+      233,
+      242
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/run/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      214,
+      164,
+      304,
+      236
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/run/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      217,
+      155,
+      330,
+      245
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/run/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      214,
+      167,
+      316,
+      233
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/brake/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      240,
+      105,
+      145,
+      295
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/brake/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      229,
+      123,
+      209,
+      277
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/brake/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      243,
+      155,
+      195,
+      245
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/jump/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      229,
+      129,
+      209,
+      277
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/jump/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      243,
+      161,
+      195,
+      245
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/jump/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      249,
+      52,
+      168,
+      345
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/jump/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      255,
+      96,
+      133,
+      242
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/jump/05.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      243,
+      120,
+      145,
+      195
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/jump/06.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      234,
+      126,
+      171,
+      162
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/jump/07.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      240,
+      43,
+      295,
+      292
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/jump/08.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      172,
+      126,
+      348,
+      189
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/jump/09.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      208,
+      40,
+      295,
+      274
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/land/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      243,
+      155,
+      195,
+      245
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/land/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      229,
+      129,
+      212,
+      271
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/air_attack/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      223,
+      64,
+      177,
+      254
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/air_attack/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      158,
+      58,
+      221,
+      286
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/air_attack/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      131,
+      73,
+      389,
+      239
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/air_attack/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      149,
+      81,
+      277,
+      221
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/air_attack/05.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      234,
+      126,
+      171,
+      162
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/air_attack/06.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      237,
+      117,
+      159,
+      195
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/air_attack/07.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      234,
+      58,
+      156,
+      277
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/air_punch/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      193,
+      49,
+      195,
+      295
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/air_punch/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      199,
+      61,
+      248,
+      283
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/air_punch/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      193,
+      55,
+      271,
+      286
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/air_punch/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      237,
+      117,
+      159,
+      195
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/air_punch/05.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      234,
+      58,
+      156,
+      277
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/air_punch/06.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      249,
+      40,
+      168,
+      357
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/punch_left/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      240,
+      123,
+      204,
+      277
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/punch_left/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      243,
+      123,
+      236,
+      277
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/punch_left/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      243,
+      123,
+      316,
+      277
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/punch_left/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      243,
+      123,
+      236,
+      277
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/punch_left/05.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      240,
+      123,
+      204,
+      277
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/punch_right/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      223,
+      84,
+      212,
+      316
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/punch_right/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      240,
+      143,
+      245,
+      257
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/punch_right/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      240,
+      146,
+      271,
+      254
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/punch_right/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      237,
+      146,
+      324,
+      254
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/punch_right/05.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      243,
+      146,
+      271,
+      254
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/punch_right/06.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      246,
+      123,
+      198,
+      277
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/muay_elbow/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      240,
+      126,
+      192,
+      274
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/muay_elbow/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      240,
+      149,
+      280,
+      251
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/muay_elbow/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      240,
+      167,
+      286,
+      233
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/muay_elbow/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      249,
+      173,
+      363,
+      227
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/muay_elbow/05.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      240,
+      167,
+      286,
+      233
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/muay_elbow/06.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      243,
+      123,
+      198,
+      277
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/combo_finisher/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      243,
+      155,
+      195,
+      245
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/combo_finisher/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      255,
+      143,
+      139,
+      257
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/combo_finisher/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      217,
+      173,
+      209,
+      227
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/combo_finisher/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      258,
+      196,
+      268,
+      204
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/combo_finisher/05.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      237,
+      202,
+      389,
+      198
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/combo_finisher/06.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      249,
+      238,
+      192,
+      162
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/combo_finisher/07.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      243,
+      238,
+      201,
+      162
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/combo_finisher/08.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      243,
+      232,
+      189,
+      168
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/combo_finisher/09.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      246,
+      202,
+      180,
+      198
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/combo_finisher/10.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      243,
+      155,
+      195,
+      245
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/kick_front/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      184,
+      132,
+      257,
+      268
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/kick_front/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      202,
+      134,
+      162,
+      266
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/kick_front/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      196,
+      132,
+      301,
+      268
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/kick_front/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      184,
+      132,
+      153,
+      268
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/kick_right/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      243,
+      123,
+      198,
+      277
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/kick_right/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      246,
+      126,
+      201,
+      274
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/kick_right/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      249,
+      134,
+      339,
+      266
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/kick_right/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      243,
+      123,
+      198,
+      277
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/kick_finisher/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      243,
+      155,
+      195,
+      245
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/kick_finisher/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      255,
+      143,
+      139,
+      257
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/kick_finisher/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      220,
+      220,
+      201,
+      180
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/kick_finisher/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      237,
+      235,
+      168,
+      165
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/kick_finisher/05.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      237,
+      173,
+      180,
+      227
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/kick_finisher/06.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      232,
+      67,
+      206,
+      333
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/kick_finisher/07.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      237,
+      173,
+      180,
+      227
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/kick_finisher/08.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      237,
+      235,
+      168,
+      165
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/kick_finisher/09.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      273,
+      285,
+      180,
+      115
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/kick_finisher/10.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      243,
+      232,
+      189,
+      168
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/kick_finisher/11.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      246,
+      202,
+      180,
+      198
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/kick_finisher/12.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      243,
+      155,
+      195,
+      245
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/block/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      243,
+      129,
+      186,
+      271
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/grab/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      237,
+      126,
+      204,
+      274
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/grab/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      234,
+      120,
+      201,
+      280
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/grab/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      211,
+      126,
+      215,
+      274
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/grab/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      232,
+      126,
+      204,
+      274
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/grab_strike/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      240,
+      123,
+      204,
+      277
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/grab_strike/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      243,
+      129,
+      218,
+      271
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/grab_strike/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      243,
+      126,
+      224,
+      274
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/grab_strike/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      243,
+      129,
+      218,
+      271
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/grab_strike/05.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      240,
+      123,
+      204,
+      277
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/throw/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      232,
+      126,
+      204,
+      274
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/throw/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      243,
+      155,
+      195,
+      245
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/throw/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      184,
+      132,
+      153,
+      268
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/throw/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      202,
+      134,
+      162,
+      266
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/throw/05.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      196,
+      132,
+      301,
+      268
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/throw/06.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      184,
+      132,
+      153,
+      268
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/super/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      184,
+      137,
+      153,
+      268
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/super/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      164,
+      111,
+      206,
+      295
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/super/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      116,
+      105,
+      375,
+      301
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/super/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      202,
+      140,
+      162,
+      266
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/super/05.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      184,
+      137,
+      153,
+      268
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/hit/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      226,
+      102,
+      204,
+      298
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/hit/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      175,
+      182,
+      333,
+      218
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/hit/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      172,
+      217,
+      384,
+      183
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/punch_backfist/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      237,
+      134,
+      204,
+      266
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/punch_backfist/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      255,
+      132,
+      212,
+      268
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/punch_backfist/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      261,
+      58,
+      195,
+      342
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/punch_backfist/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      255,
+      132,
+      212,
+      268
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/punch_backfist/05.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      237,
+      134,
+      204,
+      266
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/kick_low/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      240,
+      250,
+      198,
+      150
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/kick_low/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      243,
+      250,
+      286,
+      150
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/kick_low/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      240,
+      250,
+      198,
+      150
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/kick_slide/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      243,
+      238,
+      201,
+      162
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/kick_slide/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      243,
+      226,
+      230,
+      174
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/kick_slide/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      312,
+      261,
+      324,
+      139
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/kick_slide/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      350,
+      208,
+      115,
+      192
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/kick_slide/05.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      243,
+      238,
+      201,
+      162
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/knockdown/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      196,
+      196,
+      298,
+      204
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/knockdown/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      211,
+      87,
+      268,
+      313
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/knockdown/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      167,
+      306,
+      372,
+      94
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/getup/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      167,
+      306,
+      372,
+      94
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/getup/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      167,
+      312,
+      363,
+      88
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/getup/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      131,
+      300,
+      401,
+      100
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/getup/04.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      137,
+      226,
+      280,
+      174
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/getup/05.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      72,
+      188,
+      360,
+      212
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/getup/06.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      172,
+      158,
+      218,
+      242
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/getup/07.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      234,
+      64,
+      91,
+      336
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/getup/08.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      240,
+      188,
+      83,
+      212
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/getup/09.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      217,
+      300,
+      130,
+      100
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/getup/10.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      208,
+      205,
+      159,
+      195
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/getup/11.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      208,
+      155,
+      195,
+      245
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/dead/01.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      196,
+      196,
+      298,
+      204
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/dead/02.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      211,
+      87,
+      268,
+      313
+    ],
+    "offsetY": 20
+  },
+  "/assets/characters/cammy_ref_anim/dead/03.png": {
+    "width": 640,
+    "height": 420,
+    "bounds": [
+      167,
+      306,
+      372,
+      94
+    ],
+    "offsetY": 20
+  }
+}

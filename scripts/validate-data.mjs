@@ -146,6 +146,26 @@ for (const id of index.characters) {
     ]
     : ['idle', 'walk', 'attack', 'heavy', 'hit', 'knockdown', 'getup', 'dead'];
   for (const name of required) if (!profile.animations[name]) fail(`${id}: animazione obbligatoria mancante: ${name}`);
+  const comboVariants = profile.gameplay?.player?.combo_variants;
+  if (comboVariants !== undefined) {
+    if (!Array.isArray(comboVariants) || comboVariants.length < 2) {
+      fail(`${id}: servono almeno due varianti combo`);
+    } else {
+      for (const [variantIndex, variant] of comboVariants.entries()) {
+        if (!Array.isArray(variant) || variant.length < 2) {
+          fail(`${id}: combo ${variantIndex + 1} troppo corta`);
+          continue;
+        }
+        for (const [moveIndex, move] of variant.entries()) {
+          const label = `${id}: combo ${variantIndex + 1}, mossa ${moveIndex + 1}`;
+          if (!move || typeof move.name !== 'string' || !profile.animations[move.animation ?? move.name]) fail(`${label}: animazione mancante`);
+          for (const field of ['damage', 'startup', 'active', 'recovery', 'rangeX', 'rangeY', 'knockbackX', 'knockbackY', 'furyGain', 'hitStop', 'shake']) {
+            if (!Number.isFinite(move?.[field]) || move[field] < 0) fail(`${label}: ${field} non valido`);
+          }
+        }
+      }
+    }
+  }
   for (const name of animationTemplate?.required_clips ?? []) {
     if (!profile.animations[name]) fail(`${id}: clip richiesta dal template mancante: ${name}`);
   }

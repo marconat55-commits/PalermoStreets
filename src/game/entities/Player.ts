@@ -63,14 +63,20 @@ export class Player extends Actor {
   private jumpDuration = (PLAYER_JUMP_VELOCITY * 2) / PLAYER_JUMP_GRAVITY;
   private activeJumpClip = 'jump';
   private readonly idleVariants: string[];
+  private readonly arcadeComboVariants: readonly (readonly AttackData[])[];
+  private readonly random: () => number;
+  private activeArcadeCombo: readonly AttackData[] | null = null;
   private idleVariantIndex = 0;
   private idleStillTime = 0;
 
-  constructor(bank: AnimationBank, position: Vec2, maxHealth = 120, moveSpeed = 285, depthSpeed = 205, visualScale = 1) {
+  constructor(bank: AnimationBank, position: Vec2, maxHealth = 120, moveSpeed = 285, depthSpeed = 205, visualScale = 1,
+    arcadeComboVariants: readonly (readonly AttackData[])[] = [], random: () => number = Math.random) {
     super(bank, position, maxHealth, visualScale);
     this.moveSpeed = moveSpeed;
     this.depthSpeed = depthSpeed;
     this.idleVariants = orderedIdleVariants(this.animator.bank.clips.keys());
+    this.arcadeComboVariants = arcadeComboVariants;
+    this.random = random;
   }
 
   override get collisionRadius(): Vec2 {
@@ -164,6 +170,24 @@ export class Player extends Actor {
 
   requestArcadeAttack(): boolean {
     if (this.isRunning) return this.requestAttack(RUN_ATTACK);
+    if (this.arcadeComboVariants.length > 0) {
+      if (this.state === 'attack') {
+        const combo = this.activeArcadeCombo;
+        const index = combo?.indexOf(this.currentAttack!) ?? -1;
+        if (!combo || index < 0 || index + 1 >= combo.length) return false;
+        const accepted = this.requestAttack(combo[index + 1]!, true, combo);
+        if (accepted) this.nextArcadeIndex = index + 2;
+        return accepted;
+      }
+      const combo = this.arcadeComboVariants[Math.min(this.arcadeComboVariants.length - 1,
+        Math.floor(this.random() * this.arcadeComboVariants.length))]!;
+      const accepted = this.requestAttack(combo[0]!, true, combo);
+      if (accepted) {
+        this.activeArcadeCombo = combo;
+        this.nextArcadeIndex = 1;
+      }
+      return accepted;
+    }
     let attack: typeof ARCADE_COMBO[number];
     if (this.state === 'attack' && this.currentAttack) {
       const currentIndex = ARCADE_COMBO.indexOf(this.currentAttack as typeof ARCADE_COMBO[number]);
@@ -424,6 +448,7 @@ export class Player extends Actor {
           if (completed === THROW || completed === GRAB_STRIKE) this.releaseGrab();
           this.currentAttack = null;
           this.comboStep = 0;
+          this.activeArcadeCombo = null;
           this.beginState('idle', 'idle');
         }
       }
@@ -555,6 +580,7 @@ export class Player extends Actor {
     this.landingMomentum = { x: 0, y: 0 };
     this.currentAttack = null;
     this.queuedAttack = null;
+    this.activeArcadeCombo = null;
     return super.receiveHit(damage, knockback, knockdown, launchVelocity);
   }
 

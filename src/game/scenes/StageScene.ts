@@ -303,6 +303,7 @@ export class StageScene implements Scene {
       tuning.move_speed ?? 285,
       tuning.depth_speed ?? 205,
       moduleCharacterScale(this.modules[startModuleIndex]!),
+      tuning.combo_variants ?? [],
     );
     this.actors.addChild(this.player.root);
     this.enterModule(startModuleIndex, false);

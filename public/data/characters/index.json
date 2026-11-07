@@ -5,6 +5,8 @@
     "merco",
     "mark_nat",
     "ken_ref",
+    "cammy_ref",
+    "leandra",
     "talebano",
     "haggar_ref",
     "aiori_ref",
@@ -12,15 +14,6 @@
     "u_tignusu"
   ],
   "upcoming_players": [
-    {
-      "id": "leandra",
-      "display_name": "LEANDRA",
-      "selection": {
-        "portrait": "assets/ui/character_select/leandra_portrait.png",
-        "subtitle": "TI VOGLIO BENE. MA NON ESAGERARE.",
-        "available": false
-      }
-    },
     {
       "id": "julien",
       "display_name": "JULIEN",

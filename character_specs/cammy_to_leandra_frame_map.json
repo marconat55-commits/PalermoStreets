@@ -1,0 +1,1275 @@
+{
+  "source": "Cammy2.rar / Cammy2x.sff / Cammy2.air",
+  "clips": {
+    "idle": [
+      {
+        "frame": 1,
+        "action": 0,
+        "sprite": [
+          0,
+          0
+        ]
+      },
+      {
+        "frame": 2,
+        "action": 0,
+        "sprite": [
+          0,
+          1
+        ]
+      },
+      {
+        "frame": 3,
+        "action": 0,
+        "sprite": [
+          0,
+          2
+        ]
+      },
+      {
+        "frame": 4,
+        "action": 0,
+        "sprite": [
+          0,
+          3
+        ]
+      },
+      {
+        "frame": 5,
+        "action": 0,
+        "sprite": [
+          0,
+          4
+        ]
+      },
+      {
+        "frame": 6,
+        "action": 0,
+        "sprite": [
+          0,
+          5
+        ]
+      },
+      {
+        "frame": 7,
+        "action": 0,
+        "sprite": [
+          0,
+          6
+        ]
+      },
+      {
+        "frame": 8,
+        "action": 0,
+        "sprite": [
+          0,
+          7
+        ]
+      }
+    ],
+    "walk": [
+      {
+        "frame": 1,
+        "action": 20,
+        "sprite": [
+          20,
+          0
+        ]
+      },
+      {
+        "frame": 2,
+        "action": 20,
+        "sprite": [
+          20,
+          1
+        ]
+      },
+      {
+        "frame": 3,
+        "action": 20,
+        "sprite": [
+          20,
+          2
+        ]
+      },
+      {
+        "frame": 4,
+        "action": 20,
+        "sprite": [
+          20,
+          3
+        ]
+      },
+      {
+        "frame": 5,
+        "action": 20,
+        "sprite": [
+          20,
+          4
+        ]
+      },
+      {
+        "frame": 6,
+        "action": 20,
+        "sprite": [
+          20,
+          5
+        ]
+      },
+      {
+        "frame": 7,
+        "action": 20,
+        "sprite": [
+          20,
+          6
+        ]
+      },
+      {
+        "frame": 8,
+        "action": 20,
+        "sprite": [
+          20,
+          7
+        ]
+      },
+      {
+        "frame": 9,
+        "action": 20,
+        "sprite": [
+          20,
+          8
+        ]
+      },
+      {
+        "frame": 10,
+        "action": 20,
+        "sprite": [
+          20,
+          9
+        ]
+      },
+      {
+        "frame": 11,
+        "action": 20,
+        "sprite": [
+          20,
+          10
+        ]
+      },
+      {
+        "frame": 12,
+        "action": 20,
+        "sprite": [
+          20,
+          11
+        ]
+      }
+    ],
+    "run": [
+      {
+        "frame": 1,
+        "action": 100,
+        "sprite": [
+          100,
+          0
+        ]
+      },
+      {
+        "frame": 2,
+        "action": 100,
+        "sprite": [
+          100,
+          1
+        ]
+      },
+      {
+        "frame": 3,
+        "action": 100,
+        "sprite": [
+          100,
+          3
+        ]
+      },
+      {
+        "frame": 4,
+        "action": 100,
+        "sprite": [
+          100,
+          4
+        ]
+      }
+    ],
+    "brake": [
+      {
+        "frame": 1,
+        "action": 105,
+        "sprite": [
+          21,
+          5
+        ]
+      },
+      {
+        "frame": 2,
+        "action": 105,
+        "sprite": [
+          40,
+          0
+        ]
+      },
+      {
+        "frame": 3,
+        "action": 105,
+        "sprite": [
+          40,
+          1
+        ]
+      }
+    ],
+    "jump": [
+      {
+        "frame": 1,
+        "action": 40,
+        "sprite": [
+          40,
+          0
+        ]
+      },
+      {
+        "frame": 2,
+        "action": 40,
+        "sprite": [
+          40,
+          1
+        ]
+      },
+      {
+        "frame": 3,
+        "action": 41,
+        "sprite": [
+          40,
+          2
+        ]
+      },
+      {
+        "frame": 4,
+        "action": 41,
+        "sprite": [
+          40,
+          3
+        ]
+      },
+      {
+        "frame": 5,
+        "action": 41,
+        "sprite": [
+          40,
+          4
+        ]
+      },
+      {
+        "frame": 6,
+        "action": 41,
+        "sprite": [
+          40,
+          5
+        ]
+      },
+      {
+        "frame": 7,
+        "action": 42,
+        "sprite": [
+          41,
+          7
+        ]
+      },
+      {
+        "frame": 8,
+        "action": 42,
+        "sprite": [
+          41,
+          6
+        ]
+      },
+      {
+        "frame": 9,
+        "action": 42,
+        "sprite": [
+          41,
+          5
+        ]
+      }
+    ],
+    "land": [
+      {
+        "frame": 1,
+        "action": 47,
+        "sprite": [
+          40,
+          9
+        ]
+      },
+      {
+        "frame": 2,
+        "action": 47,
+        "sprite": [
+          40,
+          10
+        ]
+      }
+    ],
+    "air_attack": [
+      {
+        "frame": 1,
+        "action": 640,
+        "sprite": [
+          640,
+          0
+        ]
+      },
+      {
+        "frame": 2,
+        "action": 640,
+        "sprite": [
+          640,
+          1
+        ]
+      },
+      {
+        "frame": 3,
+        "action": 640,
+        "sprite": [
+          640,
+          2
+        ]
+      },
+      {
+        "frame": 4,
+        "action": 640,
+        "sprite": [
+          640,
+          3
+        ]
+      },
+      {
+        "frame": 5,
+        "action": 640,
+        "sprite": [
+          40,
+          5
+        ]
+      },
+      {
+        "frame": 6,
+        "action": 640,
+        "sprite": [
+          40,
+          6
+        ]
+      },
+      {
+        "frame": 7,
+        "action": 640,
+        "sprite": [
+          40,
+          7
+        ]
+      }
+    ],
+    "air_punch": [
+      {
+        "frame": 1,
+        "action": 600,
+        "sprite": [
+          600,
+          0
+        ]
+      },
+      {
+        "frame": 2,
+        "action": 600,
+        "sprite": [
+          600,
+          1
+        ]
+      },
+      {
+        "frame": 3,
+        "action": 600,
+        "sprite": [
+          600,
+          2
+        ]
+      },
+      {
+        "frame": 4,
+        "action": 600,
+        "sprite": [
+          40,
+          6
+        ]
+      },
+      {
+        "frame": 5,
+        "action": 600,
+        "sprite": [
+          40,
+          7
+        ]
+      },
+      {
+        "frame": 6,
+        "action": 600,
+        "sprite": [
+          40,
+          8
+        ]
+      }
+    ],
+    "punch_left": [
+      {
+        "frame": 1,
+        "action": 200,
+        "sprite": [
+          200,
+          0
+        ]
+      },
+      {
+        "frame": 2,
+        "action": 200,
+        "sprite": [
+          200,
+          1
+        ]
+      },
+      {
+        "frame": 3,
+        "action": 200,
+        "sprite": [
+          200,
+          2
+        ]
+      },
+      {
+        "frame": 4,
+        "action": 200,
+        "sprite": [
+          200,
+          1
+        ]
+      },
+      {
+        "frame": 5,
+        "action": 200,
+        "sprite": [
+          200,
+          0
+        ]
+      }
+    ],
+    "punch_right": [
+      {
+        "frame": 1,
+        "action": 201,
+        "sprite": [
+          201,
+          0
+        ]
+      },
+      {
+        "frame": 2,
+        "action": 201,
+        "sprite": [
+          201,
+          1
+        ]
+      },
+      {
+        "frame": 3,
+        "action": 201,
+        "sprite": [
+          201,
+          2
+        ]
+      },
+      {
+        "frame": 4,
+        "action": 201,
+        "sprite": [
+          201,
+          3
+        ]
+      },
+      {
+        "frame": 5,
+        "action": 201,
+        "sprite": [
+          201,
+          4
+        ]
+      },
+      {
+        "frame": 6,
+        "action": 201,
+        "sprite": [
+          201,
+          5
+        ]
+      }
+    ],
+    "muay_elbow": [
+      {
+        "frame": 1,
+        "action": 204,
+        "sprite": [
+          204,
+          0
+        ]
+      },
+      {
+        "frame": 2,
+        "action": 204,
+        "sprite": [
+          204,
+          1
+        ]
+      },
+      {
+        "frame": 3,
+        "action": 204,
+        "sprite": [
+          204,
+          2
+        ]
+      },
+      {
+        "frame": 4,
+        "action": 204,
+        "sprite": [
+          204,
+          3
+        ]
+      },
+      {
+        "frame": 5,
+        "action": 204,
+        "sprite": [
+          204,
+          4
+        ]
+      },
+      {
+        "frame": 6,
+        "action": 204,
+        "sprite": [
+          204,
+          5
+        ]
+      }
+    ],
+    "combo_finisher": [
+      {
+        "frame": 1,
+        "action": 211,
+        "sprite": [
+          211,
+          0
+        ]
+      },
+      {
+        "frame": 2,
+        "action": 211,
+        "sprite": [
+          211,
+          1
+        ]
+      },
+      {
+        "frame": 3,
+        "action": 211,
+        "sprite": [
+          211,
+          2
+        ]
+      },
+      {
+        "frame": 4,
+        "action": 211,
+        "sprite": [
+          211,
+          3
+        ]
+      },
+      {
+        "frame": 5,
+        "action": 211,
+        "sprite": [
+          211,
+          4
+        ]
+      },
+      {
+        "frame": 6,
+        "action": 211,
+        "sprite": [
+          211,
+          5
+        ]
+      },
+      {
+        "frame": 7,
+        "action": 211,
+        "sprite": [
+          211,
+          6
+        ]
+      },
+      {
+        "frame": 8,
+        "action": 211,
+        "sprite": [
+          211,
+          7
+        ]
+      },
+      {
+        "frame": 9,
+        "action": 211,
+        "sprite": [
+          10,
+          2
+        ]
+      },
+      {
+        "frame": 10,
+        "action": 211,
+        "sprite": [
+          10,
+          1
+        ]
+      }
+    ],
+    "kick_front": [
+      {
+        "frame": 1,
+        "action": 210,
+        "sprite": [
+          210,
+          0
+        ]
+      },
+      {
+        "frame": 2,
+        "action": 210,
+        "sprite": [
+          210,
+          1
+        ]
+      },
+      {
+        "frame": 3,
+        "action": 210,
+        "sprite": [
+          210,
+          2
+        ]
+      },
+      {
+        "frame": 4,
+        "action": 210,
+        "sprite": [
+          210,
+          3
+        ]
+      }
+    ],
+    "kick_right": [
+      {
+        "frame": 1,
+        "action": 240,
+        "sprite": [
+          240,
+          0
+        ]
+      },
+      {
+        "frame": 2,
+        "action": 240,
+        "sprite": [
+          240,
+          1
+        ]
+      },
+      {
+        "frame": 3,
+        "action": 240,
+        "sprite": [
+          240,
+          2
+        ]
+      },
+      {
+        "frame": 4,
+        "action": 240,
+        "sprite": [
+          240,
+          3
+        ]
+      }
+    ],
+    "kick_finisher": [
+      {
+        "frame": 1,
+        "action": 214,
+        "sprite": [
+          214,
+          0
+        ]
+      },
+      {
+        "frame": 2,
+        "action": 214,
+        "sprite": [
+          214,
+          1
+        ]
+      },
+      {
+        "frame": 3,
+        "action": 214,
+        "sprite": [
+          214,
+          2
+        ]
+      },
+      {
+        "frame": 4,
+        "action": 214,
+        "sprite": [
+          214,
+          3
+        ]
+      },
+      {
+        "frame": 5,
+        "action": 214,
+        "sprite": [
+          214,
+          4
+        ]
+      },
+      {
+        "frame": 6,
+        "action": 214,
+        "sprite": [
+          214,
+          5
+        ]
+      },
+      {
+        "frame": 7,
+        "action": 214,
+        "sprite": [
+          214,
+          6
+        ]
+      },
+      {
+        "frame": 8,
+        "action": 214,
+        "sprite": [
+          214,
+          7
+        ]
+      },
+      {
+        "frame": 9,
+        "action": 214,
+        "sprite": [
+          214,
+          8
+        ]
+      },
+      {
+        "frame": 10,
+        "action": 214,
+        "sprite": [
+          214,
+          9
+        ]
+      },
+      {
+        "frame": 11,
+        "action": 214,
+        "sprite": [
+          10,
+          2
+        ]
+      },
+      {
+        "frame": 12,
+        "action": 214,
+        "sprite": [
+          10,
+          1
+        ]
+      }
+    ],
+    "block": [
+      {
+        "frame": 1,
+        "action": 120,
+        "sprite": [
+          120,
+          1
+        ]
+      }
+    ],
+    "grab": [
+      {
+        "frame": 1,
+        "action": 950,
+        "sprite": [
+          950,
+          0
+        ]
+      },
+      {
+        "frame": 2,
+        "action": 950,
+        "sprite": [
+          950,
+          1
+        ]
+      },
+      {
+        "frame": 3,
+        "action": 950,
+        "sprite": [
+          180,
+          1
+        ]
+      },
+      {
+        "frame": 4,
+        "action": 950,
+        "sprite": [
+          950,
+          2
+        ]
+      }
+    ],
+    "grab_strike": [
+      {
+        "frame": 1,
+        "action": 202,
+        "sprite": [
+          202,
+          0
+        ]
+      },
+      {
+        "frame": 2,
+        "action": 202,
+        "sprite": [
+          202,
+          1
+        ]
+      },
+      {
+        "frame": 3,
+        "action": 202,
+        "sprite": [
+          202,
+          2
+        ]
+      },
+      {
+        "frame": 4,
+        "action": 202,
+        "sprite": [
+          202,
+          3
+        ]
+      },
+      {
+        "frame": 5,
+        "action": 202,
+        "sprite": [
+          202,
+          4
+        ]
+      }
+    ],
+    "throw": [
+      {
+        "frame": 1,
+        "action": 951,
+        "sprite": [
+          950,
+          2
+        ]
+      },
+      {
+        "frame": 2,
+        "action": 951,
+        "sprite": [
+          40,
+          1
+        ]
+      },
+      {
+        "frame": 3,
+        "action": 951,
+        "sprite": [
+          951,
+          0
+        ]
+      },
+      {
+        "frame": 4,
+        "action": 951,
+        "sprite": [
+          951,
+          1
+        ]
+      },
+      {
+        "frame": 5,
+        "action": 951,
+        "sprite": [
+          951,
+          2
+        ]
+      },
+      {
+        "frame": 6,
+        "action": 951,
+        "sprite": [
+          951,
+          3
+        ]
+      }
+    ],
+    "super": [
+      {
+        "frame": 1,
+        "action": 1082,
+        "sprite": [
+          210,
+          3
+        ]
+      },
+      {
+        "frame": 2,
+        "action": 1082,
+        "sprite": [
+          1082,
+          1
+        ]
+      },
+      {
+        "frame": 3,
+        "action": 1082,
+        "sprite": [
+          1082,
+          2
+        ]
+      },
+      {
+        "frame": 4,
+        "action": 1082,
+        "sprite": [
+          210,
+          1
+        ]
+      },
+      {
+        "frame": 5,
+        "action": 1082,
+        "sprite": [
+          210,
+          3
+        ]
+      }
+    ],
+    "hit": [
+      {
+        "frame": 1,
+        "action": 5030,
+        "sprite": [
+          5030,
+          0
+        ]
+      },
+      {
+        "frame": 2,
+        "action": 5030,
+        "sprite": [
+          5030,
+          10
+        ]
+      },
+      {
+        "frame": 3,
+        "action": 5030,
+        "sprite": [
+          5030,
+          30
+        ]
+      }
+    ],
+    "punch_backfist": [
+      {
+        "frame": 1,
+        "action": 203,
+        "sprite": [
+          203,
+          0
+        ]
+      },
+      {
+        "frame": 2,
+        "action": 203,
+        "sprite": [
+          203,
+          1
+        ]
+      },
+      {
+        "frame": 3,
+        "action": 203,
+        "sprite": [
+          203,
+          2
+        ]
+      },
+      {
+        "frame": 4,
+        "action": 203,
+        "sprite": [
+          203,
+          1
+        ]
+      },
+      {
+        "frame": 5,
+        "action": 203,
+        "sprite": [
+          203,
+          0
+        ]
+      }
+    ],
+    "kick_low": [
+      {
+        "frame": 1,
+        "action": 410,
+        "sprite": [
+          410,
+          0
+        ]
+      },
+      {
+        "frame": 2,
+        "action": 410,
+        "sprite": [
+          410,
+          1
+        ]
+      },
+      {
+        "frame": 3,
+        "action": 410,
+        "sprite": [
+          410,
+          0
+        ]
+      }
+    ],
+    "kick_slide": [
+      {
+        "frame": 1,
+        "action": 420,
+        "sprite": [
+          415,
+          0
+        ]
+      },
+      {
+        "frame": 2,
+        "action": 420,
+        "sprite": [
+          415,
+          1
+        ]
+      },
+      {
+        "frame": 3,
+        "action": 420,
+        "sprite": [
+          415,
+          2
+        ]
+      },
+      {
+        "frame": 4,
+        "action": 420,
+        "sprite": [
+          415,
+          3
+        ]
+      },
+      {
+        "frame": 5,
+        "action": 420,
+        "sprite": [
+          415,
+          4
+        ]
+      }
+    ],
+    "knockdown": [
+      {
+        "frame": 1,
+        "action": 5050,
+        "sprite": [
+          5030,
+          40
+        ]
+      },
+      {
+        "frame": 2,
+        "action": 5050,
+        "sprite": [
+          5030,
+          50
+        ]
+      },
+      {
+        "frame": 3,
+        "action": 5110,
+        "sprite": [
+          5040,
+          10
+        ]
+      }
+    ],
+    "getup": [
+      {
+        "frame": 1,
+        "action": 5110,
+        "sprite": [
+          5040,
+          10
+        ]
+      },
+      {
+        "frame": 2,
+        "action": 5120,
+        "sprite": [
+          5120,
+          0
+        ]
+      },
+      {
+        "frame": 3,
+        "action": 5120,
+        "sprite": [
+          5120,
+          1
+        ]
+      },
+      {
+        "frame": 4,
+        "action": 5120,
+        "sprite": [
+          5120,
+          2
+        ]
+      },
+      {
+        "frame": 5,
+        "action": 5120,
+        "sprite": [
+          5120,
+          3
+        ]
+      },
+      {
+        "frame": 6,
+        "action": 5120,
+        "sprite": [
+          5120,
+          4
+        ]
+      },
+      {
+        "frame": 7,
+        "action": 5120,
+        "sprite": [
+          5120,
+          5
+        ]
+      },
+      {
+        "frame": 8,
+        "action": 5120,
+        "sprite": [
+          5120,
+          6
+        ]
+      },
+      {
+        "frame": 9,
+        "action": 5120,
+        "sprite": [
+          5120,
+          7
+        ]
+      },
+      {
+        "frame": 10,
+        "action": 5120,
+        "sprite": [
+          5120,
+          8
+        ]
+      },
+      {
+        "frame": 11,
+        "action": 5120,
+        "sprite": [
+          5120,
+          9
+        ]
+      }
+    ],
+    "dead": [
+      {
+        "frame": 1,
+        "action": 5050,
+        "sprite": [
+          5030,
+          40
+        ]
+      },
+      {
+        "frame": 2,
+        "action": 5050,
+        "sprite": [
+          5030,
+          50
+        ]
+      },
+      {
+        "frame": 3,
+        "action": 5110,
+        "sprite": [
+          5040,
+          10
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "schema": 1,
+  "character": "leandra",
+  "poses": {
+    "P053": {
+      "clip": "punch_left",
+      "frame": 2,
+      "status": "needs_review",
+      "source": "art_source/characters/leandra/incoming/P053_punch_left_02_agent_v1.png",
+      "runtime_activated": false,
+      "generation_attempts": 1,
+      "note": "Esclusa dal gioco: lo sfondo nero con alone non e stato rimosso. Serve una nuova versione pulita."
+    },
+    "P054": {
+      "clip": "punch_left",
+      "frame": 3,
+      "status": "approved",
+      "source": "art_source/characters/leandra/incoming/P054_punch_left_03.png",
+      "transparent": "art_source/characters/leandra/incoming/P054_punch_left_03_alpha.png",
+      "runtime_preview": "art_source/characters/leandra/incoming/P054_punch_left_03_640x420.png",
+      "runtime_activated": true,
+      "note": "Posa fornita dall'utente, approvata nel gioco per il primo pugno."
+    },
+    "P058": {
+      "clip": "punch_right",
+      "frame": 2,
+      "status": "approved",
+      "source": "art_source/characters/leandra/incoming/P058_punch_right_02_agent_v1.png",
+      "transparent": "art_source/characters/leandra/incoming/P058_punch_right_02_agent_v1_alpha.png",
+      "runtime_preview": "art_source/characters/leandra/incoming/P058_punch_right_02_agent_v1_640x420.png",
+      "runtime_activated": true,
+      "generation_attempts": 1,
+      "note": "Preparazione del destro generata dall'agent e approvata nel gioco."
+    },
+    "P059": {
+      "clip": "punch_right",
+      "frame": 3,
+      "status": "approved",
+      "source": "art_source/characters/leandra/incoming/P059_punch_right_03_agent_v1.png",
+      "transparent": "art_source/characters/leandra/incoming/P059_punch_right_03_agent_v1_alpha.png",
+      "runtime_preview": "art_source/characters/leandra/incoming/P059_punch_right_03_agent_v1_640x420.png",
+      "runtime_activated": true,
+      "generation_attempts": 1,
+      "note": "Avanzamento intermedio del destro generato dall'agent e approvato nel gioco."
+    },
+    "P060": {
+      "clip": "punch_right",
+      "frame": 4,
+      "status": "approved",
+      "source": "art_source/characters/leandra/incoming/P060_punch_right_04.png",
+      "transparent": "art_source/characters/leandra/incoming/P060_punch_right_04_alpha.png",
+      "runtime_preview": "art_source/characters/leandra/incoming/P060_punch_right_04_640x420.png",
+      "runtime_activated": true,
+      "note": "Posa fornita dall'utente, approvata nel gioco per il secondo pugno."
+    },
+    "P061": {
+      "clip": "punch_right",
+      "frame": 5,
+      "status": "approved",
+      "source": "art_source/characters/leandra/incoming/P061_punch_right_05_agent_v1.png",
+      "transparent": "art_source/characters/leandra/incoming/P061_punch_right_05_agent_v1_alpha.png",
+      "runtime_preview": "art_source/characters/leandra/incoming/P061_punch_right_05_agent_v1_640x420.png",
+      "runtime_activated": true,
+      "generation_attempts": 1,
+      "note": "Rientro intermedio del destro generato dall'agent e approvato nel gioco."
+    },
+    "P062": {
+      "clip": "punch_right",
+      "frame": 6,
+      "status": "approved",
+      "source": "art_source/characters/leandra/incoming/P062_punch_right_06_agent_v1.png",
+      "transparent": "art_source/characters/leandra/incoming/P062_punch_right_06_agent_v1_alpha.png",
+      "runtime_preview": "art_source/characters/leandra/incoming/P062_punch_right_06_agent_v1_640x420.png",
+      "runtime_activated": true,
+      "generation_attempts": 1,
+      "note": "Rientro in guardia generato dall'agent e approvato nel gioco; condiviso come raccordo iniziale e finale."
+    }
+  }
+}

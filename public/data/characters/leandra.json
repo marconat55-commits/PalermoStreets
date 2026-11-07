@@ -1,0 +1,49 @@
+{
+  "schema": 1,
+  "id": "leandra",
+  "extends": "cammy_ref",
+  "display_name": "LEANDRA",
+  "body_type": "atletica",
+  "assets": {
+    "master_root": "assets/characters/leandra_anim",
+    "animation_root": "assets/characters/leandra_anim",
+    "texture_atlas": "assets/characters/leandra_anim/atlas/atlas.json",
+    "frame_meta": "data/generated/characters/leandra.frame_meta.json"
+  },
+  "identity": {
+    "canon": "Prototipo giocabile: idle, guardia e due pugni approvati di Leandra; altre pose ancora dal riferimento Cammy"
+  },
+  "selection": {
+    "portrait": "assets/ui/character_select/leandra_portrait.png",
+    "subtitle": "TI VOGLIO BENE. MA NON ESAGERARE.",
+    "stats": { "strength": 3, "speed": 5, "technique": 5 },
+    "prototype": true,
+    "available": true
+  },
+  "animations": {
+    "idle": {
+      "folder": "idle",
+      "frames": 1,
+      "durations": [0.8],
+      "visual_scales": [1.0],
+      "source_facing": 1,
+      "loop": true
+    },
+    "block": {
+      "folder": "block",
+      "frames": 1,
+      "durations": [0.1],
+      "visual_scales": [1.0],
+      "source_facing": 1,
+      "loop": true
+    },
+    "idle_variant_1": {
+      "folder": "block",
+      "frames": 1,
+      "durations": [0.6],
+      "visual_scales": [1.0],
+      "source_facing": 1,
+      "loop": false
+    }
+  }
+}

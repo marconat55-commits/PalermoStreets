@@ -37,7 +37,10 @@ export class CharacterSelectScene implements Scene {
   private selectionDwell = 0;
   private selectionPreloadRequested = false;
   private readonly selectionFrame = new Graphics();
+  private readonly slotGrid = new Container();
+  private slotPage = 0;
   private readonly confirmPrompt: Text;
+  private readonly pageLabel: Text;
   private readonly loadingGroup = new Container();
   private readonly loadingBar = new Graphics();
   private readonly loadingPercent: Text;
@@ -119,29 +122,8 @@ export class CharacterSelectScene implements Scene {
     }
     this.root.addChild(this.statPips);
 
-    for (let index = 0; index < SLOTS.length; index += 1) {
-      const [x, y] = SLOTS[index]!;
-      const profile = profiles[index];
-      const slot = new Graphics();
-      slot.moveTo(x, y + 10).lineTo(x + 10, y).lineTo(x + SLOT_WIDTH, y).lineTo(x + SLOT_WIDTH, y + 133).lineTo(x + SLOT_WIDTH - 10, y + SLOT_HEIGHT).lineTo(x, y + SLOT_HEIGHT).closePath()
-        .fill({ color: profile ? 0x571008 : 0x090405, alpha: 0.96 }).stroke({ color: profile ? 0xffa315 : 0x5b382a, width: profile ? 4 : 2 });
-      this.root.addChild(slot);
-      if (profile) {
-        const thumb = new Sprite(portraits[index] ?? Texture.EMPTY);
-        thumb.position.set(x + 10, y + 8);
-        thumb.width = 88;
-        thumb.height = 88;
-        this.root.addChild(thumb);
-        const slotName = label(profile.display_name, new TextStyle({ fontFamily: DISPLAY_FONT, fontSize: 22, fontWeight: '900', fontStyle: 'italic', fill: 0xffe0a0, letterSpacing: 1 }), x + 100, y + 48);
-        slotName.scale.set(Math.min(1, 62 / slotName.width));
-        this.root.addChild(slotName);
-        const status = profile.selection?.available === false ? 'IN PREPARAZIONE' : profile.selection?.prototype ? 'PROTOTIPO' : 'PRONTO';
-        this.root.addChild(label(status, new TextStyle({ fontFamily: UI_FONT, fontSize: 10, fontWeight: '900', fill: 0xffe06b }), x + SLOT_WIDTH / 2, y + 121, 0.5));
-      } else {
-        this.root.addChild(label('?', new TextStyle({ fontFamily: DISPLAY_FONT, fontSize: 58, fontWeight: '900', fill: 0x634332 }), x + SLOT_WIDTH / 2, y + 54, 0.5));
-        this.root.addChild(label('SLOT VUOTO', new TextStyle({ fontFamily: UI_FONT, fontSize: 11, fill: 0x83614e }), x + SLOT_WIDTH / 2, y + 120, 0.5));
-      }
-    }
+    this.root.addChild(this.slotGrid);
+    this.drawSlots();
     this.root.addChild(this.selectionFrame);
     const promptPlate = new Graphics();
     promptPlate.moveTo(688, 652).lineTo(698, 642).lineTo(1208, 642).lineTo(1198, 694).lineTo(688, 694).closePath()
@@ -149,6 +131,8 @@ export class CharacterSelectScene implements Scene {
     this.root.addChild(promptPlate);
     this.confirmPrompt = label('WASD  SCEGLI     INVIO  CONFERMA', new TextStyle({ fontFamily: UI_FONT, fontSize: 15, fontWeight: '900', fill: 0xffe2ad }), 948, 668, 0.5);
     this.root.addChild(this.confirmPrompt);
+    this.pageLabel = label('', new TextStyle({ fontFamily: UI_FONT, fontSize: 12, fontWeight: '900', fill: 0xffdf94 }), 1200, 623, 1);
+    this.root.addChild(this.pageLabel);
 
     const editorButton = new Container();
     editorButton.position.set(88, 642);
@@ -188,6 +172,34 @@ export class CharacterSelectScene implements Scene {
     this.requestSelectedCharacterPreload();
   }
 
+  private drawSlots(): void {
+    this.slotGrid.removeChildren().forEach((child) => child.destroy({ children: true }));
+    const first = this.slotPage * SLOTS.length;
+    for (let index = 0; index < SLOTS.length; index += 1) {
+      const [x, y] = SLOTS[index]!;
+      const profile = this.profiles[first + index];
+      const slot = new Graphics();
+      slot.moveTo(x, y + 10).lineTo(x + 10, y).lineTo(x + SLOT_WIDTH, y).lineTo(x + SLOT_WIDTH, y + 133).lineTo(x + SLOT_WIDTH - 10, y + SLOT_HEIGHT).lineTo(x, y + SLOT_HEIGHT).closePath()
+        .fill({ color: profile ? 0x571008 : 0x090405, alpha: 0.96 }).stroke({ color: profile ? 0xffa315 : 0x5b382a, width: profile ? 4 : 2 });
+      this.slotGrid.addChild(slot);
+      if (profile) {
+        const thumb = new Sprite(this.portraits[first + index] ?? Texture.EMPTY);
+        thumb.position.set(x + 10, y + 8);
+        thumb.width = 88;
+        thumb.height = 88;
+        this.slotGrid.addChild(thumb);
+        const slotName = label(profile.display_name, new TextStyle({ fontFamily: DISPLAY_FONT, fontSize: 22, fontWeight: '900', fontStyle: 'italic', fill: 0xffe0a0, letterSpacing: 1 }), x + 100, y + 48);
+        slotName.scale.set(Math.min(1, 62 / slotName.width));
+        this.slotGrid.addChild(slotName);
+        const status = profile.selection?.available === false ? 'IN PREPARAZIONE' : profile.selection?.prototype ? 'PROTOTIPO' : 'PRONTO';
+        this.slotGrid.addChild(label(status, new TextStyle({ fontFamily: UI_FONT, fontSize: 10, fontWeight: '900', fill: 0xffe06b }), x + SLOT_WIDTH / 2, y + 121, 0.5));
+      } else {
+        this.slotGrid.addChild(label('?', new TextStyle({ fontFamily: DISPLAY_FONT, fontSize: 58, fontWeight: '900', fill: 0x634332 }), x + SLOT_WIDTH / 2, y + 54, 0.5));
+        this.slotGrid.addChild(label('SLOT VUOTO', new TextStyle({ fontFamily: UI_FONT, fontSize: 11, fill: 0x83614e }), x + SLOT_WIDTH / 2, y + 120, 0.5));
+      }
+    }
+  }
+
   get selectedCharacterId(): string { return this.profiles[this.selectedIndex]?.id ?? 'marco'; }
 
   private get selectedCharacterAvailable(): boolean {
@@ -197,6 +209,14 @@ export class CharacterSelectScene implements Scene {
   private refreshSelection(): void {
     const profile = this.profiles[this.selectedIndex];
     if (!profile) return;
+    const page = Math.floor(this.selectedIndex / SLOTS.length);
+    if (page !== this.slotPage) {
+      this.slotPage = page;
+      this.drawSlots();
+    }
+    this.pageLabel.text = this.profiles.length > SLOTS.length
+      ? `PAGINA ${this.slotPage + 1}/${Math.ceil(this.profiles.length / SLOTS.length)}`
+      : '';
     this.portrait.texture = this.portraits[this.selectedIndex] ?? Texture.EMPTY;
     this.nameLarge.text = profile.display_name;
     this.nameStats.text = profile.display_name;
@@ -212,7 +232,7 @@ export class CharacterSelectScene implements Scene {
     for (let row = 0; row < 3; row += 1) for (let pip = 0; pip < 5; pip += 1) {
       this.statPips.roundRect(844 + pip * 59, 199 + row * 26, 47, 12, 5).fill(pip < (amounts[row] ?? 0) ? 0xffa316 : 0x39201a);
     }
-    const [x, y] = SLOTS[this.selectedIndex] ?? SLOTS[0];
+    const [x, y] = SLOTS[this.selectedIndex % SLOTS.length] ?? SLOTS[0];
     this.selectionFrame.clear().roundRect(x - 6, y - 6, SLOT_WIDTH + 12, SLOT_HEIGHT + 12, 11).stroke({ color: 0xffedb3, width: 4 });
   }
 

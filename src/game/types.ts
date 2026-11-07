@@ -48,6 +48,8 @@ export interface CharacterProfile {
       max_health?: number;
       move_speed?: number;
       depth_speed?: number;
+      /** Optional complete J-button chains selected once at the start of each combo. */
+      combo_variants?: AttackData[][];
     };
     enemy?: {
       health?: number;

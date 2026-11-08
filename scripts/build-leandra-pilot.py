@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""Build Leandra's approved punch clips without altering source art.
+"""Build Leandra's approved punch and elbow clips without altering source art.
 
-The approved idle and guard plus the candidate punch frames are placed on
+The approved idle and guard plus the approved punch and elbow frames are placed on
 runtime canvases. Other clips retain Cammy's motion reference for now.
 """
 
@@ -38,6 +38,14 @@ PUNCH_FRAMES = {
         "P062_punch_right_06_agent_v1_640x420.png",
     ],
 }
+ELBOW_FRAMES = [
+    "P063_muay_elbow_01_agent_v1_640x420.png",
+    "P064_muay_elbow_02_agent_v1_640x420.png",
+    "P064_muay_elbow_02_agent_v1_640x420.png",
+    "P063_muay_elbow_01_agent_v1_640x420.png",
+    "P062_punch_right_06_agent_v1_640x420.png",
+    "P062_punch_right_06_agent_v1_640x420.png",
+]
 
 
 def place_pose(source: Path, destination: Path) -> None:
@@ -74,7 +82,7 @@ def main() -> None:
     for clip, source in originals.items():
         place_pose(source, TARGET / clip / "01.png")
 
-    for clip, sources in PUNCH_FRAMES.items():
+    for clip, sources in (*PUNCH_FRAMES.items(), ("muay_elbow", ELBOW_FRAMES)):
         for frame, filename in enumerate(sources, start=1):
             source = ART / "incoming" / filename
             if not source.is_file():
@@ -101,7 +109,7 @@ def main() -> None:
         "source": str(originals["block"].relative_to(ROOT)).replace("\\", "/"),
         "note": "Guardia visibile come breve idle variante; usa lo stesso frame di block",
     }
-    for clip, sources in PUNCH_FRAMES.items():
+    for clip, sources in (*PUNCH_FRAMES.items(), ("muay_elbow", ELBOW_FRAMES)):
         progress["clips"][clip] = {
             "status": "leandra_art",
             "frames": len(sources),
@@ -111,7 +119,7 @@ def main() -> None:
     (ROOT / "character_specs/leandra_replacement_progress.json").write_text(
         json.dumps(progress, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
-    print("LEANDRA PILOT: idle, block e due pugni approvati; gli altri clip conservano il riferimento Cammy")
+    print("LEANDRA PILOT: idle, block, due pugni e due pose della gomitata approvati; gli altri clip conservano il riferimento Cammy")
 
 
 if __name__ == "__main__":

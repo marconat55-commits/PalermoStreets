@@ -74,6 +74,28 @@
       "runtime_activated": true,
       "generation_attempts": 1,
       "note": "Rientro in guardia generato dall'agent e approvato nel gioco; condiviso come raccordo iniziale e finale."
+    },
+    "P063": {
+      "clip": "muay_elbow",
+      "frame": 1,
+      "status": "approved",
+      "source": "art_source/characters/leandra/incoming/P063_muay_elbow_01_agent_v1.png",
+      "transparent": "art_source/characters/leandra/incoming/P063_muay_elbow_01_agent_v1_alpha.png",
+      "runtime_preview": "art_source/characters/leandra/incoming/P063_muay_elbow_01_agent_v1_640x420.png",
+      "runtime_activated": true,
+      "generation_attempts": 1,
+      "note": "Caricamento della gomitata approvato dall'utente nel gioco."
+    },
+    "P064": {
+      "clip": "muay_elbow",
+      "frame": 2,
+      "status": "approved",
+      "source": "art_source/characters/leandra/incoming/P064_muay_elbow_02_agent_v1.png",
+      "transparent": "art_source/characters/leandra/incoming/P064_muay_elbow_02_agent_v1_alpha.png",
+      "runtime_preview": "art_source/characters/leandra/incoming/P064_muay_elbow_02_agent_v1_640x420.png",
+      "runtime_activated": true,
+      "generation_attempts": 1,
+      "note": "Prima fase della gomitata approvata dall'utente nel gioco."
     }
   }
 }

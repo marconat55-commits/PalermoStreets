@@ -65,6 +65,7 @@ async function collectImages(root, publicRoot) {
 
 function categoryFor(assetPath) {
   const value = assetPath.toLowerCase();
+  if (/insegna|cartell|sign/.test(value)) return 'INSEGNE';
   if (/vespa|moto|scooter|auto/.test(value)) return 'VEICOLI';
   if (/tree|alber|bush|piant|fiorier|veget|cipress|uliv|ficus|erba/.test(value)) return 'VEGETAZIONE';
   if (/franco|duracell|ragazz|npc|barbaccia/.test(value)) return 'NPC DI FONDO';

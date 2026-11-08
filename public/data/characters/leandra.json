@@ -11,7 +11,7 @@
     "frame_meta": "data/generated/characters/leandra.frame_meta.json"
   },
   "identity": {
-    "canon": "Prototipo giocabile: idle, guardia, due pugni e prime due pose della gomitata approvati di Leandra; altre pose ancora dal riferimento Cammy"
+    "canon": "Prototipo giocabile: idle, guardia, due pugni, sei pose della gomitata e prime due pose dedicate del finale combo approvati di Leandra; altre pose ancora dal riferimento Cammy"
   },
   "selection": {
     "portrait": "assets/ui/character_select/leandra_portrait.png",

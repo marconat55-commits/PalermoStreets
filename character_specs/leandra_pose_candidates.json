@@ -140,6 +140,28 @@
       "runtime_activated": true,
       "generation_attempts": 2,
       "note": "Guardia di recupero approvata con anatomia più morbida, coerente con P062."
+    },
+    "P070": {
+      "clip": "combo_finisher",
+      "frame": 2,
+      "status": "approved",
+      "source": "art_source/characters/leandra/incoming/P070_combo_finisher_02_agent_v1.png",
+      "transparent": "art_source/characters/leandra/incoming/P070_combo_finisher_02_agent_v1_alpha.png",
+      "runtime_preview": "art_source/characters/leandra/incoming/P070_combo_finisher_02_agent_v1_640x420.png",
+      "runtime_activated": true,
+      "generation_attempts": 1,
+      "note": "Ingresso nella ruota acrobatica, piede ancora a terra; approvata."
+    },
+    "P071": {
+      "clip": "combo_finisher",
+      "frame": 3,
+      "status": "approved",
+      "source": "art_source/characters/leandra/incoming/P071_combo_finisher_03_agent_v2_inverted_head.png",
+      "transparent": "art_source/characters/leandra/incoming/P071_combo_finisher_03_agent_v2_inverted_head_alpha.png",
+      "runtime_preview": "art_source/characters/leandra/incoming/P071_combo_finisher_03_agent_v2_inverted_head_640x420.png",
+      "runtime_activated": true,
+      "generation_attempts": 2,
+      "note": "Fase capovolta della ruota con testa e viso correttamente sottosopra, gambe divaricate e una mano a terra; approvata."
     }
   }
 }

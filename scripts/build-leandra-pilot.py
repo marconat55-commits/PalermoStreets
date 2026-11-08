@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
-"""Build Leandra's approved punch and elbow clips without altering source art.
+"""Build Leandra's approved punch, elbow and partial combo clips.
 
 The approved idle and guard plus the approved punch and elbow frames are placed on
-runtime canvases. Other clips retain Cammy's motion reference for now.
+runtime canvases. The first three combo-finisher frames use Leandra art; the
+remaining frames retain Cammy's motion reference for now.
 """
 
 from __future__ import annotations
@@ -46,6 +47,11 @@ ELBOW_FRAMES = [
     "P067_muay_elbow_05_agent_v2_soft_640x420.png",
     "P068_muay_elbow_06_agent_v2_soft_640x420.png",
 ]
+COMBO_FINISHER_FRAMES = [
+    "P068_muay_elbow_06_agent_v2_soft_640x420.png",  # P069 reuses Leandra's guard
+    "P070_combo_finisher_02_agent_v1_640x420.png",
+    "P071_combo_finisher_03_agent_v2_inverted_head_640x420.png",
+]
 
 
 def place_pose(source: Path, destination: Path) -> None:
@@ -80,9 +86,11 @@ def main() -> None:
         "block": ART / "pilot_v1/LEANDRA_GUARD_3Q_ALPHA.png",
     }
     for clip, source in originals.items():
-        place_pose(source, TARGET / clip / "01.png")
+        destination = TARGET / clip / "01.png"
+        if not destination.is_file():
+            place_pose(source, destination)
 
-    for clip, sources in (*PUNCH_FRAMES.items(), ("muay_elbow", ELBOW_FRAMES)):
+    for clip, sources in (*PUNCH_FRAMES.items(), ("muay_elbow", ELBOW_FRAMES), ("combo_finisher", COMBO_FINISHER_FRAMES)):
         for frame, filename in enumerate(sources, start=1):
             source = ART / "incoming" / filename
             if not source.is_file():
@@ -119,10 +127,19 @@ def main() -> None:
     progress["clips"]["muay_elbow"]["note"] = (
         "Sei pose dedicate approvate: corporatura naturale e volto coerente col master di Leandra."
     )
+    progress["clips"]["combo_finisher"] = {
+        "status": "mixed_leandra_art",
+        "frames": len(mapping["clips"]["combo_finisher"]),
+        "replaced_frames": {
+            str(index): f"art_source/characters/leandra/incoming/{filename}"
+            for index, filename in enumerate(COMBO_FINISHER_FRAMES, start=1)
+        },
+        "note": "P069 riusa la guardia P068; P070 e P071 sono approvate. I frame 04-10 usano ancora Cammy.",
+    }
     (ROOT / "character_specs/leandra_replacement_progress.json").write_text(
         json.dumps(progress, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
-    print("LEANDRA PILOT: idle, block, due pugni e sei pose della gomitata approvati; gli altri clip conservano il riferimento Cammy")
+    print("LEANDRA PILOT: idle, block, due pugni, sei pose della gomitata e prime tre pose del finale combo approvati")
 
 
 if __name__ == "__main__":

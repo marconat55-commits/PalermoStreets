@@ -133,9 +133,9 @@ I duplicati identici possono riusare l'immagine Leandra della prima occorrenza. 
 
 | N. | Posa | MUGEN | Stato / riuso | Riferimento |
 |---|---|---|---|---|
-| P069 | `combo_finisher/01` | action 211, sprite 211,0 | Riusa `brake/03` | [PNG](../public/assets/characters/cammy_ref_anim/combo_finisher/01.png) |
-| P070 | `combo_finisher/02` | action 211, sprite 211,1 | Da creare | [PNG](../public/assets/characters/cammy_ref_anim/combo_finisher/02.png) |
-| P071 | `combo_finisher/03` | action 211, sprite 211,2 | Da creare | [PNG](../public/assets/characters/cammy_ref_anim/combo_finisher/03.png) |
+| P069 | `combo_finisher/01` | action 211, sprite 211,0 | Riusa P068 approvata; riferimento MUGEN riusa `brake/03` | [PNG](../public/assets/characters/cammy_ref_anim/combo_finisher/01.png) |
+| P070 | `combo_finisher/02` | action 211, sprite 211,1 | Approvata | [PNG](../public/assets/characters/cammy_ref_anim/combo_finisher/02.png) |
+| P071 | `combo_finisher/03` | action 211, sprite 211,2 | V2 con testa capovolta approvata | [PNG](../public/assets/characters/cammy_ref_anim/combo_finisher/03.png) |
 | P072 | `combo_finisher/04` | action 211, sprite 211,3 | Da creare | [PNG](../public/assets/characters/cammy_ref_anim/combo_finisher/04.png) |
 | P073 | `combo_finisher/05` | action 211, sprite 211,4 | Da creare | [PNG](../public/assets/characters/cammy_ref_anim/combo_finisher/05.png) |
 | P074 | `combo_finisher/06` | action 211, sprite 211,5 | Da creare | [PNG](../public/assets/characters/cammy_ref_anim/combo_finisher/06.png) |

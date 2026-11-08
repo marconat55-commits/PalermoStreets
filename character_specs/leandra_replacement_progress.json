@@ -65,14 +65,14 @@
       "status": "leandra_art",
       "frames": 6,
       "sources": [
-        "art_source/characters/leandra/incoming/P063_muay_elbow_01_agent_v1_640x420.png",
-        "art_source/characters/leandra/incoming/P064_muay_elbow_02_agent_v1_640x420.png",
-        "art_source/characters/leandra/incoming/P064_muay_elbow_02_agent_v1_640x420.png",
-        "art_source/characters/leandra/incoming/P063_muay_elbow_01_agent_v1_640x420.png",
-        "art_source/characters/leandra/incoming/P062_punch_right_06_agent_v1_640x420.png",
-        "art_source/characters/leandra/incoming/P062_punch_right_06_agent_v1_640x420.png"
+        "art_source/characters/leandra/incoming/P063_muay_elbow_01_agent_v2_soft_640x420.png",
+        "art_source/characters/leandra/incoming/P064_muay_elbow_02_agent_v2_soft_640x420.png",
+        "art_source/characters/leandra/incoming/P065_muay_elbow_03_agent_v3_soft_640x420.png",
+        "art_source/characters/leandra/incoming/P066_muay_elbow_04_agent_v5_soft_640x420.png",
+        "art_source/characters/leandra/incoming/P067_muay_elbow_05_agent_v2_soft_640x420.png",
+        "art_source/characters/leandra/incoming/P068_muay_elbow_06_agent_v2_soft_640x420.png"
       ],
-      "note": "Pose approvate: il frame iniziale di guardia e alcuni raccordi sono riusati finche non esistono pose dedicate."
+      "note": "Sei pose dedicate approvate: corporatura naturale e volto coerente col master di Leandra."
     },
     "combo_finisher": {
       "status": "cammy_reference",

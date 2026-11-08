@@ -122,12 +122,12 @@ I duplicati identici possono riusare l'immagine Leandra della prima occorrenza. 
 
 | N. | Posa | MUGEN | Stato / riuso | Riferimento |
 |---|---|---|---|---|
-| P063 | `muay_elbow/01` | action 204, sprite 204,0 | Approvata nel gioco | [PNG](../public/assets/characters/cammy_ref_anim/muay_elbow/01.png) |
-| P064 | `muay_elbow/02` | action 204, sprite 204,1 | Approvata nel gioco | [PNG](../public/assets/characters/cammy_ref_anim/muay_elbow/02.png) |
-| P065 | `muay_elbow/03` | action 204, sprite 204,2 | Da creare | [PNG](../public/assets/characters/cammy_ref_anim/muay_elbow/03.png) |
-| P066 | `muay_elbow/04` | action 204, sprite 204,3 | Da creare | [PNG](../public/assets/characters/cammy_ref_anim/muay_elbow/04.png) |
-| P067 | `muay_elbow/05` | action 204, sprite 204,4 | Riusa `muay_elbow/03` | [PNG](../public/assets/characters/cammy_ref_anim/muay_elbow/05.png) |
-| P068 | `muay_elbow/06` | action 204, sprite 204,5 | Da creare | [PNG](../public/assets/characters/cammy_ref_anim/muay_elbow/06.png) |
+| P063 | `muay_elbow/01` | action 204, sprite 204,0 | V2 morbida approvata | [PNG](../public/assets/characters/cammy_ref_anim/muay_elbow/01.png) |
+| P064 | `muay_elbow/02` | action 204, sprite 204,1 | V2 morbida approvata | [PNG](../public/assets/characters/cammy_ref_anim/muay_elbow/02.png) |
+| P065 | `muay_elbow/03` | action 204, sprite 204,2 | Approvata | [PNG](../public/assets/characters/cammy_ref_anim/muay_elbow/03.png) |
+| P066 | `muay_elbow/04` | action 204, sprite 204,3 | Approvata | [PNG](../public/assets/characters/cammy_ref_anim/muay_elbow/04.png) |
+| P067 | `muay_elbow/05` | action 204, sprite 204,4 | Approvata | [PNG](../public/assets/characters/cammy_ref_anim/muay_elbow/05.png) |
+| P068 | `muay_elbow/06` | action 204, sprite 204,5 | Approvata | [PNG](../public/assets/characters/cammy_ref_anim/muay_elbow/06.png) |
 
 ## Finale combo — `combo_finisher` (10 frame)
 

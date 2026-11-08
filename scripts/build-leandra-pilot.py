@@ -39,12 +39,12 @@ PUNCH_FRAMES = {
     ],
 }
 ELBOW_FRAMES = [
-    "P063_muay_elbow_01_agent_v1_640x420.png",
-    "P064_muay_elbow_02_agent_v1_640x420.png",
-    "P064_muay_elbow_02_agent_v1_640x420.png",
-    "P063_muay_elbow_01_agent_v1_640x420.png",
-    "P062_punch_right_06_agent_v1_640x420.png",
-    "P062_punch_right_06_agent_v1_640x420.png",
+    "P063_muay_elbow_01_agent_v2_soft_640x420.png",
+    "P064_muay_elbow_02_agent_v2_soft_640x420.png",
+    "P065_muay_elbow_03_agent_v3_soft_640x420.png",
+    "P066_muay_elbow_04_agent_v5_soft_640x420.png",
+    "P067_muay_elbow_05_agent_v2_soft_640x420.png",
+    "P068_muay_elbow_06_agent_v2_soft_640x420.png",
 ]
 
 
@@ -116,10 +116,13 @@ def main() -> None:
             "sources": [f"art_source/characters/leandra/incoming/{filename}" for filename in sources],
             "note": "Pose approvate: il frame iniziale di guardia e alcuni raccordi sono riusati finche non esistono pose dedicate.",
         }
+    progress["clips"]["muay_elbow"]["note"] = (
+        "Sei pose dedicate approvate: corporatura naturale e volto coerente col master di Leandra."
+    )
     (ROOT / "character_specs/leandra_replacement_progress.json").write_text(
         json.dumps(progress, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
-    print("LEANDRA PILOT: idle, block, due pugni e due pose della gomitata approvati; gli altri clip conservano il riferimento Cammy")
+    print("LEANDRA PILOT: idle, block, due pugni e sei pose della gomitata approvati; gli altri clip conservano il riferimento Cammy")
 
 
 if __name__ == "__main__":

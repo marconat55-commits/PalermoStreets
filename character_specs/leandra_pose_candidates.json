@@ -79,23 +79,67 @@
       "clip": "muay_elbow",
       "frame": 1,
       "status": "approved",
-      "source": "art_source/characters/leandra/incoming/P063_muay_elbow_01_agent_v1.png",
-      "transparent": "art_source/characters/leandra/incoming/P063_muay_elbow_01_agent_v1_alpha.png",
-      "runtime_preview": "art_source/characters/leandra/incoming/P063_muay_elbow_01_agent_v1_640x420.png",
+      "source": "art_source/characters/leandra/incoming/P063_muay_elbow_01_agent_v2_soft.png",
+      "transparent": "art_source/characters/leandra/incoming/P063_muay_elbow_01_agent_v2_soft_alpha.png",
+      "runtime_preview": "art_source/characters/leandra/incoming/P063_muay_elbow_01_agent_v2_soft_640x420.png",
       "runtime_activated": true,
-      "generation_attempts": 1,
-      "note": "Caricamento della gomitata approvato dall'utente nel gioco."
+      "generation_attempts": 2,
+      "note": "V2 con corporatura più morbida approvata; sostituisce la V1 pubblicata."
     },
     "P064": {
       "clip": "muay_elbow",
       "frame": 2,
       "status": "approved",
-      "source": "art_source/characters/leandra/incoming/P064_muay_elbow_02_agent_v1.png",
-      "transparent": "art_source/characters/leandra/incoming/P064_muay_elbow_02_agent_v1_alpha.png",
-      "runtime_preview": "art_source/characters/leandra/incoming/P064_muay_elbow_02_agent_v1_640x420.png",
+      "source": "art_source/characters/leandra/incoming/P064_muay_elbow_02_agent_v2_soft.png",
+      "transparent": "art_source/characters/leandra/incoming/P064_muay_elbow_02_agent_v2_soft_alpha.png",
+      "runtime_preview": "art_source/characters/leandra/incoming/P064_muay_elbow_02_agent_v2_soft_640x420.png",
       "runtime_activated": true,
-      "generation_attempts": 1,
-      "note": "Prima fase della gomitata approvata dall'utente nel gioco."
+      "generation_attempts": 2,
+      "note": "V2 con corporatura più morbida approvata; sostituisce la V1 pubblicata."
+    },
+    "P065": {
+      "clip": "muay_elbow",
+      "frame": 3,
+      "status": "approved",
+      "source": "art_source/characters/leandra/incoming/P065_muay_elbow_03_agent_v3_soft.png",
+      "transparent": "art_source/characters/leandra/incoming/P065_muay_elbow_03_agent_v3_soft_alpha.png",
+      "runtime_preview": "art_source/characters/leandra/incoming/P065_muay_elbow_03_agent_v3_soft_640x420.png",
+      "runtime_activated": true,
+      "generation_attempts": 3,
+      "note": "Fase bassa di raccordo con anatomia ammorbidita approvata."
+    },
+    "P066": {
+      "clip": "muay_elbow",
+      "frame": 4,
+      "status": "approved",
+      "source": "art_source/characters/leandra/incoming/P066_muay_elbow_04_agent_v5_soft.png",
+      "transparent": "art_source/characters/leandra/incoming/P066_muay_elbow_04_agent_v5_soft_alpha.png",
+      "runtime_preview": "art_source/characters/leandra/incoming/P066_muay_elbow_04_agent_v5_soft_640x420.png",
+      "runtime_activated": true,
+      "generation_attempts": 5,
+      "note": "Versione 5 approvata: braccio di lunghezza intermedia, anatomia più morbida e luce coerente col master."
+    },
+    "P067": {
+      "clip": "muay_elbow",
+      "frame": 5,
+      "status": "approved",
+      "source": "art_source/characters/leandra/incoming/P067_muay_elbow_05_agent_v2_soft.png",
+      "transparent": "art_source/characters/leandra/incoming/P067_muay_elbow_05_agent_v2_soft_alpha.png",
+      "runtime_preview": "art_source/characters/leandra/incoming/P067_muay_elbow_05_agent_v2_soft_640x420.png",
+      "runtime_activated": true,
+      "generation_attempts": 2,
+      "note": "Rientro dal colpo approvato con linee più morbide: pugno ritirato, braccio opposto aperto."
+    },
+    "P068": {
+      "clip": "muay_elbow",
+      "frame": 6,
+      "status": "approved",
+      "source": "art_source/characters/leandra/incoming/P068_muay_elbow_06_agent_v2_soft.png",
+      "transparent": "art_source/characters/leandra/incoming/P068_muay_elbow_06_agent_v2_soft_alpha.png",
+      "runtime_preview": "art_source/characters/leandra/incoming/P068_muay_elbow_06_agent_v2_soft_640x420.png",
+      "runtime_activated": true,
+      "generation_attempts": 2,
+      "note": "Guardia di recupero approvata con anatomia più morbida, coerente con P062."
     }
   }
 }
